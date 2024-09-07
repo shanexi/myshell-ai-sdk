@@ -4,6 +4,14 @@
   "sourceRoot": "apps/myshell-fun-e2e/src",
   "projectType": "application",
   "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p tsconfig.json --noEmit"],
+        "cwd": "apps/myshell-fun-e2e",
+        "forwardAllArgs": false
+      }
+    },
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {

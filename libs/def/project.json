@@ -4,6 +4,14 @@
   "sourceRoot": "libs/def/src",
   "projectType": "library",
   "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p tsconfig.json --noEmit"],
+        "cwd": "libs/def",
+        "forwardAllArgs": false
+      }
+    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],

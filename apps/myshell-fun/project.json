@@ -4,6 +4,14 @@
   "sourceRoot": "apps/myshell-fun",
   "projectType": "application",
   "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p tsconfig.json --noEmit"],
+        "cwd": "apps/myshell-fun",
+        "forwardAllArgs": false
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
