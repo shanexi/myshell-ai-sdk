@@ -1,8 +1,8 @@
-name: basic check
+name: PR check
 
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - main
 
 jobs:
@@ -13,6 +13,10 @@ jobs:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
       NX_DAEMON: 'false'
 
+    permissions:
+      contents: 'write'
+      pull-requests: 'write'
+      checks: 'write'
     steps:
       - uses: actions/checkout@v3
 
@@ -27,4 +31,9 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
 
-      - run: ./scripts/ci.js --ci
+      - run: ./scripts/ci.js --ci --pr
+
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          package-manager: pnpm
+          skip-step: install
