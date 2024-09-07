@@ -20,6 +20,7 @@
     "@nrwl/jest": "15.9.7",
     "@nrwl/js": "15.9.7",
     "@nrwl/linter": "15.9.7",
+    "@nrwl/next": "15.9.7",
     "@nrwl/react": "15.9.7",
     "@nrwl/storybook": "15.9.7",
     "@nrwl/web": "15.9.7",
