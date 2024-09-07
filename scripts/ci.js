@@ -41,6 +41,15 @@ execSync(
 );
 
 execSync(
+  'node ./scripts/report-coverage-part2.js' +
+    (argv.length === 0 ? '' : ' ' + argv.join(' ')),
+  {
+    cwd: path.join(__dirname, '..'),
+    stdio: 'inherit',
+  }
+);
+
+execSync(
   'node ./scripts/test-storybook.js' +
     (argv.length === 0 ? '' : ' ' + argv.join(' ')),
   {

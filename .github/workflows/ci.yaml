@@ -27,4 +27,15 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
 
-      - run: node ./scripts/ci.js
+      - run: node ./scripts/report-coverage.js
+
+      - run: ls ./coverage/libs/def/coverage-final.json
+
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          coverage-file: ./coverage/libs/def/coverage-final.json
+          base-coverage-file: ./coverage/libs/def/coverage-final.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          threshold: 90
+          annotations: coverage
+          skip-step: all
