@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const concurrently = require('concurrently');
 const path = require('path');
 const { execSync } = require('child_process');
 
 console.log('\x1b[33m%s\x1b[0m', 'test storybook...');
 
 function run(name, port) {
+  console.time(`test-storybook ${name}`);
   execSync(
     [
       `./node_modules/.bin/concurrently -k -s first -n "${name} serve,${name} test"`,
@@ -19,6 +19,7 @@ function run(name, port) {
       stdio: 'inherit',
     }
   );
+  console.timeEnd(`test-storybook ${name}`);
 }
 
 run('chat', 4201);
