@@ -56,7 +56,7 @@ run('lint', './node_modules/.bin/nx run-many --target lint');
 run('build', './node_modules/.bin/nx run-many --target build');
 
 if (!options.pr) {
-  run('test', './node_modules/.bin/nx run-many --target test');
+  run('test', './node_modules/.bin/nx run-many --target test --output-style=static');
 } else {
   // run test use ArtiomTr/jest-coverage-report-action@v2
   run('e2e', './node_modules/.bin/nx run-many --target e2e');
