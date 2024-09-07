@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myshell-api-sdk/chat": ["libs/chat/src/index.ts"],
-      "@myshell-api-sdk/def": ["libs/def/src/index.ts"]
+      "@myshell-ai-sdk/chat": ["libs/chat/src/index.ts"],
+      "@myshell-ai-sdk/def": ["libs/def/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
