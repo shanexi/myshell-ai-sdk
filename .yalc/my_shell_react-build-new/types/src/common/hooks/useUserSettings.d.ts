@@ -1,0 +1,25 @@
+import { UserSettings } from '../constants/interfaces/user';
+declare function useUserSettings(): {
+    userSettingsInfo: UserSettings[];
+    handleGetUserSettings: (needRedirect?: boolean, callback?: Function) => Promise<void>;
+    handleUpdateLanguage: (value: string) => Promise<void>;
+    currentLanguage: string;
+    handleUpdateRewardsCenterVisited: (seasonName?: string, callback?: Function) => void;
+    handleUpdateForumCenterVisited: (seasonName?: string, callback?: Function) => void;
+    handleUpdateFirstPublishGallery: (callback?: Function) => void;
+    handleUpdateFirstVisitGallery: (callback?: Function) => void;
+    handleUpdateFlagTagNoticeVisited: (seasonName?: string, callback?: Function) => void;
+    handleModelConfigClicked: () => void;
+    handleShowNsfw: (show: boolean, callback?: Function) => void;
+    handleNsfwConfirmed: (callback?: Function) => void;
+    handleVoiceCallUsed: (callback?: Function) => void;
+    handleVideoCallUsed: (callback?: Function) => void;
+    handleBlockChainGuruTaskOnceCompleted: (callback?: Function) => void;
+    handleSilentPeriodConfirmed: (seasonName: string) => void;
+    handleDeductionConfirmed: (seasonName: string) => void;
+    handleSubscribingEarnViewed: (callback?: Function) => void;
+    handleShareKeyEarnPopupConfirmed: (timeStamp: string) => void;
+    handleTimezoneChange: (timezone: string) => void;
+    handleReceiveNotification: (open: boolean, callback?: () => void) => Promise<void>;
+};
+export default useUserSettings;

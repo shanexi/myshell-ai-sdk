@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("@chakra-ui/react");
+const PublishIcon = (props) => ((0, jsx_runtime_1.jsxs)(react_1.Icon, { viewBox: "0 0 20 20", fill: "none", ...props, children: [(0, jsx_runtime_1.jsx)("path", { d: "M5.75983 5.125C4.93669 5.125 4.20981 5.66185 3.96774 6.44859L1.95791 11.9805C1.90295 12.1592 1.875 12.345 1.875 12.5319V16C1.875 17.0355 2.71447 17.875 3.75 17.875H16.25C17.2855 17.875 18.125 17.0355 18.125 16V12.5319C18.125 12.345 18.0971 12.1592 18.0421 11.9805L16.0323 6.44859C15.7902 5.66185 15.0633 5.125 14.2402 5.125M1.875 12.25H5.09119C5.80138 12.25 6.45063 12.6513 6.76824 13.2865L6.98176 13.7135C7.29937 14.3487 7.94862 14.75 8.65881 14.75H11.3412C12.0514 14.75 12.7006 14.3487 13.0182 13.7135L13.2318 13.2865C13.5494 12.6513 14.1986 12.25 14.9088 12.25H18.125", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }), (0, jsx_runtime_1.jsx)("path", { d: "M10 8.375V1.5M10 1.5L7.5 4M10 1.5L12.5 4", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" })] }));
+exports.default = PublishIcon;

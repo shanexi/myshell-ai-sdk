@@ -1,0 +1,3 @@
+import { z } from 'zod';
+import { ISchema } from '../types';
+export declare function createValidator(schema: ISchema): z.ZodString | z.ZodEffects<z.ZodString, string, string> | z.ZodNumber | z.ZodEffects<z.ZodEffects<z.ZodString, string, string>, string, string> | z.ZodEffects<z.ZodEffects<z.ZodEffects<z.ZodString, string, string>, string, string>, string, string> | z.ZodEffects<z.ZodEffects<z.ZodEffects<z.ZodEffects<z.ZodString, string, string>, string, string>, string, string>, string, string> | z.ZodEffects<z.ZodNumber, number, number> | z.ZodEffects<z.ZodEffects<z.ZodNumber, number, number>, number, number> | null;

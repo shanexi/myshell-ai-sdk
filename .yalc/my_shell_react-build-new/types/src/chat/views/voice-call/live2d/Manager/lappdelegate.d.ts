@@ -1,0 +1,30 @@
+import { Option } from 'live2d_framework/dist/live2dcubismframework';
+import * as LAppDefine from './lappdefine';
+import { LAppTextureManager } from './lapptexturemanager';
+import { LAppView } from './lappview';
+export declare let canvas: HTMLCanvasElement;
+export declare let s_instance: LAppDelegate;
+export declare let gl: WebGLRenderingContext;
+export declare let frameBuffer: WebGLFramebuffer;
+export declare class LAppDelegate {
+    static getInstance(): LAppDelegate;
+    static releaseInstance(): void;
+    initialize(param: LAppDefine.ModelParam, modelName: string): boolean;
+    onResize(): void;
+    release(): void;
+    run(): void;
+    createShader(): WebGLProgram;
+    getView(): LAppView;
+    getTextureManager(): LAppTextureManager;
+    constructor();
+    initializeCubism(modelName: string, param: LAppDefine.ModelParam): void;
+    private _resizeCanvas;
+    _cubismOption: Option;
+    _view: LAppView;
+    _captured: boolean;
+    _mouseX: number;
+    _mouseY: number;
+    _isEnd: boolean;
+    _isInit: boolean;
+    _textureManager: LAppTextureManager;
+}

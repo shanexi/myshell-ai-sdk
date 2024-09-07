@@ -1,0 +1,92 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PointTypeEnum = exports.SeasonStatus = exports.OrderStatus = exports.OrderType = exports.PropStatusEnum = exports.GolangRewardStatusEnum = exports.PropTypeEnum = exports.GolangUserTaskStatusEnum = exports.TaskTypeEnum = void 0;
+var TaskTypeEnum;
+(function (TaskTypeEnum) {
+    TaskTypeEnum["SEASON_TASK_TYPE_UNSPECIFIED"] = "SEASON_TASK_TYPE_UNSPECIFIED";
+    TaskTypeEnum["SEASON_TASK_TYPE_DAILY_MESSAGE"] = "SEASON_TASK_TYPE_DAILY_MESSAGE";
+    TaskTypeEnum["SEASON_TASK_TYPE_DC_INTERACTION"] = "SEASON_TASK_TYPE_DC_INTERACTION";
+    TaskTypeEnum["SEASON_TASK_TYPE_BLOCKCHAIN_INTERACTION"] = "SEASON_TASK_TYPE_BLOCKCHAIN_INTERACTION";
+    TaskTypeEnum["SEASON_TASK_TYPE_USE_VOICE_VIDEO"] = "SEASON_TASK_TYPE_USE_VOICE_VIDEO";
+    TaskTypeEnum["SEASON_TASK_TYPE_CREATE_BOT"] = "SEASON_TASK_TYPE_CREATE_BOT";
+    TaskTypeEnum["SEASON_TASK_TYPE_USE_VOICE_CLONE"] = "SEASON_TASK_TYPE_USE_VOICE_CLONE";
+    TaskTypeEnum["SEASON_TASK_TYPE_USE_AUTO_PROMPT"] = "SEASON_TASK_TYPE_USE_AUTO_PROMPT";
+    TaskTypeEnum["SEASON_TASK_TYPE_TALK_TO_GPT4_BOT"] = "SEASON_TASK_TYPE_TALK_TO_GPT4_BOT";
+    TaskTypeEnum["SEASON_TASK_TYPE_TALK_TO_BOTS"] = "SEASON_TASK_TYPE_TALK_TO_BOTS";
+    TaskTypeEnum["SEASON_TASK_TALK_TO_BOT_WITH_TAG"] = "SEASON_TASK_TALK_TO_BOT_WITH_TAG";
+    TaskTypeEnum["SEASON_TASK_TYPE_BOT_MASTER"] = "SEASON_TASK_TYPE_BOT_MASTER";
+    TaskTypeEnum["SEASON_TASK_TYPE_MODEL_MASTER"] = "SEASON_TASK_TYPE_MODEL_MASTER";
+    TaskTypeEnum["SEASON_TASK_TYPE_INVITEE_MESSAGE_LV1"] = "SEASON_TASK_TYPE_INVITEE_MESSAGE_LV1";
+    TaskTypeEnum["SEASON_TASK_TYPE_INVITEE_MESSAGE_LV2"] = "SEASON_TASK_TYPE_INVITEE_MESSAGE_LV2";
+    TaskTypeEnum["SEASON_TASK_TYPE_FANS_KEY"] = "SEASON_TASK_TYPE_FANS_KEY";
+    TaskTypeEnum["SEASON_TASK_TYPE_STAKING_EXPERIENCE"] = "SEASON_TASK_TYPE_STAKING_EXPERIENCE";
+    TaskTypeEnum["SEASON_TASK_TYPE_EXPERIENCE_IMAGE_BOTS"] = "SEASON_TASK_TYPE_EXPERIENCE_IMAGE_BOTS";
+    TaskTypeEnum["SEASON_TASK_TYPE_PUBLIC_VOICE_INCOME"] = "SEASON_TASK_TYPE_PUBLIC_VOICE_INCOME";
+    TaskTypeEnum["SEASON_TASK_TYPE_BIND_DC_ACCOUNT"] = "SEASON_TASK_TYPE_BIND_DC_ACCOUNT";
+    TaskTypeEnum["SEASON_TASK_TYPE_PATRON_BADGE"] = "SEASON_TASK_TYPE_PATRON_BADGE";
+    TaskTypeEnum["SEASON_TASK_TYPE_TWEET_SHARE"] = "SEASON_TASK_TYPE_TWEET_SHARE";
+    TaskTypeEnum["SEASON_TASK_TYPE_SOCIAL_MEDIA_SHARE"] = "SEASON_TASK_TYPE_SOCIAL_MEDIA_SHARE";
+    TaskTypeEnum["SEASON_TASK_TOP_CURVE_HOLDERS_DAILY_INCOME"] = "SEASON_TASK_TOP_CURVE_HOLDERS_DAILY_INCOME";
+    TaskTypeEnum["SEASON_TASK_TYPE_LUCKY_STAR"] = "SEASON_TASK_TYPE_LUCKY_STAR";
+    TaskTypeEnum["SEASON_TASK_TYPE_CURVE_PROFIT_SHARE"] = "SEASON_TASK_TYPE_CURVE_PROFIT_SHARE";
+    TaskTypeEnum["SEASON_TASK_TYPE_JACKPOT"] = "SEASON_TASK_TYPE_JACKPOT";
+})(TaskTypeEnum || (exports.TaskTypeEnum = TaskTypeEnum = {}));
+var GolangUserTaskStatusEnum;
+(function (GolangUserTaskStatusEnum) {
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_UNSPECIFIED"] = "SEASON_TASK_ITEM_STATUS_UNSPECIFIED";
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_IN_PROGRESS"] = "SEASON_TASK_ITEM_STATUS_IN_PROGRESS";
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_CLAIMABLE"] = "SEASON_TASK_ITEM_STATUS_CLAIMABLE";
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_CLAIMED"] = "SEASON_TASK_ITEM_STATUS_CLAIMED";
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_UNAVAILABLE"] = "SEASON_TASK_ITEM_STATUS_UNAVAILABLE";
+    GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_MONTHLY_LIMIT_REACHED"] = "SEASON_TASK_ITEM_STATUS_MONTHLY_LIMIT_REACHED";
+})(GolangUserTaskStatusEnum || (exports.GolangUserTaskStatusEnum = GolangUserTaskStatusEnum = {}));
+var PropTypeEnum;
+(function (PropTypeEnum) {
+    PropTypeEnum["standardBattlePass"] = "standardBattlePass";
+    PropTypeEnum["genesisPass"] = "genesisPass";
+    PropTypeEnum["seasonBadge"] = "seasonBadge";
+    PropTypeEnum["energyPack"] = "energyPack";
+    PropTypeEnum["shellCoin"] = "shellCoin";
+})(PropTypeEnum || (exports.PropTypeEnum = PropTypeEnum = {}));
+var GolangRewardStatusEnum;
+(function (GolangRewardStatusEnum) {
+    GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_UNSPECIFIED"] = "BACKPACK_ITEM_STATUS_UNSPECIFIED";
+    GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_COMING_SOON"] = "BACKPACK_ITEM_STATUS_COMING_SOON";
+    GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_DISABLED"] = "BACKPACK_ITEM_STATUS_DISABLED";
+})(GolangRewardStatusEnum || (exports.GolangRewardStatusEnum = GolangRewardStatusEnum = {}));
+var PropStatusEnum;
+(function (PropStatusEnum) {
+    PropStatusEnum["BACKPACK_ITEM_STATUS_UNSPECIFIED"] = "BACKPACK_ITEM_STATUS_UNSPECIFIED";
+    PropStatusEnum["BACKPACK_ITEM_STATUS_COMING_SOON"] = "BACKPACK_ITEM_STATUS_COMING_SOON";
+    PropStatusEnum["BACKPACK_ITEM_STATUS_DISABLED"] = "BACKPACK_ITEM_STATUS_DISABLED";
+})(PropStatusEnum || (exports.PropStatusEnum = PropStatusEnum = {}));
+var OrderType;
+(function (OrderType) {
+    OrderType["ORDER_SOURCE_TYPE_UNSPECIFIED"] = "ORDER_SOURCE_TYPE_UNSPECIFIED";
+    OrderType["ORDER_SOURCE_TYPE_SEASON_POINT_EXCHANGE"] = "ORDER_SOURCE_TYPE_SEASON_POINT_EXCHANGE";
+    OrderType["ORDER_SOURCE_TYPE_BADGE_EXCHANGE"] = "ORDER_SOURCE_TYPE_BADGE_EXCHANGE";
+    OrderType["ORDER_SOURCE_TYPE_BUY_SHARE_KEY"] = "ORDER_SOURCE_TYPE_BUY_SHARE_KEY";
+    OrderType["ORDER_SOURCE_TYPE_SELL_SHARE_KEY"] = "ORDER_SOURCE_TYPE_SELL_SHARE_KEY";
+})(OrderType || (exports.OrderType = OrderType = {}));
+var OrderStatus;
+(function (OrderStatus) {
+    OrderStatus["ORDER_STATUS_UNSPECIFIED"] = "ORDER_STATUS_UNSPECIFIED";
+    OrderStatus["ORDER_STATUS_WAITING_PAY"] = "ORDER_STATUS_WAITING_PAY";
+    OrderStatus["ORDER_STATUS_PAID"] = "ORDER_STATUS_PAID";
+    OrderStatus["ORDER_STATUS_CANCELED"] = "ORDER_STATUS_CANCELED";
+})(OrderStatus || (exports.OrderStatus = OrderStatus = {}));
+var SeasonStatus;
+(function (SeasonStatus) {
+    SeasonStatus["SEASON_STATUS_UNSPECIFIED"] = "SEASON_STATUS_UNSPECIFIED";
+    SeasonStatus["SEASON_STATUS_ON_GOING"] = "SEASON_STATUS_ON_GOING";
+    SeasonStatus["SEASON_STATUS_PREPARING_FOR_REWARDS"] = "SEASON_STATUS_PREPARING_FOR_REWARDS";
+    SeasonStatus["SEASON_STATUS_REWARDS_REDEMPTION"] = "SEASON_STATUS_REWARDS_REDEMPTION";
+    SeasonStatus["SEASON_STATUS_FINISHED"] = "SEASON_STATUS_FINISHED";
+})(SeasonStatus || (exports.SeasonStatus = SeasonStatus = {}));
+var PointTypeEnum;
+(function (PointTypeEnum) {
+    PointTypeEnum["USER_POINT_TYPE_GENERAL"] = "USER_POINT_TYPE_GENERAL";
+    PointTypeEnum["USER_POINT_TYPE_ADVOCATOR"] = "USER_POINT_TYPE_ADVOCATOR";
+    PointTypeEnum["USER_POINT_TYPE_CREATOR"] = "USER_POINT_TYPE_CREATOR";
+    PointTypeEnum["USER_POINT_TYPE_INVESTOR"] = "USER_POINT_TYPE_INVESTOR";
+})(PointTypeEnum || (exports.PointTypeEnum = PointTypeEnum = {}));

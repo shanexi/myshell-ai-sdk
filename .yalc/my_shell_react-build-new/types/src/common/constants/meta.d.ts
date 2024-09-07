@@ -1,0 +1,17 @@
+import { Metadata } from 'next';
+declare const defaultMeta: Metadata;
+declare const rewardCenterMeta: Metadata;
+declare const aippStoreMeta: Metadata;
+declare const earnMeta: Metadata;
+declare const redemptionMeta: Metadata;
+declare const myRewardMeta: Metadata;
+declare const profileMeta: Metadata;
+declare const passcardMeta: Metadata;
+declare const dashboardMeta: Metadata;
+declare const privacyPolicyMeta: Metadata;
+declare const settingsMeta: Metadata;
+declare const exploreMeta: Metadata;
+declare const workshopMeta: Metadata;
+declare const forumMeta: Metadata;
+declare const galleryMeta: Metadata;
+export { defaultMeta, rewardCenterMeta, aippStoreMeta, earnMeta, redemptionMeta, myRewardMeta, profileMeta, passcardMeta, dashboardMeta, privacyPolicyMeta, settingsMeta, exploreMeta, workshopMeta, forumMeta, galleryMeta };

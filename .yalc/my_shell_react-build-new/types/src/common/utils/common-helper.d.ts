@@ -1,0 +1,57 @@
+export declare function getAssetsUrl(url: string | any, prefix?: string): any;
+export declare function getAssetsUrlV2(url: string | any): any;
+export declare function isClient(): boolean;
+export declare function isString(str: any): str is string;
+export declare function isNullOrUndefined(value: any): boolean;
+export declare function generateUUID(): string;
+export declare function isMobileDevice(): boolean;
+export declare function isWeixin(): boolean;
+export declare function isIos(): boolean;
+export declare function checkSupportedMimeType(): string;
+interface ParamsObject {
+    [key: string]: string;
+}
+export declare function urlSearchParamsToObj(searchParams: URLSearchParams): ParamsObject;
+export declare function checkAudioRecordSupport(): {
+    (constraints?: MediaStreamConstraints): Promise<MediaStream>;
+    (constraints: MediaStreamConstraints): Promise<MediaStream>;
+};
+export declare function requestAudioRecordAccess(): Promise<MediaStream>;
+export declare function secondsConverter(seconds: number): string;
+export declare function durationFormatter(seconds: number): string;
+export declare function timeFormatter(seconds: number): string;
+export declare function hasEmoji(str: string): boolean;
+export declare function getFileExtension(fileName: string): string;
+export declare function camelToSnake(camelCase: string): string;
+export declare function strToLowerCase(str: string): string;
+export declare function isVideo(fileSuffix: string): boolean;
+export declare function clamp(val: number, min: number, max: number): number;
+export declare function isValidInviteLink(link: string): boolean;
+export declare function tryJsonParse(text: string): any;
+export declare function isKOL(): boolean;
+export declare function searchByParam(param: string): string;
+export declare function isOpenKOL(): boolean | undefined;
+export declare function shuffleArray(arr: any[]): any[];
+export declare const getPercent: (time: number, duration: number) => number;
+export declare const getFeedbackStatus: (state: string) => number;
+export declare const numberArraySum: (numberArr: number[]) => number;
+export declare const formatNumberWithSeparator: (num: number | string) => string;
+export declare const formatNumberToPercentage: (num: number) => string;
+export declare const getSuffix: (fileName: string) => string | undefined;
+export declare const isObjEmpty: (obj: any) => boolean;
+export declare function processText(text: string): string;
+export declare function formatFloatNumberToOneDecimalAndRemoveDecimalZero(value: number | string): string;
+export declare function stringCaplitalization(str: string): string;
+export declare const openCenteredWindow: ({ url, title, w, h }: {
+    url: string;
+    title: string;
+    w: number;
+    h: number;
+}) => void;
+export declare const getRandomString: (e: number) => string;
+export declare const sleep: (ms: number) => Promise<void>;
+export declare const formatTokenValue: (value: bigint, digits: number) => string;
+export declare const extractPublicKey: (keyString: string) => string;
+export declare const formatBalance: (balance: bigint | undefined) => string;
+export declare const formatWalletAddress: (address: string | undefined) => string;
+export {};

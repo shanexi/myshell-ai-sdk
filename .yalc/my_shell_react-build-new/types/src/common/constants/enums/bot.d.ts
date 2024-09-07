@@ -1,0 +1,28 @@
+export declare enum BotStatusEnum {
+    BOT_STATUS_UNSPECIFIED = "BOT_STATUS_UNSPECIFIED",
+    Public = "Public",
+    Active = "Active",
+    Inactive = "Inactive"
+}
+export declare enum VoiceStatus {
+    Pending = "pending",
+    Processing = "processing",
+    Failed = "failed",
+    Done = "done"
+}
+export declare enum BotPhotoTypeEnum {
+    BACKGROUND = "BACKGROUND",
+    OTHER = "OTHER"
+}
+export declare enum LLMModelCategoryEnum {
+    BOT_CHAT_MODEL_CATEGORY_UNSPECIFIED = "BOT_CHAT_MODEL_CATEGORY_UNSPECIFIED",
+    BOT_CHAT_MODEL_CATEGORY_CLOSESOURCE = "BOT_CHAT_MODEL_CATEGORY_CLOSESOURCE",
+    BOT_CHAT_MODEL_CATEGORY_OPENSOURCE = "BOT_CHAT_MODEL_CATEGORY_OPENSOURCE",
+    BOT_CHAT_MODEL_CATEGORY_SELFDEVELOP = "BOT_CHAT_MODEL_CATEGORY_SELFDEVELOP"
+}
+export declare enum LLMModelStatusEnum {
+    BOT_CHAT_MODEL_STATUS_UNSPECIFIED = "BOT_CHAT_MODEL_STATUS_UNSPECIFIED",
+    BOT_CHAT_MODEL_STATUS_ACTIVE = "BOT_CHAT_MODEL_STATUS_ACTIVE",
+    BOT_CHAT_MODEL_STATUS_INVISIBLE = "BOT_CHAT_MODEL_STATUS_INVISIBLE",
+    BOT_CHAT_MODEL_STATUS_DISABLE = "BOT_CHAT_MODEL_STATUS_DISABLE"
+}

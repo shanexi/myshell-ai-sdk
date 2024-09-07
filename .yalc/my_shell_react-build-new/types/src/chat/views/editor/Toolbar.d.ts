@@ -1,0 +1,51 @@
+import React from 'react';
+import { IUploadSettings } from '../../../../../src/chat/model/interfaces.js';
+import { BotInfo } from '../../../../../src/common/constants/interfaces/bot.js';
+export declare const ChooseFileButton: React.MemoExoticComponent<({ onFileChange, imPanelChatConfig, botId, botName, disabled, isChoosingFile, showDialog, onFileDialogCancel, uploadSettings }: {
+    onFileChange: (files: File[]) => void;
+    imPanelChatConfig: any;
+    botId: string;
+    botName?: string;
+    disabled: boolean;
+    isChoosingFile?: React.MutableRefObject<boolean>;
+    showDialog?: boolean;
+    onFileDialogCancel: () => void;
+    uploadSettings?: IUploadSettings;
+}) => import("react/jsx-runtime").JSX.Element>;
+export declare function Expand({ isFullScreen, toogleFullScreen }: {
+    isFullScreen: boolean;
+    toogleFullScreen: () => void;
+}): import("react/jsx-runtime").JSX.Element;
+type ToolbarProps = {
+    toolbarState: {
+        uploadButtonDisabled: boolean;
+        allowTextInput: boolean;
+        showAudioButton: boolean | undefined;
+        showSendButton: boolean;
+        notReachMiniumFilesTip: string;
+        sendDisabled: boolean;
+        sending: boolean;
+        isUseVoiceCall: boolean;
+        toggleVoice: () => void;
+        neededEnergy: number;
+        msgLen: number;
+        uploadFilesLen: number;
+        disabled: boolean;
+        tokenLen: number;
+        maxChatToken: number;
+        isText: boolean;
+        uploadSettings?: IUploadSettings;
+    };
+    botId: string;
+    botName?: string;
+    botInfo?: BotInfo | null;
+    imPanelChatConfig: any;
+    onSendClick: () => void;
+    isMobile?: boolean;
+    isChoosingFile?: React.MutableRefObject<boolean>;
+    onFileChange: (files: File[]) => Promise<void>;
+    onFileDialogCancel: () => void;
+    isWorkshop?: boolean;
+};
+declare function Toolbar({ botId, botName, botInfo, imPanelChatConfig, onSendClick, toolbarState, isMobile, isChoosingFile, onFileChange, onFileDialogCancel, isWorkshop }: ToolbarProps): import("react/jsx-runtime").JSX.Element;
+export default Toolbar;

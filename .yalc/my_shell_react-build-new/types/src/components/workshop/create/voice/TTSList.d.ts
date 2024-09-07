@@ -1,0 +1,23 @@
+import { FormApi } from '@tanstack/react-form';
+import { WorkShopForm, TTSInfo } from '../../../../../../src/common/constants/interfaces/bot.js';
+export default function TTSList({ form, queryingLangs, ttsList, selectedTTS, isGuide, imgPreviewUrl, onTTSChanged, selectedTTSItem, onPlay, selectedLang, setSelectedLang, playing, loading, isUnpublishTTS, botTts, queryTTSList, queryingVoiceList, currentToken, hasMore }: {
+    form: FormApi<WorkShopForm>;
+    queryingLangs: boolean;
+    ttsList: TTSInfo[];
+    selectedTTS: string;
+    isGuide: boolean;
+    imgPreviewUrl?: string;
+    onTTSChanged: (ttsId: string) => void;
+    selectedTTSItem: TTSInfo | null;
+    onPlay: (widgetId?: string) => void;
+    selectedLang: string;
+    setSelectedLang: (lang: string) => void;
+    playing: boolean;
+    loading: boolean;
+    isUnpublishTTS: boolean;
+    botTts: TTSInfo;
+    queryTTSList: () => void;
+    queryingVoiceList: boolean;
+    currentToken: string;
+    hasMore: boolean;
+}): import("react/jsx-runtime").JSX.Element;

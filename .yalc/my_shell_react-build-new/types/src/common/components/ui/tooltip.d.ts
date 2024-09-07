@@ -1,0 +1,21 @@
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import * as React from 'react';
+declare const TooltipProvider: React.FC<TooltipPrimitive.TooltipProviderProps>;
+declare const Tooltip: React.ForwardRefExoticComponent<TooltipPrimitive.TooltipProps & {
+    open?: boolean;
+    defaultOpen?: boolean;
+    disabled?: boolean;
+    title?: string;
+    titleDangerous?: boolean;
+    description?: string | React.ReactNode;
+    variant?: "default" | "info" | "message";
+    descriptionDangerous?: boolean;
+    side?: "top" | "right" | "bottom" | "left";
+    align?: "start" | "center" | "end";
+    sideOffset?: number;
+    alignOffset?: number;
+    showArrow?: boolean;
+    contentClassName?: string;
+    triggerClassName?: string;
+} & React.RefAttributes<never>>;
+export { Tooltip, TooltipProvider };

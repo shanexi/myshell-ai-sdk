@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("@chakra-ui/react");
+const ChartPlaceholderIcon = (props) => ((0, jsx_runtime_1.jsxs)(react_1.Icon, { viewBox: "0 0 24 25", fill: "none", ...props, children: [(0, jsx_runtime_1.jsx)("path", { d: "M3 13.6973C3 13.076 3.50368 12.5723 4.125 12.5723H6.375C6.99632 12.5723 7.5 13.076 7.5 13.6973V20.4473C7.5 21.0686 6.99632 21.5723 6.375 21.5723H4.125C3.50368 21.5723 3 21.0686 3 20.4473V13.6973Z", stroke: "#5C5F62", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }), (0, jsx_runtime_1.jsx)("path", { d: "M9.75 9.19733C9.75 8.57601 10.2537 8.07233 10.875 8.07233H13.125C13.7463 8.07233 14.25 8.57601 14.25 9.19733V20.4473C14.25 21.0686 13.7463 21.5723 13.125 21.5723H10.875C10.2537 21.5723 9.75 21.0686 9.75 20.4473V9.19733Z", stroke: "#5C5F62", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }), (0, jsx_runtime_1.jsx)("path", { d: "M16.5 4.69733C16.5 4.07601 17.0037 3.57233 17.625 3.57233H19.875C20.4963 3.57233 21 4.07601 21 4.69733V20.4473C21 21.0686 20.4963 21.5723 19.875 21.5723H17.625C17.0037 21.5723 16.5 21.0686 16.5 20.4473V4.69733Z", stroke: "#5C5F62", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" })] }));
+exports.default = ChartPlaceholderIcon;

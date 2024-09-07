@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Skeleton;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const skeleton_1 = require("../../../../common/components/ui/skeleton.js");
+function Skeleton() {
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col relative", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex justify-between px-4", children: [(0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "rounded-full", style: { width: '112px', height: '112px' } }), (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center justify-center flex-col flex-1 space-y-1", children: [(0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { style: { width: '120px', height: '24px' } }), (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { style: { width: '80px', height: '40px' } })] })] }), (0, jsx_runtime_1.jsx)("div", { className: "flex items-center justify-center mt-4 relative", children: (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full", style: { height: '24px' } }) }), (0, jsx_runtime_1.jsxs)("div", { className: "grid grid-cols-2 gap-3 mt-4", children: [(0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full", style: { height: '52px' } }), (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full", style: { height: '52px' } }), (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full", style: { height: '52px' } }), (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full", style: { height: '52px' } })] }), (0, jsx_runtime_1.jsx)("div", { className: "flex justify-center", children: (0, jsx_runtime_1.jsx)(skeleton_1.Skeleton, { className: "w-full mt-4", style: { width: '100px', height: '24px' } }) })] }));
+}

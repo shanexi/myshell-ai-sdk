@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("@chakra-ui/react");
+const ChartIcon = (props) => ((0, jsx_runtime_1.jsxs)(react_1.Icon, { viewBox: "0 0 24 24", fill: "none", ...props, children: [(0, jsx_runtime_1.jsx)("path", { d: "M17.5001 4C16.6716 4 16.0001 4.67157 16.0001 5.5V18.5C16.0001 19.3284 16.6716 20 17.5001 20H18.5001C19.3285 20 20.0001 19.3284 20.0001 18.5V5.5C20.0001 4.67157 19.3285 4 18.5001 4H17.5001Z", fill: "currentColor" }), (0, jsx_runtime_1.jsx)("path", { d: "M11.5001 8C10.6716 8 10.0001 8.67157 10.0001 9.5V18.5C10.0001 19.3284 10.6716 20 11.5001 20H12.5001C13.3285 20 14.0001 19.3284 14.0001 18.5V9.5C14.0001 8.67157 13.3285 8 12.5001 8H11.5001Z", fill: "currentColor" }), (0, jsx_runtime_1.jsx)("path", { d: "M5.50006 12C4.67163 12 4.00006 12.6716 4.00006 13.5V18.5C4.00006 19.3284 4.67163 20 5.50006 20H6.50006C7.32849 20 8.00006 19.3284 8.00006 18.5V13.5C8.00006 12.6716 7.32849 12 6.50006 12H5.50006Z", fill: "currentColor" })] }));
+exports.default = ChartIcon;

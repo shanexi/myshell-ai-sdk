@@ -1,0 +1,98 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChatSettingSpeakingLangEnum = exports.AudioSpeedValue2KeyMap = exports.AudioSpeedMap = exports.AzureLanguageCode = exports.SSEEvents = exports.MsgEvents = exports.ImageStatus = exports.FeedbackSateEnum = exports.MessageRunningErrorType = void 0;
+var MessageRunningErrorType;
+(function (MessageRunningErrorType) {
+    MessageRunningErrorType["RUNNING_ERROR_TYPE_UNSPECIFIED"] = "RUNNING_ERROR_TYPE_UNSPECIFIED";
+    MessageRunningErrorType["RUNNING_ERROR_TYPE_ENGINE_ERROR"] = "RUNNING_ERROR_TYPE_ENGINE_ERROR";
+    MessageRunningErrorType["RUNNING_ERROR_TYPE_INNER_COMPONENT_ERROR"] = "RUNNING_ERROR_TYPE_INNER_COMPONENT_ERROR";
+    MessageRunningErrorType["RUNNING_ERROR_TYPE_ENERGY_INSUFFICIANT"] = "RUNNING_ERROR_TYPE_ENERGY_INSUFFICIANT";
+    MessageRunningErrorType["RUNNING_ERROR_TYPE_LLM_TOKEN_TOO_LONG"] = "RUNNING_ERROR_TYPE_LLM_TOKEN_TOO_LONG";
+})(MessageRunningErrorType || (exports.MessageRunningErrorType = MessageRunningErrorType = {}));
+exports.FeedbackSateEnum = {
+    Normal: 0,
+    Liked: 1,
+    Dislike: 2
+};
+var ImageStatus;
+(function (ImageStatus) {
+    ImageStatus["DONE"] = "DONE";
+    ImageStatus["PROCESSING"] = "PROCESSING";
+    ImageStatus["ERROR"] = "ERROR";
+})(ImageStatus || (exports.ImageStatus = ImageStatus = {}));
+var MsgEvents;
+(function (MsgEvents) {
+    MsgEvents["AUTH_FAIL"] = "auth_fail";
+    MsgEvents["MSG_ERROR"] = "message_error";
+    MsgEvents["MSG_SENT"] = "message_sent";
+    MsgEvents["REPLY_MSG_CREATED"] = "reply_message_created";
+    MsgEvents["MSG_UPDATED"] = "message_updated";
+    MsgEvents["MSG_TEXT_STREAM"] = "text_stream";
+    MsgEvents["MSG_AUDIO_STREAM"] = "audio_stream";
+    MsgEvents["MSG_REPLIED"] = "message_replied";
+    MsgEvents["MSG_TRANSLATED"] = "message_translated";
+    MsgEvents["TRANSLATION_STREAM"] = "translation_stream";
+    MsgEvents["ENERGY_INFO"] = "energy_info";
+    MsgEvents["NO_ENOUGH_ENERGY"] = "no_enough_energy";
+    MsgEvents["EXCEPTION"] = "exception";
+    MsgEvents["RESET_MEMORY"] = "reset_memory";
+    MsgEvents["BOT_PROMPT_UPDATED"] = "bot_prompt_updated";
+    MsgEvents["CONNECTED_TO_DISCORD"] = "connected_to_discord";
+    MsgEvents["CONNECTED_TO_TWITTER"] = "connected_to_twitter";
+    MsgEvents["NEED_VERIFY_CAPTCHA"] = "need_verify_captcha";
+    MsgEvents["VOICE_CALL_END"] = "voice_call_end";
+    MsgEvents["CHAT_LOGIN_POPUP"] = "chat_login_popup";
+})(MsgEvents || (exports.MsgEvents = MsgEvents = {}));
+exports.SSEEvents = {
+    MESSAGE_SENT: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_SENT_MESSAGE_CREATED',
+    MESSAGE_REPLYING: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_SENT_MESSAGE_REPLYING',
+    MESSAGE_IS_TEXT: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_TEXT',
+    MESSAGE_TEXT_DONE: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_TEXT_STREAM_PUSH_FINISHED',
+    MESSAGE_REPLIED: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_SENT_MESSAGE_REPLIED',
+    MESSAGE_VOICE_RECEIVED: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_VOICE_FILE_UPLOADED',
+    DURATION_CALCULATED: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_AUDIO_FILE_DURATION_CALCULATED',
+    MESSAGE_VOICE_BYTE: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_VOICE_BYTES',
+    MESSAGE_CONSUME_ENERGY: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_CONSUMED_ENERGY',
+    MESSAGE_INTERNAL_ERROR: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_ERROR',
+    IMAGE_GEN_PROCESSING: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_IMAGE_GEN_PROCESSING',
+    IMAGE_GEN_DONE: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_IMAGE_GEN_DONE',
+    IMAGE_GEN_ERROR: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_IMAGE_GEN_ERROR',
+    LLM_MODERATION_REQUEST: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_LLM_MODERATION_REQUEST',
+    EMBED_OBJ_PUSHED: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_EMBED_OBJ_PUSHED',
+    MESSAGE_REPLY_GENERATION_JOB_CREATED: 'MESSAGE_REPLY_GENERATION_JOB_CREATED',
+    MESSAGE_REPLY_REFERENCE_SOURCE: 'MESSAGE_REPLY_GENERATION_JOB_CREATED',
+    MESSAGE_REPLY_RECOMMND_QUESTION: 'MESSAGE_REPLY_RECOMMND_QUESTION',
+    MESSAGE_REPLY_UPDATE_HISTORY_MESSAGE: 'MESSAGE_REPLY_UPDATE_HISTORY_MESSAGE',
+    MESSAGE_REPLY_CREATE_WHOLD_MESSAGE: 'MESSAGE_REPLY_CREATE_WHOLD_MESSAGE',
+    MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_RECOMMEND_BOT_SUCCESS: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_RECOMMEND_BOT_SUCCESS'
+};
+exports.AzureLanguageCode = {
+    en: 'en-US',
+    ja: 'ja-JP',
+    zh: 'zh-CN'
+};
+exports.AudioSpeedMap = {
+    BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_FIVE: 0.5,
+    BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_SEVEN_FIVE: 0.75,
+    BOT_CHAT_SETTING_AUDIO_SPEED_ONE: 1,
+    BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_TWENTY_FIVE: 1.25,
+    BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_FIVE: 1.5
+};
+exports.AudioSpeedValue2KeyMap = {
+    0.5: 'BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_FIVE',
+    0.75: 'BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_SEVEN_FIVE',
+    1: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE',
+    1.25: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_TWENTY_FIVE',
+    1.5: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_FIVE'
+};
+var ChatSettingSpeakingLangEnum;
+(function (ChatSettingSpeakingLangEnum) {
+    ChatSettingSpeakingLangEnum["UNSPECIFIED"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_UNSPECIFIED";
+    ChatSettingSpeakingLangEnum["AUTO"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_AUTO";
+    ChatSettingSpeakingLangEnum["EN"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_EN";
+    ChatSettingSpeakingLangEnum["ZH"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_ZH";
+    ChatSettingSpeakingLangEnum["JA"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_JA";
+    ChatSettingSpeakingLangEnum["RU"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_RU";
+    ChatSettingSpeakingLangEnum["ES"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_ES";
+    ChatSettingSpeakingLangEnum["KO"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_KO";
+})(ChatSettingSpeakingLangEnum || (exports.ChatSettingSpeakingLangEnum = ChatSettingSpeakingLangEnum = {}));
