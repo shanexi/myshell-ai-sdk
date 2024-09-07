@@ -16,6 +16,9 @@ module.exports = function (wallaby) {
           return [
             'libs/**/src/**/*.ts',
             '!libs/**/src/**/*.spec.ts',
+
+            'libs/**/src/**/*.tsx',
+            '!libs/**/src/**/*.spec.tsx',
           ]
         },
       },
@@ -27,6 +30,7 @@ module.exports = function (wallaby) {
           // return testPatterns;
           return [
             'libs/**/src/**/*.spec.ts',
+            'libs/**/src/**/*.spec.tsx',
           ]
         },
       },
