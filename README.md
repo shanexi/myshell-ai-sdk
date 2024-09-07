@@ -18,3 +18,7 @@ pnpm7 dlx istanbul-merge --out coverage/coverage.json ./coverage/apps/myshell-fu
 ```bash
 pnpm7 dlx istanbul report --include coverage/coverage.json --dir coverage html
 ```
+
+```bash
+pnpm7 exec nx run-many --target=test --all --parallel=false --watch=false --ci=true --runInBand=true --json
+```

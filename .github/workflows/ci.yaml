@@ -13,6 +13,10 @@ jobs:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
       NX_DAEMON: 'false'
 
+    permissions:
+      contents: "write"
+      pull-requests: "write"
+      checks: "write"
     steps:
       - uses: actions/checkout@v3
 
@@ -29,12 +33,12 @@ jobs:
 
       - run: node ./scripts/report-coverage.js
 
-      - run: ls ./coverage/libs/def/coverage-final.json
+      - run: ls ./coverage/libs/def/report.json
 
       - uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          coverage-file: ./coverage/libs/def/coverage-final.json
-          base-coverage-file: ./coverage/libs/def/coverage-final.json
+          coverage-file: ./coverage/libs/def/report.json
+          base-coverage-file: ./coverage/libs/def/report.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           threshold: 90
           annotations: coverage
