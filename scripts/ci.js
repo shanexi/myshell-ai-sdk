@@ -23,11 +23,15 @@ function run(tag, cmd) {
 }
 
 if (options.ci) {
+  run('pnpm', 'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts');
   run(
     'yalc',
     'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +'
   );
-  run('pnpm', 'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts');
+  run(
+    'pnpm again',
+    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
+  );
   run('cypress', './node_modules/.bin/cypress install');
   run('playwright', './node_modules/.bin/playwright install chromium');
   run('reset', './node_modules/.bin/nx reset');
@@ -38,7 +42,10 @@ if (!options.ci && options.yalc) {
     'yalc',
     'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +'
   );
-  run('pnpm', 'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts');
+  run(
+    'pnpm again',
+    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
+  );
 }
 
 if (!options.ci && options.reset) {
