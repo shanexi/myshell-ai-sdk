@@ -32,7 +32,6 @@ if (options.ci) {
     'pnpm again',
     'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
   );
-  run('reset', './node_modules/.bin/nx reset');
 }
 
 if (!options.ci && options.yalc) {
@@ -50,10 +49,9 @@ if (!options.ci && options.reset) {
   run('reset', './node_modules/.bin/nx reset');
 }
 
-run('lint', './node_modules/.bin/nx run-many --target lint');
-run('build', './node_modules/.bin/nx run-many --target build');
-
 if (!options.pr) {
+  run('lint', './node_modules/.bin/nx run-many --target lint');
+  run('build', './node_modules/.bin/nx run-many --target build');
   run('test', './node_modules/.bin/nx run-many --target test --output-style=static');
 } else {
   // run test use ArtiomTr/jest-coverage-report-action@v2
