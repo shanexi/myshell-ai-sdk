@@ -32,8 +32,6 @@ if (options.ci) {
     'pnpm again',
     'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
   );
-  run('cypress', './node_modules/.bin/cypress install');
-  run('playwright', './node_modules/.bin/playwright install chromium');
   run('reset', './node_modules/.bin/nx reset');
 }
 
@@ -59,6 +57,8 @@ if (!options.pr) {
   run('test', './node_modules/.bin/nx run-many --target test --output-style=static');
 } else {
   // run test use ArtiomTr/jest-coverage-report-action@v2
+  run('cypress', './node_modules/.bin/cypress install');
+  run('playwright', './node_modules/.bin/playwright install chromium');
   run('e2e', './node_modules/.bin/nx run-many --target e2e');
   execSync('node ./scripts/test-storybook.js', {
     cwd: path.join(__dirname, '..'),
