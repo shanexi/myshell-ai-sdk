@@ -59,10 +59,9 @@ if (!options.pr) {
   run('test', './node_modules/.bin/nx run-many --target test');
 } else {
   // run test use ArtiomTr/jest-coverage-report-action@v2
+  run('e2e', './node_modules/.bin/nx run-many --target e2e');
+  execSync('node ./scripts/test-storybook.js', {
+    cwd: path.join(__dirname, '..'),
+    stdio: 'inherit',
+  });
 }
-
-run('e2e', './node_modules/.bin/nx run-many --target e2e');
-execSync('node ./scripts/test-storybook.js', {
-  cwd: path.join(__dirname, '..'),
-  stdio: 'inherit',
-});
