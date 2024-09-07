@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const concurrently = require('concurrently');
+const path = require('path');
+const { execSync } = require('child_process');
+
+console.log('\x1b[33m%s\x1b[0m', 'test storybook...');
+
+function run(name, port) {
+  execSync(
+    [
+      `./node_modules/.bin/concurrently -k -s first -n "${name} serve,${name} test"`,
+      '-c "magenta,blue"',
+      `"./node_modules/.bin/nx run ${name}:static-storybook -- --port=${port}"`,
+      `"./node_modules/.bin/wait-on tcp:${port} && ./node_modules/.bin/nx run ${name}:test-storybook --url http://localhost:${port}"`,
+    ].join(' '),
+    {
+      cwd: path.join(__dirname, '..'),
+      stdio: 'inherit',
+    }
+  );
+}
+
+run('chat', 4201);
+
+console.log('\x1b[32m%s\x1b[0m', 'done');

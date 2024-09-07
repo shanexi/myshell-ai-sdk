@@ -24,9 +24,25 @@ execSync('./node_modules/.bin/cypress install', {
 });
 console.log('\x1b[32m%s\x1b[0m', 'done');
 
+console.log('\x1b[33m%s\x1b[0m', 'playwright install chromium...');
+execSync('./node_modules/.bin/playwright install chromium', {
+  cwd: path.join(__dirname, '..'),
+  stdio: 'inherit',
+});
+console.log('\x1b[32m%s\x1b[0m', 'done');
+
 execSync(
   'node ./scripts/ci-part2.js' +
-  (argv.length === 0 ? '' : ' ' + argv.join(' ')),
+    (argv.length === 0 ? '' : ' ' + argv.join(' ')),
+  {
+    cwd: path.join(__dirname, '..'),
+    stdio: 'inherit',
+  }
+);
+
+execSync(
+  'node ./scripts/test-storybook.js' +
+    (argv.length === 0 ? '' : ' ' + argv.join(' ')),
   {
     cwd: path.join(__dirname, '..'),
     stdio: 'inherit',
