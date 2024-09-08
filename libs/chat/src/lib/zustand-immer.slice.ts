@@ -1,5 +1,6 @@
 import 'zustand/middleware/immer';
 import { StateCreator, StoreMutatorIdentifier } from 'zustand/vanilla';
+import { compute } from 'zustand-computed-state';
 
 export type ImmerStateCreator<
   T,
@@ -11,14 +12,18 @@ export type ImmerStateCreator<
 export interface FishSlice {
   fishes: number;
   addFish: () => void;
+  ySq: number;
 }
 
-export const createFishSlice: ImmerStateCreator<FishSlice> = (set) => ({
+export const createFishSlice: ImmerStateCreator<FishSlice> = (set, get) => ({
   fishes: 0,
   addFish: () =>
     set((state) => {
       state.fishes += 1;
     }),
+  ...compute('y_slice', get, (state) => ({
+    ySq: state.fishes * 2,
+  })),
 });
 
 export interface BearSlice {

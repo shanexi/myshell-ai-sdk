@@ -1,7 +1,6 @@
 /** @jsxImportSource zustand-signal */
 
 import { create } from 'zustand';
-import { $ } from 'zustand-signal';
 import {
   BearSlice,
   createBearSlice,
@@ -11,24 +10,29 @@ import {
   SharedSlice,
 } from './zustand-immer.slice';
 import { immer } from 'zustand/middleware/immer';
+import { computed } from 'zustand-computed-state';
 
 export const useBoundStore = create<BearSlice & FishSlice & SharedSlice>()(
-  immer((...a) => ({
-    ...createBearSlice(...a),
-    ...createFishSlice(...a),
-    ...createSharedSlice(...a),
-  }))
+  computed(
+    immer((...a) => ({
+      ...createBearSlice(...a),
+      ...createFishSlice(...a),
+      ...createSharedSlice(...a),
+    }))
+  )
 );
 
 function BearCounter() {
-  const { bears, fishes } = useBoundStore((state) => ({
+  const { bears, fishes, ySq } = useBoundStore((state) => ({
     bears: state.bears,
     fishes: state.fishes,
+    ySq: state.ySq,
   }));
   return (
     <div>
       <div>{bears} bears around here...</div>
       <div>{fishes} fishes around here...</div>
+      <div>{ySq} ySq around here...</div>
     </div>
   );
 }

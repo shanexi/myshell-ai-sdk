@@ -24,6 +24,8 @@ function BearCounter() {
     <div>
       <div>{$(boundStore).bears} bears around here...</div>
       <div>{$(boundStore).fishes} fishes around here...</div>
+      {/* don't work */}
+      <div>{$(boundStore).ySq} around here...</div>
     </div>
   );
 }
