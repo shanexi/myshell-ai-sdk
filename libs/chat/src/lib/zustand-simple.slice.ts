@@ -1,9 +1,5 @@
 import { StateCreator } from 'zustand';
 
-export function chat(): string {
-  return 'chat';
-}
-
 export interface FishSlice {
   fishes: number;
   addFish: () => void;
@@ -51,10 +47,3 @@ export const createSharedSlice: StateCreator<
   },
   getBoth: () => get().bears + get().fishes,
 });
-
-// export const useStore = create((set) => ({
-//   bears: 0,
-//   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-//   removeAllBears: () => set({ bears: 0 }),
-//   updateBears: (newBears) => set({ bears: newBears }),
-// }));

@@ -1,18 +1,14 @@
 import {
   BearSlice,
-  chat,
   createBearSlice,
   createFishSlice,
   createSharedSlice,
   FishSlice,
   SharedSlice,
-} from './chat.slice';
+} from './zustand-simple.slice';
 import { create } from 'zustand';
 
 describe('chat slice', () => {
-  it('should work', () => {
-    expect(chat()).toEqual('chat');
-  });
   it('should initialize with 0 fishes', () => {
     const useStore = create(createFishSlice);
     const state = useStore.getState();

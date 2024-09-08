@@ -1,12 +1,11 @@
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Chat } from './chat';
 
-const Story: Meta<typeof Chat> = {
+const meta: Meta<typeof Chat> = {
   component: Chat,
-  title: 'Chat',
 };
-export default Story;
+export default meta;
 
-export const Primary = {
+export const Primary: StoryObj<typeof Chat> = {
   args: {},
 };

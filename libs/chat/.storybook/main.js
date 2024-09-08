@@ -1,3 +1,5 @@
+const path = require('path');
+
 function makeConfig(useRspack = true) {
   const framework = useRspack
     ? 'storybook-react-rspack'
@@ -7,21 +9,8 @@ function makeConfig(useRspack = true) {
       disableTelemetry: true,
     },
     framework: {
-      name: framework,
-      options: Object.assign(
-        {
-          fastRefresh: true,
-          strictMode: true,
-          legacyRootApi: true,
-        },
-        useRspack
-          ? {}
-          : {
-              useSWC: true,
-              lazyCompilation: true,
-              fsCache: true,
-            }
-      ),
+      name: '@storybook/react-webpack5',
+      options: {},
     },
     stories: [
       '../src/lib/**/*.stories.mdx',
@@ -29,14 +18,14 @@ function makeConfig(useRspack = true) {
     ],
     addons: ['@storybook/addon-essentials', '@nrwl/react/plugins/storybook'],
     // https://storybook.js.org/docs/api/main-config-typescript#skipbabel
-    typescript: {
-      check: false,
-      reactDocgen: false,
-    },
+    // typescript: {
+    //   check: false,
+    //   reactDocgen: false,
+    // },
   };
 }
 
-module.exports = makeConfig();
+module.exports = makeConfig(false);
 
 // To customize your webpack configuration you can use the webpackFinal field.
 // Check https://storybook.js.org/docs/react/builders/webpack#extending-storybooks-webpack-config
