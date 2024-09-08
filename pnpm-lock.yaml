@@ -35,6 +35,7 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   babel-loader: 8.1.0
   concurrently: ^8.2.2
@@ -76,6 +77,7 @@ specifiers:
   zustand-slices: ^0.3.0
 
 dependencies:
+  auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
   core-js: 3.38.1
   derive-zustand: 0.1.1_zustand@4.5.5
   immer: 10.1.1
@@ -10090,6 +10092,15 @@ packages:
   /attr-accept/2.2.2:
     resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
     engines: {node: '>=4'}
+    dev: false
+
+  /auto-zustand-selectors-hook/2.0.5_zustand@4.5.5:
+    resolution: {integrity: sha512-42vgvFylb4TvMT7SSyXG1YCkA4fmgS7mInXCDBk/EEZfsTyFOVypKpwnse7SBtz77ZqWU5V9nEYmFRtDLnZW9Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      zustand: '*'
+    dependencies:
+      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
     dev: false
 
   /autoprefixer/10.4.20_postcss@8.4.45:
