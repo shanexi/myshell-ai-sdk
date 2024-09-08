@@ -67,6 +67,7 @@ specifiers:
   typescript: ~4.9.5
   url-loader: ^4.1.1
   wait-on: ^8.0.0
+  zustand: ^4.5.5
 
 dependencies:
   my_shell_react-build-new: file:.yalc/my_shell_react-build-new_dhweymnlb66crof5rhwgqnftsi
@@ -74,6 +75,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tslib: 2.7.0
+  zustand: 4.5.5_pmekkgnqduwlme35zpnqhenc34
 
 devDependencies:
   '@babel/core': 7.25.2
@@ -21761,7 +21763,7 @@ packages:
       zustand: ^4.3.8
     dependencies:
       react: 18.3.1
-      zustand: 4.5.5_pmekkgnqduwlme35zpnqhenc34
+      zustand: 4.5.5_wrg6x4cd2d6crqsvrgtsayc32e
     dev: false
 
   /zustand/4.5.5_pmekkgnqduwlme35zpnqhenc34:
@@ -21782,6 +21784,27 @@ packages:
       '@types/react': 18.0.28
       react: 18.2.0
       use-sync-external-store: 1.2.2_react@18.2.0
+    dev: false
+
+  /zustand/4.5.5_wrg6x4cd2d6crqsvrgtsayc32e:
+    resolution: {integrity: sha512-+0PALYNJNgK6hldkgDq2vLrw5f6g/jCInz52n9RTpropGgeAf/ioFUCdtsjCqu4gNhW9D01rUQBROoRjdzyn2Q==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0.6'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.0.28
+      immer: 10.1.1
+      react: 18.3.1
+      use-sync-external-store: 1.2.2_react@18.3.1
     dev: false
 
   /zwitch/1.0.5:
@@ -21897,7 +21920,7 @@ packages:
       usehooks-ts: 2.16.0_react@18.3.1
       uuid: 9.0.1
       zod: 3.23.8
-      zustand: 4.5.5_pmekkgnqduwlme35zpnqhenc34
+      zustand: 4.5.5_wrg6x4cd2d6crqsvrgtsayc32e
       zustand-computed: 1.4.2_react@18.3.1+zustand@4.5.5
     transitivePeerDependencies:
       - '@chakra-ui/system'
