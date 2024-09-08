@@ -1,6 +1,4 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
-
-function makeConfig(useRspack = true): StorybookConfig {
+function makeConfig(useRspack = true) {
   const framework = useRspack
     ? 'storybook-react-rspack'
     : '@storybook/react-webpack5';
@@ -9,7 +7,7 @@ function makeConfig(useRspack = true): StorybookConfig {
       disableTelemetry: true,
     },
     framework: {
-      name: '@storybook/react-webpack5',
+      name: framework,
       options: Object.assign(
         {
           fastRefresh: true,
