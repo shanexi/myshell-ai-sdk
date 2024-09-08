@@ -1,4 +1,7 @@
+/** @jsxImportSource zustand-signal */
+
 import { create } from 'zustand';
+import { $ } from 'zustand-signal';
 import {
   BearSlice,
   createBearSlice,
@@ -53,7 +56,7 @@ function EatFish() {
 export function Immer() {
   return (
     <div>
-      <h1>Zustand simple!</h1>
+      <h1>Zustand immer!</h1>
       <BearCounter />
       <AddBear />
       <EatFish />
