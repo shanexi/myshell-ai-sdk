@@ -1,13 +1,18 @@
 import { StateCreator } from 'zustand';
+import { compute } from 'zustand-computed-state';
 
 export interface FishSlice {
   fishes: number;
+  ySq: number;
   addFish: () => void;
 }
 
-export const createFishSlice: StateCreator<FishSlice> = (set) => ({
+export const createFishSlice: StateCreator<FishSlice> = (set, get) => ({
   fishes: 0,
   addFish: () => set((state) => ({ fishes: state.fishes + 1 })),
+  ...compute('y_slice', get, (state) => ({
+    ySq: state.fishes * 2,
+  })),
 });
 
 export interface BearSlice {

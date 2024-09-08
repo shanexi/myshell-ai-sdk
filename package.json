@@ -16,6 +16,7 @@
     "react-dom": "18.2.0",
     "tslib": "^2.3.0",
     "zustand": "^4.5.5",
+    "zustand-computed-state": "^0.1.8",
     "zustand-signal": "^0.6.0",
     "zustand-slices": "^0.3.0"
   },

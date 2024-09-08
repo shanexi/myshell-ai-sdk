@@ -71,6 +71,7 @@ specifiers:
   url-loader: ^4.1.1
   wait-on: ^8.0.0
   zustand: ^4.5.5
+  zustand-computed-state: ^0.1.8
   zustand-signal: ^0.6.0
   zustand-slices: ^0.3.0
 
@@ -84,6 +85,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   tslib: 2.7.0
   zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
+  zustand-computed-state: 0.1.8_zustand@4.5.5
   zustand-signal: 0.6.0_react@18.2.0
   zustand-slices: 0.3.0_ojppn7mdmemxvuctmcs4wxmkye
 
@@ -21785,6 +21787,15 @@ packages:
 
   /zod/3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+    dev: false
+
+  /zustand-computed-state/0.1.8_zustand@4.5.5:
+    resolution: {integrity: sha512-df6XMpo7ZhFRvs3gXENTbZebhAuwg37S/Bk0G94z4QfwzmoB3z12jdmJBoItxDOm7adjOkjk1kxyPf/WZiLQvw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      zustand: ^4.3.8
+    dependencies:
+      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
     dev: false
 
   /zustand-computed/1.4.2_react@18.3.1+zustand@4.5.5:

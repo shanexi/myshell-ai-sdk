@@ -7,6 +7,7 @@ import {
   SharedSlice,
 } from './zustand-simple.slice';
 import { createStore } from 'zustand/vanilla';
+import { computed } from 'zustand-computed-state';
 
 describe('chat slice', () => {
   it('should initialize with 0 fishes', () => {
@@ -16,10 +17,11 @@ describe('chat slice', () => {
   });
 
   it('should add a fish', () => {
-    const store = createStore(createFishSlice);
+    const store = createStore(computed(createFishSlice));
     const state = store.getState();
     state.addFish();
     expect(store.getState().fishes).toBe(1);
+    expect(store.getState().ySq).toBe(2);
   });
 
   it('should initialize with 0 bears', () => {
