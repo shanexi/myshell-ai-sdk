@@ -10,3 +10,10 @@ import * as SimpleStories from './zustand-simple.stories.tsx';
 
 - [Albert-Gao/auto-zustand-selectors-hook](https://github.com/Albert-Gao/auto-zustand-selectors-hook)
 
+# Practice with no store actions
+
+[Practice with no store actions](https://zustand.docs.pmnd.rs/guides/practice-with-no-store-actions)
+
+Zustand can be used with no store actions, it seems that it can also be combined with class + inversify. Class is only used to encapsulate logic, inversify is used to inject store, all are singletons, for transient, we need `slice` to create new store.actions
+
+This is equivalent the combination of class + MobX + inversify, only replacing MobX.
