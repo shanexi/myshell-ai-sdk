@@ -8,7 +8,7 @@ exports.useNotification = useNotification;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const react_hot_toast_1 = require("react-hot-toast");
-const CustomNotificationElement_1 = __importDefault(require("../../common/components/CustomNotificationElement"));
+const CustomNotificationElement_1 = __importDefault(require("../../common/components/CustomNotificationElement.js"));
 function useNotification() {
     const addToast = (0, react_1.useCallback)((config, duration) => {
         if (config.id) {

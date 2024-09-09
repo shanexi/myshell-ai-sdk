@@ -1,6 +1,6 @@
 import type { Observable } from 'rxjs';
-import { ReportIssueReqBody } from '../../../src/common/constants/interfaces/common';
-import { ResponseType } from '../../../src/core/request/APIFetch';
+import { ReportIssueReqBody } from '../../../src/common/constants/interfaces/common.js';
+import { ResponseType } from '../../../src/core/request/APIFetch.js';
 export declare function reportIssue(data: ReportIssueReqBody): Observable<any>;
 export declare function reportIssueV1(data: ReportIssueReqBody): Promise<ResponseType<any>>;
 export declare enum Scenario {

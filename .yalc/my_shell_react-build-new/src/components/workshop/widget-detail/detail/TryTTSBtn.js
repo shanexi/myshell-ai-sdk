@@ -5,14 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = TryTTSBtn;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const PauseIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/PauseIcon"));
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/PlayIcon"));
+const PauseIcon_1 = __importDefault(require("@heroicons/react/24/outline/PauseIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/outline/PlayIcon"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const usehooks_ts_1 = require("usehooks-ts");
-const workshop_1 = require("../../../../apis/workshop");
-const button_1 = require("../../../../common/components/ui/button");
-const useNotification_1 = require("../../../../common/hooks/useNotification");
+const workshop_1 = require("../../../../apis/workshop.js");
+const button_1 = require("../../../../common/components/ui/button.js");
+const useNotification_1 = require("../../../../common/hooks/useNotification.js");
 function TryTTSBtn({ widgetId }) {
     const { warning } = (0, useNotification_1.useNotification)();
     const t = (0, next_intl_1.useTranslations)('workshop');

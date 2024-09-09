@@ -28,7 +28,7 @@ exports.PopoverRoot = exports.PopoverContent = exports.PopoverAnchor = exports.P
 const jsx_runtime_1 = require("react/jsx-runtime");
 const PopoverPrimitive = __importStar(require("@radix-ui/react-popover"));
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 const PopoverRoot = PopoverPrimitive.Root;
 exports.PopoverRoot = PopoverRoot;
 const PopoverTrigger = PopoverPrimitive.Trigger;

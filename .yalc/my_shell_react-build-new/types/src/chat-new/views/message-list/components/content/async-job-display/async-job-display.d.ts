@@ -1,4 +1,4 @@
-import { DisplayMessage } from '../../../../../../../../src/chat-new/model/definitions';
+import { DisplayMessage } from '../../../../../../../../src/chat-new/model/definitions.js';
 type P = {
     message?: DisplayMessage;
     showText?: boolean;

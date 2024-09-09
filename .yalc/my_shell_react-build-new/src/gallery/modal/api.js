@@ -8,7 +8,7 @@ exports.setGalleryVisitTime = setGalleryVisitTime;
 exports.getGallerySharingCode = getGallerySharingCode;
 exports.getGallerySharingCodeById = getGallerySharingCodeById;
 exports.getGalleryDetailById = getGalleryDetailById;
-const APIFetch_1 = require("../../core/request/APIFetch");
+const APIFetch_1 = require("../../core/request/APIFetch.js");
 function publishGallery(list) {
     return APIFetch_1.APIFetch.post('/v1/bot/gallery/publish', {
         body: {

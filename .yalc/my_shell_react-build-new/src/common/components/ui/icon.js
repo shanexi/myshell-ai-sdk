@@ -27,7 +27,7 @@ exports.Icon = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const class_variance_authority_1 = require("class-variance-authority");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 const iconVariants = (0, class_variance_authority_1.cva)('inline-flex shrink-0', {
     variants: {
         size: {

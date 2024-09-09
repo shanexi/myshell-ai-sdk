@@ -1,7 +1,7 @@
-import { ChatSettingAudioSpeed, FeedbackState, ImageGenDetail, JobStatusEnum, JobTypeEnum, ServerMessage } from '../../../src/chat-new/model/definitions';
-import { ChatModuleType } from '../../../src/chat/ChatStaticContext';
-import { EnergyInfo } from '../../../src/common/constants/interfaces/user';
-import { ResponseType } from '../../../src/core/request/APIFetch';
+import { ChatSettingAudioSpeed, FeedbackState, ImageGenDetail, JobStatusEnum, JobTypeEnum, ServerMessage } from '../../../src/chat-new/model/definitions.js';
+import { ChatModuleType } from '../../../src/chat/ChatStaticContext.js';
+import { EnergyInfo } from '../../../src/common/constants/interfaces/user.js';
+import { ResponseType } from '../../../src/core/request/APIFetch.js';
 import { Room, RoomMini } from '../components/room/models/definitions';
 export declare function createRoom(): Promise<ResponseType<RoomMini>>;
 export declare function removeRoomFromList(id: string): Promise<ResponseType<void>>;

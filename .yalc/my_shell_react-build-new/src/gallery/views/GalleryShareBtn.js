@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowUpOnSquareIcon"));
+const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowUpOnSquareIcon"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const button_1 = require("../../common/components/ui/button");
-const useCopyClipboard_1 = __importDefault(require("../../common/hooks/useCopyClipboard"));
-const useGenerateShareLink_1 = __importDefault(require("../../components/chat/entity-detail/views/common/share/hooks/useGenerateShareLink"));
+const button_1 = require("../../common/components/ui/button.js");
+const useCopyClipboard_1 = __importDefault(require("../../common/hooks/useCopyClipboard.js"));
+const useGenerateShareLink_1 = __importDefault(require("../../components/chat/entity-detail/views/common/share/hooks/useGenerateShareLink.js"));
 function GalleryShareBtn({ id, botId, successCb }) {
     const [shareLink, setShareLink] = (0, react_1.useState)('');
     const { generating, generateShareLink } = (0, useGenerateShareLink_1.default)('gallery', id, botId);

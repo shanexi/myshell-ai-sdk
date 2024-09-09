@@ -1,4 +1,4 @@
-import { WidgetInfo } from '../../../../../../src/common/constants/interfaces/workshop';
+import { WidgetInfo } from '../../../../../../src/common/constants/interfaces/workshop.js';
 interface P {
     widgets: WidgetInfo[];
     showSimplifyTags?: boolean;

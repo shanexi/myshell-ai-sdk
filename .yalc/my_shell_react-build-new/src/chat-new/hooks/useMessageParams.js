@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useMessageParams;
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const common_helper_1 = require("../../common/utils/common-helper");
-const store_1 = require("../../services/store");
-const useAudioQueue_1 = __importDefault(require("./useAudioQueue"));
-const definitions_1 = require("../model/definitions");
-const useNewChatStore_1 = require("../services/useNewChatStore");
+const common_helper_1 = require("../../common/utils/common-helper.js");
+const store_1 = require("../../services/store/index.js");
+const useAudioQueue_1 = __importDefault(require("./useAudioQueue.js"));
+const definitions_1 = require("../model/definitions.js");
+const useNewChatStore_1 = require("../services/useNewChatStore.js");
 function useMessageParams(type, id, entityId, showMockReply = false) {
     const mapKey = `${type}-${id}`;
     const scrollToBottomRef = (0, react_1.useRef)(Date.now());

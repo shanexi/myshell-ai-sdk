@@ -40,9 +40,9 @@ const marked_xhtml_1 = require("marked-xhtml");
 const mermaid_1 = __importDefault(require("mermaid"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const KatexExtension_1 = __importStar(require("../../common/components/extension/KatexExtension"));
-const useHljsCss_1 = require("../../common/hooks/useHljsCss");
-const useNotification_1 = require("../../common/hooks/useNotification");
+const KatexExtension_1 = __importStar(require("../../common/components/extension/KatexExtension.js"));
+const useHljsCss_1 = require("../../common/hooks/useHljsCss.js");
+const useNotification_1 = require("../../common/hooks/useNotification.js");
 marked_1.marked.use({
     pedantic: false,
     gfm: true,

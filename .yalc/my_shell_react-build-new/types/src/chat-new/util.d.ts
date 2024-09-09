@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../src/chat/ChatStaticContext';
+import { ChatModuleType } from '../../../src/chat/ChatStaticContext.js';
 import { DisplayMessage, DraftMessage, LocalErrorMessage, LocalMessageType, MemberInfo, Message, MessageDisplayType, MessageType, ServerMessage } from './model/definitions';
 export type FunctionPropertyNames<T> = {
     [K in keyof T]: T[K] extends Function ? K : never;

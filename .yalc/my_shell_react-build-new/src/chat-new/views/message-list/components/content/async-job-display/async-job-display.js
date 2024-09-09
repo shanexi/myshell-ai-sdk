@@ -32,14 +32,14 @@ const next_intl_1 = require("next-intl");
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext");
-const definitions_1 = require("../../../../../../chat-new/model/definitions");
-const spinner_1 = __importDefault(require("../../../../../../common/components/ui/spinner"));
-const typography_1 = require("../../../../../../common/components/ui/typography");
-const default_display_1 = __importDefault(require("../default-display"));
-const image_gen_display_1 = __importDefault(require("./image-gen-display/views/image-gen-display"));
-const running_widget_info_1 = __importStar(require("./running-widget-info"));
-const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer'))), {
+const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext.js");
+const definitions_1 = require("../../../../../../chat-new/model/definitions.js");
+const spinner_1 = __importDefault(require("../../../../../../common/components/ui/spinner.js"));
+const typography_1 = require("../../../../../../common/components/ui/typography.js");
+const default_display_1 = __importDefault(require("../default-display.js"));
+const image_gen_display_1 = __importDefault(require("./image-gen-display/views/image-gen-display.js"));
+const running_widget_info_1 = __importStar(require("./running-widget-info.js"));
+const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer.js'))), {
     loading: () => (0, jsx_runtime_1.jsx)("div", { children: "loading..." }),
     ssr: false
 });

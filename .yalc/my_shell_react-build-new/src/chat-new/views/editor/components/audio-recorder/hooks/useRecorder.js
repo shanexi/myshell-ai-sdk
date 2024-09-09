@@ -8,10 +8,10 @@ exports.default = useRecorder;
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const eventTypes_1 = require("../../../../../../common/constants/enums/eventTypes");
-const useNotification_1 = require("../../../../../../common/hooks/useNotification");
-const EventEmitter_1 = __importDefault(require("../../../../../../common/utils/EventEmitter"));
-const common_helper_1 = require("../../../../../../common/utils/common-helper");
+const eventTypes_1 = require("../../../../../../common/constants/enums/eventTypes.js");
+const useNotification_1 = require("../../../../../../common/hooks/useNotification.js");
+const EventEmitter_1 = __importDefault(require("../../../../../../common/utils/EventEmitter.js"));
+const common_helper_1 = require("../../../../../../common/utils/common-helper.js");
 const maxRecordingTime = 90;
 var RecordStateEnum;
 (function (RecordStateEnum) {

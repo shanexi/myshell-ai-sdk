@@ -29,24 +29,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = BlockChainGuruModal;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("@chakra-ui/react");
-const CheckIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/CheckIcon"));
-const ArrowRightIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ArrowRightIcon"));
+const CheckIcon_1 = __importDefault(require("@heroicons/react/24/outline/CheckIcon"));
+const ArrowRightIcon_1 = __importDefault(require("@heroicons/react/24/solid/ArrowRightIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const image_1 = __importDefault(require("next/image"));
 const next_intl_1 = require("next-intl");
 const react_2 = require("react");
-const Close_1 = __importDefault(require("../../../../common/components/icons/Close"));
-const link_1 = __importDefault(require("../../../../common/components/ui/link"));
-const identityService_1 = require("../../../../common/services/identityService");
-const common_helper_1 = require("../../../../common/utils/common-helper");
-const useOnChainInteraction_1 = __importStar(require("../../../../hooks/rewards-center/useOnChainInteraction"));
-const store_1 = require("../../../../services/store");
-const WagmiErrorModal = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./blockchain/WagmiErrorModal'))), {
+const Close_1 = __importDefault(require("../../../../common/components/icons/Close.js"));
+const link_1 = __importDefault(require("../../../../common/components/ui/link.js"));
+const identityService_1 = require("../../../../common/services/identityService.js");
+const common_helper_1 = require("../../../../common/utils/common-helper.js");
+const useOnChainInteraction_1 = __importStar(require("../../../../hooks/rewards-center/useOnChainInteraction.js"));
+const store_1 = require("../../../../services/store/index.js");
+const WagmiErrorModal = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./blockchain/WagmiErrorModal.js'))), {
     loading: () => null,
     ssr: false
 });
-const NeedReLoginModal = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./blockchain/NeedReLoginModal'))), {
+const NeedReLoginModal = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./blockchain/NeedReLoginModal.js'))), {
     loading: () => null,
     ssr: false
 });

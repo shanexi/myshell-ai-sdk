@@ -5,19 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("@chakra-ui/react");
-const LinkIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/LinkIcon"));
-const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/XMarkIcon"));
+const LinkIcon_1 = __importDefault(require("@heroicons/react/24/outline/LinkIcon"));
+const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/outline/XMarkIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const file_saver_1 = require("file-saver");
 const lucide_react_1 = require("lucide-react");
 const next_intl_1 = require("next-intl");
 const react_2 = require("react");
-const api_1 = require("../../../chat/model/api");
-const useNotification_1 = require("../../../common/hooks/useNotification");
-const usePathLocale_1 = require("../../../common/hooks/usePathLocale");
-const runtime_config_1 = require("../../../common/utils/runtime-config");
-const store_1 = require("../../../services/store");
+const api_1 = require("../../../chat/model/api.js");
+const useNotification_1 = require("../../../common/hooks/useNotification.js");
+const usePathLocale_1 = require("../../../common/hooks/usePathLocale.js");
+const runtime_config_1 = require("../../../common/utils/runtime-config.js");
+const store_1 = require("../../../services/store/index.js");
 function generateDateString() {
     const now = (0, dayjs_1.default)();
     const dateString = now.format('YYMMDDHHmmss');

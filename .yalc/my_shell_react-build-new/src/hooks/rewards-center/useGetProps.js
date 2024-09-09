@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useGetProps;
-const task_1 = require("../../apis/task");
-const store_1 = require("../../services/store");
+const task_1 = require("../../apis/task.js");
+const store_1 = require("../../services/store/index.js");
 function useGetProps() {
     const setMyProps = (0, store_1.useTaskStore)(state => state.setMyProps);
     const myProps = (0, store_1.useTaskStore)(state => state.myProps);

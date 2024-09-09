@@ -9,9 +9,9 @@ const zustand_1 = require("zustand");
 const middleware_1 = require("zustand/middleware");
 const immer_1 = require("zustand/middleware/immer");
 const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const user_1 = require("../../common/constants/enums/user");
-const identityService_1 = require("../../common/services/identityService");
-const task_1 = require("./task");
+const user_1 = require("../../common/constants/enums/user.js");
+const identityService_1 = require("../../common/services/identityService.js");
+const task_1 = require("./task.js");
 const DEFAULT_STATE = {
     user: null,
     token: null,

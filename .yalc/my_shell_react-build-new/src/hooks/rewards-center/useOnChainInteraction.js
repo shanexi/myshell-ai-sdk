@@ -11,14 +11,14 @@ const react_1 = require("react");
 const viem_1 = require("viem");
 const wagmi_1 = require("wagmi");
 const chains_1 = require("viem/chains");
-const task_1 = require("../../apis/task");
-const enums_1 = require("../../chat/model/enums");
-const constants_1 = require("../../common/constants/constants");
-const identityService_1 = require("../../common/services/identityService");
-const store_1 = require("../../services/store");
-const usePrivyLogin_1 = require("../user/usePrivyLogin");
-const useWalletInteraction_1 = require("../web3/useWalletInteraction");
-const common_helper_1 = require("../../common/utils/common-helper");
+const task_1 = require("../../apis/task.js");
+const enums_1 = require("../../chat/model/enums.js");
+const constants_1 = require("../../common/constants/constants.js");
+const identityService_1 = require("../../common/services/identityService.js");
+const store_1 = require("../../services/store/index.js");
+const usePrivyLogin_1 = require("../user/usePrivyLogin.js");
+const useWalletInteraction_1 = require("../web3/useWalletInteraction.js");
+const common_helper_1 = require("../../common/utils/common-helper.js");
 exports.chainIdNameScannerMap = {
     '5611': {
         name: 'opBNBTestnet',

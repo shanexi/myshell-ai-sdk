@@ -7,7 +7,7 @@ exports.Link = Link;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const link_1 = __importDefault(require("next/link"));
 const link_2 = __importDefault(require("next-intl/link"));
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 function Link({ className, href, scroll = false, replace = false, prefetch = true, children, onClick, ...props }) {
     const externalLink = /^(https?:\/\/)/.test(typeof href === 'string' ? href : `${href.pathname}`);
     const Component = externalLink ? link_1.default : link_2.default;

@@ -1,4 +1,4 @@
-import { PropInfo, RewardInfo } from '../../../../../../src/common/constants/interfaces/task';
+import { PropInfo, RewardInfo } from '../../../../../../src/common/constants/interfaces/task.js';
 interface SuccessTipModalProps {
     isOpen: boolean;
     onClose: () => void;

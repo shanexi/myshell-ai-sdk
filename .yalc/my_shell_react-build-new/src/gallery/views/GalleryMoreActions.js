@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GalleryMoreActions;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const outline_1 = require("@heroicons/react/24/outline");
-const EllipsisHorizontalIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/EllipsisHorizontalIcon"));
+const EllipsisHorizontalIcon_1 = __importDefault(require("@heroicons/react/24/outline/EllipsisHorizontalIcon"));
 const next_intl_1 = require("next-intl");
 const react_use_1 = require("react-use");
-const dropdown_menu_1 = require("../../common/components/ui/dropdown-menu");
-const icon_1 = require("../../common/components/ui/icon");
-const icon_button_1 = require("../../common/components/ui/icon-button");
-const typography_1 = require("../../common/components/ui/typography");
+const dropdown_menu_1 = require("../../common/components/ui/dropdown-menu.js");
+const icon_1 = require("../../common/components/ui/icon.js");
+const icon_button_1 = require("../../common/components/ui/icon-button.js");
+const typography_1 = require("../../common/components/ui/typography.js");
 function GalleryMoreActions({ handleDelete }) {
     const t = (0, next_intl_1.useTranslations)('common');
     const isMd = (0, react_use_1.useMedia)('(min-width: 768px)');

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { ExchangePoint, HoldBadge, Order, Point, PropInfo, RewardInfo, SeasonInfo, Task, MediaShareRecord } from '../../../src/common/constants/interfaces/task';
-import { ResponseType } from '../../../src/core/request/APIFetch';
+import { ExchangePoint, HoldBadge, Order, Point, PropInfo, RewardInfo, SeasonInfo, Task, MediaShareRecord } from '../../../src/common/constants/interfaces/task.js';
+import { ResponseType } from '../../../src/core/request/APIFetch.js';
 export declare function getTaskList(): Promise<ResponseType<Task[]>>;
 export declare function taskGemClaim(taskId: string): Promise<ResponseType<unknown>>;
 export declare function taskGemBatchClaim(): Promise<ResponseType<unknown>>;

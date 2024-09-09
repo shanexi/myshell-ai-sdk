@@ -27,7 +27,7 @@ export declare const MYSHELL_EXPLORER_URL = "https://myshell-testnet-explorer.al
 export declare const transferableTokens: string[];
 export declare const BSC_EXPLORER_URL: string | undefined;
 export declare const BADGE_CONTRACT_MAP: Record<string, `0x${string}`>;
-export declare const bsc_chain_id_current_env: 56 | 97;
+export declare const bsc_chain_id_current_env: 97 | 56;
 export declare const BADGE_VIEW_CONTRACT_MAP: Record<string, `0x${string}`>;
 export declare enum SupportedChain {
     Ethereum = "Ethereum",
@@ -42,12 +42,6 @@ export declare const chainMap: {
     56: SupportedChain;
     97: SupportedChain;
     204: SupportedChain;
-};
-export declare const chainIdMap: {
-    Ethereum: 1;
-    BSC: 56 | 97;
-    opBNB: 204;
-    "MyShell Testnet": number;
 };
 export declare const nativeTokenMap: {
     Ethereum: string;

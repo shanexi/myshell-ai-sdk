@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePathLocale = exports.useIsMobile = void 0;
 const navigation_1 = require("next/navigation");
 const react_1 = require("react");
-const config_1 = require("../../lib/config");
+const config_1 = require("../../lib/config.js");
 function splitPathFromPathname(pathname) {
     return pathname.split('/');
 }

@@ -5,10 +5,10 @@ const immer_1 = require("immer");
 const zustand_1 = require("zustand");
 const middleware_1 = require("zustand/middleware");
 const immer_2 = require("zustand/middleware/immer");
-const common_1 = require("../../apis/common");
-const limitQueue_1 = require("../../common/utils/limitQueue");
-const util_1 = require("../util");
-const chatCommonSlice_1 = require("./chatCommonSlice");
+const common_1 = require("../../apis/common.js");
+const limitQueue_1 = require("../../common/utils/limitQueue.js");
+const util_1 = require("../util.js");
+const chatCommonSlice_1 = require("./chatCommonSlice.js");
 (0, immer_1.enableMapSet)();
 const fileQueue = (0, limitQueue_1.limitQueue)(1);
 const DEFAULT_STATE = {

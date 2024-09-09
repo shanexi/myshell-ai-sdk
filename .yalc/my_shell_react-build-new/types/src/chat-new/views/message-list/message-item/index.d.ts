@@ -1,4 +1,4 @@
-import { MessageDisplayType, MessageSource } from '../../../../../../src/chat-new/model/definitions';
+import { MessageDisplayType, MessageSource } from '../../../../../../src/chat-new/model/definitions.js';
 export interface IMessageItemProps {
     source: MessageSource;
     msgDisplayType: MessageDisplayType;

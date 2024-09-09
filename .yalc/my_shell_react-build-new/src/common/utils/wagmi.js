@@ -5,7 +5,7 @@ const wagmi_1 = require("wagmi");
 const chains_1 = require("wagmi/chains");
 const connectors_1 = require("wagmi/connectors");
 const w3w_wagmi_connector_v2_1 = require("@binance/w3w-wagmi-connector-v2");
-const runtime_config_1 = require("./runtime-config");
+const runtime_config_1 = require("./runtime-config.js");
 exports.MyshellTest = {
     id: 202402181658,
     name: 'Myshell Testnet',

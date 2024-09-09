@@ -7,9 +7,9 @@ exports.default = Tag;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const next_themes_1 = require("next-themes");
 const image_1 = __importDefault(require("next/image"));
-const utils_1 = require("../../lib/utils");
-const WidgetDesc_1 = __importDefault(require("../../components/chat/entity-detail/views/widget/WidgetDesc"));
-const tooltip_1 = require("./ui/tooltip");
+const utils_1 = require("../../lib/utils.js");
+const WidgetDesc_1 = __importDefault(require("../../components/chat/entity-detail/views/widget/WidgetDesc.js"));
+const tooltip_1 = require("./ui/tooltip.js");
 function Tag({ tag, index, className }) {
     const { resolvedTheme } = (0, next_themes_1.useTheme)();
     const isDark = resolvedTheme === 'dark';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DisplayMessage, MenuActionType, MessageDisplayMode } from '../../../../../../../src/chat-new/model/definitions';
+import { DisplayMessage, MenuActionType, MessageDisplayMode } from '../../../../../../../src/chat-new/model/definitions.js';
 export interface IDisplayProviderProps {
     message?: DisplayMessage;
     children: React.ReactNode | React.ReactNode[];

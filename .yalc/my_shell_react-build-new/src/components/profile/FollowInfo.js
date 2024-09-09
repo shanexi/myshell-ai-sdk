@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const next_intl_1 = require("next-intl");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale");
+const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
 const formatCount = (count) => {
     const num = Number(count);
     if (num > 1000) {

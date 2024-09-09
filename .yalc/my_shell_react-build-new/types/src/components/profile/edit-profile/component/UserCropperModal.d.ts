@@ -1,5 +1,5 @@
-import { BotPhotoTypeEnum } from '../../../../../../src/common/constants/enums/bot';
-import { ReturnedBotInfo } from '../../../../../../src/common/constants/interfaces/bot';
+import { BotPhotoTypeEnum } from '../../../../../../src/common/constants/enums/bot.js';
+import { ReturnedBotInfo } from '../../../../../../src/common/constants/interfaces/bot.js';
 import 'cropperjs/dist/cropper.css';
 type UserCropperModalProps = {
     type: BotPhotoTypeEnum;

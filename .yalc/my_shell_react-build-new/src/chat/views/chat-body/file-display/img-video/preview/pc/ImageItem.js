@@ -8,7 +8,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const clsx_1 = __importDefault(require("clsx"));
 const react_1 = require("react");
 const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner"));
+const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
 function ImageItem({ imgObj, handleZoomIn, handleZoomOut, resetScaleValue, onClose }) {
     const draggableRef = (0, react_1.useRef)(null);
     const [isDragging, setIsDragging] = (0, react_1.useState)(false);

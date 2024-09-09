@@ -1,4 +1,4 @@
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot';
+import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
 interface P {
     tag: TagInfo;
     index: number;

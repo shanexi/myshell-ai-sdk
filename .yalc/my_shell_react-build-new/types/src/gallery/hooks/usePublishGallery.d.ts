@@ -1,4 +1,4 @@
-import { IPublishItem } from '../../../../src/gallery/modal/interfaces';
+import { IPublishItem } from '../../../../src/gallery/modal/interfaces.js';
 export default function usePublishGallery(): {
     publishing: boolean;
     publishGalleryList: (successCb?: () => void, list?: IPublishItem[]) => Promise<void>;

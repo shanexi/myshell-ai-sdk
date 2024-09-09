@@ -15,9 +15,9 @@ exports.getImageParams = getImageParams;
 exports.getImageParamsFromImage = getImageParamsFromImage;
 exports.getImageParamsFromMsg = getImageParamsFromMsg;
 exports.getSharedMessages = getSharedMessages;
-const common_helper_1 = require("../../common/utils/common-helper");
-const rx_http_1 = require("../../common/utils/rx-http");
-const APIFetch_1 = require("../../core/request/APIFetch");
+const common_helper_1 = require("../../common/utils/common-helper.js");
+const rx_http_1 = require("../../common/utils/rx-http.js");
+const APIFetch_1 = require("../../core/request/APIFetch.js");
 function getChatHistory(params) {
     return (0, rx_http_1.rxGet)('/chat/chatHistory', { ...params });
 }

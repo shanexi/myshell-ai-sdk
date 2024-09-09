@@ -1,4 +1,4 @@
-import { FileProps } from '../../../../../../../src/services/store';
+import { FileProps } from '../../../../../../../src/services/store/index.js';
 type FileCardP = {
     data: FileProps;
     onDelete: (botId: string, id: string) => void;

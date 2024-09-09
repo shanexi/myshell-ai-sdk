@@ -1,9 +1,9 @@
-import { Language } from '../../../../src/chat/model/interfaces';
-import { InputType } from '../../../../src/chat/model/types';
-import { BannerItemProps } from '../../../../src/common/components/banner/types';
-import { BotInfo, TagInfo, TTSInfo } from '../../../../src/common/constants/interfaces/bot';
-import { WidgetAudioStreamDetail, WidgetImageStreamDetail, WidgetInfo, WidgetMessageDetail, WidgetTextStreamDetail } from '../../../../src/common/constants/interfaces/workshop';
-import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces';
+import { Language } from '../../../../src/chat/model/interfaces.js';
+import { InputType } from '../../../../src/chat/model/types.js';
+import { BannerItemProps } from '../../../../src/common/components/banner/types.js';
+import { BotInfo, TagInfo, TTSInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { WidgetAudioStreamDetail, WidgetImageStreamDetail, WidgetInfo, WidgetMessageDetail, WidgetTextStreamDetail } from '../../../../src/common/constants/interfaces/workshop.js';
+import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces.js';
 import { WidgetFileProps } from './chat';
 type ttsMapContent = {
     content: string;

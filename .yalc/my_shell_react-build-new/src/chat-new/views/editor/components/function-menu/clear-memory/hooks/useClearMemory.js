@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useClearMemory;
 const next_intl_1 = require("next-intl");
-const entity_1 = require("../../../../../../../apis/entity");
-const useNotification_1 = require("../../../../../../../common/hooks/useNotification");
+const entity_1 = require("../../../../../../../apis/entity.js");
+const useNotification_1 = require("../../../../../../../common/hooks/useNotification.js");
 function useClearMemory(type, id, addMessage, name) {
     const commonT = (0, next_intl_1.useTranslations)('common');
     const t = (0, next_intl_1.useTranslations)('workshop');

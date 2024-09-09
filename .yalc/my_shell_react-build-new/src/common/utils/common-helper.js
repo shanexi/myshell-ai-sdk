@@ -38,8 +38,8 @@ exports.stringCaplitalization = stringCaplitalization;
 const ismobilejs_1 = __importDefault(require("ismobilejs"));
 const uuid_1 = require("uuid");
 const viem_1 = require("viem");
-const runtime_config_1 = require("../../common/utils/runtime-config");
-const interfaces_1 = require("../../chat/model/interfaces");
+const runtime_config_1 = require("../../common/utils/runtime-config.js");
+const interfaces_1 = require("../../chat/model/interfaces.js");
 function getAssetsUrl(url, prefix) {
     if (url?.includes('image/user/avatar')) {
         return getAssetsUrlV2(url);

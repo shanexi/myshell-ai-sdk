@@ -1,4 +1,4 @@
-import { ButtonProps } from '../../../../../../../src/common/components/ui/button';
+import { ButtonProps } from '../../../../../../../src/common/components/ui/button.js';
 export interface IAlertInfoMap {
     [type: string]: {
         text: string;

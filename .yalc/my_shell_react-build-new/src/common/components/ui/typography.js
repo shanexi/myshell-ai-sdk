@@ -29,7 +29,7 @@ const class_variance_authority_1 = require("class-variance-authority");
 const isomorphic_dompurify_1 = require("isomorphic-dompurify");
 const lodash_es_1 = require("lodash-es");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 const colorMap = {
     default: 'text-default',
     subtle: 'text-subtle',

@@ -7,8 +7,8 @@ exports.default = useSeason;
 const dayjs_1 = __importDefault(require("dayjs"));
 const duration_1 = __importDefault(require("dayjs/plugin/duration"));
 const react_1 = require("react");
-const task_1 = require("../../apis/task");
-const store_1 = require("../../services/store");
+const task_1 = require("../../apis/task.js");
+const store_1 = require("../../services/store/index.js");
 dayjs_1.default.extend(duration_1.default);
 function useSeason() {
     const [seasons] = (0, store_1.useTaskStore)(state => [state.seasons]);

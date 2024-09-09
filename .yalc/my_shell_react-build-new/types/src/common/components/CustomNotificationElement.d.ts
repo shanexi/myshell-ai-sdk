@@ -1,5 +1,5 @@
 import { ToastOptions } from 'react-hot-toast';
-import { CustomToasterProps } from '../../../../src/common/hooks/useNotification';
+import { CustomToasterProps } from '../../../../src/common/hooks/useNotification.js';
 export default function CustomNotificationElement({ tProps, customProps }: {
     tProps: ToastOptions;
     customProps: CustomToasterProps;

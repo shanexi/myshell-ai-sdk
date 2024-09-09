@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext';
-import { EnergyInfo } from '../../../../src/common/constants/interfaces/user';
-import { ListActionMode } from '../../../../src/services/store/entity';
+import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
+import { EnergyInfo } from '../../../../src/common/constants/interfaces/user.js';
+import { ListActionMode } from '../../../../src/services/store/entity.js';
 import { ChatSetting, MenuFunctionEnum } from '../model/definitions';
 export type GetListFn<T> = (type?: ListActionMode) => Promise<T[]>;
 export type PartialDetail = {

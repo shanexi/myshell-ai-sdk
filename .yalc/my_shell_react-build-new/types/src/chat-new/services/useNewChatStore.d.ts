@@ -1,5 +1,5 @@
 import { PersistOptions } from 'zustand/middleware';
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext';
+import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
 import { DraftMessage, LocalErrorMessage, Message, UserSendEmbedObj } from '../model/definitions';
 import { ChatCommonStore } from './chatCommonSlice';
 export type MapKey = `${ChatModuleType}-${string}`;

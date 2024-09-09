@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useRedeemAndUseSeasonPass;
 const react_1 = require("react");
-const user_1 = require("../../../apis/user");
-const useNotification_1 = require("../../../common/hooks/useNotification");
+const user_1 = require("../../../apis/user.js");
+const useNotification_1 = require("../../../common/hooks/useNotification.js");
 function useRedeemAndUseSeasonPass() {
     const [acting, setActing] = (0, react_1.useState)(false);
     const { warning } = (0, useNotification_1.useNotification)();

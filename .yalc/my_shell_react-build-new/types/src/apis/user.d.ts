@@ -1,13 +1,13 @@
 import type { Observable } from 'rxjs';
-import { TelegramUser } from '../../../src/common/components/auth/third-party/telegram/Telegram';
-import { PointTypeEnum } from '../../../src/common/constants/enums/task';
-import { BindType } from '../../../src/common/constants/enums/user';
-import { BotInfo } from '../../../src/common/constants/interfaces/bot';
-import { ListResponse } from '../../../src/common/constants/interfaces/common';
-import { GolangPropItemInfo, Order, Point } from '../../../src/common/constants/interfaces/task';
-import { EnergyInfo, ShellPointRecord, User, UserConnectedAccounts, UserSettings, Wallet } from '../../../src/common/constants/interfaces/user';
-import { WidgetInfo } from '../../../src/common/constants/interfaces/workshop';
-import { ResponseType } from '../../../src/core/request/APIFetch';
+import { TelegramUser } from '../../../src/common/components/auth/third-party/telegram/Telegram.js';
+import { PointTypeEnum } from '../../../src/common/constants/enums/task.js';
+import { BindType } from '../../../src/common/constants/enums/user.js';
+import { BotInfo } from '../../../src/common/constants/interfaces/bot.js';
+import { ListResponse } from '../../../src/common/constants/interfaces/common.js';
+import { GolangPropItemInfo, Order, Point } from '../../../src/common/constants/interfaces/task.js';
+import { EnergyInfo, ShellPointRecord, User, UserConnectedAccounts, UserSettings, Wallet } from '../../../src/common/constants/interfaces/user.js';
+import { WidgetInfo } from '../../../src/common/constants/interfaces/workshop.js';
+import { ResponseType } from '../../../src/core/request/APIFetch.js';
 export declare function getUserProfile(props?: {
     userId?: string;
     name?: string;

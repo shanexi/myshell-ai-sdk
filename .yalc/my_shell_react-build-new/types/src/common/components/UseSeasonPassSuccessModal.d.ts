@@ -1,4 +1,4 @@
-import { GolangPropItemInfo } from '../../../../src/common/constants/interfaces/task';
+import { GolangPropItemInfo } from '../../../../src/common/constants/interfaces/task.js';
 interface UseSeasonPassSuccessModalProps {
     isOpen: boolean;
     onClose: () => void;

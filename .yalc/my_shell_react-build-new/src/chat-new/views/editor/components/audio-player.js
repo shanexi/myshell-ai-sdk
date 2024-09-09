@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ArrowPathIcon"));
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PlayIcon"));
+const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/solid/ArrowPathIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/PlayIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const useAudioPlayer_1 = __importDefault(require("../../../../chat/views/hooks/useAudioPlayer"));
-const audio_playing_1 = __importDefault(require("../../../../common/components/ui/icons/solid/audio-playing"));
-const spinner_1 = __importDefault(require("../../../../common/components/ui/spinner"));
-const common_helper_1 = require("../../../../common/utils/common-helper");
+const useAudioPlayer_1 = __importDefault(require("../../../../chat/views/hooks/useAudioPlayer.js"));
+const audio_playing_1 = __importDefault(require("../../../../common/components/ui/icons/solid/audio-playing.js"));
+const spinner_1 = __importDefault(require("../../../../common/components/ui/spinner.js"));
+const common_helper_1 = require("../../../../common/utils/common-helper.js");
 function AudioPlayer(props) {
     const audioRef = (0, react_1.useRef)(null);
     const [duration, setDuration] = (0, react_1.useState)(0);

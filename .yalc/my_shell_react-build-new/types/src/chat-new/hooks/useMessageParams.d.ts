@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext';
+import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
 import { DraftMessage, LocalErrorMessage, Message } from '../model/definitions';
 import { LocalDraftMsg, PartialMessageDetail } from '../services/useNewChatStore';
 export default function useMessageParams(type: ChatModuleType, id: string, entityId?: string, showMockReply?: boolean): {

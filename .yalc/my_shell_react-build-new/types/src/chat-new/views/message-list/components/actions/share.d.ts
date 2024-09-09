@@ -1,4 +1,4 @@
-import { SourceType } from '../../../../../../../src/chat-new/model/definitions';
+import { SourceType } from '../../../../../../../src/chat-new/model/definitions.js';
 interface IShareProps {
     source?: SourceType;
 }

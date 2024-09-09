@@ -28,7 +28,7 @@ exports.MTooltipArrow = exports.MTooltipContent = exports.MTooltipTrigger = expo
 const jsx_runtime_1 = require("react/jsx-runtime");
 const PopoverPrimitive = __importStar(require("@radix-ui/react-popover"));
 const React = __importStar(require("react"));
-const utils_1 = require("../../../../lib/utils");
+const utils_1 = require("../../../../lib/utils.js");
 const MTooltip = PopoverPrimitive.Root;
 exports.MTooltip = MTooltip;
 const MTooltipTrigger = PopoverPrimitive.Trigger;

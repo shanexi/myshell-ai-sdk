@@ -29,8 +29,8 @@ const react_slot_1 = require("@radix-ui/react-slot");
 const class_variance_authority_1 = require("class-variance-authority");
 const lucide_react_1 = require("lucide-react");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils");
-const icon_1 = require("./icon");
+const utils_1 = require("../../../lib/utils.js");
+const icon_1 = require("./icon.js");
 const buttonVariants = (0, class_variance_authority_1.cva)('relative shrink-0 inline-flex items-center justify-center whitespace-nowrap rounded-full font-medium transition-colors ring-offset-surface-default focus-visible:outline-none focus-visible:shadow-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-30 disabled:shadow-none', {
     variants: {
         variant: {

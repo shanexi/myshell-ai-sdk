@@ -1,4 +1,4 @@
-import { IGalleryItem } from '../../../../src/gallery/modal/interfaces';
+import { IGalleryItem } from '../../../../src/gallery/modal/interfaces.js';
 interface GalleryState {
     galleryList: IGalleryItem[];
     galleryUserList: IGalleryItem[];

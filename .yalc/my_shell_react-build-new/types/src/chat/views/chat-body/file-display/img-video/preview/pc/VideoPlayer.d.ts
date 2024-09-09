@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../../../../../src/apis/common';
+import { EmbedObj } from '../../../../../../../../../src/apis/common.js';
 interface P {
     videoObj: EmbedObj;
     onClose: () => void;

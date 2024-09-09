@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const PlayIcon_1 = __importDefault(require("@heroicons/react/20/solid/esm/PlayIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/20/solid/PlayIcon"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const useAudioPlayer_1 = __importDefault(require("../../../../../../chat/views/hooks/useAudioPlayer"));
-const icon_button_1 = require("../../../../../../common/components/ui/icon-button");
-const audio_playing_1 = __importDefault(require("../../../../../../common/components/ui/icons/solid/audio-playing"));
-const common_helper_1 = require("../../../../../../common/utils/common-helper");
+const useAudioPlayer_1 = __importDefault(require("../../../../../../chat/views/hooks/useAudioPlayer.js"));
+const icon_button_1 = require("../../../../../../common/components/ui/icon-button.js");
+const audio_playing_1 = __importDefault(require("../../../../../../common/components/ui/icons/solid/audio-playing.js"));
+const common_helper_1 = require("../../../../../../common/utils/common-helper.js");
 const AudioPlayer = (0, react_1.forwardRef)(({ src, onManuallyInteracted, onEnded, serverDuration }, ref) => {
     const AudioComp = (0, useAudioPlayer_1.default)();
     const [audio, state, controls] = (0, react_use_1.useAudio)((0, jsx_runtime_1.jsx)(AudioComp, { src: src, onEnded: () => {

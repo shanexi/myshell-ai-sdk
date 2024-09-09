@@ -1,4 +1,4 @@
-import { UserInputType } from '../../../../../../../src/chat-new/services/useNewChatStore';
+import { UserInputType } from '../../../../../../../src/chat-new/services/useNewChatStore.js';
 interface IAudioRecorder {
     interacting?: boolean;
     disabled?: boolean;

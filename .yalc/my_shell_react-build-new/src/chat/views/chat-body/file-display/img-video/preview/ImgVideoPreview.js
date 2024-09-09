@@ -31,17 +31,17 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const luiContext_1 = require("../../../../../../common/components/lui/luiContext");
-const modal_1 = require("../../../../../../common/components/ui/modal");
-const useDevice_1 = require("../../../../../../common/hooks/useDevice");
-const useNotification_1 = require("../../../../../../common/hooks/useNotification");
-const usePublishGallery_1 = __importDefault(require("../../../../../../gallery/hooks/usePublishGallery"));
-const GalleryPublishTipModal_1 = __importDefault(require("../../../../../../gallery/views/GalleryPublishTipModal"));
-const store_1 = require("../../../../../../services/store");
-const MobilePreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./mobile'))), {
+const luiContext_1 = require("../../../../../../common/components/lui/luiContext.js");
+const modal_1 = require("../../../../../../common/components/ui/modal.js");
+const useDevice_1 = require("../../../../../../common/hooks/useDevice.js");
+const useNotification_1 = require("../../../../../../common/hooks/useNotification.js");
+const usePublishGallery_1 = __importDefault(require("../../../../../../gallery/hooks/usePublishGallery.js"));
+const GalleryPublishTipModal_1 = __importDefault(require("../../../../../../gallery/views/GalleryPublishTipModal.js"));
+const store_1 = require("../../../../../../services/store/index.js");
+const MobilePreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./mobile/index.js'))), {
     ssr: false
 });
-const PcPreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./pc'))), {
+const PcPreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('./pc/index.js'))), {
     ssr: false
 });
 function ImgVideoPreview({ imgVideoList, activeIndex, open, onClose }) {

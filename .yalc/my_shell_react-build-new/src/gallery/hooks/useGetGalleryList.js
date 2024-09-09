@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useGetGalleryList;
 const react_1 = require("react");
-const api_1 = require("../../gallery/modal/api");
-const gallery_1 = require("../../services/store/gallery");
+const api_1 = require("../../gallery/modal/api.js");
+const gallery_1 = require("../../services/store/gallery.js");
 function useGetGalleryList({ userId, botId }) {
     const galleryList = (0, gallery_1.useGalleryStore)(state => state.galleryList);
     const setGalleryList = (0, gallery_1.useGalleryStore)(state => state.setGalleryList);

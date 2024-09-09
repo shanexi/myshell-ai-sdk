@@ -1,4 +1,4 @@
-import { BotInfo } from '../../../../../src/common/constants/interfaces/bot';
+import { BotInfo } from '../../../../../src/common/constants/interfaces/bot.js';
 type P = {
     selectedBot?: BotInfo | null;
 };

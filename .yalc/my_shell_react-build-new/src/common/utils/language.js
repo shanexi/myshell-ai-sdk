@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.clearLocaleCookie = exports.setLocaleCookie = void 0;
 exports.getMessages = getMessages;
 const navigation_1 = require("next/navigation");
-const constants_1 = require("../../../middlewares/constants");
+const constants_1 = require("../../../middlewares/constants.js");
 async function getMessages(locale) {
     try {
         return (await Promise.resolve(`${`/messages/${locale}.json`}`).then(s => __importStar(require(s)))).default;

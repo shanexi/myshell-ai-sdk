@@ -12,12 +12,12 @@ const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_hook_form_1 = require("react-hook-form");
 const zod_2 = require("zod");
-const button_1 = require("../../../../../../../common/components/ui/button");
-const form_1 = require("../../../../../../../common/components/ui/form");
-const modal_1 = require("../../../../../../../common/components/ui/modal");
-const separator_1 = require("../../../../../../../common/components/ui/separator");
-const textarea_1 = require("../../../../../../../common/components/ui/textarea");
-const typography_1 = require("../../../../../../../common/components/ui/typography");
+const button_1 = require("../../../../../../../common/components/ui/button.js");
+const form_1 = require("../../../../../../../common/components/ui/form.js");
+const modal_1 = require("../../../../../../../common/components/ui/modal.js");
+const separator_1 = require("../../../../../../../common/components/ui/separator.js");
+const textarea_1 = require("../../../../../../../common/components/ui/textarea.js");
+const typography_1 = require("../../../../../../../common/components/ui/typography.js");
 const issueItems = [
     {
         label: 'boring',

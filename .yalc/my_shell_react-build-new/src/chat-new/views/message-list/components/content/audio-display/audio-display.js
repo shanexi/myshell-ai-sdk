@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = AudioDisplay;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext");
-const StaticContext_1 = require("../../../../../../chat-new/context/StaticContext");
-const constants_1 = require("../../../../../../chat-new/model/constants");
-const AudioPlayer_1 = __importDefault(require("./AudioPlayer"));
-const regen_placeholder_1 = __importDefault(require("./regen-placeholder/views/regen-placeholder"));
+const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext.js");
+const StaticContext_1 = require("../../../../../../chat-new/context/StaticContext.js");
+const constants_1 = require("../../../../../../chat-new/model/constants.js");
+const AudioPlayer_1 = __importDefault(require("./AudioPlayer.js"));
+const regen_placeholder_1 = __importDefault(require("./regen-placeholder/views/regen-placeholder.js"));
 function AudioDisplay({ message, showAudio = false }) {
     const audioPlayerRef = (0, react_1.useRef)(null);
     const { chatSetting } = (0, react_1.useContext)(StaticContext_1.StaticContext);

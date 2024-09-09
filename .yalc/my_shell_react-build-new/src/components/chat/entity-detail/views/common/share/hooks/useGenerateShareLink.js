@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useGenerateShareLink;
 const react_use_1 = require("react-use");
-const bot_1 = require("../../../../../../../apis/bot");
-const workshop_1 = require("../../../../../../../apis/workshop");
-const api_1 = require("../../../../../../../gallery/modal/api");
+const bot_1 = require("../../../../../../../apis/bot.js");
+const workshop_1 = require("../../../../../../../apis/workshop.js");
+const api_1 = require("../../../../../../../gallery/modal/api.js");
 function useGenerateShareLink(type, id, botId) {
     const getApiFn = () => {
         let apiFn;

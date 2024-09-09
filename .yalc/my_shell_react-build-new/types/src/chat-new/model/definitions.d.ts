@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../../../src/chat/model/interfaces';
+import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../../../src/chat/model/interfaces.js';
 export declare enum EditorMode {
     NORMAL = 0,
     SHARE = 1

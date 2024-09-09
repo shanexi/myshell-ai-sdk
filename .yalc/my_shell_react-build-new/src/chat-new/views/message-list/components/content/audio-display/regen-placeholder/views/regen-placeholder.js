@@ -5,14 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RegenPlaceholder;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PlayIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/PlayIcon"));
 const react_1 = require("react");
-const MessageContext_1 = require("../../../../../../../../chat-new/context/MessageContext");
-const StaticContext_1 = require("../../../../../../../../chat-new/context/StaticContext");
-const icon_button_1 = require("../../../../../../../../common/components/ui/icon-button");
-const common_helper_1 = require("../../../../../../../../common/utils/common-helper");
-const display_provider_1 = require("../../../../display-provider");
-const useRegenerate_1 = __importDefault(require("../hooks/useRegenerate"));
+const MessageContext_1 = require("../../../../../../../../chat-new/context/MessageContext.js");
+const StaticContext_1 = require("../../../../../../../../chat-new/context/StaticContext.js");
+const icon_button_1 = require("../../../../../../../../common/components/ui/icon-button.js");
+const common_helper_1 = require("../../../../../../../../common/utils/common-helper.js");
+const display_provider_1 = require("../../../../display-provider/index.js");
+const useRegenerate_1 = __importDefault(require("../hooks/useRegenerate.js"));
 function RegenPlaceholder() {
     const { type, entityInfo, setEnergyInfo } = (0, react_1.useContext)(StaticContext_1.StaticContext);
     const { partialUpdateMessage, enQueue } = (0, react_1.useContext)(MessageContext_1.MessageContext);

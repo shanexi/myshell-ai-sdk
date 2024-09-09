@@ -5,17 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MessageList;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowDownIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowDownIcon"));
+const ArrowDownIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowDownIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
 const react_virtuoso_1 = require("react-virtuoso");
-const MessageContext_1 = require("../../../chat-new/context/MessageContext");
-const display_provider_1 = require("../../../chat-new/views/message-list/components/display-provider");
-const footer_1 = __importDefault(require("../../../chat-new/views/message-list/components/footer"));
-const header_1 = __importDefault(require("../../../chat-new/views/message-list/components/header"));
-const message_item_1 = __importDefault(require("../../../chat-new/views/message-list/message-item"));
-const icon_button_1 = require("../../../common/components/ui/icon-button");
+const MessageContext_1 = require("../../../chat-new/context/MessageContext.js");
+const display_provider_1 = require("../../../chat-new/views/message-list/components/display-provider/index.js");
+const footer_1 = __importDefault(require("../../../chat-new/views/message-list/components/footer/index.js"));
+const header_1 = __importDefault(require("../../../chat-new/views/message-list/components/header/index.js"));
+const message_item_1 = __importDefault(require("../../../chat-new/views/message-list/message-item/index.js"));
+const icon_button_1 = require("../../../common/components/ui/icon-button.js");
 function MessageList() {
     const virtualRef = (0, react_1.useRef)(null);
     const { messageIdList, messageMap, hasMore, gettingHistory, getHistoryMessage, scrollToBottom } = (0, react_1.useContext)(MessageContext_1.MessageContext);

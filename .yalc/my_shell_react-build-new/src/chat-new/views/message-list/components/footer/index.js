@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const StaticContext_1 = require("../../../../../chat-new/context/StaticContext");
-const energy_pack_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/energy-pack"));
-const passcard_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/passcard"));
-const store_1 = require("../../../../../services/store");
+const StaticContext_1 = require("../../../../../chat-new/context/StaticContext.js");
+const energy_pack_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/energy-pack/index.js"));
+const passcard_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/passcard/index.js"));
+const store_1 = require("../../../../../services/store/index.js");
 const Footer = () => {
     const user = (0, store_1.useUserStore)(state => state.user);
     const token = (0, store_1.useUserStore)(state => state.token);

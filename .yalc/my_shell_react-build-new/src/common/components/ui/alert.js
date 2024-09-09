@@ -27,7 +27,7 @@ exports.AlertDescription = exports.AlertTitle = exports.Alert = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const class_variance_authority_1 = require("class-variance-authority");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 const alertVariants = (0, class_variance_authority_1.cva)('relative rounded-xl border flex justify-center flex-col md:flex-row md:justify-between items-center gap-3 p-3 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground', {
     variants: {
         variant: {

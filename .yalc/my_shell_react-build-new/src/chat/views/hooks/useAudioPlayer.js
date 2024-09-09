@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const useDevice_1 = require("../../../common/hooks/useDevice");
+const useDevice_1 = require("../../../common/hooks/useDevice.js");
 let audioAPI = null;
 const getAudioAPI = () => {
     if (audioAPI)

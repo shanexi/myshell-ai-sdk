@@ -28,15 +28,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = TranslationDisplay;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowPathIcon"));
+const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowPathIcon"));
 const next_intl_1 = require("next-intl");
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext");
-const typography_1 = require("../../../../../../common/components/ui/typography");
-const display_provider_1 = require("../../display-provider");
-const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer'))), {
+const MessageContext_1 = require("../../../../../../chat-new/context/MessageContext.js");
+const typography_1 = require("../../../../../../common/components/ui/typography.js");
+const display_provider_1 = require("../../display-provider/index.js");
+const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer.js'))), {
     loading: () => (0, jsx_runtime_1.jsx)("div", { children: "loading..." }),
     ssr: false
 });

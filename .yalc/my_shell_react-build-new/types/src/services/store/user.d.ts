@@ -1,7 +1,7 @@
-import { NsfwEnum, VisitorEnum } from '../../../../src/common/constants/enums/user';
-import { BotShareKeyStatsInfo, EarningDetail, EarningDetailChartData, StakeDetail, StakeRankingListData, UserStakeInfo } from '../../../../src/common/constants/interfaces/shareKey';
-import { EnergyInfo, PremiumInfo, User, UserConnectedAccounts, UserSettings, UserTelegramDto } from '../../../../src/common/constants/interfaces/user';
-import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin';
+import { NsfwEnum, VisitorEnum } from '../../../../src/common/constants/enums/user.js';
+import { BotShareKeyStatsInfo, EarningDetail, EarningDetailChartData, StakeDetail, StakeRankingListData, UserStakeInfo } from '../../../../src/common/constants/interfaces/shareKey.js';
+import { EnergyInfo, PremiumInfo, User, UserConnectedAccounts, UserSettings, UserTelegramDto } from '../../../../src/common/constants/interfaces/user.js';
+import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin.js';
 export type UserState = {
     user: User | null;
     inviteCode: string;

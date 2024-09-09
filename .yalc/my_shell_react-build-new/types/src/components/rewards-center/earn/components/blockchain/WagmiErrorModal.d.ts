@@ -1,4 +1,4 @@
-import { WagmiErrorType } from '../../../../../../../src/hooks/rewards-center/useOnChainInteraction';
+import { WagmiErrorType } from '../../../../../../../src/hooks/rewards-center/useOnChainInteraction.js';
 interface WagmiErrorModalProps {
     isOpen: boolean;
     onClose: () => void;

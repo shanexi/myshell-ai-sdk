@@ -1,4 +1,4 @@
-import { BlockChainInteractionState } from '../../../../src/components/rewards-center/earn/components/BlockChainGuruModal';
+import { BlockChainInteractionState } from '../../../../src/components/rewards-center/earn/components/BlockChainGuruModal.js';
 export declare const chainIdNameScannerMap: {
     [key: string]: {
         name: string;

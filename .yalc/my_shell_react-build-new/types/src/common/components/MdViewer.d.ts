@@ -1,5 +1,5 @@
 import '@/styles/md-viewer.scss';
-import { MessageStatusEnum } from '../../../../src/chat/model/enums';
+import { MessageStatusEnum } from '../../../../src/chat/model/enums.js';
 interface MdViewerProps {
     content: string;
     status?: MessageStatusEnum;

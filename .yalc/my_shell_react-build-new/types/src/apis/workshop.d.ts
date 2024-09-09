@@ -1,9 +1,9 @@
-import { BannerItemProps } from '../../../src/common/components/banner/types';
-import { TTSInfo, TagInfo } from '../../../src/common/constants/interfaces/bot';
-import { ListResponse } from '../../../src/common/constants/interfaces/common';
-import { WidgetInfo, WidgetMessageDetail } from '../../../src/common/constants/interfaces/workshop';
-import { NormalCardProps, RecommendInfo } from '../../../src/common/model/interfaces';
-import { ResponseType } from '../../../src/core/request/APIFetch';
+import { BannerItemProps } from '../../../src/common/components/banner/types.js';
+import { TTSInfo, TagInfo } from '../../../src/common/constants/interfaces/bot.js';
+import { ListResponse } from '../../../src/common/constants/interfaces/common.js';
+import { WidgetInfo, WidgetMessageDetail } from '../../../src/common/constants/interfaces/workshop.js';
+import { NormalCardProps, RecommendInfo } from '../../../src/common/model/interfaces.js';
+import { ResponseType } from '../../../src/core/request/APIFetch.js';
 export declare function getWorkshopRecommend(): Promise<ResponseType<{
     banners: BannerItemProps[];
     list: RecommendInfo[];

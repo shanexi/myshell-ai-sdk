@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createChatCommonSlice = void 0;
-const bot_1 = require("../../apis/bot");
+const bot_1 = require("../../apis/bot.js");
 const createChatCommonSlice = (set, get) => {
     return {
         inputType: 'text',

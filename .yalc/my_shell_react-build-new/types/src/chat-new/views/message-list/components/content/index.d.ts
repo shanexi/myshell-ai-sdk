@@ -1,4 +1,4 @@
-import { DisplayMessage } from '../../../../../../../src/chat-new/model/definitions';
+import { DisplayMessage } from '../../../../../../../src/chat-new/model/definitions.js';
 export interface IContentProps {
     message: DisplayMessage;
     showText?: boolean;

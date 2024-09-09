@@ -17,4 +17,3 @@ tailwind.config.js
 *.tsbuildinfo
 stories/
 src/lib/constants/web3/chainInfo.js
-src/apis

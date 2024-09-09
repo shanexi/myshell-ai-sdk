@@ -30,10 +30,10 @@ exports.rxUpload = exports.rxDelete = exports.rxPost = exports.axiosClient = exp
 exports.rxGet = rxGet;
 const axios_1 = __importStar(require("axios"));
 const rxjs_1 = require("rxjs");
-const identityService_1 = require("../../common/services/identityService");
-const common_helper_1 = require("../../common/utils/common-helper");
-const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226");
-const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId");
+const identityService_1 = require("../../common/services/identityService.js");
+const common_helper_1 = require("../../common/utils/common-helper.js");
+const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226.js");
+const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId.js");
 exports.LangMap = {
     en: 'en',
     zh: 'zh-CN',
@@ -43,10 +43,10 @@ exports.LangMap = {
     ru: 'ru',
     ko: 'ko'
 };
-const CfMitigatedHandler_1 = __importDefault(require("../../core/request/CfMitigatedHandler"));
-const EventEmitter_1 = __importDefault(require("./EventEmitter"));
-const initNeteaseVisitorId_1 = require("./initNeteaseVisitorId");
-const runtime_config_1 = require("./runtime-config");
+const CfMitigatedHandler_1 = __importDefault(require("../../core/request/CfMitigatedHandler.js"));
+const EventEmitter_1 = __importDefault(require("./EventEmitter.js"));
+const initNeteaseVisitorId_1 = require("./initNeteaseVisitorId.js");
+const runtime_config_1 = require("./runtime-config.js");
 exports.baseURL = `${runtime_config_1.API_URL}`;
 exports.wsBaseURL = `${runtime_config_1.WS_API_URL}`;
 exports.axiosClient = axios_1.default.create({

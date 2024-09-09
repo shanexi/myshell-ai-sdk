@@ -5,18 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = DeleteMessage;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const TrashIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/TrashIcon"));
+const TrashIcon_1 = __importDefault(require("@heroicons/react/24/outline/TrashIcon"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const MessageContext_1 = require("../../../../../../../chat-new/context/MessageContext");
-const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext");
-const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider");
-const context_menu_1 = require("../../../../../../../common/components/ui/context-menu");
-const icon_button_1 = require("../../../../../../../common/components/ui/icon-button");
-const modal_1 = require("../../../../../../../common/components/ui/modal");
-const typography_1 = require("../../../../../../../common/components/ui/typography");
-const useDeleteMessage_1 = __importDefault(require("../hooks/useDeleteMessage"));
+const MessageContext_1 = require("../../../../../../../chat-new/context/MessageContext.js");
+const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext.js");
+const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider/index.js");
+const context_menu_1 = require("../../../../../../../common/components/ui/context-menu.js");
+const icon_button_1 = require("../../../../../../../common/components/ui/icon-button.js");
+const modal_1 = require("../../../../../../../common/components/ui/modal.js");
+const typography_1 = require("../../../../../../../common/components/ui/typography.js");
+const useDeleteMessage_1 = __importDefault(require("../hooks/useDeleteMessage.js"));
 function DeleteMessage(props) {
     const [confirming, setConfirming] = (0, react_use_1.useToggle)(false);
     const { source } = props;

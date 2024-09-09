@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ArrowPathIcon"));
-const ExclamationCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ExclamationCircleIcon"));
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PlayIcon"));
-const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/XMarkIcon"));
+const ArrowPathIcon_1 = __importDefault(require("@heroicons/react/24/solid/ArrowPathIcon"));
+const ExclamationCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/ExclamationCircleIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/PlayIcon"));
+const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/solid/XMarkIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const spinner_1 = __importDefault(require("../../../../../common/components/ui/spinner"));
-const tooltip_1 = require("../../../../../common/components/ui/tooltip");
-const audio_player_1 = __importDefault(require("../audio-player"));
+const spinner_1 = __importDefault(require("../../../../../common/components/ui/spinner.js"));
+const tooltip_1 = require("../../../../../common/components/ui/tooltip.js");
+const audio_player_1 = __importDefault(require("../audio-player.js"));
 const File = (0, react_1.memo)(({ data, onDelete, onPreview, uploadFiles, index, isMobile, isChoosingFile }) => {
     const commonT = (0, next_intl_1.useTranslations)('common');
     const { status, uiData, file, botId, id } = data;

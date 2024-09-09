@@ -1,5 +1,5 @@
-import { ActionTypes } from '../../../../src/common/constants/enums/post';
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot';
+import { ActionTypes } from '../../../../src/common/constants/enums/post.js';
+import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
 export interface AuthorInfo {
     userId: string;
     userName: string;

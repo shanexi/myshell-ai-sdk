@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../../src/chat/ChatStaticContext';
+import { ChatModuleType } from '../../../../../src/chat/ChatStaticContext.js';
 export interface EntityBase {
     id: string;
     name: string;

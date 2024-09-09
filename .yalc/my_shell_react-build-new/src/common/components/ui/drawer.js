@@ -31,7 +31,7 @@ exports.DrawerFooter = DrawerFooter;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const React = __importStar(require("react"));
 const vaul_1 = require("vaul");
-const utils_1 = require("../../../lib/utils");
+const utils_1 = require("../../../lib/utils.js");
 function Drawer({ shouldScaleBackground = false, ...props }) {
     return (0, jsx_runtime_1.jsx)(vaul_1.Drawer.Root, { shouldScaleBackground: shouldScaleBackground, ...props });
 }

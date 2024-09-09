@@ -6,9 +6,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const next_intl_1 = require("next-intl");
-const utils_1 = require("../../lib/utils");
-const NormalCard_1 = __importDefault(require("../../common/components/NormalCard"));
-const NormalCardSkeleton_1 = require("../skeleton/common/NormalCardSkeleton");
+const utils_1 = require("../../lib/utils.js");
+const NormalCard_1 = __importDefault(require("../../common/components/NormalCard.js"));
+const NormalCardSkeleton_1 = require("../skeleton/common/NormalCardSkeleton.js");
 function UserBotList({ bots, loading, disableJumpToChat, onBotClick, selectedBotId, containerClassName, itemBoxClassName, itemLinkClassName, itemDividerClassName }) {
     const t = (0, next_intl_1.useTranslations)('profile');
     const botList = bots?.map(item => {

@@ -5,10 +5,10 @@ exports.default = useWalletInteraction;
 const react_auth_1 = require("@privy-io/react-auth");
 const react_1 = require("react");
 const wagmi_1 = require("wagmi");
-const identityService_1 = require("../../common/services/identityService");
-const wagmi_2 = require("../../common/utils/wagmi");
-const web3_1 = require("../../services/store/web3");
-const usePrivyLogin_1 = require("../user/usePrivyLogin");
+const identityService_1 = require("../../common/services/identityService.js");
+const wagmi_2 = require("../../common/utils/wagmi.js");
+const web3_1 = require("../../services/store/web3.js");
+const usePrivyLogin_1 = require("../user/usePrivyLogin.js");
 var InteractionType;
 (function (InteractionType) {
     InteractionType["Web2"] = "web2";

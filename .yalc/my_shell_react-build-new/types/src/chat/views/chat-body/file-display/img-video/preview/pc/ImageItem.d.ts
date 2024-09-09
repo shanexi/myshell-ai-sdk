@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../../../../../src/apis/common';
+import { EmbedObj } from '../../../../../../../../../src/apis/common.js';
 interface P {
     imgObj: EmbedObj;
     handleZoomIn: () => void;

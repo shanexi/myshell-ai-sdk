@@ -1,6 +1,6 @@
 import { type Dayjs } from 'dayjs';
-import { BlockChainInteractionState } from '../../../../src/components/rewards-center/earn/components/BlockChainGuruModal';
-import { HoldBadge, PropInfo, RewardInfo, SeasonInfo, Task, Point, ExchangePoint } from '../../../../src/common/constants/interfaces/task';
+import { BlockChainInteractionState } from '../../../../src/components/rewards-center/earn/components/BlockChainGuruModal.js';
+import { HoldBadge, PropInfo, RewardInfo, SeasonInfo, Task, Point, ExchangePoint } from '../../../../src/common/constants/interfaces/task.js';
 export type TaskState = {
     seasons: [SeasonInfo, SeasonInfo] | null;
     seasonIndex: number;

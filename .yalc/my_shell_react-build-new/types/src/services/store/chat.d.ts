@@ -1,7 +1,7 @@
-import { AudioStreamDetail, ImageStreamDetail, MessageDetail, TextStreamDetail, TranslationStreamDetail } from '../../../../src/chat/model/interfaces';
-import { BotInfo } from '../../../../src/common/constants/interfaces/bot';
-import { IPublishItem } from '../../../../src/gallery/modal/interfaces';
-import { ChatCommonStore } from '../../../../src/chat-new/services/chatCommonSlice';
+import { AudioStreamDetail, ImageStreamDetail, MessageDetail, TextStreamDetail, TranslationStreamDetail } from '../../../../src/chat/model/interfaces.js';
+import { BotInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { IPublishItem } from '../../../../src/gallery/modal/interfaces.js';
+import { ChatCommonStore } from '../../../../src/chat-new/services/chatCommonSlice.js';
 interface Computed {
     currentUserId?: string;
 }

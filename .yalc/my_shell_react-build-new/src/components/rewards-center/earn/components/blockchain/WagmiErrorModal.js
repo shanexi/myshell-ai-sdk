@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = WagmiErrorModal;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("@chakra-ui/react");
-const link_1 = __importDefault(require("../../../../../common/components/ui/link"));
+const link_1 = __importDefault(require("../../../../../common/components/ui/link.js"));
 const next_intl_1 = require("next-intl");
-const common_helper_1 = require("../../../../../common/utils/common-helper");
-const useOnChainInteraction_1 = require("../../../../../hooks/rewards-center/useOnChainInteraction");
+const common_helper_1 = require("../../../../../common/utils/common-helper.js");
+const useOnChainInteraction_1 = require("../../../../../hooks/rewards-center/useOnChainInteraction.js");
 function WagmiErrorModal({ isOpen, onClose, wagmiErrorType, chainId }) {
     const t = (0, next_intl_1.useTranslations)('common.wagmi_error');
     return ((0, jsx_runtime_1.jsxs)(react_1.Modal, { isOpen: isOpen, onClose: onClose, isCentered: true, children: [(0, jsx_runtime_1.jsx)(react_1.ModalOverlay, {}), (0, jsx_runtime_1.jsxs)(react_1.ModalContent, { borderRadius: "24px", boxShadow: "0px 0px 40px 0px #0000001A", className: "w-[342px] md:w-auto bg-surface", children: [(0, jsx_runtime_1.jsx)(react_1.ModalHeader, { p: "16px 20px", children: (0, jsx_runtime_1.jsx)("h2", { className: "text-xl font-[400] text-on-surface", children: t(`${(0, common_helper_1.camelToSnake)(wagmiErrorType)}.title`) }) }), (0, jsx_runtime_1.jsx)(react_1.Divider, { className: "border-default" }), (0, jsx_runtime_1.jsxs)(react_1.ModalBody, { className: "text-on-surface", children: [wagmiErrorType === 'unKnownRpcError' &&

@@ -1,6 +1,6 @@
-import { InputType } from '../../../../src/chat/model/types';
+import { InputType } from '../../../../src/chat/model/types.js';
 import { StateCreator } from 'zustand';
-import { MessageDetail } from '../../../../src/chat/model/interfaces';
+import { MessageDetail } from '../../../../src/chat/model/interfaces.js';
 export type ChatCommonStore = {
     inputType: InputType;
     setInputType(type: InputType): void;

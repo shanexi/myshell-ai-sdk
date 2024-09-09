@@ -1,7 +1,7 @@
 import type { Observable } from 'rxjs';
-import { MessageDetail } from '../../../../src/chat/model/interfaces';
-import { EnergyInfo } from '../../../../src/common/constants/interfaces/user';
-import { ResponseType } from '../../../../src/core/request/APIFetch';
+import { MessageDetail } from '../../../../src/chat/model/interfaces.js';
+import { EnergyInfo } from '../../../../src/common/constants/interfaces/user.js';
+import { ResponseType } from '../../../../src/core/request/APIFetch.js';
 interface ChatHistoryParams {
     offset?: number;
     limit?: number;
