@@ -1,4 +1,5 @@
 import styles from './chat.module.css';
+// import { defaultChatSetting } from 'my_shell_react-build-new';
 
 /* eslint-disable-next-line */
 export interface ChatProps {}

@@ -20,6 +20,19 @@ function makeConfig(useRspack = true) {
     //   check: false,
     //   reactDocgen: false,
     // },
+    webpackFinal: async (config) => {
+      // https://github.com/storybookjs/storybook/issues/23295
+      config.resolve.alias = {
+        '@/styles/md-viewer.scss': false,
+        '@/common/assets/audio-playing.json': false,
+        '@/common/assets/images/workshop/BotDetailBg.png': false,
+      };
+      config.resolve.fallback = {
+        ...config.resolve?.fallback,
+        zlib: false,
+      };
+      return config;
+    },
   };
 }
 

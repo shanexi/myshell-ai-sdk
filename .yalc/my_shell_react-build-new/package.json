@@ -70,6 +70,7 @@
     "marked-xhtml": "^1.0.9",
     "md5": "^2.3.0",
     "mermaid": "^9.2.0",
+    "next": "^14.2.3",
     "next-intl": "^2.20.0",
     "next-themes": "^0.2.1",
     "path-to-regexp": "^6.2.1",
@@ -116,5 +117,5 @@
   },
   "main": "./src/chat-new/index.js",
   "types": "./types/src/chat-new/index.d.ts",
-  "yalcSig": "58444026662006ae0c77f49c854bccab"
+  "yalcSig": "a3962f1b2751de7431463bf0b1951a79"
 }

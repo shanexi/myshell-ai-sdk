@@ -8,7 +8,6 @@ src/workers
 src/common/components/auth/login-modal/PrivyLoginModal.js
 firebase
 messages
-middlewares
 .eslintrc.cjs
 .prettierrc.js
 middleware.js
