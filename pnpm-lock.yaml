@@ -41,7 +41,6 @@ specifiers:
   concurrently: ^8.2.2
   core-js: ^3.38.1
   cypress: ^12.2.0
-  derive-zustand: ^0.1.1
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
   eslint-config-prettier: 8.1.0
@@ -74,12 +73,10 @@ specifiers:
   zustand: ^4.5.5
   zustand-computed-state: ^0.1.8
   zustand-signal: ^0.6.0
-  zustand-slices: ^0.3.0
 
 dependencies:
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
   core-js: 3.38.1
-  derive-zustand: 0.1.1_zustand@4.5.5
   immer: 10.1.1
   my_shell_react-build-new: file:.yalc/my_shell_react-build-new_dhweymnlb66crof5rhwgqnftsi
   next: 13.1.1_ogpcfxstozvqf23dbtqn6fjxke
@@ -89,7 +86,6 @@ dependencies:
   zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
   zustand-computed-state: 0.1.8_zustand@4.5.5
   zustand-signal: 0.6.0_react@18.2.0
-  zustand-slices: 0.3.0_ojppn7mdmemxvuctmcs4wxmkye
 
 devDependencies:
   '@babel/core': 7.25.2
@@ -12112,14 +12108,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /derive-zustand/0.1.1_zustand@4.5.5:
-    resolution: {integrity: sha512-f//6WuCy0URDemhTIh6VjTWtYwV8eQCB5KjZhrMqAVylFPtTO+9TNQofCmPmheRb/Y+F4MFvvK+ye3EJvMyETw==}
-    peerDependencies:
-      zustand: '>=4.1.0'
-    dependencies:
-      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
-    dev: false
-
   /destroy/1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
@@ -21826,21 +21814,6 @@ packages:
     dependencies:
       create-react-signals: 0.8.0_react@18.2.0
       react: 18.2.0
-    dev: false
-
-  /zustand-slices/0.3.0_ojppn7mdmemxvuctmcs4wxmkye:
-    resolution: {integrity: sha512-deJuuBXvHx/wJvx+3bsCnkZf6AaCfagUggz2H8WQ9Z0bLXvVLFp4TD+QFBPtilOsbaIvJIRgW+maLJxgHAzFRw==}
-    peerDependencies:
-      immer: '>=9.0.6'
-      react: '>=18.0.0'
-      zustand: '>=4.0.0'
-    peerDependenciesMeta:
-      immer:
-        optional: true
-    dependencies:
-      immer: 10.1.1
-      react: 18.2.0
-      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
     dev: false
 
   /zustand/4.5.5_aoddzyxqa26ioahc57csa6e2ii:
