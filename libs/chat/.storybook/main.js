@@ -1,6 +1,6 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+const path = require('path');
 
-function makeConfig(useRspack = true): StorybookConfig {
+function makeConfig(useRspack = true) {
   const framework = useRspack
     ? 'storybook-react-rspack'
     : '@storybook/react-webpack5';
@@ -10,35 +10,22 @@ function makeConfig(useRspack = true): StorybookConfig {
     },
     framework: {
       name: '@storybook/react-webpack5',
-      options: Object.assign(
-        {
-          fastRefresh: true,
-          strictMode: true,
-          legacyRootApi: true,
-        },
-        useRspack
-          ? {}
-          : {
-              useSWC: true,
-              lazyCompilation: true,
-              fsCache: true,
-            }
-      ),
+      options: {},
     },
     stories: [
-      '../src/lib/**/*.stories.mdx',
+      '../src/lib/**/*.mdx',
       '../src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     ],
     addons: ['@storybook/addon-essentials', '@nrwl/react/plugins/storybook'],
     // https://storybook.js.org/docs/api/main-config-typescript#skipbabel
-    typescript: {
-      check: false,
-      reactDocgen: false,
-    },
+    // typescript: {
+    //   check: false,
+    //   reactDocgen: false,
+    // },
   };
 }
 
-module.exports = makeConfig();
+module.exports = makeConfig(false);
 
 // To customize your webpack configuration you can use the webpackFinal field.
 // Check https://storybook.js.org/docs/react/builders/webpack#extending-storybooks-webpack-config

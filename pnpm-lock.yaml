@@ -35,9 +35,11 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   babel-loader: 8.1.0
   concurrently: ^8.2.2
+  core-js: ^3.38.1
   cypress: ^12.2.0
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
@@ -50,6 +52,7 @@ specifiers:
   fs-extra: ^11.2.0
   html-webpack-plugin: ^5.5.0
   husky: ^9.1.5
+  immer: ^10.1.1
   jest: ^29.4.1
   jest-environment-jsdom: ^29.4.1
   lint-staged: ^15.2.10
@@ -67,13 +70,22 @@ specifiers:
   typescript: ~4.9.5
   url-loader: ^4.1.1
   wait-on: ^8.0.0
+  zustand: ^4.5.5
+  zustand-computed-state: ^0.1.8
+  zustand-signal: ^0.6.0
 
 dependencies:
+  auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
+  core-js: 3.38.1
+  immer: 10.1.1
   my_shell_react-build-new: file:.yalc/my_shell_react-build-new_dhweymnlb66crof5rhwgqnftsi
   next: 13.1.1_ogpcfxstozvqf23dbtqn6fjxke
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tslib: 2.7.0
+  zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
+  zustand-computed-state: 0.1.8_zustand@4.5.5
+  zustand-signal: 0.6.0_react@18.2.0
 
 devDependencies:
   '@babel/core': 7.25.2
@@ -10078,6 +10090,15 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
+  /auto-zustand-selectors-hook/2.0.5_zustand@4.5.5:
+    resolution: {integrity: sha512-42vgvFylb4TvMT7SSyXG1YCkA4fmgS7mInXCDBk/EEZfsTyFOVypKpwnse7SBtz77ZqWU5V9nEYmFRtDLnZW9Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      zustand: '*'
+    dependencies:
+      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
+    dev: false
+
   /autoprefixer/10.4.20_postcss@8.4.45:
     resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
     engines: {node: ^10 || ^12 || >=14}
@@ -11118,6 +11139,11 @@ packages:
     requiresBuild: true
     dev: true
 
+  /core-js/3.38.1:
+    resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
+    requiresBuild: true
+    dev: false
+
   /core-util-is/1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
     dev: true
@@ -11182,6 +11208,14 @@ packages:
       - supports-color
       - ts-node
     dev: true
+
+  /create-react-signals/0.8.0_react@18.2.0:
+    resolution: {integrity: sha512-BMenSpH81lr/eRQp5ABPIfmBL1wqcIfM3iPnbPROtHn79KwtR9KVnQnFN/skTN/YLJPXJmXDM/R1CGhAWnEg1w==}
+    peerDependencies:
+      react: '>=18.0.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -21754,6 +21788,15 @@ packages:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
     dev: false
 
+  /zustand-computed-state/0.1.8_zustand@4.5.5:
+    resolution: {integrity: sha512-df6XMpo7ZhFRvs3gXENTbZebhAuwg37S/Bk0G94z4QfwzmoB3z12jdmJBoItxDOm7adjOkjk1kxyPf/WZiLQvw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      zustand: ^4.3.8
+    dependencies:
+      zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
+    dev: false
+
   /zustand-computed/1.4.2_react@18.3.1+zustand@4.5.5:
     resolution: {integrity: sha512-bQ+PmAgrgPLsAI7xubCTC8bTtO5kE4yi/Qn3eldqUt5I43av3HAUX8pEXC2IRlB7wrWrytYgKXCklYijzFEmPg==}
     peerDependencies:
@@ -21761,10 +21804,19 @@ packages:
       zustand: ^4.3.8
     dependencies:
       react: 18.3.1
-      zustand: 4.5.5_pmekkgnqduwlme35zpnqhenc34
+      zustand: 4.5.5_wrg6x4cd2d6crqsvrgtsayc32e
     dev: false
 
-  /zustand/4.5.5_pmekkgnqduwlme35zpnqhenc34:
+  /zustand-signal/0.6.0_react@18.2.0:
+    resolution: {integrity: sha512-bWCIM6eYe+XddE/FiqcIbkwGxgmvlwkkRz4sr1ZZ7di/QoFBa0SHlp+Au4/ICZL5n11AeRxcFRgz/l9ijwgEcw==}
+    peerDependencies:
+      react: '>=18.0.0'
+    dependencies:
+      create-react-signals: 0.8.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /zustand/4.5.5_aoddzyxqa26ioahc57csa6e2ii:
     resolution: {integrity: sha512-+0PALYNJNgK6hldkgDq2vLrw5f6g/jCInz52n9RTpropGgeAf/ioFUCdtsjCqu4gNhW9D01rUQBROoRjdzyn2Q==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -21780,8 +21832,30 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.0.28
+      immer: 10.1.1
       react: 18.2.0
       use-sync-external-store: 1.2.2_react@18.2.0
+    dev: false
+
+  /zustand/4.5.5_wrg6x4cd2d6crqsvrgtsayc32e:
+    resolution: {integrity: sha512-+0PALYNJNgK6hldkgDq2vLrw5f6g/jCInz52n9RTpropGgeAf/ioFUCdtsjCqu4gNhW9D01rUQBROoRjdzyn2Q==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0.6'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.0.28
+      immer: 10.1.1
+      react: 18.3.1
+      use-sync-external-store: 1.2.2_react@18.3.1
     dev: false
 
   /zwitch/1.0.5:
@@ -21897,7 +21971,7 @@ packages:
       usehooks-ts: 2.16.0_react@18.3.1
       uuid: 9.0.1
       zod: 3.23.8
-      zustand: 4.5.5_pmekkgnqduwlme35zpnqhenc34
+      zustand: 4.5.5_wrg6x4cd2d6crqsvrgtsayc32e
       zustand-computed: 1.4.2_react@18.3.1+zustand@4.5.5
     transitivePeerDependencies:
       - '@chakra-ui/system'
