@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useWindowWidth = void 0;
-const react_1 = require("react");
-const useWindowWidth = () => {
-    const [windowWidth, setWindowWidth] = (0, react_1.useState)(0);
-    (0, react_1.useEffect)(() => {
+import { useEffect, useState } from 'react';
+export const useWindowWidth = () => {
+    const [windowWidth, setWindowWidth] = useState(0);
+    useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
@@ -16,4 +13,3 @@ const useWindowWidth = () => {
     }, []);
     return windowWidth;
 };
-exports.useWindowWidth = useWindowWidth;

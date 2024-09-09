@@ -1,10 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.msgDisplayTypeParser = msgDisplayTypeParser;
-exports.draftOrLocalMessageParser = draftOrLocalMessageParser;
-exports.serverMessageParser = serverMessageParser;
-exports.MessageToDisplayParser = MessageToDisplayParser;
-function msgDisplayTypeParser(type) {
+export function msgDisplayTypeParser(type) {
     let msgDisplayType;
     switch (type) {
         case 'TEXT':
@@ -35,7 +29,7 @@ function msgDisplayTypeParser(type) {
     }
     return msgDisplayType;
 }
-function draftOrLocalMessageParser(message) {
+export function draftOrLocalMessageParser(message) {
     return {
         id: message.id,
         text: message.text,
@@ -48,7 +42,7 @@ function draftOrLocalMessageParser(message) {
         entityId: message.entityId
     };
 }
-function serverMessageParser(message, type) {
+export function serverMessageParser(message, type) {
     return {
         id: message.id,
         userId: message.userId,
@@ -106,7 +100,7 @@ function messageReplyToMemberNameJudgement(message, memberInfoMap) {
     }
     return undefined;
 }
-function MessageToDisplayParser(message, userId, memberInfoMap, showReplyTo = false, visitorNameParser) {
+export function MessageToDisplayParser(message, userId, memberInfoMap, showReplyTo = false, visitorNameParser) {
     return {
         ...message,
         avatar: messageAvatarJudgement(message, memberInfoMap),

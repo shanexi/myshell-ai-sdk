@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useWeb3Store = void 0;
-const zustand_1 = require("zustand");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
+import { create } from 'zustand';
+import computed from 'zustand-computed';
 const DEFAULT_STATE = {
     swapping: false,
     staking: false,
@@ -17,7 +11,7 @@ const DEFAULT_STATE = {
 const computeState = (state) => ({
     history: []
 });
-exports.useWeb3Store = (0, zustand_1.create)()((0, zustand_computed_1.default)((set, get) => ({
+export const useWeb3Store = create()(computed((set, get) => ({
     ...DEFAULT_STATE,
     toggleSwapping: (status) => {
         set({ swapping: status });

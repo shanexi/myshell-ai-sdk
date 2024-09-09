@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TelegramButton = void 0;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const TelegramButton = ({ botName, widgetVersion = 19, dataOnAuth, dataAuthUrl, buttonSize = 'large', className, cornerRadius, requestAccess = true, lang = 'en', userPic = false, children }) => {
-    const telegramRef = (0, react_1.useRef)(null);
-    (0, react_1.useEffect)(() => {
+import { jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
+import { useRef, useEffect } from 'react';
+export const TelegramButton = ({ botName, widgetVersion = 19, dataOnAuth, dataAuthUrl, buttonSize = 'large', className, cornerRadius, requestAccess = true, lang = 'en', userPic = false, children }) => {
+    const telegramRef = useRef(null);
+    useEffect(() => {
         if (!!dataAuthUrl === !!dataOnAuth) {
             throw new Error('One of this props should be defined: dataAuthUrl (Redirect URL), dataOnAuth (callback fn) should be defined.');
         }
@@ -38,6 +35,5 @@ const TelegramButton = ({ botName, widgetVersion = 19, dataOnAuth, dataAuthUrl, 
             }
         };
     }, []);
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsx)("button", { ref: telegramRef, className: `absolute right-0 bottom-0 overflow-hidden ${className}`, children: children }) }));
+    return (_jsx(_Fragment, { children: _jsx("button", { ref: telegramRef, className: `absolute right-0 bottom-0 overflow-hidden ${className}`, children: children }) }));
 };
-exports.TelegramButton = TelegramButton;

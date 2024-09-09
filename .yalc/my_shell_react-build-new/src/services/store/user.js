@@ -1,17 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useUserStore = void 0;
-const dayjs_1 = __importDefault(require("dayjs"));
-const zustand_1 = require("zustand");
-const middleware_1 = require("zustand/middleware");
-const immer_1 = require("zustand/middleware/immer");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const user_1 = require("../../common/constants/enums/user.js");
-const identityService_1 = require("../../common/services/identityService.js");
-const task_1 = require("./task.js");
+import dayjs from 'dayjs';
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import computed from 'zustand-computed';
+import { NsfwEnum, UserSettingEnum, UserSourceEnum, VisitorEnum } from '../../common/constants/enums/user.js';
+import { identityService } from '../../common/services/identityService.js';
+import { useTaskStore } from './task.js';
 const DEFAULT_STATE = {
     user: null,
     token: null,
@@ -28,51 +22,51 @@ const DEFAULT_STATE = {
     connectedAccounts: null,
     userSettingsInfo: [
         {
-            name: user_1.UserSettingEnum.FLAG_ICON_REWARD,
+            name: UserSettingEnum.FLAG_ICON_REWARD,
             value: '1'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_ICON_FORUM,
+            name: UserSettingEnum.FLAG_ICON_FORUM,
             value: '1'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_TAG_NOTICE,
+            name: UserSettingEnum.FLAG_TAG_NOTICE,
             value: '1'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY,
+            name: UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY,
             value: '1'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_LLM_MODEL_CONFIG,
+            name: UserSettingEnum.FLAG_LLM_MODEL_CONFIG,
             value: '1'
         },
         {
-            name: user_1.UserSettingEnum.SHOW_NSFW,
+            name: UserSettingEnum.SHOW_NSFW,
             value: '0'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_NSFW_CONFIRMED,
+            name: UserSettingEnum.FLAG_NSFW_CONFIRMED,
             value: '0'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_VOICE_CALL_USED,
+            name: UserSettingEnum.FLAG_VOICE_CALL_USED,
             value: '0'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_VIDEO_CALL_USED,
+            name: UserSettingEnum.FLAG_VIDEO_CALL_USED,
             value: '0'
         },
         {
-            name: user_1.UserSettingEnum.LAST_SEASON,
+            name: UserSettingEnum.LAST_SEASON,
             value: '0'
         },
         {
-            name: user_1.UserSettingEnum.FLAG_stake_earn_VIEWED,
+            name: UserSettingEnum.FLAG_stake_earn_VIEWED,
             value: '1'
         },
-        { name: user_1.UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED, value: '0' },
-        { name: user_1.UserSettingEnum.NOTIFICATION, value: '0' }
+        { name: UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED, value: '0' },
+        { name: UserSettingEnum.NOTIFICATION, value: '0' }
     ],
     rewardsCenterVisited: false,
     forumVisited: false,
@@ -80,10 +74,10 @@ const DEFAULT_STATE = {
     flagUserFirstPublishGallery: false,
     flagUserFirstVisitGallery: '0',
     modelConfigClicked: false,
-    showNsfw: user_1.NsfwEnum.INIT,
+    showNsfw: NsfwEnum.INIT,
     nsfwConfirmed: false,
     nsfwSwitch: true,
-    isVisitor: user_1.VisitorEnum.INIT,
+    isVisitor: VisitorEnum.INIT,
     shellCoins: null,
     frozenShellCoins: null,
     shareKeysBotMap: new Map(),
@@ -105,7 +99,7 @@ const createUSerSlice = set => {
             set(state => {
                 return {
                     user,
-                    isVisitor: !state.token || user?.source === user_1.UserSourceEnum.VISITOR ? user_1.VisitorEnum.YES : user_1.VisitorEnum.NO
+                    isVisitor: !state.token || user?.source === UserSourceEnum.VISITOR ? VisitorEnum.YES : VisitorEnum.NO
                 };
             }, false, 'setUser');
         },
@@ -152,8 +146,8 @@ const createUSerSlice = set => {
         setToken(token) {
             set(state => {
                 state.token = token;
-                state.isVisitor = !token ? user_1.VisitorEnum.YES : user_1.VisitorEnum.NO;
-                identityService_1.identityService.setToken(token);
+                state.isVisitor = !token ? VisitorEnum.YES : VisitorEnum.NO;
+                identityService.setToken(token);
             });
         },
         setShellCoins(coins) {
@@ -227,31 +221,31 @@ const computeState = (state) => ({
             currentLevelExp: 5
         },
     isEnergyOverflow: state.energy > state.dailyEnergy,
-    rewardsCenterVisited: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_ICON_REWARD && s.value === '1'),
-    forumVisited: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_ICON_FORUM && s.value === '1'),
-    tagNoticeVisited: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_TAG_NOTICE && s.value === '1'),
-    flagUserFirstPublishGallery: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY && s.value === '1'),
-    flagUserFirstVisitGallery: state.userSettingsInfo.find(s => s.name === user_1.UserSettingEnum.FLAG_USET_FIRST_VISIT_GALLERY)?.value || '2',
-    modelConfigClicked: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_LLM_MODEL_CONFIG),
-    nsfwConfirmed: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_NSFW_CONFIRMED && s.value === '1'),
-    voiceCallUsed: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_VOICE_CALL_USED && s.value === '1'),
-    videoCallUsed: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_VIDEO_CALL_USED && s.value === '1'),
-    blockChainGuruTaskOnceCompleted: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_COMPLETED_OPBNB_CHAIN_TASK && s.value === '1'),
-    silentPeriodConfirmed: state.userSettingsInfo.find(s => s.name === user_1.UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED)
-        ? state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED && s.value !== task_1.useTaskStore.getState().seasons?.[1].id)
+    rewardsCenterVisited: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_ICON_REWARD && s.value === '1'),
+    forumVisited: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_ICON_FORUM && s.value === '1'),
+    tagNoticeVisited: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_TAG_NOTICE && s.value === '1'),
+    flagUserFirstPublishGallery: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY && s.value === '1'),
+    flagUserFirstVisitGallery: state.userSettingsInfo.find(s => s.name === UserSettingEnum.FLAG_USET_FIRST_VISIT_GALLERY)?.value || '2',
+    modelConfigClicked: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_LLM_MODEL_CONFIG),
+    nsfwConfirmed: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_NSFW_CONFIRMED && s.value === '1'),
+    voiceCallUsed: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_VOICE_CALL_USED && s.value === '1'),
+    videoCallUsed: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_VIDEO_CALL_USED && s.value === '1'),
+    blockChainGuruTaskOnceCompleted: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_COMPLETED_OPBNB_CHAIN_TASK && s.value === '1'),
+    silentPeriodConfirmed: state.userSettingsInfo.find(s => s.name === UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED)
+        ? state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED && s.value !== useTaskStore.getState().seasons?.[1].id)
         : null,
     deductionConfirmed: state.userSettingsInfo.find(({ name }) => name === 'flagDeductionConfirmed')
         ? state.userSettingsInfo.some(s => {
-            return s.name === user_1.UserSettingEnum.DEDUCTION_CONFIRMED && s.value !== task_1.useTaskStore.getState().seasons?.[1].id;
+            return s.name === UserSettingEnum.DEDUCTION_CONFIRMED && s.value !== useTaskStore.getState().seasons?.[1].id;
         })
         : null,
-    subscribingEarnViewed: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_stake_earn_VIEWED && s.value === '1'),
-    shareKeyEarnPopupConfirmed: state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED && s.value === '0') ||
-        state.userSettingsInfo.some(s => s.name === user_1.UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED &&
+    subscribingEarnViewed: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_stake_earn_VIEWED && s.value === '1'),
+    shareKeyEarnPopupConfirmed: state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED && s.value === '0') ||
+        state.userSettingsInfo.some(s => s.name === UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED &&
             s.value !== '0' &&
-            (0, dayjs_1.default)().isBefore((0, dayjs_1.default)(Number(s.value)))),
+            dayjs().isBefore(dayjs(Number(s.value)))),
     nsfwSwitch: state.nsfwSwitch,
-    timezone: state.userSettingsInfo.find(s => s.name === user_1.UserSettingEnum.TIME_ZONE)?.value,
-    notification: state.userSettingsInfo.find(s => s.name === user_1.UserSettingEnum.NOTIFICATION)?.value === '1'
+    timezone: state.userSettingsInfo.find(s => s.name === UserSettingEnum.TIME_ZONE)?.value,
+    notification: state.userSettingsInfo.find(s => s.name === UserSettingEnum.NOTIFICATION)?.value === '1'
 });
-exports.useUserStore = (0, zustand_1.create)()((0, zustand_computed_1.default)((0, immer_1.immer)((0, middleware_1.devtools)(createUSerSlice, { store: 'user' })), computeState));
+export const useUserStore = create()(computed(immer(devtools(createUSerSlice, { store: 'user' })), computeState));

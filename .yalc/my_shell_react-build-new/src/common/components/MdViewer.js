@@ -1,66 +1,38 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-require("@/styles/md-viewer.scss");
-const clsx_1 = __importDefault(require("clsx"));
-const dompurify_1 = __importDefault(require("dompurify"));
-const highlight_js_1 = __importDefault(require("highlight.js"));
-const isomorphic_dompurify_1 = require("isomorphic-dompurify");
-const marked_1 = require("marked");
-const marked_gfm_heading_id_1 = require("marked-gfm-heading-id");
-const marked_mangle_1 = require("marked-mangle");
-const marked_smartypants_1 = require("marked-smartypants");
-const marked_xhtml_1 = require("marked-xhtml");
-const mermaid_1 = __importDefault(require("mermaid"));
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const KatexExtension_1 = __importStar(require("../../common/components/extension/KatexExtension.js"));
-const useHljsCss_1 = require("../../common/hooks/useHljsCss.js");
-const useNotification_1 = require("../../common/hooks/useNotification.js");
-marked_1.marked.use({
+import { jsx as _jsx } from "react/jsx-runtime";
+import '@/styles/md-viewer.scss';
+import clsx from 'clsx';
+import DOMPurify from 'dompurify';
+import hljs from 'highlight.js';
+import { sanitize } from 'isomorphic-dompurify';
+import { marked } from 'marked';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
+import { mangle } from 'marked-mangle';
+import { markedSmartypants } from 'marked-smartypants';
+import { markedXhtml } from 'marked-xhtml';
+import mermaid from 'mermaid';
+import { useTranslations } from 'next-intl';
+import { memo, useEffect, useMemo, useRef } from 'react';
+import markedKatex, { renderKatex } from '../../common/components/extension/KatexExtension.js';
+import { useHljsCss } from '../../common/hooks/useHljsCss.js';
+import { useNotification } from '../../common/hooks/useNotification.js';
+marked.use({
     pedantic: false,
     gfm: true,
     breaks: true
 });
-mermaid_1.default.initialize({
+mermaid.initialize({
     theme: 'neutral'
 });
-marked_1.marked.use((0, marked_mangle_1.mangle)());
-marked_1.marked.use((0, marked_xhtml_1.markedXhtml)());
-marked_1.marked.use((0, marked_smartypants_1.markedSmartypants)());
-marked_1.marked.use((0, marked_gfm_heading_id_1.gfmHeadingId)({
+marked.use(mangle());
+marked.use(markedXhtml());
+marked.use(markedSmartypants());
+marked.use(gfmHeadingId({
     prefix: 'shell-'
 }));
-marked_1.marked.use((0, KatexExtension_1.default)({
+marked.use(markedKatex({
     throwOnError: false
 }));
-dompurify_1.default?.addHook?.('uponSanitizeElement', (node, data) => {
+DOMPurify?.addHook?.('uponSanitizeElement', (node, data) => {
     if (data.tagName === 'div') {
         const allowedClasses = [
             'mermaid',
@@ -82,14 +54,14 @@ dompurify_1.default?.addHook?.('uponSanitizeElement', (node, data) => {
 });
 const maxWaitTime = 3;
 function MdViewer(props) {
-    (0, useHljsCss_1.useHljsCss)();
-    const commonT = (0, next_intl_1.useTranslations)('common');
-    const t = (0, next_intl_1.useTranslations)('chat');
-    const { success, error: notificationError } = (0, useNotification_1.useNotification)();
-    const mdViewerRef = (0, react_1.useRef)(null);
-    const startTime = (0, react_1.useRef)(0);
-    const renderer = (0, react_1.useMemo)(() => {
-        const renderer = new marked_1.marked.Renderer();
+    useHljsCss();
+    const commonT = useTranslations('common');
+    const t = useTranslations('chat');
+    const { success, error: notificationError } = useNotification();
+    const mdViewerRef = useRef(null);
+    const startTime = useRef(0);
+    const renderer = useMemo(() => {
+        const renderer = new marked.Renderer();
         renderer.blockquote = quote => {
             return `<blockquote>${quote}</blockquote>`;
         };
@@ -98,7 +70,7 @@ function MdViewer(props) {
                 if (language === 'mermaid') {
                     const svgId = `mermaid-svg-${Date.now()}`;
                     const svgBox = `mermaid-box-${Date.now()}`;
-                    mermaid_1.default.render(svgId, code, svg => {
+                    mermaid.render(svgId, code, svg => {
                         setTimeout(() => {
                             const box = document.getElementById(svgBox);
                             if (box) {
@@ -116,10 +88,10 @@ function MdViewer(props) {
             catch (e) {
                 console.log('e', e);
             }
-            const validLanguage = highlight_js_1.default.getLanguage(language) ? language : 'plaintext';
+            const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
             const highlightedCode = language?.toLowerCase() === 'json' && code?.length > 2000
                 ? code
-                : highlight_js_1.default.highlight(validLanguage, code).value;
+                : hljs.highlight(validLanguage, code).value;
             return `
       <div class="marked-code-block">
         <div class="marked-code-header bg-surface-container-pressed text-14 text-subtle">
@@ -160,7 +132,7 @@ function MdViewer(props) {
                     return acc.replace(match, match.replace(/<img/g, '<img x-intercept-click="1"'));
                 }, html);
             }
-            return (0, isomorphic_dompurify_1.sanitize)(html, {
+            return sanitize(html, {
                 ADD_ATTR: ['target', 'x-intercept-click'],
                 USE_PROFILES: {
                     html: true
@@ -171,7 +143,7 @@ function MdViewer(props) {
         };
         return renderer;
     }, []);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const handleClick = (event) => {
             if (event.target.classList.contains('copy-button')) {
                 const code = event.target.parentNode.nextElementSibling.querySelector('code').textContent;
@@ -225,28 +197,28 @@ function MdViewer(props) {
         else if (startTime.current !== 0) {
             startTime.current = 0;
         }
-        const tokens = marked_1.marked.lexer(truncatedStr);
-        const dirtyHTML = marked_1.marked.parser(tokens, {
+        const tokens = marked.lexer(truncatedStr);
+        const dirtyHTML = marked.parser(tokens, {
             renderer,
             extensions: {
                 renderers: {
-                    inlineKatex: token => (0, KatexExtension_1.renderKatex)(token.text),
-                    blockKatex: token => (0, KatexExtension_1.renderKatex)(token.text, { displayMode: true })
+                    inlineKatex: token => renderKatex(token.text),
+                    blockKatex: token => renderKatex(token.text, { displayMode: true })
                 },
                 childTokens: {}
             }
         });
-        return (0, isomorphic_dompurify_1.sanitize)(dirtyHTML, {
+        return sanitize(dirtyHTML, {
             ADD_ATTR: ['target', 'x-intercept-click'],
             USE_PROFILES: {
                 html: true
             }
         });
     };
-    return ((0, jsx_runtime_1.jsx)("div", { ref: mdViewerRef, className: (0, clsx_1.default)(props.className
+    return (_jsx("div", { ref: mdViewerRef, className: clsx(props.className
             ? props.className
             : 'md-viewer prose-base prose-pre:my-0 prose-pre:p-0 prose-headings:m-0 prose-hr:my-[1em] max-w-fit overflow-hidden', props.nouseProse ? '' : 'prose dark:prose-invert'), dangerouslySetInnerHTML: {
             __html: convertMarkdownToHTML(props.content, props.status)
         } }));
 }
-exports.default = (0, react_1.memo)(MdViewer);
+export default memo(MdViewer);

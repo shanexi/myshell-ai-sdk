@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const spinner_1 = __importDefault(require("../../../../../common/components/ui/spinner.js"));
+import { jsx as _jsx } from "react/jsx-runtime";
+import Spinner from '../../../../../common/components/ui/spinner.js';
 const Header = ({ loading }) => {
     if (loading) {
-        return ((0, jsx_runtime_1.jsx)("div", { className: "w-full flex justify-center", children: (0, jsx_runtime_1.jsx)(spinner_1.default, { color: "brand" }) }));
+        return (_jsx("div", { className: "w-full flex justify-center", children: _jsx(Spinner, { color: "brand" }) }));
     }
     return null;
 };
-exports.default = Header;
+export default Header;

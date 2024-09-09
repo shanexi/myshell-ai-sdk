@@ -1,36 +1,10 @@
-"use strict";
 'use client';
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AvatarFallback = exports.AvatarImage = exports.AvatarRoot = exports.Avatar = void 0;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const AvatarPrimitive = __importStar(require("@radix-ui/react-avatar"));
-const class_variance_authority_1 = require("class-variance-authority");
-const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
-const avatarVariants = (0, class_variance_authority_1.cva)('relative flex shrink-0 overflow-hidden bg-surface-container-hovered', {
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import * as AvatarPrimitive from '@radix-ui/react-avatar';
+import { cva } from 'class-variance-authority';
+import * as React from 'react';
+import { cn } from '../../../lib/utils.js';
+const avatarVariants = cva('relative flex shrink-0 overflow-hidden bg-surface-container-hovered', {
     variants: {
         size: {
             xs: 'w-5 h-5 rounded',
@@ -49,20 +23,17 @@ const avatarVariants = (0, class_variance_authority_1.cva)('relative flex shrink
         size: 'md'
     }
 });
-const AvatarRoot = React.forwardRef(({ className, size = 'md', ...passProps }, ref) => ((0, jsx_runtime_1.jsx)(AvatarPrimitive.Root, { ref: ref, className: (0, utils_1.cn)(avatarVariants({ size }), className), ...passProps })));
-exports.AvatarRoot = AvatarRoot;
+const AvatarRoot = React.forwardRef(({ className, size = 'md', ...passProps }, ref) => (_jsx(AvatarPrimitive.Root, { ref: ref, className: cn(avatarVariants({ size }), className), ...passProps })));
 AvatarRoot.displayName = AvatarPrimitive.Root.displayName;
-const AvatarImage = React.forwardRef(({ className, ...props }, ref) => ((0, jsx_runtime_1.jsx)(AvatarPrimitive.Image, { ref: ref, className: (0, utils_1.cn)('aspect-square h-full w-full object-cover', className), ...props })));
-exports.AvatarImage = AvatarImage;
+const AvatarImage = React.forwardRef(({ className, ...props }, ref) => (_jsx(AvatarPrimitive.Image, { ref: ref, className: cn('aspect-square h-full w-full object-cover', className), ...props })));
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
-const AvatarFallback = React.forwardRef(({ className, ...props }, ref) => ((0, jsx_runtime_1.jsx)(AvatarPrimitive.Fallback, { ref: ref, className: (0, utils_1.cn)('flex h-full w-full items-center justify-center bg-surface-container-pressed', className), ...props })));
-exports.AvatarFallback = AvatarFallback;
+const AvatarFallback = React.forwardRef(({ className, ...props }, ref) => (_jsx(AvatarPrimitive.Fallback, { ref: ref, className: cn('flex h-full w-full items-center justify-center bg-surface-container-pressed', className), ...props })));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 const Avatar = React.forwardRef(({ className, rootStyle, size, src, variant = 'bot', ...passProps }, ref) => {
     const defaultSrc = variant === 'user'
         ? 'https://image.myshell.ai/cdn-cgi/image/quality=40,format=webp/image/user/avatar/default/20240715/avatar.png'
         : 'https://image.myshell.ai/cdn-cgi/image/quality=40,format=webp/image/bot/logo/20240106/default.png';
-    return ((0, jsx_runtime_1.jsxs)(AvatarRoot, { size: size, className: className, style: rootStyle, children: [(0, jsx_runtime_1.jsx)(AvatarImage, { ref: ref, ...passProps, src: src || defaultSrc }), (0, jsx_runtime_1.jsx)(AvatarFallback, {})] }));
+    return (_jsxs(AvatarRoot, { size: size, className: className, style: rootStyle, children: [_jsx(AvatarImage, { ref: ref, ...passProps, src: src || defaultSrc }), _jsx(AvatarFallback, {})] }));
 });
-exports.Avatar = Avatar;
 Avatar.displayName = 'Avatar';
+export { Avatar, AvatarRoot, AvatarImage, AvatarFallback };

@@ -1,40 +1,10 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.rxUpload = exports.rxDelete = exports.rxPost = exports.axiosClient = exports.wsBaseURL = exports.baseURL = exports.LangMap = void 0;
-exports.rxGet = rxGet;
-const axios_1 = __importStar(require("axios"));
-const rxjs_1 = require("rxjs");
-const identityService_1 = require("../../common/services/identityService.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226.js");
-const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId.js");
-exports.LangMap = {
+import axios, { HttpStatusCode } from 'axios';
+import { catchError, from, mergeMap, Observable, of, throwError } from 'rxjs';
+import { identityService } from '../../common/services/identityService.js';
+import { generateUUID, isClient, isString } from '../../common/utils/common-helper.js';
+import { computeChecksum1226 } from '../../common/utils/computeChecksum1226.js';
+import { defaultVisitorId } from '../../common/utils/defaultVisitorId.js';
+export const LangMap = {
     en: 'en',
     zh: 'zh-CN',
     'zh-tw': 'zh-TW',
@@ -43,14 +13,14 @@ exports.LangMap = {
     ru: 'ru',
     ko: 'ko'
 };
-const CfMitigatedHandler_1 = __importDefault(require("../../core/request/CfMitigatedHandler.js"));
-const EventEmitter_1 = __importDefault(require("./EventEmitter.js"));
-const initNeteaseVisitorId_1 = require("./initNeteaseVisitorId.js");
-const runtime_config_1 = require("./runtime-config.js");
-exports.baseURL = `${runtime_config_1.API_URL}`;
-exports.wsBaseURL = `${runtime_config_1.WS_API_URL}`;
-exports.axiosClient = axios_1.default.create({
-    baseURL: exports.baseURL
+import CfMitigatedHandler from '../../core/request/CfMitigatedHandler.js';
+import EventEmitter from './EventEmitter.js';
+import { getNeteaseRequestToken } from './initNeteaseVisitorId.js';
+import { API_URL, WS_API_URL } from './runtime-config.js';
+export const baseURL = `${API_URL}`;
+export const wsBaseURL = `${WS_API_URL}`;
+export const axiosClient = axios.create({
+    baseURL
 });
 async function getConfig(config) {
     const mergedConfig = {
@@ -64,19 +34,19 @@ async function getConfig(config) {
         mergedConfig.headers['myshell-service-name'] = 'organics-api';
     }
     if (!config?.allowAnonymous) {
-        const token = identityService_1.identityService.getToken();
+        const token = identityService.getToken();
         if (token && token.trim()) {
-            mergedConfig.headers.Authorization = `Bearer ${identityService_1.identityService.getToken()}`;
+            mergedConfig.headers.Authorization = `Bearer ${identityService.getToken()}`;
         }
         else {
-            const nanoAnonymousId = (0, defaultVisitorId_1.defaultVisitorId)();
+            const nanoAnonymousId = defaultVisitorId();
             let visitorId;
-            const randomVisitorId = ((0, common_helper_1.isClient)() && identityService_1.identityService.getRandomVisitorId()) ?? '';
+            const randomVisitorId = (isClient() && identityService.getRandomVisitorId()) ?? '';
             if (randomVisitorId) {
                 visitorId = randomVisitorId;
             }
             else {
-                visitorId = (0, common_helper_1.generateUUID)();
+                visitorId = generateUUID();
             }
             if (visitorId && visitorId.trim()) {
                 mergedConfig.headers['visitor-id'] = visitorId;
@@ -84,14 +54,14 @@ async function getConfig(config) {
             else {
                 mergedConfig.headers['my-visitor-id'] = visitorId;
             }
-            let scDeviceId = identityService_1.identityService.getSCDeviceId();
+            let scDeviceId = identityService.getSCDeviceId();
             if (!scDeviceId) {
-                const anonymousId = identityService_1.identityService.getAnonymousId();
+                const anonymousId = identityService.getAnonymousId();
                 if (anonymousId) {
                     scDeviceId = anonymousId;
                 }
                 else {
-                    identityService_1.identityService.setAnonymousId(nanoAnonymousId);
+                    identityService.setAnonymousId(nanoAnonymousId);
                     scDeviceId = nanoAnonymousId;
                 }
                 if (scDeviceId && scDeviceId.trim()) {
@@ -105,7 +75,7 @@ async function getConfig(config) {
     }
     if (config?.withMyShellSecurityToken) {
         try {
-            const neteaseEngineToken = await (0, initNeteaseVisitorId_1.getNeteaseRequestToken)();
+            const neteaseEngineToken = await getNeteaseRequestToken();
             mergedConfig.headers['myshell-security-token'] = neteaseEngineToken;
         }
         catch (e) {
@@ -113,37 +83,36 @@ async function getConfig(config) {
     }
     mergedConfig.headers.platform = 'web';
     mergedConfig.headers.version = '1.0.0';
-    mergedConfig.headers['Accept-Language'] = exports.LangMap[identityService_1.identityService.getLanguage() || 'en'];
+    mergedConfig.headers['Accept-Language'] = LangMap[identityService.getLanguage() || 'en'];
     mergedConfig.headers['myshell-client-version'] = 'v1.6.4';
-    mergedConfig.headers.timestamp = (0, computeChecksum1226_1.computeChecksum1226)(new Date().getTime());
+    mergedConfig.headers.timestamp = computeChecksum1226(new Date().getTime());
     return mergedConfig;
 }
-function rxGet(url, params, config) {
+export function rxGet(url, params, config) {
     const query = [];
     if (params) {
         for (const key of Object.keys(params)) {
             query.push(`${key}=${params[key]}`);
         }
     }
-    const source = axios_1.default.CancelToken.source();
-    return (0, rxjs_1.from)(getConfig(config)).pipe((0, rxjs_1.mergeMap)(mergedConfig => createObservable(exports.axiosClient.get(`${url}${query.length ? `?${query.join('&')}` : ''}`, {
+    const source = axios.CancelToken.source();
+    return from(getConfig(config)).pipe(mergeMap(mergedConfig => createObservable(axiosClient.get(`${url}${query.length ? `?${query.join('&')}` : ''}`, {
         cancelToken: source.token,
         ...mergedConfig
     }), source, config)));
 }
-const rxPost = (url, data, config) => {
-    const source = axios_1.default.CancelToken.source();
+export const rxPost = (url, data, config) => {
+    const source = axios.CancelToken.source();
     const production = config?.production;
     const requestUrl = production ? `https://api.myshell.ai${url}` : url;
-    return (0, rxjs_1.from)(getConfig(config)).pipe((0, rxjs_1.mergeMap)(mergedConfig => createObservable(exports.axiosClient.post(`${requestUrl}`, data, {
+    return from(getConfig(config)).pipe(mergeMap(mergedConfig => createObservable(axiosClient.post(`${requestUrl}`, data, {
         cancelToken: source.token,
         ...mergedConfig
     }), source, config)));
 };
-exports.rxPost = rxPost;
-const rxDelete = (url, data, config) => {
-    const source = axios_1.default.CancelToken.source();
-    return (0, rxjs_1.from)(getConfig(config)).pipe((0, rxjs_1.mergeMap)(mergedConfig => createObservable((0, exports.axiosClient)({
+export const rxDelete = (url, data, config) => {
+    const source = axios.CancelToken.source();
+    return from(getConfig(config)).pipe(mergeMap(mergedConfig => createObservable(axiosClient({
         method: 'DELETE',
         url: `${url}`,
         data,
@@ -151,9 +120,8 @@ const rxDelete = (url, data, config) => {
         ...mergedConfig
     }), source, config)));
 };
-exports.rxDelete = rxDelete;
-const rxUpload = (url, form, config) => {
-    const source = axios_1.default.CancelToken.source();
+export const rxUpload = (url, form, config) => {
+    const source = axios.CancelToken.source();
     const mergedConfig = {
         timeout: config?.timeout || 30000,
         headers: {
@@ -161,24 +129,23 @@ const rxUpload = (url, form, config) => {
         }
     };
     if (!config?.allowAnonymous) {
-        mergedConfig.headers.Authorization = `Bearer ${identityService_1.identityService.getToken()}`;
+        mergedConfig.headers.Authorization = `Bearer ${identityService.getToken()}`;
     }
     mergedConfig.headers['myshell-client-version'] = 'v1.6.4';
-    mergedConfig.headers.timestamp = (0, computeChecksum1226_1.computeChecksum1226)(new Date().getTime());
-    return createObservable(exports.axiosClient.post(`${url}`, form, {
+    mergedConfig.headers.timestamp = computeChecksum1226(new Date().getTime());
+    return createObservable(axiosClient.post(`${url}`, form, {
         cancelToken: source.token,
         ...mergedConfig
     }), source, config);
 };
-exports.rxUpload = rxUpload;
 const createObservable = (prom, source, config) => {
-    return new rxjs_1.Observable(subscriber => {
+    return new Observable(subscriber => {
         prom
             .then(req => {
             subscriber.next(req);
         })
             .catch(err => {
-            if (axios_1.default.isCancel(err)) {
+            if (axios.isCancel(err)) {
             }
             else {
                 subscriber.error(err);
@@ -190,21 +157,21 @@ const createObservable = (prom, source, config) => {
         return () => {
             source.cancel();
         };
-    }).pipe((0, rxjs_1.mergeMap)(res => {
+    }).pipe(mergeMap(res => {
         return handleResponse(res, config);
-    }), (0, rxjs_1.catchError)((err) => handleError(err, config)));
+    }), catchError((err) => handleError(err, config)));
 };
 const handleResponse = (res, config) => {
     if (config?.skipHandlingResponse) {
-        return (0, rxjs_1.of)(res);
+        return of(res);
     }
-    if (res.status >= axios_1.HttpStatusCode.Ok && res.status < axios_1.HttpStatusCode.MultipleChoices) {
-        const token = identityService_1.identityService.getToken();
+    if (res.status >= HttpStatusCode.Ok && res.status < HttpStatusCode.MultipleChoices) {
+        const token = identityService.getToken();
         const resToken = res?.headers?.['refreshed-auth-token'];
-        resToken && resToken !== token && identityService_1.identityService.setToken(resToken);
-        return (0, rxjs_1.of)(res.data);
+        resToken && resToken !== token && identityService.setToken(resToken);
+        return of(res.data);
     }
-    return (0, rxjs_1.throwError)(() => res);
+    return throwError(() => res);
 };
 const handleError = (err, config) => {
     err.message = JSON.stringify({
@@ -214,23 +181,23 @@ const handleError = (err, config) => {
         response: err?.response
     });
     if (config?.skipHandlingResponse) {
-        return (0, rxjs_1.throwError)(() => err);
+        return throwError(() => err);
     }
     let msg = 'request.error.common';
     let translateInToast = true;
     if (err?.response?.status) {
         const { status, headers } = err.response;
         const { data } = err.response;
-        if (status < axios_1.HttpStatusCode.Ok) {
+        if (status < HttpStatusCode.Ok) {
             msg = 'request.error.network';
         }
-        else if (status === axios_1.HttpStatusCode.Ok) {
+        else if (status === HttpStatusCode.Ok) {
             msg = data?.message;
         }
-        else if (status > axios_1.HttpStatusCode.Ok && status < axios_1.HttpStatusCode.MultipleChoices) {
+        else if (status > HttpStatusCode.Ok && status < HttpStatusCode.MultipleChoices) {
             msg = 'request.error.common';
         }
-        else if (status === axios_1.HttpStatusCode.BadRequest) {
+        else if (status === HttpStatusCode.BadRequest) {
             console.log(data);
             if (data?.message) {
                 if (Array.isArray(data.message)) {
@@ -245,18 +212,18 @@ const handleError = (err, config) => {
                 msg = 'request.error.common';
             }
         }
-        else if (status === axios_1.HttpStatusCode.Unauthorized) {
+        else if (status === HttpStatusCode.Unauthorized) {
             if (!config?.noRedirectToLogin) {
-                EventEmitter_1.default.dispatch('Unauthorized', null);
+                EventEmitter.dispatch('Unauthorized', null);
             }
         }
-        else if (status > axios_1.HttpStatusCode.BadRequest && status < axios_1.HttpStatusCode.InternalServerError) {
-            if (status === axios_1.HttpStatusCode.TooManyRequests) {
+        else if (status > HttpStatusCode.BadRequest && status < HttpStatusCode.InternalServerError) {
+            if (status === HttpStatusCode.TooManyRequests) {
                 msg = 'request.error.429';
             }
-            else if (status === axios_1.HttpStatusCode.Forbidden) {
+            else if (status === HttpStatusCode.Forbidden) {
                 const cfMitigated = headers['cf-mitigated'];
-                (0, CfMitigatedHandler_1.default)(cfMitigated);
+                CfMitigatedHandler(cfMitigated);
                 msg = 'request.error.common';
             }
             else {
@@ -268,9 +235,9 @@ const handleError = (err, config) => {
         }
     }
     if (!config?.noPopupError) {
-        if (!(0, common_helper_1.isString)(msg)) {
+        if (!isString(msg)) {
             msg = 'request.error.common';
         }
     }
-    return (0, rxjs_1.throwError)(() => err);
+    return throwError(() => err);
 };

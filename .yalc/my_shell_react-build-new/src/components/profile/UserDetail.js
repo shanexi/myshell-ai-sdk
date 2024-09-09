@@ -1,56 +1,50 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = UserDetail;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const InformationCircleIcon_1 = __importDefault(require("@heroicons/react/24/outline/InformationCircleIcon"));
-const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/outline/XMarkIcon"));
-const ArrowLeftIcon_1 = __importDefault(require("@heroicons/react/24/solid/ArrowLeftIcon"));
-const clsx_1 = __importDefault(require("clsx"));
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const user_1 = require("../../apis/user.js");
-const m_tooltip_1 = require("../../common/components/ui/mobile/m-tooltip.js");
-const tooltip_1 = require("../../common/components/ui/tooltip.js");
-const typography_1 = require("../../common/components/ui/typography.js");
-const user_2 = require("../../common/constants/enums/user.js");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const BotLogo_1 = require("../../components/workshop/bot-detail/BotLogo.js");
-const UserGalleryList_1 = __importDefault(require("../../gallery/views/UserGalleryList.js"));
-const FollowInfo_1 = __importDefault(require("./FollowInfo.js"));
-const UserBotList_1 = __importDefault(require("./UserBotList.js"));
-const UserDetailModal_1 = __importDefault(require("./UserDetailModal.js"));
-const UserBg_1 = __importDefault(require("./edit-profile/component/UserBg.js"));
-const UserFollowBtn_1 = require("./edit-profile/component/UserFollowBtn.js");
-const UserLevel_1 = __importDefault(require("./edit-profile/component/UserLevel.js"));
-const UserShareBtn_1 = require("./edit-profile/component/UserShareBtn.js");
-const Description_1 = __importDefault(require("../chat/entity-detail/views/common/description/Description.js"));
-const bot_widget_list_1 = __importDefault(require("../workshop/bot-detail/bot-widget-list/index.js"));
-const gallery_1 = require("../../services/store/gallery.js");
-const navigation_1 = require("next/navigation");
-function UserDetail({ showInsideScroller = false, detailData, showTopActions = false, defaultTab = 'bots', onClose, followCallback }) {
-    const searchParams = (0, navigation_1.useSearchParams)();
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
+import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { getBotsByUser, getWidgetsByUser } from '../../apis/user.js';
+import { MTooltip, MTooltipContent, MTooltipTrigger } from '../../common/components/ui/mobile/m-tooltip.js';
+import { Tooltip } from '../../common/components/ui/tooltip.js';
+import { Text } from '../../common/components/ui/typography.js';
+import { FollowStatus } from '../../common/constants/enums/user.js';
+import { usePathLocale } from '../../common/hooks/usePathLocale.js';
+import { getAssetsUrl, getAssetsUrlV2 } from '../../common/utils/common-helper.js';
+import { BotLogo } from '../../components/workshop/bot-detail/BotLogo.js';
+import UserGalleryList from '../../gallery/views/UserGalleryList.js';
+import FollowInfo from './FollowInfo.js';
+import UserBotList from './UserBotList.js';
+import UserDetailModal from './UserDetailModal.js';
+import UserBg from './edit-profile/component/UserBg.js';
+import { UserFollowBtn } from './edit-profile/component/UserFollowBtn.js';
+import UserLevel from './edit-profile/component/UserLevel.js';
+import { UserShareBtn } from './edit-profile/component/UserShareBtn.js';
+import Description from '../chat/entity-detail/views/common/description/Description.js';
+import WidgetList from '../workshop/bot-detail/bot-widget-list/index.js';
+import { useGalleryStore } from '../../services/store/gallery.js';
+import { useSearchParams } from 'next/navigation';
+export default function UserDetail({ showInsideScroller = false, detailData, showTopActions = false, defaultTab = 'bots', onClose, followCallback }) {
+    const searchParams = useSearchParams();
     const from = searchParams.get('from');
-    const [fetchLoading, setFetchLoading] = (0, react_1.useState)(false);
-    const [activeContent, setActiveContent] = (0, react_1.useState)(from === 'gallery' ? 'gallery' : defaultTab);
-    const [showUserDetail, setShowUserDetail] = (0, react_1.useState)(null);
-    const [widgets, setWidgets] = (0, react_1.useState)();
-    const [bots, setBots] = (0, react_1.useState)();
-    const t = (0, next_intl_1.useTranslations)();
-    const botT = (0, next_intl_1.useTranslations)('bot');
-    const workshopT = (0, next_intl_1.useTranslations)('workshop');
-    const { isMobile } = (0, usePathLocale_1.usePathLocale)();
-    const setGalleryUserList = (0, gallery_1.useGalleryStore)(state => state.setGalleryUserList);
-    const queryData = (0, react_1.useCallback)(async () => {
+    const [fetchLoading, setFetchLoading] = useState(false);
+    const [activeContent, setActiveContent] = useState(from === 'gallery' ? 'gallery' : defaultTab);
+    const [showUserDetail, setShowUserDetail] = useState(null);
+    const [widgets, setWidgets] = useState();
+    const [bots, setBots] = useState();
+    const t = useTranslations();
+    const botT = useTranslations('bot');
+    const workshopT = useTranslations('workshop');
+    const { isMobile } = usePathLocale();
+    const setGalleryUserList = useGalleryStore(state => state.setGalleryUserList);
+    const queryData = useCallback(async () => {
         try {
             if (detailData?.id) {
                 setFetchLoading(true);
                 const [botList, widgetList] = await Promise.all([
-                    (0, user_1.getBotsByUser)(detailData?.id),
-                    (0, user_1.getWidgetsByUser)(detailData?.id)
+                    getBotsByUser(detailData?.id),
+                    getWidgetsByUser(detailData?.id)
                 ]);
                 setBots(botList.data);
                 setWidgets(widgetList.data?.widgets);
@@ -62,7 +56,7 @@ function UserDetail({ showInsideScroller = false, detailData, showTopActions = f
             setFetchLoading(false);
         }
     }, [detailData?.id]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (fetchLoading)
             return;
         queryData();
@@ -70,20 +64,20 @@ function UserDetail({ showInsideScroller = false, detailData, showTopActions = f
             setGalleryUserList([]);
         };
     }, [detailData?.id]);
-    const containerRef = (0, react_1.useRef)(null);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)("div", { className: `UserDetail ${showInsideScroller ? 'overflow-hidden h-full md:overflow-auto' : 'h-full overflow-hidden'} flex w-full flex-col flex-nowrap bg-surface text-on-surface relative md:rounded-4xl`, children: [showTopActions && ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: isMobile ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('absolute top-[10px] md:top-5 flex z-10 space-x-3 left-5'), children: (0, jsx_runtime_1.jsx)("div", { className: "bg-white rounded-full border border-[#E4E9F0] w-9 h-9 cursor-pointer shadow-button-basic flex justify-center items-center", onClick: onClose, children: (0, jsx_runtime_1.jsx)(ArrowLeftIcon_1.default, { className: "w-[22px] h-[22px] text-[#202223]" }) }) }), (0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('absolute top-[10px] md:top-5 flex z-10 space-x-3 right-5'), children: (0, jsx_runtime_1.jsx)(UserShareBtn_1.UserShareBtn, { userName: detailData?.name, nameTag: detailData?.nameTag, userId: detailData?.id }) })] })) : ((0, jsx_runtime_1.jsxs)("div", { className: (0, clsx_1.default)('absolute top-[10px] md:top-5 flex z-10 space-x-3', isMobile ? 'left-4' : 'right-5'), children: [(0, jsx_runtime_1.jsx)(UserShareBtn_1.UserShareBtn, { userName: detailData?.name, nameTag: detailData?.nameTag, userId: detailData?.id }), (0, jsx_runtime_1.jsx)("div", { className: "bg-white rounded-full border border-[#E4E9F0] w-9 h-9 cursor-pointer shadow-button-basic flex justify-center items-center", onClick: onClose, children: (0, jsx_runtime_1.jsx)(XMarkIcon_1.default, { className: "w-[22px] h-[22px] text-[#202223]" }) })] })) })), (0, jsx_runtime_1.jsx)("div", { ref: containerRef, className: (0, clsx_1.default)('flex flex-col flex-grow items-center relative overflow-auto'), children: (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col w-full h-full pb-[8px] md:h-full md:pb-[12px]", children: [(0, jsx_runtime_1.jsxs)("div", { className: "w-full", children: [(0, jsx_runtime_1.jsx)(UserBg_1.default, { bgPhoto: (0, common_helper_1.getAssetsUrlV2)(detailData?.backgroundUrl), showUpload: false }), (0, jsx_runtime_1.jsxs)("div", { className: "relative flex space-x-3 md:space-x-5", children: [(0, jsx_runtime_1.jsx)(BotLogo_1.BotLogo, { logoUrl: (0, common_helper_1.getAssetsUrl)(detailData?.avatar) }), !isMobile && ((0, jsx_runtime_1.jsxs)("div", { className: "grow flex items-end justify-between pr-6 pb-1", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex items-center space-x-1.5 pr-1.5 pb-1", children: [(0, jsx_runtime_1.jsx)("span", { className: (0, clsx_1.default)('text-2xl md:text-[28px] md:leading-[36px] font-semibold text-on-surface line-clamp-1 break-all'), children: detailData?.name }), (0, jsx_runtime_1.jsx)(UserLevel_1.default, { user: detailData })] }), (0, jsx_runtime_1.jsx)(FollowInfo_1.default, { user: detailData })] }), (detailData?.followStatus === user_2.FollowStatus.FOLLOWED ||
-                                                            detailData?.followStatus === user_2.FollowStatus.NOT_FOLLOWED) && ((0, jsx_runtime_1.jsx)(UserFollowBtn_1.UserFollowBtn, { detailData: detailData, followCallback: followCallback }))] })), isMobile &&
-                                                    (detailData?.followStatus === user_2.FollowStatus.FOLLOWED ||
-                                                        detailData?.followStatus === user_2.FollowStatus.NOT_FOLLOWED) && ((0, jsx_runtime_1.jsx)("div", { className: "absolute right-0 top-0 px-4 py-3", children: (0, jsx_runtime_1.jsx)(UserFollowBtn_1.UserFollowBtn, { detailData: detailData, size: "md", followCallback: followCallback, className: "min-w-[76px]" }) }))] })] }), isMobile && ((0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col px-4 mt-2", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex items-center space-x-1.5 pr-1.5 pb-1", children: [(0, jsx_runtime_1.jsx)("span", { className: (0, clsx_1.default)('text-2xl md:text-[28px] md:leading-[36px] font-semibold text-on-surface line-clamp-1 break-all'), children: detailData?.name }), (0, jsx_runtime_1.jsx)(UserLevel_1.default, { user: detailData })] }), (0, jsx_runtime_1.jsx)(FollowInfo_1.default, { user: detailData })] })), detailData?.description && ((0, jsx_runtime_1.jsx)("div", { className: "px-2 ml-6", children: (0, jsx_runtime_1.jsx)(Description_1.default, { desc: detailData?.description }) })), (0, jsx_runtime_1.jsxs)("div", { className: (0, clsx_1.default)('flex-1 pt-[6px] md:pb-5 flex flex-col space-y-4 mt-2 md:mt-5 ', activeContent === 'gallery' ? '' : 'md:px-6'), children: [(0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('sticky bg-surface top-0 z-[2] md:relative md:bg-inherit md:z-auto mx-4 md:mx-2', activeContent === 'gallery' ? 'md:px-6' : ''), children: (0, jsx_runtime_1.jsx)("div", { className: "flex justify-between items-center border-b border-default", children: (0, jsx_runtime_1.jsxs)("div", { className: "flex space-x-2 items-center", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex space-x-6 items-center", children: [(0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'bots'
+    const containerRef = useRef(null);
+    return (_jsxs(_Fragment, { children: [_jsxs("div", { className: `UserDetail ${showInsideScroller ? 'overflow-hidden h-full md:overflow-auto' : 'h-full overflow-hidden'} flex w-full flex-col flex-nowrap bg-surface text-on-surface relative md:rounded-4xl`, children: [showTopActions && (_jsx(_Fragment, { children: isMobile ? (_jsxs(_Fragment, { children: [_jsx("div", { className: clsx('absolute top-[10px] md:top-5 flex z-10 space-x-3 left-5'), children: _jsx("div", { className: "bg-white rounded-full border border-[#E4E9F0] w-9 h-9 cursor-pointer shadow-button-basic flex justify-center items-center", onClick: onClose, children: _jsx(ArrowLeftIcon, { className: "w-[22px] h-[22px] text-[#202223]" }) }) }), _jsx("div", { className: clsx('absolute top-[10px] md:top-5 flex z-10 space-x-3 right-5'), children: _jsx(UserShareBtn, { userName: detailData?.name, nameTag: detailData?.nameTag, userId: detailData?.id }) })] })) : (_jsxs("div", { className: clsx('absolute top-[10px] md:top-5 flex z-10 space-x-3', isMobile ? 'left-4' : 'right-5'), children: [_jsx(UserShareBtn, { userName: detailData?.name, nameTag: detailData?.nameTag, userId: detailData?.id }), _jsx("div", { className: "bg-white rounded-full border border-[#E4E9F0] w-9 h-9 cursor-pointer shadow-button-basic flex justify-center items-center", onClick: onClose, children: _jsx(XMarkIcon, { className: "w-[22px] h-[22px] text-[#202223]" }) })] })) })), _jsx("div", { ref: containerRef, className: clsx('flex flex-col flex-grow items-center relative overflow-auto'), children: _jsxs("div", { className: "flex flex-col w-full h-full pb-[8px] md:h-full md:pb-[12px]", children: [_jsxs("div", { className: "w-full", children: [_jsx(UserBg, { bgPhoto: getAssetsUrlV2(detailData?.backgroundUrl), showUpload: false }), _jsxs("div", { className: "relative flex space-x-3 md:space-x-5", children: [_jsx(BotLogo, { logoUrl: getAssetsUrl(detailData?.avatar) }), !isMobile && (_jsxs("div", { className: "grow flex items-end justify-between pr-6 pb-1", children: [_jsxs("div", { className: "flex flex-col", children: [_jsxs("div", { className: "flex items-center space-x-1.5 pr-1.5 pb-1", children: [_jsx("span", { className: clsx('text-2xl md:text-[28px] md:leading-[36px] font-semibold text-on-surface line-clamp-1 break-all'), children: detailData?.name }), _jsx(UserLevel, { user: detailData })] }), _jsx(FollowInfo, { user: detailData })] }), (detailData?.followStatus === FollowStatus.FOLLOWED ||
+                                                            detailData?.followStatus === FollowStatus.NOT_FOLLOWED) && (_jsx(UserFollowBtn, { detailData: detailData, followCallback: followCallback }))] })), isMobile &&
+                                                    (detailData?.followStatus === FollowStatus.FOLLOWED ||
+                                                        detailData?.followStatus === FollowStatus.NOT_FOLLOWED) && (_jsx("div", { className: "absolute right-0 top-0 px-4 py-3", children: _jsx(UserFollowBtn, { detailData: detailData, size: "md", followCallback: followCallback, className: "min-w-[76px]" }) }))] })] }), isMobile && (_jsxs("div", { className: "flex flex-col px-4 mt-2", children: [_jsxs("div", { className: "flex items-center space-x-1.5 pr-1.5 pb-1", children: [_jsx("span", { className: clsx('text-2xl md:text-[28px] md:leading-[36px] font-semibold text-on-surface line-clamp-1 break-all'), children: detailData?.name }), _jsx(UserLevel, { user: detailData })] }), _jsx(FollowInfo, { user: detailData })] })), detailData?.description && (_jsx("div", { className: "px-2 ml-6", children: _jsx(Description, { desc: detailData?.description }) })), _jsxs("div", { className: clsx('flex-1 pt-[6px] md:pb-5 flex flex-col space-y-4 mt-2 md:mt-5 ', activeContent === 'gallery' ? '' : 'md:px-6'), children: [_jsx("div", { className: clsx('sticky bg-surface top-0 z-[2] md:relative md:bg-inherit md:z-auto mx-4 md:mx-2', activeContent === 'gallery' ? 'md:px-6' : ''), children: _jsx("div", { className: "flex justify-between items-center border-b border-default", children: _jsxs("div", { className: "flex space-x-2 items-center", children: [_jsxs("div", { className: "flex space-x-6 items-center", children: [_jsx("div", { className: clsx('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'bots'
                                                                         ? 'pb-[5px] border-b-[2px] border-primary text-primary'
-                                                                        : 'pb-[7px] text-secondary'), onClick: () => setActiveContent('bots'), children: botT('robot') }), (0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'widgets'
+                                                                        : 'pb-[7px] text-secondary'), onClick: () => setActiveContent('bots'), children: botT('robot') }), _jsx("div", { className: clsx('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'widgets'
                                                                         ? 'pb-[5px] border-b-[2px] border-primary text-primary'
-                                                                        : 'pb-[7px] text-secondary'), onClick: () => setActiveContent('widgets'), children: workshopT('widget') }), (0, jsx_runtime_1.jsx)("div", { className: (0, clsx_1.default)('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'gallery'
+                                                                        : 'pb-[7px] text-secondary'), onClick: () => setActiveContent('widgets'), children: workshopT('widget') }), _jsx("div", { className: clsx('cursor-pointer relative z-[1] font-[500] text-sm md:text-base text-center', activeContent === 'gallery'
                                                                         ? 'pb-[5px] border-b-[2px] border-primary text-primary'
                                                                         : 'pb-[7px] text-secondary'), onClick: () => setActiveContent('gallery'), children: t('chat.gallery') })] }), detailData?.rugged &&
-                                                            (isMobile ? ((0, jsx_runtime_1.jsxs)(m_tooltip_1.MTooltip, { children: [(0, jsx_runtime_1.jsx)(m_tooltip_1.MTooltipTrigger, { children: (0, jsx_runtime_1.jsxs)("div", { className: "h-[22px] px-4 flex items-center gap-1 bg-surface-accent-red-subtler rounded-full mb-[7px]", children: [(0, jsx_runtime_1.jsx)(InformationCircleIcon_1.default, { className: "w-3 h-3 text-critical" }), (0, jsx_runtime_1.jsx)(typography_1.Text, { className: "text-xs", weight: "medium", color: "critical", children: botT('scam_alert') })] }) }), (0, jsx_runtime_1.jsx)(m_tooltip_1.MTooltipContent, { className: "z-[999] w-[280px]", align: "end", children: (0, jsx_runtime_1.jsx)(typography_1.Text, { className: "text-xs font-medium", children: botT('scam_alert_tips') }) })] })) : ((0, jsx_runtime_1.jsx)(tooltip_1.Tooltip, { description: botT('scam_alert_tips'), align: "center", contentClassName: "w-[280px]", children: (0, jsx_runtime_1.jsxs)("div", { className: "h-[22px] px-3 py-2 flex items-center gap-1 bg-surface-accent-red-subtler rounded-full mb-[7px]", children: [(0, jsx_runtime_1.jsx)(InformationCircleIcon_1.default, { className: "w-3 h-3 text-critical" }), (0, jsx_runtime_1.jsx)(typography_1.Text, { className: "text-xs", weight: "medium", color: "critical", children: botT('scam_alert') })] }) })))] }) }) }), activeContent === 'bots' && ((0, jsx_runtime_1.jsx)("div", { className: "mx-4 md:mx-0", children: (0, jsx_runtime_1.jsx)(UserBotList_1.default, { bots: bots || [], onClose: onClose, loading: fetchLoading }) })), activeContent === 'widgets' && ((0, jsx_runtime_1.jsx)("div", { className: "mx-4 md:mx-0", children: (0, jsx_runtime_1.jsx)(bot_widget_list_1.default, { widgets: widgets ?? [], pinnedCallback: () => {
+                                                            (isMobile ? (_jsxs(MTooltip, { children: [_jsx(MTooltipTrigger, { children: _jsxs("div", { className: "h-[22px] px-4 flex items-center gap-1 bg-surface-accent-red-subtler rounded-full mb-[7px]", children: [_jsx(InformationCircleIcon, { className: "w-3 h-3 text-critical" }), _jsx(Text, { className: "text-xs", weight: "medium", color: "critical", children: botT('scam_alert') })] }) }), _jsx(MTooltipContent, { className: "z-[999] w-[280px]", align: "end", children: _jsx(Text, { className: "text-xs font-medium", children: botT('scam_alert_tips') }) })] })) : (_jsx(Tooltip, { description: botT('scam_alert_tips'), align: "center", contentClassName: "w-[280px]", children: _jsxs("div", { className: "h-[22px] px-3 py-2 flex items-center gap-1 bg-surface-accent-red-subtler rounded-full mb-[7px]", children: [_jsx(InformationCircleIcon, { className: "w-3 h-3 text-critical" }), _jsx(Text, { className: "text-xs", weight: "medium", color: "critical", children: botT('scam_alert') })] }) })))] }) }) }), activeContent === 'bots' && (_jsx("div", { className: "mx-4 md:mx-0", children: _jsx(UserBotList, { bots: bots || [], onClose: onClose, loading: fetchLoading }) })), activeContent === 'widgets' && (_jsx("div", { className: "mx-4 md:mx-0", children: _jsx(WidgetList, { widgets: widgets ?? [], pinnedCallback: () => {
                                                     queryData();
-                                                }, onClose: onClose, setShowUserDetail: setShowUserDetail }) })), activeContent === 'gallery' && (0, jsx_runtime_1.jsx)(UserGalleryList_1.default, { userId: detailData?.id, containerRef: containerRef })] })] }) })] }), !isMobile && !!showUserDetail?.name && ((0, jsx_runtime_1.jsx)(UserDetailModal_1.default, { isOpen: !!showUserDetail?.name, onClose: () => {
+                                                }, onClose: onClose, setShowUserDetail: setShowUserDetail }) })), activeContent === 'gallery' && _jsx(UserGalleryList, { userId: detailData?.id, containerRef: containerRef })] })] }) })] }), !isMobile && !!showUserDetail?.name && (_jsx(UserDetailModal, { isOpen: !!showUserDetail?.name, onClose: () => {
                     onClose && onClose();
                     setShowUserDetail(null);
                 }, userName: showUserDetail.name, nameTag: showUserDetail.nameTag }))] }));

@@ -1,33 +1,30 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useRemoveFromList;
-const navigation_1 = require("next/navigation");
-const react_use_1 = require("react-use");
-const bot_1 = require("../../../../../../../apis/bot.js");
-const new_chat_1 = require("../../../../../../../apis/new-chat.js");
-const workshop_1 = require("../../../../../../../apis/workshop.js");
-const usePathLocale_1 = require("../../../../../../../common/hooks/usePathLocale.js");
-function useRemoveFromList(type, id, getList) {
-    const router = (0, navigation_1.useRouter)();
-    const { isMobile, locale } = (0, usePathLocale_1.usePathLocale)();
+import { useRouter } from 'next/navigation';
+import { useToggle } from 'react-use';
+import { removeBotFromChatList } from '../../../../../../../apis/bot.js';
+import { removeRoomFromList } from '../../../../../../../apis/new-chat.js';
+import { removeWidgetFromChatList } from '../../../../../../../apis/workshop.js';
+import { usePathLocale } from '../../../../../../../common/hooks/usePathLocale.js';
+export default function useRemoveFromList(type, id, getList) {
+    const router = useRouter();
+    const { isMobile, locale } = usePathLocale();
     const getApiFn = () => {
         let apiFn;
         switch (type) {
             case 'bot':
-                apiFn = bot_1.removeBotFromChatList;
+                apiFn = removeBotFromChatList;
                 break;
             case 'widget':
-                apiFn = workshop_1.removeWidgetFromChatList;
+                apiFn = removeWidgetFromChatList;
                 break;
             case 'room':
-                apiFn = new_chat_1.removeRoomFromList;
+                apiFn = removeRoomFromList;
                 break;
             default:
-                apiFn = bot_1.removeBotFromChatList;
+                apiFn = removeBotFromChatList;
         }
         return apiFn;
     };
-    const [removing, setRemoving] = (0, react_use_1.useToggle)(false);
+    const [removing, setRemoving] = useToggle(false);
     const removeSuccessRedirect = (list) => {
         if (isMobile) {
             let targetPath;

@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkShopConfig = exports.PasscardData = exports.defaultLocale = exports.locales = void 0;
-exports.locales = ['en', 'zh', 'zh-tw', 'jp', 'es', 'ru', 'ko'];
-exports.defaultLocale = 'en';
-exports.PasscardData = [
+export const locales = ['en', 'zh', 'zh-tw', 'jp', 'es', 'ru', 'ko'];
+export const defaultLocale = 'en';
+export const PasscardData = [
     {
         header: 'basic_battle_pass.header',
         text: ['basic_battle_pass.text.0', 'basic_battle_pass.text.1', 'basic_battle_pass.text.2'],
@@ -44,7 +41,7 @@ exports.PasscardData = [
         key: 'genesis_pass'
     }
 ];
-exports.WorkShopConfig = {
+export const WorkShopConfig = {
     FilterData: [
         {
             title: 'Type',

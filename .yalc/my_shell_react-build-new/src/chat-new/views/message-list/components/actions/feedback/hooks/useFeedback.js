@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useFeedback;
-const new_chat_1 = require("../../../../../../../apis/new-chat.js");
-const definitions_1 = require("../../../../../../../chat-new/model/definitions.js");
-function useFeedback(type, messageId, updateFeedbackState, updateFeedbackIssues) {
+import { messageFeedback, messageReport } from '../../../../../../../apis/new-chat.js';
+import { FeedbackState } from '../../../../../../../chat-new/model/definitions.js';
+export default function useFeedback(type, messageId, updateFeedbackState, updateFeedbackIssues) {
     const reportApi = () => {
         let api;
         switch (type) {
             default:
-                api = new_chat_1.messageReport;
+                api = messageReport;
                 break;
         }
         return api;
@@ -17,7 +14,7 @@ function useFeedback(type, messageId, updateFeedbackState, updateFeedbackIssues)
         let api;
         switch (type) {
             default:
-                api = new_chat_1.messageFeedback;
+                api = messageFeedback;
                 break;
         }
         return api;
@@ -27,7 +24,7 @@ function useFeedback(type, messageId, updateFeedbackState, updateFeedbackIssues)
             updateFeedbackState(state);
             const { success } = await reportApi()(state, messageId);
             if (success) {
-                if (prevState === definitions_1.FeedbackState.DISLIKE && state === definitions_1.FeedbackState.NORMAL) {
+                if (prevState === FeedbackState.DISLIKE && state === FeedbackState.NORMAL) {
                     updateFeedbackIssues([]);
                 }
             }

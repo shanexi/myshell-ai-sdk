@@ -1,14 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useTaskStore = void 0;
-const zustand_1 = require("zustand");
-const middleware_1 = require("zustand/middleware");
-const immer_1 = require("zustand/middleware/immer");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const task_1 = require("../../common/constants/enums/task.js");
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import computed from 'zustand-computed';
+import { GolangUserTaskStatusEnum } from '../../common/constants/enums/task.js';
 const DEFAULT_STATE = {
     seasons: null,
     seasonIndex: 0,
@@ -95,7 +89,7 @@ const computeState = (state) => ({
     claimableStartDate: state.seasons ? state.seasons[state.seasonIndex]?.claimableStart ?? null : null,
     claimableEndDate: state.seasons ? state.seasons[state.seasonIndex]?.claimableEnd ?? null : null,
     silentPeriodEndDate: state.seasons ? state.seasons[state.seasonIndex]?.silentPeriodEnd ?? null : null,
-    hasClaimableTask: state.taskList.some(task => task.status === task_1.GolangUserTaskStatusEnum.SEASON_TASK_ITEM_STATUS_CLAIMABLE),
+    hasClaimableTask: state.taskList.some(task => task.status === GolangUserTaskStatusEnum.SEASON_TASK_ITEM_STATUS_CLAIMABLE),
     seasonPoints: Array.isArray(state.points) ? state.points[state.seasonIndex] : undefined
 });
-exports.useTaskStore = (0, zustand_1.create)()((0, zustand_computed_1.default)((0, immer_1.immer)((0, middleware_1.devtools)(createTaskSlice, { store: 'task' })), computeState));
+export const useTaskStore = create()(computed(immer(devtools(createTaskSlice, { store: 'task' })), computeState));

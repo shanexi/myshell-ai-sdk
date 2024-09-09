@@ -1,33 +1,27 @@
-"use strict";
 'use client';
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = GalleryAuthorInfo;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowLeftIcon_1 = __importDefault(require("@heroicons/react/24/solid/ArrowLeftIcon"));
-const navigation_1 = require("next/navigation");
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const avatar_1 = require("../../common/components/ui/avatar.js");
-const icon_button_1 = require("../../common/components/ui/icon-button.js");
-const typography_1 = require("../../common/components/ui/typography.js");
-const useNotification_1 = require("../../common/hooks/useNotification.js");
-const useRoute_1 = require("../../common/hooks/useRoute.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const UserFollowBtn_1 = require("../../components/profile/edit-profile/component/UserFollowBtn.js");
-const sensors_1 = require("../../lib/sensors/index.js");
-const utils_1 = require("../../lib/utils.js");
-const store_1 = require("../../services/store/index.js");
-const GalleryDeleteTipModal_1 = __importDefault(require("./GalleryDeleteTipModal.js"));
-const GalleryMoreActions_1 = __importDefault(require("./GalleryMoreActions.js"));
-const api_1 = require("../modal/api.js");
-function GalleryAuthorInfo({ isMobile, item, botId, deleteCallback, followCallback }) {
-    const userId = (0, store_1.useUserStore)(state => state.userId);
-    const router = (0, useRoute_1.useRoute)();
-    const [showDeleteModal, setShowDeleteModal] = (0, react_1.useState)(false);
-    const searchParams = (0, navigation_1.useSearchParams)();
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
+import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { Avatar } from '../../common/components/ui/avatar.js';
+import { IconButton } from '../../common/components/ui/icon-button.js';
+import { Text } from '../../common/components/ui/typography.js';
+import { useNotification } from '../../common/hooks/useNotification.js';
+import { useRoute } from '../../common/hooks/useRoute.js';
+import { getAssetsUrl } from '../../common/utils/common-helper.js';
+import { UserFollowBtn } from '../../components/profile/edit-profile/component/UserFollowBtn.js';
+import { useSensors } from '../../lib/sensors/index.js';
+import { cn, limitStringLength } from '../../lib/utils.js';
+import { useUserStore } from '../../services/store/index.js';
+import GalleryDeleteTipModal from './GalleryDeleteTipModal.js';
+import GalleryMoreActions from './GalleryMoreActions.js';
+import { deleteGallery } from '../modal/api.js';
+export default function GalleryAuthorInfo({ isMobile, item, botId, deleteCallback, followCallback }) {
+    const userId = useUserStore(state => state.userId);
+    const router = useRoute();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const searchParams = useSearchParams();
     const onClose = () => {
         const from = searchParams.get('from');
         const prevPath = searchParams.get('prevPath');
@@ -41,12 +35,12 @@ function GalleryAuthorInfo({ isMobile, item, botId, deleteCallback, followCallba
     const handleDelete = () => {
         setShowDeleteModal(true);
     };
-    const { error, success } = (0, useNotification_1.useNotification)();
-    const [deleting, setDeleting] = (0, react_1.useState)(false);
-    const t = (0, next_intl_1.useTranslations)();
+    const { error, success } = useNotification();
+    const [deleting, setDeleting] = useState(false);
+    const t = useTranslations();
     const deleteGalleryItemHandle = async () => {
         setDeleting(true);
-        const res = await (0, api_1.deleteGallery)(item.id);
+        const res = await deleteGallery(item.id);
         if (res.success) {
             success({
                 content: t('common.delete_success')
@@ -62,7 +56,7 @@ function GalleryAuthorInfo({ isMobile, item, botId, deleteCallback, followCallba
             setDeleting(false);
         }
     };
-    const sensors = (0, sensors_1.useSensors)();
+    const sensors = useSensors();
     const handleFollow = (isFollow) => {
         if (isFollow) {
             sensors.track('GalleryPicFollow', {
@@ -74,7 +68,7 @@ function GalleryAuthorInfo({ isMobile, item, botId, deleteCallback, followCallba
         }
         followCallback?.();
     };
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "border-b border-default", children: (0, jsx_runtime_1.jsxs)("div", { className: "w-full py-2.5 md:py-4 px-4 md:px-6 flex justify-between items-center space-x-3 overflow-hidden", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex justify-start items-center space-x-1 w-full overflow-hidden", children: [isMobile && ((0, jsx_runtime_1.jsx)("div", { className: (0, utils_1.cn)('flex z-10 space-x-3 left-4'), children: (0, jsx_runtime_1.jsx)(icon_button_1.IconButton, { onClick: onClose, icon: ArrowLeftIcon_1.default, size: "md", variant: "ghost", color: "brand" }) })), (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center space-x-2 overflow-hidden", children: [(0, jsx_runtime_1.jsx)(avatar_1.Avatar, { size: "md", src: (0, common_helper_1.getAssetsUrl)(item.authInfo?.avatar) }), (0, jsx_runtime_1.jsx)(typography_1.Text, { size: "lg", lineClamp: 1, weight: "medium", children: (0, utils_1.limitStringLength)(item.authInfo.name, 10) })] })] }), userId && userId !== item.authInfo?.userId ? ((0, jsx_runtime_1.jsx)(UserFollowBtn_1.UserFollowBtn, { size: "sm", detailData: { id: item.authInfo?.userId, followStatus: item.authInfo?.followStatus }, followCallback: (isFollow) => {
+    return (_jsxs(_Fragment, { children: [_jsx("div", { className: "border-b border-default", children: _jsxs("div", { className: "w-full py-2.5 md:py-4 px-4 md:px-6 flex justify-between items-center space-x-3 overflow-hidden", children: [_jsxs("div", { className: "flex justify-start items-center space-x-1 w-full overflow-hidden", children: [isMobile && (_jsx("div", { className: cn('flex z-10 space-x-3 left-4'), children: _jsx(IconButton, { onClick: onClose, icon: ArrowLeftIcon, size: "md", variant: "ghost", color: "brand" }) })), _jsxs("div", { className: "flex items-center space-x-2 overflow-hidden", children: [_jsx(Avatar, { size: "md", src: getAssetsUrl(item.authInfo?.avatar) }), _jsx(Text, { size: "lg", lineClamp: 1, weight: "medium", children: limitStringLength(item.authInfo.name, 10) })] })] }), userId && userId !== item.authInfo?.userId ? (_jsx(UserFollowBtn, { size: "sm", detailData: { id: item.authInfo?.userId, followStatus: item.authInfo?.followStatus }, followCallback: (isFollow) => {
                                 handleFollow(isFollow);
-                            }, className: "min-w-none" })) : ((0, jsx_runtime_1.jsx)("div", { className: "w-9 h-9" })), userId === item.authInfo?.userId && handleDelete && (0, jsx_runtime_1.jsx)(GalleryMoreActions_1.default, { handleDelete: handleDelete })] }) }), (0, jsx_runtime_1.jsx)(GalleryDeleteTipModal_1.default, { open: showDeleteModal, deleting: deleting, onClose: () => setShowDeleteModal(false), onConfirm: () => deleteGalleryItemHandle() })] }));
+                            }, className: "min-w-none" })) : (_jsx("div", { className: "w-9 h-9" })), userId === item.authInfo?.userId && handleDelete && _jsx(GalleryMoreActions, { handleDelete: handleDelete })] }) }), _jsx(GalleryDeleteTipModal, { open: showDeleteModal, deleting: deleting, onClose: () => setShowDeleteModal(false), onConfirm: () => deleteGalleryItemHandle() })] }));
 }

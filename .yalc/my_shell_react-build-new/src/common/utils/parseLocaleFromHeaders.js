@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseLocaleFromHeaders = void 0;
-const parseLocaleFromHeaders = (headersParam) => {
+export const parseLocaleFromHeaders = (headersParam) => {
     const acceptLanguage = headersParam.get('accept-language');
     if (!acceptLanguage || acceptLanguage === '*') {
         return undefined;
@@ -16,4 +13,3 @@ const parseLocaleFromHeaders = (headersParam) => {
     }
     return locale;
 };
-exports.parseLocaleFromHeaders = parseLocaleFromHeaders;

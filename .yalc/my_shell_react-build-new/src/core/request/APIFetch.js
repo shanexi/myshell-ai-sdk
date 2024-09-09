@@ -1,45 +1,16 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.APIFetch = exports.wsBaseURL = exports.baseURL = exports.LangMap = void 0;
-const useNotification_1 = require("../../common/hooks/useNotification.js");
-const identityService_1 = require("../../common/services/identityService.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226.js");
-const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId.js");
-const parseLocaleFromHeaders_1 = require("../../common/utils/parseLocaleFromHeaders.js");
-const modal_1 = require("../../services/store/modal.js");
-const constants_1 = require("../../common/constants/constants.js");
-const EventEmitter_1 = __importDefault(require("../../common/utils/EventEmitter.js"));
-const initNeteaseVisitorId_1 = require("../../common/utils/initNeteaseVisitorId.js");
-const runtime_config_1 = require("../../common/utils/runtime-config.js");
-const CfMitigatedHandler_1 = __importDefault(require("./CfMitigatedHandler.js"));
-exports.LangMap = {
+import { Message } from '../../common/hooks/useNotification.js';
+import { identityService } from '../../common/services/identityService.js';
+import { generateUUID, isClient, isString } from '../../common/utils/common-helper.js';
+import { computeChecksum1226 } from '../../common/utils/computeChecksum1226.js';
+import { defaultVisitorId } from '../../common/utils/defaultVisitorId.js';
+import { parseLocaleFromHeaders } from '../../common/utils/parseLocaleFromHeaders.js';
+import { openModal } from '../../services/store/modal.js';
+import { CaptchaTriggerMap } from '../../common/constants/constants.js';
+import EventEmitter from '../../common/utils/EventEmitter.js';
+import { getNeteaseRequestToken } from '../../common/utils/initNeteaseVisitorId.js';
+import { API_URL, WS_API_URL } from '../../common/utils/runtime-config.js';
+import CfMitigatedHandler from './CfMitigatedHandler.js';
+export const LangMap = {
     en: 'en',
     zh: 'zh-CN',
     'zh-tw': 'zh-TW',
@@ -48,13 +19,13 @@ exports.LangMap = {
     ru: 'ru',
     ko: 'ko'
 };
-exports.baseURL = `${runtime_config_1.API_URL}`;
-exports.wsBaseURL = `${runtime_config_1.WS_API_URL}`;
+export const baseURL = `${API_URL}`;
+export const wsBaseURL = `${WS_API_URL}`;
 const handleError = async (err, config) => {
     let msg = 'request.error.common';
     let translateInToast = true;
     if (err?.status === 401) {
-        EventEmitter_1.default.dispatch('Unauthorized', null);
+        EventEmitter.dispatch('Unauthorized', null);
     }
     if (err?.data) {
         const { data } = err;
@@ -72,15 +43,15 @@ const handleError = async (err, config) => {
         }
     }
     if (config?.popupError) {
-        if (!(0, common_helper_1.isString)(msg)) {
+        if (!isString(msg)) {
             msg = 'request.error.common';
         }
-        const { Message } = await Promise.resolve().then(() => __importStar(require('../../common/hooks/useNotification.js')));
+        const { Message } = await import('../../common/hooks/useNotification.js');
         Message.error({ content: msg, id: msg, translateInToast });
     }
 };
 const handleFetch = async (url, request) => {
-    const urlBody = request?.production ? `https://api.myshell.ai${url}` : `${exports.baseURL}${url}`;
+    const urlBody = request?.production ? `https://api.myshell.ai${url}` : `${baseURL}${url}`;
     const requestUrl = request?.params ? `${urlBody}${request.params}` : `${urlBody}`;
     const { body, adapter, isGoLang, hideErrorToast, withMyShellSecurityToken, allowAnonymous, timeout, serverContext, ...rest } = request;
     const requestBody = body ? (body instanceof FormData ? { body } : { body: JSON.stringify(body) }) : {};
@@ -95,31 +66,31 @@ const handleFetch = async (url, request) => {
         headers['myshell-service-name'] = 'organics-api';
     }
     if (typeof window !== 'undefined' && !allowAnonymous) {
-        const token = identityService_1.identityService.getToken();
+        const token = identityService.getToken();
         if (token && token.trim()) {
             headers.Authorization = `Bearer ${token}`;
         }
         else {
-            const nanoAnonymousId = (0, defaultVisitorId_1.defaultVisitorId)();
+            const nanoAnonymousId = defaultVisitorId();
             let visitorId;
-            const randomVisitorId = ((0, common_helper_1.isClient)() && identityService_1.identityService.getRandomVisitorId()) ?? '';
+            const randomVisitorId = (isClient() && identityService.getRandomVisitorId()) ?? '';
             if (randomVisitorId) {
                 visitorId = randomVisitorId;
             }
             else {
-                visitorId = (0, common_helper_1.generateUUID)();
+                visitorId = generateUUID();
             }
             if (visitorId && visitorId.trim()) {
                 headers['visitor-id'] = visitorId;
             }
-            let scDeviceId = identityService_1.identityService.getSCDeviceId();
+            let scDeviceId = identityService.getSCDeviceId();
             if (!scDeviceId) {
-                const anonymousId = identityService_1.identityService.getAnonymousId();
+                const anonymousId = identityService.getAnonymousId();
                 if (anonymousId) {
                     scDeviceId = anonymousId;
                 }
                 else {
-                    identityService_1.identityService.setAnonymousId(nanoAnonymousId);
+                    identityService.setAnonymousId(nanoAnonymousId);
                     scDeviceId = nanoAnonymousId;
                 }
                 headers['sc-device-id'] = scDeviceId;
@@ -131,7 +102,7 @@ const handleFetch = async (url, request) => {
     }
     if (typeof window !== 'undefined' && withMyShellSecurityToken) {
         try {
-            const neteaseEngineToken = await (0, initNeteaseVisitorId_1.getNeteaseRequestToken)();
+            const neteaseEngineToken = await getNeteaseRequestToken();
             headers['myshell-security-token'] = neteaseEngineToken;
         }
         catch (e) {
@@ -140,9 +111,9 @@ const handleFetch = async (url, request) => {
     headers.platform = 'web';
     headers.version = '1.0.0';
     const lang = (typeof window !== 'undefined'
-        ? identityService_1.identityService.getLanguage()
-        : serverContext?.locale || (0, parseLocaleFromHeaders_1.parseLocaleFromHeaders)(serverContext.headers)) || 'en';
-    headers['Accept-Language'] = exports.LangMap[lang];
+        ? identityService.getLanguage()
+        : serverContext?.locale || parseLocaleFromHeaders(serverContext.headers)) || 'en';
+    headers['Accept-Language'] = LangMap[lang];
     if (typeof window === 'undefined') {
         headers['x-call-from'] = 'myshell-ssr';
         if (!headers.Authorization) {
@@ -161,7 +132,7 @@ const handleFetch = async (url, request) => {
         }
     }
     headers['myshell-client-version'] = 'v1.6.4';
-    headers.timestamp = (0, computeChecksum1226_1.computeChecksum1226)(new Date().getTime());
+    headers.timestamp = computeChecksum1226(new Date().getTime());
     const delay = timeout || (typeof window !== 'undefined' ? 15000 : 5000);
     const controller = new AbortController();
     const finalSignal = request?.signal || (delay ? controller.signal : undefined);
@@ -187,21 +158,21 @@ const handleFetch = async (url, request) => {
                 : response;
         if (response.status >= 200 && response.status < 300) {
             if (typeof window !== 'undefined') {
-                const token = identityService_1.identityService.getToken();
+                const token = identityService.getToken();
                 const resToken = response.headers.get('refreshed-auth-token');
                 if (resToken && resToken !== token) {
-                    identityService_1.identityService.setToken(resToken);
+                    identityService.setToken(resToken);
                 }
             }
             const data = typeof adapter === 'function' ? adapter(result, { lang }) : result;
             return { success: true, data };
         }
         if (response.status === 400 && result.reason === 'ERROR_REASON_SAFETY_NEED_VERIFY_CAPTCHA') {
-            await new Promise(resolve => (0, modal_1.openModal)({ open: true, onOk: () => resolve(), triggerScene: constants_1.CaptchaTriggerMap[url] }));
+            await new Promise(resolve => openModal({ open: true, onOk: () => resolve(), triggerScene: CaptchaTriggerMap[url] }));
             return await handleFetch(url, request);
         }
         if (response.status === 400 && !hideErrorToast) {
-            useNotification_1.Message.error({
+            Message.error({
                 content: result.message,
                 translateInToast: true,
                 id: 'request-400'
@@ -210,7 +181,7 @@ const handleFetch = async (url, request) => {
         }
         else {
             if (response.status === 429) {
-                useNotification_1.Message.error({
+                Message.error({
                     content: 'request.error.rateLimit',
                     translateInToast: true,
                     id: 'request-429'
@@ -218,7 +189,7 @@ const handleFetch = async (url, request) => {
             }
             if (response.status === 403) {
                 const cfMitigated = response.headers.get('cf-mitigated');
-                (0, CfMitigatedHandler_1.default)(cfMitigated);
+                CfMitigatedHandler(cfMitigated);
             }
             throw { status: response.status, data: result };
         }
@@ -251,7 +222,7 @@ const handleFetch = async (url, request) => {
         };
     }
 };
-exports.APIFetch = {
+export const APIFetch = {
     get: async (url, request) => {
         return handleFetch(url, { ...request, method: 'GET' });
     },

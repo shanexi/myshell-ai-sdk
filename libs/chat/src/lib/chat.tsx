@@ -7,6 +7,7 @@ export function Chat(props: ChatProps) {
   return (
     <div className={styles['container']}>
       <h1>Welcome to Chat!</h1>
+      {/*<p>{JSON.stringify(defaultChatSetting)}</p>*/}
     </div>
   );
 }

@@ -1,25 +1,19 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = PinchZoomImage;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const clsx_1 = __importDefault(require("clsx"));
-const hammerjs_1 = __importDefault(require("hammerjs"));
-const react_1 = require("react");
-const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
-function PinchZoomImage({ imgObj, onPinchStart, onPinchEnd }) {
-    const containerRef = (0, react_1.useRef)(null);
-    const [scaleValue, setScaleValue] = (0, react_1.useState)(1);
-    const prevScale = (0, react_1.useRef)(1);
-    const imageRef = (0, react_1.useRef)(null);
-    const [loaded, setLoaded] = (0, react_1.useState)(false);
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import clsx from 'clsx';
+import Hammer from 'hammerjs';
+import { useEffect, useRef, useState } from 'react';
+import { useEffectOnce } from 'usehooks-ts';
+import Spinner from '../../../../../../../common/components/ui/spinner.js';
+export default function PinchZoomImage({ imgObj, onPinchStart, onPinchEnd }) {
+    const containerRef = useRef(null);
+    const [scaleValue, setScaleValue] = useState(1);
+    const prevScale = useRef(1);
+    const imageRef = useRef(null);
+    const [loaded, setLoaded] = useState(false);
     const handleLoaded = () => {
         setLoaded(true);
     };
-    (0, usehooks_ts_1.useEffectOnce)(() => {
+    useEffectOnce(() => {
         const image = imageRef.current;
         if (image) {
             image.addEventListener('load', handleLoaded, {
@@ -27,9 +21,9 @@ function PinchZoomImage({ imgObj, onPinchStart, onPinchEnd }) {
             });
         }
     });
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (containerRef.current) {
-            const hammer = new hammerjs_1.default(containerRef.current);
+            const hammer = new Hammer(containerRef.current);
             hammer.get('pinch').set({ enable: true });
             hammer.on('pinchstart', () => {
                 onPinchStart();
@@ -48,7 +42,7 @@ function PinchZoomImage({ imgObj, onPinchStart, onPinchEnd }) {
             };
         }
     }, []);
-    return ((0, jsx_runtime_1.jsxs)("div", { style: {
+    return (_jsxs("div", { style: {
             scale: scaleValue
-        }, ref: containerRef, className: "w-full h-full relative flex justify-center items-center", children: [!loaded && ((0, jsx_runtime_1.jsx)("div", { className: "absolute top-0 left-0 w-full h-full flex justify-center items-center z-10 bg-[#00000033] backdrop-blur-2xl", children: (0, jsx_runtime_1.jsx)("div", { className: "w-10 h-10 p-[6px] flex justify-center items-center", children: (0, jsx_runtime_1.jsx)(spinner_1.default, { size: "md", speed: "slow", className: "text-white" }) }) })), (0, jsx_runtime_1.jsx)("img", { ref: imageRef, alt: "image", src: imgObj.url, width: imgObj.mediaFileMetadata?.width || 9999, height: imgObj.mediaFileMetadata?.height || 9999, className: (0, clsx_1.default)('h-auto max-w-full max-h-full object-scale-down touch-none z-20', imgObj.mediaFileMetadata?.width ? `w-[${imgObj.mediaFileMetadata.width}px]` : 'w-auto', imgObj.mediaFileMetadata?.height ? `h-[${imgObj.mediaFileMetadata.height}px]` : 'h-auto') })] }));
+        }, ref: containerRef, className: "w-full h-full relative flex justify-center items-center", children: [!loaded && (_jsx("div", { className: "absolute top-0 left-0 w-full h-full flex justify-center items-center z-10 bg-[#00000033] backdrop-blur-2xl", children: _jsx("div", { className: "w-10 h-10 p-[6px] flex justify-center items-center", children: _jsx(Spinner, { size: "md", speed: "slow", className: "text-white" }) }) })), _jsx("img", { ref: imageRef, alt: "image", src: imgObj.url, width: imgObj.mediaFileMetadata?.width || 9999, height: imgObj.mediaFileMetadata?.height || 9999, className: clsx('h-auto max-w-full max-h-full object-scale-down touch-none z-20', imgObj.mediaFileMetadata?.width ? `w-[${imgObj.mediaFileMetadata.width}px]` : 'w-auto', imgObj.mediaFileMetadata?.height ? `h-[${imgObj.mediaFileMetadata.height}px]` : 'h-auto') })] }));
 }

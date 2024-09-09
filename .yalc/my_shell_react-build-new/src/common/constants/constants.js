@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.iconMap = exports.nativeTokenMap = exports.chainMap = exports.SupportedChain = exports.BADGE_VIEW_CONTRACT_MAP = exports.bsc_chain_id_current_env = exports.BADGE_CONTRACT_MAP = exports.BSC_EXPLORER_URL = exports.transferableTokens = exports.MYSHELL_EXPLORER_URL = exports.GAS_LIMIT_HIGH = exports.GAS_LIMIT_MEDIUM = exports.GAS_LIMIT_LOW = exports.GAS_LIMIT_ECONOMY = exports.SHELL_TOKEN_ADDRESS = exports.MYSOUL_NFT_CONTRACT_ADDRESS = exports.MYSHELL_CREATOR_PASS_CONTRACT_ADDRESS = exports.CaptchaTriggerMap = exports.levelBatteryBenefitsMap = exports.VoiceCallEnerygyUsedPerSecond = exports.TASK_IMAGE_MAP = exports.ChartColorSet = exports.TTS_SUCCESS_EXAMPLE_DEFAULT_TEXT_MAP = exports.TTS_EXAMPLE_DEFAULT_TEXT_MAP = void 0;
-const chains_1 = require("viem/chains");
-exports.TTS_EXAMPLE_DEFAULT_TEXT_MAP = {
+import { bsc, bscTestnet, mainnet, opBNB } from 'viem/chains';
+export const TTS_EXAMPLE_DEFAULT_TEXT_MAP = {
     1: `Now 9 language voices and instant English voice cloning are available! With just 20 seconds of English audio, you can simulate any voice you desire. Click 'Mine' to start cloning!`,
     2: `今、9種類の言語の音声とインスタント英語音声クローニングが利用可能です！20秒の英語音声だけで、あなたの望むどんな声もシミュレートできます。クローニングを開始するには、「Mine」をクリックしてください！`,
     3: `现已支持9种语言语音与快速英语语音克隆啦！只需20秒的英语音频，您就可以模拟任何您想要的声音。点击「我的」立刻开始克隆！`,
@@ -13,12 +10,12 @@ exports.TTS_EXAMPLE_DEFAULT_TEXT_MAP = {
     8: `¡Ahora están disponibles 9 voces de lenguaje y clonación instantánea de voz en inglés! Con solo 20 segundos de audio en inglés, puede simular cualquier voz que desee. ¡Haga clic en "Mine" para comenzar la clonación!`,
     9: 'Jetzt stehen 9 Sprachstimmen und eine sofortige englische Sprachklonierung zur Verfügung! Mit nur 20 Sekunden englischem Audio können Sie jede gewünschte Stimme simulieren. Klicken Sie auf "Mine", um das Klonen zu starten!'
 };
-exports.TTS_SUCCESS_EXAMPLE_DEFAULT_TEXT_MAP = {
+export const TTS_SUCCESS_EXAMPLE_DEFAULT_TEXT_MAP = {
     1: `How do you think about my voice?  If it doesn’t sound right to you, hit the report button and we will get our tech team on it.`,
     4: `Que pensez-vous de ma voix ? Si elle ne vous semble pas correcte, appuyez sur le bouton de signalement et notre équipe technique s'en occupera.`,
     8: `¿Qué opinas de mi voz? Si no te suena bien, presiona el botón de informe y nuestro equipo técnico lo revisará.`
 };
-exports.ChartColorSet = [
+export const ChartColorSet = [
     '#3548BE',
     '#DC9B2E',
     '#D4436D',
@@ -40,7 +37,7 @@ exports.ChartColorSet = [
     '#6CC591',
     '#D26022'
 ];
-exports.TASK_IMAGE_MAP = {
+export const TASK_IMAGE_MAP = {
     SEASON_TASK_TYPE_DAILY_MESSAGE: '10',
     SEASON_TASK_TYPE_DC_INTERACTION: '05',
     SEASON_TASK_TYPE_BLOCKCHAIN_INTERACTION: '14',
@@ -58,8 +55,8 @@ exports.TASK_IMAGE_MAP = {
     SEASON_TASK_TYPE_COMPENSATE: '17',
     SEASON_TASK_TYPE_FANS_KEY: '18'
 };
-exports.VoiceCallEnerygyUsedPerSecond = 5;
-exports.levelBatteryBenefitsMap = [
+export const VoiceCallEnerygyUsedPerSecond = 5;
+export const levelBatteryBenefitsMap = [
     {
         level: 0,
         basic: 60,
@@ -324,7 +321,7 @@ exports.levelBatteryBenefitsMap = [
         energy: 400
     }
 ];
-exports.CaptchaTriggerMap = {
+export const CaptchaTriggerMap = {
     '/v1/shell_coins/exchange_shell_coin_with_season_points': 'Redemption',
     '/v1/shell_coins/exchange_shell_coin_with_badges': 'Redemption',
     '/v1/season/task/claim': 'ClaimTask',
@@ -335,26 +332,26 @@ exports.CaptchaTriggerMap = {
     '/v2/season/reward/redeem': 'Redemption',
     '/v1/season/reward/auto_redeem_and_use_season_pass_if_needed': 'ClaimPremiumCard'
 };
-exports.MYSHELL_CREATOR_PASS_CONTRACT_ADDRESS = '0x63F94E1346c35e1aA2D535f094EB6bEF4A57256c';
-exports.MYSOUL_NFT_CONTRACT_ADDRESS = '0x1cB1ff4B1f1cca377807296C15705b786526EFEc';
-exports.SHELL_TOKEN_ADDRESS = '0xd243F69FfcdBfa9Eb6d280e5425FFB9bcFFD25B5';
-exports.GAS_LIMIT_ECONOMY = 100000;
-exports.GAS_LIMIT_LOW = 180000;
-exports.GAS_LIMIT_MEDIUM = 300000;
-exports.GAS_LIMIT_HIGH = 1000000;
-exports.MYSHELL_EXPLORER_URL = 'https://myshell-testnet-explorer.alt.technology';
-exports.transferableTokens = ['BNB', 'testETH', 'ETH'];
-exports.BSC_EXPLORER_URL = process.env.NEXT_PUBLIC_BSC_EXPLORE_URL;
-exports.BADGE_CONTRACT_MAP = {
+export const MYSHELL_CREATOR_PASS_CONTRACT_ADDRESS = '0x63F94E1346c35e1aA2D535f094EB6bEF4A57256c';
+export const MYSOUL_NFT_CONTRACT_ADDRESS = '0x1cB1ff4B1f1cca377807296C15705b786526EFEc';
+export const SHELL_TOKEN_ADDRESS = '0xd243F69FfcdBfa9Eb6d280e5425FFB9bcFFD25B5';
+export const GAS_LIMIT_ECONOMY = 100000;
+export const GAS_LIMIT_LOW = 180000;
+export const GAS_LIMIT_MEDIUM = 300000;
+export const GAS_LIMIT_HIGH = 1000000;
+export const MYSHELL_EXPLORER_URL = 'https://myshell-testnet-explorer.alt.technology';
+export const transferableTokens = ['BNB', 'testETH', 'ETH'];
+export const BSC_EXPLORER_URL = process.env.NEXT_PUBLIC_BSC_EXPLORE_URL;
+export const BADGE_CONTRACT_MAP = {
     97: '0x6933332942c4c78C52DB9cC3da00b930597607B2',
     56: '0xEAAE3aC5d3E379a6f190A1d5F3B0F5Df4ec925df'
 };
-exports.bsc_chain_id_current_env = process.env.NEXT_PUBLIC_ENV === 'production' ? chains_1.bsc.id : chains_1.bscTestnet.id;
-exports.BADGE_VIEW_CONTRACT_MAP = {
+export const bsc_chain_id_current_env = process.env.NEXT_PUBLIC_ENV === 'production' ? bsc.id : bscTestnet.id;
+export const BADGE_VIEW_CONTRACT_MAP = {
     97: '0x04916BCc5C7D074Ea4467baA84B5A17d4Cf07129',
     56: '0x35c8719109aa537d389d8130C283B33c37B1b91c'
 };
-var SupportedChain;
+export var SupportedChain;
 (function (SupportedChain) {
     SupportedChain["Ethereum"] = "Ethereum";
     SupportedChain["BSC"] = "BSC";
@@ -362,21 +359,21 @@ var SupportedChain;
     SupportedChain["MyShell_Mainnet"] = "MyShell Mainnet";
     SupportedChain["MyShell_Testnet"] = "MyShell Testnet";
     SupportedChain["Base"] = "Base";
-})(SupportedChain || (exports.SupportedChain = SupportedChain = {}));
-exports.chainMap = {
-    [chains_1.mainnet.id]: SupportedChain.Ethereum,
-    [chains_1.bsc.id]: SupportedChain.BSC,
-    [chains_1.bscTestnet.id]: SupportedChain.BSC,
-    [chains_1.opBNB.id]: SupportedChain.OpBNB
+})(SupportedChain || (SupportedChain = {}));
+export const chainMap = {
+    [mainnet.id]: SupportedChain.Ethereum,
+    [bsc.id]: SupportedChain.BSC,
+    [bscTestnet.id]: SupportedChain.BSC,
+    [opBNB.id]: SupportedChain.OpBNB
 };
-exports.nativeTokenMap = {
+export const nativeTokenMap = {
     [SupportedChain.Ethereum]: 'ETH',
     [SupportedChain.BSC]: 'BNB',
     [SupportedChain.OpBNB]: 'BNB',
     [SupportedChain.MyShell_Mainnet]: 'ETH',
     [SupportedChain.MyShell_Testnet]: 'ETH'
 };
-exports.iconMap = {
+export const iconMap = {
     [SupportedChain.Ethereum]: '/icons/reward-center/eth.svg',
     [SupportedChain.BSC]: '/icons/reward-center/bnb.svg',
     [SupportedChain.OpBNB]: '/icons/reward-center/bnb.svg',

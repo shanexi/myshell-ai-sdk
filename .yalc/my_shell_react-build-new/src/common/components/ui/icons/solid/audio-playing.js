@@ -1,19 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = AudioPlaying;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const lottie_web_1 = __importDefault(require("lottie-web"));
-const react_1 = require("react");
-function AudioPlaying(props) {
-    const playingRef = (0, react_1.useRef)(null);
-    (0, react_1.useEffect)(() => {
+import { jsx as _jsx } from "react/jsx-runtime";
+import Lottie from 'lottie-web';
+import { useEffect, useRef } from 'react';
+export default function AudioPlaying(props) {
+    const playingRef = useRef(null);
+    useEffect(() => {
         const lRef = playingRef.current;
         let animation;
         if (lRef) {
-            animation = lottie_web_1.default.loadAnimation({
+            animation = Lottie.loadAnimation({
                 container: playingRef.current,
                 renderer: 'svg',
                 loop: true,
@@ -23,5 +17,5 @@ function AudioPlaying(props) {
         }
         return () => animation.destroy();
     }, []);
-    return (0, jsx_runtime_1.jsx)("div", { ref: playingRef, className: "w-[12px]" });
+    return _jsx("div", { ref: playingRef, className: "w-[12px]" });
 }

@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useForumStore = void 0;
-const zustand_1 = require("zustand");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
+import { create } from 'zustand';
+import computed from 'zustand-computed';
 const DEFAULT_STATE = {
     searchList: [],
     tagFilters: { tagList: [], sortList: [] },
@@ -19,7 +13,7 @@ const DEFAULT_STATE = {
 const computeState = (state) => ({
     history: []
 });
-exports.useForumStore = (0, zustand_1.create)()((0, zustand_computed_1.default)((set, get) => ({
+export const useForumStore = create()(computed((set, get) => ({
     ...DEFAULT_STATE,
     setSearchList: (searchList) => {
         set({ searchList });

@@ -1,22 +1,20 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const navigation_1 = require("next/navigation");
-const react_1 = require("react");
-const rxjs_1 = require("rxjs");
-const user_1 = require("../../apis/user.js");
-const user_2 = require("../../common/constants/enums/user.js");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
-const language_1 = require("../../common/utils/language.js");
-const store_1 = require("../../services/store/index.js");
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
+import { lastValueFrom } from 'rxjs';
+import { getUserSettings, updateLanguage, updateUserSettings } from '../../apis/user.js';
+import { ALL_LANG_KEYS, NsfwEnum, UserSettingEnum } from '../../common/constants/enums/user.js';
+import { usePathLocale } from '../../common/hooks/usePathLocale.js';
+import { setLocaleCookie } from '../../common/utils/language.js';
+import { useGlobalStore, useUserStore } from '../../services/store/index.js';
 function useUserSettings() {
-    const currentLanguage = (0, store_1.useGlobalStore)(state => state.language);
-    const setLanguage = (0, store_1.useGlobalStore)(state => state.setLanguage);
-    const userSettingsInfo = (0, store_1.useUserStore)(state => state.userSettingsInfo);
-    const setUserSettingsInfo = (0, store_1.useUserStore)(state => state.setUserSettingsInfo);
-    const setShowNsfw = (0, store_1.useUserStore)(state => state.setShowNsfw);
-    const token = (0, store_1.useUserStore)(state => state.token);
-    const { pathname, locale } = (0, usePathLocale_1.usePathLocale)();
-    const router = (0, navigation_1.useRouter)();
+    const currentLanguage = useGlobalStore(state => state.language);
+    const setLanguage = useGlobalStore(state => state.setLanguage);
+    const userSettingsInfo = useUserStore(state => state.userSettingsInfo);
+    const setUserSettingsInfo = useUserStore(state => state.setUserSettingsInfo);
+    const setShowNsfw = useUserStore(state => state.setShowNsfw);
+    const token = useUserStore(state => state.token);
+    const { pathname, locale } = usePathLocale();
+    const router = useRouter();
     const languageMap = {
         en: 'en',
         zh: 'zh',
@@ -27,35 +25,35 @@ function useUserSettings() {
         ru: 'ru',
         ko: 'ko'
     };
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         setLanguage(locale);
     }, []);
-    const handleGetUserSettings = (0, react_1.useCallback)(async (needRedirect = true, callback) => {
-        const res = await (0, user_1.getUserSettings)();
+    const handleGetUserSettings = useCallback(async (needRedirect = true, callback) => {
+        const res = await getUserSettings();
         if (res.success) {
             const { data } = res;
             setUserSettingsInfo(res.data);
-            if (data.length > 0 && data.some(item => item.name === user_2.UserSettingEnum.SHOW_NSFW)) {
-                const showNsfw = data.filter(item => item.name === user_2.UserSettingEnum.SHOW_NSFW)[0].value;
-                setShowNsfw(showNsfw === '1' ? user_2.NsfwEnum.OPEN : user_2.NsfwEnum.CLOSE);
+            if (data.length > 0 && data.some(item => item.name === UserSettingEnum.SHOW_NSFW)) {
+                const showNsfw = data.filter(item => item.name === UserSettingEnum.SHOW_NSFW)[0].value;
+                setShowNsfw(showNsfw === '1' ? NsfwEnum.OPEN : NsfwEnum.CLOSE);
             }
             else {
-                setShowNsfw(user_2.NsfwEnum.CLOSE);
+                setShowNsfw(NsfwEnum.CLOSE);
             }
             const navigatorLang = ((navigator.language || '').split('-')[0] || '').toLowerCase();
             let language = locale || languageMap[navigatorLang] || '';
             const { lang } = document.documentElement;
-            if (!language || !user_2.ALL_LANG_KEYS.includes(language)) {
+            if (!language || !ALL_LANG_KEYS.includes(language)) {
                 language = 'en';
             }
             let userLanguage = '';
-            if (data.length > 0 && data.some(item => item.name === user_2.UserSettingEnum.LANGUAGE)) {
-                const _currentLanguage = data.filter(item => item.name === user_2.UserSettingEnum.LANGUAGE)[0].value;
+            if (data.length > 0 && data.some(item => item.name === UserSettingEnum.LANGUAGE)) {
+                const _currentLanguage = data.filter(item => item.name === UserSettingEnum.LANGUAGE)[0].value;
                 userLanguage = _currentLanguage;
             }
             if (needRedirect && userLanguage && language !== userLanguage) {
                 language = userLanguage;
-                (0, language_1.setLocaleCookie)(userLanguage);
+                setLocaleCookie(userLanguage);
                 if (needRedirect) {
                     router.refresh();
                 }
@@ -67,12 +65,12 @@ function useUserSettings() {
             callback && callback();
         }
     }, [setUserSettingsInfo, token]);
-    const handleUpdateLanguage = (0, react_1.useCallback)(async (value) => {
-        await (0, rxjs_1.lastValueFrom)((0, user_1.updateLanguage)(value));
+    const handleUpdateLanguage = useCallback(async (value) => {
+        await lastValueFrom(updateLanguage(value));
         handleGetUserSettings();
     }, [handleGetUserSettings]);
-    const handleUpdateUserSettings = (0, react_1.useCallback)(async (setting, reFetchUser, callback) => {
-        const res = await (0, user_1.updateUserSettings)(setting);
+    const handleUpdateUserSettings = useCallback(async (setting, reFetchUser, callback) => {
+        const res = await updateUserSettings(setting);
         if (res.success) {
             if (reFetchUser) {
                 handleGetUserSettings(true, callback);
@@ -81,127 +79,127 @@ function useUserSettings() {
                 callback && callback();
             }
         }
-    }, [user_1.updateUserSettings]);
-    const handleUpdateRewardsCenterVisited = (0, react_1.useCallback)((seasonName, callback) => {
+    }, [updateUserSettings]);
+    const handleUpdateRewardsCenterVisited = useCallback((seasonName, callback) => {
         handleUpdateUserSettings([
             {
-                name: user_2.UserSettingEnum.FLAG_ICON_REWARD,
+                name: UserSettingEnum.FLAG_ICON_REWARD,
                 value: '1'
             },
             {
-                name: user_2.UserSettingEnum.LAST_SEASON,
+                name: UserSettingEnum.LAST_SEASON,
                 value: seasonName
             }
         ], true, callback);
     }, [handleGetUserSettings]);
-    const handleUpdateForumCenterVisited = (0, react_1.useCallback)((seasonName, callback) => {
+    const handleUpdateForumCenterVisited = useCallback((seasonName, callback) => {
         handleUpdateUserSettings([
             {
-                name: user_2.UserSettingEnum.FLAG_ICON_FORUM,
+                name: UserSettingEnum.FLAG_ICON_FORUM,
                 value: '1'
             },
             {
-                name: user_2.UserSettingEnum.LAST_SEASON,
+                name: UserSettingEnum.LAST_SEASON,
                 value: seasonName
             }
         ], true, callback);
     }, [handleGetUserSettings]);
-    const handleUpdateFirstPublishGallery = (0, react_1.useCallback)((callback) => {
+    const handleUpdateFirstPublishGallery = useCallback((callback) => {
         handleUpdateUserSettings([
             {
-                name: user_2.UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY,
+                name: UserSettingEnum.FLAG_USET_FIRST_PUBLISH_GALLERY,
                 value: '1'
             }
         ], true, callback);
     }, [handleGetUserSettings]);
-    const handleUpdateFirstVisitGallery = (0, react_1.useCallback)((callback) => {
+    const handleUpdateFirstVisitGallery = useCallback((callback) => {
         handleUpdateUserSettings([
             {
-                name: user_2.UserSettingEnum.FLAG_USET_FIRST_VISIT_GALLERY,
+                name: UserSettingEnum.FLAG_USET_FIRST_VISIT_GALLERY,
                 value: '1'
             }
         ], true, callback);
     }, [handleGetUserSettings]);
-    const handleUpdateFlagTagNoticeVisited = (0, react_1.useCallback)((seasonName, callback) => {
+    const handleUpdateFlagTagNoticeVisited = useCallback((seasonName, callback) => {
         handleUpdateUserSettings([
             {
-                name: user_2.UserSettingEnum.FLAG_TAG_NOTICE,
+                name: UserSettingEnum.FLAG_TAG_NOTICE,
                 value: '1'
             }
         ], true, callback);
     }, [handleGetUserSettings]);
-    const handleModelConfigClicked = (0, react_1.useCallback)(() => {
+    const handleModelConfigClicked = useCallback(() => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_LLM_MODEL_CONFIG,
+            name: UserSettingEnum.FLAG_LLM_MODEL_CONFIG,
             value: '1'
         }, true);
     }, [handleGetUserSettings]);
-    const handleShowNsfw = (0, react_1.useCallback)((show, callback) => {
+    const handleShowNsfw = useCallback((show, callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.SHOW_NSFW,
+            name: UserSettingEnum.SHOW_NSFW,
             value: show ? '1' : '0'
         }, false, () => {
-            setShowNsfw(show ? user_2.NsfwEnum.OPEN : user_2.NsfwEnum.CLOSE);
+            setShowNsfw(show ? NsfwEnum.OPEN : NsfwEnum.CLOSE);
             callback?.();
         });
     }, []);
-    const handleNsfwConfirmed = (0, react_1.useCallback)((callback) => {
+    const handleNsfwConfirmed = useCallback((callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_NSFW_CONFIRMED,
+            name: UserSettingEnum.FLAG_NSFW_CONFIRMED,
             value: '1'
         }, true, callback);
     }, [handleGetUserSettings]);
-    const handleVoiceCallUsed = (0, react_1.useCallback)((callback) => {
+    const handleVoiceCallUsed = useCallback((callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_VOICE_CALL_USED,
+            name: UserSettingEnum.FLAG_VOICE_CALL_USED,
             value: '1'
         }, true, callback);
     }, [handleGetUserSettings]);
-    const handleVideoCallUsed = (0, react_1.useCallback)((callback) => {
+    const handleVideoCallUsed = useCallback((callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_VIDEO_CALL_USED,
+            name: UserSettingEnum.FLAG_VIDEO_CALL_USED,
             value: '1'
         }, true, callback);
     }, [handleGetUserSettings]);
-    const handleBlockChainGuruTaskOnceCompleted = (0, react_1.useCallback)((callback) => {
+    const handleBlockChainGuruTaskOnceCompleted = useCallback((callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_COMPLETED_OPBNB_CHAIN_TASK,
+            name: UserSettingEnum.FLAG_COMPLETED_OPBNB_CHAIN_TASK,
             value: '1'
         }, true, callback);
     }, [handleGetUserSettings]);
-    const handleSilentPeriodConfirmed = (0, react_1.useCallback)((seasonName) => {
+    const handleSilentPeriodConfirmed = useCallback((seasonName) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED,
+            name: UserSettingEnum.FLAG_SILENT_PERIOD_CONFIRMED,
             value: seasonName
         }, true);
     }, [handleGetUserSettings]);
-    const handleDeductionConfirmed = (0, react_1.useCallback)((seasonName) => {
+    const handleDeductionConfirmed = useCallback((seasonName) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.DEDUCTION_CONFIRMED,
+            name: UserSettingEnum.DEDUCTION_CONFIRMED,
             value: seasonName
         }, true);
     }, [handleGetUserSettings]);
-    const handleSubscribingEarnViewed = (0, react_1.useCallback)((callback) => {
+    const handleSubscribingEarnViewed = useCallback((callback) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_stake_earn_VIEWED,
+            name: UserSettingEnum.FLAG_stake_earn_VIEWED,
             value: '1'
         }, true, callback);
     }, [handleGetUserSettings]);
-    const handleShareKeyEarnPopupConfirmed = (0, react_1.useCallback)((timeStamp) => {
+    const handleShareKeyEarnPopupConfirmed = useCallback((timeStamp) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED,
+            name: UserSettingEnum.FLAG_SHARE_KEY_EARN_POPUP_CONFIRMED,
             value: timeStamp
         }, true);
     }, [handleGetUserSettings]);
-    const handleTimezoneChange = (0, react_1.useCallback)((timezone) => {
+    const handleTimezoneChange = useCallback((timezone) => {
         handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.TIME_ZONE,
+            name: UserSettingEnum.TIME_ZONE,
             value: timezone
         }, true);
     }, [handleUpdateUserSettings]);
-    const handleReceiveNotification = (0, react_1.useCallback)(async (open, callback) => {
+    const handleReceiveNotification = useCallback(async (open, callback) => {
         await handleUpdateUserSettings({
-            name: user_2.UserSettingEnum.NOTIFICATION,
+            name: UserSettingEnum.NOTIFICATION,
             value: open ? '1' : '0'
         }, true, callback);
     }, [handleUpdateUserSettings]);
@@ -229,4 +227,4 @@ function useUserSettings() {
         handleReceiveNotification
     };
 }
-exports.default = useUserSettings;
+export default useUserSettings;

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useClientCss = void 0;
-const react_1 = require("react");
+import { useEffect } from 'react';
 let clientStyles;
 const getClientStyles = () => {
     if (!clientStyles) {
@@ -9,9 +6,9 @@ const getClientStyles = () => {
     }
     return clientStyles;
 };
-exports.useClientCss = typeof window !== 'undefined'
+export const useClientCss = typeof window !== 'undefined'
     ? (url) => {
-        (0, react_1.useEffect)(() => {
+        useEffect(() => {
             const clientStyles = getClientStyles();
             let item = clientStyles.get(url);
             if (!item) {

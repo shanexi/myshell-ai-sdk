@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSameSet = void 0;
-const isSameSet = (set1, set2) => {
+export const isSameSet = (set1, set2) => {
     if (set1 === set2) {
         return true;
     }
@@ -15,4 +12,3 @@ const isSameSet = (set1, set2) => {
     }
     return true;
 };
-exports.isSameSet = isSameSet;

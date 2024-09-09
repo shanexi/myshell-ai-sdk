@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class StandaloneSensors {
+export default class StandaloneSensors {
     constructor() { }
     track(eventName, eventProps) {
         window?.sensors?.track(eventName, {
@@ -21,4 +19,3 @@ class StandaloneSensors {
         window?.sensors.login(userId);
     }
 }
-exports.default = StandaloneSensors;

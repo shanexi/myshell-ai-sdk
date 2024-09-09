@@ -1,25 +1,18 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.chainIdNameScannerMap = void 0;
-exports.default = useOnChainInteraction;
-const react_auth_1 = require("@privy-io/react-auth");
-const dayjs_1 = __importDefault(require("dayjs"));
-const react_1 = require("react");
-const viem_1 = require("viem");
-const wagmi_1 = require("wagmi");
-const chains_1 = require("viem/chains");
-const task_1 = require("../../apis/task.js");
-const enums_1 = require("../../chat/model/enums.js");
-const constants_1 = require("../../common/constants/constants.js");
-const identityService_1 = require("../../common/services/identityService.js");
-const store_1 = require("../../services/store/index.js");
-const usePrivyLogin_1 = require("../user/usePrivyLogin.js");
-const useWalletInteraction_1 = require("../web3/useWalletInteraction.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-exports.chainIdNameScannerMap = {
+import { useSendTransaction, useWallets } from '@privy-io/react-auth';
+import dayjs from 'dayjs';
+import { useCallback, useMemo, useState } from 'react';
+import { TransactionExecutionError, UserRejectedRequestError, encodeFunctionData } from 'viem';
+import { useAccount, useChainId, useSwitchChain, useWriteContract } from 'wagmi';
+import { opBNB, opBNBTestnet } from 'viem/chains';
+import { getBlockChainInteractionState } from '../../apis/task.js';
+import { OnchainInteractionError } from '../../chat/model/enums.js';
+import { GAS_LIMIT_LOW } from '../../common/constants/constants.js';
+import { identityService } from '../../common/services/identityService.js';
+import { useTaskStore, useUserStore } from '../../services/store/index.js';
+import { LoginMethod } from '../user/usePrivyLogin.js';
+import { InteractionType } from '../web3/useWalletInteraction.js';
+import { isClient } from '../../common/utils/common-helper.js';
+export const chainIdNameScannerMap = {
     '5611': {
         name: 'opBNBTestnet',
         scanner: 'https://opbnb-testnet.bscscan.com/tx'
@@ -54,58 +47,58 @@ const contractABI = [
         type: 'function'
     }
 ];
-function useOnChainInteraction(chainId, contractAddress) {
-    const userId = (0, store_1.useUserStore)(state => state.userId);
-    const { wallets } = (0, react_auth_1.useWallets)();
-    const setTxHash = (0, store_1.useTaskStore)(state => state.setTxHash);
-    const setBlockChainInteractionState = (0, store_1.useTaskStore)(state => state.setBlockChainInteractionState);
-    const [proccessingPrivyTransaction, setProccessingPrivyTransaction] = (0, react_1.useState)(false);
-    const [wagmiErrorModalVisible, setWagmiErrorModalVisible] = (0, react_1.useState)(false);
-    const [wagmiErrorType, setWagmiErrorType] = (0, react_1.useState)();
-    const [needReLoginModalVisible, setNeedReLoginModalVisible] = (0, react_1.useState)(false);
-    const loginMethod = (0, common_helper_1.isClient)() ? identityService_1.identityService.getLoginMethod() : null;
-    const interactionType = (0, react_1.useMemo)(() => loginMethod === usePrivyLogin_1.LoginMethod.Metamask ||
-        loginMethod === usePrivyLogin_1.LoginMethod.OKX ||
-        loginMethod === usePrivyLogin_1.LoginMethod.WalletConnect ||
-        loginMethod === usePrivyLogin_1.LoginMethod.BSC
-        ? useWalletInteraction_1.InteractionType.Web3
-        : useWalletInteraction_1.InteractionType.Web2, [loginMethod]);
-    const wagmiConnectedChainId = (0, wagmi_1.useChainId)();
-    const { switchChainAsync } = (0, wagmi_1.useSwitchChain)();
-    const { writeContractAsync } = (0, wagmi_1.useWriteContract)();
-    const { isConnected: isConnectedFromWagmi } = (0, wagmi_1.useAccount)();
-    const { sendTransaction: sendTransactionWithPrivy } = (0, react_auth_1.useSendTransaction)({
+export default function useOnChainInteraction(chainId, contractAddress) {
+    const userId = useUserStore(state => state.userId);
+    const { wallets } = useWallets();
+    const setTxHash = useTaskStore(state => state.setTxHash);
+    const setBlockChainInteractionState = useTaskStore(state => state.setBlockChainInteractionState);
+    const [proccessingPrivyTransaction, setProccessingPrivyTransaction] = useState(false);
+    const [wagmiErrorModalVisible, setWagmiErrorModalVisible] = useState(false);
+    const [wagmiErrorType, setWagmiErrorType] = useState();
+    const [needReLoginModalVisible, setNeedReLoginModalVisible] = useState(false);
+    const loginMethod = isClient() ? identityService.getLoginMethod() : null;
+    const interactionType = useMemo(() => loginMethod === LoginMethod.Metamask ||
+        loginMethod === LoginMethod.OKX ||
+        loginMethod === LoginMethod.WalletConnect ||
+        loginMethod === LoginMethod.BSC
+        ? InteractionType.Web3
+        : InteractionType.Web2, [loginMethod]);
+    const wagmiConnectedChainId = useChainId();
+    const { switchChainAsync } = useSwitchChain();
+    const { writeContractAsync } = useWriteContract();
+    const { isConnected: isConnectedFromWagmi } = useAccount();
+    const { sendTransaction: sendTransactionWithPrivy } = useSendTransaction({
         onSuccess: response => {
             if (proccessingPrivyTransaction) {
                 setProccessingPrivyTransaction(false);
                 setTxHash(response.hash);
-                identityService_1.identityService.setBlockChainGuruHash(userId, response.hash);
+                identityService.setBlockChainGuruHash(userId, response.hash);
                 setBlockChainInteractionState('on-chain');
-                identityService_1.identityService.setBlockChainTransactionCalled(userId, 'on-chain', (0, dayjs_1.default)().add(2, 'minute').valueOf());
+                identityService.setBlockChainTransactionCalled(userId, 'on-chain', dayjs().add(2, 'minute').valueOf());
             }
         }
     });
-    const handleWagmiErrorModalClose = (0, react_1.useCallback)(() => {
+    const handleWagmiErrorModalClose = useCallback(() => {
         setWagmiErrorModalVisible(false);
         setWagmiErrorType(undefined);
     }, []);
-    const onCallContractFunction = (0, react_1.useCallback)(async (setBlockChainInteractionState, setTxHash) => {
+    const onCallContractFunction = useCallback(async (setBlockChainInteractionState, setTxHash) => {
         if (!chainId || !contractAddress)
             return;
-        if (interactionType === useWalletInteraction_1.InteractionType.Web2) {
+        if (interactionType === InteractionType.Web2) {
             try {
                 setProccessingPrivyTransaction(true);
                 setBlockChainInteractionState('acting');
                 let chain;
                 switch (chainId) {
                     case '5611':
-                        chain = chains_1.opBNBTestnet;
+                        chain = opBNBTestnet;
                         break;
                     case '204':
-                        chain = chains_1.opBNB;
+                        chain = opBNB;
                         break;
                     default:
-                        chain = chains_1.opBNB;
+                        chain = opBNB;
                         break;
                 }
                 const embeddedWallet = wallets.find(wallet => wallet.walletClientType === 'privy');
@@ -115,7 +108,7 @@ function useOnChainInteraction(chainId, contractAddress) {
                     return;
                 }
                 await embeddedWallet?.switchChain(chain.id);
-                const encodedData = (0, viem_1.encodeFunctionData)({
+                const encodedData = encodeFunctionData({
                     abi: contractABI,
                     functionName: 'setCaller',
                     args: ['myshell']
@@ -124,7 +117,7 @@ function useOnChainInteraction(chainId, contractAddress) {
                     chainId: chain.id,
                     to: contractAddress,
                     data: encodedData,
-                    gasLimit: constants_1.GAS_LIMIT_LOW
+                    gasLimit: GAS_LIMIT_LOW
                 });
             }
             catch (e) {
@@ -138,13 +131,13 @@ function useOnChainInteraction(chainId, contractAddress) {
                 let chain;
                 switch (chainId) {
                     case '5611':
-                        chain = chains_1.opBNBTestnet;
+                        chain = opBNBTestnet;
                         break;
                     case '204':
-                        chain = chains_1.opBNB;
+                        chain = opBNB;
                         break;
                     default:
-                        chain = chains_1.opBNB;
+                        chain = opBNB;
                         break;
                 }
                 if (!isConnectedFromWagmi) {
@@ -164,17 +157,17 @@ function useOnChainInteraction(chainId, contractAddress) {
                     throw new Error('contract call failed with no tx hash returned');
                 }
                 setTxHash(tx);
-                identityService_1.identityService.setBlockChainGuruHash(userId, tx);
+                identityService.setBlockChainGuruHash(userId, tx);
                 setBlockChainInteractionState('on-chain');
-                identityService_1.identityService.setBlockChainTransactionCalled(userId, 'on-chain', (0, dayjs_1.default)().add(2, 'minute').valueOf());
+                identityService.setBlockChainTransactionCalled(userId, 'on-chain', dayjs().add(2, 'minute').valueOf());
             }
             catch (e) {
                 console.log('wallet contract call', e);
                 const errStr = e.toString();
-                if (errStr.includes(enums_1.OnchainInteractionError.OnWrongChain)) {
-                    await switchChainAsync({ chainId: chains_1.opBNB.id });
+                if (errStr.includes(OnchainInteractionError.OnWrongChain)) {
+                    await switchChainAsync({ chainId: opBNB.id });
                 }
-                if (e instanceof viem_1.TransactionExecutionError && e.cause instanceof viem_1.UserRejectedRequestError) {
+                if (e instanceof TransactionExecutionError && e.cause instanceof UserRejectedRequestError) {
                     setBlockChainInteractionState('not_start');
                     return;
                 }
@@ -182,9 +175,9 @@ function useOnChainInteraction(chainId, contractAddress) {
             }
         }
     }, [chainId, contractAddress, userId, interactionType, isConnectedFromWagmi, wallets, wagmiConnectedChainId]);
-    const getInteractionState = (0, react_1.useCallback)(async (txHash, setBlockChainInteractionState) => {
+    const getInteractionState = useCallback(async (txHash, setBlockChainInteractionState) => {
         try {
-            const { data } = await (0, task_1.getBlockChainInteractionState)(txHash);
+            const { data } = await getBlockChainInteractionState(txHash);
             if (data.hasConfirmed) {
                 setBlockChainInteractionState('confirmed');
             }

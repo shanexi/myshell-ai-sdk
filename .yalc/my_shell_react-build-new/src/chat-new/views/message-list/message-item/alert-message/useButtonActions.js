@@ -1,21 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useButtonActions;
-const next_intl_1 = require("next-intl");
-const navigation_1 = require("next/navigation");
-const react_1 = require("react");
-const bot_1 = require("../../../../../apis/bot.js");
-const new_chat_1 = require("../../../../../apis/new-chat.js");
-const runtime_config_1 = require("../../../../../common/utils/runtime-config.js");
-const store_1 = require("../../../../../services/store/index.js");
-const roomChatBot = `/chat/${runtime_config_1.TRANSLATOR_BOT_ID}`;
-function useButtonActions(message, clearMemory, partialUpdateMessage) {
-    const t = (0, next_intl_1.useTranslations)('chat');
-    const router = (0, navigation_1.useRouter)();
-    (0, react_1.useEffect)(() => {
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { setMessageHandled } from '../../../../../apis/bot.js';
+import { markMessageAsHandled } from '../../../../../apis/new-chat.js';
+import { TRANSLATOR_BOT_ID } from '../../../../../common/utils/runtime-config.js';
+import { useGlobalStore } from '../../../../../services/store/index.js';
+const roomChatBot = `/chat/${TRANSLATOR_BOT_ID}`;
+export default function useButtonActions(message, clearMemory, partialUpdateMessage) {
+    const t = useTranslations('chat');
+    const router = useRouter();
+    useEffect(() => {
         router.prefetch(roomChatBot);
     }, []);
-    const toggleLoginModal = (0, store_1.useGlobalStore)(state => state.toggleLoginModal);
+    const toggleLoginModal = useGlobalStore(state => state.toggleLoginModal);
     const onOpenLogin = () => toggleLoginModal(true);
     const onCreateRoom = () => {
         router.push(roomChatBot);
@@ -28,7 +25,7 @@ function useButtonActions(message, clearMemory, partialUpdateMessage) {
     };
     const onMarked = async () => {
         try {
-            const { success } = await (0, new_chat_1.markMessageAsHandled)(message.id);
+            const { success } = await markMessageAsHandled(message.id);
             if (success) {
                 partialUpdateMessage?.(message.id, {
                     handled: true
@@ -41,7 +38,7 @@ function useButtonActions(message, clearMemory, partialUpdateMessage) {
     };
     const onRemoveAndClearMemory = async () => {
         try {
-            const { success } = await (0, bot_1.setMessageHandled)(message.id);
+            const { success } = await setMessageHandled(message.id);
             if (success) {
                 partialUpdateMessage?.(message.id, {
                     handled: true

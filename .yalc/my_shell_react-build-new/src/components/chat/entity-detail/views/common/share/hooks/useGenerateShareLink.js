@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useGenerateShareLink;
-const react_use_1 = require("react-use");
-const bot_1 = require("../../../../../../../apis/bot.js");
-const workshop_1 = require("../../../../../../../apis/workshop.js");
-const api_1 = require("../../../../../../../gallery/modal/api.js");
-function useGenerateShareLink(type, id, botId) {
+import { useToggle } from 'react-use';
+import { getBotSharingCode } from '../../../../../../../apis/bot.js';
+import { getWidgetSharingCode } from '../../../../../../../apis/workshop.js';
+import { getGallerySharingCode } from '../../../../../../../gallery/modal/api.js';
+export default function useGenerateShareLink(type, id, botId) {
     const getApiFn = () => {
         let apiFn;
         switch (type) {
@@ -16,20 +13,20 @@ function useGenerateShareLink(type, id, botId) {
                 break;
             case 'bot':
             case 'ugc':
-                apiFn = bot_1.getBotSharingCode;
+                apiFn = getBotSharingCode;
                 break;
             case 'widget':
-                apiFn = workshop_1.getWidgetSharingCode;
+                apiFn = getWidgetSharingCode;
                 break;
             case 'gallery':
-                apiFn = api_1.getGallerySharingCode;
+                apiFn = getGallerySharingCode;
                 break;
             default:
-                apiFn = bot_1.getBotSharingCode;
+                apiFn = getBotSharingCode;
         }
         return apiFn;
     };
-    const [generating, setGenerating] = (0, react_use_1.useToggle)(false);
+    const [generating, setGenerating] = useToggle(false);
     const generateShareLink = async () => {
         let shareUrl = '';
         try {

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class CustomError extends Error {
+export default class CustomError extends Error {
     reason;
     msg;
     constructor(msg, reason) {
@@ -10,4 +8,3 @@ class CustomError extends Error {
         Object.setPrototypeOf(this, CustomError.prototype);
     }
 }
-exports.default = CustomError;

@@ -1,15 +1,13 @@
-"use strict";
 'use client';
-Object.defineProperty(exports, "__esModule", { value: true });
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const useNotification_1 = require("./useNotification.js");
+import { useTranslations } from 'next-intl';
+import { useCallback, useState } from 'react';
+import { useNotification } from './useNotification.js';
 function useDownload() {
-    const [downloading, setDownloading] = (0, react_1.useState)(false);
-    const { success, warning } = (0, useNotification_1.useNotification)();
-    const t = (0, next_intl_1.useTranslations)('common');
-    const gT = (0, next_intl_1.useTranslations)();
-    const onDownload = (0, react_1.useCallback)(async (filePath, fileName, successCb) => {
+    const [downloading, setDownloading] = useState(false);
+    const { success, warning } = useNotification();
+    const t = useTranslations('common');
+    const gT = useTranslations();
+    const onDownload = useCallback(async (filePath, fileName, successCb) => {
         setDownloading(true);
         fetch(filePath)
             .then(response => response.blob())
@@ -44,4 +42,4 @@ function useDownload() {
         onDownload
     };
 }
-exports.default = useDownload;
+export default useDownload;

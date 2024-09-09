@@ -1,12 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const next_intl_1 = require("next-intl");
-const usehooks_ts_1 = require("usehooks-ts");
-const useNotification_1 = require("./useNotification.js");
+import { useTranslations } from 'next-intl';
+import { useCopyToClipboard } from 'usehooks-ts';
+import { useNotification } from './useNotification.js';
 const useCopyClipboard = (text, successText, onSuccess, notice = true) => {
-    const [value, copy] = (0, usehooks_ts_1.useCopyToClipboard)();
-    const { success, error } = (0, useNotification_1.useNotification)();
-    const commonT = (0, next_intl_1.useTranslations)('common');
+    const [value, copy] = useCopyToClipboard();
+    const { success, error } = useNotification();
+    const commonT = useTranslations('common');
     const onCopyImage = (url) => {
         let _text = text;
         if (url) {
@@ -54,4 +52,4 @@ const useCopyClipboard = (text, successText, onSuccess, notice = true) => {
         value
     };
 };
-exports.default = useCopyClipboard;
+export default useCopyClipboard;

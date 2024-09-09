@@ -1,52 +1,35 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createRoom = createRoom;
-exports.removeRoomFromList = removeRoomFromList;
-exports.joinRoom = joinRoom;
-exports.getUserCreatedRoomList = getUserCreatedRoomList;
-exports.getRoomInfo = getRoomInfo;
-exports.getRoomMessage = getRoomMessage;
-exports.markAsRead = markAsRead;
-exports.getBotMessage = getBotMessage;
-exports.clearHistory = clearHistory;
-exports.deleteHistory = deleteHistory;
-exports.messageReport = messageReport;
-exports.messageFeedback = messageFeedback;
-exports.ttsRegen = ttsRegen;
-exports.getAsynJobInfo = getAsynJobInfo;
-exports.markMessageAsHandled = markMessageAsHandled;
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function createRoom() {
-    return APIFetch_1.APIFetch.post('/v1/channel/chat/create', {
+import { APIFetch } from '../core/request/APIFetch.js';
+export function createRoom() {
+    return APIFetch.post('/v1/channel/chat/create', {
         isGoLang: true
     });
 }
-function removeRoomFromList(id) {
-    return APIFetch_1.APIFetch.post(`/v1/channel/chat/list/delete/${id}`, {
+export function removeRoomFromList(id) {
+    return APIFetch.post(`/v1/channel/chat/list/delete/${id}`, {
         isGoLang: true
     });
 }
-function joinRoom(id) {
-    return APIFetch_1.APIFetch.post(`/v1/channel/chat/join/${id}`, {
+export function joinRoom(id) {
+    return APIFetch.post(`/v1/channel/chat/join/${id}`, {
         isGoLang: true,
         hideErrorToast: true
     });
 }
-function getUserCreatedRoomList() {
-    return APIFetch_1.APIFetch.post('/v1/channel/chat/create/list', {
+export function getUserCreatedRoomList() {
+    return APIFetch.post('/v1/channel/chat/create/list', {
         isGoLang: true,
         adapter: (res) => {
             return res.channelList;
         }
     });
 }
-function getRoomInfo(id) {
-    return APIFetch_1.APIFetch.post(`/v1/channel/chat/${id}`, {
+export function getRoomInfo(id) {
+    return APIFetch.post(`/v1/channel/chat/${id}`, {
         isGoLang: true
     });
 }
-function getRoomMessage(id, pageSize = 33, nextPageToken) {
-    return APIFetch_1.APIFetch.post(`/v1/channel/message/list/${id}`, {
+export function getRoomMessage(id, pageSize = 33, nextPageToken) {
+    return APIFetch.post(`/v1/channel/message/list/${id}`, {
         body: {
             pageSize,
             nextPageToken
@@ -63,16 +46,16 @@ function getRoomMessage(id, pageSize = 33, nextPageToken) {
         }
     });
 }
-function markAsRead(id) {
-    return APIFetch_1.APIFetch.post('/v1/channel/message/read', {
+export function markAsRead(id) {
+    return APIFetch.post('/v1/channel/message/read', {
         body: {
             channelId: id
         },
         isGoLang: true
     });
 }
-function getBotMessage(id, pageSize = 33, nextPageToken) {
-    return APIFetch_1.APIFetch.post(`/v1/bot/chat/list_history_messages`, {
+export function getBotMessage(id, pageSize = 33, nextPageToken) {
+    return APIFetch.post(`/v1/bot/chat/list_history_messages`, {
         body: {
             botId: id,
             listRequest: {
@@ -92,8 +75,8 @@ function getBotMessage(id, pageSize = 33, nextPageToken) {
         }
     });
 }
-function clearHistory(type, id) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteAllHistory', {
+export function clearHistory(type, id) {
+    return APIFetch.post('/v1/chat/deleteAllHistory', {
         body: {
             bizId: id,
             bizType: type === 'widget' ? 'HISTORY_OPERATION_BIZ_TYPE_WIDGET' : 'HISTORY_OPERATION_BIZ_TYPE_BOT'
@@ -101,8 +84,8 @@ function clearHistory(type, id) {
         isGoLang: true
     });
 }
-function deleteHistory(type, msgId) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
+export function deleteHistory(type, msgId) {
+    return APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
         body: {
             msgIdList: [msgId],
             bizType: type === 'widget' ? 'HISTORY_OPERATION_BIZ_TYPE_WIDGET' : 'HISTORY_OPERATION_BIZ_TYPE_BOT'
@@ -110,13 +93,13 @@ function deleteHistory(type, msgId) {
         isGoLang: true
     });
 }
-function messageReport(action, messageId) {
+export function messageReport(action, messageId) {
     const feedbackStateMap = {
         Liked: 1,
         Dislike: 2,
         Normal: 3
     };
-    return APIFetch_1.APIFetch.post('/v1/feedback/message', {
+    return APIFetch.post('/v1/feedback/message', {
         body: {
             action: feedbackStateMap[action],
             messageId
@@ -124,8 +107,8 @@ function messageReport(action, messageId) {
         isGoLang: true
     });
 }
-function messageFeedback(issueType, messageId, issues, otherDetail) {
-    return APIFetch_1.APIFetch.post('/v1/feedback/issue', {
+export function messageFeedback(issueType, messageId, issues, otherDetail) {
+    return APIFetch.post('/v1/feedback/issue', {
         body: {
             entityId: messageId,
             issueType,
@@ -137,8 +120,8 @@ function messageFeedback(issueType, messageId, issues, otherDetail) {
         isGoLang: true
     });
 }
-function ttsRegen(msgId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/regenerate_tts', {
+export function ttsRegen(msgId) {
+    return APIFetch.post('/v1/bot/chat/regenerate_tts', {
         body: {
             msgId
         },
@@ -153,16 +136,16 @@ function ttsRegen(msgId) {
         }
     });
 }
-function getAsynJobInfo(jobId) {
-    return APIFetch_1.APIFetch.post('/v1/async_job/get_info', {
+export function getAsynJobInfo(jobId) {
+    return APIFetch.post('/v1/async_job/get_info', {
         body: {
             jobId
         },
         isGoLang: true
     });
 }
-function markMessageAsHandled(msgId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/set_message_handled', {
+export function markMessageAsHandled(msgId) {
+    return APIFetch.post('/v1/bot/chat/set_message_handled', {
         body: {
             msgId
         },

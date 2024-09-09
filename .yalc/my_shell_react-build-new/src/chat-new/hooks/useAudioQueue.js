@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useAudioQueue;
-const react_1 = require("react");
-function useAudioQueue() {
-    const [autoPlayIdQueue, setAutoPlayIdQueue] = (0, react_1.useState)([]);
-    const playingAudio = (0, react_1.useMemo)(() => {
+import { useMemo, useState } from 'react';
+export default function useAudioQueue() {
+    const [autoPlayIdQueue, setAutoPlayIdQueue] = useState([]);
+    const playingAudio = useMemo(() => {
         return autoPlayIdQueue[0];
     }, [autoPlayIdQueue]);
     const enQueue = (id) => {

@@ -1,13 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Menubar;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const utils_1 = require("../../../../../lib/utils.js");
-const actions_1 = __importDefault(require("../actions/index.js"));
-function Menubar(props) {
+import { jsx as _jsx } from "react/jsx-runtime";
+import { cn } from '../../../../../lib/utils.js';
+import Actions from '../actions/index.js';
+export default function Menubar(props) {
     const { className } = props;
-    return ((0, jsx_runtime_1.jsx)("div", { className: (0, utils_1.cn)('mt-2.5 mx-0.5', className), children: (0, jsx_runtime_1.jsx)(actions_1.default, { source: "menubar" }) }));
+    return (_jsx("div", { className: cn('mt-2.5 mx-0.5', className), children: _jsx(Actions, { source: "menubar" }) }));
 }

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const useDevice_1 = require("../../../common/hooks/useDevice.js");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { forwardRef, useCallback, useImperativeHandle, useLayoutEffect, useRef } from 'react';
+import { useDevice } from '../../../common/hooks/useDevice.js';
 let audioAPI = null;
 const getAudioAPI = () => {
     if (audioAPI)
@@ -44,11 +42,11 @@ const getAudioAPI = () => {
     };
     return audioAPI;
 };
-const IosAudioPlayer = (0, react_1.forwardRef)((props, ref) => {
-    const audioRef = (0, react_1.useRef)(null);
+const IosAudioPlayer = forwardRef((props, ref) => {
+    const audioRef = useRef(null);
     const audioApi = getAudioAPI();
-    const loadTask = (0, react_1.useRef)();
-    (0, react_1.useLayoutEffect)(() => {
+    const loadTask = useRef();
+    useLayoutEffect(() => {
         return () => {
             audioApi.pause();
             if (audioRef.current) {
@@ -56,7 +54,7 @@ const IosAudioPlayer = (0, react_1.forwardRef)((props, ref) => {
             }
         };
     }, []);
-    const handlePlay = (0, react_1.useCallback)(async () => {
+    const handlePlay = useCallback(async () => {
         if (!audioRef.current?.paused)
             return Promise.reject();
         if (props.src && loadTask.current) {
@@ -67,7 +65,7 @@ const IosAudioPlayer = (0, react_1.forwardRef)((props, ref) => {
         }
         return Promise.resolve();
     }, []);
-    const handleLoad = (0, react_1.useCallback)(async () => {
+    const handleLoad = useCallback(async () => {
         if (props.src) {
             try {
                 loadTask.current = window
@@ -82,7 +80,7 @@ const IosAudioPlayer = (0, react_1.forwardRef)((props, ref) => {
             }
         }
     }, []);
-    (0, react_1.useImperativeHandle)(ref, () => {
+    useImperativeHandle(ref, () => {
         return {
             play: () => handlePlay()
                 .then(() => {
@@ -116,11 +114,11 @@ const IosAudioPlayer = (0, react_1.forwardRef)((props, ref) => {
             }
         };
     }, [handlePlay, handleLoad]);
-    return (0, jsx_runtime_1.jsx)("audio", { ...props, muted: true, ref: audioRef });
+    return _jsx("audio", { ...props, muted: true, ref: audioRef });
 });
 IosAudioPlayer.displayName = 'IosAudioPlayer';
 const useAudioPlayer = () => {
-    const { isIos } = (0, useDevice_1.useDevice)();
+    const { isIos } = useDevice();
     return !isIos ? 'audio' : IosAudioPlayer;
 };
-exports.default = useAudioPlayer;
+export default useAudioPlayer;

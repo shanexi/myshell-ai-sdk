@@ -1,25 +1,19 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useBotStore = exports.defaultChatSetting = void 0;
-const immer_1 = require("immer");
-const zustand_1 = require("zustand");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const middleware_1 = require("zustand/middleware");
-const immer_2 = require("zustand/middleware/immer");
-const interfaces_1 = require("../../chat/model/interfaces.js");
-exports.defaultChatSetting = {
+import { enableMapSet } from 'immer';
+import { create } from 'zustand';
+import computed from 'zustand-computed';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import { AudioSpeedValue2KeyMap, ChatSettingSpeakingLangEnum } from '../../chat/model/interfaces.js';
+export const defaultChatSetting = {
     isAutopushOn: true,
     isAudioOn: false,
     isAudioPlayOn: false,
     isTranscriptionOn: true,
     isTranslationOn: true,
-    speakingLanguage: interfaces_1.ChatSettingSpeakingLangEnum.AUTO,
-    audioSpeed: interfaces_1.AudioSpeedValue2KeyMap[1]
+    speakingLanguage: ChatSettingSpeakingLangEnum.AUTO,
+    audioSpeed: AudioSpeedValue2KeyMap[1]
 };
-(0, immer_1.enableMapSet)();
+enableMapSet();
 const DEFAULT_STATE = {
     updatingBotList: false,
     botList: [],
@@ -168,4 +162,4 @@ const computeState = (state) => ({
         return accumulator + current.unreadMessageCount;
     }, 0)
 });
-exports.useBotStore = (0, zustand_1.create)()((0, zustand_computed_1.default)((0, immer_2.immer)((0, middleware_1.devtools)(createBotSlice, { store: 'bot' })), computeState));
+export const useBotStore = create()(computed(immer(devtools(createBotSlice, { store: 'bot' })), computeState));

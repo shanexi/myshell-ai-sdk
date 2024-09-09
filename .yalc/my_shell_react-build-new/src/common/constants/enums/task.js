@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PointTypeEnum = exports.SeasonStatus = exports.OrderStatus = exports.OrderType = exports.PropStatusEnum = exports.GolangRewardStatusEnum = exports.PropTypeEnum = exports.GolangUserTaskStatusEnum = exports.TaskTypeEnum = void 0;
-var TaskTypeEnum;
+export var TaskTypeEnum;
 (function (TaskTypeEnum) {
     TaskTypeEnum["SEASON_TASK_TYPE_UNSPECIFIED"] = "SEASON_TASK_TYPE_UNSPECIFIED";
     TaskTypeEnum["SEASON_TASK_TYPE_DAILY_MESSAGE"] = "SEASON_TASK_TYPE_DAILY_MESSAGE";
@@ -30,8 +27,8 @@ var TaskTypeEnum;
     TaskTypeEnum["SEASON_TASK_TYPE_LUCKY_STAR"] = "SEASON_TASK_TYPE_LUCKY_STAR";
     TaskTypeEnum["SEASON_TASK_TYPE_CURVE_PROFIT_SHARE"] = "SEASON_TASK_TYPE_CURVE_PROFIT_SHARE";
     TaskTypeEnum["SEASON_TASK_TYPE_JACKPOT"] = "SEASON_TASK_TYPE_JACKPOT";
-})(TaskTypeEnum || (exports.TaskTypeEnum = TaskTypeEnum = {}));
-var GolangUserTaskStatusEnum;
+})(TaskTypeEnum || (TaskTypeEnum = {}));
+export var GolangUserTaskStatusEnum;
 (function (GolangUserTaskStatusEnum) {
     GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_UNSPECIFIED"] = "SEASON_TASK_ITEM_STATUS_UNSPECIFIED";
     GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_IN_PROGRESS"] = "SEASON_TASK_ITEM_STATUS_IN_PROGRESS";
@@ -39,54 +36,54 @@ var GolangUserTaskStatusEnum;
     GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_CLAIMED"] = "SEASON_TASK_ITEM_STATUS_CLAIMED";
     GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_UNAVAILABLE"] = "SEASON_TASK_ITEM_STATUS_UNAVAILABLE";
     GolangUserTaskStatusEnum["SEASON_TASK_ITEM_STATUS_MONTHLY_LIMIT_REACHED"] = "SEASON_TASK_ITEM_STATUS_MONTHLY_LIMIT_REACHED";
-})(GolangUserTaskStatusEnum || (exports.GolangUserTaskStatusEnum = GolangUserTaskStatusEnum = {}));
-var PropTypeEnum;
+})(GolangUserTaskStatusEnum || (GolangUserTaskStatusEnum = {}));
+export var PropTypeEnum;
 (function (PropTypeEnum) {
     PropTypeEnum["standardBattlePass"] = "standardBattlePass";
     PropTypeEnum["genesisPass"] = "genesisPass";
     PropTypeEnum["seasonBadge"] = "seasonBadge";
     PropTypeEnum["energyPack"] = "energyPack";
     PropTypeEnum["shellCoin"] = "shellCoin";
-})(PropTypeEnum || (exports.PropTypeEnum = PropTypeEnum = {}));
-var GolangRewardStatusEnum;
+})(PropTypeEnum || (PropTypeEnum = {}));
+export var GolangRewardStatusEnum;
 (function (GolangRewardStatusEnum) {
     GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_UNSPECIFIED"] = "BACKPACK_ITEM_STATUS_UNSPECIFIED";
     GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_COMING_SOON"] = "BACKPACK_ITEM_STATUS_COMING_SOON";
     GolangRewardStatusEnum["BACKPACK_ITEM_STATUS_DISABLED"] = "BACKPACK_ITEM_STATUS_DISABLED";
-})(GolangRewardStatusEnum || (exports.GolangRewardStatusEnum = GolangRewardStatusEnum = {}));
-var PropStatusEnum;
+})(GolangRewardStatusEnum || (GolangRewardStatusEnum = {}));
+export var PropStatusEnum;
 (function (PropStatusEnum) {
     PropStatusEnum["BACKPACK_ITEM_STATUS_UNSPECIFIED"] = "BACKPACK_ITEM_STATUS_UNSPECIFIED";
     PropStatusEnum["BACKPACK_ITEM_STATUS_COMING_SOON"] = "BACKPACK_ITEM_STATUS_COMING_SOON";
     PropStatusEnum["BACKPACK_ITEM_STATUS_DISABLED"] = "BACKPACK_ITEM_STATUS_DISABLED";
-})(PropStatusEnum || (exports.PropStatusEnum = PropStatusEnum = {}));
-var OrderType;
+})(PropStatusEnum || (PropStatusEnum = {}));
+export var OrderType;
 (function (OrderType) {
     OrderType["ORDER_SOURCE_TYPE_UNSPECIFIED"] = "ORDER_SOURCE_TYPE_UNSPECIFIED";
     OrderType["ORDER_SOURCE_TYPE_SEASON_POINT_EXCHANGE"] = "ORDER_SOURCE_TYPE_SEASON_POINT_EXCHANGE";
     OrderType["ORDER_SOURCE_TYPE_BADGE_EXCHANGE"] = "ORDER_SOURCE_TYPE_BADGE_EXCHANGE";
     OrderType["ORDER_SOURCE_TYPE_BUY_SHARE_KEY"] = "ORDER_SOURCE_TYPE_BUY_SHARE_KEY";
     OrderType["ORDER_SOURCE_TYPE_SELL_SHARE_KEY"] = "ORDER_SOURCE_TYPE_SELL_SHARE_KEY";
-})(OrderType || (exports.OrderType = OrderType = {}));
-var OrderStatus;
+})(OrderType || (OrderType = {}));
+export var OrderStatus;
 (function (OrderStatus) {
     OrderStatus["ORDER_STATUS_UNSPECIFIED"] = "ORDER_STATUS_UNSPECIFIED";
     OrderStatus["ORDER_STATUS_WAITING_PAY"] = "ORDER_STATUS_WAITING_PAY";
     OrderStatus["ORDER_STATUS_PAID"] = "ORDER_STATUS_PAID";
     OrderStatus["ORDER_STATUS_CANCELED"] = "ORDER_STATUS_CANCELED";
-})(OrderStatus || (exports.OrderStatus = OrderStatus = {}));
-var SeasonStatus;
+})(OrderStatus || (OrderStatus = {}));
+export var SeasonStatus;
 (function (SeasonStatus) {
     SeasonStatus["SEASON_STATUS_UNSPECIFIED"] = "SEASON_STATUS_UNSPECIFIED";
     SeasonStatus["SEASON_STATUS_ON_GOING"] = "SEASON_STATUS_ON_GOING";
     SeasonStatus["SEASON_STATUS_PREPARING_FOR_REWARDS"] = "SEASON_STATUS_PREPARING_FOR_REWARDS";
     SeasonStatus["SEASON_STATUS_REWARDS_REDEMPTION"] = "SEASON_STATUS_REWARDS_REDEMPTION";
     SeasonStatus["SEASON_STATUS_FINISHED"] = "SEASON_STATUS_FINISHED";
-})(SeasonStatus || (exports.SeasonStatus = SeasonStatus = {}));
-var PointTypeEnum;
+})(SeasonStatus || (SeasonStatus = {}));
+export var PointTypeEnum;
 (function (PointTypeEnum) {
     PointTypeEnum["USER_POINT_TYPE_GENERAL"] = "USER_POINT_TYPE_GENERAL";
     PointTypeEnum["USER_POINT_TYPE_ADVOCATOR"] = "USER_POINT_TYPE_ADVOCATOR";
     PointTypeEnum["USER_POINT_TYPE_CREATOR"] = "USER_POINT_TYPE_CREATOR";
     PointTypeEnum["USER_POINT_TYPE_INVESTOR"] = "USER_POINT_TYPE_INVESTOR";
-})(PointTypeEnum || (exports.PointTypeEnum = PointTypeEnum = {}));
+})(PointTypeEnum || (PointTypeEnum = {}));

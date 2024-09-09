@@ -1,26 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BizTypeEnum = exports.EmbedObjStatus = exports.EmbedObjType = exports.ContentTypeEnum = exports.Scenario = void 0;
-exports.reportIssue = reportIssue;
-exports.reportIssueV1 = reportIssueV1;
-exports.getPreSignUrl = getPreSignUrl;
-exports.uploadFileToS3 = uploadFileToS3;
-exports.uploadFileToS3WithProgress = uploadFileToS3WithProgress;
-exports.generateShareCode = generateShareCode;
-const rx_http_1 = require("../common/utils/rx-http.js");
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function reportIssue(data) {
-    return (0, rx_http_1.rxPost)('/app/reportIssue', data);
+import { rxPost } from '../common/utils/rx-http.js';
+import { APIFetch } from '../core/request/APIFetch.js';
+export function reportIssue(data) {
+    return rxPost('/app/reportIssue', data);
 }
-function reportIssueV1(data) {
-    return APIFetch_1.APIFetch.post('/v1/feedback/issue', {
+export function reportIssueV1(data) {
+    return APIFetch.post('/v1/feedback/issue', {
         body: {
             ...data
         },
         isGoLang: true
     });
 }
-var Scenario;
+export var Scenario;
 (function (Scenario) {
     Scenario["SCENARIO_BOT_PHOTO"] = "SCENARIO_BOT_PHOTO";
     Scenario["SCENARIO_BOT_REPLY_TTS_VOICE"] = "SCENARIO_BOT_REPLY_TTS_VOICE";
@@ -33,8 +24,8 @@ var Scenario;
     Scenario["SCENARIO_BOT_VOICE_LOGO"] = "SCENARIO_BOT_VOICE_LOGO";
     Scenario["SCENARIO_IM_CHAT"] = "SCENARIO_IM_CHAT";
     Scenario["SCENARIO_CURVE_COMMENT"] = "SCENARIO_CURVE_COMMENT";
-})(Scenario || (exports.Scenario = Scenario = {}));
-var ContentTypeEnum;
+})(Scenario || (Scenario = {}));
+export var ContentTypeEnum;
 (function (ContentTypeEnum) {
     ContentTypeEnum["PNG"] = "CONTENT_TYPE_IMAGE_PNG";
     ContentTypeEnum["JPEG"] = "CONTENT_TYPE_IMAGE_JPEG";
@@ -63,8 +54,8 @@ var ContentTypeEnum;
     ContentTypeEnum["WMV"] = "CONTENT_TYPE_VIDEO_WMV";
     ContentTypeEnum["FLV"] = "CONTENT_TYPE_VIDEO_FLV";
     ContentTypeEnum["ALL"] = "CONTENT_TYPE_ALL";
-})(ContentTypeEnum || (exports.ContentTypeEnum = ContentTypeEnum = {}));
-var EmbedObjType;
+})(ContentTypeEnum || (ContentTypeEnum = {}));
+export var EmbedObjType;
 (function (EmbedObjType) {
     EmbedObjType["UNKNOWN"] = "MESSAGE_METADATA_TYPE_UNSPECIFIED";
     EmbedObjType["IMAGE"] = "MESSAGE_METADATA_TYPE_IMAGE_FILE";
@@ -74,8 +65,8 @@ var EmbedObjType;
     EmbedObjType["TEXT_CONTENT"] = "MESSAGE_METADATA_TYPE_TEXT_CONTENT";
     EmbedObjType["AUDIO_CONTENT"] = "MESSAGE_METADATA_TYPE_USER_AUDIO";
     EmbedObjType["ALL"] = "MESSAGE_METADATA_TYPE_ALL_FILE";
-})(EmbedObjType || (exports.EmbedObjType = EmbedObjType = {}));
-var EmbedObjStatus;
+})(EmbedObjType || (EmbedObjType = {}));
+export var EmbedObjStatus;
 (function (EmbedObjStatus) {
     EmbedObjStatus["UNKNOWN"] = "EMBED_OBJ_STATUS_UNSPECIFIED";
     EmbedObjStatus["PENDING"] = "EMBED_OBJ_STATUS_PENDING";
@@ -84,24 +75,24 @@ var EmbedObjStatus;
     EmbedObjStatus["ERROR"] = "EMBED_OBJ_STATUS_ERROR";
     EmbedObjStatus["DELETED"] = "EMBED_OBJ_STATUS_DELETED";
     EmbedObjStatus["QUEUEING"] = "EMBED_OBJ_STATUS_QUEUEING";
-})(EmbedObjStatus || (exports.EmbedObjStatus = EmbedObjStatus = {}));
-var BizTypeEnum;
+})(EmbedObjStatus || (EmbedObjStatus = {}));
+export var BizTypeEnum;
 (function (BizTypeEnum) {
     BizTypeEnum["BIZ_TYPE_FEATURE_PAGE"] = "BIZ_TYPE_FEATURE_PAGE";
     BizTypeEnum["BIZ_TYPE_BOT"] = "BIZ_TYPE_BOT";
     BizTypeEnum["BIZ_TYPE_WIDGET"] = "BIZ_TYPE_WIDGET";
     BizTypeEnum["BIZ_TYPE_UNSPECIFIED"] = "BIZ_TYPE_UNSPECIFIED";
     BizTypeEnum["BIZ_TYPE_FORUM_POST"] = "BIZ_TYPE_FORUM_POST";
-})(BizTypeEnum || (exports.BizTypeEnum = BizTypeEnum = {}));
-function getPreSignUrl(fileInfo) {
-    return APIFetch_1.APIFetch.post('/v1/resource/get_put_object_pre_sign_url', {
+})(BizTypeEnum || (BizTypeEnum = {}));
+export function getPreSignUrl(fileInfo) {
+    return APIFetch.post('/v1/resource/get_put_object_pre_sign_url', {
         body: {
             fileInfo
         },
         isGoLang: true
     });
 }
-async function uploadFileToS3(scenario, suffix, file) {
+export async function uploadFileToS3(scenario, suffix, file) {
     const contentType = ContentTypeEnum[(suffix.startsWith('.') ? suffix.substring(1) : suffix).toUpperCase()] ?? ContentTypeEnum.ALL;
     const preSignResponse = await getPreSignUrl({
         scenario,
@@ -122,7 +113,7 @@ async function uploadFileToS3(scenario, suffix, file) {
     }
     return { objectKey: '', objectAccessUrl: '' };
 }
-async function uploadFileToS3WithProgress({ scenario, contentType, file, onProgress, cancelToken }) {
+export async function uploadFileToS3WithProgress({ scenario, contentType, file, onProgress, cancelToken }) {
     const preSignResponse = await getPreSignUrl({
         scenario,
         contentType: contentType || ContentTypeEnum.ALL,
@@ -174,8 +165,8 @@ async function uploadFileToS3WithProgress({ scenario, contentType, file, onProgr
     }
     return { objectKey: '', objectAccessUrl: '', success: false, code: res.code };
 }
-function generateShareCode(bizId, bizType) {
-    return APIFetch_1.APIFetch.post('/v1/shared/generate_shared_code', {
+export function generateShareCode(bizId, bizType) {
+    return APIFetch.post('/v1/shared/generate_shared_code', {
         body: {
             bizId,
             bizType

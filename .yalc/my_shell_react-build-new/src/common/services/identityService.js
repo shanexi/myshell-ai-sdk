@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.identityService = void 0;
-const common_helper_1 = require("../../common/utils/common-helper.js");
+import { extractPublicKey, isNullOrUndefined } from '../../common/utils/common-helper.js';
 class IdentityService {
     constructor() {
     }
@@ -38,7 +35,7 @@ class IdentityService {
         return localStorage.getItem('publicKey');
     }
     setUserPublicKey(value) {
-        localStorage.setItem('publicKey', (0, common_helper_1.extractPublicKey)(value));
+        localStorage.setItem('publicKey', extractPublicKey(value));
     }
     getLoginMethod() {
         return localStorage.getItem('loginMethod');
@@ -230,7 +227,7 @@ class IdentityService {
         return localStorage.getItem('userId');
     }
     setUserId(value) {
-        if ((0, common_helper_1.isNullOrUndefined)(value)) {
+        if (isNullOrUndefined(value)) {
             localStorage.removeItem('userId');
         }
         else {
@@ -242,7 +239,7 @@ class IdentityService {
         return publicAddressStr || null;
     }
     setPublicAddress(value) {
-        if ((0, common_helper_1.isNullOrUndefined)(value)) {
+        if (isNullOrUndefined(value)) {
             localStorage.removeItem('publicAddress');
         }
         else {
@@ -417,21 +414,21 @@ class IdentityService {
     }
     getTransactionDisplaySet() {
         const d = localStorage.getItem('transactionDisplaySet');
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return new Set(JSON.parse(localStorage.getItem('transactionDisplaySet')));
         }
         return new Set();
     }
     getTextInputMap() {
         const d = localStorage.getItem('textInputMap');
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return JSON.parse(d);
         }
         return {};
     }
     getWidgetTextInputMap() {
         const d = localStorage.getItem('widgetTextInputMap');
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return JSON.parse(d);
         }
         return {};
@@ -455,7 +452,7 @@ class IdentityService {
     getFilterValues() {
         const userId = localStorage.getItem('userId');
         const d = localStorage.getItem(`filterValues_${userId}`);
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return JSON.parse(d);
         }
         return {};
@@ -467,7 +464,7 @@ class IdentityService {
     getChildTagsObj() {
         const userId = localStorage.getItem('userId');
         const d = localStorage.getItem(`childTagsObj_${userId}`);
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return JSON.parse(d);
         }
         return {};
@@ -482,7 +479,7 @@ class IdentityService {
     getCreateDraft() {
         const userId = localStorage.getItem('userId');
         const d = localStorage.getItem(`createDraft${userId}`);
-        if (!(0, common_helper_1.isNullOrUndefined)(d)) {
+        if (!isNullOrUndefined(d)) {
             return JSON.parse(d);
         }
         return null;
@@ -492,7 +489,7 @@ class IdentityService {
     }
     getDontShow2FA() {
         const val = localStorage.getItem('DontShow2FA');
-        if (!(0, common_helper_1.isNullOrUndefined)(val)) {
+        if (!isNullOrUndefined(val)) {
             return JSON.parse(val);
         }
         return false;
@@ -518,4 +515,4 @@ class IdentityService {
         localStorage.removeItem('publicKey');
     }
 }
-exports.identityService = new IdentityService();
+export const identityService = new IdentityService();

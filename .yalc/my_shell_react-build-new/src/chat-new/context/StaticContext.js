@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.StaticContext = void 0;
-const react_1 = require("react");
+import { createContext } from 'react';
 const defaultFn = () => { };
-exports.StaticContext = (0, react_1.createContext)({
+export const StaticContext = createContext({
     type: 'bot',
     entityInfo: {
         id: '',

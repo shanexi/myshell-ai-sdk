@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MessageContext = void 0;
-const react_1 = require("react");
+import { createContext } from 'react';
 const defaultFn = () => { };
 const defaultAsyncFn = async () => { };
-exports.MessageContext = (0, react_1.createContext)({
+export const MessageContext = createContext({
     messageMap: new Map(),
     exceptionsForTextDisplay: {},
     addTextDisplayException: defaultFn,

@@ -1,17 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AudioSpeedMap = exports.defaultChatSetting = void 0;
-const definitions_1 = require("./definitions.js");
-exports.defaultChatSetting = {
+import { ChatSettingAudioSpeed, ChatSettingSpeakingLangEnum } from './definitions.js';
+export const defaultChatSetting = {
     isAutopushOn: true,
     isAudioOn: false,
     isAudioPlayOn: false,
     isTranscriptionOn: true,
     isTranslationOn: true,
-    speakingLanguage: definitions_1.ChatSettingSpeakingLangEnum.AUTO,
-    audioSpeed: definitions_1.ChatSettingAudioSpeed.ONE
+    speakingLanguage: ChatSettingSpeakingLangEnum.AUTO,
+    audioSpeed: ChatSettingAudioSpeed.ONE
 };
-exports.AudioSpeedMap = {
+export const AudioSpeedMap = {
     BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_FIVE: 0.5,
     BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_SEVEN_FIVE: 0.75,
     BOT_CHAT_SETTING_AUDIO_SPEED_ONE: 1,

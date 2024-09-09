@@ -1,14 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useGlobalStore = void 0;
-const zustand_1 = require("zustand");
-const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const middleware_1 = require("zustand/middleware");
-const immer_1 = require("zustand/middleware/immer");
-const identityService_1 = require("../../common/services/identityService.js");
+import { create } from 'zustand';
+import computed from 'zustand-computed';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import { identityService } from '../../common/services/identityService.js';
 var THEME;
 (function (THEME) {
     THEME["light"] = "light";
@@ -111,7 +105,7 @@ const createGlobalSlice = set => {
         setLanguage(language) {
             set(state => {
                 state.language = language;
-                identityService_1.identityService.setLanguage(language);
+                identityService.setLanguage(language);
             }, false, 'setLanguage');
         },
         setNoEnergyWithUsablePropModalVisible(visible) {
@@ -134,4 +128,4 @@ const createGlobalSlice = set => {
 const computeState = (state) => ({
     isGlobalLoading: state.loadingCount > 0
 });
-exports.useGlobalStore = (0, zustand_1.create)()((0, zustand_computed_1.default)((0, immer_1.immer)((0, middleware_1.devtools)(createGlobalSlice, { store: 'global' })), computeState));
+export const useGlobalStore = create()(computed(immer(devtools(createGlobalSlice, { store: 'global' })), computeState));

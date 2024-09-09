@@ -1,18 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useDeleteMessage;
-const next_intl_1 = require("next-intl");
-const react_use_1 = require("react-use");
-const new_chat_1 = require("../../../../../../../apis/new-chat.js");
-const useNotification_1 = require("../../../../../../../common/hooks/useNotification.js");
-function useDeleteMessage(type, id, deleteSpecifiedMessageId) {
-    const t = (0, next_intl_1.useTranslations)('workshop');
-    const [deleting, setDeleting] = (0, react_use_1.useToggle)(false);
-    const { success, error } = (0, useNotification_1.useNotification)();
+import { useTranslations } from 'next-intl';
+import { useToggle } from 'react-use';
+import { deleteHistory } from '../../../../../../../apis/new-chat.js';
+import { useNotification } from '../../../../../../../common/hooks/useNotification.js';
+export default function useDeleteMessage(type, id, deleteSpecifiedMessageId) {
+    const t = useTranslations('workshop');
+    const [deleting, setDeleting] = useToggle(false);
+    const { success, error } = useNotification();
     const deleteMessage = async (msgId) => {
         try {
             setDeleting(true);
-            const { success: apiSuccess } = await (0, new_chat_1.deleteHistory)(type, msgId);
+            const { success: apiSuccess } = await deleteHistory(type, msgId);
             if (apiSuccess) {
                 success({
                     content: t('delete_widget_success')

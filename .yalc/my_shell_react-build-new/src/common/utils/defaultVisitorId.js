@@ -1,6 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.defaultVisitorId = void 0;
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const defaultVisitorId = () => (0, common_helper_1.generateUUID)().replace(/-/g, '');
-exports.defaultVisitorId = defaultVisitorId;
+import { generateUUID } from '../../common/utils/common-helper.js';
+export const defaultVisitorId = () => generateUUID().replace(/-/g, '');

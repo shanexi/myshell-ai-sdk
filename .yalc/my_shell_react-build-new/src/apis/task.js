@@ -1,42 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTaskList = getTaskList;
-exports.taskGemClaim = taskGemClaim;
-exports.taskGemBatchClaim = taskGemBatchClaim;
-exports.verifyTwitterStatus = verifyTwitterStatus;
-exports.verifyTweet = verifyTweet;
-exports.verifyPLTweet = verifyPLTweet;
-exports.getNextTwitterCheckRefreshTime = getNextTwitterCheckRefreshTime;
-exports.getRanking = getRanking;
-exports.getRewards = getRewards;
-exports.rewardRedeem = rewardRedeem;
-exports.getProps = getProps;
-exports.onUseProp = onUseProp;
-exports.getNewlyMyPropsCount = getNewlyMyPropsCount;
-exports.clearNewlyMyPropsCount = clearNewlyMyPropsCount;
-exports.getBlockChainInteractionState = getBlockChainInteractionState;
-exports.getDeductionInfo = getDeductionInfo;
-exports.getShellCoinExchange = getShellCoinExchange;
-exports.exchangeShellCoin = exchangeShellCoin;
-exports.getOrders = getOrders;
-exports.getUserHoldBadge = getUserHoldBadge;
-exports.badgeToShellCoin = badgeToShellCoin;
-exports.getRedeemableSeasonList = getRedeemableSeasonList;
-exports.getLastSeasonInfo = getLastSeasonInfo;
-exports.claimAllLastSeasonPoints = claimAllLastSeasonPoints;
-exports.createMediaShareRecord = createMediaShareRecord;
-exports.getMediaShareReocrd = getMediaShareReocrd;
-exports.cancelVerifyMediaShareRecord = cancelVerifyMediaShareRecord;
-exports.claimTaskByRecordId = claimTaskByRecordId;
-const dayjs_1 = __importDefault(require("dayjs"));
-const common_helper_1 = require("../common/utils/common-helper.js");
-const rx_http_1 = require("../common/utils/rx-http.js");
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function getTaskList() {
-    return APIFetch_1.APIFetch.post('/v3/season/task/list', {
+import dayjs from 'dayjs';
+import { getAssetsUrl } from '../common/utils/common-helper.js';
+import { rxGet, rxPost } from '../common/utils/rx-http.js';
+import { APIFetch } from '../core/request/APIFetch.js';
+export function getTaskList() {
+    return APIFetch.post('/v3/season/task/list', {
         body: {
             taskTypes: [
                 'SEASON_TASK_TYPE_BOT_MASTER',
@@ -112,7 +79,7 @@ function getTaskList() {
                     date: item.additionalInfo &&
                         item.additionalInfo.dailyTaskStartDateUnix &&
                         !!Number(item.additionalInfo.dailyTaskStartDateUnix)
-                        ? (0, dayjs_1.default)(Number(item.additionalInfo.dailyTaskStartDateUnix))
+                        ? dayjs(Number(item.additionalInfo.dailyTaskStartDateUnix))
                         : undefined,
                     twitterUser: item.additionalInfo?.twitterUserId,
                     tweetId: item.additionalInfo?.tweetId,
@@ -133,8 +100,8 @@ function getTaskList() {
         }
     });
 }
-function taskGemClaim(taskId) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/claim', {
+export function taskGemClaim(taskId) {
+    return APIFetch.post('/v1/season/task/claim', {
         body: {
             taskId
         },
@@ -142,8 +109,8 @@ function taskGemClaim(taskId) {
         withMyShellSecurityToken: true
     });
 }
-function taskGemBatchClaim() {
-    return APIFetch_1.APIFetch.post('/v2/season/task/claim_all', {
+export function taskGemBatchClaim() {
+    return APIFetch.post('/v2/season/task/claim_all', {
         body: {
             taskTypes: [
                 'SEASON_TASK_TYPE_BOT_MASTER',
@@ -189,11 +156,11 @@ function taskGemBatchClaim() {
         withMyShellSecurityToken: true
     });
 }
-function verifyTwitterStatus(userTaskUid) {
-    return (0, rx_http_1.rxPost)('/userTask/verifyTwitterInteractionStatus', { userTaskUid });
+export function verifyTwitterStatus(userTaskUid) {
+    return rxPost('/userTask/verifyTwitterInteractionStatus', { userTaskUid });
 }
-function verifyTweet(tweetUrl) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/verify_tweet', {
+export function verifyTweet(tweetUrl) {
+    return APIFetch.post('/v1/season/task/verify_tweet', {
         isGoLang: true,
         hideErrorToast: true,
         body: {
@@ -201,8 +168,8 @@ function verifyTweet(tweetUrl) {
         }
     });
 }
-function verifyPLTweet(tweetUrl) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/verify_tweet_for_profit_share_task', {
+export function verifyPLTweet(tweetUrl) {
+    return APIFetch.post('/v1/season/task/verify_tweet_for_profit_share_task', {
         isGoLang: true,
         hideErrorToast: true,
         body: {
@@ -210,14 +177,14 @@ function verifyPLTweet(tweetUrl) {
         }
     });
 }
-function getNextTwitterCheckRefreshTime(userTaskUid) {
-    return (0, rx_http_1.rxGet)('/userTask/getNextTwitterCheckRefreshTime', { userTaskUid });
+export function getNextTwitterCheckRefreshTime(userTaskUid) {
+    return rxGet('/userTask/getNextTwitterCheckRefreshTime', { userTaskUid });
 }
-function getRanking() {
-    return (0, rx_http_1.rxGet)('/userTask/getRanking');
+export function getRanking() {
+    return rxGet('/userTask/getRanking');
 }
-function getRewards(seasonId) {
-    return APIFetch_1.APIFetch.post('/v1/season/reward/list', {
+export function getRewards(seasonId) {
+    return APIFetch.post('/v1/season/reward/list', {
         isGoLang: true,
         body: {
             seasonId
@@ -227,7 +194,7 @@ function getRewards(seasonId) {
                 id: item.id,
                 name: item.backpackItem.name,
                 description: item.backpackItem.description,
-                media: (0, common_helper_1.getAssetsUrl)(item.backpackItem.mediaUrl, 'https://cdn.myshell.ai/'),
+                media: getAssetsUrl(item.backpackItem.mediaUrl, 'https://cdn.myshell.ai/'),
                 propType: item.backpackItem.itemType,
                 subType: item.backpackItem.subType,
                 seasonId: item.seasonId,
@@ -235,14 +202,14 @@ function getRewards(seasonId) {
                 gemCount: item.point,
                 maxRedeemablePerUser: item.maxRedeemablePerUser,
                 redeemableCount: item.maxRedeemableCurrent,
-                endDate: Number(item.redeemableEndDateUnix) ? (0, dayjs_1.default)(Number(item.redeemableEndDateUnix)) : undefined,
-                startDate: Number(item.redeemableStartDateUnix) ? (0, dayjs_1.default)(Number(item.redeemableStartDateUnix)) : undefined
+                endDate: Number(item.redeemableEndDateUnix) ? dayjs(Number(item.redeemableEndDateUnix)) : undefined,
+                startDate: Number(item.redeemableStartDateUnix) ? dayjs(Number(item.redeemableStartDateUnix)) : undefined
             }));
         }
     });
 }
-function rewardRedeem(rewardId, count) {
-    return APIFetch_1.APIFetch.post('/v2/season/reward/redeem', {
+export function rewardRedeem(rewardId, count) {
+    return APIFetch.post('/v2/season/reward/redeem', {
         body: {
             rewardId,
             count
@@ -251,27 +218,27 @@ function rewardRedeem(rewardId, count) {
         withMyShellSecurityToken: true
     });
 }
-function getProps() {
-    return APIFetch_1.APIFetch.post('/v1/backpack/list', {
+export function getProps() {
+    return APIFetch.post('/v1/backpack/list', {
         isGoLang: true,
         adapter: (res) => {
             return res.items.map(item => ({
                 id: item.item.id,
                 name: item.item.name,
                 description: item.item.description,
-                media: (0, common_helper_1.getAssetsUrl)(item.item.mediaUrl, 'https://cdn.myshell.ai/'),
+                media: getAssetsUrl(item.item.mediaUrl, 'https://cdn.myshell.ai/'),
                 count: item.count,
                 propType: item.item.itemType,
                 subType: item.item.subType,
-                startDate: Number(item.item.usableStartDateUnix) ? (0, dayjs_1.default)(Number(item.item.usableStartDateUnix)) : undefined,
-                endDate: Number(item.item.usableEndDateUnix) ? (0, dayjs_1.default)(Number(item.item.usableEndDateUnix)) : undefined,
+                startDate: Number(item.item.usableStartDateUnix) ? dayjs(Number(item.item.usableStartDateUnix)) : undefined,
+                endDate: Number(item.item.usableEndDateUnix) ? dayjs(Number(item.item.usableEndDateUnix)) : undefined,
                 status: item.status
             }));
         }
     });
 }
-function onUseProp(propId, count) {
-    return APIFetch_1.APIFetch.post('/v1/backpack/use_backpack_item', {
+export function onUseProp(propId, count) {
+    return APIFetch.post('/v1/backpack/use_backpack_item', {
         body: {
             backpackItemId: propId,
             count
@@ -279,24 +246,24 @@ function onUseProp(propId, count) {
         isGoLang: true
     });
 }
-function getNewlyMyPropsCount() {
-    return APIFetch_1.APIFetch.post('/v1/user/get_newly_owned_prop_count', {
+export function getNewlyMyPropsCount() {
+    return APIFetch.post('/v1/user/get_newly_owned_prop_count', {
         isGoLang: true
     });
 }
-function clearNewlyMyPropsCount() {
-    return APIFetch_1.APIFetch.post('/v1/user/reset_newly_owned_prop_count', { isGoLang: true });
+export function clearNewlyMyPropsCount() {
+    return APIFetch.post('/v1/user/reset_newly_owned_prop_count', { isGoLang: true });
 }
-function getBlockChainInteractionState(txHash) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/get_blockchain_tx_status', {
+export function getBlockChainInteractionState(txHash) {
+    return APIFetch.post('/v1/season/task/get_blockchain_tx_status', {
         body: {
             txHash
         },
         isGoLang: true
     });
 }
-function getDeductionInfo() {
-    return APIFetch_1.APIFetch.post('/v2/season/info/get_deduction_info', {
+export function getDeductionInfo() {
+    return APIFetch.post('/v2/season/info/get_deduction_info', {
         isGoLang: true,
         adapter: (res) => {
             return res.infos.map(({ point, pointText, pointType }) => ({
@@ -307,8 +274,8 @@ function getDeductionInfo() {
         }
     });
 }
-function getShellCoinExchange() {
-    return APIFetch_1.APIFetch.post('/v1/season/reward/get_season_point_to_shell_coin_exchange_info', {
+export function getShellCoinExchange() {
+    return APIFetch.post('/v1/season/reward/get_season_point_to_shell_coin_exchange_info', {
         isGoLang: true,
         adapter: (res) => {
             return res.exchangeRatios.map(({ point, pointText, pointType, ratio, targetAmount, targetAmountText }) => ({
@@ -322,8 +289,8 @@ function getShellCoinExchange() {
         }
     });
 }
-function exchangeShellCoin() {
-    return APIFetch_1.APIFetch.post('/v1/season/reward/exchange_shell_coin_with_season_points', {
+export function exchangeShellCoin() {
+    return APIFetch.post('/v1/season/reward/exchange_shell_coin_with_season_points', {
         isGoLang: true,
         withMyShellSecurityToken: true,
         adapter: (res) => {
@@ -331,8 +298,8 @@ function exchangeShellCoin() {
         }
     });
 }
-function getOrders(pageToken, pageSize) {
-    return APIFetch_1.APIFetch.post('/v1/shell_coins/list_account_orders', {
+export function getOrders(pageToken, pageSize) {
+    return APIFetch.post('/v1/shell_coins/list_account_orders', {
         body: {
             listRequest: {
                 pageToken,
@@ -342,16 +309,16 @@ function getOrders(pageToken, pageSize) {
         isGoLang: true
     });
 }
-function getUserHoldBadge() {
-    return APIFetch_1.APIFetch.post('/v1/shell_coins/get_badge_exchange_shell_coin_info', {
+export function getUserHoldBadge() {
+    return APIFetch.post('/v1/shell_coins/get_badge_exchange_shell_coin_info', {
         isGoLang: true,
         adapter: (res) => {
             return res.badgeShellCoinExchangeInfo;
         }
     });
 }
-function badgeToShellCoin(exchangeBadges) {
-    return APIFetch_1.APIFetch.post('/v1/shell_coins/exchange_shell_coin_with_badges', {
+export function badgeToShellCoin(exchangeBadges) {
+    return APIFetch.post('/v1/shell_coins/exchange_shell_coin_with_badges', {
         body: {
             wantExchangeBadgeInfos: exchangeBadges
         },
@@ -362,8 +329,8 @@ function badgeToShellCoin(exchangeBadges) {
         }
     });
 }
-function getRedeemableSeasonList() {
-    return APIFetch_1.APIFetch.post('/v1/season/get_redeemable_season_list', {
+export function getRedeemableSeasonList() {
+    return APIFetch.post('/v1/season/get_redeemable_season_list', {
         isGoLang: true,
         adapter: (res) => {
             return res.seasons.map(info => {
@@ -376,13 +343,13 @@ function getRedeemableSeasonList() {
                     bannerMobileLight: info.bannerMobileLight,
                     bannerPcDark: info.bannerPcDark,
                     bannerPcLight: info.bannerPcLight,
-                    startDate: Number(info.startDateUnix) ? (0, dayjs_1.default)(Number(info.startDateUnix)) : undefined,
-                    endDate: Number(info.endDateUnix) ? (0, dayjs_1.default)(Number(info.endDateUnix)) : undefined,
+                    startDate: Number(info.startDateUnix) ? dayjs(Number(info.startDateUnix)) : undefined,
+                    endDate: Number(info.endDateUnix) ? dayjs(Number(info.endDateUnix)) : undefined,
                     claimableStart: Number(info.redeemableStartDateUnix)
-                        ? (0, dayjs_1.default)(Number(info.redeemableStartDateUnix))
+                        ? dayjs(Number(info.redeemableStartDateUnix))
                         : undefined,
-                    claimableEnd: Number(info.redeemableEndDateUnix) ? (0, dayjs_1.default)(Number(info.redeemableEndDateUnix)) : undefined,
-                    silentPeriodEnd: Number(info.silentPeriodEndUnix) ? (0, dayjs_1.default)(Number(info.silentPeriodEndUnix)) : undefined,
+                    claimableEnd: Number(info.redeemableEndDateUnix) ? dayjs(Number(info.redeemableEndDateUnix)) : undefined,
+                    silentPeriodEnd: Number(info.silentPeriodEndUnix) ? dayjs(Number(info.silentPeriodEndUnix)) : undefined,
                     status: info.status,
                     text: info.statusText
                 };
@@ -390,8 +357,8 @@ function getRedeemableSeasonList() {
         }
     });
 }
-function getLastSeasonInfo() {
-    return APIFetch_1.APIFetch.post('/v2/season/task/get_last_season_task_info', {
+export function getLastSeasonInfo() {
+    return APIFetch.post('/v2/season/task/get_last_season_task_info', {
         isGoLang: true,
         adapter: (res) => {
             return (res.unclaimedPoints || []).map(({ point, pointText, pointType }) => ({
@@ -402,35 +369,35 @@ function getLastSeasonInfo() {
         }
     });
 }
-function claimAllLastSeasonPoints() {
-    return APIFetch_1.APIFetch.post('/v1/season/task/claim_all_last_season_points', {
+export function claimAllLastSeasonPoints() {
+    return APIFetch.post('/v1/season/task/claim_all_last_season_points', {
         isGoLang: true,
         withMyShellSecurityToken: true
     });
 }
-function createMediaShareRecord(postLink, shareLink) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/create_media_share_record', {
+export function createMediaShareRecord(postLink, shareLink) {
+    return APIFetch.post('/v1/season/task/create_media_share_record', {
         isGoLang: true,
         hideErrorToast: true,
         body: { postLink, shareLink }
     });
 }
-function getMediaShareReocrd() {
-    return APIFetch_1.APIFetch.post('/v1/season/task/list_media_share_record', {
+export function getMediaShareReocrd() {
+    return APIFetch.post('/v1/season/task/list_media_share_record', {
         isGoLang: true,
         adapter: resp => resp.records
     });
 }
-function cancelVerifyMediaShareRecord(recordId) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/cancel_verify_media_share_record', {
+export function cancelVerifyMediaShareRecord(recordId) {
+    return APIFetch.post('/v1/season/task/cancel_verify_media_share_record', {
         isGoLang: true,
         body: {
             recordId
         }
     });
 }
-function claimTaskByRecordId(taskRecordId) {
-    return APIFetch_1.APIFetch.post('/v1/season/task/claim_task_by_record_id', {
+export function claimTaskByRecordId(taskRecordId) {
+    return APIFetch.post('/v1/season/task/claim_task_by_record_id', {
         isGoLang: true,
         body: {
             taskRecordId

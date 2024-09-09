@@ -1,26 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChatSettingSpeakingLangEnum = exports.AudioSpeedValue2KeyMap = exports.AudioSpeedMap = exports.AzureLanguageCode = exports.SSEEvents = exports.MsgEvents = exports.ImageStatus = exports.FeedbackSateEnum = exports.MessageRunningErrorType = void 0;
-var MessageRunningErrorType;
+export var MessageRunningErrorType;
 (function (MessageRunningErrorType) {
     MessageRunningErrorType["RUNNING_ERROR_TYPE_UNSPECIFIED"] = "RUNNING_ERROR_TYPE_UNSPECIFIED";
     MessageRunningErrorType["RUNNING_ERROR_TYPE_ENGINE_ERROR"] = "RUNNING_ERROR_TYPE_ENGINE_ERROR";
     MessageRunningErrorType["RUNNING_ERROR_TYPE_INNER_COMPONENT_ERROR"] = "RUNNING_ERROR_TYPE_INNER_COMPONENT_ERROR";
     MessageRunningErrorType["RUNNING_ERROR_TYPE_ENERGY_INSUFFICIANT"] = "RUNNING_ERROR_TYPE_ENERGY_INSUFFICIANT";
     MessageRunningErrorType["RUNNING_ERROR_TYPE_LLM_TOKEN_TOO_LONG"] = "RUNNING_ERROR_TYPE_LLM_TOKEN_TOO_LONG";
-})(MessageRunningErrorType || (exports.MessageRunningErrorType = MessageRunningErrorType = {}));
-exports.FeedbackSateEnum = {
+})(MessageRunningErrorType || (MessageRunningErrorType = {}));
+export const FeedbackSateEnum = {
     Normal: 0,
     Liked: 1,
     Dislike: 2
 };
-var ImageStatus;
+export var ImageStatus;
 (function (ImageStatus) {
     ImageStatus["DONE"] = "DONE";
     ImageStatus["PROCESSING"] = "PROCESSING";
     ImageStatus["ERROR"] = "ERROR";
-})(ImageStatus || (exports.ImageStatus = ImageStatus = {}));
-var MsgEvents;
+})(ImageStatus || (ImageStatus = {}));
+export var MsgEvents;
 (function (MsgEvents) {
     MsgEvents["AUTH_FAIL"] = "auth_fail";
     MsgEvents["MSG_ERROR"] = "message_error";
@@ -42,8 +39,8 @@ var MsgEvents;
     MsgEvents["NEED_VERIFY_CAPTCHA"] = "need_verify_captcha";
     MsgEvents["VOICE_CALL_END"] = "voice_call_end";
     MsgEvents["CHAT_LOGIN_POPUP"] = "chat_login_popup";
-})(MsgEvents || (exports.MsgEvents = MsgEvents = {}));
-exports.SSEEvents = {
+})(MsgEvents || (MsgEvents = {}));
+export const SSEEvents = {
     MESSAGE_SENT: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_SENT_MESSAGE_CREATED',
     MESSAGE_REPLYING: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_USER_SENT_MESSAGE_REPLYING',
     MESSAGE_IS_TEXT: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_TEXT',
@@ -66,26 +63,26 @@ exports.SSEEvents = {
     MESSAGE_REPLY_CREATE_WHOLD_MESSAGE: 'MESSAGE_REPLY_CREATE_WHOLD_MESSAGE',
     MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_RECOMMEND_BOT_SUCCESS: 'MESSAGE_REPLY_SSE_ELEMENT_EVENT_NAME_RECOMMEND_BOT_SUCCESS'
 };
-exports.AzureLanguageCode = {
+export const AzureLanguageCode = {
     en: 'en-US',
     ja: 'ja-JP',
     zh: 'zh-CN'
 };
-exports.AudioSpeedMap = {
+export const AudioSpeedMap = {
     BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_FIVE: 0.5,
     BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_SEVEN_FIVE: 0.75,
     BOT_CHAT_SETTING_AUDIO_SPEED_ONE: 1,
     BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_TWENTY_FIVE: 1.25,
     BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_FIVE: 1.5
 };
-exports.AudioSpeedValue2KeyMap = {
+export const AudioSpeedValue2KeyMap = {
     0.5: 'BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_FIVE',
     0.75: 'BOT_CHAT_SETTING_AUDIO_SPEED_ZERO_POINT_SEVEN_FIVE',
     1: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE',
     1.25: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_TWENTY_FIVE',
     1.5: 'BOT_CHAT_SETTING_AUDIO_SPEED_ONE_POINT_FIVE'
 };
-var ChatSettingSpeakingLangEnum;
+export var ChatSettingSpeakingLangEnum;
 (function (ChatSettingSpeakingLangEnum) {
     ChatSettingSpeakingLangEnum["UNSPECIFIED"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_UNSPECIFIED";
     ChatSettingSpeakingLangEnum["AUTO"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_AUTO";
@@ -95,4 +92,4 @@ var ChatSettingSpeakingLangEnum;
     ChatSettingSpeakingLangEnum["RU"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_RU";
     ChatSettingSpeakingLangEnum["ES"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_ES";
     ChatSettingSpeakingLangEnum["KO"] = "BOT_CHAT_SETTING_SPEAKING_LANGUAGE_KO";
-})(ChatSettingSpeakingLangEnum || (exports.ChatSettingSpeakingLangEnum = ChatSettingSpeakingLangEnum = {}));
+})(ChatSettingSpeakingLangEnum || (ChatSettingSpeakingLangEnum = {}));

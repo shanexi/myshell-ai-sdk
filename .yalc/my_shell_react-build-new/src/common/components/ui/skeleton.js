@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Skeleton = Skeleton;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const utils_1 = require("../../../lib/utils.js");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { cn } from '../../../lib/utils.js';
 function Skeleton({ className, animate = true, ...props }) {
-    return ((0, jsx_runtime_1.jsx)("div", { className: (0, utils_1.cn)('rounded-md bg-surface-container-hovered dark:bg-surface-container-pressed', className, animate && 'animate-pulse '), ...props }));
+    return (_jsx("div", { className: cn('rounded-md bg-surface-container-hovered dark:bg-surface-container-pressed', className, animate && 'animate-pulse '), ...props }));
 }
+export { Skeleton };

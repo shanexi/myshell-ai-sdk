@@ -1,26 +1,10 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./views/ChatModule.js"), exports);
-__exportStar(require("./views/extra/chat-setting/ChatSetting.js"), exports);
-__exportStar(require("./model/constants.js"), exports);
-__exportStar(require("./model/definitions.js"), exports);
-__exportStar(require("./context/StaticContext.js"), exports);
-__exportStar(require("./context/MessageContext.js"), exports);
-__exportStar(require("./context/LayoutContext.js"), exports);
-__exportStar(require("./hooks/useGetHistoryMessage.js"), exports);
-__exportStar(require("./util.js"), exports);
-__exportStar(require("./hooks/useMessageParams.js"), exports);
+export * from './views/ChatModule.js';
+export * from './views/extra/chat-setting/ChatSetting.js';
+export * from './model/constants.js';
+export * from './model/definitions.js';
+export * from './context/StaticContext.js';
+export * from './context/MessageContext.js';
+export * from './context/LayoutContext.js';
+export * from './hooks/useGetHistoryMessage.js';
+export * from './util.js';
+export * from './hooks/useMessageParams.js';

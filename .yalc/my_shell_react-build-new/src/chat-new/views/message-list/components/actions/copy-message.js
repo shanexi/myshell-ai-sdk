@@ -1,27 +1,21 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = CopyMessage;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const DocumentDuplicateIcon_1 = __importDefault(require("@heroicons/react/24/outline/DocumentDuplicateIcon"));
-const next_intl_1 = require("next-intl");
-const display_provider_1 = require("../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const context_menu_1 = require("../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../common/components/ui/icon-button.js");
-const typography_1 = require("../../../../../common/components/ui/typography.js");
-const useCopyClipboard_1 = __importDefault(require("../../../../../common/hooks/useCopyClipboard.js"));
-function CopyMessage(props) {
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
+import { useTranslations } from 'next-intl';
+import { useDisplayContext } from '../../../../../chat-new/views/message-list/components/display-provider/index.js';
+import { ContextMenuItem } from '../../../../../common/components/ui/context-menu.js';
+import { IconButton } from '../../../../../common/components/ui/icon-button.js';
+import { Text } from '../../../../../common/components/ui/typography.js';
+import useCopyClipboard from '../../../../../common/hooks/useCopyClipboard.js';
+export default function CopyMessage(props) {
     const { source } = props;
-    const commonT = (0, next_intl_1.useTranslations)('common');
-    const { message } = (0, display_provider_1.useDisplayContext)();
-    const { onCopy } = (0, useCopyClipboard_1.default)('');
+    const commonT = useTranslations('common');
+    const { message } = useDisplayContext();
+    const { onCopy } = useCopyClipboard('');
     const onCopyMessageWithSensors = () => {
         onCopy(message?.text);
     };
     if (source === 'menubar') {
-        return ((0, jsx_runtime_1.jsx)(icon_button_1.IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onCopyMessageWithSensors, children: (0, jsx_runtime_1.jsx)(DocumentDuplicateIcon_1.default, { className: "size-[18px]" }) }));
+        return (_jsx(IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onCopyMessageWithSensors, children: _jsx(DocumentDuplicateIcon, { className: "size-[18px]" }) }));
     }
-    return ((0, jsx_runtime_1.jsxs)(context_menu_1.ContextMenuItem, { onClick: onCopyMessageWithSensors, children: [(0, jsx_runtime_1.jsx)(DocumentDuplicateIcon_1.default, { className: "w-5 h-5" }), (0, jsx_runtime_1.jsx)(typography_1.Text, { className: "ml-2", children: commonT('copy_message') })] }));
+    return (_jsxs(ContextMenuItem, { onClick: onCopyMessageWithSensors, children: [_jsx(DocumentDuplicateIcon, { className: "w-5 h-5" }), _jsx(Text, { className: "ml-2", children: commonT('copy_message') })] }));
 }

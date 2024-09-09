@@ -1,26 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useGetHistoryMessage;
-const react_1 = require("react");
-const react_use_1 = require("react-use");
-const new_chat_1 = require("../../apis/new-chat.js");
-const util_1 = require("../util.js");
-function useGetHistoryMessage(type, id, addMessage) {
-    const nextPageToken = (0, react_1.useRef)();
+import { useRef } from 'react';
+import { useToggle } from 'react-use';
+import { getBotMessage, getRoomMessage } from '../../apis/new-chat.js';
+import { serverMessageParser } from '../util.js';
+export default function useGetHistoryMessage(type, id, addMessage) {
+    const nextPageToken = useRef();
     const pageSize = 33;
-    const hasMore = (0, react_1.useRef)(true);
-    const [getting, setGetting] = (0, react_use_1.useToggle)(false);
+    const hasMore = useRef(true);
+    const [getting, setGetting] = useToggle(false);
     const getApiFn = () => {
         let apiFn;
         switch (type) {
             case 'room':
-                apiFn = new_chat_1.getRoomMessage;
+                apiFn = getRoomMessage;
                 break;
             case 'bot':
-                apiFn = new_chat_1.getBotMessage;
+                apiFn = getBotMessage;
                 break;
             default:
-                apiFn = new_chat_1.getRoomMessage;
+                apiFn = getRoomMessage;
         }
         return apiFn;
     };
@@ -32,7 +29,7 @@ function useGetHistoryMessage(type, id, addMessage) {
                 hasMore.current = data.listResponse.hasMore;
                 nextPageToken.current = data.listResponse.nextPageToken;
                 const { messageList } = data;
-                addMessage(messageList.map(message => (0, util_1.serverMessageParser)(message, type)));
+                addMessage(messageList.map(message => serverMessageParser(message, type)));
                 return messageList;
             }
             throw new Error();

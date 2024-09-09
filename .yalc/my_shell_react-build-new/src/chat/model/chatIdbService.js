@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dexie_1 = __importDefault(require("dexie"));
+import Dexie from 'dexie';
 class ChatIdbService {
     db;
     chats;
     constructor() {
-        this.db = new dexie_1.default('chatHisDB');
+        this.db = new Dexie('chatHisDB');
         this.db.version(2).stores({
             chats: '[userId+botId]'
         });
@@ -52,4 +47,4 @@ class ChatIdbService {
     }
 }
 const chatIdbService = new ChatIdbService();
-exports.default = chatIdbService;
+export default chatIdbService;

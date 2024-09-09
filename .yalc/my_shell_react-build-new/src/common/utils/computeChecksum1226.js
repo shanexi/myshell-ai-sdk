@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.computeChecksum1226 = computeChecksum1226;
-function computeChecksum1226(rawTimestamp) {
+export function computeChecksum1226(rawTimestamp) {
     const timestamp = (rawTimestamp - (rawTimestamp % 10)) / 10;
     let flag = false;
     let sum = 0;

@@ -1,20 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.renderKatex = void 0;
-exports.default = default_1;
-const katex_1 = __importDefault(require("katex"));
-require("katex/dist/katex.min.css");
-function default_1(options = {}) {
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+export default function (options = {}) {
     return {
         extensions: [inlineKatex(options), blockKatex(options)]
     };
 }
-const renderKatex = (text, options = {}) => {
+export const renderKatex = (text, options = {}) => {
     try {
-        return katex_1.default.renderToString(text, {
+        return katex.renderToString(text, {
             macros: {
                 '\\RR': '\\mathbb{R}',
                 '\\f': '#1f(#2)'
@@ -30,7 +23,6 @@ const renderKatex = (text, options = {}) => {
         return text;
     }
 };
-exports.renderKatex = renderKatex;
 function inlineKatex(options) {
     return {
         name: 'inlineKatex',
@@ -49,7 +41,7 @@ function inlineKatex(options) {
             }
         },
         renderer(token) {
-            return (0, exports.renderKatex)(token.text, options);
+            return renderKatex(token.text, options);
         }
     };
 }
@@ -74,7 +66,7 @@ function blockKatex(options) {
         },
         renderer(token) {
             options.displayMode = true;
-            return (0, exports.renderKatex)(token.text, options);
+            return renderKatex(token.text, options);
         }
     };
 }

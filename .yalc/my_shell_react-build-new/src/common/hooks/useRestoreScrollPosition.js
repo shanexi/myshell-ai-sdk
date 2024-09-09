@@ -1,12 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useMemoScrollPosition = exports.useRestoreScrollPosition = void 0;
-const react_1 = require("react");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
-const useRestoreScrollPosition = (scrollRef, isScrollTop, scollPathName) => {
-    const { isMobile, pathname } = (0, usePathLocale_1.usePathLocale)();
+import { useLayoutEffect, useCallback } from 'react';
+import { usePathLocale } from '../../common/hooks/usePathLocale.js';
+export const useRestoreScrollPosition = (scrollRef, isScrollTop, scollPathName) => {
+    const { isMobile, pathname } = usePathLocale();
     const name = scollPathName !== undefined ? scollPathName : pathname;
-    (0, react_1.useLayoutEffect)(() => {
+    useLayoutEffect(() => {
         if (scrollRef.current && (isMobile || isScrollTop)) {
             try {
                 const pos = Number(sessionStorage.getItem(`scrollPos:${name}`));
@@ -18,11 +15,10 @@ const useRestoreScrollPosition = (scrollRef, isScrollTop, scollPathName) => {
         }
     }, [isMobile, pathname]);
 };
-exports.useRestoreScrollPosition = useRestoreScrollPosition;
-const useMemoScrollPosition = (scrollRef, scollPathName) => {
-    const { pathname } = (0, usePathLocale_1.usePathLocale)();
+export const useMemoScrollPosition = (scrollRef, scollPathName) => {
+    const { pathname } = usePathLocale();
     const name = scollPathName !== undefined ? scollPathName : pathname;
-    const memoScrollPosition = (0, react_1.useCallback)((id) => {
+    const memoScrollPosition = useCallback((id) => {
         try {
             let ele = null;
             if (id && typeof id === 'string') {
@@ -41,4 +37,3 @@ const useMemoScrollPosition = (scrollRef, scollPathName) => {
     }, [pathname]);
     return memoScrollPosition;
 };
-exports.useMemoScrollPosition = useMemoScrollPosition;

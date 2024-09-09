@@ -1,16 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Link = Link;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const link_1 = __importDefault(require("next/link"));
-const link_2 = __importDefault(require("next-intl/link"));
-const utils_1 = require("../../../lib/utils.js");
-function Link({ className, href, scroll = false, replace = false, prefetch = true, children, onClick, ...props }) {
+import { jsx as _jsx } from "react/jsx-runtime";
+import LinkComponent from 'next/link';
+import LinkIntlComponent from 'next-intl/link';
+import { cn } from '../../../lib/utils.js';
+export function Link({ className, href, scroll = false, replace = false, prefetch = true, children, onClick, ...props }) {
     const externalLink = /^(https?:\/\/)/.test(typeof href === 'string' ? href : `${href.pathname}`);
-    const Component = externalLink ? link_1.default : link_2.default;
-    return ((0, jsx_runtime_1.jsx)(Component, { href: href, scroll: scroll, replace: replace, prefetch: prefetch, onClick: onClick, className: (0, utils_1.cn)(className), rel: externalLink ? 'nofollow,noreferrer' : 'dofollow', ...props, children: children }));
+    const Component = externalLink ? LinkComponent : LinkIntlComponent;
+    return (_jsx(Component, { href: href, scroll: scroll, replace: replace, prefetch: prefetch, onClick: onClick, className: cn(className), rel: externalLink ? 'nofollow,noreferrer' : 'dofollow', ...props, children: children }));
 }
-exports.default = Link;
+export default Link;

@@ -1,16 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = WidgetList;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const next_intl_1 = require("next-intl");
-const NormalCard_1 = __importDefault(require("../../../../common/components/NormalCard.js"));
-const workshop_1 = require("../../../../common/constants/enums/workshop.js");
-const utils_1 = require("../../../../lib/utils.js");
-function WidgetList({ showSimplifyTags = false, widgets, pinnedCallback, onClose, setShowUserDetail }) {
-    const workshopT = (0, next_intl_1.useTranslations)('workshop');
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useTranslations } from 'next-intl';
+import NormalCard from '../../../../common/components/NormalCard.js';
+import { WidgetChatCallerTypeEnum } from '../../../../common/constants/enums/workshop.js';
+import { cn } from '../../../../lib/utils.js';
+export default function WidgetList({ showSimplifyTags = false, widgets, pinnedCallback, onClose, setShowUserDetail }) {
+    const workshopT = useTranslations('workshop');
     const widgetList = widgets?.map(item => {
         return {
             title: item.name,
@@ -19,12 +13,12 @@ function WidgetList({ showSimplifyTags = false, widgets, pinnedCallback, onClose
             id: item.id,
             clickUrl: `/robot-workshop/widget/${item.id}`,
             clickMobileUrl: `/robot-workshop/widget/${item.id}`,
-            showVoice: item.chatCallerType === workshop_1.WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
+            showVoice: item.chatCallerType === WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
             type: 'WIDGET',
             tags: item.tags
         };
     }) || [];
-    return widgetList.length ? ((0, jsx_runtime_1.jsx)("div", { className: (0, utils_1.cn)('grid grid-cols-1 gap-x-4 gap-y-2', widgetList.length > 0 ? 'md:grid-cols-2' : ''), children: widgetList.map((widget, index) => {
-            return (0, jsx_runtime_1.jsx)(NormalCard_1.default, { size: "sm", showTags: true, item: widget, isLine: true }, widget.id);
-        }) })) : ((0, jsx_runtime_1.jsx)("div", { className: "text-on-surface h-[120px] flex justify-center items-center", children: workshopT('no_widgets_available') }));
+    return widgetList.length ? (_jsx("div", { className: cn('grid grid-cols-1 gap-x-4 gap-y-2', widgetList.length > 0 ? 'md:grid-cols-2' : ''), children: widgetList.map((widget, index) => {
+            return _jsx(NormalCard, { size: "sm", showTags: true, item: widget, isLine: true }, widget.id);
+        }) })) : (_jsx("div", { className: "text-on-surface h-[120px] flex justify-center items-center", children: workshopT('no_widgets_available') }));
 }

@@ -1,13 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("@chakra-ui/react");
-const react_2 = require("react");
+import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
+import { useToast } from '@chakra-ui/react';
+import { useEffect, useRef } from 'react';
 function CountdownTips() {
-    const toast = (0, react_1.useToast)();
-    const timerRef = (0, react_2.useRef)(null);
-    const toastIdRef = (0, react_2.useRef)(null);
-    (0, react_2.useEffect)(() => {
+    const toast = useToast();
+    const timerRef = useRef(null);
+    const toastIdRef = useRef(null);
+    useEffect(() => {
         let time = 10;
         function addToast() {
             toastIdRef.current = toast({
@@ -39,6 +37,6 @@ function CountdownTips() {
             clearInterval(timerRef.current);
         };
     }, []);
-    return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, {});
+    return _jsx(_Fragment, {});
 }
-exports.default = CountdownTips;
+export default CountdownTips;

@@ -1,51 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserProfile = getUserProfile;
-exports.updateUserProfile = updateUserProfile;
-exports.checkInvitationCode = checkInvitationCode;
-exports.getUserEnergyInfo = getUserEnergyInfo;
-exports.updateUserName = updateUserName;
-exports.isUserNameAvailable = isUserNameAvailable;
-exports.uploadAvatar = uploadAvatar;
-exports.connectToTelegram = connectToTelegram;
-exports.bindTelegram = bindTelegram;
-exports.connectToDiscord = connectToDiscord;
-exports.connectToTwitter = connectToTwitter;
-exports.getUserConnectedAccounts = getUserConnectedAccounts;
-exports.updateLanguage = updateLanguage;
-exports.updateUserSetting = updateUserSetting;
-exports.kolUseInviteCode = kolUseInviteCode;
-exports.getShellCoins = getShellCoins;
-exports.claimAndUseSeasonPass = claimAndUseSeasonPass;
-exports.getPointRecords = getPointRecords;
-exports.getCoinRecords = getCoinRecords;
-exports.tryVerifyYidunCaptcha = tryVerifyYidunCaptcha;
-exports.setUserFollow = setUserFollow;
-exports.checkUserNameAvailable = checkUserNameAvailable;
-exports.getWidgetsByUser = getWidgetsByUser;
-exports.getBotsByUser = getBotsByUser;
-exports.getUserBotUsageInfo = getUserBotUsageInfo;
-exports.getInvitation = getInvitation;
-exports.getWalletList = getWalletList;
-exports.checkBindPrivyEmail = checkBindPrivyEmail;
-exports.bindRemove = bindRemove;
-exports.updateUserSettings = updateUserSettings;
-exports.getUserSettings = getUserSettings;
-exports.registerFCMUserDevice = registerFCMUserDevice;
-exports.fetchUserPoints = fetchUserPoints;
-exports.getExperimentInfo = getExperimentInfo;
-exports.userLogout = userLogout;
-const dayjs_1 = __importDefault(require("dayjs"));
-const user_1 = require("../common/constants/enums/user.js");
-const user_2 = require("../common/constants/interfaces/user.js");
-const rx_http_1 = require("../common/utils/rx-http.js");
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function getUserProfile(props) {
+import dayjs from 'dayjs';
+import { UserMembershipTypeEnum } from '../common/constants/enums/user.js';
+import { BondingCurveCreatorStatus } from '../common/constants/interfaces/user.js';
+import { rxGet, rxPost, rxUpload } from '../common/utils/rx-http.js';
+import { APIFetch } from '../core/request/APIFetch.js';
+export function getUserProfile(props) {
     const { userId, name, nameTag } = props || {};
-    return APIFetch_1.APIFetch.post('/v1/user/get_info', {
+    return APIFetch.post('/v1/user/get_info', {
         body: {
             ...(userId && { userId }),
             ...(name && { name: decodeURIComponent(name) }),
@@ -60,22 +20,22 @@ function getUserProfile(props) {
                 avatar: summary.avatar,
                 email: summary.email,
                 id: summary.id,
-                isGenesisPasscard: membershipInfo.type === user_1.UserMembershipTypeEnum.TYPE_GENESIS_WITH_GENESIS_CARD,
+                isGenesisPasscard: membershipInfo.type === UserMembershipTypeEnum.TYPE_GENESIS_WITH_GENESIS_CARD,
                 isNftAvatar: summary.isNftAvatar,
-                isPasscard: membershipInfo.type === user_1.UserMembershipTypeEnum.TYPE_GENESIS_WITH_PASS_CARD,
-                level: membershipInfo.type === user_1.UserMembershipTypeEnum.TYPE_GENESIS_WITH_GENESIS_CARD ||
-                    membershipInfo.type === user_1.UserMembershipTypeEnum.TYPE_GENESIS_WITH_PASS_CARD
+                isPasscard: membershipInfo.type === UserMembershipTypeEnum.TYPE_GENESIS_WITH_PASS_CARD,
+                level: membershipInfo.type === UserMembershipTypeEnum.TYPE_GENESIS_WITH_GENESIS_CARD ||
+                    membershipInfo.type === UserMembershipTypeEnum.TYPE_GENESIS_WITH_PASS_CARD
                     ? 3
-                    : membershipInfo.type === user_1.UserMembershipTypeEnum.TYPE_PREMIUM
+                    : membershipInfo.type === UserMembershipTypeEnum.TYPE_PREMIUM
                         ? 2
                         : 1,
                 name: summary.name,
                 nameTag: summary.nameTag,
                 createdDate: summary.userCreatedAt
-                    ? (0, dayjs_1.default)(Number(summary.userCreatedAt)).format('YYYY-MM-DDTHH:mm:ssZ')
+                    ? dayjs(Number(summary.userCreatedAt)).format('YYYY-MM-DDTHH:mm:ssZ')
                     : undefined,
                 createdTime: summary.userCreatedAt
-                    ? (0, dayjs_1.default)(Number(summary.userCreatedAt)).format('YYYY-MM-DD HH:mm:ss.SSS')
+                    ? dayjs(Number(summary.userCreatedAt)).format('YYYY-MM-DD HH:mm:ss.SSS')
                     : undefined,
                 publicAddress: summary.publicAddress,
                 source: summary.userSource,
@@ -100,14 +60,14 @@ function getUserProfile(props) {
                 loginType: user.loginType,
                 publicKey: user.publicKey,
                 isKol: user.isKol,
-                rugged: user.bondingCurveCreatorStatus === user_2.BondingCurveCreatorStatus.RUGGED
+                rugged: user.bondingCurveCreatorStatus === BondingCurveCreatorStatus.RUGGED
             };
         }
     });
 }
-function updateUserProfile(props) {
+export function updateUserProfile(props) {
     const { name, avatar, background, description } = props || {};
-    return APIFetch_1.APIFetch.post('/v1/user/update_user_info', {
+    return APIFetch.post('/v1/user/update_user_info', {
         body: {
             ...(name && { name }),
             ...(avatar && { avatar }),
@@ -117,11 +77,11 @@ function updateUserProfile(props) {
         isGoLang: true
     });
 }
-function checkInvitationCode(code) {
-    return (0, rx_http_1.rxPost)('/user/checkInvitationCode', { code }, { allowAnonymous: true });
+export function checkInvitationCode(code) {
+    return rxPost('/user/checkInvitationCode', { code }, { allowAnonymous: true });
 }
-function getUserEnergyInfo(userId) {
-    return APIFetch_1.APIFetch.post('/v1/user/get_energy', {
+export function getUserEnergyInfo(userId) {
+    return APIFetch.post('/v1/user/get_energy', {
         body: {
             userId
         },
@@ -131,61 +91,61 @@ function getUserEnergyInfo(userId) {
         }
     });
 }
-function updateUserName(name) {
-    return (0, rx_http_1.rxPost)('/user/updateUserName', { name: name || '' }, { noPopupError: true });
+export function updateUserName(name) {
+    return rxPost('/user/updateUserName', { name: name || '' }, { noPopupError: true });
 }
-function isUserNameAvailable(name) {
-    return (0, rx_http_1.rxGet)('/user/isUserNameAvailable', { name });
+export function isUserNameAvailable(name) {
+    return rxGet('/user/isUserNameAvailable', { name });
 }
-function uploadAvatar(file) {
+export function uploadAvatar(file) {
     const formData = new FormData();
     formData.append('file', file);
-    return (0, rx_http_1.rxUpload)('/user/uploadAvatar', formData);
+    return rxUpload('/user/uploadAvatar', formData);
 }
-function connectToTelegram(tgData) {
-    return (0, rx_http_1.rxPost)('/user/connectToTelegram', tgData);
+export function connectToTelegram(tgData) {
+    return rxPost('/user/connectToTelegram', tgData);
 }
-function bindTelegram(tgGuid) {
-    return (0, rx_http_1.rxPost)('v1/user/bindTelegram', { tgGuid }, {
+export function bindTelegram(tgGuid) {
+    return rxPost('v1/user/bindTelegram', { tgGuid }, {
         noPopupError: true
     });
 }
-function connectToDiscord(code, state, source) {
-    return (0, rx_http_1.rxPost)('/user/connectToDiscord', {
+export function connectToDiscord(code, state, source) {
+    return rxPost('/user/connectToDiscord', {
         state,
         code,
         ...(source && { source })
     });
 }
-function connectToTwitter(code, state, source) {
-    return (0, rx_http_1.rxPost)('/user/connectToTwitter', {
+export function connectToTwitter(code, state, source) {
+    return rxPost('/user/connectToTwitter', {
         state,
         code,
         ...(source && { source })
     });
 }
-function getUserConnectedAccounts() {
-    return (0, rx_http_1.rxGet)('/user/getUserConnectedAccounts');
+export function getUserConnectedAccounts() {
+    return rxGet('/user/getUserConnectedAccounts');
 }
-function updateLanguage(language) {
-    return (0, rx_http_1.rxPost)('/user/updateLanguage', { language });
+export function updateLanguage(language) {
+    return rxPost('/user/updateLanguage', { language });
 }
-function updateUserSetting(data) {
-    return (0, rx_http_1.rxPost)('/user/updateUserSetting', data);
+export function updateUserSetting(data) {
+    return rxPost('/user/updateUserSetting', data);
 }
-function kolUseInviteCode(code) {
-    return (0, rx_http_1.rxPost)('/v1/kol-invite/use_code', { code });
+export function kolUseInviteCode(code) {
+    return rxPost('/v1/kol-invite/use_code', { code });
 }
-function getShellCoins() {
-    return APIFetch_1.APIFetch.post('/v1/shell_coins/get_account', {
+export function getShellCoins() {
+    return APIFetch.post('/v1/shell_coins/get_account', {
         isGoLang: true,
         adapter: (res) => {
             return res.account;
         }
     });
 }
-function claimAndUseSeasonPass() {
-    return APIFetch_1.APIFetch.post('/v1/season/reward/auto_redeem_and_use_season_pass_if_needed', {
+export function claimAndUseSeasonPass() {
+    return APIFetch.post('/v1/season/reward/auto_redeem_and_use_season_pass_if_needed', {
         isGoLang: true,
         withMyShellSecurityToken: true,
         adapter: (res) => {
@@ -193,8 +153,8 @@ function claimAndUseSeasonPass() {
         }
     });
 }
-function getPointRecords(pageToken, pageSize, seasonId, pointType) {
-    return APIFetch_1.APIFetch.post('/v1/user/get_user_season_point_records', {
+export function getPointRecords(pageToken, pageSize, seasonId, pointType) {
+    return APIFetch.post('/v1/user/get_user_season_point_records', {
         body: {
             listRequest: {
                 pageToken,
@@ -206,8 +166,8 @@ function getPointRecords(pageToken, pageSize, seasonId, pointType) {
         isGoLang: true
     });
 }
-function getCoinRecords(pageToken, pageSize) {
-    return APIFetch_1.APIFetch.post('/v1/shell_coins/list_account_orders', {
+export function getCoinRecords(pageToken, pageSize) {
+    return APIFetch.post('/v1/shell_coins/list_account_orders', {
         body: {
             listRequest: {
                 pageToken,
@@ -217,8 +177,8 @@ function getCoinRecords(pageToken, pageSize) {
         isGoLang: true
     });
 }
-function tryVerifyYidunCaptcha(sign) {
-    return APIFetch_1.APIFetch.post('/v1/captcha/try_verify', {
+export function tryVerifyYidunCaptcha(sign) {
+    return APIFetch.post('/v1/captcha/try_verify', {
         body: {
             sign
         },
@@ -228,8 +188,8 @@ function tryVerifyYidunCaptcha(sign) {
         }
     });
 }
-function setUserFollow(targetUserId, followed) {
-    return APIFetch_1.APIFetch.post('/v1/user/follow', {
+export function setUserFollow(targetUserId, followed) {
+    return APIFetch.post('/v1/user/follow', {
         body: {
             targetUserId,
             followed
@@ -237,16 +197,16 @@ function setUserFollow(targetUserId, followed) {
         isGoLang: true
     });
 }
-function checkUserNameAvailable(name) {
-    return APIFetch_1.APIFetch.post('/v1/user/check_user_name_available', {
+export function checkUserNameAvailable(name) {
+    return APIFetch.post('/v1/user/check_user_name_available', {
         body: {
             name
         },
         isGoLang: true
     });
 }
-function getWidgetsByUser(userId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/list_user_public_widgets', {
+export function getWidgetsByUser(userId) {
+    return APIFetch.post('/v1/widget/list_user_public_widgets', {
         body: {
             userId
         },
@@ -349,8 +309,8 @@ function getWidgetsByUser(userId) {
         }
     });
 }
-function getBotsByUser(userId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/list_user_public_bots', {
+export function getBotsByUser(userId) {
+    return APIFetch.post('/v1/bot/list_user_public_bots', {
         body: {
             userId
         },
@@ -483,55 +443,55 @@ function getBotsByUser(userId) {
         })
     });
 }
-function getUserBotUsageInfo() {
-    return APIFetch_1.APIFetch.post('/v1/user/get_bots_usage_info', {
+export function getUserBotUsageInfo() {
+    return APIFetch.post('/v1/user/get_bots_usage_info', {
         isGoLang: true
     });
 }
-function getInvitation() {
-    return APIFetch_1.APIFetch.post('/v1/user/invitation/get_invitation', {
+export function getInvitation() {
+    return APIFetch.post('/v1/user/invitation/get_invitation', {
         isGoLang: true
     });
 }
-function getWalletList() {
-    return APIFetch_1.APIFetch.post('/v1/user/get_wallet_info', {
+export function getWalletList() {
+    return APIFetch.post('/v1/user/get_wallet_info', {
         isGoLang: true,
         adapter: (res) => {
             return res.wallet;
         }
     });
 }
-function checkBindPrivyEmail() {
-    return APIFetch_1.APIFetch.post('/v1/user/bind/check_bind_privy_email', {
+export function checkBindPrivyEmail() {
+    return APIFetch.post('/v1/user/bind/check_bind_privy_email', {
         isGoLang: true
     });
 }
-function bindRemove(bindType) {
-    return APIFetch_1.APIFetch.post('/v1/user/bind/remove', {
+export function bindRemove(bindType) {
+    return APIFetch.post('/v1/user/bind/remove', {
         isGoLang: true,
         body: {
             bindType
         }
     });
 }
-function updateUserSettings(data) {
-    return APIFetch_1.APIFetch.post('/v1/user/update_user_settings', {
+export function updateUserSettings(data) {
+    return APIFetch.post('/v1/user/update_user_settings', {
         isGoLang: true,
         body: {
             settings: Array.isArray(data) ? data : [data]
         }
     });
 }
-function getUserSettings() {
-    return APIFetch_1.APIFetch.post('/v1/user/get_user_settings', {
+export function getUserSettings() {
+    return APIFetch.post('/v1/user/get_user_settings', {
         isGoLang: true,
         adapter: res => {
             return res.settings;
         }
     });
 }
-function registerFCMUserDevice(token) {
-    return APIFetch_1.APIFetch.post('/v1/user/regist_user_device', {
+export function registerFCMUserDevice(token) {
+    return APIFetch.post('/v1/user/regist_user_device', {
         body: {
             deviceId: token,
             deviceType: 'DEVICE_TYPE_WEB',
@@ -540,8 +500,8 @@ function registerFCMUserDevice(token) {
         isGoLang: true
     });
 }
-function fetchUserPoints() {
-    return APIFetch_1.APIFetch.post('/v1/user/get_user_season_point_info', {
+export function fetchUserPoints() {
+    return APIFetch.post('/v1/user/get_user_season_point_info', {
         isGoLang: true,
         adapter: (res) => {
             return [res.currentSeason, res.lastSeason].map(points => {
@@ -554,16 +514,16 @@ function fetchUserPoints() {
         }
     });
 }
-function getExperimentInfo() {
-    return APIFetch_1.APIFetch.post('/v1/config/get_experiment_info', {
+export function getExperimentInfo() {
+    return APIFetch.post('/v1/config/get_experiment_info', {
         isGoLang: true,
         body: {
             name: 'EXPERIMENT_NAME_RECOMMEND_BOT_TO_NEW_USER'
         }
     });
 }
-function userLogout() {
-    return APIFetch_1.APIFetch.post('/v1/user/auth/logout', {
+export function userLogout() {
+    return APIFetch.post('/v1/user/auth/logout', {
         isGoLang: true
     });
 }

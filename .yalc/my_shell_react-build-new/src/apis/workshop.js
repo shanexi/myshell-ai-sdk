@@ -1,39 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWorkshopRecommend = getWorkshopRecommend;
-exports.getWidgetSearchList = getWidgetSearchList;
-exports.getWidgetFilterTags = getWidgetFilterTags;
-exports.getWidgetsInChatList = getWidgetsInChatList;
-exports.getFeaturePageDetailInfo = getFeaturePageDetailInfo;
-exports.listWidgetChatHistory = listWidgetChatHistory;
-exports.addWidgetToChatList = addWidgetToChatList;
-exports.getWidgetInfo = getWidgetInfo;
-exports.getWidgetsInfo = getWidgetsInfo;
-exports.ttsWidgetTrail = ttsWidgetTrail;
-exports.getTTSListOld = getTTSListOld;
-exports.getTTSList = getTTSList;
-exports.publishWidgetVoice = publishWidgetVoice;
-exports.unpublishWidgetVoice = unpublishWidgetVoice;
-exports.deleteWidgetVoice = deleteWidgetVoice;
-exports.pinnedWidgetInList = pinnedWidgetInList;
-exports.getWidgetSharingCode = getWidgetSharingCode;
-exports.getWidgetSharingCodeByWidgetId = getWidgetSharingCodeByWidgetId;
-exports.getWidgetProConfig = getWidgetProConfig;
-exports.getWidgetProConfigByWidgetId = getWidgetProConfigByWidgetId;
-exports.getWidgetSharedDetail = getWidgetSharedDetail;
-exports.deleteHistoryMessageByMsgIds = deleteHistoryMessageByMsgIds;
-exports.deleteAllWidgetHistory = deleteAllWidgetHistory;
-exports.resetWidgetHistory = resetWidgetHistory;
-exports.removeWidgetFromChatList = removeWidgetFromChatList;
-const workshop_1 = require("../common/constants/enums/workshop.js");
-const common_helper_1 = require("../common/utils/common-helper.js");
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function getWorkshopRecommend() {
-    return APIFetch_1.APIFetch.post('/v1/homepage/workshop/recommend', {
+import { CardEnum, WidgetChatCallerTypeEnum } from '../common/constants/enums/workshop.js';
+import { getFeedbackStatus } from '../common/utils/common-helper.js';
+import { APIFetch } from '../core/request/APIFetch.js';
+export function getWorkshopRecommend() {
+    return APIFetch.post('/v1/homepage/workshop/recommend', {
         isGoLang: true,
         adapter: res => {
             const formatData = res.list?.map((item) => {
-                const itemData = item.type === workshop_1.CardEnum.TYPE_SLIDER ? item?.sliderCard : item?.normalTitleCard;
+                const itemData = item.type === CardEnum.TYPE_SLIDER ? item?.sliderCard : item?.normalTitleCard;
                 return {
                     type: item.type,
                     title: itemData?.title,
@@ -41,8 +14,8 @@ function getWorkshopRecommend() {
                     rightClickUrl: itemData?.button?.jumpUrl,
                     rightMobileClickUrl: itemData?.button?.jumpMobileUrl,
                     items: itemData?.items?.map((card) => {
-                        const cardData = item.type === workshop_1.CardEnum.TYPE_SLIDER ? card?.subCardFeatured : card?.subCardNormal;
-                        if (item.type === workshop_1.CardEnum.TYPE_SLIDER) {
+                        const cardData = item.type === CardEnum.TYPE_SLIDER ? card?.subCardFeatured : card?.subCardNormal;
+                        if (item.type === CardEnum.TYPE_SLIDER) {
                             const button = cardData.bottomZone;
                             const clickUrl = cardData?.baseSubCard?.clickJumpUrl;
                             const botIdMatch = clickUrl.match(/\/(\d+)$/) || clickUrl.match(/botId=(\d+)/);
@@ -74,7 +47,7 @@ function getWorkshopRecommend() {
                             id: summary.id,
                             clickUrl: `/robot-workshop/widget/${summary.id}`,
                             clickMobileUrl: `/robot-workshop/widget/${item.id}`,
-                            showVoice: summary.chatCallerType === workshop_1.WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
+                            showVoice: summary.chatCallerType === WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
                             type: 'WIDGET'
                         };
                     })
@@ -87,8 +60,8 @@ function getWorkshopRecommend() {
         }
     });
 }
-function getWidgetSearchList({ query = '', pageToken = '0', pageSize = 30, includeTagIds, excludeTagIds, signal }) {
-    return APIFetch_1.APIFetch.post('/v1/widget/search', {
+export function getWidgetSearchList({ query = '', pageToken = '0', pageSize = 30, includeTagIds, excludeTagIds, signal }) {
+    return APIFetch.post('/v1/widget/search', {
         body: {
             listRequest: {
                 pageToken,
@@ -112,7 +85,7 @@ function getWidgetSearchList({ query = '', pageToken = '0', pageSize = 30, inclu
                         id: item.id,
                         clickUrl: `/robot-workshop/widget/${item.id}`,
                         clickMobileUrl: `/robot-workshop/widget/${item.id}`,
-                        showVoice: item.chatCallerType === workshop_1.WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
+                        showVoice: item.chatCallerType === WidgetChatCallerTypeEnum.WIDGET_CHAT_CALLER_TYPE_VOICE,
                         type: 'WIDGET'
                     };
                 }),
@@ -121,16 +94,16 @@ function getWidgetSearchList({ query = '', pageToken = '0', pageSize = 30, inclu
         }
     });
 }
-function getWidgetFilterTags() {
-    return APIFetch_1.APIFetch.post('/v1/widget/get_filter_tags', {
+export function getWidgetFilterTags() {
+    return APIFetch.post('/v1/widget/get_filter_tags', {
         isGoLang: true,
         adapter: (res) => {
             return res.list;
         }
     });
 }
-function getWidgetsInChatList(pageToken, pageSize) {
-    return APIFetch_1.APIFetch.post('/v1/widget/list_widget_in_chat_list', {
+export function getWidgetsInChatList(pageToken, pageSize) {
+    return APIFetch.post('/v1/widget/list_widget_in_chat_list', {
         body: {
             listRequest: {
                 pageToken,
@@ -237,8 +210,8 @@ function getWidgetsInChatList(pageToken, pageSize) {
         }
     });
 }
-function getFeaturePageDetailInfo({ pageId }) {
-    return APIFetch_1.APIFetch.post('/v1/homepage/get_feature_page_detail_info', {
+export function getFeaturePageDetailInfo({ pageId }) {
+    return APIFetch.post('/v1/homepage/get_feature_page_detail_info', {
         body: {
             pageId
         },
@@ -257,8 +230,8 @@ function getFeaturePageDetailInfo({ pageId }) {
         }
     });
 }
-function listWidgetChatHistory(widgetId, pageToken, pageSize) {
-    return APIFetch_1.APIFetch.post('/v1/widget/chat/list_history_messages', {
+export function listWidgetChatHistory(widgetId, pageToken, pageSize) {
+    return APIFetch.post('/v1/widget/chat/list_history_messages', {
         isGoLang: true,
         body: {
             widgetId,
@@ -272,7 +245,7 @@ function listWidgetChatHistory(widgetId, pageToken, pageSize) {
                 data: res.messages.map((e) => {
                     return {
                         ...e,
-                        feedbackState: (0, common_helper_1.getFeedbackStatus)(e.feedbackState)
+                        feedbackState: getFeedbackStatus(e.feedbackState)
                     };
                 }),
                 offset: res.listResponse.nextPageToken
@@ -280,8 +253,8 @@ function listWidgetChatHistory(widgetId, pageToken, pageSize) {
         }
     });
 }
-function addWidgetToChatList(widgetId, pinned) {
-    return APIFetch_1.APIFetch.post('/v1/widget/add_widget_to_chat_list', {
+export function addWidgetToChatList(widgetId, pinned) {
+    return APIFetch.post('/v1/widget/add_widget_to_chat_list', {
         body: {
             id: widgetId,
             ...(pinned && { pinned })
@@ -292,8 +265,8 @@ function addWidgetToChatList(widgetId, pinned) {
         }
     });
 }
-function getWidgetInfo(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/batch_get', {
+export function getWidgetInfo(widgetId) {
+    return APIFetch.post('/v1/widget/batch_get', {
         body: {
             ids: [widgetId]
         },
@@ -303,8 +276,8 @@ function getWidgetInfo(widgetId) {
         }
     });
 }
-function getWidgetsInfo(widgetIds) {
-    return APIFetch_1.APIFetch.post('/v1/widget/batch_get', {
+export function getWidgetsInfo(widgetIds) {
+    return APIFetch.post('/v1/widget/batch_get', {
         body: {
             ids: widgetIds
         },
@@ -314,8 +287,8 @@ function getWidgetsInfo(widgetIds) {
         }
     });
 }
-function ttsWidgetTrail(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/chat/voice/trail', {
+export function ttsWidgetTrail(widgetId) {
+    return APIFetch.post('/v1/widget/chat/voice/trail', {
         body: {
             widgetId
         },
@@ -325,8 +298,8 @@ function ttsWidgetTrail(widgetId) {
         }
     });
 }
-function getTTSListOld() {
-    return APIFetch_1.APIFetch.post('/v1/widget/voice/list_widget_voice', {
+export function getTTSListOld() {
+    return APIFetch.post('/v1/widget/voice/list_widget_voice', {
         isGoLang: true,
         body: {
             listRequest: {
@@ -377,8 +350,8 @@ function getTTSListOld() {
         }
     });
 }
-function getTTSList({ botId, languageId, pageSize = 10, pageToken = '0' }) {
-    return APIFetch_1.APIFetch.post('/v1/widget/voice/list_voice_widgets', {
+export function getTTSList({ botId, languageId, pageSize = 10, pageToken = '0' }) {
+    return APIFetch.post('/v1/widget/voice/list_voice_widgets', {
         isGoLang: true,
         body: {
             ...(botId && { botId }),
@@ -414,8 +387,8 @@ function getTTSList({ botId, languageId, pageSize = 10, pageToken = '0' }) {
         }
     });
 }
-function publishWidgetVoice(widgetId, description) {
-    return APIFetch_1.APIFetch.post('/v1/widget/voice/publish_widget_voice', {
+export function publishWidgetVoice(widgetId, description) {
+    return APIFetch.post('/v1/widget/voice/publish_widget_voice', {
         body: {
             widgetId,
             description
@@ -423,24 +396,24 @@ function publishWidgetVoice(widgetId, description) {
         isGoLang: true
     });
 }
-function unpublishWidgetVoice(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/voice/unpublish_widget_voice', {
+export function unpublishWidgetVoice(widgetId) {
+    return APIFetch.post('/v1/widget/voice/unpublish_widget_voice', {
         body: {
             widgetId
         },
         isGoLang: true
     });
 }
-function deleteWidgetVoice(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/voice/delete_widget_voice', {
+export function deleteWidgetVoice(widgetId) {
+    return APIFetch.post('/v1/widget/voice/delete_widget_voice', {
         body: {
             widgetId
         },
         isGoLang: true
     });
 }
-function pinnedWidgetInList(widgetId, pinned) {
-    return APIFetch_1.APIFetch.post('/v1/widget/chat/pinned_widget_in_list', {
+export function pinnedWidgetInList(widgetId, pinned) {
+    return APIFetch.post('/v1/widget/chat/pinned_widget_in_list', {
         body: {
             widgetId,
             pinned
@@ -449,7 +422,7 @@ function pinnedWidgetInList(widgetId, pinned) {
     });
 }
 const shareCodeCacheMap$ = new Map();
-async function getWidgetSharingCode(widgetId) {
+export async function getWidgetSharingCode(widgetId) {
     if (!shareCodeCacheMap$.has(widgetId)) {
         const res = (await getWidgetSharingCodeByWidgetId(widgetId));
         if (res.success && res.data) {
@@ -458,8 +431,8 @@ async function getWidgetSharingCode(widgetId) {
     }
     return shareCodeCacheMap$.get(widgetId);
 }
-function getWidgetSharingCodeByWidgetId(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/shared/generate_shared_code', {
+export function getWidgetSharingCodeByWidgetId(widgetId) {
+    return APIFetch.post('/v1/shared/generate_shared_code', {
         body: {
             bizId: widgetId,
             bizType: 'BIZ_TYPE_WIDGET'
@@ -468,7 +441,7 @@ function getWidgetSharingCodeByWidgetId(widgetId) {
     });
 }
 const proConfigCacheMap$ = new Map();
-async function getWidgetProConfig(widgetId) {
+export async function getWidgetProConfig(widgetId) {
     if (!proConfigCacheMap$.has(widgetId)) {
         const res = await getWidgetProConfigByWidgetId(widgetId);
         if (res.success && res.data && res.data.template) {
@@ -483,16 +456,16 @@ async function getWidgetProConfig(widgetId) {
     }
     return proConfigCacheMap$.get(widgetId);
 }
-function getWidgetProConfigByWidgetId(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/get_pro_config_template', {
+export function getWidgetProConfigByWidgetId(widgetId) {
+    return APIFetch.post('/v1/widget/get_pro_config_template', {
         body: {
             widgetId
         },
         isGoLang: true
     });
 }
-function getWidgetSharedDetail(code) {
-    return APIFetch_1.APIFetch.post('/v1/shared/get_shared_info', {
+export function getWidgetSharedDetail(code) {
+    return APIFetch.post('/v1/shared/get_shared_info', {
         body: {
             code
         },
@@ -502,8 +475,8 @@ function getWidgetSharedDetail(code) {
         }
     });
 }
-function deleteHistoryMessageByMsgIds(ids) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
+export function deleteHistoryMessageByMsgIds(ids) {
+    return APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
         body: {
             msgIdList: ids,
             bizType: 'HISTORY_OPERATION_BIZ_TYPE_WIDGET'
@@ -511,8 +484,8 @@ function deleteHistoryMessageByMsgIds(ids) {
         isGoLang: true
     });
 }
-function deleteAllWidgetHistory(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteAllHistory', {
+export function deleteAllWidgetHistory(widgetId) {
+    return APIFetch.post('/v1/chat/deleteAllHistory', {
         body: {
             bizId: widgetId,
             bizType: 'HISTORY_OPERATION_BIZ_TYPE_WIDGET'
@@ -520,8 +493,8 @@ function deleteAllWidgetHistory(widgetId) {
         isGoLang: true
     });
 }
-function resetWidgetHistory(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/chat/reset', {
+export function resetWidgetHistory(widgetId) {
+    return APIFetch.post('/v1/chat/reset', {
         body: {
             bizId: widgetId,
             bizType: 'HISTORY_OPERATION_BIZ_TYPE_WIDGET'
@@ -529,8 +502,8 @@ function resetWidgetHistory(widgetId) {
         isGoLang: true
     });
 }
-function removeWidgetFromChatList(widgetId) {
-    return APIFetch_1.APIFetch.post('/v1/widget/chat/remove_widget_from_chat_list', {
+export function removeWidgetFromChatList(widgetId) {
+    return APIFetch.post('/v1/widget/chat/remove_widget_from_chat_list', {
         body: {
             widgetId
         },

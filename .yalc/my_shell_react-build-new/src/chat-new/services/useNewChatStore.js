@@ -1,16 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useNewChatStore = void 0;
-const immer_1 = require("immer");
-const zustand_1 = require("zustand");
-const middleware_1 = require("zustand/middleware");
-const immer_2 = require("zustand/middleware/immer");
-const common_1 = require("../../apis/common.js");
-const limitQueue_1 = require("../../common/utils/limitQueue.js");
-const util_1 = require("../util.js");
-const chatCommonSlice_1 = require("./chatCommonSlice.js");
-(0, immer_1.enableMapSet)();
-const fileQueue = (0, limitQueue_1.limitQueue)(1);
+import { enableMapSet } from 'immer';
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import { Scenario, uploadFileToS3WithProgress } from '../../apis/common.js';
+import { limitQueue } from '../../common/utils/limitQueue.js';
+import { draftOrLocalMessageParser } from '../util.js';
+import { createChatCommonSlice } from './chatCommonSlice.js';
+enableMapSet();
+const fileQueue = limitQueue(1);
 const DEFAULT_STATE = {
     messageIdListMap: new Map(),
     lastMsgIdMap: new Map(),
@@ -37,7 +34,7 @@ const createChatSlice = (set, get) => {
                     state.lastMsgIdMap.set(mapKey, '');
                 }
                 state.lastUserInteractionMsgIdMap.set(mapKey, message.id);
-                const parsedMessage = (0, util_1.draftOrLocalMessageParser)(message);
+                const parsedMessage = draftOrLocalMessageParser(message);
                 state.messageMap.get(mapKey).set(parsedMessage.id, parsedMessage);
                 const newMsgIdList = Array.from(state.messageMap.get(mapKey).values())
                     .sort((a, b) => (BigInt(a.id) - BigInt(b.id) >= 0 ? 1 : -1))
@@ -59,7 +56,7 @@ const createChatSlice = (set, get) => {
                     }
                     let parsedMessage;
                     if (message.status === 'LOCAL_ERROR') {
-                        parsedMessage = (0, util_1.draftOrLocalMessageParser)(message);
+                        parsedMessage = draftOrLocalMessageParser(message);
                     }
                     else {
                         parsedMessage = message;
@@ -74,7 +71,7 @@ const createChatSlice = (set, get) => {
                 else {
                     let parsedMessage;
                     if (message.status === 'DRAFT' || message.status === 'LOCAL_ERROR') {
-                        parsedMessage = (0, util_1.draftOrLocalMessageParser)(message);
+                        parsedMessage = draftOrLocalMessageParser(message);
                     }
                     else {
                         parsedMessage = message;
@@ -112,7 +109,7 @@ const createChatSlice = (set, get) => {
                         state.draftReplyMessageMap.set(mapKey, message.id);
                     }
                     if (message.status === 'DRAFT' || message.status === 'LOCAL_ERROR') {
-                        parsedMessage = (0, util_1.draftOrLocalMessageParser)(message);
+                        parsedMessage = draftOrLocalMessageParser(message);
                     }
                     else {
                         parsedMessage = message;
@@ -192,7 +189,7 @@ const createChatSlice = (set, get) => {
                 const originMessage = state.messageMap.get(mapKey)?.get(message.id);
                 let parsedMessage;
                 if (message.status === 'LOCAL_ERROR') {
-                    parsedMessage = (0, util_1.draftOrLocalMessageParser)(message);
+                    parsedMessage = draftOrLocalMessageParser(message);
                 }
                 else {
                     parsedMessage = message;
@@ -296,8 +293,8 @@ const createChatSlice = (set, get) => {
                     set(state => {
                         state.fileUpload.uploading = file;
                     });
-                    const res = await (0, common_1.uploadFileToS3WithProgress)({
-                        scenario: common_1.Scenario.SCENARIO_IM_CHAT,
+                    const res = await uploadFileToS3WithProgress({
+                        scenario: Scenario.SCENARIO_IM_CHAT,
                         contentType: file.uiData.contentType,
                         onProgress: value => {
                             set(state => {
@@ -386,7 +383,7 @@ const createChatSlice = (set, get) => {
 };
 const persistConfig = {
     name: 'new-chat-storage',
-    storage: (0, middleware_1.createJSONStorage)(() => localStorage),
+    storage: createJSONStorage(() => localStorage),
     partialize: state => ({
         localDraftMessageMap: state.localDraftMessageMap,
         exceptionsForTextDisplay: state.exceptionsForTextDisplay
@@ -403,7 +400,7 @@ const persistConfig = {
         }
     })
 };
-exports.useNewChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)((0, middleware_1.persist)((...a) => ({
+export const useNewChatStore = create()(immer(devtools(persist((...a) => ({
     ...createChatSlice(...a),
-    ...(0, chatCommonSlice_1.createChatCommonSlice)(...a)
+    ...createChatCommonSlice(...a)
 }), persistConfig), { store: 'new-chat' })));

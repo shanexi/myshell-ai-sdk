@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useModalProps = exports.openModal = void 0;
-const zustand_1 = require("zustand");
-const modalStore = (0, zustand_1.createStore)(set => ({
+import { createStore, useStore } from 'zustand';
+const modalStore = createStore(set => ({
     modalProps: {},
     openModal: (modalProps) => set({
         modalProps: {
@@ -18,6 +15,5 @@ const modalStore = (0, zustand_1.createStore)(set => ({
         }
     })
 }));
-exports.openModal = modalStore.getState().openModal;
-const useModalProps = () => (0, zustand_1.useStore)(modalStore, state => state.modalProps);
-exports.useModalProps = useModalProps;
+export const openModal = modalStore.getState().openModal;
+export const useModalProps = () => useStore(modalStore, state => state.modalProps);

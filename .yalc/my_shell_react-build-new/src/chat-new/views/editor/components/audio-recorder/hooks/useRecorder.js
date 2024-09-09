@@ -1,19 +1,12 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RecordActionType = exports.RecordStateEnum = void 0;
-exports.default = useRecorder;
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const react_use_1 = require("react-use");
-const eventTypes_1 = require("../../../../../../common/constants/enums/eventTypes.js");
-const useNotification_1 = require("../../../../../../common/hooks/useNotification.js");
-const EventEmitter_1 = __importDefault(require("../../../../../../common/utils/EventEmitter.js"));
-const common_helper_1 = require("../../../../../../common/utils/common-helper.js");
+import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { useMedia } from 'react-use';
+import { EventTypes } from '../../../../../../common/constants/enums/eventTypes.js';
+import { useNotification } from '../../../../../../common/hooks/useNotification.js';
+import EventEmitter from '../../../../../../common/utils/EventEmitter.js';
+import { checkAudioRecordSupport, checkSupportedMimeType, requestAudioRecordAccess } from '../../../../../../common/utils/common-helper.js';
 const maxRecordingTime = 90;
-var RecordStateEnum;
+export var RecordStateEnum;
 (function (RecordStateEnum) {
     RecordStateEnum["Idle"] = "Idle";
     RecordStateEnum["Recording"] = "Recording";
@@ -21,14 +14,14 @@ var RecordStateEnum;
     RecordStateEnum["Playing"] = "Playing";
     RecordStateEnum["Completed"] = "Completed";
     RecordStateEnum["CallUping"] = "CallUping";
-})(RecordStateEnum || (exports.RecordStateEnum = RecordStateEnum = {}));
-var RecordActionType;
+})(RecordStateEnum || (RecordStateEnum = {}));
+export var RecordActionType;
 (function (RecordActionType) {
     RecordActionType["INIT"] = "INIT";
     RecordActionType["SET_RECORDER"] = "SET_RECORDER";
     RecordActionType["SET_TIME"] = "SET_TIME";
     RecordActionType["SET_TIME_UPDATE"] = "SET_TIME_UPDATE";
-})(RecordActionType || (exports.RecordActionType = RecordActionType = {}));
+})(RecordActionType || (RecordActionType = {}));
 const initialState = {
     status: RecordStateEnum.Idle,
     timeLeft: maxRecordingTime,
@@ -71,22 +64,22 @@ const reducer = (state, action) => {
             return state;
     }
 };
-function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
-    const isMobile = (0, react_use_1.useMedia)('(max-width: 768px)');
-    const commonT = (0, next_intl_1.useTranslations)('common');
-    const { error } = (0, useNotification_1.useNotification)();
-    const [state, dispatch] = (0, react_1.useReducer)(reducer, initialState);
-    const [supportedType, setSupportedType] = (0, react_1.useState)('');
-    const timerRef = (0, react_1.useRef)();
-    const destoryRef = (0, react_1.useRef)(false);
-    const timeLeftRef = (0, react_1.useRef)(state.timeLeft);
-    (0, react_1.useMemo)(() => {
+export default function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
+    const isMobile = useMedia('(max-width: 768px)');
+    const commonT = useTranslations('common');
+    const { error } = useNotification();
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const [supportedType, setSupportedType] = useState('');
+    const timerRef = useRef();
+    const destoryRef = useRef(false);
+    const timeLeftRef = useRef(state.timeLeft);
+    useMemo(() => {
         timeLeftRef.current = state.timeLeft;
     }, [state.timeLeft]);
-    (0, react_1.useEffect)(() => {
-        setSupportedType((0, common_helper_1.checkSupportedMimeType)());
+    useEffect(() => {
+        setSupportedType(checkSupportedMimeType());
     }, []);
-    const destroyAudioRecorder = (0, react_1.useCallback)(async () => {
+    const destroyAudioRecorder = useCallback(async () => {
         if (state.recorder && state.recorder.state === 'recording') {
             return new Promise(resolve => {
                 if (state.recorder) {
@@ -103,12 +96,12 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
                         });
                         resolve(data);
                     };
-                    EventEmitter_1.default.subscribe(eventTypes_1.EventTypes.AWAIT_RECORD_COMPLETE, cb, true);
+                    EventEmitter.subscribe(EventTypes.AWAIT_RECORD_COMPLETE, cb, true);
                 }
             });
         }
     }, [state.recorder]);
-    const startRecording = (0, react_1.useCallback)(async () => {
+    const startRecording = useCallback(async () => {
         destoryRef.current = false;
         if (state.recorder) {
             await destroyAudioRecorder();
@@ -121,8 +114,8 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
             }
         });
         setTimeout(() => {
-            if ((0, common_helper_1.checkAudioRecordSupport)()) {
-                (0, common_helper_1.requestAudioRecordAccess)().then(stm => {
+            if (checkAudioRecordSupport()) {
+                requestAudioRecordAccess().then(stm => {
                     try {
                         if (supportedType) {
                             dispatch({
@@ -178,27 +171,27 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
             }
         });
     }, [destroyAudioRecorder, error, state.recorder, supportedType, isMobile]);
-    const stopRecording = (0, react_1.useCallback)(async () => {
+    const stopRecording = useCallback(async () => {
         return destroyAudioRecorder();
     }, [destroyAudioRecorder]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (state.recorder) {
             state.recorder.start();
         }
     }, [state.recorder]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (isMobile) {
             startRecording();
         }
     }, [isMobile]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (state.recorder) {
             state.recorder.ondataavailable = (event) => {
                 state.chunks.push(event.data);
             };
         }
     }, [state.recorder, state.chunks]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (state.recorder) {
             state.recorder.onstop = async () => {
                 clearInterval(timerRef.current);
@@ -214,11 +207,11 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
                     type: RecordStateEnum.Completed,
                     payload
                 });
-                EventEmitter_1.default.dispatch(eventTypes_1.EventTypes.AWAIT_RECORD_COMPLETE, payload);
+                EventEmitter.dispatch(EventTypes.AWAIT_RECORD_COMPLETE, payload);
             };
         }
     }, [state.chunks, state.recorder, supportedType]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (state.recorder) {
             state.recorder.onerror = (err) => {
                 error({ content: err.toString(), id: err.toString() });
@@ -226,7 +219,7 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
             };
         }
     }, [destroyAudioRecorder, error, state.recorder]);
-    const onStart = (0, react_1.useCallback)(() => {
+    const onStart = useCallback(() => {
         onChangeInputType('audio');
         onChangePlayingAudio();
         dispatch({
@@ -247,14 +240,14 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
             });
         }, 1000);
     }, [onChangeInputType, onChangePlayingAudio, stopRecording]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (state.recorder) {
             state.recorder.onstart = () => {
                 onStart();
             };
         }
     }, [state.recorder, onStart]);
-    const clearRecord = (0, react_1.useCallback)(async () => {
+    const clearRecord = useCallback(async () => {
         destoryRef.current = true;
         await stopRecording();
         return new Promise(resolve => {
@@ -266,7 +259,7 @@ function useRecorder({ onChangePlayingAudio, onChangeInputType, onRecordEnd }) {
             }, 50);
         });
     }, [state.recorder, stopRecording]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const keydownHandler = async (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
                 return;

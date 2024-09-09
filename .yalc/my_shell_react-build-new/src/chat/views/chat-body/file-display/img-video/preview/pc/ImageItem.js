@@ -1,27 +1,21 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ImageItem;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const clsx_1 = __importDefault(require("clsx"));
-const react_1 = require("react");
-const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
-function ImageItem({ imgObj, handleZoomIn, handleZoomOut, resetScaleValue, onClose }) {
-    const draggableRef = (0, react_1.useRef)(null);
-    const [isDragging, setIsDragging] = (0, react_1.useState)(false);
-    const [position, setPosition] = (0, react_1.useState)({ x: 0, y: 0 });
-    const [offset, setOffset] = (0, react_1.useState)({ x: 0, y: 0 });
-    const [loaded, setLoaded] = (0, react_1.useState)(false);
-    const { width, height } = (0, usehooks_ts_1.useWindowSize)();
-    const timer = (0, react_1.useRef)(null);
-    const [moved, setMoved] = (0, react_1.useState)(false);
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import clsx from 'clsx';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useWindowSize } from 'usehooks-ts';
+import Spinner from '../../../../../../../common/components/ui/spinner.js';
+export default function ImageItem({ imgObj, handleZoomIn, handleZoomOut, resetScaleValue, onClose }) {
+    const draggableRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [loaded, setLoaded] = useState(false);
+    const { width, height } = useWindowSize();
+    const timer = useRef(null);
+    const [moved, setMoved] = useState(false);
     const handleLoaded = () => {
         setLoaded(true);
     };
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const imgRef = draggableRef.current;
         const handleMouseMove = (event) => {
             if (!isDragging)
@@ -87,7 +81,7 @@ function ImageItem({ imgObj, handleZoomIn, handleZoomOut, resetScaleValue, onClo
             height: newHeight
         };
     }
-    const originDimension = (0, react_1.useMemo)(() => {
+    const originDimension = useMemo(() => {
         return calculateImageSize({ width, height: height - 80 }, { width: imgObj.mediaFileMetadata?.width ?? 0, height: imgObj.mediaFileMetadata?.height ?? 0 });
     }, [height, imgObj.mediaFileMetadata?.height, imgObj.mediaFileMetadata?.width, width]);
     const handleSingleClick = () => {
@@ -108,7 +102,7 @@ function ImageItem({ imgObj, handleZoomIn, handleZoomOut, resetScaleValue, onClo
             resetScaleValue();
         }
     };
-    return ((0, jsx_runtime_1.jsxs)("div", { className: (0, clsx_1.default)('w-full h-full relative flex justify-center items-center'), children: [!loaded && ((0, jsx_runtime_1.jsx)("div", { className: "absolute top-0 left-0 w-full h-full flex justify-center items-center z-10", children: (0, jsx_runtime_1.jsx)("div", { className: "flex justify-center items-center bg-[#00000033] backdrop-blur-2xl", style: { ...originDimension }, children: (0, jsx_runtime_1.jsx)("div", { className: "w-10 h-10 p-[6px] flex justify-center items-center", children: (0, jsx_runtime_1.jsx)(spinner_1.default, { size: "md", speed: "slow", className: "text-white" }) }) }) })), (0, jsx_runtime_1.jsx)("div", { className: "image-item absolute w-full h-full top-0 left-0 z-[1]", onClick: onClose }), (0, jsx_runtime_1.jsx)("img", { ref: draggableRef, alt: "image", src: imgObj.url, width: originDimension.width || 9999, height: originDimension.height || 9999, draggable: true, className: (0, clsx_1.default)('object-scale-down z-20', isDragging ? 'cursor-grabbing' : 'cursor-grab'), style: {
+    return (_jsxs("div", { className: clsx('w-full h-full relative flex justify-center items-center'), children: [!loaded && (_jsx("div", { className: "absolute top-0 left-0 w-full h-full flex justify-center items-center z-10", children: _jsx("div", { className: "flex justify-center items-center bg-[#00000033] backdrop-blur-2xl", style: { ...originDimension }, children: _jsx("div", { className: "w-10 h-10 p-[6px] flex justify-center items-center", children: _jsx(Spinner, { size: "md", speed: "slow", className: "text-white" }) }) }) })), _jsx("div", { className: "image-item absolute w-full h-full top-0 left-0 z-[1]", onClick: onClose }), _jsx("img", { ref: draggableRef, alt: "image", src: imgObj.url, width: originDimension.width || 9999, height: originDimension.height || 9999, draggable: true, className: clsx('object-scale-down z-20', isDragging ? 'cursor-grabbing' : 'cursor-grab'), style: {
                     transform: `translate(${position.x}px, ${position.y}px)`,
                     maxHeight: originDimension.height || '80vh'
                 }, onMouseDown: handleMouseDown, onDragStart: e => e.preventDefault(), onWheel: handleWheel, onClick: handleSingleClick, onDoubleClick: handleDoubleClick })] }));

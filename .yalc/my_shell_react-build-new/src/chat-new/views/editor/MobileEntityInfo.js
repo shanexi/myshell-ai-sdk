@@ -1,16 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = MobileEntityInfo;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const ChevronUpIcon_1 = __importDefault(require("@heroicons/react/24/outline/ChevronUpIcon"));
-const react_1 = require("react");
-const StaticContext_1 = require("../../../chat-new/context/StaticContext.js");
-const avatar_1 = require("../../../common/components/ui/avatar.js");
-function MobileEntityInfo({ showMobileDetail }) {
-    const { entityInfo } = (0, react_1.useContext)(StaticContext_1.StaticContext);
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
+import { useContext } from 'react';
+import { StaticContext } from '../../../chat-new/context/StaticContext.js';
+import { Avatar } from '../../../common/components/ui/avatar.js';
+export default function MobileEntityInfo({ showMobileDetail }) {
+    const { entityInfo } = useContext(StaticContext);
     const { name, logoUrl } = entityInfo;
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "flex items-center gap-[6px]", onClick: () => showMobileDetail?.(), children: [(0, jsx_runtime_1.jsx)(avatar_1.Avatar, { src: logoUrl, size: "md", className: "shrink-0" }), (0, jsx_runtime_1.jsxs)("div", { className: "flex gap-1 items-center", children: [(0, jsx_runtime_1.jsx)("span", { className: "line-clamp-1 break-all", children: name }), (0, jsx_runtime_1.jsx)(ChevronUpIcon_1.default, { className: "size-[18px] text-brand" })] })] }));
+    return (_jsxs("div", { className: "flex items-center gap-[6px]", onClick: () => showMobileDetail?.(), children: [_jsx(Avatar, { src: logoUrl, size: "md", className: "shrink-0" }), _jsxs("div", { className: "flex gap-1 items-center", children: [_jsx("span", { className: "line-clamp-1 break-all", children: name }), _jsx(ChevronUpIcon, { className: "size-[18px] text-brand" })] })] }));
 }

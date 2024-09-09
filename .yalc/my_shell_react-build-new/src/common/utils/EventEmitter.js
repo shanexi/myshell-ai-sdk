@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const EventEmitter = {
     events: {},
     dispatch(event, data) {
@@ -32,4 +30,4 @@ const EventEmitter = {
         this.events[event] = this.events[event].filter(cb => cb !== callback);
     }
 };
-exports.default = EventEmitter;
+export default EventEmitter;

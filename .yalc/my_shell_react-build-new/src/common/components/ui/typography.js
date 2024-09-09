@@ -1,35 +1,9 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Description = exports.Paragraph = exports.Text = exports.SubTitle = exports.SubHeading = exports.Title = exports.Display = exports.Heading = void 0;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const class_variance_authority_1 = require("class-variance-authority");
-const isomorphic_dompurify_1 = require("isomorphic-dompurify");
-const lodash_es_1 = require("lodash-es");
-const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { cva } from 'class-variance-authority';
+import { sanitize } from 'isomorphic-dompurify';
+import { omit } from 'lodash-es';
+import * as React from 'react';
+import { cn } from '../../../lib/utils.js';
 const colorMap = {
     default: 'text-default',
     subtle: 'text-subtle',
@@ -57,7 +31,7 @@ const lineClampMap = {
     5: 'line-clamp-5',
     6: 'line-clamp-6'
 };
-const displayVariants = (0, class_variance_authority_1.cva)('font-semibold', {
+const displayVariants = cva('font-semibold', {
     variants: {
         size: {
             '2xl': 'text-7xl',
@@ -75,7 +49,7 @@ const displayVariants = (0, class_variance_authority_1.cva)('font-semibold', {
         color: 'default'
     }
 });
-const headingVariants = (0, class_variance_authority_1.cva)('font-medium', {
+const headingVariants = cva('font-medium', {
     variants: {
         size: {
             h1: 'text-2xl',
@@ -92,7 +66,7 @@ const headingVariants = (0, class_variance_authority_1.cva)('font-medium', {
         color: 'default'
     }
 });
-const subHeadingVariants = (0, class_variance_authority_1.cva)('text-default', {
+const subHeadingVariants = cva('text-default', {
     variants: {
         size: {
             sm: 'text-xs',
@@ -106,7 +80,7 @@ const subHeadingVariants = (0, class_variance_authority_1.cva)('text-default', {
         color: 'default'
     }
 });
-const textVariants = (0, class_variance_authority_1.cva)('', {
+const textVariants = cva('', {
     variants: {
         size: {
             xs: 'text-xs',
@@ -127,7 +101,7 @@ const textVariants = (0, class_variance_authority_1.cva)('', {
         color: 'default'
     }
 });
-const descriptionVariants = (0, class_variance_authority_1.cva)('', {
+const descriptionVariants = cva('', {
     variants: {
         size: {
             lg: 'text-xs',
@@ -172,19 +146,19 @@ const renderBlock = ({ underline = false, strikethrough = false, strong = false,
     return TextComponentMap[underlineValue || strikethroughValue || strongValue || italicValue || defaultValue];
 };
 const dangerouText = (text) => {
-    return (0, isomorphic_dompurify_1.sanitize)(`${text}`, {
+    return sanitize(`${text}`, {
         ADD_ATTR: ['target'],
         FORBID_TAGS: ['style', 'form', 'input', 'checkbox', 'svg'],
         FORBID_ATTR: ['action']
     });
 };
-exports.Heading = React.forwardRef((props, ref) => {
+export const Heading = React.forwardRef((props, ref) => {
     const { className, size, color, lineClamp, children, dangerous, ...passProps } = props;
     const Comp = HComponentMap[size || 'h1'];
     const text = dangerous && dangerouText(`${children}`);
-    return ((0, jsx_runtime_1.jsx)(Comp, { ref: ref, className: (0, utils_1.cn)(headingVariants({ size, color, lineClamp }), className), ...passProps, ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
+    return (_jsx(Comp, { ref: ref, className: cn(headingVariants({ size, color, lineClamp }), className), ...passProps, ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
 });
-exports.Display = React.forwardRef((props, ref) => {
+export const Display = React.forwardRef((props, ref) => {
     const { className, size, lineClamp, underline, strikethrough, strong, italic, children, dangerous, ...passProps } = props;
     const Comp = renderBlock({
         underline,
@@ -193,15 +167,15 @@ exports.Display = React.forwardRef((props, ref) => {
         italic
     }, 'span');
     const text = dangerous && dangerouText(`${children}`);
-    return ((0, jsx_runtime_1.jsx)(Comp, { ref: ref, className: (0, utils_1.cn)(displayVariants({ size, lineClamp }), className), ...(0, lodash_es_1.omit)(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
+    return (_jsx(Comp, { ref: ref, className: cn(displayVariants({ size, lineClamp }), className), ...omit(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
 });
-exports.Title = exports.Heading;
-exports.SubHeading = React.forwardRef((props, ref) => {
+export const Title = Heading;
+export const SubHeading = React.forwardRef((props, ref) => {
     const { className, size, children, lineClamp, ...passProps } = props;
-    return ((0, jsx_runtime_1.jsx)("p", { ref: ref, className: (0, utils_1.cn)(subHeadingVariants({ size, lineClamp }), className), ...passProps, children: children }));
+    return (_jsx("p", { ref: ref, className: cn(subHeadingVariants({ size, lineClamp }), className), ...passProps, children: children }));
 });
-exports.SubTitle = exports.SubHeading;
-exports.Text = React.forwardRef((props, ref) => {
+export const SubTitle = SubHeading;
+export const Text = React.forwardRef((props, ref) => {
     const { className, size, weight, color, lineClamp, underline, strikethrough, strong, italic, children, dangerous, ...passProps } = props;
     const Comp = renderBlock({
         underline,
@@ -210,9 +184,9 @@ exports.Text = React.forwardRef((props, ref) => {
         italic
     }, 'span');
     const text = dangerous && dangerouText(`${children}`);
-    return ((0, jsx_runtime_1.jsx)(Comp, { ref: ref, className: (0, utils_1.cn)(textVariants({ size, weight, color, lineClamp }), className), ...(0, lodash_es_1.omit)(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
+    return (_jsx(Comp, { ref: ref, className: cn(textVariants({ size, weight, color, lineClamp }), className), ...omit(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
 });
-exports.Paragraph = React.forwardRef((props, ref) => {
+export const Paragraph = React.forwardRef((props, ref) => {
     const { className, size, weight, color, lineClamp, underline, strikethrough, strong, italic, children, dangerous, ...passProps } = props;
     const Comp = renderBlock({
         underline,
@@ -221,9 +195,9 @@ exports.Paragraph = React.forwardRef((props, ref) => {
         italic
     }, 'p');
     const text = dangerous && dangerouText(`${children}`);
-    return ((0, jsx_runtime_1.jsx)(Comp, { ref: ref, className: (0, utils_1.cn)(textVariants({ size, weight, color, lineClamp }), className), ...passProps, ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
+    return (_jsx(Comp, { ref: ref, className: cn(textVariants({ size, weight, color, lineClamp }), className), ...passProps, ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
 });
-exports.Description = React.forwardRef((props, ref) => {
+export const Description = React.forwardRef((props, ref) => {
     const { className, size, weight, color, lineClamp, underline, strikethrough, strong, italic, children, dangerous, ...passProps } = props;
     const Comp = renderBlock({
         underline,
@@ -232,5 +206,5 @@ exports.Description = React.forwardRef((props, ref) => {
         italic
     }, 'span');
     const text = dangerous && dangerouText(`${children}`);
-    return ((0, jsx_runtime_1.jsx)(Comp, { ref: ref, className: (0, utils_1.cn)(descriptionVariants({ size, weight, color, lineClamp }), className), ...(0, lodash_es_1.omit)(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
+    return (_jsx(Comp, { ref: ref, className: cn(descriptionVariants({ size, weight, color, lineClamp }), className), ...omit(passProps, 'lineClamp'), ...(dangerous && { dangerouslySetInnerHTML: { __html: `${text}` } }), children: !dangerous ? children : null }));
 });

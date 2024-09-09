@@ -1,28 +1,22 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useChatStore = void 0;
-const immer_1 = require("immer");
-const lodash_es_1 = require("lodash-es");
-const zustand_1 = require("zustand");
-const middleware_1 = require("zustand/middleware");
-const immer_2 = require("zustand/middleware/immer");
-const bot_1 = require("../../apis/bot.js");
-const common_1 = require("../../apis/common.js");
-const api_1 = require("../../chat/model/api.js");
-const enums_1 = require("../../chat/model/enums.js");
-const interfaces_1 = require("../../chat/model/interfaces.js");
-const chat_1 = require("../../common/utils/chat.js");
-const limitQueue_1 = require("../../common/utils/limitQueue.js");
-const user_1 = require("../../services/store/user.js");
-const bot_2 = require("./bot.js");
-const chatIdbService_1 = __importDefault(require("../../chat/model/chatIdbService.js"));
-const identityService_1 = require("../../common/services/identityService.js");
-const chatCommonSlice_1 = require("../../chat-new/services/chatCommonSlice.js");
-(0, immer_1.enableMapSet)();
-const fileQueue = (0, limitQueue_1.limitQueue)(1);
+import { enableMapSet } from 'immer';
+import { last } from 'lodash-es';
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import { getBotJobInfo } from '../../apis/bot.js';
+import { Scenario, uploadFileToS3WithProgress } from '../../apis/common.js';
+import { getImageParams } from '../../chat/model/api.js';
+import { MessageStatusEnum, MessageTypeEnum, ModelStatusEnum } from '../../chat/model/enums.js';
+import { ImageStatus } from '../../chat/model/interfaces.js';
+import { generateWidgetRunningText } from '../../common/utils/chat.js';
+import { limitQueue } from '../../common/utils/limitQueue.js';
+import { useUserStore } from '../../services/store/user.js';
+import { useBotStore } from './bot.js';
+import chatIdbService from '../../chat/model/chatIdbService.js';
+import { identityService } from '../../common/services/identityService.js';
+import { createChatCommonSlice } from '../../chat-new/services/chatCommonSlice.js';
+enableMapSet();
+const fileQueue = limitQueue(1);
 const DEFAULT_STATE = {
     multiPublishMap: {},
     selectedDeleteChatList: [],
@@ -48,7 +42,7 @@ const DEFAULT_STATE = {
     errorMsgList: {},
     computed: {
         get currentUserId() {
-            return user_1.useUserStore.getState().userId;
+            return useUserStore.getState().userId;
         }
     },
     errorChatRecordList: [],
@@ -56,13 +50,13 @@ const DEFAULT_STATE = {
 };
 const initTransactionDisplaySet = () => {
     if (typeof window !== 'undefined') {
-        return identityService_1.identityService.getTransactionDisplaySet();
+        return identityService.getTransactionDisplaySet();
     }
     return new Set();
 };
 const initTextInputMap = () => {
     if (typeof window !== 'undefined') {
-        return identityService_1.identityService.getTextInputMap();
+        return identityService.getTextInputMap();
     }
     return {};
 };
@@ -81,7 +75,7 @@ const createChatSlice = (set, get) => {
                         };
                     }
                 }
-                bot_2.useBotStore.getState().batchSetBotLastMessage(botList);
+                useBotStore.getState().batchSetBotLastMessage(botList);
             }, false, 'generateMultiBotMap');
         },
         setMultiPublishMap(image, item) {
@@ -194,7 +188,7 @@ const createChatSlice = (set, get) => {
         addSSeTextStream(detail) {
             set(state => {
                 const msg = state.multiBotMap[String(detail.replyMessage.botId)].chatDic.get(detail.replyMessage.id);
-                if (msg.status === enums_1.MessageStatusEnum.CANCELING || msg.status === enums_1.MessageStatusEnum.CANCELED)
+                if (msg.status === MessageStatusEnum.CANCELING || msg.status === MessageStatusEnum.CANCELED)
                     return;
                 if (detail.isJob) {
                     msg.text = detail.text;
@@ -235,7 +229,7 @@ const createChatSlice = (set, get) => {
         addSSeAudioStream(audio) {
             set(state => {
                 const msg = state.multiBotMap[String(audio.replyMessage.botId)].chatDic.get(audio.replyMessage.id);
-                if (msg.status === enums_1.MessageStatusEnum.CANCELING || msg.status === enums_1.MessageStatusEnum.CANCELED)
+                if (msg.status === MessageStatusEnum.CANCELING || msg.status === MessageStatusEnum.CANCELED)
                     return;
                 msg.audioStream = [...(msg.audioStream ?? []), audio];
                 state.multiBotMap[String(audio.replyMessage.botId)].chatDic.set(audio.replyMessage.id, { ...msg });
@@ -244,7 +238,7 @@ const createChatSlice = (set, get) => {
         addSSEImageStream(data) {
             set(state => {
                 const msg = state.multiBotMap[String(data.replyMessage.botId)].chatDic.get(data.replyMessage.id);
-                if (msg.status === enums_1.MessageStatusEnum.CANCELING || msg.status === enums_1.MessageStatusEnum.CANCELED)
+                if (msg.status === MessageStatusEnum.CANCELING || msg.status === MessageStatusEnum.CANCELED)
                     return;
                 msg.imageGenMessageResponse = {
                     ...(msg?.imageGenMessageResponse ?? {}),
@@ -345,7 +339,7 @@ const createChatSlice = (set, get) => {
                             const msgs = [...botMsgs.chatDic.values()];
                             const matchedMsg = msgs.find(msg => msg.isLocalReply);
                             if (matchedMsg) {
-                                if (msg.status === enums_1.MessageStatusEnum.CANCELING || msg.status === enums_1.MessageStatusEnum.CANCELED) {
+                                if (msg.status === MessageStatusEnum.CANCELING || msg.status === MessageStatusEnum.CANCELED) {
                                     botMsgs.chatDic.set(matchedMsg.localId, { ...matchedMsg, status: msg.status });
                                 }
                                 else {
@@ -389,7 +383,7 @@ const createChatSlice = (set, get) => {
                         state.multiBotMap[botId].chatList = newChatList;
                         if (includedBots.has(botId)) {
                             if (state.computed.currentUserId) {
-                                chatIdbService_1.default.storeChat(Number(state.computed.currentUserId), botId, newChatList.slice(-10));
+                                chatIdbService.storeChat(Number(state.computed.currentUserId), botId, newChatList.slice(-10));
                             }
                         }
                     }
@@ -409,7 +403,7 @@ const createChatSlice = (set, get) => {
                     });
                 }
                 if (state.computed.currentUserId) {
-                    chatIdbService_1.default.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
+                    chatIdbService.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
                 }
             });
         },
@@ -440,7 +434,7 @@ const createChatSlice = (set, get) => {
                         state.multiBotMap[botId].chatList = sortedChatList;
                         if (includedBots.has(botId)) {
                             if (state.computed.currentUserId) {
-                                chatIdbService_1.default.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
+                                chatIdbService.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
                             }
                         }
                     }
@@ -458,7 +452,7 @@ const createChatSlice = (set, get) => {
                     .sort((a, b) => (BigInt(a.id) - BigInt(b.id) >= 0 ? 1 : -1));
                 state.multiBotMap[botId].chatList = [...sortedChatList];
                 if (state.computed.currentUserId) {
-                    chatIdbService_1.default.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
+                    chatIdbService.storeChat(Number(state.computed.currentUserId), botId, sortedChatList.slice(-10));
                 }
                 state.multiBotMap[botId].chatDic.clear();
                 for (const msg of keepedChatList) {
@@ -468,10 +462,10 @@ const createChatSlice = (set, get) => {
         },
         getBotLastValidInteractionMessage(botId) {
             const chatList = get().multiBotMap[botId]?.chatList ?? [];
-            const validInteractionChatList = chatList.filter(chat => (chat.type === enums_1.MessageTypeEnum.REPLY ||
-                chat.type === enums_1.MessageTypeEnum.TEXT ||
-                chat.type === enums_1.MessageTypeEnum.VOICE) &&
-                chat.status === enums_1.MessageStatusEnum.DONE);
+            const validInteractionChatList = chatList.filter(chat => (chat.type === MessageTypeEnum.REPLY ||
+                chat.type === MessageTypeEnum.TEXT ||
+                chat.type === MessageTypeEnum.VOICE) &&
+                chat.status === MessageStatusEnum.DONE);
             const validChatLen = validInteractionChatList.length;
             return validInteractionChatList[validChatLen - 1];
         },
@@ -493,10 +487,10 @@ const createChatSlice = (set, get) => {
                 const currentBot = state.multiBotMap[botId];
                 if (isPanelImageBot) {
                     const chatList = currentBot.chatList
-                        .filter(c => c.status === enums_1.MessageStatusEnum.DONE || c.status === enums_1.MessageStatusEnum.ERROR)
-                        .filter(chat => chat.type === enums_1.MessageTypeEnum.REPLY ||
-                        chat.type === enums_1.MessageTypeEnum.VOICE_CALL_REPLY ||
-                        chat.type === enums_1.MessageTypeEnum.GREETING);
+                        .filter(c => c.status === MessageStatusEnum.DONE || c.status === MessageStatusEnum.ERROR)
+                        .filter(chat => chat.type === MessageTypeEnum.REPLY ||
+                        chat.type === MessageTypeEnum.VOICE_CALL_REPLY ||
+                        chat.type === MessageTypeEnum.GREETING);
                     if (chatList.length === state.selectedDeleteChatList.length) {
                         state.selectedDeleteChatList = [];
                     }
@@ -504,12 +498,12 @@ const createChatSlice = (set, get) => {
                         state.selectedDeleteChatList = chatList;
                     }
                 }
-                else if (currentBot.chatList.filter(c => c.status === enums_1.MessageStatusEnum.DONE || c.status === enums_1.MessageStatusEnum.ERROR)
+                else if (currentBot.chatList.filter(c => c.status === MessageStatusEnum.DONE || c.status === MessageStatusEnum.ERROR)
                     .length === state.selectedDeleteChatList.length) {
                     state.selectedDeleteChatList = [];
                 }
                 else {
-                    state.selectedDeleteChatList = currentBot.chatList.filter(c => c.status === enums_1.MessageStatusEnum.DONE || c.status === enums_1.MessageStatusEnum.ERROR);
+                    state.selectedDeleteChatList = currentBot.chatList.filter(c => c.status === MessageStatusEnum.DONE || c.status === MessageStatusEnum.ERROR);
                 }
             }, false, 'toggleAllDeleteChat');
         },
@@ -550,10 +544,10 @@ const createChatSlice = (set, get) => {
                 for (const botId in state.multiBotMap) {
                     if (refreshAll) {
                         state.multiBotMap[botId].chatList = state.multiBotMap[botId].chatList.map(chat => {
-                            if ((chat.type === enums_1.MessageTypeEnum.REPLY || chat.type === enums_1.MessageTypeEnum.GREETING) &&
+                            if ((chat.type === MessageTypeEnum.REPLY || chat.type === MessageTypeEnum.GREETING) &&
                                 ((chat.audioStream && chat.audioStream.length !== 0) ||
                                     (chat.textStream && chat.textStream.length !== 0))) {
-                                if (chat.status === enums_1.MessageStatusEnum.DONE || chat.status === enums_1.MessageStatusEnum.ERROR) {
+                                if (chat.status === MessageStatusEnum.DONE || chat.status === MessageStatusEnum.ERROR) {
                                     chat.audioStream = [];
                                     chat.textStream = [];
                                 }
@@ -563,10 +557,10 @@ const createChatSlice = (set, get) => {
                     }
                     else if (botId !== currentBotId) {
                         state.multiBotMap[botId].chatList = state.multiBotMap[botId].chatList.map(chat => {
-                            if ((chat.type === enums_1.MessageTypeEnum.REPLY || chat.type === enums_1.MessageTypeEnum.GREETING) &&
+                            if ((chat.type === MessageTypeEnum.REPLY || chat.type === MessageTypeEnum.GREETING) &&
                                 ((chat.audioStream && chat.audioStream.length !== 0) ||
                                     (chat.textStream && chat.textStream.length !== 0))) {
-                                if (chat.status === enums_1.MessageStatusEnum.DONE || chat.status === enums_1.MessageStatusEnum.ERROR) {
+                                if (chat.status === MessageStatusEnum.DONE || chat.status === MessageStatusEnum.ERROR) {
                                     chat.audioStream = [];
                                     chat.textStream = [];
                                 }
@@ -588,7 +582,7 @@ const createChatSlice = (set, get) => {
         setTextInput(botId, text) {
             set(state => {
                 state.textInputMap[botId] = text;
-                identityService_1.identityService.setTextInputMap(state.textInputMap);
+                identityService.setTextInputMap(state.textInputMap);
             }, false, 'setTextInput');
         },
         setDriverChatId(chatId) {
@@ -604,7 +598,7 @@ const createChatSlice = (set, get) => {
         clearTextInput() {
             set(state => {
                 state.textInputMap = {};
-                identityService_1.identityService.removeTextInputMap();
+                identityService.removeTextInputMap();
             }, false, 'clearTextInput');
         },
         openContextmenu() {
@@ -645,13 +639,13 @@ const createChatSlice = (set, get) => {
         setTransactionDisplayItem(messageId) {
             set(state => {
                 state.transactionDisplaySet.add(messageId);
-                identityService_1.identityService.setTransactionDisplaySet(state.transactionDisplaySet);
+                identityService.setTransactionDisplaySet(state.transactionDisplaySet);
             }, false, 'setTransactionDisplayItem');
         },
         async pollingChatMsg(message) {
             const storedMessage = get().multiBotMap[String(message.botId)].chatDic.get(message.id);
-            if (storedMessage?.status === enums_1.MessageStatusEnum.CANCELING ||
-                storedMessage?.status === enums_1.MessageStatusEnum.CANCELED ||
+            if (storedMessage?.status === MessageStatusEnum.CANCELING ||
+                storedMessage?.status === MessageStatusEnum.CANCELED ||
                 message.asyncJobInfo?.status === 'JOB_STATUS_CANCELED') {
                 return true;
             }
@@ -662,18 +656,18 @@ const createChatSlice = (set, get) => {
             }
             try {
                 get().setSending(true);
-                const res = await (0, bot_1.getBotJobInfo)(jobId);
+                const res = await getBotJobInfo(jobId);
                 const data = res?.data;
                 const dataMessage = data?.data?.message || {};
                 const resJobInfo = dataMessage.asyncJobInfo;
                 if (data && resJobInfo?.jobId) {
                     const { imageGenMessageResponse, message: msg } = data?.data;
                     if (!imageGenMessageResponse) {
-                        const info = (0, lodash_es_1.last)(msg?.extraInfo?.runningWidgetInfo) || {};
+                        const info = last(msg?.extraInfo?.runningWidgetInfo) || {};
                         if (data?.status === 'JOB_STATUS_DOING' && info.widgetName) {
-                            msg.text = (0, chat_1.generateWidgetRunningText)(info);
+                            msg.text = generateWidgetRunningText(info);
                         }
-                        bot_2.useBotStore.getState().setBotLastMessage(msg.botId, msg);
+                        useBotStore.getState().setBotLastMessage(msg.botId, msg);
                     }
                     get().addSSeTextStream({
                         index: 0,
@@ -683,8 +677,8 @@ const createChatSlice = (set, get) => {
                         modelStatus: resJobInfo?.status,
                         isJob: true
                     });
-                    if (resJobInfo?.status === enums_1.ModelStatusEnum.EMBED_OBJ_STATUS_DONE ||
-                        resJobInfo?.status === enums_1.ModelStatusEnum.EMBED_OBJ_STATUS_ERROR) {
+                    if (resJobInfo?.status === ModelStatusEnum.EMBED_OBJ_STATUS_DONE ||
+                        resJobInfo?.status === ModelStatusEnum.EMBED_OBJ_STATUS_ERROR) {
                         get().setSending(false);
                         return true;
                     }
@@ -697,13 +691,13 @@ const createChatSlice = (set, get) => {
                 if (res.success && data?.status === 'JOB_STATUS_DONE') {
                     const { imageGenMessageResponse, message: msg } = data?.data;
                     if (!imageGenMessageResponse) {
-                        bot_2.useBotStore.getState().setBotLastMessage(msg.botId, msg);
+                        useBotStore.getState().setBotLastMessage(msg.botId, msg);
                     }
                     else {
                         get().addSSEImageStream({
                             imageGenMessageResponse,
                             replyMessage: message,
-                            genStatus: interfaces_1.ImageStatus.DONE
+                            genStatus: ImageStatus.DONE
                         });
                     }
                     return true;
@@ -714,7 +708,7 @@ const createChatSlice = (set, get) => {
                         isFinal: false,
                         text: dataMessage?.text ?? '',
                         replyMessage: dataMessage,
-                        modelStatus: enums_1.ModelStatusEnum.EMBED_OBJ_STATUS_ERROR
+                        modelStatus: ModelStatusEnum.EMBED_OBJ_STATUS_ERROR
                     });
                     get().setSending(false);
                     return true;
@@ -728,7 +722,7 @@ const createChatSlice = (set, get) => {
         },
         async getImageFormParamsAsync() {
             if (Object.keys(get().imageParams || {}).length === 0) {
-                const res = await (0, api_1.getImageParams)();
+                const res = await getImageParams();
                 if (res.success) {
                     set(state => {
                         state.imageParams = res.data;
@@ -769,8 +763,8 @@ const createChatSlice = (set, get) => {
                     set(state => {
                         state.fileUpload.uploading = file;
                     });
-                    const res = await (0, common_1.uploadFileToS3WithProgress)({
-                        scenario: common_1.Scenario.SCENARIO_IM_CHAT,
+                    const res = await uploadFileToS3WithProgress({
+                        scenario: Scenario.SCENARIO_IM_CHAT,
                         contentType: file.uiData.contentType,
                         onProgress: value => {
                             set(state => {
@@ -869,7 +863,7 @@ const createChatSlice = (set, get) => {
         }
     };
 };
-exports.useChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)((...a) => ({
+export const useChatStore = create()(immer(devtools((...a) => ({
     ...createChatSlice(...a),
-    ...(0, chatCommonSlice_1.createChatCommonSlice)(...a)
+    ...createChatCommonSlice(...a)
 }), { store: 'chat' })));

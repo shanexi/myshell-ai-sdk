@@ -1,57 +1,50 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Message = void 0;
-exports.useNotification = useNotification;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const react_hot_toast_1 = require("react-hot-toast");
-const CustomNotificationElement_1 = __importDefault(require("../../common/components/CustomNotificationElement.js"));
-function useNotification() {
-    const addToast = (0, react_1.useCallback)((config, duration) => {
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useCallback } from 'react';
+import { toast } from 'react-hot-toast';
+import CustomNotificationElement from '../../common/components/CustomNotificationElement.js';
+export function useNotification() {
+    const addToast = useCallback((config, duration) => {
         if (config.id) {
-            react_hot_toast_1.toast.remove(config.id);
+            toast.remove(config.id);
         }
-        react_hot_toast_1.toast.custom((t) => {
-            return (0, jsx_runtime_1.jsx)(CustomNotificationElement_1.default, { tProps: { ...t, duration }, customProps: config });
+        toast.custom((t) => {
+            return _jsx(CustomNotificationElement, { tProps: { ...t, duration }, customProps: config });
         }, {
             id: config.id
         });
     }, []);
-    const message = (0, react_1.useCallback)((config) => addToast({
+    const message = useCallback((config) => addToast({
         ...config
     }), []);
-    const success = (0, react_1.useCallback)((config) => addToast({
+    const success = useCallback((config) => addToast({
         ...config,
         type: 'success'
     }), []);
-    const error = (0, react_1.useCallback)((config) => addToast({
+    const error = useCallback((config) => addToast({
         ...config,
         type: 'error'
     }), []);
-    const warning = (0, react_1.useCallback)((config) => addToast({
+    const warning = useCallback((config) => addToast({
         ...config,
         type: 'warning'
     }), []);
-    const info = (0, react_1.useCallback)((config, duration) => addToast({
+    const info = useCallback((config, duration) => addToast({
         ...config,
         type: 'info'
     }, duration), []);
-    const close = (0, react_1.useCallback)((id) => {
-        react_hot_toast_1.toast.dismiss(id);
+    const close = useCallback((id) => {
+        toast.dismiss(id);
     }, []);
     return { addToast, success, error, warning, info, close, message };
 }
-class Message {
+export class Message {
     static _toast(config) {
         if (config.id) {
-            react_hot_toast_1.toast.remove(config.id);
+            toast.remove(config.id);
         }
         const addToast = () => {
-            react_hot_toast_1.toast.custom((t) => {
-                return (0, jsx_runtime_1.jsx)(CustomNotificationElement_1.default, { tProps: t, customProps: config });
+            toast.custom((t) => {
+                return _jsx(CustomNotificationElement, { tProps: t, customProps: config });
             }, {
                 id: config.id
             });
@@ -83,7 +76,6 @@ class Message {
         });
     }
     static close(id) {
-        react_hot_toast_1.toast.dismiss(id);
+        toast.dismiss(id);
     }
 }
-exports.Message = Message;

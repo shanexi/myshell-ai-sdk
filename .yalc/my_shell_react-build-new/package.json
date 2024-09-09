@@ -61,6 +61,7 @@
     "katex": "^0.16.10",
     "lightweight-charts": "^4.2.0",
     "lodash-es": "^4.17.21",
+    "lottie-web": "^5.10.2",
     "lucide-react": "^0.312.0",
     "marked": "^12.0.0",
     "marked-gfm-heading-id": "^3.1.3",
@@ -69,6 +70,8 @@
     "marked-xhtml": "^1.0.9",
     "md5": "^2.3.0",
     "mermaid": "^9.2.0",
+    "next-intl": "^2.20.0",
+    "next-themes": "^0.2.1",
     "path-to-regexp": "^6.2.1",
     "popmotion": "^11.0.5",
     "qr-code-styling": "^1.6.0-rc.1",
@@ -113,5 +116,5 @@
   },
   "main": "./src/chat-new/index.js",
   "types": "./types/src/chat-new/index.d.ts",
-  "yalcSig": "5d624b4c0b6f2199f5341ca8e8b1ccf8"
+  "yalcSig": "58444026662006ae0c77f49c854bccab"
 }

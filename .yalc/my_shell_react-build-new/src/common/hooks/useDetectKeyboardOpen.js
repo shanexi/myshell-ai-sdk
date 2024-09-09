@@ -1,15 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useDetectKeyboardOpen = void 0;
-const react_1 = require("react");
-const useDetectKeyboardOpen = ({ minKeyboardHeight = 300, defaultValue = false, callback }) => {
-    const [isKeyboardOpen, setIsKeyboardOpen] = (0, react_1.useState)(defaultValue);
-    const cbRef = (0, react_1.useRef)(callback);
-    const isKeyboardOpenRef = (0, react_1.useRef)(isKeyboardOpen);
-    (0, react_1.useEffect)(() => {
+import { useEffect, useRef, useState } from 'react';
+export const useDetectKeyboardOpen = ({ minKeyboardHeight = 300, defaultValue = false, callback }) => {
+    const [isKeyboardOpen, setIsKeyboardOpen] = useState(defaultValue);
+    const cbRef = useRef(callback);
+    const isKeyboardOpenRef = useRef(isKeyboardOpen);
+    useEffect(() => {
         cbRef.current = callback;
     }, [callback]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const listener = () => {
             const visualHeight = window.visualViewport.height;
             const screenHeight = window.screen.height;
@@ -33,4 +30,3 @@ const useDetectKeyboardOpen = ({ minKeyboardHeight = 300, defaultValue = false, 
     }, []);
     return isKeyboardOpen;
 };
-exports.useDetectKeyboardOpen = useDetectKeyboardOpen;

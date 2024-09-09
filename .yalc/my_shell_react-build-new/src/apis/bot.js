@@ -1,63 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBotListInChatList = getBotListInChatList;
-exports.getOwnBotList = getOwnBotList;
-exports.getToolboxList = getToolboxList;
-exports.searchBotList = searchBotList;
-exports.getSelectedBoForLandingPage = getSelectedBoForLandingPage;
-exports.getBotInfo = getBotInfo;
-exports.getBotInfoV2 = getBotInfoV2;
-exports.voiceCreate = voiceCreate;
-exports.voiceEdit = voiceEdit;
-exports.voicePreview = voicePreview;
-exports.voiceRecreate = voiceRecreate;
-exports.voiceUsages = voiceUsages;
-exports.getTtsList = getTtsList;
-exports.getMyVoice = getMyVoice;
-exports.createVoice = createVoice;
-exports.editVoice = editVoice;
-exports.deleteVoice = deleteVoice;
-exports.getVoiceUsage = getVoiceUsage;
-exports.voiceReCreation = voiceReCreation;
-exports.previewTts = previewTts;
-exports.setBotPinnedStatus = setBotPinnedStatus;
-exports.createBot = createBot;
-exports.saveBot = saveBot;
-exports.getBotJobInfo = getBotJobInfo;
-exports.resetBot = resetBot;
-exports.setMessageHandled = setMessageHandled;
-exports.createOrUpdateUgcBot = createOrUpdateUgcBot;
-exports.resetUnReadMessageCount = resetUnReadMessageCount;
-exports.addBotToChatList = addBotToChatList;
-exports.removeBotFromChatList = removeBotFromChatList;
-exports.validateCreateUgcBotAction = validateCreateUgcBotAction;
-exports.publishBot = publishBot;
-exports.unpublishBot = unpublishBot;
-exports.getLanguageList = getLanguageList;
-exports.getSharedBotInfo = getSharedBotInfo;
-exports.getBotSharingCode = getBotSharingCode;
-exports.getBotSharingCodeByBotId = getBotSharingCodeByBotId;
-exports.getBotSharedDetail = getBotSharedDetail;
-exports.getTagInfos = getTagInfos;
-exports.getBotFilters = getBotFilters;
-exports.bindTgToken = bindTgToken;
-exports.createAutoPromptTask = createAutoPromptTask;
-exports.getAdvanedPrompt = getAdvanedPrompt;
-exports.getAutoPromptTask = getAutoPromptTask;
-exports.uploadBotPhoto = uploadBotPhoto;
-exports.removeBotPhoto = removeBotPhoto;
-exports.getAllBotTags = getAllBotTags;
-exports.getRecommendBots = getRecommendBots;
-exports.addBotToChatListV2 = addBotToChatListV2;
-exports.getBotChatSetting = getBotChatSetting;
-exports.updateBotChatSetting = updateBotChatSetting;
-exports.getAvailableLlmModels = getAvailableLlmModels;
-exports.checkBotJointConfig = checkBotJointConfig;
-exports.terminateGeneration = terminateGeneration;
-exports.mediaFileMetadata = mediaFileMetadata;
-const rx_http_1 = require("../common/utils/rx-http.js");
-const APIFetch_1 = require("../core/request/APIFetch.js");
-function getBotListInChatList(source, query) {
+import { rxDelete, rxGet, rxPost, rxUpload } from '../common/utils/rx-http.js';
+import { APIFetch } from '../core/request/APIFetch.js';
+export function getBotListInChatList(source, query) {
     const url = '/v2/bot/chat/list_bot_in_chat_list';
     const adapter = (res) => {
         const bots = res?.botDetails ?? [];
@@ -199,13 +142,13 @@ function getBotListInChatList(source, query) {
             ...(query && { query })
         }
     };
-    return APIFetch_1.APIFetch.post(url, {
+    return APIFetch.post(url, {
         ...config,
         adapter
     });
 }
-function getOwnBotList() {
-    return APIFetch_1.APIFetch.post('/v1/bot/list_user_owned_bots', {
+export function getOwnBotList() {
+    return APIFetch.post('/v1/bot/list_user_owned_bots', {
         isGoLang: true,
         adapter: (res) => {
             return (res.bots || []).map((bot) => {
@@ -220,8 +163,8 @@ function getOwnBotList() {
         }
     });
 }
-function getToolboxList() {
-    return APIFetch_1.APIFetch.post('/v1/bot/list_toolbox_bots', {
+export function getToolboxList() {
+    return APIFetch.post('/v1/bot/list_toolbox_bots', {
         isGoLang: true,
         adapter: (res) => {
             return (res.bots || []).map((bot) => {
@@ -236,8 +179,8 @@ function getToolboxList() {
         }
     });
 }
-function searchBotList(pageToken, pageSize, query, includeTagIds, excludeTagIds) {
-    return APIFetch_1.APIFetch.post('/v1/bot/search', {
+export function searchBotList(pageToken, pageSize, query, includeTagIds, excludeTagIds) {
+    return APIFetch.post('/v1/bot/search', {
         body: {
             listRequest: {
                 pageToken: pageToken || '0',
@@ -262,18 +205,18 @@ function searchBotList(pageToken, pageSize, query, includeTagIds, excludeTagIds)
         }
     });
 }
-function getSelectedBoForLandingPage(id) {
-    return (0, rx_http_1.rxGet)('/bot/getSelectedBoForLandingPage', { id: id || '' });
+export function getSelectedBoForLandingPage(id) {
+    return rxGet('/bot/getSelectedBoForLandingPage', { id: id || '' });
 }
-function getBotInfo(ids, production) {
-    return (0, rx_http_1.rxPost)('/v1/bot/batch_get', { ids: typeof ids === 'string' ? [ids] : ids }, {
+export function getBotInfo(ids, production) {
+    return rxPost('/v1/bot/batch_get', { ids: typeof ids === 'string' ? [ids] : ids }, {
         noPopupError: true,
         isGoLang: true,
         production
     });
 }
-function getBotInfoV2(ids, production) {
-    return APIFetch_1.APIFetch.post('/v1/bot/batch_get', {
+export function getBotInfoV2(ids, production) {
+    return APIFetch.post('/v1/bot/batch_get', {
         body: {
             ids: typeof ids === 'string' ? [ids] : ids
         },
@@ -281,8 +224,8 @@ function getBotInfoV2(ids, production) {
         production
     });
 }
-function voiceCreate(audioUrl) {
-    return APIFetch_1.APIFetch.post('/v1/bot/voice/create', {
+export function voiceCreate(audioUrl) {
+    return APIFetch.post('/v1/bot/voice/create', {
         isGoLang: true,
         body: {
             audioUrl
@@ -296,8 +239,8 @@ function voiceCreate(audioUrl) {
         }
     });
 }
-function voiceEdit(ttsId, name, imageUrl) {
-    return APIFetch_1.APIFetch.post('/v1/bot/voice/edit', {
+export function voiceEdit(ttsId, name, imageUrl) {
+    return APIFetch.post('/v1/bot/voice/edit', {
         body: {
             id: ttsId,
             ...(name && { name }),
@@ -306,8 +249,8 @@ function voiceEdit(ttsId, name, imageUrl) {
         isGoLang: true
     });
 }
-function voicePreview(ttsId, text) {
-    return APIFetch_1.APIFetch.post('/v1/bot/voice/preview', {
+export function voicePreview(ttsId, text) {
+    return APIFetch.post('/v1/bot/voice/preview', {
         body: {
             ttsId,
             text
@@ -318,8 +261,8 @@ function voicePreview(ttsId, text) {
         }
     });
 }
-function voiceRecreate(ttsId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/voice/recreate', {
+export function voiceRecreate(ttsId) {
+    return APIFetch.post('/v1/bot/voice/recreate', {
         body: {
             id: ttsId
         },
@@ -333,8 +276,8 @@ function voiceRecreate(ttsId) {
         }
     });
 }
-function voiceUsages(ttsId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/voice/usages', {
+export function voiceUsages(ttsId) {
+    return APIFetch.post('/v1/bot/voice/usages', {
         body: {
             id: ttsId
         },
@@ -354,49 +297,49 @@ function voiceUsages(ttsId) {
         }
     });
 }
-function getTtsList() {
-    return (0, rx_http_1.rxGet)('/bot/getTtsList');
+export function getTtsList() {
+    return rxGet('/bot/getTtsList');
 }
-function getMyVoice() {
-    return (0, rx_http_1.rxPost)('/bot/getMyVoice', {});
+export function getMyVoice() {
+    return rxPost('/bot/getMyVoice', {});
 }
-function createVoice(data) {
+export function createVoice(data) {
     const formData = new FormData();
     for (const key in data) {
         if (data.hasOwnProperty(key)) {
             formData.append(key, data[key]);
         }
     }
-    return (0, rx_http_1.rxUpload)('/bot/createVoice', formData, {
+    return rxUpload('/bot/createVoice', formData, {
         timeout: 90000
     });
 }
-function editVoice(data) {
+export function editVoice(data) {
     const formData = new FormData();
     for (const key in data) {
         if (data.hasOwnProperty(key) && data[key]) {
             formData.append(key, data[key]);
         }
     }
-    return (0, rx_http_1.rxUpload)('/bot/editVoice', formData);
+    return rxUpload('/bot/editVoice', formData);
 }
-function deleteVoice(id) {
-    return (0, rx_http_1.rxDelete)('/bot/deleteVoice', { id });
+export function deleteVoice(id) {
+    return rxDelete('/bot/deleteVoice', { id });
 }
-function getVoiceUsage(id) {
-    return (0, rx_http_1.rxGet)('/bot/getVoiceUsage', { id });
+export function getVoiceUsage(id) {
+    return rxGet('/bot/getVoiceUsage', { id });
 }
-function voiceReCreation(id) {
-    return (0, rx_http_1.rxPost)('/bot/recreateVoice', { id });
+export function voiceReCreation(id) {
+    return rxPost('/bot/recreateVoice', { id });
 }
-function previewTts(text, ttsUid) {
-    return (0, rx_http_1.rxPost)('/bot/previewTts', {
+export function previewTts(text, ttsUid) {
+    return rxPost('/bot/previewTts', {
         text,
         ttsUid
     });
 }
-function setBotPinnedStatus(botId, pinned) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/pinned_bot_in_list', {
+export function setBotPinnedStatus(botId, pinned) {
+    return APIFetch.post('/v1/bot/chat/pinned_bot_in_list', {
         body: {
             botId,
             pinned: {
@@ -406,8 +349,8 @@ function setBotPinnedStatus(botId, pinned) {
         isGoLang: true
     });
 }
-function createBot(name, prompt, autoPromptTaskId, autoUpdateProfile) {
-    return APIFetch_1.APIFetch.post('/v1/bot/create', {
+export function createBot(name, prompt, autoPromptTaskId, autoUpdateProfile) {
+    return APIFetch.post('/v1/bot/create', {
         body: {
             name,
             prompt,
@@ -417,55 +360,55 @@ function createBot(name, prompt, autoPromptTaskId, autoUpdateProfile) {
         isGoLang: true
     });
 }
-function saveBot(data) {
-    return APIFetch_1.APIFetch.post('/v2/bot/save', {
+export function saveBot(data) {
+    return APIFetch.post('/v2/bot/save', {
         body: { ...data },
         isGoLang: true
     });
 }
-function getBotJobInfo(jobId) {
-    return APIFetch_1.APIFetch.post('/v1/async_job/get_info', {
+export function getBotJobInfo(jobId) {
+    return APIFetch.post('/v1/async_job/get_info', {
         body: {
             jobId
         },
         isGoLang: true
     });
 }
-function resetBot(botId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/reset', {
+export function resetBot(botId) {
+    return APIFetch.post('/v1/bot/reset', {
         body: {
             botId
         },
         isGoLang: true
     });
 }
-function setMessageHandled(msgId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/set_message_handled', {
+export function setMessageHandled(msgId) {
+    return APIFetch.post('/v1/bot/chat/set_message_handled', {
         body: {
             msgId
         },
         isGoLang: true
     });
 }
-function createOrUpdateUgcBot(data) {
+export function createOrUpdateUgcBot(data) {
     const formData = new FormData();
     for (const key in data) {
         formData.append(key, data[key]);
     }
-    return (0, rx_http_1.rxUpload)('/bot/editUgcBot', formData, {
+    return rxUpload('/bot/editUgcBot', formData, {
         timeout: 90000
     });
 }
-function resetUnReadMessageCount(botId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/reset_unread_message_count', {
+export function resetUnReadMessageCount(botId) {
+    return APIFetch.post('/v1/bot/chat/reset_unread_message_count', {
         body: {
             botId
         },
         isGoLang: true
     });
 }
-function addBotToChatList(botId, src) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/add_bot_to_chat_list', {
+export function addBotToChatList(botId, src) {
+    return APIFetch.post('/v1/bot/chat/add_bot_to_chat_list', {
         body: {
             botId,
             src,
@@ -474,46 +417,46 @@ function addBotToChatList(botId, src) {
         isGoLang: true
     });
 }
-function removeBotFromChatList(botId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/remove_bot_from_chat_list', {
+export function removeBotFromChatList(botId) {
+    return APIFetch.post('/v1/bot/chat/remove_bot_from_chat_list', {
         body: {
             botId
         },
         isGoLang: true
     });
 }
-function validateCreateUgcBotAction() {
-    return (0, rx_http_1.rxGet)('/bot/canCreateUgcBot');
+export function validateCreateUgcBotAction() {
+    return rxGet('/bot/canCreateUgcBot');
 }
-function publishBot(botId) {
-    return (0, rx_http_1.rxPost)('/v1/bot/publish', {
+export function publishBot(botId) {
+    return rxPost('/v1/bot/publish', {
         botId
     }, {
         isGoLang: true
     });
 }
-function unpublishBot(botId) {
-    return (0, rx_http_1.rxPost)('/v1/bot/un_publish', {
+export function unpublishBot(botId) {
+    return rxPost('/v1/bot/un_publish', {
         botId
     }, {
         isGoLang: true
     });
 }
-function getLanguageList() {
-    return APIFetch_1.APIFetch.post('/v1/bot/list_bot_languages', {
+export function getLanguageList() {
+    return APIFetch.post('/v1/bot/list_bot_languages', {
         isGoLang: true,
         adapter: (res) => {
             return res.languages || [];
         }
     });
 }
-function getSharedBotInfo(code) {
-    return (0, rx_http_1.rxGet)('/bot/getSharedBotInfo', {
+export function getSharedBotInfo(code) {
+    return rxGet('/bot/getSharedBotInfo', {
         code
     });
 }
 const shareCodeCacheMap$ = new Map();
-async function getBotSharingCode(botId) {
+export async function getBotSharingCode(botId) {
     if (!shareCodeCacheMap$.has(botId)) {
         const res = (await getBotSharingCodeByBotId(botId));
         if (res.success && res.data.code) {
@@ -522,24 +465,24 @@ async function getBotSharingCode(botId) {
     }
     return shareCodeCacheMap$.get(botId);
 }
-function getBotSharingCodeByBotId(botId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/shared/generate_bot_shared_code', {
+export function getBotSharingCodeByBotId(botId) {
+    return APIFetch.post('/v1/bot/shared/generate_bot_shared_code', {
         body: {
             botId
         },
         isGoLang: true
     });
 }
-function getBotSharedDetail(code) {
-    return APIFetch_1.APIFetch.post('/v1/bot/shared/get_bot_shared_detail', {
+export function getBotSharedDetail(code) {
+    return APIFetch.post('/v1/bot/shared/get_bot_shared_detail', {
         body: {
             code
         },
         isGoLang: true
     });
 }
-function getTagInfos(tagType, showNsfw) {
-    return APIFetch_1.APIFetch.post('/v3/bot/tag/get_tag_infos', {
+export function getTagInfos(tagType, showNsfw) {
+    return APIFetch.post('/v3/bot/tag/get_tag_infos', {
         body: {
             tagType,
             excludeNsfw: !showNsfw
@@ -550,45 +493,45 @@ function getTagInfos(tagType, showNsfw) {
         }
     });
 }
-function getBotFilters(excludeNsfw) {
-    return (0, rx_http_1.rxGet)('/bot/filters', {
+export function getBotFilters(excludeNsfw) {
+    return rxGet('/bot/filters', {
         v: 2,
         excludeNsfw: excludeNsfw ? 'false' : 'true'
     });
 }
-function bindTgToken(token, botId) {
-    return (0, rx_http_1.rxPost)('/botTelegram/bindToken', {
+export function bindTgToken(token, botId) {
+    return rxPost('/botTelegram/bindToken', {
         token,
         botId: Number(botId)
     }, {
         noPopupError: true
     });
 }
-function createAutoPromptTask(name, description) {
-    return (0, rx_http_1.rxPost)('/bot/createAutoPromptTask', {
+export function createAutoPromptTask(name, description) {
+    return rxPost('/bot/createAutoPromptTask', {
         name,
         description
     }, {
         noPopupError: true
     });
 }
-function getAdvanedPrompt(botId) {
-    return (0, rx_http_1.rxPost)('/v1/bot/setting/generate_prefix_and_postfix', {
+export function getAdvanedPrompt(botId) {
+    return rxPost('/v1/bot/setting/generate_prefix_and_postfix', {
         botId
     }, {
         noPopupError: true,
         isGoLang: true
     });
 }
-function getAutoPromptTask(id) {
-    return (0, rx_http_1.rxGet)('/bot/getAutoPromptTask', {
+export function getAutoPromptTask(id) {
+    return rxGet('/bot/getAutoPromptTask', {
         id
     }, {
         noPopupError: true
     });
 }
-function uploadBotPhoto(botId, objectKeys, type) {
-    return APIFetch_1.APIFetch.post('/v1/bot/photo/batch_add', {
+export function uploadBotPhoto(botId, objectKeys, type) {
+    return APIFetch.post('/v1/bot/photo/batch_add', {
         body: {
             objectKeys,
             type,
@@ -600,8 +543,8 @@ function uploadBotPhoto(botId, objectKeys, type) {
         }
     });
 }
-function removeBotPhoto(data) {
-    return APIFetch_1.APIFetch.post('/v1/bot/photo/batch_remove', {
+export function removeBotPhoto(data) {
+    return APIFetch.post('/v1/bot/photo/batch_remove', {
         body: {
             botId: data.botId,
             photoIds: data.photoIds
@@ -612,14 +555,14 @@ function removeBotPhoto(data) {
         }
     });
 }
-function getAllBotTags() {
-    return (0, rx_http_1.rxGet)('/bot/tags', {});
+export function getAllBotTags() {
+    return rxGet('/bot/tags', {});
 }
-function getRecommendBots() {
-    return APIFetch_1.APIFetch.post('/v1/bot/get_recommended_bots', { isGoLang: true });
+export function getRecommendBots() {
+    return APIFetch.post('/v1/bot/get_recommended_bots', { isGoLang: true });
 }
-function addBotToChatListV2(botIds, src = 'USER_BOT_LIST_SRC_USER_REGISTER') {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/batch_add_bot_to_chat_list', {
+export function addBotToChatListV2(botIds, src = 'USER_BOT_LIST_SRC_USER_REGISTER') {
+    return APIFetch.post('/v1/bot/chat/batch_add_bot_to_chat_list', {
         body: {
             botIds,
             src: src || 'USER_BOT_LIST_SRC_USER_REGISTER'
@@ -627,38 +570,38 @@ function addBotToChatListV2(botIds, src = 'USER_BOT_LIST_SRC_USER_REGISTER') {
         isGoLang: true
     });
 }
-function getBotChatSetting(botId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/setting/get_chat_setting', {
+export function getBotChatSetting(botId) {
+    return APIFetch.post('/v1/bot/setting/get_chat_setting', {
         body: {
             botId
         },
         isGoLang: true
     });
 }
-function updateBotChatSetting(params) {
-    return APIFetch_1.APIFetch.post('/v1/bot/setting/update_chat_setting', {
+export function updateBotChatSetting(params) {
+    return APIFetch.post('/v1/bot/setting/update_chat_setting', {
         body: params,
         isGoLang: true
     });
 }
-function getAvailableLlmModels() {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/available_llm_models', {
+export function getAvailableLlmModels() {
+    return APIFetch.post('/v1/bot/chat/available_llm_models', {
         isGoLang: true,
         adapter: (res) => {
             return res.models;
         }
     });
 }
-function checkBotJointConfig(json) {
-    return APIFetch_1.APIFetch.post('/v1/bot/check_bot_joint_config', {
+export function checkBotJointConfig(json) {
+    return APIFetch.post('/v1/bot/check_bot_joint_config', {
         body: {
             configJson: json
         },
         isGoLang: true
     });
 }
-function terminateGeneration(id, msgId, index) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/stop', {
+export function terminateGeneration(id, msgId, index) {
+    return APIFetch.post('/v1/bot/chat/stop', {
         body: {
             botId: id,
             msgId,
@@ -667,8 +610,8 @@ function terminateGeneration(id, msgId, index) {
         isGoLang: true
     });
 }
-function mediaFileMetadata(params) {
-    return APIFetch_1.APIFetch.post('/v1/bot/im/media_file_metadata', {
+export function mediaFileMetadata(params) {
+    return APIFetch.post('/v1/bot/im/media_file_metadata', {
         body: params,
         isGoLang: true
     }).then(res => res?.data);

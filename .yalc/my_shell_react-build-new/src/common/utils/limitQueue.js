@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.limitQueue = void 0;
-const limitQueue = (concurrency) => {
+export const limitQueue = (concurrency) => {
     let queue = [];
     let activeCount = 0;
     const next = () => {
@@ -47,4 +44,3 @@ const limitQueue = (concurrency) => {
     });
     return generator;
 };
-exports.limitQueue = limitQueue;

@@ -1,21 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
-const rxjs_1 = require("rxjs");
-const user_1 = require("../../apis/user.js");
-const store_1 = require("../../services/store/index.js");
+import { useMemo, useEffect, useState } from 'react';
+import { Subject } from 'rxjs';
+import { getInvitation } from '../../apis/user.js';
+import { useUserStore } from '../../services/store/index.js';
 const useGetInvitation = () => {
-    const setInviteLink = (0, store_1.useUserStore)(state => state.setInviteLink);
-    const setUserInviteCode = (0, store_1.useUserStore)(state => state.setUserInviteCode);
-    const setInvitationCount = (0, store_1.useUserStore)(state => state.setInvitationCount);
-    const setValidInvitationCount = (0, store_1.useUserStore)(state => state.setValidInvitationCount);
-    const setTgValidInvitationCount = (0, store_1.useUserStore)(state => state.setTgValidInvitationCount);
-    const token = (0, store_1.useUserStore)(state => state.token);
-    const destroy$ = (0, react_1.useMemo)(() => new rxjs_1.Subject(), []);
-    const [invitationLoading, setInvitationLoading] = (0, react_1.useState)(false);
+    const setInviteLink = useUserStore(state => state.setInviteLink);
+    const setUserInviteCode = useUserStore(state => state.setUserInviteCode);
+    const setInvitationCount = useUserStore(state => state.setInvitationCount);
+    const setValidInvitationCount = useUserStore(state => state.setValidInvitationCount);
+    const setTgValidInvitationCount = useUserStore(state => state.setTgValidInvitationCount);
+    const token = useUserStore(state => state.token);
+    const destroy$ = useMemo(() => new Subject(), []);
+    const [invitationLoading, setInvitationLoading] = useState(false);
     const fetchGetInvitation = async () => {
         setInvitationLoading(true);
-        const res = await (0, user_1.getInvitation)();
+        const res = await getInvitation();
         if (res.success) {
             const { code, invitationCount, validInvitationCount, tgValidInvitationCount } = res.data;
             setInvitationCount(invitationCount);
@@ -26,7 +24,7 @@ const useGetInvitation = () => {
         }
         setInvitationLoading(false);
     };
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         if (!token)
             return;
         fetchGetInvitation();
@@ -35,4 +33,4 @@ const useGetInvitation = () => {
         invitationLoading
     };
 };
-exports.default = useGetInvitation;
+export default useGetInvitation;

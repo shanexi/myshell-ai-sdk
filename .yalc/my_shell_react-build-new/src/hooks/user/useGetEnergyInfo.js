@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useGetEnergyInfo;
-const user_1 = require("../../apis/user.js");
-const store_1 = require("../../services/store/index.js");
-function useGetEnergyInfo() {
-    const setEnergyInfo = (0, store_1.useUserStore)(state => state.setEnergyInfo);
-    const userId = (0, store_1.useUserStore)(state => state.userId);
+import { getUserEnergyInfo } from '../../apis/user.js';
+import { useUserStore } from '../../services/store/index.js';
+export default function useGetEnergyInfo() {
+    const setEnergyInfo = useUserStore(state => state.setEnergyInfo);
+    const userId = useUserStore(state => state.userId);
     const getEnergyInfo = async (needSet = true) => {
         try {
-            const { data } = await (0, user_1.getUserEnergyInfo)(userId);
+            const { data } = await getUserEnergyInfo(userId);
             needSet && setEnergyInfo(data);
         }
         catch (e) {

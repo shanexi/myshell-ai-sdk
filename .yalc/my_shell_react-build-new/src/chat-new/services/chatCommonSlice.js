@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createChatCommonSlice = void 0;
-const bot_1 = require("../../apis/bot.js");
-const createChatCommonSlice = (set, get) => {
+import { setMessageHandled } from '../../apis/bot.js';
+export const createChatCommonSlice = (set, get) => {
     return {
         inputType: 'text',
         lastInputType: 'text',
@@ -41,7 +38,7 @@ const createChatCommonSlice = (set, get) => {
         },
         setMessageHandled({ botId, msgId }) {
             set(state => {
-                (0, bot_1.setMessageHandled)(msgId);
+                setMessageHandled(msgId);
                 const msg = state.multiBotMap[String(botId)].chatDic.get(msgId);
                 state.multiBotMap[String(botId)].chatDic.set(msgId, { ...msg, handled: true });
                 state.multiBotMap[String(botId)].chatList = [...state.multiBotMap[String(botId)].chatDic.values()];
@@ -49,4 +46,3 @@ const createChatCommonSlice = (set, get) => {
         },
     };
 };
-exports.createChatCommonSlice = createChatCommonSlice;

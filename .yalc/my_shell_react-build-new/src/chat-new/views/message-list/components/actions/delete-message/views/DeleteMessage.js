@@ -1,32 +1,26 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = DeleteMessage;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const TrashIcon_1 = __importDefault(require("@heroicons/react/24/outline/TrashIcon"));
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const react_use_1 = require("react-use");
-const MessageContext_1 = require("../../../../../../../chat-new/context/MessageContext.js");
-const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext.js");
-const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const context_menu_1 = require("../../../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../../../common/components/ui/icon-button.js");
-const modal_1 = require("../../../../../../../common/components/ui/modal.js");
-const typography_1 = require("../../../../../../../common/components/ui/typography.js");
-const useDeleteMessage_1 = __importDefault(require("../hooks/useDeleteMessage.js"));
-function DeleteMessage(props) {
-    const [confirming, setConfirming] = (0, react_use_1.useToggle)(false);
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
+import { useTranslations } from 'next-intl';
+import { useContext } from 'react';
+import { useToggle } from 'react-use';
+import { MessageContext } from '../../../../../../../chat-new/context/MessageContext.js';
+import { StaticContext } from '../../../../../../../chat-new/context/StaticContext.js';
+import { useDisplayContext } from '../../../../../../../chat-new/views/message-list/components/display-provider/index.js';
+import { ContextMenuItem } from '../../../../../../../common/components/ui/context-menu.js';
+import { IconButton } from '../../../../../../../common/components/ui/icon-button.js';
+import { Modal } from '../../../../../../../common/components/ui/modal.js';
+import { Text } from '../../../../../../../common/components/ui/typography.js';
+import useDeleteMessage from '../hooks/useDeleteMessage.js';
+export default function DeleteMessage(props) {
+    const [confirming, setConfirming] = useToggle(false);
     const { source } = props;
-    const chatLocale = (0, next_intl_1.useTranslations)('chat');
-    const commonT = (0, next_intl_1.useTranslations)('common');
-    const { type, entityInfo } = (0, react_1.useContext)(StaticContext_1.StaticContext);
+    const chatLocale = useTranslations('chat');
+    const commonT = useTranslations('common');
+    const { type, entityInfo } = useContext(StaticContext);
     const { id } = entityInfo;
-    const { deleteSpecifiedMessageId } = (0, react_1.useContext)(MessageContext_1.MessageContext);
-    const { message } = (0, display_provider_1.useDisplayContext)();
-    const { deleting, deleteMessage } = (0, useDeleteMessage_1.default)(type, id, deleteSpecifiedMessageId);
+    const { deleteSpecifiedMessageId } = useContext(MessageContext);
+    const { message } = useDisplayContext();
+    const { deleting, deleteMessage } = useDeleteMessage(type, id, deleteSpecifiedMessageId);
     const onDeleteMessage = () => {
         setConfirming(true);
     };
@@ -38,7 +32,7 @@ function DeleteMessage(props) {
             console.error(e);
         }
     };
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [source === 'menubar' ? ((0, jsx_runtime_1.jsx)(icon_button_1.IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onDeleteMessage, children: (0, jsx_runtime_1.jsx)(TrashIcon_1.default, { className: "size-[18px] text-error" }) })) : ((0, jsx_runtime_1.jsxs)(context_menu_1.ContextMenuItem, { onClick: onDeleteMessage, children: [(0, jsx_runtime_1.jsx)(TrashIcon_1.default, { className: "size-5 text-error" }), (0, jsx_runtime_1.jsx)(typography_1.Text, { className: "ml-2 text-error", children: commonT('delete') })] })), confirming && ((0, jsx_runtime_1.jsx)(modal_1.Modal, { state: "warning", isNotification: true, open: confirming, onClose: () => setConfirming(false), onConfirm: confirmHandler, title: chatLocale('delete_confirmation.header'), description: chatLocale('delete_confirmation.delete_part_content', {
+    return (_jsxs(_Fragment, { children: [source === 'menubar' ? (_jsx(IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onDeleteMessage, children: _jsx(TrashIcon, { className: "size-[18px] text-error" }) })) : (_jsxs(ContextMenuItem, { onClick: onDeleteMessage, children: [_jsx(TrashIcon, { className: "size-5 text-error" }), _jsx(Text, { className: "ml-2 text-error", children: commonT('delete') })] })), confirming && (_jsx(Modal, { state: "warning", isNotification: true, open: confirming, onClose: () => setConfirming(false), onConfirm: confirmHandler, title: chatLocale('delete_confirmation.header'), description: chatLocale('delete_confirmation.delete_part_content', {
                     num: 1,
                     entity: type
                 }), confirmLoading: deleting }))] }));

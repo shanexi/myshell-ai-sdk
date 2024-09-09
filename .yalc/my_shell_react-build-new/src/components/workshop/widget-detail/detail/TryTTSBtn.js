@@ -1,25 +1,19 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = TryTTSBtn;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const PauseIcon_1 = __importDefault(require("@heroicons/react/24/outline/PauseIcon"));
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/outline/PlayIcon"));
-const next_intl_1 = require("next-intl");
-const react_1 = require("react");
-const usehooks_ts_1 = require("usehooks-ts");
-const workshop_1 = require("../../../../apis/workshop.js");
-const button_1 = require("../../../../common/components/ui/button.js");
-const useNotification_1 = require("../../../../common/hooks/useNotification.js");
-function TryTTSBtn({ widgetId }) {
-    const { warning } = (0, useNotification_1.useNotification)();
-    const t = (0, next_intl_1.useTranslations)('workshop');
-    const { value: loading, setTrue, setFalse } = (0, usehooks_ts_1.useBoolean)(false);
-    const { value: playing, setTrue: setPlaying, setFalse: setPlayingFalse } = (0, usehooks_ts_1.useBoolean)(false);
-    const [trailVoiceUrl, setTrailVoiceUrl] = (0, react_1.useState)();
-    const ref = (0, react_1.useRef)(null);
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import PauseIcon from '@heroicons/react/24/outline/PauseIcon';
+import PlayIcon from '@heroicons/react/24/outline/PlayIcon';
+import { useTranslations } from 'next-intl';
+import { useRef, useState } from 'react';
+import { useBoolean } from 'usehooks-ts';
+import { ttsWidgetTrail } from '../../../../apis/workshop.js';
+import { Button } from '../../../../common/components/ui/button.js';
+import { useNotification } from '../../../../common/hooks/useNotification.js';
+export default function TryTTSBtn({ widgetId }) {
+    const { warning } = useNotification();
+    const t = useTranslations('workshop');
+    const { value: loading, setTrue, setFalse } = useBoolean(false);
+    const { value: playing, setTrue: setPlaying, setFalse: setPlayingFalse } = useBoolean(false);
+    const [trailVoiceUrl, setTrailVoiceUrl] = useState();
+    const ref = useRef(null);
     const onPlay = () => {
         setPlaying();
     };
@@ -62,7 +56,7 @@ function TryTTSBtn({ widgetId }) {
     const tryVoice = async () => {
         try {
             setTrue();
-            const { data, success } = await (0, workshop_1.ttsWidgetTrail)(widgetId);
+            const { data, success } = await ttsWidgetTrail(widgetId);
             if (!success) {
                 warning({
                     content: t('tts_widget_trail_failed')
@@ -77,5 +71,5 @@ function TryTTSBtn({ widgetId }) {
             setFalse();
         }
     };
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(button_1.Button, { variant: "primary", color: "default", className: "w-7 h-7 px-1 min-w-7", onClick: handleClick, loading: loading, children: playing ? ((0, jsx_runtime_1.jsx)(PauseIcon_1.default, { className: "w-[14px] h-[14px] text-brand stroke-[2px]" })) : ((0, jsx_runtime_1.jsx)(PlayIcon_1.default, { className: "w-[14px] h-[14px] text-brand stroke-[2px]" })) }), trailVoiceUrl && ((0, jsx_runtime_1.jsx)("audio", { ref: ref, src: trailVoiceUrl, onError: handleError, autoPlay: true, onPlay: onPlay, onEnded: handleEnded }))] }));
+    return (_jsxs(_Fragment, { children: [_jsx(Button, { variant: "primary", color: "default", className: "w-7 h-7 px-1 min-w-7", onClick: handleClick, loading: loading, children: playing ? (_jsx(PauseIcon, { className: "w-[14px] h-[14px] text-brand stroke-[2px]" })) : (_jsx(PlayIcon, { className: "w-[14px] h-[14px] text-brand stroke-[2px]" })) }), trailVoiceUrl && (_jsx("audio", { ref: ref, src: trailVoiceUrl, onError: handleError, autoPlay: true, onPlay: onPlay, onEnded: handleEnded }))] }));
 }

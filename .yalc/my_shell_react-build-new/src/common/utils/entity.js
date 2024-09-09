@@ -1,8 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.serverListItemParser = serverListItemParser;
-exports.widgetListParser = widgetListParser;
-function serverListItemParser(item) {
+export function serverListItemParser(item) {
     if (item.room) {
         return {
             type: 'room',
@@ -25,7 +21,7 @@ function serverListItemParser(item) {
         pinned: item.bot.pinned
     };
 }
-function widgetListParser(widget) {
+export function widgetListParser(widget) {
     return {
         type: 'widget',
         id: widget.id,

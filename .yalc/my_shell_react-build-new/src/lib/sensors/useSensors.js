@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useSensors = useSensors;
-function useSensors() {
+export function useSensors() {
     return {
         track: (eventName, eventProps) => {
             window?.sensors?.track(eventName, {

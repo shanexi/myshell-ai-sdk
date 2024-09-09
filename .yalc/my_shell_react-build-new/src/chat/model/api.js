@@ -1,28 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getChatHistory = getChatHistory;
-exports.listChatHistory = listChatHistory;
-exports.resetHistory = resetHistory;
-exports.resetBotHistory = resetBotHistory;
-exports.deleteAllChatHistory = deleteAllChatHistory;
-exports.deleteChatHistory = deleteChatHistory;
-exports.createMessageSharedCode = createMessageSharedCode;
-exports.getMessageSharedDetail = getMessageSharedDetail;
-exports.reportMsg = reportMsg;
-exports.reportMsgV1 = reportMsgV1;
-exports.regenerateTts = regenerateTts;
-exports.getImageParams = getImageParams;
-exports.getImageParamsFromImage = getImageParamsFromImage;
-exports.getImageParamsFromMsg = getImageParamsFromMsg;
-exports.getSharedMessages = getSharedMessages;
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const rx_http_1 = require("../../common/utils/rx-http.js");
-const APIFetch_1 = require("../../core/request/APIFetch.js");
-function getChatHistory(params) {
-    return (0, rx_http_1.rxGet)('/chat/chatHistory', { ...params });
+import { getFeedbackStatus } from '../../common/utils/common-helper.js';
+import { rxGet, rxPost } from '../../common/utils/rx-http.js';
+import { APIFetch } from '../../core/request/APIFetch.js';
+export function getChatHistory(params) {
+    return rxGet('/chat/chatHistory', { ...params });
 }
-function listChatHistory(params) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/list_history_messages', {
+export function listChatHistory(params) {
+    return APIFetch.post('/v1/bot/chat/list_history_messages', {
         isGoLang: true,
         body: {
             botId: params.botId,
@@ -36,7 +19,7 @@ function listChatHistory(params) {
                 data: res.messages.map((e) => {
                     return {
                         ...e,
-                        feedbackState: (0, common_helper_1.getFeedbackStatus)(e.feedbackState)
+                        feedbackState: getFeedbackStatus(e.feedbackState)
                     };
                 }),
                 offset: res.listResponse.nextPageToken
@@ -44,13 +27,13 @@ function listChatHistory(params) {
         }
     });
 }
-function resetHistory(botId) {
-    return (0, rx_http_1.rxPost)(`/chat/resetHistory`, {
+export function resetHistory(botId) {
+    return rxPost(`/chat/resetHistory`, {
         botId: Number(botId)
     });
 }
-function resetBotHistory(botId) {
-    return APIFetch_1.APIFetch.post('/v1/chat/reset', {
+export function resetBotHistory(botId) {
+    return APIFetch.post('/v1/chat/reset', {
         body: {
             bizId: botId,
             bizType: 'HISTORY_OPERATION_BIZ_TYPE_BOT'
@@ -58,8 +41,8 @@ function resetBotHistory(botId) {
         isGoLang: true
     });
 }
-function deleteAllChatHistory(botId) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteAllHistory', {
+export function deleteAllChatHistory(botId) {
+    return APIFetch.post('/v1/chat/deleteAllHistory', {
         body: {
             bizId: botId,
             bizType: 'HISTORY_OPERATION_BIZ_TYPE_BOT'
@@ -67,8 +50,8 @@ function deleteAllChatHistory(botId) {
         isGoLang: true
     });
 }
-function deleteChatHistory(bizType, idList) {
-    return APIFetch_1.APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
+export function deleteChatHistory(bizType, idList) {
+    return APIFetch.post('/v1/chat/deleteHistoryByMsgId', {
         body: {
             msgIdList: idList ?? [],
             bizType
@@ -76,46 +59,46 @@ function deleteChatHistory(bizType, idList) {
         isGoLang: true
     });
 }
-function createMessageSharedCode(messageIds) {
-    return APIFetch_1.APIFetch.post('/v1/bot/shared/generate_message_shared_code', {
+export function createMessageSharedCode(messageIds) {
+    return APIFetch.post('/v1/bot/shared/generate_message_shared_code', {
         body: {
             messageIds
         },
         isGoLang: true
     });
 }
-function getMessageSharedDetail(code) {
-    return APIFetch_1.APIFetch.post('/v1/bot/shared/get_message_shared_detail', {
+export function getMessageSharedDetail(code) {
+    return APIFetch.post('/v1/bot/shared/get_message_shared_detail', {
         body: {
             code
         },
         isGoLang: true
     });
 }
-function reportMsg(action, msgUid) {
-    return (0, rx_http_1.rxPost)('/message/feedback', {
+export function reportMsg(action, msgUid) {
+    return rxPost('/message/feedback', {
         action,
         msgUid
     });
 }
-function reportMsgV1(data) {
-    return APIFetch_1.APIFetch.post('/v1/feedback/message', {
+export function reportMsgV1(data) {
+    return APIFetch.post('/v1/feedback/message', {
         body: {
             ...data
         },
         isGoLang: true
     });
 }
-function regenerateTts(msgId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/chat/regenerate_tts', {
+export function regenerateTts(msgId) {
+    return APIFetch.post('/v1/bot/chat/regenerate_tts', {
         body: {
             msgId
         },
         isGoLang: true
     });
 }
-function getImageParams() {
-    return APIFetch_1.APIFetch.post('/v1/bot/image_gen_param', {
+export function getImageParams() {
+    return APIFetch.post('/v1/bot/image_gen_param', {
         body: {},
         isGoLang: true,
         adapter: res => {
@@ -151,25 +134,25 @@ function getImageParams() {
         }
     });
 }
-function getImageParamsFromImage(url) {
-    return APIFetch_1.APIFetch.post('/v1/bot/resolve_image_gen_param', {
+export function getImageParamsFromImage(url) {
+    return APIFetch.post('/v1/bot/resolve_image_gen_param', {
         body: {
             url
         },
         isGoLang: true
     });
 }
-function getImageParamsFromMsg(msgId) {
-    return APIFetch_1.APIFetch.post('/v1/bot/message_gen_param', {
+export function getImageParamsFromMsg(msgId) {
+    return APIFetch.post('/v1/bot/message_gen_param', {
         body: {
             msgId
         },
         isGoLang: true
     });
 }
-async function getSharedMessages(code) {
+export async function getSharedMessages(code) {
     try {
-        const res = (await APIFetch_1.APIFetch.post(`/v1/bot/shared/get_message_shared_detail`, {
+        const res = (await APIFetch.post(`/v1/bot/shared/get_message_shared_detail`, {
             isGoLang: true,
             body: { code }
         }));

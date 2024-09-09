@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ImageGenDisplay;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const default_display_1 = __importDefault(require("../../../default-display.js"));
-function ImageGenDisplay({ message, showText = true, showAudio = false }) {
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(default_display_1.default, { message: message, showText: showText, showAudio: showAudio }), ";"] }));
+import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import DefaultDisplay from '../../../default-display.js';
+export default function ImageGenDisplay({ message, showText = true, showAudio = false }) {
+    return (_jsxs(_Fragment, { children: [_jsx(DefaultDisplay, { message: message, showText: showText, showAudio: showAudio }), ";"] }));
 }

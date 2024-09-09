@@ -1,16 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateWidgetRunningText = exports.convertSecondsToMinutesAndSeconds = void 0;
-exports.widgetImComponentsParser = widgetImComponentsParser;
-exports.botDetailParser = botDetailParser;
-const dayjs_1 = __importDefault(require("dayjs"));
-const duration_1 = __importDefault(require("dayjs/plugin/duration"));
-dayjs_1.default.extend(duration_1.default);
-const convertSecondsToMinutesAndSeconds = (seconds) => {
-    const duration = dayjs_1.default.duration(seconds, 'seconds');
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
+export const convertSecondsToMinutesAndSeconds = (seconds) => {
+    const duration = dayjs.duration(seconds, 'seconds');
     const minutes = Math.floor(duration.asMinutes());
     const remainingSeconds = duration.seconds();
     if (minutes > 0) {
@@ -18,16 +10,14 @@ const convertSecondsToMinutesAndSeconds = (seconds) => {
     }
     return `${remainingSeconds}s`;
 };
-exports.convertSecondsToMinutesAndSeconds = convertSecondsToMinutesAndSeconds;
-const generateWidgetRunningText = (widgetInfoInProconfig) => {
+export const generateWidgetRunningText = (widgetInfoInProconfig) => {
     const { widgetName, status, endTimeTimestamp, startTimeTimestamp } = widgetInfoInProconfig;
     const seconds = status === 'PROCESSING'
-        ? (0, dayjs_1.default)().valueOf() / 1000 - Number(startTimeTimestamp)
+        ? dayjs().valueOf() / 1000 - Number(startTimeTimestamp)
         : Number(endTimeTimestamp) - Number(startTimeTimestamp);
-    return `${widgetName} (${(0, exports.convertSecondsToMinutesAndSeconds)(seconds)})`;
+    return `${widgetName} (${convertSecondsToMinutesAndSeconds(seconds)})`;
 };
-exports.generateWidgetRunningText = generateWidgetRunningText;
-function widgetImComponentsParser(imComponent) {
+export function widgetImComponentsParser(imComponent) {
     return {
         ...(imComponent ?? {}),
         componentsInput: imComponent?.componentsInput?.map((item) => {
@@ -118,7 +108,7 @@ function widgetImComponentsParser(imComponent) {
         })
     };
 }
-function botDetailParser(detail) {
+export function botDetailParser(detail) {
     const { lastMessage = {}, latestInteractionDateUnix, canEditBot, inChatList, photos, pinned, summary = {}, setting = {}, unreadMessageCount, visitorCanChat, widgets, generateVoiceCostEnergy } = detail;
     const { backgroundImageThemeHexColors, ...sRest } = summary || {};
     const data = {

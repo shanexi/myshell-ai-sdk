@@ -1,15 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginMethod = void 0;
-exports.default = usePrivyLogin;
-const react_auth_1 = require("@privy-io/react-auth");
-const react_1 = require("react");
-const wagmi_1 = require("wagmi");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const sensors_1 = require("../../lib/sensors/index.js");
-const store_1 = require("../../services/store/index.js");
-const navigation_1 = require("next/navigation");
-var LoginMethod;
+import { useLoginWithEmail, useLogout, usePrivy } from '@privy-io/react-auth';
+import { useState } from 'react';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
+import { openCenteredWindow } from '../../common/utils/common-helper.js';
+import { useSensors } from '../../lib/sensors/index.js';
+import { useGlobalStore, useUserStore } from '../../services/store/index.js';
+import { useRouter } from 'next/navigation';
+export var LoginMethod;
 (function (LoginMethod) {
     LoginMethod["Email"] = "Email";
     LoginMethod["Google"] = "Google";
@@ -19,20 +15,20 @@ var LoginMethod;
     LoginMethod["WalletConnect"] = "WalletConnect";
     LoginMethod["BSC"] = "BSC";
     LoginMethod["Facebook"] = "Facebook";
-})(LoginMethod || (exports.LoginMethod = LoginMethod = {}));
-function usePrivyLogin() {
-    const { sendCode, loginWithCode: emailLoginWithCode } = (0, react_auth_1.useLoginWithEmail)();
-    const { logout: privyLogout } = (0, react_auth_1.useLogout)();
-    const { getAccessToken, user: privyUser, authenticated } = (0, react_auth_1.usePrivy)();
-    const { connectors, connectAsync: connect } = (0, wagmi_1.useConnect)();
-    const { disconnectAsync: disconnect } = (0, wagmi_1.useDisconnect)();
-    const { isConnected, address: extenalWalletAddress } = (0, wagmi_1.useAccount)();
-    const setLoginMethod = (0, store_1.useUserStore)(state => state.setLoginMethod);
-    const toggleLoginModal = (0, store_1.useGlobalStore)(state => state.toggleLoginModal);
-    const loginMethod = (0, store_1.useUserStore)(state => state.loginMethod);
-    const sensors = (0, sensors_1.useSensors)();
-    const router = (0, navigation_1.useRouter)();
-    const [loading, setLoading] = (0, react_1.useState)(false);
+})(LoginMethod || (LoginMethod = {}));
+export default function usePrivyLogin() {
+    const { sendCode, loginWithCode: emailLoginWithCode } = useLoginWithEmail();
+    const { logout: privyLogout } = useLogout();
+    const { getAccessToken, user: privyUser, authenticated } = usePrivy();
+    const { connectors, connectAsync: connect } = useConnect();
+    const { disconnectAsync: disconnect } = useDisconnect();
+    const { isConnected, address: extenalWalletAddress } = useAccount();
+    const setLoginMethod = useUserStore(state => state.setLoginMethod);
+    const toggleLoginModal = useGlobalStore(state => state.toggleLoginModal);
+    const loginMethod = useUserStore(state => state.loginMethod);
+    const sensors = useSensors();
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const connectWallet = async ({ connector, onNotFound }) => {
         if (!connector) {
             onNotFound?.();
@@ -85,11 +81,11 @@ function usePrivyLogin() {
                     return { success: true };
                 }
                 case LoginMethod.Google: {
-                    (0, common_helper_1.openCenteredWindow)({ url: `/auth?provider=google&init=true`, title: 'Google OAuth', w: 400, h: 600 });
+                    openCenteredWindow({ url: `/auth?provider=google&init=true`, title: 'Google OAuth', w: 400, h: 600 });
                     return { success: false };
                 }
                 case LoginMethod.Apple: {
-                    (0, common_helper_1.openCenteredWindow)({ url: `/auth?provider=apple&init=true`, title: 'Apple OAuth', w: 400, h: 600 });
+                    openCenteredWindow({ url: `/auth?provider=apple&init=true`, title: 'Apple OAuth', w: 400, h: 600 });
                     return { success: false };
                 }
                 case LoginMethod.Facebook:
