@@ -1,5 +1,3 @@
-const path = require('path');
-
 function makeConfig(useRspack = true) {
   const framework = useRspack
     ? 'storybook-react-rspack'

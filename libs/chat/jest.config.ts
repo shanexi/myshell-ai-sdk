@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 export default {
   displayName: 'chat',
   preset: '../../jest.preset.js',
@@ -7,7 +8,12 @@ export default {
       '@swc/jest',
       { jsc: { transform: { react: { runtime: 'automatic' } } } },
     ],
+    '^.+\\.mjs$': '@swc/jest',
   },
+  moduleNameMapper: {
+    '^lodash-es$': 'lodash',
+  },
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!.*\\.mjs$)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/chat',
   coverageThreshold: {
