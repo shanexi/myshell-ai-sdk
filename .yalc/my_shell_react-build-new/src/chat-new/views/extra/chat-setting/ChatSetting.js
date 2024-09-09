@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ChatSetting;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const Cog8ToothIcon_1 = __importDefault(require("@heroicons/react/24/outline/Cog8ToothIcon"));
+const Cog8ToothIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/Cog8ToothIcon"));
 const react_use_1 = require("react-use");
-const drawer_1 = require("../../../../common/components/ui/drawer.js");
-const icon_button_1 = require("../../../../common/components/ui/icon-button.js");
-const popover_1 = require("../../../../common/components/ui/popover.js");
-const ChatSettingForm_1 = __importDefault(require("./ChatSettingForm.js"));
+const drawer_1 = require("../../../../common/components/ui/drawer");
+const icon_button_1 = require("../../../../common/components/ui/icon-button");
+const popover_1 = require("../../../../common/components/ui/popover");
+const ChatSettingForm_1 = __importDefault(require("./ChatSettingForm"));
 function ChatSetting() {
     const isDesktop = (0, react_use_1.useMedia)('(min-width: 768px)');
     if (isDesktop) {

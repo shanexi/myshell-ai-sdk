@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { ChatSetting, Language, MessageDetail } from '../../../src/chat/model/interfaces.js';
-import { AutoPromptTaskOutput, BotFilters, BotInfo, BotsInfo, BotTag, LLMModel, ReturnedBotInfo, TagInfo, TTSInfo, ugcList } from '../../../src/common/constants/interfaces/bot.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { ChatSetting, Language, MessageDetail } from '../../../src/chat/model/interfaces';
+import { AutoPromptTaskOutput, BotFilters, BotInfo, BotsInfo, BotTag, LLMModel, ReturnedBotInfo, TagInfo, TTSInfo, ugcList } from '../../../src/common/constants/interfaces/bot';
+import { ResponseType } from '../../../src/core/request/APIFetch';
 export declare function getBotListInChatList(source?: 'web3' | 'web2', query?: string): Promise<ResponseType<BotInfo[]>>;
 export declare function getOwnBotList(): Promise<ResponseType<BotInfo[]>>;
 export declare function getToolboxList(): Promise<ResponseType<BotInfo[]>>;

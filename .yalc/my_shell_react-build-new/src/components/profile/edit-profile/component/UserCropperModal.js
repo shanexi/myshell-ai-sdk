@@ -5,17 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("@chakra-ui/react");
-const ArrowLeftIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowLeftIcon"));
-const MagnifyingGlassMinusIcon_1 = __importDefault(require("@heroicons/react/24/outline/MagnifyingGlassMinusIcon"));
-const MagnifyingGlassPlusIcon_1 = __importDefault(require("@heroicons/react/24/outline/MagnifyingGlassPlusIcon"));
+const ArrowLeftIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowLeftIcon"));
+const MagnifyingGlassMinusIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/MagnifyingGlassMinusIcon"));
+const MagnifyingGlassPlusIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/MagnifyingGlassPlusIcon"));
 const lodash_es_1 = require("lodash-es");
 const next_intl_1 = require("next-intl");
 const react_2 = require("react");
 const react_cropper_1 = __importDefault(require("react-cropper"));
-const common_1 = require("../../../../apis/common.js");
-const bot_1 = require("../../../../common/constants/enums/bot.js");
-const useNotification_1 = require("../../../../common/hooks/useNotification.js");
-const usePathLocale_1 = require("../../../../common/hooks/usePathLocale.js");
+const common_1 = require("../../../../apis/common");
+const bot_1 = require("../../../../common/constants/enums/bot");
+const useNotification_1 = require("../../../../common/hooks/useNotification");
+const usePathLocale_1 = require("../../../../common/hooks/usePathLocale");
 require("cropperjs/dist/cropper.css");
 const getTypeFromExt = (ext) => {
     if (ext === 'jpg') {

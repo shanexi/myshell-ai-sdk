@@ -1,4 +1,4 @@
-import { User } from '../../../../src/common/constants/interfaces/user.js';
+import { User } from '../../../../src/common/constants/interfaces/user';
 export type ActiveContent = 'gallery' | 'widgets' | 'shares' | 'bots';
 export default function UserDetail({ showInsideScroller, detailData, showTopActions, defaultTab, onClose, followCallback }: {
     showInsideScroller?: boolean;

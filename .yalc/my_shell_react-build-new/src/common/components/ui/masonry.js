@@ -27,7 +27,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const react_2 = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
+const utils_1 = require("../../../lib/utils");
 const Masonry = ({ breakpointCols = {
     default: 0,
     3280: 5,

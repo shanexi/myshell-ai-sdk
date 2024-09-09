@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MessageMenuItems;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const actions_1 = __importDefault(require("../actions/index.js"));
+const actions_1 = __importDefault(require("../actions"));
 function MessageMenuItems() {
     const onSendSensors = (action_type, other) => {
     };

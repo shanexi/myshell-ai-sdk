@@ -9,19 +9,20 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const lucide_react_1 = require("lucide-react");
-const spinner_1 = __importDefault(require("../../../../../../common/components/ui/spinner.js"));
-const XCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/XCircleIcon"));
-const CheckCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/CheckCircleIcon"));
-const chat_1 = require("../../../../../../common/utils/chat.js");
-const alert_1 = require("../../../../../../common/components/ui/alert.js");
-const button_1 = require("../../../../../../common/components/ui/button.js");
-const dialog_1 = require("../../../../../../common/components/ui/dialog.js");
-const useCopyClipboard_1 = __importDefault(require("../../../../../../common/hooks/useCopyClipboard.js"));
-const typography_1 = require("../../../../../../common/components/ui/typography.js");
-const store_1 = require("../../../../../../services/store/index.js");
-const energy_pack_1 = __importDefault(require("../../../../../../chat-new/views/message-list/components/energy-pack/index.js"));
-const passcard_1 = __importDefault(require("../../../../../../chat-new/views/message-list/components/passcard/index.js"));
-const definitions_1 = require("../../../../../../chat-new/model/definitions.js");
+const spinner_1 = __importDefault(require("../../../../../../common/components/ui/spinner"));
+const XCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/XCircleIcon"));
+const CheckCircleIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/CheckCircleIcon"));
+const chat_1 = require("../../../../../../common/utils/chat");
+const alert_1 = require("../../../../../../common/components/ui/alert");
+const button_1 = require("../../../../../../common/components/ui/button");
+const dialog_1 = require("../../../../../../common/components/ui/dialog");
+const useCopyClipboard_1 = __importDefault(require("../../../../../../common/hooks/useCopyClipboard"));
+const typography_1 = require("../../../../../../common/components/ui/typography");
+const store_1 = require("../../../../../../services/store");
+const energy_pack_1 = __importDefault(require("../../../../../../chat-new/views/message-list/components/energy-pack"));
+const passcard_1 = __importDefault(require("../../../../../../chat-new/views/message-list/components/passcard"));
+const definitions_1 = require("../../../../../../chat-new/model/definitions");
+const useNewChatStore_1 = require("../../../../../../chat-new/services/useNewChatStore");
 const getErrorMsgByType = (requestErrorTranslations, type) => {
     switch (type) {
         case definitions_1.RunningErrorEnum.ENGINE_ERROR:
@@ -39,7 +40,7 @@ const RunningError = ({ message }) => {
     const t = (0, next_intl_1.useTranslations)('chat');
     const errorT = (0, next_intl_1.useTranslations)('request.error');
     const [isOpen, setIsOpen] = (0, react_1.useState)(false);
-    const setMessageHandled = (0, store_1.useChatStore)(state => state.setMessageHandled);
+    const setMessageHandled = (0, useNewChatStore_1.useNewChatStore)(state => state.setMessageHandled);
     const { onCopy } = (0, useCopyClipboard_1.default)(message?.runningError?.errorDetail || '');
     const isVisitor = (0, store_1.useUserStore)(user => user.isVisitor);
     const level = (0, store_1.useUserStore)(state => state.user?.level);

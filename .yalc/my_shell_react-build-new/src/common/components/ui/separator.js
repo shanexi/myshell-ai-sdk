@@ -28,7 +28,7 @@ exports.Separator = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const SeparatorPrimitive = __importStar(require("@radix-ui/react-separator"));
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
+const utils_1 = require("../../../lib/utils");
 const Separator = React.forwardRef(({ className, orientation = 'horizontal', decorative = true, ...props }, ref) => ((0, jsx_runtime_1.jsx)(SeparatorPrimitive.Root, { ref: ref, decorative: decorative, orientation: orientation, className: (0, utils_1.cn)('shrink-0 border-default', orientation === 'horizontal' ? 'border-b w-full ' : 'h-full  border-r', className), ...props })));
 exports.Separator = Separator;
 Separator.displayName = SeparatorPrimitive.Root.displayName;

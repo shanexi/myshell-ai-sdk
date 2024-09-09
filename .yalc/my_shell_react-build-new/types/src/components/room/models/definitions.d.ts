@@ -1,4 +1,4 @@
-import { ServerMessage } from '../../../../../src/chat-new/model/definitions.js';
+import { ServerMessage } from '../../../../../src/chat-new/model/definitions';
 export declare enum LocalRoomStatus {
     OTHER_SIDE_NO_ENERGY = "OTHER_SIDE_NO_ENERGY"
 }

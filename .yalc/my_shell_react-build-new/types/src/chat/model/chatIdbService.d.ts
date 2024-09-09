@@ -1,4 +1,4 @@
-import { MessageDetail } from '../../../../src/chat/model/interfaces.js';
+import { MessageDetail } from '../../../../src/chat/model/interfaces';
 declare class ChatIdbService {
     private db;
     private chats;

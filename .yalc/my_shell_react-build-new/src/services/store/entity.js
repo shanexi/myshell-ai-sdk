@@ -9,8 +9,8 @@ const zustand_1 = require("zustand");
 const zustand_computed_1 = require("zustand-computed");
 const middleware_1 = require("zustand/middleware");
 const immer_2 = require("zustand/middleware/immer");
-const entity_1 = require("../../apis/entity.js");
-const CustomError_1 = __importDefault(require("../../common/model/CustomError.js"));
+const entity_1 = require("../../apis/entity");
+const CustomError_1 = __importDefault(require("../../common/model/CustomError"));
 var ListStatus;
 (function (ListStatus) {
     ListStatus[ListStatus["UNINITIALIZED"] = 0] = "UNINITIALIZED";

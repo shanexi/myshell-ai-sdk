@@ -1,4 +1,4 @@
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { TagInfo } from '../../../../src/common/constants/interfaces/bot';
 interface P {
     tagList?: TagInfo[];
     showCount?: number;

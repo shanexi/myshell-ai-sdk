@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_intl_1 = require("next-intl");
 const usehooks_ts_1 = require("usehooks-ts");
-const useNotification_1 = require("./useNotification.js");
+const useNotification_1 = require("./useNotification");
 const useCopyClipboard = (text, successText, onSuccess, notice = true) => {
     const [value, copy] = (0, usehooks_ts_1.useCopyToClipboard)();
     const { success, error } = (0, useNotification_1.useNotification)();

@@ -227,6 +227,8 @@ function botDetailParser(detail) {
                         inputType = 'codeEditor';
                         defaultValue = item.stringDefault;
                         break;
+                    default:
+                        break;
                 }
                 return {
                     ...item,

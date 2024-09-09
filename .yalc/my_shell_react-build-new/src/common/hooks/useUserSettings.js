@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const navigation_1 = require("next/navigation");
 const react_1 = require("react");
 const rxjs_1 = require("rxjs");
-const user_1 = require("../../apis/user.js");
-const user_2 = require("../../common/constants/enums/user.js");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
-const language_1 = require("../../common/utils/language.js");
-const store_1 = require("../../services/store/index.js");
+const user_1 = require("../../apis/user");
+const user_2 = require("../../common/constants/enums/user");
+const usePathLocale_1 = require("../../common/hooks/usePathLocale");
+const language_1 = require("../../common/utils/language");
+const store_1 = require("../../services/store");
 function useUserSettings() {
     const currentLanguage = (0, store_1.useGlobalStore)(state => state.language);
     const setLanguage = (0, store_1.useGlobalStore)(state => state.setLanguage);

@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowUpOnSquareIcon"));
+const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowUpOnSquareIcon"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const icon_button_1 = require("../../../../../../../common/components/ui/icon-button.js");
-const tooltip_1 = require("../../../../../../../common/components/ui/tooltip.js");
-const useCopyClipboard_1 = __importDefault(require("../../../../../../../common/hooks/useCopyClipboard.js"));
-const useGenerateShareLink_1 = __importDefault(require("../hooks/useGenerateShareLink.js"));
+const icon_button_1 = require("../../../../../../../common/components/ui/icon-button");
+const tooltip_1 = require("../../../../../../../common/components/ui/tooltip");
+const useCopyClipboard_1 = __importDefault(require("../../../../../../../common/hooks/useCopyClipboard"));
+const useGenerateShareLink_1 = __importDefault(require("../hooks/useGenerateShareLink"));
 function ShareBtn({ type, id, trackerFn }) {
     const t = (0, next_intl_1.useTranslations)('bot');
     const [shareLink, setShareLink] = (0, react_1.useState)('');

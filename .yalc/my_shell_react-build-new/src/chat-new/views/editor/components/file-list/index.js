@@ -27,16 +27,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ChevronLeftIcon_1 = __importDefault(require("@heroicons/react/24/solid/ChevronLeftIcon"));
-const ChevronRightIcon_1 = __importDefault(require("@heroicons/react/24/solid/ChevronRightIcon"));
+const ChevronLeftIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ChevronLeftIcon"));
+const ChevronRightIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/ChevronRightIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const StaticContext_1 = require("../../../../../chat-new/context/StaticContext.js");
-const useNewChatStore_1 = require("../../../../../chat-new/services/useNewChatStore.js");
-const file_card_1 = __importDefault(require("./file-card.js"));
-const ImgVideoPreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../chat/views/chat-body/file-display/img-video/preview/ImgVideoPreview.js'))), {
+const StaticContext_1 = require("../../../../../chat-new/context/StaticContext");
+const useNewChatStore_1 = require("../../../../../chat-new/services/useNewChatStore");
+const file_card_1 = __importDefault(require("./file-card"));
+const ImgVideoPreview = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../chat/views/chat-body/file-display/img-video/preview/ImgVideoPreview'))), {
     ssr: false
 });
 const Attachments = (0, react_1.memo)(() => {

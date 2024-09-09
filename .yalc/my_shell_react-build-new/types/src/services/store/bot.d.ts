@@ -1,7 +1,7 @@
-import { ChatSetting, ChatSettingSpeakingLangEnum, MessageDetail } from '../../../../src/chat/model/interfaces.js';
-import { BannerItemProps } from '../../../../src/common/components/banner/types.js';
-import { ActiveType, BotFilters, BotInfo, KolInfo, TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces.js';
+import { ChatSetting, ChatSettingSpeakingLangEnum, MessageDetail } from '../../../../src/chat/model/interfaces';
+import { BannerItemProps } from '../../../../src/common/components/banner/types';
+import { ActiveType, BotFilters, BotInfo, KolInfo, TagInfo } from '../../../../src/common/constants/interfaces/bot';
+import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces';
 export declare const defaultChatSetting: {
     isAutopushOn: boolean;
     isAudioOn: boolean;

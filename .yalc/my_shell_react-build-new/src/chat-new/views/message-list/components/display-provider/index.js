@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DisplayProvider = exports.useDisplayContext = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const MessageContext_1 = require("../../../../../chat-new/context/MessageContext.js");
-const StaticContext_1 = require("../../../../../chat-new/context/StaticContext.js");
-const definitions_1 = require("../../../../../chat-new/model/definitions.js");
+const MessageContext_1 = require("../../../../../chat-new/context/MessageContext");
+const StaticContext_1 = require("../../../../../chat-new/context/StaticContext");
+const definitions_1 = require("../../../../../chat-new/model/definitions");
 const DisplayContext = (0, react_1.createContext)({
     actions: [],
     displayMode: 'NORMAL',

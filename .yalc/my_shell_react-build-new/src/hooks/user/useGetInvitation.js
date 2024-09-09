@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const rxjs_1 = require("rxjs");
-const user_1 = require("../../apis/user.js");
-const store_1 = require("../../services/store/index.js");
+const user_1 = require("../../apis/user");
+const store_1 = require("../../services/store");
 const useGetInvitation = () => {
     const setInviteLink = (0, store_1.useUserStore)(state => state.setInviteLink);
     const setUserInviteCode = (0, store_1.useUserStore)(state => state.setUserInviteCode);

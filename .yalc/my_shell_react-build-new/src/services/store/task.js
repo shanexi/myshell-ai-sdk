@@ -8,7 +8,7 @@ const zustand_1 = require("zustand");
 const middleware_1 = require("zustand/middleware");
 const immer_1 = require("zustand/middleware/immer");
 const zustand_computed_1 = __importDefault(require("zustand-computed"));
-const task_1 = require("../../common/constants/enums/task.js");
+const task_1 = require("../../common/constants/enums/task");
 const DEFAULT_STATE = {
     seasons: null,
     seasonIndex: 0,

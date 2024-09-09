@@ -14,10 +14,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./global.js"), exports);
-__exportStar(require("./user.js"), exports);
-__exportStar(require("./chat.js"), exports);
-__exportStar(require("./task.js"), exports);
-__exportStar(require("./bot.js"), exports);
-__exportStar(require("./workshop.js"), exports);
-__exportStar(require("./forum.js"), exports);
+__exportStar(require("./global"), exports);
+__exportStar(require("./user"), exports);
+__exportStar(require("./chat"), exports);
+__exportStar(require("./task"), exports);
+__exportStar(require("./bot"), exports);
+__exportStar(require("./workshop"), exports);
+__exportStar(require("./forum"), exports);

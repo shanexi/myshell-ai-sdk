@@ -1,4 +1,4 @@
-import { BotDetail, BotInfo, TagInfo } from '../../../src/common/constants/interfaces/bot.js';
+import { BotDetail, BotInfo, TagInfo } from '../../../src/common/constants/interfaces/bot';
 export interface BasePagedRequest {
     listRequest: {
         pageToken: string;

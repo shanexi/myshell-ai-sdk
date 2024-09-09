@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.useIsMobileByWindowWidth = exports.useDevice = void 0;
 const ismobilejs_1 = __importDefault(require("ismobilejs"));
 const react_1 = require("react");
-const useWindowWidth_1 = require("../../common/hooks/useWindowWidth.js");
+const useWindowWidth_1 = require("../../common/hooks/useWindowWidth");
 const useDevice = () => {
     const [device, setDevice] = (0, react_1.useState)((0, ismobilejs_1.default)());
     const [isWeixin, setIsWeixin] = (0, react_1.useState)(false);

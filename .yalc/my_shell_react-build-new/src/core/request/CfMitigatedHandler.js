@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = CfMitigatedHandler;
-const identityService_1 = require("../../common/services/identityService.js");
+const identityService_1 = require("../../common/services/identityService");
 function CfMitigatedHandler(value) {
     if (value === 'challenge') {
         const currentHref = window.location.href;

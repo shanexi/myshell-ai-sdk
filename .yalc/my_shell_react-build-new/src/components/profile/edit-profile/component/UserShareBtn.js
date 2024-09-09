@@ -5,14 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserShareBtn = UserShareBtn;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowUpOnSquareIcon"));
+const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowUpOnSquareIcon"));
 const react_1 = require("react");
-const spinner_1 = __importDefault(require("../../../../common/components/ui/spinner.js"));
-const useCopyClipboard_1 = __importDefault(require("../../../../common/hooks/useCopyClipboard.js"));
-const common_helper_1 = require("../../../../common/utils/common-helper.js");
-const useGetInvitation_1 = __importDefault(require("../../../../hooks/user/useGetInvitation.js"));
-const sensors_1 = require("../../../../lib/sensors/index.js");
-const store_1 = require("../../../../services/store/index.js");
+const spinner_1 = __importDefault(require("../../../../common/components/ui/spinner"));
+const useCopyClipboard_1 = __importDefault(require("../../../../common/hooks/useCopyClipboard"));
+const common_helper_1 = require("../../../../common/utils/common-helper");
+const useGetInvitation_1 = __importDefault(require("../../../../hooks/user/useGetInvitation"));
+const sensors_1 = require("../../../../lib/sensors");
+const store_1 = require("../../../../services/store");
 function UserShareBtn(props) {
     const [loading, setLoading] = (0, react_1.useState)(false);
     const [shareLink, setShareLink] = (0, react_1.useState)('');

@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../../../../../src/apis/common.js';
+import { EmbedObj } from '../../../../../../../../../src/apis/common';
 import 'swiper/css';
 interface P {
     imgVideoList: EmbedObj[];

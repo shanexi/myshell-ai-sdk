@@ -9,30 +9,27 @@ const lodash_es_1 = require("lodash-es");
 const zustand_1 = require("zustand");
 const middleware_1 = require("zustand/middleware");
 const immer_2 = require("zustand/middleware/immer");
-const bot_1 = require("../../apis/bot.js");
-const common_1 = require("../../apis/common.js");
-const api_1 = require("../../chat/model/api.js");
-const enums_1 = require("../../chat/model/enums.js");
-const interfaces_1 = require("../../chat/model/interfaces.js");
-const chat_1 = require("../../common/utils/chat.js");
-const limitQueue_1 = require("../../common/utils/limitQueue.js");
-const user_1 = require("../../services/store/user.js");
-const bot_2 = require("./bot.js");
-const chatIdbService_1 = __importDefault(require("../../chat/model/chatIdbService.js"));
-const identityService_1 = require("../../common/services/identityService.js");
+const bot_1 = require("../../apis/bot");
+const common_1 = require("../../apis/common");
+const api_1 = require("../../chat/model/api");
+const enums_1 = require("../../chat/model/enums");
+const interfaces_1 = require("../../chat/model/interfaces");
+const chat_1 = require("../../common/utils/chat");
+const limitQueue_1 = require("../../common/utils/limitQueue");
+const user_1 = require("../../services/store/user");
+const bot_2 = require("./bot");
+const chatIdbService_1 = __importDefault(require("../../chat/model/chatIdbService"));
+const identityService_1 = require("../../common/services/identityService");
+const chatCommonSlice_1 = require("../../chat-new/services/chatCommonSlice");
 (0, immer_1.enableMapSet)();
 const fileQueue = (0, limitQueue_1.limitQueue)(1);
 const DEFAULT_STATE = {
-    multiBotMap: {},
     multiPublishMap: {},
-    sharedChatIDList: [],
     selectedDeleteChatList: [],
     playingAudio: null,
     audioQueue: [],
     sending: false,
     startJobIds: [],
-    inputType: 'text',
-    lastInputType: 'text',
     lastInputMethod: 'DirectInput',
     sentMsgIdList: [],
     textInputMap: {},
@@ -113,19 +110,6 @@ const createChatSlice = (set, get) => {
             set(state => {
                 state.multiBotMap = {};
             }, false, 'clearChatRecord');
-        },
-        setInputType(type) {
-            set(state => {
-                const t1 = ['audio', 'text'];
-                const t2 = ['share', 'delete', 'publish'];
-                if (t2.includes(type) && t1.includes(state.inputType)) {
-                    state.lastInputType = state.inputType;
-                }
-                else {
-                    state.lastInputType = type;
-                }
-                state.inputType = type;
-            }, false, 'setInputType');
         },
         setLastInputMethod(lastInputMethod) {
             set({ lastInputMethod }, false, 'setLastInputMethod');
@@ -316,14 +300,6 @@ const createChatSlice = (set, get) => {
                     .sort((a, b) => (BigInt(a.id) - BigInt(b.id) >= 0 ? 1 : -1));
             }, false, 'addTranslationStream');
         },
-        setMessageHandled({ botId, msgId }) {
-            set(state => {
-                (0, bot_1.setMessageHandled)(msgId);
-                const msg = state.multiBotMap[String(botId)].chatDic.get(msgId);
-                state.multiBotMap[String(botId)].chatDic.set(msgId, { ...msg, handled: true });
-                state.multiBotMap[String(botId)].chatList = [...state.multiBotMap[String(botId)].chatDic.values()];
-            }, false, 'setMessageHandled');
-        },
         setTranslatedText(message) {
             set(state => {
                 const msg = state.multiBotMap[String(message.botId)].chatDic.get(message.id);
@@ -498,24 +474,6 @@ const createChatSlice = (set, get) => {
                 chat.status === enums_1.MessageStatusEnum.DONE);
             const validChatLen = validInteractionChatList.length;
             return validInteractionChatList[validChatLen - 1];
-        },
-        addChatID(id) {
-            if (get().sharedChatIDList.includes(id)) {
-                return;
-            }
-            set(state => {
-                state.sharedChatIDList.push(id);
-            }, false, 'addChatID');
-        },
-        removeChatID(id) {
-            set(state => {
-                state.sharedChatIDList = state.sharedChatIDList.filter(e => e !== id);
-            }, false, 'removeChatID');
-        },
-        clearChatID() {
-            set(state => {
-                state.sharedChatIDList = [];
-            }, false, 'clearChatID');
         },
         addDeleteChat(chat) {
             if (get().selectedDeleteChatList.some(c => c.id === chat.id)) {
@@ -911,4 +869,7 @@ const createChatSlice = (set, get) => {
         }
     };
 };
-exports.useChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)(createChatSlice, { store: 'chat' })));
+exports.useChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)((...a) => ({
+    ...createChatSlice(...a),
+    ...(0, chatCommonSlice_1.createChatCommonSlice)(...a)
+}), { store: 'chat' })));

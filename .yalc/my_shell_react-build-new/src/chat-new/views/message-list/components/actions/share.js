@@ -5,16 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Share;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowUpOnSquareIcon"));
+const ArrowUpOnSquareIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowUpOnSquareIcon"));
 const next_intl_1 = require("next-intl");
-const context_menu_1 = require("../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../common/components/ui/icon-button.js");
-const typography_1 = require("../../../../../common/components/ui/typography.js");
-const store_1 = require("../../../../../services/store/index.js");
+const context_menu_1 = require("../../../../../common/components/ui/context-menu");
+const icon_button_1 = require("../../../../../common/components/ui/icon-button");
+const typography_1 = require("../../../../../common/components/ui/typography");
+const useNewChatStore_1 = require("../../../../../chat-new/services/useNewChatStore");
 function Share(props) {
     const { source } = props;
     const commonT = (0, next_intl_1.useTranslations)('bot');
-    const setInputType = (0, store_1.useChatStore)(state => state.setInputType);
+    const setInputType = (0, useNewChatStore_1.useNewChatStore)(state => state.setInputType);
     const onShare = () => {
         setInputType('share');
     };

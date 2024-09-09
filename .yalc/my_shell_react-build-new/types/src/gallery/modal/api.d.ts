@@ -1,5 +1,5 @@
-import { ListResponse } from '../../../../src/common/constants/interfaces/common.js';
-import { ResponseType } from '../../../../src/core/request/APIFetch.js';
+import { ListResponse } from '../../../../src/common/constants/interfaces/common';
+import { ResponseType } from '../../../../src/core/request/APIFetch';
 import { IGalleryItem, IPublishItem } from './interfaces';
 export interface IGalleryList {
     botId?: string;

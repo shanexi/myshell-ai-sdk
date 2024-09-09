@@ -1,4 +1,4 @@
-import { DisplayMessage, RunningErrorEnum, RunningWidgetInfo as IRunningWidgetInfo } from '../../../../../../../../src/chat-new/model/definitions.js';
+import { DisplayMessage, RunningErrorEnum, RunningWidgetInfo as IRunningWidgetInfo } from '../../../../../../../../src/chat-new/model/definitions';
 interface IRunningWidgetInfoProps {
     list: IRunningWidgetInfo[];
 }

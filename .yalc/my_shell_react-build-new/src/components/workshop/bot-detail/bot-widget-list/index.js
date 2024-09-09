@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = WidgetList;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const next_intl_1 = require("next-intl");
-const NormalCard_1 = __importDefault(require("../../../../common/components/NormalCard.js"));
-const workshop_1 = require("../../../../common/constants/enums/workshop.js");
-const utils_1 = require("../../../../lib/utils.js");
+const NormalCard_1 = __importDefault(require("../../../../common/components/NormalCard"));
+const workshop_1 = require("../../../../common/constants/enums/workshop");
+const utils_1 = require("../../../../lib/utils");
 function WidgetList({ showSimplifyTags = false, widgets, pinnedCallback, onClose, setShowUserDetail }) {
     const workshopT = (0, next_intl_1.useTranslations)('workshop');
     const widgetList = widgets?.map(item => {

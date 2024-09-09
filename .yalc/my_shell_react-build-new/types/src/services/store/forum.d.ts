@@ -1,5 +1,5 @@
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { IForumItem, IPostDetail } from '../../../../src/forum/models/interfaces.js';
+import { TagInfo } from '../../../../src/common/constants/interfaces/bot';
+import { IForumItem, IPostDetail } from '../../../../src/forum/models/interfaces';
 interface ForumState {
     searchList: IForumItem[];
     tagFilters: {

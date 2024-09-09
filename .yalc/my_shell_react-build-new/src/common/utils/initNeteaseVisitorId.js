@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNeteaseRequestToken = void 0;
-const runtime_config_1 = require("./runtime-config.js");
-const standaloneSensors_1 = __importDefault(require("../../lib/sensors/standaloneSensors.js"));
+const runtime_config_1 = require("./runtime-config");
+const standaloneSensors_1 = __importDefault(require("../../lib/sensors/standaloneSensors"));
 const sensors = new standaloneSensors_1.default();
 const getNeteaseRequestToken = async () => {
     sensors?.track('ReadyForYiDunToken');

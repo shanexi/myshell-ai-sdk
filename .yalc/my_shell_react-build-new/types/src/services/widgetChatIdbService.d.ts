@@ -1,4 +1,4 @@
-import { WidgetMessageDetail } from '../../../src/common/constants/interfaces/workshop.js';
+import { WidgetMessageDetail } from '../../../src/common/constants/interfaces/workshop';
 declare class WidgetChatIdbService {
     private db;
     private chats;

@@ -29,7 +29,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const SwitchPrimitives = __importStar(require("@radix-ui/react-switch"));
 const class_variance_authority_1 = require("class-variance-authority");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
+const utils_1 = require("../../../lib/utils");
 const switchRootVariants = (0, class_variance_authority_1.cva)('peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors ring-offset-surface-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 data-[state=unchecked]:focus-visible:bg-surface-container-pressed disabled:cursor-not-allowed disabled:opacity-30 data-[state=checked]:bg-surface-primary-default data-[state=unchecked]:bg-surface-container-pressed', {
     variants: {
         size: {

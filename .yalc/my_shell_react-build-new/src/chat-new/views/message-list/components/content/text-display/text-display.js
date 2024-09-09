@@ -30,9 +30,9 @@ exports.default = TextDisplay;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const dynamic_1 = __importDefault(require("next/dynamic"));
 const react_1 = require("react");
-const display_provider_1 = require("../../display-provider/index.js");
-const translation_display_1 = __importDefault(require("./translation-display.js"));
-const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer.js'))), {
+const display_provider_1 = require("../../display-provider");
+const translation_display_1 = __importDefault(require("./translation-display"));
+const MdViewer = (0, dynamic_1.default)(() => Promise.resolve().then(() => __importStar(require('../../../../../../common/components/MdViewer'))), {
     loading: () => (0, jsx_runtime_1.jsx)("div", { children: "loading..." }),
     ssr: false
 });

@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
+import { ChatModuleType } from '../../../../src/chat/ChatStaticContext';
 import { DraftMessage, LocalErrorMessage, Message } from '../model/definitions';
 import { LocalDraftMsg, PartialMessageDetail } from '../services/useNewChatStore';
 export default function useMessageParams(type: ChatModuleType, id: string, entityId?: string, showMockReply?: boolean): {
@@ -10,7 +10,7 @@ export default function useMessageParams(type: ChatModuleType, id: string, entit
     sending: boolean;
     interacting: boolean;
     scrollToBottom: number;
-    exceptionsForTextDisplay: Record<`bot-${string}` | `room-${string}` | `widget-${string}` | `ugc-${string}` | `curve-${string}` | `gallery-${string}`, string[]>;
+    exceptionsForTextDisplay: Record<`bot-${string}` | `widget-${string}` | `gallery-${string}` | `room-${string}` | `ugc-${string}` | `curve-${string}`, string[]>;
     addTextDisplayException: (msgId: string) => void;
     setDraftMessage: (localDraftMsg?: LocalDraftMsg) => void;
     sendTextMessage: (text: string) => void;

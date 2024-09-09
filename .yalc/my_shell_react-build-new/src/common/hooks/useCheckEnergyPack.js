@@ -7,10 +7,10 @@ exports.default = useCheckEnergyPack;
 const dayjs_1 = __importDefault(require("dayjs"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const task_1 = require("../../common/constants/enums/task.js");
-const reward_center_1 = require("../../common/utils/reward-center/index.js");
-const store_1 = require("../../services/store/index.js");
-const useNotification_1 = require("./useNotification.js");
+const task_1 = require("../../common/constants/enums/task");
+const reward_center_1 = require("../../common/utils/reward-center");
+const store_1 = require("../../services/store");
+const useNotification_1 = require("./useNotification");
 function useCheckEnergyPack() {
     const t = (0, next_intl_1.useTranslations)('common');
     const { warning } = (0, useNotification_1.useNotification)();

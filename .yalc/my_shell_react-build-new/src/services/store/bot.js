@@ -9,7 +9,7 @@ const zustand_1 = require("zustand");
 const zustand_computed_1 = __importDefault(require("zustand-computed"));
 const middleware_1 = require("zustand/middleware");
 const immer_2 = require("zustand/middleware/immer");
-const interfaces_1 = require("../../chat/model/interfaces.js");
+const interfaces_1 = require("../../chat/model/interfaces");
 exports.defaultChatSetting = {
     isAutopushOn: true,
     isAudioOn: false,

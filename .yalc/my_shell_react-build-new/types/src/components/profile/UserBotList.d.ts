@@ -1,4 +1,4 @@
-import { BotInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { BotInfo } from '../../../../src/common/constants/interfaces/bot';
 declare function UserBotList({ bots, loading, disableJumpToChat, onBotClick, selectedBotId, containerClassName, itemBoxClassName, itemLinkClassName, itemDividerClassName }: {
     bots: BotInfo[];
     loading?: boolean;

@@ -5,17 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = DownloadVoice;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ArrowDownTrayIcon_1 = __importDefault(require("@heroicons/react/24/outline/ArrowDownTrayIcon"));
+const ArrowDownTrayIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ArrowDownTrayIcon"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext.js");
-const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const context_menu_1 = require("../../../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../../../common/components/ui/icon-button.js");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
-const typography_1 = require("../../../../../../../common/components/ui/typography.js");
-const useDownload_1 = __importDefault(require("../../../../../../../common/hooks/useDownload.js"));
+const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext");
+const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider");
+const context_menu_1 = require("../../../../../../../common/components/ui/context-menu");
+const icon_button_1 = require("../../../../../../../common/components/ui/icon-button");
+const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner"));
+const typography_1 = require("../../../../../../../common/components/ui/typography");
+const useDownload_1 = __importDefault(require("../../../../../../../common/hooks/useDownload"));
 function DownloadVoice(props) {
     const { source } = props;
     const commonT = (0, next_intl_1.useTranslations)('common');

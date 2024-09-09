@@ -1,8 +1,8 @@
 import { type VariantProps } from 'class-variance-authority';
 import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
-import { Icon } from '../../../../../src/common/components/ui/icon.js';
-import { HeroIcon } from '../../../../../src/common/constants/types/common.js';
+import { Icon } from '../../../../../src/common/components/ui/icon';
+import { HeroIcon } from '../../../../../src/common/constants/types/common';
 declare const iconButtonVariants: (props?: ({
     variant?: "outline" | "primary" | "ghost" | null | undefined;
     color?: "gray" | "static" | "default" | "brand" | "warning" | "error" | null | undefined;

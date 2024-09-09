@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../../../../../src/apis/common.js';
+import { EmbedObj } from '../../../../../../../../../src/apis/common';
 interface P {
     imgVideoList: EmbedObj[];
     activeIndex: number;

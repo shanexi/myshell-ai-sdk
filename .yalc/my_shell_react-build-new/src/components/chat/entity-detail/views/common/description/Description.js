@@ -10,7 +10,7 @@ const lodash_es_1 = require("lodash-es");
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const typography_1 = require("../../../../../../common/components/ui/typography.js");
+const typography_1 = require("../../../../../../common/components/ui/typography");
 function trimNewlines(str) {
     return str.replace(/^\n+|\n+$/g, '');
 }

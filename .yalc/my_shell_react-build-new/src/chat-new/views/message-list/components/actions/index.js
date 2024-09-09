@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Actions;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const definitions_1 = require("../../../../../chat-new/model/definitions.js");
-const display_provider_1 = require("../display-provider/index.js");
-const TextException_1 = __importDefault(require("./TextException.js"));
-const Translation_1 = __importDefault(require("./Translation.js"));
-const copy_message_1 = __importDefault(require("./copy-message.js"));
-const DeleteMessage_1 = __importDefault(require("./delete-message/views/DeleteMessage.js"));
-const DownloadVoice_1 = __importDefault(require("./download-voice/views/DownloadVoice.js"));
-const MessageFeedback_1 = __importDefault(require("./feedback/views/MessageFeedback.js"));
-const share_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/actions/share.js"));
+const definitions_1 = require("../../../../../chat-new/model/definitions");
+const display_provider_1 = require("../display-provider");
+const TextException_1 = __importDefault(require("./TextException"));
+const Translation_1 = __importDefault(require("./Translation"));
+const copy_message_1 = __importDefault(require("./copy-message"));
+const DeleteMessage_1 = __importDefault(require("./delete-message/views/DeleteMessage"));
+const DownloadVoice_1 = __importDefault(require("./download-voice/views/DownloadVoice"));
+const MessageFeedback_1 = __importDefault(require("./feedback/views/MessageFeedback"));
+const share_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/actions/share"));
 function Actions({ source }) {
     const { actions } = (0, display_provider_1.useDisplayContext)();
     const Component = (0, react_1.useCallback)(({ action_type }) => {

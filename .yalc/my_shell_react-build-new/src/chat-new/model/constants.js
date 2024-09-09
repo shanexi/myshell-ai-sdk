@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AudioSpeedMap = exports.defaultChatSetting = void 0;
-const definitions_1 = require("./definitions.js");
+const definitions_1 = require("./definitions");
 exports.defaultChatSetting = {
     isAutopushOn: true,
     isAudioOn: false,

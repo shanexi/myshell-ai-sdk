@@ -1,4 +1,4 @@
-import { AutoPromptTaskOutput } from '../../../../src/common/constants/interfaces/bot.js';
+import { AutoPromptTaskOutput } from '../../../../src/common/constants/interfaces/bot';
 declare enum THEME {
     light = "light",
     dark = "dark\t"

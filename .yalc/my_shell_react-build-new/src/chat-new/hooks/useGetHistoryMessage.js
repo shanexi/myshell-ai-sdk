@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useGetHistoryMessage;
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const new_chat_1 = require("../../apis/new-chat.js");
-const util_1 = require("../util.js");
+const new_chat_1 = require("../../apis/new-chat");
+const util_1 = require("../util");
 function useGetHistoryMessage(type, id, addMessage) {
     const nextPageToken = (0, react_1.useRef)();
     const pageSize = 33;
@@ -39,7 +39,7 @@ function useGetHistoryMessage(type, id, addMessage) {
         }
         catch (e) {
             console.error(e);
-            throw new Error();
+            return [];
         }
         finally {
             setGetting(false);

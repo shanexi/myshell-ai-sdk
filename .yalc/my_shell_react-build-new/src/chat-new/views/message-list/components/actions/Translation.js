@@ -7,11 +7,11 @@ exports.default = Translation;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const clsx_1 = __importDefault(require("clsx"));
 const next_intl_1 = require("next-intl");
-const display_provider_1 = require("../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const Trans_1 = __importDefault(require("../../../../../common/components/icons/Trans.js"));
-const context_menu_1 = require("../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../common/components/ui/icon-button.js");
-const typography_1 = require("../../../../../common/components/ui/typography.js");
+const display_provider_1 = require("../../../../../chat-new/views/message-list/components/display-provider");
+const Trans_1 = __importDefault(require("../../../../../common/components/icons/Trans"));
+const context_menu_1 = require("../../../../../common/components/ui/context-menu");
+const icon_button_1 = require("../../../../../common/components/ui/icon-button");
+const typography_1 = require("../../../../../common/components/ui/typography");
 function Translation(props) {
     const { source } = props;
     const chatLocale = (0, next_intl_1.useTranslations)('chat');

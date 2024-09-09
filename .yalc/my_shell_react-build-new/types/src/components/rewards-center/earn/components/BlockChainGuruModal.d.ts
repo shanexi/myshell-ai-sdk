@@ -1,4 +1,4 @@
-import { Task } from '../../../../../../src/common/constants/interfaces/task.js';
+import { Task } from '../../../../../../src/common/constants/interfaces/task';
 interface BlockChainGuruModalProps {
     isOpen: boolean;
     onClose: () => void;

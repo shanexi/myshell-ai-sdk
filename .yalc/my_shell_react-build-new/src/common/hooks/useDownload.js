@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const useNotification_1 = require("./useNotification.js");
+const useNotification_1 = require("./useNotification");
 function useDownload() {
     const [downloading, setDownloading] = (0, react_1.useState)(false);
     const { success, warning } = (0, useNotification_1.useNotification)();

@@ -8,10 +8,10 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const modal_1 = require("../../common/components/ui/modal.js");
-const useRoute_1 = require("../../common/hooks/useRoute.js");
-const UserDetailModal_1 = __importDefault(require("../../components/profile/UserDetailModal.js"));
-const store_1 = require("../../services/store/index.js");
+const modal_1 = require("../../common/components/ui/modal");
+const useRoute_1 = require("../../common/hooks/useRoute");
+const UserDetailModal_1 = __importDefault(require("../../components/profile/UserDetailModal"));
+const store_1 = require("../../services/store");
 function GalleryPublishTipModal({ publishing, open, publishState, onClose, onConfirm }) {
     const t = (0, next_intl_1.useTranslations)();
     const router = (0, useRoute_1.useRoute)();

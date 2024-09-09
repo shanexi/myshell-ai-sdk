@@ -5,9 +5,9 @@ exports.default = usePrivyLogin;
 const react_auth_1 = require("@privy-io/react-auth");
 const react_1 = require("react");
 const wagmi_1 = require("wagmi");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const sensors_1 = require("../../lib/sensors/index.js");
-const store_1 = require("../../services/store/index.js");
+const common_helper_1 = require("../../common/utils/common-helper");
+const sensors_1 = require("../../lib/sensors");
+const store_1 = require("../../services/store");
 const navigation_1 = require("next/navigation");
 var LoginMethod;
 (function (LoginMethod) {

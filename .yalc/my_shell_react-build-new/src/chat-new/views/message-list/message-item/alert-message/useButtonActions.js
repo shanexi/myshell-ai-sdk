@@ -4,10 +4,10 @@ exports.default = useButtonActions;
 const next_intl_1 = require("next-intl");
 const navigation_1 = require("next/navigation");
 const react_1 = require("react");
-const bot_1 = require("../../../../../apis/bot.js");
-const new_chat_1 = require("../../../../../apis/new-chat.js");
-const runtime_config_1 = require("../../../../../common/utils/runtime-config.js");
-const store_1 = require("../../../../../services/store/index.js");
+const bot_1 = require("../../../../../apis/bot");
+const new_chat_1 = require("../../../../../apis/new-chat");
+const runtime_config_1 = require("../../../../../common/utils/runtime-config");
+const store_1 = require("../../../../../services/store");
 const roomChatBot = `/chat/${runtime_config_1.TRANSLATOR_BOT_ID}`;
 function useButtonActions(message, clearMemory, partialUpdateMessage) {
     const t = (0, next_intl_1.useTranslations)('chat');

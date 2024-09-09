@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.iconMap = exports.nativeTokenMap = exports.chainIdMap = exports.chainMap = exports.SupportedChain = exports.BADGE_VIEW_CONTRACT_MAP = exports.bsc_chain_id_current_env = exports.BADGE_CONTRACT_MAP = exports.BSC_EXPLORER_URL = exports.transferableTokens = exports.MYSHELL_EXPLORER_URL = exports.GAS_LIMIT_HIGH = exports.GAS_LIMIT_MEDIUM = exports.GAS_LIMIT_LOW = exports.GAS_LIMIT_ECONOMY = exports.SHELL_TOKEN_ADDRESS = exports.MYSOUL_NFT_CONTRACT_ADDRESS = exports.MYSHELL_CREATOR_PASS_CONTRACT_ADDRESS = exports.CaptchaTriggerMap = exports.levelBatteryBenefitsMap = exports.VoiceCallEnerygyUsedPerSecond = exports.TASK_IMAGE_MAP = exports.ChartColorSet = exports.TTS_SUCCESS_EXAMPLE_DEFAULT_TEXT_MAP = exports.TTS_EXAMPLE_DEFAULT_TEXT_MAP = void 0;
 const chains_1 = require("viem/chains");
-const wagmi_1 = require("../utils/wagmi.js");
+const wagmi_1 = require("../utils/wagmi");
 exports.TTS_EXAMPLE_DEFAULT_TEXT_MAP = {
     1: `Now 9 language voices and instant English voice cloning are available! With just 20 seconds of English audio, you can simulate any voice you desire. Click 'Mine' to start cloning!`,
     2: `今、9種類の言語の音声とインスタント英語音声クローニングが利用可能です！20秒の英語音声だけで、あなたの望むどんな声もシミュレートできます。クローニングを開始するには、「Mine」をクリックしてください！`,

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useGetEnergyInfo;
-const user_1 = require("../../apis/user.js");
-const store_1 = require("../../services/store/index.js");
+const user_1 = require("../../apis/user");
+const store_1 = require("../../services/store");
 function useGetEnergyInfo() {
     const setEnergyInfo = (0, store_1.useUserStore)(state => state.setEnergyInfo);
     const userId = (0, store_1.useUserStore)(state => state.userId);

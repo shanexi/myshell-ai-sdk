@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useUseProp;
 const react_1 = require("react");
-const task_1 = require("../../apis/task.js");
-const useGetProps_1 = __importDefault(require("./useGetProps.js"));
+const task_1 = require("../../apis/task");
+const useGetProps_1 = __importDefault(require("./useGetProps"));
 function useUseProp() {
     const [acting, setActing] = (0, react_1.useState)(false);
     const { queryProps } = (0, useGetProps_1.default)();

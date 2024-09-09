@@ -11,14 +11,14 @@ const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_hook_form_1 = require("react-hook-form");
 const zod_2 = require("zod");
-const StaticContext_1 = require("../../../../chat-new/context/StaticContext.js");
-const constants_1 = require("../../../../chat-new/model/constants.js");
-const definitions_1 = require("../../../../chat-new/model/definitions.js");
-const button_1 = require("../../../../common/components/ui/button.js");
-const form_1 = require("../../../../common/components/ui/form.js");
-const select_1 = require("../../../../common/components/ui/select.js");
-const separator_1 = require("../../../../common/components/ui/separator.js");
-const switch_1 = require("../../../../common/components/ui/switch.js");
+const StaticContext_1 = require("../../../../chat-new/context/StaticContext");
+const constants_1 = require("../../../../chat-new/model/constants");
+const definitions_1 = require("../../../../chat-new/model/definitions");
+const button_1 = require("../../../../common/components/ui/button");
+const form_1 = require("../../../../common/components/ui/form");
+const select_1 = require("../../../../common/components/ui/select");
+const separator_1 = require("../../../../common/components/ui/separator");
+const switch_1 = require("../../../../common/components/ui/switch");
 function ChatSettingForm() {
     const formSchema = zod_2.z.object({
         isAutopushOn: zod_2.z.boolean(),

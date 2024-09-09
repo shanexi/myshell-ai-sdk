@@ -1,4 +1,4 @@
-import { SourceType } from '../../../../../../../../../src/chat-new/model/definitions.js';
+import { SourceType } from '../../../../../../../../../src/chat-new/model/definitions';
 interface IDownloadVoiceProps {
     source?: SourceType;
 }

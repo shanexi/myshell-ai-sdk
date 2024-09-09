@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/PlayIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PlayIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const react_1 = require("react");
 const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../common/components/ui/spinner.js"));
+const spinner_1 = __importDefault(require("../../../../../common/components/ui/spinner"));
 function VideoOverview({ url, onViewVideo, customClass, showPlayBtn = true, showRadius = true, showLoading = true }) {
     const videoRef = (0, react_1.useRef)(null);
     const [loaded, setLoaded] = (0, react_1.useState)(false);

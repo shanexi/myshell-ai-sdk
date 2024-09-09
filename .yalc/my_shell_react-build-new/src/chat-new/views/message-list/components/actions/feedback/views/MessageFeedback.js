@@ -5,23 +5,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MessageFeedback;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const HandThumbDownIcon_1 = __importDefault(require("@heroicons/react/24/outline/HandThumbDownIcon"));
-const HandThumbUpIcon_1 = __importDefault(require("@heroicons/react/24/outline/HandThumbUpIcon"));
-const HandThumbDownIcon_2 = __importDefault(require("@heroicons/react/24/solid/HandThumbDownIcon"));
-const HandThumbUpIcon_2 = __importDefault(require("@heroicons/react/24/solid/HandThumbUpIcon"));
+const HandThumbDownIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/HandThumbDownIcon"));
+const HandThumbUpIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/HandThumbUpIcon"));
+const HandThumbDownIcon_2 = __importDefault(require("@heroicons/react/24/solid/esm/HandThumbDownIcon"));
+const HandThumbUpIcon_2 = __importDefault(require("@heroicons/react/24/solid/esm/HandThumbUpIcon"));
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const MessageContext_1 = require("../../../../../../../chat-new/context/MessageContext.js");
-const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext.js");
-const definitions_1 = require("../../../../../../../chat-new/model/definitions.js");
-const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const button_1 = require("../../../../../../../common/components/ui/button.js");
-const context_menu_1 = require("../../../../../../../common/components/ui/context-menu.js");
-const icon_button_1 = require("../../../../../../../common/components/ui/icon-button.js");
-const typography_1 = require("../../../../../../../common/components/ui/typography.js");
-const useFeedback_1 = __importDefault(require("../hooks/useFeedback.js"));
-const FeedbackModal_1 = __importDefault(require("./FeedbackModal.js"));
+const MessageContext_1 = require("../../../../../../../chat-new/context/MessageContext");
+const StaticContext_1 = require("../../../../../../../chat-new/context/StaticContext");
+const definitions_1 = require("../../../../../../../chat-new/model/definitions");
+const display_provider_1 = require("../../../../../../../chat-new/views/message-list/components/display-provider");
+const button_1 = require("../../../../../../../common/components/ui/button");
+const context_menu_1 = require("../../../../../../../common/components/ui/context-menu");
+const icon_button_1 = require("../../../../../../../common/components/ui/icon-button");
+const typography_1 = require("../../../../../../../common/components/ui/typography");
+const useFeedback_1 = __importDefault(require("../hooks/useFeedback"));
+const FeedbackModal_1 = __importDefault(require("./FeedbackModal"));
 const displayTxtMap = {
     Boring: 'boring',
     'Out of Character': 'out_of_character',

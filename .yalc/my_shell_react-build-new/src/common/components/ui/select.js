@@ -30,7 +30,7 @@ const outline_1 = require("@heroicons/react/24/outline");
 const SelectPrimitive = __importStar(require("@radix-ui/react-select"));
 const lucide_react_1 = require("lucide-react");
 const React = __importStar(require("react"));
-const utils_1 = require("../../../lib/utils.js");
+const utils_1 = require("../../../lib/utils");
 const Select = React.forwardRef(({ children, placeholder, options, ...props }, ref) => {
     const icon = options?.find(item => item.value === props.value)?.icon;
     return ((0, jsx_runtime_1.jsxs)(SelectPrimitive.Root, { ...props, children: [Array.isArray(options) ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(SelectTrigger, { className: "w-full", children: (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center", children: [(0, jsx_runtime_1.jsx)(SelectIcon, { icon: icon }), (0, jsx_runtime_1.jsx)(SelectValue, { placeholder: placeholder })] }) }), Array.isArray(options) && options.length ? ((0, jsx_runtime_1.jsx)(SelectContent, { children: options.map(({ label, value, icon, disabled }, i) => ((0, jsx_runtime_1.jsx)(SelectItem, { value: value, icon: icon, disabled: disabled, children: label }, `${value}_${i}`))) })) : null] })) : null, children] }));

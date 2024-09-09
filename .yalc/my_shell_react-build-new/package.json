@@ -110,5 +110,5 @@
   },
   "main": "./src/chat-new/index.js",
   "types": "./types/src/chat-new/index.d.ts",
-  "yalcSig": "d5008d96115ffd4f3f44bd1944da0eed"
+  "yalcSig": "b744a1e2b99ed15b635bb398c8eabed5"
 }

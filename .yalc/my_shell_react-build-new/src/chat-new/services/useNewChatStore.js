@@ -5,9 +5,10 @@ const immer_1 = require("immer");
 const zustand_1 = require("zustand");
 const middleware_1 = require("zustand/middleware");
 const immer_2 = require("zustand/middleware/immer");
-const common_1 = require("../../apis/common.js");
-const limitQueue_1 = require("../../common/utils/limitQueue.js");
-const util_1 = require("../util.js");
+const common_1 = require("../../apis/common");
+const limitQueue_1 = require("../../common/utils/limitQueue");
+const util_1 = require("../util");
+const chatCommonSlice_1 = require("./chatCommonSlice");
 (0, immer_1.enableMapSet)();
 const fileQueue = (0, limitQueue_1.limitQueue)(1);
 const DEFAULT_STATE = {
@@ -402,4 +403,7 @@ const persistConfig = {
         }
     })
 };
-exports.useNewChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)((0, middleware_1.persist)(createChatSlice, persistConfig), { store: 'new-chat' })));
+exports.useNewChatStore = (0, zustand_1.create)()((0, immer_2.immer)((0, middleware_1.devtools)((0, middleware_1.persist)((...a) => ({
+    ...createChatSlice(...a),
+    ...(0, chatCommonSlice_1.createChatCommonSlice)(...a)
+}), persistConfig), { store: 'new-chat' })));

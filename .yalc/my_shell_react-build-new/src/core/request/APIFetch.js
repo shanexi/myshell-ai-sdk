@@ -27,18 +27,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.APIFetch = exports.wsBaseURL = exports.baseURL = exports.LangMap = void 0;
-const useNotification_1 = require("../../common/hooks/useNotification.js");
-const identityService_1 = require("../../common/services/identityService.js");
-const common_helper_1 = require("../../common/utils/common-helper.js");
-const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226.js");
-const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId.js");
-const parseLocaleFromHeaders_1 = require("../../common/utils/parseLocaleFromHeaders.js");
-const modal_1 = require("../../services/store/modal.js");
-const constants_1 = require("../../common/constants/constants.js");
-const EventEmitter_1 = __importDefault(require("../../common/utils/EventEmitter.js"));
-const initNeteaseVisitorId_1 = require("../../common/utils/initNeteaseVisitorId.js");
-const runtime_config_1 = require("../../common/utils/runtime-config.js");
-const CfMitigatedHandler_1 = __importDefault(require("./CfMitigatedHandler.js"));
+const useNotification_1 = require("../../common/hooks/useNotification");
+const identityService_1 = require("../../common/services/identityService");
+const common_helper_1 = require("../../common/utils/common-helper");
+const computeChecksum1226_1 = require("../../common/utils/computeChecksum1226");
+const defaultVisitorId_1 = require("../../common/utils/defaultVisitorId");
+const parseLocaleFromHeaders_1 = require("../../common/utils/parseLocaleFromHeaders");
+const modal_1 = require("../../services/store/modal");
+const constants_1 = require("../../common/constants/constants");
+const EventEmitter_1 = __importDefault(require("../../common/utils/EventEmitter"));
+const initNeteaseVisitorId_1 = require("../../common/utils/initNeteaseVisitorId");
+const runtime_config_1 = require("../../common/utils/runtime-config");
+const CfMitigatedHandler_1 = __importDefault(require("./CfMitigatedHandler"));
 exports.LangMap = {
     en: 'en',
     zh: 'zh-CN',
@@ -75,7 +75,7 @@ const handleError = async (err, config) => {
         if (!(0, common_helper_1.isString)(msg)) {
             msg = 'request.error.common';
         }
-        const { Message } = await Promise.resolve().then(() => __importStar(require('../../common/hooks/useNotification.js')));
+        const { Message } = await Promise.resolve().then(() => __importStar(require('../../common/hooks/useNotification')));
         Message.error({ content: msg, id: msg, translateInToast });
     }
 };

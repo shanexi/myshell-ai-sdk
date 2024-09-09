@@ -5,17 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MenuList;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const Bars3Icon_1 = __importDefault(require("@heroicons/react/24/outline/Bars3Icon"));
-const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/outline/XMarkIcon"));
+const Bars3Icon_1 = __importDefault(require("@heroicons/react/24/outline/esm/Bars3Icon"));
+const XMarkIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/XMarkIcon"));
 const react_1 = require("react");
 const react_use_1 = require("react-use");
-const StaticContext_1 = require("../../../../../chat-new/context/StaticContext.js");
-const definitions_1 = require("../../../../../chat-new/model/definitions.js");
-const dropdown_menu_1 = require("../../../../../common/components/ui/dropdown-menu.js");
-const icon_button_1 = require("../../../../../common/components/ui/icon-button.js");
-const ClearHistory_1 = __importDefault(require("./clear-history/views/ClearHistory.js"));
-const ClearMemory_1 = __importDefault(require("./clear-memory/views/ClearMemory.js"));
-const RemoveFromList_1 = __importDefault(require("./remove-from-list/views/RemoveFromList.js"));
+const StaticContext_1 = require("../../../../../chat-new/context/StaticContext");
+const definitions_1 = require("../../../../../chat-new/model/definitions");
+const dropdown_menu_1 = require("../../../../../common/components/ui/dropdown-menu");
+const icon_button_1 = require("../../../../../common/components/ui/icon-button");
+const ClearHistory_1 = __importDefault(require("./clear-history/views/ClearHistory"));
+const ClearMemory_1 = __importDefault(require("./clear-memory/views/ClearMemory"));
+const RemoveFromList_1 = __importDefault(require("./remove-from-list/views/RemoveFromList"));
 function MenuList() {
     const isDesktop = (0, react_use_1.useMedia)('(min-width: 768px)');
     const [open, setOpen] = (0, react_use_1.useToggle)(false);

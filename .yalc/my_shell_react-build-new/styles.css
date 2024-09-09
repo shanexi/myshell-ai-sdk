@@ -2698,6 +2698,11 @@ video {
   height: 2.25rem;
 }
 
+.size-\[100px\] {
+  width: 100px;
+  height: 100px;
+}
+
 .size-\[14px\] {
   width: 14px;
   height: 14px;

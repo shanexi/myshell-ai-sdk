@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useMemoScrollPosition = exports.useRestoreScrollPosition = void 0;
 const react_1 = require("react");
-const usePathLocale_1 = require("../../common/hooks/usePathLocale.js");
+const usePathLocale_1 = require("../../common/hooks/usePathLocale");
 const useRestoreScrollPosition = (scrollRef, isScrollTop, scollPathName) => {
     const { isMobile, pathname } = (0, usePathLocale_1.usePathLocale)();
     const name = scollPathName !== undefined ? scollPathName : pathname;

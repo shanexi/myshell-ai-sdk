@@ -1,6 +1,7 @@
 import { PersistOptions } from 'zustand/middleware';
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
+import { ChatModuleType } from '../../../../src/chat/ChatStaticContext';
 import { DraftMessage, LocalErrorMessage, Message, UserSendEmbedObj } from '../model/definitions';
+import { ChatCommonStore } from './chatCommonSlice';
 export type MapKey = `${ChatModuleType}-${string}`;
 export type LocalDraftMsg = {
     text?: string;
@@ -53,26 +54,25 @@ type ChatActions = {
     setFileAlert: (data: any) => void;
     showDragModal: (val: boolean) => void;
 };
-type NewChatStore = ChatState & ChatActions;
 type PersistedState = {
     localDraftMessageMap: Record<MapKey, LocalDraftMsg>;
     exceptionsForTextDisplay: Record<MapKey, string[]>;
 };
-export declare const useNewChatStore: import("zustand").UseBoundStore<Omit<Omit<Omit<import("zustand").StoreApi<NewChatStore>, "setState"> & {
-    setState(nextStateOrUpdater: NewChatStore | Partial<NewChatStore> | ((state: import("immer").WritableDraft<NewChatStore>) => void), shouldReplace?: boolean | undefined): void;
+export declare const useNewChatStore: import("zustand").UseBoundStore<Omit<Omit<Omit<import("zustand").StoreApi<ChatState & ChatActions & ChatCommonStore>, "setState"> & {
+    setState(nextStateOrUpdater: (ChatState & ChatActions & ChatCommonStore) | Partial<ChatState & ChatActions & ChatCommonStore> | ((state: import("immer").WritableDraft<ChatState & ChatActions & ChatCommonStore>) => void), shouldReplace?: boolean | undefined): void;
 }, "setState"> & {
     setState<A extends string | {
         type: string;
-    }>(nextStateOrUpdater: NewChatStore | Partial<NewChatStore> | ((state: import("immer").WritableDraft<NewChatStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
+    }>(nextStateOrUpdater: (ChatState & ChatActions & ChatCommonStore) | Partial<ChatState & ChatActions & ChatCommonStore> | ((state: import("immer").WritableDraft<ChatState & ChatActions & ChatCommonStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
 }, "persist"> & {
     persist: {
-        setOptions: (options: Partial<PersistOptions<NewChatStore, PersistedState>>) => void;
+        setOptions: (options: Partial<PersistOptions<ChatState & ChatActions & ChatCommonStore, PersistedState>>) => void;
         clearStorage: () => void;
         rehydrate: () => Promise<void> | void;
         hasHydrated: () => boolean;
-        onHydrate: (fn: (state: NewChatStore) => void) => () => void;
-        onFinishHydration: (fn: (state: NewChatStore) => void) => () => void;
-        getOptions: () => Partial<PersistOptions<NewChatStore, PersistedState>>;
+        onHydrate: (fn: (state: ChatState & ChatActions & ChatCommonStore) => void) => () => void;
+        onFinishHydration: (fn: (state: ChatState & ChatActions & ChatCommonStore) => void) => () => void;
+        getOptions: () => Partial<PersistOptions<ChatState & ChatActions & ChatCommonStore, PersistedState>>;
     };
 }>;
 export {};

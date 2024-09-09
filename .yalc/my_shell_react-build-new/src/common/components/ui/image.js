@@ -7,7 +7,7 @@ exports.Image = Image;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const class_variance_authority_1 = require("class-variance-authority");
 const rc_image_1 = __importDefault(require("rc-image"));
-const utils_1 = require("../../../lib/utils.js");
+const utils_1 = require("../../../lib/utils");
 const imageVariants = (0, class_variance_authority_1.cva)('', {
     variants: {
         rounded: {

@@ -1,4 +1,4 @@
-import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin.js';
+import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin';
 declare class IdentityService {
     constructor();
     getIsNewUser(): boolean;

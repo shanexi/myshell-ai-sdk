@@ -5,15 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("@chakra-ui/react");
-const PauseIcon_1 = __importDefault(require("@heroicons/react/24/solid/PauseIcon"));
-const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/PlayIcon"));
-const SpeakerWaveIcon_1 = __importDefault(require("@heroicons/react/24/solid/SpeakerWaveIcon"));
-const SpeakerXMarkIcon_1 = __importDefault(require("@heroicons/react/24/solid/SpeakerXMarkIcon"));
+const PauseIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PauseIcon"));
+const PlayIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/PlayIcon"));
+const SpeakerWaveIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/SpeakerWaveIcon"));
+const SpeakerXMarkIcon_1 = __importDefault(require("@heroicons/react/24/solid/esm/SpeakerXMarkIcon"));
 const react_2 = require("react");
 const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
-const useDevice_1 = require("../../../../../../../common/hooks/useDevice.js");
-const common_helper_1 = require("../../../../../../../common/utils/common-helper.js");
+const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner"));
+const useDevice_1 = require("../../../../../../../common/hooks/useDevice");
+const common_helper_1 = require("../../../../../../../common/utils/common-helper");
 function VideoPlayer({ videoObj, onClose, triggerPlay }) {
     const videoRef = (0, react_2.useRef)(null);
     const [duration, setDuration] = (0, react_2.useState)(0);

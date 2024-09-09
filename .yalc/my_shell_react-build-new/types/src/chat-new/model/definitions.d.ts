@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../../../src/chat/model/interfaces.js';
+import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../../../src/chat/model/interfaces';
 export declare enum EditorMode {
     NORMAL = 0,
     SHARE = 1
@@ -242,7 +242,7 @@ export interface ServerMessage {
     id: string;
     userId: string;
     botId: string;
-    status: ServerMessageStatus & SharedMessageStatus;
+    status: ServerMessageStatus | SharedMessageStatus;
     type: MessageType;
     createdDateUnix: string;
     updatedDateUnix: string;

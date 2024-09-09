@@ -6,17 +6,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MobileTextInput = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const PlusCircleIcon_1 = __importDefault(require("@heroicons/react/24/outline/PlusCircleIcon"));
+const PlusCircleIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/PlusCircleIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const react_1 = require("react");
 const react_textarea_autosize_1 = __importDefault(require("react-textarea-autosize"));
 const react_use_1 = require("react-use");
-const icon_button_1 = require("../../../../../common/components/ui/icon-button.js");
-const separator_1 = require("../../../../../common/components/ui/separator.js");
-const tooltip_1 = require("../../../../../common/components/ui/tooltip.js");
-const useDetectKeyboardOpen_1 = require("../../../../../common/hooks/useDetectKeyboardOpen.js");
-const MobileEntityInfo_1 = __importDefault(require("../../MobileEntityInfo.js"));
-const send_button_1 = require("../send-button.js");
+const icon_button_1 = require("../../../../../common/components/ui/icon-button");
+const separator_1 = require("../../../../../common/components/ui/separator");
+const tooltip_1 = require("../../../../../common/components/ui/tooltip");
+const useDetectKeyboardOpen_1 = require("../../../../../common/hooks/useDetectKeyboardOpen");
+const MobileEntityInfo_1 = __importDefault(require("../../MobileEntityInfo"));
+const send_button_1 = require("../send-button");
 exports.MobileTextInput = (0, react_1.forwardRef)(({ value, disabled, disabledReason, onChange, onSend, placeholder, style, className, rows, autoFocus, showMobileDetail, audioInputSlot, loading, interactingDisabled, energyPerChat, showEnergyCostIcon, ...props }, ref) => {
     const inputRef = (0, react_1.useRef)(null);
     const containerRef = (0, react_1.useRef)(null);

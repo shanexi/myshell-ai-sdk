@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useFeedback;
-const new_chat_1 = require("../../../../../../../apis/new-chat.js");
-const definitions_1 = require("../../../../../../../chat-new/model/definitions.js");
+const new_chat_1 = require("../../../../../../../apis/new-chat");
+const definitions_1 = require("../../../../../../../chat-new/model/definitions");
 function useFeedback(type, messageId, updateFeedbackState, updateFeedbackIssues) {
     const reportApi = () => {
         let api;

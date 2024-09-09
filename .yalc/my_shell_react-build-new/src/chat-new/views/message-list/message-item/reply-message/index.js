@@ -5,20 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ReplyMessage;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const NoSymbolIcon_1 = __importDefault(require("@heroicons/react/24/outline/NoSymbolIcon"));
+const NoSymbolIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/NoSymbolIcon"));
 const clsx_1 = __importDefault(require("clsx"));
 const lodash_es_1 = require("lodash-es");
 const next_intl_1 = require("next-intl");
 const react_1 = require("react");
-const MessageContext_1 = require("../../../../../chat-new/context/MessageContext.js");
-const StaticContext_1 = require("../../../../../chat-new/context/StaticContext.js");
-const content_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/content/index.js"));
-const display_provider_1 = require("../../../../../chat-new/views/message-list/components/display-provider/index.js");
-const menubar_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/menubar/index.js"));
-const avatar_1 = require("../../../../../common/components/ui/avatar.js");
-const typography_1 = require("../../../../../common/components/ui/typography.js");
+const MessageContext_1 = require("../../../../../chat-new/context/MessageContext");
+const StaticContext_1 = require("../../../../../chat-new/context/StaticContext");
+const useNewChatStore_1 = require("../../../../../chat-new/services/useNewChatStore");
+const content_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/content"));
+const display_provider_1 = require("../../../../../chat-new/views/message-list/components/display-provider");
+const menubar_1 = __importDefault(require("../../../../../chat-new/views/message-list/components/menubar"));
+const avatar_1 = require("../../../../../common/components/ui/avatar");
+const typography_1 = require("../../../../../common/components/ui/typography");
 const react_2 = require("@chakra-ui/react");
-const store_1 = require("../../../../../services/store/index.js");
 function ReplyMessage() {
     const { type, chatSetting, entityInfo } = (0, react_1.useContext)(StaticContext_1.StaticContext);
     const { id } = entityInfo;
@@ -34,9 +34,9 @@ function ReplyMessage() {
         return chatSetting?.isAudioOn;
     }, [chatSetting?.isAudioOn]);
     const msgCancelled = message?.status === 'CANCELING' || message?.status === 'CANCELED';
-    const inputType = (0, store_1.useChatStore)(state => state.inputType);
-    const addChatID = (0, store_1.useChatStore)(state => state.addChatID);
-    const removeChatID = (0, store_1.useChatStore)(state => state.removeChatID);
+    const inputType = (0, useNewChatStore_1.useNewChatStore)(state => state.inputType);
+    const addChatID = (0, useNewChatStore_1.useNewChatStore)(state => state.addChatID);
+    const removeChatID = (0, useNewChatStore_1.useNewChatStore)(state => state.removeChatID);
     const isShareOrDelete = inputType === 'share' || inputType === 'delete';
     const handleChatUIDChecked = (e) => {
         if (e.target.checked) {

@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = useRemoveFromList;
 const navigation_1 = require("next/navigation");
 const react_use_1 = require("react-use");
-const bot_1 = require("../../../../../../../apis/bot.js");
-const new_chat_1 = require("../../../../../../../apis/new-chat.js");
-const workshop_1 = require("../../../../../../../apis/workshop.js");
-const usePathLocale_1 = require("../../../../../../../common/hooks/usePathLocale.js");
+const bot_1 = require("../../../../../../../apis/bot");
+const new_chat_1 = require("../../../../../../../apis/new-chat");
+const workshop_1 = require("../../../../../../../apis/workshop");
+const usePathLocale_1 = require("../../../../../../../common/hooks/usePathLocale");
 function useRemoveFromList(type, id, getList) {
     const router = (0, navigation_1.useRouter)();
     const { isMobile, locale } = (0, usePathLocale_1.usePathLocale)();

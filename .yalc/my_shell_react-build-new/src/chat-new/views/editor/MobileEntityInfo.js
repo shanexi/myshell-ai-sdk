@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MobileEntityInfo;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ChevronUpIcon_1 = __importDefault(require("@heroicons/react/24/outline/ChevronUpIcon"));
+const ChevronUpIcon_1 = __importDefault(require("@heroicons/react/24/outline/esm/ChevronUpIcon"));
 const react_1 = require("react");
-const StaticContext_1 = require("../../../chat-new/context/StaticContext.js");
-const avatar_1 = require("../../../common/components/ui/avatar.js");
+const StaticContext_1 = require("../../../chat-new/context/StaticContext");
+const avatar_1 = require("../../../common/components/ui/avatar");
 function MobileEntityInfo({ showMobileDetail }) {
     const { entityInfo } = (0, react_1.useContext)(StaticContext_1.StaticContext);
     const { name, logoUrl } = entityInfo;

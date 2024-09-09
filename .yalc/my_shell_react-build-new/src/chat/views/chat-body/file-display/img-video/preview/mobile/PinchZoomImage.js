@@ -9,7 +9,7 @@ const clsx_1 = __importDefault(require("clsx"));
 const hammerjs_1 = __importDefault(require("hammerjs"));
 const react_1 = require("react");
 const usehooks_ts_1 = require("usehooks-ts");
-const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner.js"));
+const spinner_1 = __importDefault(require("../../../../../../../common/components/ui/spinner"));
 function PinchZoomImage({ imgObj, onPinchStart, onPinchEnd }) {
     const containerRef = (0, react_1.useRef)(null);
     const [scaleValue, setScaleValue] = (0, react_1.useState)(1);

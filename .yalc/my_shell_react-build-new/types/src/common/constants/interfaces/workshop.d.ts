@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../src/apis/common.js';
+import { EmbedObj } from '../../../../../src/apis/common';
 import { TagInfo } from './bot';
 import { MessageStatusEnum, MessageTypeEnum } from '../../../chat/model/enums';
 import { ImSlashCommandInput, ImageDetail, ImageStatus, MessageComponentsContainer, RecommandationQuestion, ReferenceSource, StreamDetail, TranslationStreamDetail } from '../../../chat/model/interfaces';

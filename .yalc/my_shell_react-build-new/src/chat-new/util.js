@@ -71,13 +71,16 @@ function serverMessageParser(message, type) {
         handled: message.handled,
         imageGenMessageResponse: message.imageGenMessageResponse,
         inputSetting: message.inputSetting,
-        componentContainer: message.componentContainer,
+        componentContainer: message.componentContainer
     };
 }
 function messageSourceJudgment(messageUserId, userId, messageType) {
     let source = 'OTHER';
     if (messageUserId === userId &&
-        (messageType === 'TEXT' || messageType === 'VOICE' || messageType === 'BUTTON_INTERACTION')) {
+        (messageType === 'TEXT' ||
+            messageType === 'VOICE' ||
+            messageType === 'BUTTON_INTERACTION' ||
+            messageType === 'VOICE_CALL_TEXT')) {
         source = 'USER';
     }
     return source;

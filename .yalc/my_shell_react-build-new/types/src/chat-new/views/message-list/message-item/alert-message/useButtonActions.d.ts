@@ -1,6 +1,6 @@
-import { DisplayMessage } from '../../../../../../../src/chat-new/model/definitions.js';
-import { PartialMessageDetail } from '../../../../../../../src/chat-new/services/useNewChatStore.js';
-import { ButtonProps } from '../../../../../../../src/common/components/ui/button.js';
+import { DisplayMessage } from '../../../../../../../src/chat-new/model/definitions';
+import { PartialMessageDetail } from '../../../../../../../src/chat-new/services/useNewChatStore';
+import { ButtonProps } from '../../../../../../../src/common/components/ui/button';
 export interface IAlertInfoMap {
     [type: string]: {
         text: string;

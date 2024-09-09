@@ -1,4 +1,4 @@
-import { User } from '../../../../src/common/constants/interfaces/user.js';
+import { User } from '../../../../src/common/constants/interfaces/user';
 declare function FollowInfo({ user }: {
     user: User | null | undefined;
 }): import("react/jsx-runtime").JSX.Element | null;

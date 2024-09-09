@@ -8,7 +8,7 @@ const zustand_1 = require("zustand");
 const zustand_computed_1 = __importDefault(require("zustand-computed"));
 const middleware_1 = require("zustand/middleware");
 const immer_1 = require("zustand/middleware/immer");
-const identityService_1 = require("../../common/services/identityService.js");
+const identityService_1 = require("../../common/services/identityService");
 var THEME;
 (function (THEME) {
     THEME["light"] = "light";

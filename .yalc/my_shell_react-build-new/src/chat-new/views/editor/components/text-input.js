@@ -8,8 +8,8 @@ exports.TextInput = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const react_textarea_autosize_1 = __importDefault(require("react-textarea-autosize"));
-const tooltip_1 = require("../../../../common/components/ui/tooltip.js");
-const utils_1 = require("../../../../lib/utils.js");
+const tooltip_1 = require("../../../../common/components/ui/tooltip");
+const utils_1 = require("../../../../lib/utils");
 exports.TextInput = (0, react_1.forwardRef)(({ value, disabled, disabledReason, onChange, onSend, placeholder, style, className, rows, autoFocus, ...props }, ref) => {
     const inputRef = (0, react_1.useRef)(null);
     (0, react_1.useImperativeHandle)(ref, () => ({

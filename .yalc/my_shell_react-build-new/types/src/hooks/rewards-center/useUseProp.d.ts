@@ -1,4 +1,4 @@
-import { PropInfo, RewardInfo } from '../../../../src/common/constants/interfaces/task.js';
+import { PropInfo, RewardInfo } from '../../../../src/common/constants/interfaces/task';
 export default function useUseProp(): {
     acting: boolean;
     handleUseProp: (propId: string, prop: PropInfo | RewardInfo, count: number, successCb?: () => void) => Promise<void>;
