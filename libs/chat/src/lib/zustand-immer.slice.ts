@@ -1,13 +1,6 @@
 import 'zustand/middleware/immer';
-import { StateCreator, StoreMutatorIdentifier } from 'zustand/vanilla';
+import { StateCreator } from 'zustand/vanilla';
 import { compute } from 'zustand-computed-state';
-
-export type ImmerStateCreator<
-  T,
-  Mps extends [StoreMutatorIdentifier, unknown][] = [],
-  Mcs extends [StoreMutatorIdentifier, unknown][] = [],
-  U = T
-> = StateCreator<T, [...Mps, ['zustand/immer', never]], Mcs, U>;
 
 export interface FishSlice {
   fishes: number;
@@ -15,7 +8,10 @@ export interface FishSlice {
   ySq: number;
 }
 
-export const createFishSlice: ImmerStateCreator<FishSlice> = (set, get) => ({
+export const createFishSlice: StateCreator<
+  FishSlice,
+  [['zustand/immer', never]]
+> = (set, get) => ({
   fishes: 0,
   addFish: () =>
     set((state) => {
@@ -32,9 +28,9 @@ export interface BearSlice {
   eatFish: () => void;
 }
 
-export const createBearSlice: ImmerStateCreator<
+export const createBearSlice: StateCreator<
   BearSlice & FishSlice,
-  [],
+  [['zustand/immer', never]],
   [],
   BearSlice
 > = (set) => ({
@@ -54,7 +50,7 @@ export interface SharedSlice {
   getBoth: () => void;
 }
 
-export const createSharedSlice: ImmerStateCreator<
+export const createSharedSlice: StateCreator<
   BearSlice & FishSlice,
   [],
   [],
