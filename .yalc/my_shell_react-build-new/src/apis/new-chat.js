@@ -152,3 +152,21 @@ export function markMessageAsHandled(msgId) {
         isGoLang: true
     });
 }
+export function getWidgetMessage(widgetId, pageSize = 33, pageToken) {
+    return APIFetch.post('/v1/widget/chat/list_history_messages', {
+        isGoLang: true,
+        body: {
+            widgetId,
+            listRequest: {
+                pageToken,
+                pageSize
+            }
+        },
+        adapter: (res) => {
+            return {
+                listResponse: res.listResponse,
+                messageList: res.messages
+            };
+        }
+    });
+}

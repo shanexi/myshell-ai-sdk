@@ -1,4 +1,4 @@
-import { DisplayMessage, RunningErrorEnum, RunningWidgetInfo as IRunningWidgetInfo } from '../../../../../../../../src/chat-new/model/definitions.js';
+import { DisplayMessage, RunningErrorEnum, RunningWidgetInfo as IRunningWidgetInfo } from '../../../../../../chat-new/model/definitions';
 interface IRunningWidgetInfoProps {
     list: IRunningWidgetInfo[];
 }
@@ -9,4 +9,6 @@ export declare const getErrorMsgByType: (requestErrorTranslations: any, type?: R
 export declare const RunningError: ({ message }: IRunningErrorProps) => import("react/jsx-runtime").JSX.Element | null;
 export declare const NetworkError: () => import("react/jsx-runtime").JSX.Element | null;
 export default function RunningWidgetInfo({ list }: IRunningWidgetInfoProps): import("react/jsx-runtime").JSX.Element;
+export {};
+;
 export {};

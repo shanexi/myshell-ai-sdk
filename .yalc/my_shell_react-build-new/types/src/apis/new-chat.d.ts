@@ -1,7 +1,7 @@
-import { ChatSettingAudioSpeed, FeedbackState, ImageGenDetail, JobStatusEnum, JobTypeEnum, ServerMessage } from '../../../src/chat-new/model/definitions.js';
-import { ChatModuleType } from '../../../src/chat/ChatStaticContext.js';
-import { EnergyInfo } from '../../../src/common/constants/interfaces/user.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { ChatSettingAudioSpeed, FeedbackState, ImageGenDetail, JobStatusEnum, JobTypeEnum, ServerMessage } from '../chat-new/model/definitions';
+import { ChatModuleType } from '../chat/ChatStaticContext';
+import { EnergyInfo } from '../common/constants/interfaces/user';
+import { ResponseType } from '../core/request/APIFetch';
 import { Room, RoomMini } from '../components/room/models/definitions';
 export declare function createRoom(): Promise<ResponseType<RoomMini>>;
 export declare function removeRoomFromList(id: string): Promise<ResponseType<void>>;
@@ -50,3 +50,14 @@ export declare function getAsynJobInfo(jobId: string): Promise<ResponseType<{
     status: JobStatusEnum;
 }>>;
 export declare function markMessageAsHandled(msgId: string): Promise<ResponseType<void>>;
+export declare function getWidgetMessage(widgetId: string, pageSize?: number, pageToken?: string): Promise<ResponseType<{
+    listResponse: {
+        hasMore: boolean;
+        nextPageToken: string;
+    };
+    messageList: ServerMessage[];
+}>>;
+ring;
+    };
+    messageList: ServerMessage[];
+}>>;

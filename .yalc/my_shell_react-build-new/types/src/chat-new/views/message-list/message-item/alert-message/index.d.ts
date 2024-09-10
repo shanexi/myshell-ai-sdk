@@ -1,4 +1,4 @@
-import { ButtonProps } from '../../../../../../../src/common/components/ui/button.js';
+import { ButtonProps } from '../../../../../common/components/ui/button';
 export interface IAlertInfoMap {
     [type: string]: {
         text: string;
@@ -8,3 +8,4 @@ export interface IAlertInfoMap {
     };
 }
 export default function AlertMessage(): import("react/jsx-runtime").JSX.Element;
+JSX.Element;

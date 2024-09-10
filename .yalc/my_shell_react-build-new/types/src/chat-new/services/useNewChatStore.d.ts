@@ -1,5 +1,5 @@
 import { PersistOptions } from 'zustand/middleware';
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
+import { ChatModuleType } from '../../chat/ChatStaticContext';
 import { DraftMessage, LocalErrorMessage, Message, UserSendEmbedObj } from '../model/definitions';
 import { ChatCommonStore } from './chatCommonSlice';
 export type MapKey = `${ChatModuleType}-${string}`;
@@ -36,6 +36,7 @@ type ChatState = {
     localDraftMessageMap: Record<MapKey, LocalDraftMsg>;
     exceptionsForTextDisplay: Record<MapKey, string[]>;
     fileUpload: FileUpload;
+    maxSize: number;
 };
 type ChatActions = {
     sendDraftMessage: (type: ChatModuleType, id: string, message: DraftMessage) => void;
@@ -53,6 +54,7 @@ type ChatActions = {
     deleteUploadFiles: (botId: string, id?: string) => void;
     setFileAlert: (data: any) => void;
     showDragModal: (val: boolean) => void;
+    setMaxSize: (val: number) => void;
 };
 type PersistedState = {
     localDraftMessageMap: Record<MapKey, LocalDraftMsg>;
@@ -75,4 +77,6 @@ export declare const useNewChatStore: import("zustand").UseBoundStore<Omit<Omit<
         getOptions: () => Partial<PersistOptions<ChatState & ChatActions & ChatCommonStore, PersistedState>>;
     };
 }>;
+export {};
+;
 export {};

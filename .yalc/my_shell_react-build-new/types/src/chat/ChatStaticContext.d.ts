@@ -1,4 +1,4 @@
-export type ChatModuleType = 'bot' | 'room' | 'widget' | 'ugc' | 'curve' | 'gallery';
+export type ChatModuleType = 'bot' | 'room' | 'widget' | 'ugc' | 'toolbox' | 'curve' | 'gallery';
 export type ChatStaticContextParams = {
     entityType: ChatModuleType;
     id: string;

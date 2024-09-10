@@ -10,8 +10,7 @@ import {
 
 describe('chat model', () => {
   it('test', () => {
-    console.log(defaultChatSetting);
     const ret = msgDisplayTypeParser('GREETING');
-    console.log(ret);
+    expect(ret).toMatchInlineSnapshot(`"NORMAL"`);
   });
 });

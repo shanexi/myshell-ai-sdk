@@ -13,6 +13,8 @@ export default function useGenerateShareLink(type, id, botId) {
                 break;
             case 'bot':
             case 'ugc':
+            case 'toolbox':
+            case 'room':
                 apiFn = getBotSharingCode;
                 break;
             case 'widget':

@@ -30,3 +30,12 @@ export function widgetListParser(widget) {
         pinned: widget.pinned
     };
 }
+export function toolboxListParser(toolbox) {
+    return {
+        type: 'toolbox',
+        id: toolbox.id,
+        name: toolbox.name,
+        visitorCanChat: toolbox.visitorCanChat,
+        lastMessage: toolbox.lastMessage
+    };
+}

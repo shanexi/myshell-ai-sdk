@@ -16,7 +16,8 @@ const DEFAULT_STATE = {
     messageMap: new Map(),
     localDraftMessageMap: {},
     exceptionsForTextDisplay: {},
-    fileUpload: { uploading: null, filesMap: {}, deletedList: [], alert: {}, dragModal: false }
+    fileUpload: { uploading: null, filesMap: {}, deletedList: [], alert: {}, dragModal: false },
+    maxSize: 50 * 1024 ** 2
 };
 const createChatSlice = (set, get) => {
     return {
@@ -377,6 +378,11 @@ const createChatSlice = (set, get) => {
         showDragModal(val) {
             set(state => {
                 state.fileUpload.dragModal = val;
+            });
+        },
+        setMaxSize(val) {
+            set(state => {
+                state.maxSize = val;
             });
         }
     };

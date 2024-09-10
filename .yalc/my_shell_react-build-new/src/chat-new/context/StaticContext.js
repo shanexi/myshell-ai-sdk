@@ -20,5 +20,7 @@ export const StaticContext = createContext({
     },
     updateChatSetting: defaultFn,
     partialUpdateDetail: defaultFn,
-    setEnergyInfo: defaultFn
+    setEnergyInfo: defaultFn,
+    showPin: true,
+    fileUploadDisabled: false
 });

@@ -8,7 +8,7 @@ import { WidgetInfo } from '../../../../src/common/constants/interfaces/workshop
 import { Room } from '../../../../src/components/room/models/definitions.js';
 export type GetListWithTypeFn<T> = (ListType: ListType, type?: ListActionMode) => Promise<T[]>;
 export type ListActionMode = 'initialize' | 'append' | 'remove' | 'silent_update';
-export type ListType = Extract<ChatModuleType, 'ugc' | 'widget'> | 'bot-room';
+export type ListType = Extract<ChatModuleType, 'ugc' | 'widget' | 'toolbox'> | 'bot-room';
 export declare enum ListStatus {
     UNINITIALIZED = 0,
     LOADING = 1,

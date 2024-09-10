@@ -1,8 +1,10 @@
-import { ChatSetting, Message } from '../../../src/chat-new/model/definitions.js';
-import { ChatModuleType } from '../../../src/chat/ChatStaticContext.js';
-import { ListItem } from '../../../src/common/constants/interfaces/entity.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { ChatSetting, Message } from '../chat-new/model/definitions';
+import { ChatModuleType } from '../chat/ChatStaticContext';
+import { ListItem } from '../common/constants/interfaces/entity';
+import { WidgetInfo } from '../common/constants/interfaces/workshop';
+import { ResponseType } from '../core/request/APIFetch';
 export declare function getChatList(): Promise<ResponseType<ListItem[]>>;
+export declare function getToolboxList(): Promise<ResponseType<ListItem[]>>;
 export declare function getWidgetList(): Promise<ResponseType<ListItem[]>>;
 export declare function getUgcBotList(): Promise<ResponseType<ListItem[]>>;
 export declare function clearMemory(type: ChatModuleType, id: string): Promise<ResponseType<Message[]>>;
@@ -11,3 +13,5 @@ export declare function updateBotChatSetting(id: string, params: ChatSetting): P
     energyPerChat: number;
     energyPerLevelByPass: number[];
 }>>;
+export declare function getWidgetInfo(widgetId: string): Promise<ResponseType<WidgetInfo | undefined>>;
+idgetId: string): Promise<ResponseType<WidgetInfo | undefined>>;

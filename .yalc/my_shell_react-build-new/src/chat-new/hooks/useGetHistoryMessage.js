@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useToggle } from 'react-use';
-import { getBotMessage, getRoomMessage } from '../../apis/new-chat.js';
+import { getBotMessage, getRoomMessage, getWidgetMessage } from '../../apis/new-chat.js';
 import { serverMessageParser } from '../util.js';
 export default function useGetHistoryMessage(type, id, addMessage) {
     const nextPageToken = useRef();
@@ -14,10 +14,15 @@ export default function useGetHistoryMessage(type, id, addMessage) {
                 apiFn = getRoomMessage;
                 break;
             case 'bot':
+            case 'toolbox':
+            case 'ugc':
                 apiFn = getBotMessage;
                 break;
+            case 'widget':
+                apiFn = getWidgetMessage;
+                break;
             default:
-                apiFn = getRoomMessage;
+                apiFn = getBotMessage;
         }
         return apiFn;
     };

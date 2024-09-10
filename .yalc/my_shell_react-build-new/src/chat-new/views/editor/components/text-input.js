@@ -47,6 +47,6 @@ export const TextInput = forwardRef(({ value, disabled, disabledReason, onChange
             }
         }
     }, [onChange, onSend, value]);
-    return (_jsx(Tooltip, { align: "start", sideOffset: 8, alignOffset: 8, variant: "info", showArrow: false, triggerClassName: "cursor-text", description: disabled && disabledReason ? disabledReason : '', children: _jsx(TextareaAutosize, { ref: inputRef, className: cn('flex w-full resize-none p-2 bg-surface-default text-sm placeholder:text-subtlest focus-visible:outline-none disabled:cursor-not-allowed disabled:placeholder:text-disabled max-h-full overflow-auto', className), rows: rows || 1, disabled: disabled, value: value, onChange: handleInputChange, autoFocus: autoFocus ?? true, onKeyDown: handleEnterPress, placeholder: placeholder || 'Write a message', ...props }) }));
+    return (_jsx(Tooltip, { align: "start", sideOffset: 8, alignOffset: 8, variant: "info", showArrow: false, triggerClassName: "cursor-text", description: disabled && disabledReason ? disabledReason : '', children: _jsx(TextareaAutosize, { ref: inputRef, className: cn('flex w-full resize-none p-2 bg-surface-default text-sm text-default placeholder:text-subtlest focus-visible:outline-none disabled:cursor-not-allowed disabled:placeholder:text-disabled max-h-full overflow-auto', className), rows: rows || 1, disabled: disabled, value: value, onChange: handleInputChange, autoFocus: autoFocus ?? true, onKeyDown: handleEnterPress, placeholder: placeholder || 'Write a message', ...props }) }));
 });
 TextInput.displayName = 'TextInput';

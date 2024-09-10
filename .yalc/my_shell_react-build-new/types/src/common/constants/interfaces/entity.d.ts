@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../../src/chat/ChatStaticContext.js';
+import { ChatModuleType } from '../../../chat/ChatStaticContext';
 export interface EntityBase {
     id: string;
     name: string;
@@ -44,4 +44,6 @@ export type ListItem = {
     pinned?: boolean;
     isChannelEntry?: boolean;
     logoUrls?: string[];
+};
+string[];
 };

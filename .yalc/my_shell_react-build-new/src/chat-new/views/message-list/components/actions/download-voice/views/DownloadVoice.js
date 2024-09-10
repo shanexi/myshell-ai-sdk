@@ -26,7 +26,7 @@ export default function DownloadVoice(props) {
         }
     };
     if (source === 'menubar') {
-        return (_jsx(IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onDownloadVoice, loading: downloading, children: _jsx(ArrowDownTrayIcon, { className: "size-[18px] text-on-surface" }) }));
+        return (_jsx(IconButton, { variant: "outline", size: "sm", color: "default", className: "rounded-lg", onClick: onDownloadVoice, loading: downloading, children: _jsx(ArrowDownTrayIcon, { className: "size-[18px]" }) }));
     }
-    return (_jsxs(ContextMenuItem, { onClick: onDownloadVoice, disabled: downloading, children: [downloading ? _jsx(Spinner, {}) : _jsx(ArrowDownTrayIcon, { className: "size-5 text-on-surface" }), _jsx(Text, { className: "ml-2 text-on-surface", children: commonT('download_voice') })] }));
+    return (_jsxs(ContextMenuItem, { onClick: onDownloadVoice, disabled: downloading, children: [downloading ? _jsx(Spinner, {}) : _jsx(ArrowDownTrayIcon, { className: "size-5" }), _jsx(Text, { className: "ml-2", children: commonT('download_voice') })] }));
 }

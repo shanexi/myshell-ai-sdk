@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { ChatModuleType } from '../../../../src/chat/ChatStaticContext.js';
-import { EnergyInfo } from '../../../../src/common/constants/interfaces/user.js';
-import { ListActionMode } from '../../../../src/services/store/entity.js';
+import { ChatModuleType } from '../../chat/ChatStaticContext';
+import { EnergyInfo } from '../../common/constants/interfaces/user';
+import { ListActionMode } from '../../services/store/entity';
 import { ChatSetting, MenuFunctionEnum } from '../model/definitions';
 export type GetListFn<T> = (type?: ListActionMode) => Promise<T[]>;
 export type PartialDetail = {
@@ -41,5 +41,8 @@ export type StaticContextProps = {
     }>;
     customMenuFunction?: ReactElement[];
     setEnergyInfo?: (energyInfo: EnergyInfo) => void;
+    showPin?: boolean;
+    fileUploadDisabled?: boolean;
 } & EntityActions;
 export declare const StaticContext: import("react").Context<StaticContextProps>;
+("react").Context<StaticContextProps>;

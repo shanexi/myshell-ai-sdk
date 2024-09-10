@@ -8,9 +8,9 @@ import { MessageContext } from '../../chat-new/context/MessageContext.js';
 import { StaticContext } from '../../chat-new/context/StaticContext.js';
 import ChatShare from '../../chat/views/chat-share/ChatShare.js';
 import { Separator } from '../../common/components/ui/separator.js';
+import { useNewChatStore } from '../services/useNewChatStore.js';
 import EditorSkeleton from './editor/skeleton/EditorSkeleton.js';
 import MessageListSkeleton from './message-list/skeleton/MessageListSkeleton.js';
-import { useNewChatStore } from '../services/useNewChatStore.js';
 const Editor = dynamic(() => import('./editor/index.js'), {
     loading: () => _jsx(EditorSkeleton, {}),
     ssr: false

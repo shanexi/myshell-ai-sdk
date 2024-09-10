@@ -1,11 +1,20 @@
 import { serverMessageParser } from '../chat-new/util.js';
-import { serverListItemParser, widgetListParser } from '../common/utils/entity.js';
+import { botDetailParser } from '../common/utils/chat.js';
+import { serverListItemParser, toolboxListParser, widgetListParser } from '../common/utils/entity.js';
 import { APIFetch } from '../core/request/APIFetch.js';
 export function getChatList() {
     return APIFetch.post('/v1/chat/list', {
         isGoLang: true,
         adapter(res) {
             return res.items.map(item => serverListItemParser(item));
+        }
+    });
+}
+export function getToolboxList() {
+    return APIFetch.post('/v1/bot/list_toolbox_bots', {
+        isGoLang: true,
+        adapter(res) {
+            return res.bots.map(item => toolboxListParser(botDetailParser(item)));
         }
     });
 }
@@ -86,5 +95,16 @@ export function updateBotChatSetting(id, params) {
             ...requestParams
         },
         isGoLang: true
+    });
+}
+export function getWidgetInfo(widgetId) {
+    return APIFetch.post('/v1/widget/batch_get', {
+        body: {
+            ids: [widgetId]
+        },
+        isGoLang: true,
+        adapter: (res) => {
+            return (res.widgets ?? []).find(item => item.id === widgetId);
+        }
     });
 }

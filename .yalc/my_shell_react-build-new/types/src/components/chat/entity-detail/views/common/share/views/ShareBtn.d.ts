@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../../../../../../src/chat/ChatStaticContext.js';
+import { ChatModuleType } from '../../../../../../../chat/ChatStaticContext';
 interface P {
     type: ChatModuleType;
     id: string;
@@ -7,3 +7,4 @@ interface P {
 declare function ShareBtn({ type, id, trackerFn }: P): import("react/jsx-runtime").JSX.Element;
 declare const _default: import("react").MemoExoticComponent<typeof ShareBtn>;
 export default _default;
+lt _default;

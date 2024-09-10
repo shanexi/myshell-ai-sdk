@@ -10,7 +10,7 @@ export default function useMessageParams(type: ChatModuleType, id: string, entit
     sending: boolean;
     interacting: boolean;
     scrollToBottom: number;
-    exceptionsForTextDisplay: Record<`bot-${string}` | `widget-${string}` | `gallery-${string}` | `room-${string}` | `ugc-${string}` | `curve-${string}`, string[]>;
+    exceptionsForTextDisplay: Record<`bot-${string}` | `room-${string}` | `widget-${string}` | `ugc-${string}` | `toolbox-${string}` | `curve-${string}` | `gallery-${string}`, string[]>;
     addTextDisplayException: (msgId: string) => void;
     setDraftMessage: (localDraftMsg?: LocalDraftMsg) => void;
     sendTextMessage: (text: string) => void;

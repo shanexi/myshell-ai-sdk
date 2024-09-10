@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { computed } from 'zustand-computed';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { getUgcBotList, getWidgetList, getChatList as queryChatList } from '../../apis/entity.js';
+import { getToolboxList, getUgcBotList, getWidgetList, getChatList as queryChatList } from '../../apis/entity.js';
 import CustomError from '../../common/model/CustomError.js';
 export var ListStatus;
 (function (ListStatus) {
@@ -42,6 +42,9 @@ function getListApi(type) {
         case 'widget':
             api = getWidgetList;
             break;
+        case 'toolbox':
+            api = getToolboxList;
+            break;
         case 'bot-room':
         default:
             api = queryChatList;
@@ -78,6 +81,10 @@ const DEFAULT_STATE = {
             listItems: []
         },
         widget: {
+            status: ListStatus.UNINITIALIZED,
+            listItems: []
+        },
+        toolbox: {
             status: ListStatus.UNINITIALIZED,
             listItems: []
         }
