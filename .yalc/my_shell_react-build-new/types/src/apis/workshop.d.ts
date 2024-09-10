@@ -1,9 +1,9 @@
-import { BannerItemProps } from '../../../src/common/components/banner/types.js';
-import { TTSInfo, TagInfo } from '../../../src/common/constants/interfaces/bot.js';
-import { ListResponse } from '../../../src/common/constants/interfaces/common.js';
-import { WidgetInfo, WidgetMessageDetail } from '../../../src/common/constants/interfaces/workshop.js';
-import { NormalCardProps, RecommendInfo } from '../../../src/common/model/interfaces.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { BannerItemProps } from '../common/components/banner/types';
+import { TTSInfo, TagInfo } from '../common/constants/interfaces/bot';
+import { ListResponse } from '../common/constants/interfaces/common';
+import { WidgetInfo, WidgetMessageDetail } from '../common/constants/interfaces/workshop';
+import { NormalCardProps, RecommendInfo } from '../common/model/interfaces';
+import { ResponseType } from '../core/request/APIFetch';
 export declare function getWorkshopRecommend(): Promise<ResponseType<{
     banners: BannerItemProps[];
     list: RecommendInfo[];
@@ -67,3 +67,4 @@ export declare function deleteHistoryMessageByMsgIds(ids: string[]): Promise<Res
 export declare function deleteAllWidgetHistory(widgetId: string): Promise<ResponseType<unknown>>;
 export declare function resetWidgetHistory(widgetId: string): Promise<ResponseType<unknown>>;
 export declare function removeWidgetFromChatList(widgetId: string): Promise<ResponseType<void>>;
+tion removeWidgetFromChatList(widgetId: string): Promise<ResponseType<void>>;

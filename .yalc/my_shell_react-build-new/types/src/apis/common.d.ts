@@ -1,6 +1,6 @@
 import type { Observable } from 'rxjs';
-import { ReportIssueReqBody } from '../../../src/common/constants/interfaces/common.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { ReportIssueReqBody } from '../common/constants/interfaces/common';
+import { ResponseType } from '../core/request/APIFetch';
 export declare function reportIssue(data: ReportIssueReqBody): Observable<any>;
 export declare function reportIssueV1(data: ReportIssueReqBody): Promise<ResponseType<any>>;
 export declare enum Scenario {
@@ -113,5 +113,8 @@ export declare function uploadFileToS3WithProgress({ scenario, contentType, file
     success: boolean;
 }>;
 export declare function generateShareCode(bizId: string, bizType: BizTypeEnum): Promise<ResponseType<{
+    code: string;
+}>>;
+<{
     code: string;
 }>>;

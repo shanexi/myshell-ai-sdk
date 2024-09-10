@@ -1,7 +1,7 @@
 import type { Observable } from 'rxjs';
-import { MessageDetail } from '../../../../src/chat/model/interfaces.js';
-import { EnergyInfo } from '../../../../src/common/constants/interfaces/user.js';
-import { ResponseType } from '../../../../src/core/request/APIFetch.js';
+import { MessageDetail } from '../../chat/model/interfaces';
+import { EnergyInfo } from '../../common/constants/interfaces/user';
+import { ResponseType } from '../../core/request/APIFetch';
 interface ChatHistoryParams {
     offset?: number;
     limit?: number;
@@ -39,4 +39,6 @@ export declare function getImageParams(): Promise<ResponseType<any>>;
 export declare function getImageParamsFromImage(url: string): Promise<ResponseType<any>>;
 export declare function getImageParamsFromMsg(msgId: string): Promise<ResponseType<any>>;
 export declare function getSharedMessages(code: string): Promise<any>;
+export {};
+ode: string): Promise<any>;
 export {};

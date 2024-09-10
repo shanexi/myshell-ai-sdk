@@ -1,5 +1,5 @@
-import { BotPhotoTypeEnum } from '../../../../../../src/common/constants/enums/bot.js';
-import { ReturnedBotInfo } from '../../../../../../src/common/constants/interfaces/bot.js';
+import { BotPhotoTypeEnum } from '../../../../common/constants/enums/bot';
+import { ReturnedBotInfo } from '../../../../common/constants/interfaces/bot';
 import 'cropperjs/dist/cropper.css';
 type UserCropperModalProps = {
     type: BotPhotoTypeEnum;
@@ -9,3 +9,4 @@ type UserCropperModalProps = {
 };
 declare function UserCropperModal({ type, file, open, onClose }: UserCropperModalProps): import("react/jsx-runtime").JSX.Element;
 export default UserCropperModal;
+default UserCropperModal;

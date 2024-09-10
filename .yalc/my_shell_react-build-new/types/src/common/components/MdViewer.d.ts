@@ -1,5 +1,5 @@
 import '@/styles/md-viewer.scss';
-import { MessageStatusEnum } from '../../../../src/chat/model/enums.js';
+import { MessageStatusEnum } from '../../chat/model/enums';
 interface MdViewerProps {
     content: string;
     status?: MessageStatusEnum;
@@ -9,3 +9,4 @@ interface MdViewerProps {
 declare function MdViewer(props: MdViewerProps): import("react/jsx-runtime").JSX.Element;
 declare const _default: import("react").MemoExoticComponent<typeof MdViewer>;
 export default _default;
+lt _default;

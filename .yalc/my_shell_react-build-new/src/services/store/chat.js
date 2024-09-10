@@ -5,16 +5,16 @@ import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { getBotJobInfo } from '../../apis/bot.js';
 import { Scenario, uploadFileToS3WithProgress } from '../../apis/common.js';
+import { createChatCommonSlice } from '../../chat-new/services/chatCommonSlice.js';
 import { getImageParams } from '../../chat/model/api.js';
 import { MessageStatusEnum, MessageTypeEnum, ModelStatusEnum } from '../../chat/model/enums.js';
 import { ImageStatus } from '../../chat/model/interfaces.js';
 import { generateWidgetRunningText } from '../../common/utils/chat.js';
 import { limitQueue } from '../../common/utils/limitQueue.js';
 import { useUserStore } from '../../services/store/user.js';
-import { useBotStore } from './bot.js';
 import chatIdbService from '../../chat/model/chatIdbService.js';
 import { identityService } from '../../common/services/identityService.js';
-import { createChatCommonSlice } from '../../chat-new/services/chatCommonSlice.js';
+import { useBotStore } from './bot.js';
 enableMapSet();
 const fileQueue = limitQueue(1);
 const DEFAULT_STATE = {

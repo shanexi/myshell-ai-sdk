@@ -1,4 +1,4 @@
-import { EmbedObj } from '../../../../../../../../../src/apis/common.js';
+import { EmbedObj } from '../../../../../../../apis/common';
 interface P {
     imgVideoList: EmbedObj[];
     activeIndex: number;
@@ -7,4 +7,6 @@ interface P {
     publishGalleryHandle?: (index: number) => void;
 }
 export default function Preview({ imgVideoList, activeIndex, publishing, onClose, publishGalleryHandle }: P): import("react/jsx-runtime").JSX.Element;
+export {};
+;
 export {};

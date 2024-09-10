@@ -1,4 +1,4 @@
-import { BotInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { BotInfo } from '../../common/constants/interfaces/bot';
 declare function UserBotList({ bots, loading, disableJumpToChat, onBotClick, selectedBotId, containerClassName, itemBoxClassName, itemLinkClassName, itemDividerClassName }: {
     bots: BotInfo[];
     loading?: boolean;
@@ -12,3 +12,4 @@ declare function UserBotList({ bots, loading, disableJumpToChat, onBotClick, sel
     itemDividerClassName?: string;
 }): import("react/jsx-runtime").JSX.Element;
 export default UserBotList;
+UserBotList;

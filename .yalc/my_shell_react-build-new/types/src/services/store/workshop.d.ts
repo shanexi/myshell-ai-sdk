@@ -1,9 +1,9 @@
-import { Language } from '../../../../src/chat/model/interfaces.js';
-import { InputType } from '../../../../src/chat/model/types.js';
-import { BannerItemProps } from '../../../../src/common/components/banner/types.js';
-import { BotInfo, TagInfo, TTSInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { WidgetAudioStreamDetail, WidgetImageStreamDetail, WidgetInfo, WidgetMessageDetail, WidgetTextStreamDetail } from '../../../../src/common/constants/interfaces/workshop.js';
-import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces.js';
+import { Language } from '../../chat/model/interfaces';
+import { InputType } from '../../chat/model/types';
+import { BannerItemProps } from '../../common/components/banner/types';
+import { BotInfo, TagInfo, TTSInfo } from '../../common/constants/interfaces/bot';
+import { WidgetAudioStreamDetail, WidgetImageStreamDetail, WidgetInfo, WidgetMessageDetail, WidgetTextStreamDetail } from '../../common/constants/interfaces/workshop';
+import { NormalCardProps, RecommendInfo } from '../../common/model/interfaces';
 import { WidgetFileProps } from './chat';
 type ttsMapContent = {
     content: string;
@@ -167,5 +167,8 @@ export declare const useWorkshopStore: import("zustand").UseBoundStore<Omit<Omit
     setState<A extends string | {
         type: string;
     }>(nextStateOrUpdater: (WorkshopState & WorkshopAction & ComputedStore) | Partial<WorkshopState & WorkshopAction & ComputedStore> | ((state: import("immer").WritableDraft<WorkshopState & WorkshopAction & ComputedStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
+}>;
+export {};
+dReplace?: boolean | undefined, action?: A | undefined): void;
 }>;
 export {};

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { ExchangePoint, HoldBadge, Order, Point, PropInfo, RewardInfo, SeasonInfo, Task, MediaShareRecord } from '../../../src/common/constants/interfaces/task.js';
-import { ResponseType } from '../../../src/core/request/APIFetch.js';
+import { ExchangePoint, HoldBadge, Order, Point, PropInfo, RewardInfo, SeasonInfo, Task, MediaShareRecord } from '../common/constants/interfaces/task';
+import { ResponseType } from '../core/request/APIFetch';
 export declare function getTaskList(): Promise<ResponseType<Task[]>>;
 export declare function taskGemClaim(taskId: string): Promise<ResponseType<unknown>>;
 export declare function taskGemBatchClaim(): Promise<ResponseType<unknown>>;
@@ -52,3 +52,4 @@ export declare function createMediaShareRecord(postLink: string, shareLink: stri
 export declare function getMediaShareReocrd(): Promise<ResponseType<MediaShareRecord[]>>;
 export declare function cancelVerifyMediaShareRecord(recordId: string): Promise<ResponseType<unknown>>;
 export declare function claimTaskByRecordId(taskRecordId: string): Promise<ResponseType<unknown>>;
+e<ResponseType<unknown>>;

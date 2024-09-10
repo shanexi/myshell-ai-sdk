@@ -1,4 +1,4 @@
-import { ServerMessage } from '../../../../../src/chat-new/model/definitions.js';
+import { ServerMessage } from '../../../chat-new/model/definitions';
 export declare enum LocalRoomStatus {
     OTHER_SIDE_NO_ENERGY = "OTHER_SIDE_NO_ENERGY"
 }
@@ -33,4 +33,6 @@ export type Room = {
     createdDateUnix?: string;
 };
 export type RoomMini = Pick<Room, 'channelId' | 'channelName' | 'channelStatus' | 'invitationUrl' | 'invitationImgUrl' | 'createdDateUnix'>;
+export {};
+;
 export {};

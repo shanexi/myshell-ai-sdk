@@ -1,5 +1,5 @@
-import { ListResponse } from '../../../../src/common/constants/interfaces/common.js';
-import { ResponseType } from '../../../../src/core/request/APIFetch.js';
+import { ListResponse } from '../../common/constants/interfaces/common';
+import { ResponseType } from '../../core/request/APIFetch';
 import { IGalleryItem, IPublishItem } from './interfaces';
 export interface IGalleryList {
     botId?: string;
@@ -25,3 +25,4 @@ export declare function setGalleryVisitTime(botId: string): Promise<ResponseType
 export declare function getGallerySharingCode(galleryId: string): Promise<string>;
 export declare function getGallerySharingCodeById(galleryId: string): Promise<ResponseType<unknown>>;
 export declare function getGalleryDetailById(galleryId: string): Promise<ResponseType<unknown>>;
+e<ResponseType<unknown>>;

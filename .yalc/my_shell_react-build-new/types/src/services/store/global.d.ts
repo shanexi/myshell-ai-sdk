@@ -1,4 +1,4 @@
-import { AutoPromptTaskOutput } from '../../../../src/common/constants/interfaces/bot.js';
+import { AutoPromptTaskOutput } from '../../common/constants/interfaces/bot';
 declare enum THEME {
     light = "light",
     dark = "dark\t"
@@ -71,4 +71,6 @@ export declare const useGlobalStore: import("zustand").UseBoundStore<Omit<Omit<O
         type: string;
     }>(nextStateOrUpdater: (GlobalState & GlobalActions & ComputedStore) | Partial<GlobalState & GlobalActions & ComputedStore> | ((state: import("immer").WritableDraft<GlobalState & GlobalActions & ComputedStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
 }>;
+export {};
+;
 export {};

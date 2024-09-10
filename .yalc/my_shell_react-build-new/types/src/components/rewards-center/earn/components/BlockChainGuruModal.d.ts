@@ -1,4 +1,4 @@
-import { Task } from '../../../../../../src/common/constants/interfaces/task.js';
+import { Task } from '../../../../common/constants/interfaces/task';
 interface BlockChainGuruModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -10,4 +10,6 @@ interface BlockChainGuruModalProps {
 }
 export type BlockChainInteractionState = 'not_start' | 'acting' | 'on-chain' | 'confirmed' | 'error';
 export default function BlockChainGuruModal({ isOpen, onClose, blockChainInteractionState, setBlockChainInteractionState, task, txHash, setTxHash }: BlockChainGuruModalProps): import("react/jsx-runtime").JSX.Element;
+export {};
+;
 export {};

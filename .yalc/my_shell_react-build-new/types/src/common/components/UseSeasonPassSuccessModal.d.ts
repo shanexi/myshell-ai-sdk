@@ -1,4 +1,4 @@
-import { GolangPropItemInfo } from '../../../../src/common/constants/interfaces/task.js';
+import { GolangPropItemInfo } from '../../common/constants/interfaces/task';
 interface UseSeasonPassSuccessModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -6,4 +6,6 @@ interface UseSeasonPassSuccessModalProps {
     isLoading?: boolean;
 }
 export default function UseSeasonPassSuccessModal({ isOpen, onClose, rewardInfo, isLoading }: UseSeasonPassSuccessModalProps): import("react/jsx-runtime").JSX.Element;
+export {};
+;
 export {};

@@ -1,7 +1,7 @@
-import { ChatSetting, ChatSettingSpeakingLangEnum, MessageDetail } from '../../../../src/chat/model/interfaces.js';
-import { BannerItemProps } from '../../../../src/common/components/banner/types.js';
-import { ActiveType, BotFilters, BotInfo, KolInfo, TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { NormalCardProps, RecommendInfo } from '../../../../src/common/model/interfaces.js';
+import { ChatSetting, ChatSettingSpeakingLangEnum, MessageDetail } from '../../chat/model/interfaces';
+import { BannerItemProps } from '../../common/components/banner/types';
+import { ActiveType, BotFilters, BotInfo, KolInfo, TagInfo } from '../../common/constants/interfaces/bot';
+import { NormalCardProps, RecommendInfo } from '../../common/model/interfaces';
 export declare const defaultChatSetting: {
     isAutopushOn: boolean;
     isAudioOn: boolean;
@@ -73,5 +73,8 @@ export declare const useBotStore: import("zustand").UseBoundStore<Omit<Omit<Omit
     setState<A extends string | {
         type: string;
     }>(nextStateOrUpdater: (BotState & BotAction & ComputedStore) | Partial<BotState & BotAction & ComputedStore> | ((state: import("immer").WritableDraft<BotState & BotAction & ComputedStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
+}>;
+export {};
+ined, action?: A | undefined): void;
 }>;
 export {};

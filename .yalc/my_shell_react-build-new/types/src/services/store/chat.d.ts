@@ -1,7 +1,7 @@
-import { AudioStreamDetail, ImageStreamDetail, MessageDetail, TextStreamDetail, TranslationStreamDetail } from '../../../../src/chat/model/interfaces.js';
-import { BotInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { IPublishItem } from '../../../../src/gallery/modal/interfaces.js';
-import { ChatCommonStore } from '../../../../src/chat-new/services/chatCommonSlice.js';
+import { ChatCommonStore } from '../../chat-new/services/chatCommonSlice';
+import { AudioStreamDetail, ImageStreamDetail, MessageDetail, TextStreamDetail, TranslationStreamDetail } from '../../chat/model/interfaces';
+import { BotInfo } from '../../common/constants/interfaces/bot';
+import { IPublishItem } from '../../gallery/modal/interfaces';
 interface Computed {
     currentUserId?: string;
 }
@@ -478,5 +478,8 @@ export declare const useChatStore: import("zustand").UseBoundStore<Omit<Omit<imp
         showDragModal: (val: boolean) => void;
         setHasUnRead: (hasUnRead: boolean) => void;
     } & ChatCommonStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
+}>;
+export {};
+ined, action?: A | undefined): void;
 }>;
 export {};

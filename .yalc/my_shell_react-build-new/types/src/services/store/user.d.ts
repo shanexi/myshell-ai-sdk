@@ -1,7 +1,7 @@
-import { NsfwEnum, VisitorEnum } from '../../../../src/common/constants/enums/user.js';
-import { BotShareKeyStatsInfo, EarningDetail, EarningDetailChartData, StakeDetail, StakeRankingListData, UserStakeInfo } from '../../../../src/common/constants/interfaces/shareKey.js';
-import { EnergyInfo, PremiumInfo, User, UserConnectedAccounts, UserSettings, UserTelegramDto } from '../../../../src/common/constants/interfaces/user.js';
-import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin.js';
+import { NsfwEnum, VisitorEnum } from '../../common/constants/enums/user';
+import { BotShareKeyStatsInfo, EarningDetail, EarningDetailChartData, StakeDetail, StakeRankingListData, UserStakeInfo } from '../../common/constants/interfaces/shareKey';
+import { EnergyInfo, PremiumInfo, User, UserConnectedAccounts, UserSettings, UserTelegramDto } from '../../common/constants/interfaces/user';
+import { LoginMethod } from '../../hooks/user/usePrivyLogin';
 export type UserState = {
     user: User | null;
     inviteCode: string;
@@ -103,5 +103,8 @@ export declare const useUserStore: import("zustand").UseBoundStore<Omit<Omit<Omi
     setState<A extends string | {
         type: string;
     }>(nextStateOrUpdater: (UserState & UserActions & ComputedStore) | Partial<UserState & UserActions & ComputedStore> | ((state: import("immer").WritableDraft<UserState & UserActions & ComputedStore>) => void), shouldReplace?: boolean | undefined, action?: A | undefined): void;
+}>;
+export {};
+ined, action?: A | undefined): void;
 }>;
 export {};

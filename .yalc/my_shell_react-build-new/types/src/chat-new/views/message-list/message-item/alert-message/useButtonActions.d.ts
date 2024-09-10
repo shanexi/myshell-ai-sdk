@@ -1,6 +1,6 @@
-import { DisplayMessage } from '../../../../../../../src/chat-new/model/definitions.js';
-import { PartialMessageDetail } from '../../../../../../../src/chat-new/services/useNewChatStore.js';
-import { ButtonProps } from '../../../../../../../src/common/components/ui/button.js';
+import { DisplayMessage } from '../../../../../chat-new/model/definitions';
+import { PartialMessageDetail } from '../../../../../chat-new/services/useNewChatStore';
+import { ButtonProps } from '../../../../../common/components/ui/button';
 export interface IAlertInfoMap {
     [type: string]: {
         text: string;
@@ -15,4 +15,6 @@ export default function useButtonActions(message: DisplayMessage, clearMemory?: 
     onLoginAndCreateRoom: () => void;
     onMarked: () => Promise<void>;
     onRemoveAndClearMemory: () => Promise<void>;
+};
+ndClearMemory: () => Promise<void>;
 };

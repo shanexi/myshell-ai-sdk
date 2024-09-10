@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../../../src/chat/model/interfaces.js';
+import { ImSlashCommandInput, MessageComponentsContainer, RecommandationQuestion, ReferenceSource } from '../../chat/model/interfaces';
 export declare enum EditorMode {
     NORMAL = 0,
     SHARE = 1
@@ -316,5 +316,7 @@ export interface DisplayMessage extends Message {
     source: MessageSource;
     msgDisplayType: MessageDisplayType;
     buttons?: ReactNode;
+}
+export {};
 }
 export {};

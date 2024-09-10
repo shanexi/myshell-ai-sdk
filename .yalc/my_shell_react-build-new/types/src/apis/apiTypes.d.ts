@@ -1,4 +1,4 @@
-import { BotDetail, BotInfo, TagInfo } from '../../../src/common/constants/interfaces/bot.js';
+import { BotDetail, BotInfo, TagInfo } from '../common/constants/interfaces/bot';
 export interface BasePagedRequest {
     listRequest: {
         pageToken: string;
@@ -605,5 +605,7 @@ export interface CancelInteractCommentRequest {
     targetId: string;
     targetType: TargetType;
     interactType: InteractionType;
+}
+export {};
 }
 export {};

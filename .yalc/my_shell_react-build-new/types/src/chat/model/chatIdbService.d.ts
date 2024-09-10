@@ -1,4 +1,4 @@
-import { MessageDetail } from '../../../../src/chat/model/interfaces.js';
+import { MessageDetail } from '../../chat/model/interfaces';
 declare class ChatIdbService {
     private db;
     private chats;
@@ -9,3 +9,4 @@ declare class ChatIdbService {
 }
 declare const chatIdbService: ChatIdbService;
 export default chatIdbService;
+tIdbService;

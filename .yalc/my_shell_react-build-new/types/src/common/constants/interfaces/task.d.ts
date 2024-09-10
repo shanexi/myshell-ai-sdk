@@ -1,5 +1,5 @@
 import type { Dayjs } from 'dayjs';
-import { CurveSummary } from '../../../../../src/apis/apiTypes.js';
+import { CurveSummary } from '../../../apis/apiTypes';
 import { ReturnedBotInfo } from './bot';
 import { GolangRewardStatusEnum, GolangUserTaskStatusEnum, TaskTypeEnum, PropStatusEnum, PropTypeEnum, OrderType, OrderStatus, SeasonStatus, PointTypeEnum } from '../enums/task';
 export interface Task {
@@ -251,4 +251,6 @@ export interface MediaShareRecord {
     createdAtUnix: number;
     points: number;
     pointsText: string;
+}
+t: string;
 }

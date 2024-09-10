@@ -1,4 +1,4 @@
-import { UserInputType } from '../../../../../chat-new/services/useNewChatStore';
+import { UserInputType } from '../../../../../../../src/chat-new/services/useNewChatStore.js';
 interface IAudioRecorder {
     interacting?: boolean;
     disabled?: boolean;
@@ -8,6 +8,4 @@ interface IAudioRecorder {
     onChangeType: (type: UserInputType) => void;
 }
 export declare function AudioRecorder({ interacting, disabled, exitAudioInput, scrollLayoutToTop, onSend, onChangeType }: IAudioRecorder): import("react/jsx-runtime").JSX.Element;
-export {};
-;
 export {};

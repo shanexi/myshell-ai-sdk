@@ -1,4 +1,4 @@
-import { LoginMethod } from '../../../../src/hooks/user/usePrivyLogin.js';
+import { LoginMethod } from '../../hooks/user/usePrivyLogin';
 declare class IdentityService {
     constructor();
     getIsNewUser(): boolean;
@@ -107,4 +107,6 @@ declare class IdentityService {
     clearAll(clearInvitation?: boolean): void;
 }
 export declare const identityService: IdentityService;
+export {};
+;
 export {};

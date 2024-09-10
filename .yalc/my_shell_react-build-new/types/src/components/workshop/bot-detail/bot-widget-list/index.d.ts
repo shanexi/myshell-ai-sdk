@@ -1,4 +1,4 @@
-import { WidgetInfo } from '../../../../../../src/common/constants/interfaces/workshop.js';
+import { WidgetInfo } from '../../../../common/constants/interfaces/workshop';
 interface P {
     widgets: WidgetInfo[];
     showSimplifyTags?: boolean;
@@ -7,4 +7,6 @@ interface P {
     setShowUserDetail?: (item: any) => void;
 }
 export default function WidgetList({ showSimplifyTags, widgets, pinnedCallback, onClose, setShowUserDetail }: P): import("react/jsx-runtime").JSX.Element;
+export {};
+;
 export {};

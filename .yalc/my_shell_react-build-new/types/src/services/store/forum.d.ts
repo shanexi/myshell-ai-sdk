@@ -1,5 +1,5 @@
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
-import { IForumItem, IPostDetail } from '../../../../src/forum/models/interfaces.js';
+import { TagInfo } from '../../common/constants/interfaces/bot';
+import { IForumItem, IPostDetail } from '../../forum/models/interfaces';
 interface ForumState {
     searchList: IForumItem[];
     tagFilters: {
@@ -47,4 +47,6 @@ export declare const useForumStore: import("zustand").UseBoundStore<Omit<import(
     setPostDetail(postDetail: IPostDetail): void;
     setPostLoading(loading: boolean): void;
 } & ComputedStore>, "setState">>;
+export {};
+ "setState">>;
 export {};

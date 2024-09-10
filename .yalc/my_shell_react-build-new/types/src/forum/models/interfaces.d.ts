@@ -1,5 +1,5 @@
-import { ActionTypes } from '../../../../src/common/constants/enums/post.js';
-import { TagInfo } from '../../../../src/common/constants/interfaces/bot.js';
+import { ActionTypes } from '../../common/constants/enums/post';
+import { TagInfo } from '../../common/constants/interfaces/bot';
 export interface AuthorInfo {
     userId: string;
     userName: string;
@@ -27,4 +27,6 @@ export interface IPostDetail {
     listInfo: IForumItem;
     content: string;
     renderMethod: 'HTML' | 'MARKDOWN';
+}
+d: 'HTML' | 'MARKDOWN';
 }

@@ -1,4 +1,4 @@
-import { ChatModuleType } from '../../../../../../../chat/ChatStaticContext';
+import { ChatModuleType } from '../../../../../../../../../src/chat/ChatStaticContext.js';
 type P = {
     type: ChatModuleType;
     id: string;
@@ -6,6 +6,4 @@ type P = {
     onSuccess: () => void;
 };
 export default function RemoveFromList({ type, id, disabled, onSuccess }: P): import("react/jsx-runtime").JSX.Element;
-export {};
-;
 export {};
