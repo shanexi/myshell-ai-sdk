@@ -1,0 +1,1515 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<style type=text/css>
+
+		body
+		{
+			background-color: #c4c4c4;
+			font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  			font-size: 10.5pt;
+      		margin: 0px;
+		}
+		.main
+		{
+			max-width:720px;
+			margin: 0 auto;
+			height: 100%;
+			padding-top: 54px; /* header */
+			padding-bottom: 20px; /* footer */
+			background-color: #ebebeb;
+		}
+		.header
+		{
+			position: fixed;
+			top:0;
+			max-width:720px;
+			width: 100%;
+			height: 48px;
+			background-color: #f6f6f6;
+			z-index: 2147483600;
+		}
+		.sname
+		{
+			padding-left: 12px;
+			vertical-align: middle;
+			height: 48px;
+			line-height: 48px;
+			font-weight: bold;
+		}
+		.msgfilter
+		{
+			float:right;
+			height: 48px;
+			line-height: 48px;
+			padding-right: 8px;
+		}
+		.filter-btn
+		{
+			vertical-align: middle;
+		}
+		span.filter-btn
+		{
+			cursor: hand;
+		}
+		span.filter-btn:hover
+		{
+			color: blue;
+		}
+		.footer
+		{
+			position: fixed;
+			bottom: 0;
+			max-width:720px;
+			width: 100%;
+			height: 20px;
+			z-index: 2147483600;
+		}
+
+		div.msg
+		{
+			page-break-inside: avoid;
+			break-inside: avoid-page;
+		}
+
+		.msgs
+		{
+			width: 100%;
+			height: 100%;
+		}
+		span.msg-text pre
+		{
+			white-space: pre-wrap;       /* Since CSS 2.1 */
+			white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+			white-space: -pre-wrap;      /* Opera 4-6 */
+			white-space: -o-pre-wrap;    /* Opera 7 */
+			word-wrap: break-word;       /* Internet Explorer 5.5+ */
+			margin: 0px 0px;
+		}
+	  	.chat.left, .media.left
+	  	{
+			clear:both;
+			overflow: auto;
+			margin:0 auto;
+			padding: 8px 8px 0px 8px;
+	  	}
+		.chat.left div.avatar-box,
+		.media.left div.avatar-box
+		{
+			float: left;
+		}
+		.chat.left div.avatar-box
+		{
+			/*padding-top: 6px;*/
+		}
+		.chat.left div.nt-box,
+		.media.left div.nt-box
+		{
+			margin: 0 50px 2px 50px;
+			padding: 0px;
+			color: #848484;
+			font-size: 80%;
+			text-align: left;
+		}
+		.chat.left div.content-box
+		{
+			position: relative;
+			background-color: white;
+			/*float: left;*/
+			margin: 0 50px 8px 50px;
+			padding: 8px 8px 8px 8px;
+			border-radius:4px;
+		}
+		.media.left div.content-box
+		{
+			/*float: left;*/
+			margin: 0 50px 8px 50px;
+			padding: 8px 8px 8px 8px;
+    	}
+	    div.content-box
+	    {
+	      width:fit-content;
+	      width:-webkit-fit-content;
+	      width:-moz-fit-content;
+	    }
+		.chat.left.channels .content-box, .chat.right.channels .content-box
+		{
+			width:240px;
+		}
+		.refermsg
+		{
+			font-size: 90%;
+		}
+
+		.chat.right, .media.right
+		{
+			clear:both;
+			overflow: auto;
+			max-width: 670px;
+			margin: 0 auto;
+			background-color: #ebebeb;
+			padding: 8px 8px 0px 58px;
+		}
+		.chat.right div.avatar-box,
+		.media.right div.avatar-box
+		{
+			float: right;
+		}
+		.chat.right div.nt-box,
+		.media.right div.nt-box
+		{
+			margin: 0px 50px 2px 50px;
+			padding: 0px;
+			color: #848484;
+			font-size: 80%;
+			text-align: right;
+		}
+		.chat.right div.content-box
+		{
+      		position: relative;
+			background-color: #b2e281;
+			margin: 0px 50px 8px auto;
+			padding: 8px 8px 8px 8px;
+			border-radius: 4px;
+		}
+		.media.right div.content-box
+		{
+			float: right;
+			margin: 0px 0px 8px 50px;
+			padding: 8px 8px 8px 8px;
+		}
+
+		.name.right
+		{
+			display: none;
+		}
+		img.wxemoji
+		{
+			border: 0;
+			width: 20px;
+		    height: 20px;
+		    display: inline;
+		    display: -moz-inline-stack;
+		    display: inline-block;
+		    vertical-align: top;
+		    /*zoom: 1;*/
+		}
+
+		img.avatar
+		{
+			width: 40px;
+			height: 40px;
+			border-radius: 4px;
+		}
+
+		.triangle
+		{
+			height: 0px;
+			width: 0px;
+			border-width: 6px;
+			border-style: solid;
+			position: relative;
+		}
+		.chat.left .triangle
+		{
+			position: absolute;
+			border-color: transparent white transparent transparent;
+			left: -12px;
+			top: 6px;
+		}
+		.chat.right .triangle
+		{
+			position: absolute;
+			border-color: transparent transparent transparent #b2e281;
+			right: -12px;
+			top: 6px;
+		}
+
+		.chat-notice
+		{
+			clear: both;
+			font-size: 80%;
+			text-align: center;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			margin:0 auto;
+			padding: 0px 8px;
+    	}
+    	.chat-notice .content-box
+		{
+			width: 80%;
+			margin:0 auto;
+		}
+		.chat-notice.fmsgtag .content-box
+		{
+			background-color: #008080;
+			border-radius: 4px;
+			font-size: 100%;
+			padding: 5px 10px;
+			color: white;
+		}
+		audio
+		{
+			max-width: 220px;
+		}
+		video
+		{
+			max-width: 240px;
+			border-radius: 4px;
+		}
+		.image
+		{
+			width:90px;
+			border-radius:4px;
+			max-width: 360px;
+			max-height: 240px;
+			min-width: 120px;
+			min-height: 24px;
+		}
+		img
+		{
+			image-orientation: from-image;
+		}
+		img[src=""]
+		{
+			display: none;
+		}
+		img.app-icon
+		{
+			width: 24px;
+			height: 24px;
+			vertical-align:middle;
+			border-radius: 2px;
+		}
+		img.transfer-icon
+		{
+			width: 16px;
+			height: 16px;
+			vertical-align:middle;
+			border-radius: 2px;
+		}
+		img.channel-poster
+		{
+			object-fit: cover;
+			width: 240px;
+			height: 240px;
+		}
+		.raw-img .image:hover, .channel-poster:hover
+		{
+			cursor: -webkit-zoom-in;
+   			cursor: zoom-in;
+		  	/* transform: scale(5); */
+		}
+		img.card-avatar
+		{
+			width: 42px;
+			height: 42px;
+			vertical-align:middle;
+		}
+		div.card-name
+		{
+			display: inline-flex;
+			align-items:center;
+		}
+		div.card-name span
+		{
+			margin-left: 8px;
+		}
+		span.channel-title
+		{
+			margin-left: 2px;
+		}
+		span.app-name:empty
+		{
+			display: none;
+		}
+		div.card-type
+		{
+			border-top: 1px dotted #dedede;
+			margin: 10px 2px 2px 2px;
+			padding: 4 12px 8px 0px;
+			line-height: 1.6;
+		}
+		.contact-card .card-avatar
+		{
+			border-radius: 4px;
+		}
+		.channel-card .card-avatar
+		{
+			border-radius: 21px; /*making circle*/
+		}
+		span.channel-title
+		{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			-o-text-overflow: ellipsis;
+			white-space: nowrap;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			word-break: break-all;
+			width: 230px;
+			display:block;
+		}
+		.appinfo
+		{
+			/*padding-top: 12px;*/
+		}
+		.app-name
+		{
+			padding-left: 4px;
+			color: #999;
+			font-size: 80%;
+		}
+
+		.dont-break-out
+		{
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+
+			-ms-word-break: break-all;
+			/*word-break: break-all;*/
+			word-break: break-word;
+			-ms-hyphens: auto;
+			-moz-hyphens: auto;
+			-webkit-hyphens: auto;
+			hyphens: auto;
+		}
+
+		.img-popup
+		{
+			background: rgba(0,0,0,.4);
+
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			text-align: center;
+			top: 0;
+			left: 0;
+			z-index: 2147483647;	/* top-most */
+		}
+		.img-popup .img
+		{
+			cursor: pointer;
+			display: inline-block;
+			vertical-align: middle;
+			display: inline-block;
+			position: absolute;
+			box-shadow: 10px 10px 60px #555;
+			border-radius: 8px;
+			max-width: 90%;
+			max-height: 90%;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		.voicebox
+		{
+			background-color: white;
+			max-width: 300px;
+			min-width: 48px;
+			height: 30px;
+			border-radius: 4px;
+			display: inline-flex;
+			border: 1.5px solid #ccc;
+			padding: 2px;
+		}
+		.right .voicebox
+		{
+			background-color: #b2e281;
+			flex-direction: row-reverse;
+		}
+		.voiceimg
+		{
+			width: 25px;
+			height: 26px;
+			background-repeat: no-repeat;
+			background-position: -50px 0;
+			background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAaCAMAAADIQlGKAAAAdVBMVEUAAAAAyWcHwWAHwWAHwWAFwWAHwWAHwV8GwWAHwV8HwWAGwWAHwWAHwWAHwWAGwmEJwGAKwF8LwGEHwWAIwWAIwWAFwGEHv2MAwWEAu2AHwV8HwWAIwWEGwWAGwl8GwmEIwmEGwV0IwmEHwWAIwWEGwGAHwWBdwbyCAAAAJnRSTlMABfxq+C3djVpG8cSwrXFUOBgWzIBiNCQQC7OShHpTTz8pILWpn7aeLVQAAADRSURBVDjL3dXJDoIwFEZh5klBQAUFcfa8/yO68xKb3NRYN/7bj5xFIdT72/nuUunoLFVB5qq1Syja705EoIbUPtWujxqURI11a03RKhBDaN1awahBws2z3oLCVyAlmnO+MR8UCOGswBauAquIysgIxLBVIIfuBXEAS6Mj0MCkQAe5UBhwMEICFwgVyKGeUVbujY5ABicF5LwstiTYKfD2HtXVMGiQsPjg86JTIIbKutUnqQYlQe9Zr/EVqOHh7v8V9Y5aG5ic3Rz3weE1tPd+sSe2ExTdqqGN0gAAAABJRU5ErkJggg==');
+		}
+		.voicetime
+		{
+			height: 26px;
+			line-height: 26px;
+			padding-left: 4px;
+			padding-right: 8px;
+		}
+		.right .voiceimg
+		{
+			-moz-transform: scaleX(-1);
+    		-o-transform: scaleX(-1);
+    		-webkit-transform: scaleX(-1);
+    		transform: scaleX(-1);
+    		filter: FlipH;
+    		-ms-filter: "FlipH";
+		}
+
+		.voiceplaying
+		{
+			animation:voiceplaying 1.5s steps(1, end) infinite;
+		}
+
+		@keyframes voiceplaying
+		{
+			0%{background-position: 0 0 }
+			25%{ background-position:-25px 0;}
+			75%{ background-position: -50px 0; }
+			100%{ background-position: -50px 0; }
+		}
+
+		@media print
+		{
+			body
+			{
+				background-color: white;
+			}
+			.header
+			{
+				position: absolute;
+			}
+			.chat.left div.content-box
+			{
+				margin: 0 50px 4px 50px;
+			}
+			.chat.right div.content-box
+			{
+				margin: 0px 50px 4px auto;
+			}
+		}
+		</style>
+    <title>Messages from 2024-09-07</title>
+		<script language="javascript">
+			function showImagePopup(e)
+			{
+				var srcElement = e.target;
+				var imgUrl = srcElement.getAttribute("rawUrl");
+				if (imgUrl == null)
+				{
+					return false;
+				}
+
+				var fragment = document.createDocumentFragment();
+				var div = document.createElement('div');
+				div.className = "img-popup";
+				div.onclick = function(event) {
+					document.body.removeChild(div);
+				};
+				fragment.appendChild(div);
+				var img = document.createElement('img');
+				img.className = "img";
+				img.src = imgUrl;
+				div.appendChild(img);
+				document.body.appendChild(fragment);
+			}
+
+			function showElements(msgType)
+			{
+				var kwElement = document.getElementById("filter-keyword");
+				if (null != kwElement) kwElement.value = "";
+
+				window.msgFilter = {'filterType': 'msgType', 'msgType': msgType};
+
+				var msgElements = document.querySelectorAll('div.msg');
+				if (null == msgElements || msgElements.length == 0)
+				{
+					return;
+				}
+
+				document.body.style.cursor = 'wait';
+				var visibleMsgs = 0;
+				for (idx = 0; idx < msgElements.length; idx++)
+				{
+					if (filterMsg(msgElements[idx]))
+					{
+						visibleMsgs++;
+					}
+				}
+
+				if (visibleMsgs < window.sizeOfMsgPage && (typeof window.wechatMsgsIndexes !== 'undefined') && (window.wechatMsgsIndexes.length > 0))
+				{
+					window.numberOfMsgsToLoad = window.sizeOfMsgPage - visibleMsgs;
+					loadMsgsForNextPage();
+				}
+				document.body.style.cursor = 'default';
+			}
+
+			function filterMsg(divMsg)
+			{
+				if ((typeof window.msgFilter === 'undefined') || (window.msgFilter == null) || (typeof window.msgFilter.filterType === 'undefined'))
+				{
+					divMsg.style.display = "block";
+					return true;
+				}
+				if (window.msgFilter.filterType == 'search')
+				{
+					if ((typeof window.msgFilter.keyword === 'undefined') || (window.msgFilter.keyword == null) || (window.msgFilter.keyword.length == 0))
+					{
+						divMsg.style.display = "block";
+						return true;
+					}
+					var elementClasses = ['span.dspname', 'span.msg-text'];
+					var matched = false;
+					for (idx1 = 0; idx1 < elementClasses.length; idx1++)
+					{
+						var elements = divMsg.querySelectorAll(elementClasses[idx1]);
+						if (null == elements || elements.length == 0) continue;
+
+						for (idx2 = 0; idx2 < elements.length; idx2++)
+						{
+							if (null != elements[idx2].innerText && elements[idx2].innerText.toLowerCase().indexOf(window.msgFilter.keyword) != -1)
+							{
+								matched = true;
+								break;
+							}
+						}
+						if (matched) break;
+					}
+					divMsg.style.display = matched ? "block" : "none";
+					return matched;
+				}
+				else if (window.msgFilter.filterType == 'msgType')
+				{
+					var matched = (typeof window.msgFilter.msgType === 'undefined') || (window.msgFilter.msgType == null) || (divMsg.getAttribute("msgType") == window.msgFilter.msgType);
+					divMsg.style.display = matched ? "block" : "none";
+					return matched;
+				}
+
+				divMsg.style.display = "block";
+				return true;
+			}
+
+			function searchElements(e)
+			{
+				var keyCode = e.keyCode || e.which || 0;
+				if(keyCode !== 13)
+				{
+					return false;
+				}
+
+				var msgElements = document.querySelectorAll('div.msg');
+				if (null == msgElements || msgElements.length == 0)
+				{
+					return false;;
+				}
+
+				var keyword = e.target.value == null ? "" : e.target.value.toLowerCase();
+				window.msgFilter = {'filterType': 'search', 'keyword': keyword};
+				var elementClasses = ['span.dspname', 'span.msg-text'];
+				var visibleMsgs = 0;
+				document.body.style.cursor = 'wait';
+				for (idx = 0; idx < msgElements.length; idx++)
+				{
+					if (filterMsg(msgElements[idx]))
+					{
+						visibleMsgs++;
+					}
+				}
+				if (visibleMsgs < window.sizeOfMsgPage && (typeof window.wechatMsgsIndexes !== 'undefined') && (window.wechatMsgsIndexes.length > 0))
+				{
+					window.loadingMoreMsgs = true;
+					window.numberOfMsgsToLoad = window.sizeOfMsgPage - visibleMsgs;
+					loadMsgsForNextPage();
+				}
+				document.body.style.cursor = 'default';
+
+				return false;
+			}
+
+			function showAllMsgs(e)
+			{
+				showElements(null);
+			}
+			function showImageMsgs(e)
+			{
+				showElements("image");
+			}
+			function showVideoMsgs(e)
+			{
+				showElements("video");
+			}
+
+			function loadMsgsForNextPage()
+			{
+				if ((typeof window.wechatMsgsIndexes === 'undefined'))
+				{
+					return 0;
+				}
+				if ((typeof window.moreWechatMsgs === 'undefined'))
+				{
+					window.moreWechatMsgs = [];
+				}
+
+				var visibleMsgs = 0;
+				if (window.moreWechatMsgs.length > 0)
+				{
+					var fragment = document.createDocumentFragment();
+					var div = document.createElement('div');
+					fragment.appendChild(div);
+
+					while (window.moreWechatMsgs.length > 0)
+					{
+						div.innerHTML = window.moreWechatMsgs.shift();
+						if (div.children.length > 0)
+						{
+							var msgDiv = div.children[0];
+							fragment.appendChild(msgDiv);
+
+							if (filterMsg(msgDiv))
+							{
+								visibleMsgs++;
+							}
+						}
+
+					}
+
+					fragment.removeChild(div);
+					var containerDiv = document.getElementById('msgs-div');
+					if (null != containerDiv)
+					{
+						containerDiv.appendChild(fragment);
+					}
+				}
+
+				window.numberOfMsgsToLoad -= visibleMsgs;
+				if ((window.numberOfMsgsToLoad > 0) && window.wechatMsgsIndexes.length > 0)
+				{
+					// Load next page
+					var nextPage = window.wechatMsgsIndexes.shift();
+
+					var script   = document.createElement("script");
+					script.type  = "text/javascript";
+					script.src   = "MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Data/msg-" + nextPage + ".js";
+					document.body.appendChild(script);
+				}
+				else
+				{
+					window.loadingMoreMsgs = false;
+				}
+
+				return true;
+			}
+
+			function checkScrollDirectionIsUp(e)
+			{
+				if (e.wheelDelta)
+				{
+					return e.wheelDelta > 0;
+				}
+				return e.deltaY < 0;
+			}
+
+			function playbackEnded(e)
+			{
+				var playingMsgId = e.target.getAttribute("playingMsgId");
+				if (playingMsgId != null)
+				{
+					var voiceDiv = document.getElementById("voiceimg-" + playingMsgId);
+					if (null != voiceDiv)
+					{
+						voiceDiv.classList.remove("voiceplaying");
+					}
+					e.target.removeAttribute("playingMsgId");
+				}
+			}
+
+			function playAudio(src, msgId)
+			{
+				// Stop previous
+				var audioPlayer = document.getElementById("audioPlayer");
+				if (null == audioPlayer)
+				{
+					var divFooter = document.getElementById("footer");
+					// Create audio player
+					audioPlayer = document.createElement('audio');
+					audioPlayer.id = "audioPlayer";
+					audioPlayer.type = 'audio/mpeg';
+					audioPlayer.hidden = true;
+					if (null != divFooter)
+					{
+						divFooter.appendChild(audioPlayer);
+					}
+
+					audioPlayer.onpause = playbackEnded;
+					audioPlayer.onended = playbackEnded;
+
+					audioPlayer.onaudioprocess = function(e)
+					{
+						console.log("onaudioprocess: " + e.target.currentSrc);
+					};
+
+					audioPlayer.onloadeddata = function(e)
+					{
+						console.log("onloadeddata: " + e.target.currentSrc);
+					};
+
+
+				}
+
+				audioPlayer.pause();
+
+				var playingMsgId = audioPlayer.getAttribute("playingMsgId");
+				if (playingMsgId != null)
+				{
+					var voiceDiv = document.getElementById("voiceimg-" + playingMsgId);
+					if (null != voiceDiv)
+					{
+						voiceDiv.classList.remove("voiceplaying");
+					}
+					audioPlayer.removeAttribute("playingMsgId");
+				}
+
+				if (msgId != playingMsgId)
+				{
+					console.log("Will play " + msgId);
+					// Play new one
+					audioPlayer.setAttribute("playingMsgId", msgId);
+					var audioSrc = src.getAttribute("audio");
+					if (null != audioSrc)
+					{
+						audioPlayer.src = audioSrc;
+						audioPlayer.load();
+						audioPlayer.play();
+					}
+
+					var voiceDiv = document.getElementById("voiceimg-" + msgId);
+					if (null != voiceDiv)
+					{
+						voiceDiv.classList.add("voiceplaying");
+					}
+				}
+			}
+
+
+		</script>
+	</head>
+      <body>
+
+      		<div class="main">
+			<div class="header">
+				<span class="sname">2024-09-07</span>
+				<div class="msgfilter">
+					<!-- filter.html -->
+					<input placeholder="Press [Enter] key after inputting keywords" id="filter-keyword" class="filter-btn" onkeypress="javascript:searchElements(event);" />
+					&nbsp;
+					<a title="Show Photos Only" id="filter-image" class="filter-btn" href="javascript:showImageMsgs(event);">Photos</a>
+					<a title="Show Videos Only" id="filter-video" class="filter-btn" href="javascript:showVideoMsgs();">Videos</a>
+					<a title="Show All Messages" id="filter-none" class="filter-btn" href="javascript:showAllMsgs();">All</a>
+
+				</div>
+			</div>
+			<div class="msgs" id="msgs-div">
+        <div class="msg chat left " msgid="530" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_dojbwtnqyl2f21.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_dojbwtnqyl2f21">波风若川</span> 2024-09-07 00:04:59</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>不是特别占显存的流，重启后能重新跑。
+但就是成功运行几次，会出现这个~</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="531" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/ws0712.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="ws0712">MyShell-Tiancheng</span> 2024-09-07 00:14:16</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「波风若川：不是特别占显存的流，重启后能重新跑。
+但就是成功运行几次，会出现这个~」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>怀疑是哪里内存泄露了，具体还需要我们算法同学明天白天看看</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="532" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_dojbwtnqyl2f21.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_dojbwtnqyl2f21">波风若川</span> 2024-09-07 00:15:39</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>好的，谢谢</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="533" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 09:39:21</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>麻烦checkpoint里更新下这个模型，https://civitai.com/models/301824/photo-realistic-xl ，我自己install貌似没刷新出来</pre></span>
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="534" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 09:46:51</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/534.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/534_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="535" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 09:47:29</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/535.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/535_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="536" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 09:47:33</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>https://github.com/chflame163/ComfyUI_LayerStyle</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="537" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 09:47:50</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>要提前下载依赖的模型</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="538" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:00:39</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「波风若川：不是特别占显存的流，重启后能重新跑。
+但就是成功运行几次，会出现这个~」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这个暂时的解决方案是把 servers.main.py 的里面的这两行给注释掉或者删掉</pre></span>
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="539" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:00:39</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/539.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/539_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="540" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:30:40</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/540.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/540_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="541" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:30:46</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>app run的时候</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="542" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:31:32</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：
+麻烦checkpoint里更新下这个模型，https://civitai.com/models/301824/photo-realistic-xl ，我自己install貌似没刷新出来」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这个模型下载好了</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="543" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:31:48</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：
+要提前下载依赖的模型」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这些太多了，百度网盘下载要好久</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="544" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:32:20</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：[Photo]」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这个是前端的bug</pre></span>
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="545" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:33:35</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/545.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/545_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="546" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:33:41</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>我本地这三个就够了</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="547" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:33:58</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>huggingface应该也有</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="548" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:34:50</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>只需要 vitmatte 吗</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="549" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:35:10</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>https://huggingface.co/hustvl/vitmatte-small-composition-1k/tree/main</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="550" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:35:42</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>嗯，抠图这里只需要补下vitmatte</pre></span>
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="551" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:36:22</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/551.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/551_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="552" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:36:28</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>这三个下载好了</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="553" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:36:56</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：app run的时候」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这种问题重连一下可能可以</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="554" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:37:18</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>ok</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="555" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:41:07</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「MyShell-Lempitsky：这种问题重连一下可能可以」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>好像还不行</pre></span>
+					</div>
+				</div>
+<div class="msg media left raw-img" msgid="556" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:51:55</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/556.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/556_thumb.jpg" class="image img-left_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="557" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:52:09</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>这个的配置文件也麻烦放进去哈</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="558" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-07 10:52:29</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>我这会在外面了</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="559" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:53:04</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>好，这个没事</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="560" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 10:53:21</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>app run 报错那个有人能帮忙看看是为啥吗</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="562" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:00:56</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>@彬子  可以 run了.</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="563" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:01:19</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>我改了几个地方( 后面会加上校验):</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="564" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:02:30</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>都是报找不到 transition 的错误(就是 连线)
+1. 好像线连了两次(transiton), 但是似乎不好复现, 我们会在前端确认下有逻辑校验
+2. 没有连线的 button 先 disable掉</pre></span>
+					</div>
+				</div>
+<div class="msg media right raw-img" msgid="565" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:03:52</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/565.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/565_thumb.jpg" class="image img-right_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat right " msgid="566" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:04:20</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>没有的button diable 或者删除</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="567" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 11:05:16</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>OK</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="568" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 11:05:35</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>这里条件判断是怎么做</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="569" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 11:06:07</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>还有怎么在后面节点去修改start里context的变量</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="570" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 11:06:14</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>有没有文档我看看</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="571" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:06:28</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>目前可以有一个排查方式, 就是找到 run 里面的 payload,</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="572" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:06:28</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>按照报错提示去找</pre></span>
+					</div>
+				</div>
+<div class="msg media right raw-img" msgid="573" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:06:29</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/573.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/573_thumb.jpg" class="image img-right_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat right " msgid="574" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:07:58</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>目前文档在群公告</pre></span>
+					</div>
+				</div>
+<div class="msg media right raw-img" msgid="575" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:07:59</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/575.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/575_thumb.jpg" class="image img-right_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat right " msgid="576" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:08:25</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>@MyShell - Hance  @MyShell-Tiancheng 咱们的文档有办法能直接让用户 comment 吗?</pre></span>
+					</div>
+				</div>
+<div class="msg chat right " msgid="577" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:08:52</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>我看用户提的问题, 文档里有, 但是可能不详细 比如条件判断</pre></span>
+					</div>
+				</div>
+<div class="msg media right raw-img" msgid="578" msgtype="image">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/pieux33.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname right" wxid="+8618616348933">杉山</span> 2024-09-07 11:08:53</div>
+					<div class="content-box">
+						<img rawurl="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/578.jpg" src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/578_thumb.jpg" class="image img-right_triangle" onclick="javascript:showImagePopup(event);">
+					</div>
+				</div>
+<div class="msg chat left " msgid="579" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 11:10:15</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>嗯，最好有condition具体怎么写的示例</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="581" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-07 11:25:50</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「MyShell - shane：@MyShell - Hance  @MyShell-Tiancheng 咱们的文档有办法能直接让用户 comment 吗?」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>可以的，我已经开放了comment 权限</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="582" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/ws0712.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="ws0712">MyShell-Tiancheng</span> 2024-09-07 11:43:11</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：
+嗯，最好有condition具体怎么写的示例」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>好的好的，我们很快也会补充一下
+也欢迎大家提更多关于文档的建议啊</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="583" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_c87i8kvce1zk22.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_c87i8kvce1zk22">MyShell-Carioz</span> 2024-09-07 12:13:41</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：这个的配置文件也麻烦放进去哈」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>弄进来了</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="584" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_c87i8kvce1zk22.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="wxid_c87i8kvce1zk22">MyShell-Carioz</span> 2024-09-07 12:13:46</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>可以check一下看看</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="585" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 12:15:02</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre><img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Emoji/wx/ThumbsUp.png" title="[强]" rawemoji="[强]" class="wxemoji"></pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="586" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/ws0712.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="ws0712">MyShell-Tiancheng</span> 2024-09-07 12:18:55</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「彬子：嗯，最好有condition具体怎么写的示例」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>condition现在还有点问题，等我们修好了我再更新到文档上啊
+
+修改context的方法是在output中指定对应的context变量，然后给它重新赋值，文档这里有简单地提到：
+https://www.notion.so/myshellai/App-Builder-177347c0586f48cca5cdbdf1e3e32341?pvs=4#0754b763f88848539097e4f3d359e587</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="587" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 12:39:44</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>好的</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="588" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 16:11:38</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「MyShell-Tiancheng：condition现在还有点问题，等我们修好了我再更新到文档上啊
+
+修改context的方法是在output中指定对应的context变量，然后给它重新赋值，文档这里有简单地提到：
+https://www.notion.so/myshellai/App-Builder-177347c0586f48cca5cdbdf1e3e32341?pvs=4#0754b763f88848539097e4f3d359e587」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>这里怎么将output绑定context变量的同时去重新赋值？</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="589" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 16:12:15</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>要重新再创建一个state？</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="590" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/ws0712.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="ws0712">MyShell-Tiancheng</span> 2024-09-07 20:31:36</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>我现在手边没电脑，不太好说明
+一个output变量的右侧或者下方，就是给它赋值的地方(ui模式可以手动赋一个新值，ref模式可以选择一个变量)</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="591" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 20:32:38</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>ref选择了context里的变量后，怎么同时更新值呢</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="592" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/jinghao12345.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="jinghao12345">Myshell-joe</span> 2024-09-07 20:33:54</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>群聊的聊天记录</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="593" msgtype="49">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/jinghao12345.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="jinghao12345">Myshell-joe</span> 2024-09-07 20:33:57</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out refermsg msg-text"><pre>「Myshell-joe：举个例子，可以把这个url放在context里面，第一个state的output关联context，第二个state的workflow的input里使用第一个state的output」</pre></span><br><span>- - - - - - - - - - - - - - -</span><br><span class="dont-break-out msg-text"><pre>可以参考这里</pre></span>
+					</div>
+				</div>
+<div class="msg chat left " msgid="594" msgtype="1">
+					<div class="avatar-box">
+						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
+					</div>
+					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-07 20:36:34</div>
+					<div class="content-box">
+						<div class="triangle"></div>
+						<span class="dont-break-out msg-text"><pre>好我看看</pre></span>
+					</div>
+				</div>
+        </div>
+			<div id="footer" class="footer">
+			</div>
+      </body>
+        	<script language="javascript">
+		(function() {
+			window.loadingMoreMsgs = false;
+			window.sizeOfMsgPage = parseInt('1000') || 100;
+			var numberOfMsgs = parseInt('0') || 0;
+			var numberOfPages = parseInt('0') || 0;
+			var asyncLoadingType = "initial";
+
+			if (numberOfPages == 0)
+			{
+				return;
+			}
+			window.wechatMsgsIndexes = [];
+			for (var idx = 1; idx <= numberOfPages; idx++)
+			{
+				window.wechatMsgsIndexes.push(idx);
+			}
+
+			window.numberOfMsgsToLoad = 0;
+
+			if (asyncLoadingType == "initial")
+			{
+				// Load all messages
+				window.numberOfMsgsToLoad = numberOfMsgs;
+				window.numberOfVisibleMsgsToLoad = -1;
+
+				window.addEventListener('load', function (e)
+				{
+					loadMsgsForNextPage();
+
+				}, false);
+			}
+			else if (asyncLoadingType == "onscroll")
+			{
+				window.addEventListener('scroll', function(e)
+				{
+					if (window.loadingMoreMsgs)
+					{
+						return;
+					}
+					if (window.wechatMsgsIndexes.length == 0)
+					{
+						return;
+					}
+
+					if (!checkScrollDirectionIsUp(e))
+					{
+						var containerDiv = document.querySelector("#msgs-div");
+						var containerDivOffset = containerDiv.offsetTop + containerDiv.clientHeight;
+
+						var pageOffset = window.pageYOffset + window.innerHeight;
+
+						if(pageOffset > containerDivOffset - 20)
+						{
+							window.loadingMoreMsgs = true;
+							if (window.numberOfMsgsToLoad <= 0) window.numberOfMsgsToLoad = window.sizeOfMsgPage;
+							loadMsgsForNextPage();
+						}
+					}
+				}, {passive: true});
+
+			}
+		})();
+
+
+
+	  </script>
+      </html>
+    
