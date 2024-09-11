@@ -1,12 +1,4 @@
-
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta content="yes" name="apple-touch-fullscreen">
-<style type=text/css>
+export const style = `<style type=text/css>
 		body
 		{
 			background-color: #c4c4c4;
@@ -482,9 +474,9 @@
 				margin: 0px 50px 4px auto;
 			}
 		}
-		</style>
-    <title>Messages from 2024-09-01</title>
-<script language="javascript">
+		</style>`;
+
+export const script1 = `<script language="javascript">
 			function showImagePopup(e)
 			{
 				var srcElement = e.target;
@@ -786,248 +778,9 @@
 			}
 
 
-		</script>
-	</head>
-      <body>
+		</script>`;
 
-      		<div class="main">
-			<div class="header">
-				<span class="sname">2024-09-01</span>
-				<div class="msgfilter">
-					<!-- filter.html -->
-					<input placeholder="Press [Enter] key after inputting keywords" id="filter-keyword" class="filter-btn" onkeypress="javascript:searchElements(event);" />
-					&nbsp;
-					<a title="Show Photos Only" id="filter-image" class="filter-btn" href="javascript:showImageMsgs(event);">Photos</a>
-					<a title="Show Videos Only" id="filter-video" class="filter-btn" href="javascript:showVideoMsgs();">Videos</a>
-					<a title="Show All Messages" id="filter-none" class="filter-btn" href="javascript:showAllMsgs();">All</a>
-				</div>
-			</div>
-			<div class="msgs" id="msgs-div">
-        <div class="msg chat left " msgid="3" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 13:56:00</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>Hello 大家好，我们产品的宣讲还有5 分钟就要开始了，请报名参加的开发者们在以下链接出席~ 
-
-点击链接入会，或添加至会议列表：
-https://meeting.tencent.com/dm/n65xEZGTVAeU
-#腾讯会议：524-138-658</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="4" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/shadowczw007.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="shadowczw007">shadow</span> 2024-09-01 13:56:21</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>来啦</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="8" msgtype="49">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 13:57:32</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<div>
-							<div>
-								<a href=""><b><span class="dont-break-out msg-text"><pre></pre></span></b></a>
-							</div>
-							<div>
-								<span class="dont-break-out msg-text"><pre>[Link]</pre></span>
-							</div>
-						</div>
-						<div class="appinfo">
-							<img src="" class="app-icon"><span class="app-name"></span>
-						</div>
-						
-					</div>
-				</div>
-<div class="msg chat left " msgid="11" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/fandc520.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="fandc520">骁川</span> 2024-09-01 13:59:18</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>来了</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="12" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_5c7i4yz65p8y21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_5c7i4yz65p8y21">祥子</span> 2024-09-01 14:01:36</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>腾讯会议的会议号群里发一下呗</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="13" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_c87i8kvce1zk22.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_c87i8kvce1zk22">MyShell-Carioz</span> 2024-09-01 14:01:56</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>Hello 大家好，我们产品的宣讲还有5 分钟就要开始了，请报名参加的开发者们在以下链接出席~ 
-
-点击链接入会，或添加至会议列表：
-https://meeting.tencent.com/dm/n65xEZGTVAeU
-#腾讯会议：524-138-658</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="15" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_6rlpkumzryt012.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_6rlpkumzryt012">曲奇饼</span> 2024-09-01 14:07:52</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>是我卡吗？我几乎听不见讲话？</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="16" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_9tb82p0uzqdo51.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_9tb82p0uzqdo51">MyShell-Lempitsky</span> 2024-09-01 14:07:59</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>我也听不见</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="17" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 14:08:09</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>我切一下网络，抱歉</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="18" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/qq286878701.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="qq286878701">赛博迪克朗</span> 2024-09-01 14:08:10</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>+1</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="19" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/fandc520.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="fandc520">骁川</span> 2024-09-01 14:08:11</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>我也卡到爆<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Emoji/wx/Lol.png" title="[破涕为笑]" rawemoji="[破涕为笑]" class="wxemoji"></pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="20" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 15:00:33</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>我们这次分享的录屏：
-
-录制文件：https://meeting.tencent.com/v2/cloud-record/share?id=6da96e17-ed8e-4186-9fe1-409ce5e787a5&amp;from=3&amp;is-single=false&amp;record_type=2</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="21" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_6rlpkumzryt012.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_6rlpkumzryt012">曲奇饼</span> 2024-09-01 15:03:44</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>感觉网页版加上删除和保存workflowjson到本地下次使用再拖拽的功能（跟comfyui一样）是不是就一定程度能避免互相看到了</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="22" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 15:12:49</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>我们会收集下需要网页版需求的开发者然后单独帮他们部署环境~</pre></span>
-					</div>
-				</div>
-<div class="msg media left " msgid="23" msgtype="47">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/alipay_Fred.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="alipay_Fred">彬子</span> 2024-09-01 15:24:05</div>
-					<div class="content-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Emoji/1000000000.gif" alt="" rawsrc="http://wxapp.tc.qq.com/262/20304/stodownload?m=29e35280c9dc7aaecd6aeb778b7a710a&amp;filekey=30350201010421301f0202010604025348041029e35280c9dc7aaecd6aeb778b7a710a020307b2e1040d00000004627466730000000132&amp;hy=SH&amp;storeid=26307f2ec0002408d000000000000010600004f5053481ee64b40b6b5644c9&amp;bizid=1023" style="max-width:100px;max-height:60px">
-					</div>
-				</div>
-<div class="msg chat left " msgid="24" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_q9erk0hal45q11.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_q9erk0hal45q11">。</span> 2024-09-01 15:26:11</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>蹲个网盘<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Emoji/wx/Respect.png" title="[社会社会]" rawemoji="[社会社会]" class="wxemoji"></pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="25" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 15:27:51</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>部署包的话可以参考这个文档：https://myshellai.notion.site/Shell-Agent-30b32e482e75483a8c7207db184a176f?pvs=4</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="26" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_wf7ck64jixcb21.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="ZHANGHANCE__00717">MyShell - Hance</span> 2024-09-01 15:27:54</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>里面都有的～</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="27" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/wxid_q9erk0hal45q11.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="wxid_q9erk0hal45q11">。</span> 2024-09-01 15:28:04</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre>收到</pre></span>
-					</div>
-				</div>
-<div class="msg chat left " msgid="28" msgtype="1">
-					<div class="avatar-box">
-						<img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Portrait/qq286878701.jpg" class="avatar">
-					</div>
-					<div class="nt-box"><span class="dspname left" wxid="qq286878701">赛博迪克朗</span> 2024-09-01 15:29:53</div>
-					<div class="content-box">
-						<div class="triangle"></div>
-						<span class="dont-break-out msg-text"><pre><img src="MyShell%20ShellAgent%20%E5%86%85%E6%B5%8B_files/Emoji/wx/Awesome.png" title="[666]" rawemoji="[666]" class="wxemoji"></pre></span>
-					</div>
-				</div>
-        </div>
-			<div id="footer" class="footer">
-			</div>
-      </body>
-<script language="javascript">
+export const script2 = `<script language="javascript">
 		(function() {
 			window.loadingMoreMsgs = false;
 			window.sizeOfMsgPage = parseInt('1000') || 100;
@@ -1090,6 +843,4 @@ https://meeting.tencent.com/dm/n65xEZGTVAeU
 
 			}
 		})();
-	  </script>
-      </html>
-    
+	  </script>`;
