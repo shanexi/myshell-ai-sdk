@@ -1,1 +1,1985 @@
-!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{},l=Error().stack;l&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[l]="6cb554f6-c63d-4235-95d8-88a64fe4b022",e._sentryDebugIdIdentifier="sentry-dbid-6cb554f6-c63d-4235-95d8-88a64fe4b022")}catch(e){}}();"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[606],{90606:function(e,l,t){t.d(l,{Z:function(){return eU}});var n=t(33741),a=t(37056),s=t(59138),o=t(85061),r=t(86386),i=t(16565),c=t(6917),d=t(49736),u=t(60330),h=t(84875),m=t.n(h),p=t(19239),f=t(21309),x=t(55153),g=t(20584),v=t.n(g);let b={CombinerBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(6001)]).then(t.bind(t,76001)),{loadableGenerated:{webpack:()=>[76001]}}),GlifBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(1414)]).then(t.bind(t,41414)),{loadableGenerated:{webpack:()=>[41414]}}),GPTBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(2270),t.e(1856),t.e(8395),t.e(5165),t.e(4925)]).then(t.bind(t,54925)),{loadableGenerated:{webpack:()=>[54925]}}),HTMLBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(9671)]).then(t.bind(t,89671)),{loadableGenerated:{webpack:()=>[89671]}}),CanvasBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(5143),t.e(773),t.e(9139)]).then(t.bind(t,69139)),{loadableGenerated:{webpack:()=>[69139]}}),ImageGeneratorBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(2270),t.e(9581),t.e(8395),t.e(8954)]).then(t.bind(t,98954)),{loadableGenerated:{webpack:()=>[98954]}}),LoraInputBlock:v()(()=>Promise.all([t.e(7929),t.e(122)]).then(t.bind(t,40122)),{loadableGenerated:{webpack:()=>[40122]}}),MultipickBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(3005)]).then(t.bind(t,3005)),{loadableGenerated:{webpack:()=>[3005]}}),TextInputBlock:v()(()=>Promise.all([t.e(7929),t.e(6573)]).then(t.bind(t,86573)),{loadableGenerated:{webpack:()=>[86573]}}),WebFetcherBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(1110)]).then(t.bind(t,71110)),{loadableGenerated:{webpack:()=>[71110]}}),ImageInputBlock:v()(()=>Promise.all([t.e(7929),t.e(6519)]).then(t.bind(t,76519)),{loadableGenerated:{webpack:()=>[76519]}}),ImageToTextBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(2270),t.e(8395),t.e(5165),t.e(3481)]).then(t.bind(t,27461)),{loadableGenerated:{webpack:()=>[27461]}}),ComfyBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(7350)]).then(t.bind(t,57350)),{loadableGenerated:{webpack:()=>[57350]}}),JSONBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(7240),t.e(8395),t.e(1719)]).then(t.bind(t,31719)),{loadableGenerated:{webpack:()=>[31719]}}),AudioGeneratorBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(2270),t.e(8395),t.e(30)]).then(t.bind(t,50030)),{loadableGenerated:{webpack:()=>[50030]}}),AudioInputBlock:v()(()=>Promise.all([t.e(7929),t.e(1392)]).then(t.bind(t,21392)),{loadableGenerated:{webpack:()=>[21392]}}),AudioToTextBlock:v()(()=>Promise.all([t.e(8898),t.e(7929),t.e(9349),t.e(2139),t.e(8395),t.e(8451)]).then(t.bind(t,8451)),{loadableGenerated:{webpack:()=>[8451]}}),BotInputBlock:v()(()=>t.e(1223).then(t.bind(t,91223)),{loadableGenerated:{webpack:()=>[91223]}}),VideoInputBlock:v()(()=>Promise.all([t.e(7929),t.e(805)]).then(t.bind(t,70805)),{loadableGenerated:{webpack:()=>[70805]}})};function j(e){var l;if("object"==typeof e&&null!=e&&"type"in e&&"string"==typeof(l=e.type)&&l in b)return b[e.type];throw console.error("No component found for block",e),Error("No component found for block")}var y=t(71501),N=t(66601),w=t(5255),k=t(9894),C=t(26890),I=t(759),S=t.n(I),B=t(87851),Z=t(50381),D=t(5359),E=t(23460),L=e=>{let{createBlock:l,hideNewBlockDialog:t}=e,[a,s]=(0,i.useState)(""),o=y.q7.filter(e=>e.addBlockVisible).filter(e=>e.displayName.toLowerCase().includes(a.toLowerCase())),r=S()(o,"category");return(0,n.jsx)(B.Z,{isOpen:!0,onClose:t,showCloseButton:!0,title:"Add Block",header:(0,n.jsx)(D.Z,{type:"search",value:a,onChange:e=>s(e.currentTarget.value),iconLeft:"search",onFocus:e=>{let l=e.currentTarget.value;l===a&&""!==l&&e.currentTarget.select()}}),children:(0,n.jsx)("div",{className:"flex flex-col",children:(0,n.jsx)("ul",{className:"space-y-6",children:y.EE.map(e=>{let{id:t,label:a}=e,s=r[t];return null==s?null:(0,n.jsxs)("li",{style:(0,E._9)(t),children:[(0,n.jsx)("h3",{className:"sticky top-0 mb-2 bg-white text-[--theme-700]",children:a}),(0,n.jsx)("ul",{className:"space-y-2",children:s.map(e=>(0,n.jsx)("li",{children:(0,n.jsxs)("button",{type:"button",className:"group grid w-full grid-cols-[max-content,1fr] text-sm",onClick:()=>l(e.type),children:[(0,n.jsx)("div",{className:"grid h-14 w-14 place-items-center rounded-xl bg-[--theme-200] text-[--theme-700] group-hover:bg-[--theme-300]",children:(0,n.jsx)("div",{className:"h-10 w-10",children:(0,n.jsx)(Z.Z,{name:e.iconName})})}),(0,n.jsxs)("div",{className:"grow rounded-xl px-3 py-2 text-left group-hover:bg-glif-stone-50",children:[(0,n.jsx)("h3",{children:e.displayName}),(0,n.jsx)("p",{className:"text-glif-stone-500",children:e.description})]})]})},e.type))})]},t)})})})})},R=e=>{let{graph:l,fromBlock:t,toBlock:a}=e,[s,r]=(0,i.useState)(!1);return(0,n.jsx)(n.Fragment,{children:(0,n.jsxs)("div",{className:"flex flex-col items-center text-glif-stone-700",children:[(0,n.jsxs)("div",{className:"grid grid-cols-1 grid-rows-[74px] place-items-center",children:[t&&a&&(0,n.jsx)(G,{}),(0,n.jsx)("div",{className:"col-start-1 row-start-1",children:(0,n.jsx)(o.Z,{iconName:"plus",label:"Add block",onClick:()=>r(!0),theme:"dark",isAccessibilityLabel:!0})})]}),s&&(0,n.jsx)(L,{createBlock:e=>{try{var n;let s;let o=l.nodes.filter(l=>l.type===e).length,i=null===(n=y.q7.find(l=>l.type===e))||void 0===n?void 0:n.shortName;if(null!=i&&"number"==typeof o&&(s=l.findAvailableName(i,o+1)),!s)throw Error("Could not find available name for block type ".concat(e));let c=(0,C.Ih)(e,s,{});l.insertBlockBetween(c,t,a),r(!1)}catch(e){throw f.Am.error("Error adding spell"),e}},hideNewBlockDialog:()=>{r(!1)}})]})})};function G(){return(0,n.jsx)("svg",{className:"col-start-1 row-start-1",width:"16",height:"74",viewBox:"0 0 16 74",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:(0,n.jsx)("path",{d:"M7.2929 73.1734C7.68342 73.5639 8.31659 73.5639 8.70711 73.1734L15.0711 66.8095C15.4616 66.4189 15.4616 65.7858 15.0711 65.3952C14.6805 65.0047 14.0474 65.0047 13.6569 65.3952L8 71.0521L2.34315 65.3952C1.95262 65.0047 1.31946 65.0047 0.928935 65.3952C0.538411 65.7858 0.538411 66.4189 0.928935 66.8095L7.2929 73.1734ZM7 0.466309L7 72.4663L9 72.4663L9 0.466309L7 0.466309Z",fill:"#D6D3D1"})})}var A=t(38980),M=t(26045),P=t(67039),O=t(1111),U=t(86127),_=t(89686);function T(e){let{sequence:l,onClickBlock:t}=e;return(0,n.jsx)("ol",{className:"flex basis-0 flex-wrap items-center gap-y-2",children:l.map((e,l,a)=>(0,n.jsxs)("li",{className:"flex basis-0 items-center",children:[(0,n.jsx)(_.Z,{block:e,onClick:t?()=>t(e.name):void 0}),l<a.length-1&&(0,n.jsx)(F,{})]},l))})}function F(){return(0,n.jsx)("svg",{width:"17",height:"8",viewBox:"0 0 17 8",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:(0,n.jsx)("path",{d:"M16.3536 4.35355C16.5488 4.15829 16.5488 3.84171 16.3536 3.64645L13.1716 0.464467C12.9763 0.269205 12.6597 0.269205 12.4645 0.464467C12.2692 0.659729 12.2692 0.976312 12.4645 1.17157L15.2929 4L12.4645 6.82843C12.2692 7.02369 12.2692 7.34027 12.4645 7.53553C12.6597 7.7308 12.9763 7.7308 13.1716 7.53554L16.3536 4.35355ZM-4.37114e-08 4.5L16 4.5L16 3.5L4.37114e-08 3.5L-4.37114e-08 4.5Z",fill:"#1C1917"})})}var z=t(2970),V=t(28527),J=t(28556),q=t(35921),H=t(66724),Y=t(40261);function W(e){let{category:l=z.$E.unknown,iconName:t,name:s,status:o,...r}=e,[c,d]=(0,i.useState)("expanded");return(0,n.jsxs)("div",{className:m()("overflow-hidden rounded-xl border-[1.5px] border-[--theme-500] bg-white"),style:(0,E._9)(l),children:[(0,n.jsxs)("div",{className:m()("flex items-center bg-[--theme-100] px-3 py-4 group-[&.should-focus]/focus-block:animate-focus-block",r.editable?"[&:not(:has(.menu-button:hover)):hover]:bg-[--theme-200]":""),onClick:()=>{d(e=>"collapsed"===e?"expanded":"collapsed")},children:[(0,n.jsxs)("div",{className:"flex items-center gap-5",children:[(0,n.jsx)("div",{className:"flex h-10 w-10 items-center justify-center text-[--theme-700]",children:t&&(0,n.jsx)(Z.Z,{name:t})}),(0,n.jsx)("div",{className:"",children:r.editable?(0,n.jsx)(J.Z,{Component:"h3",value:s,onChange:r.onChangeName}):(0,n.jsx)("h3",{className:"text-[--theme-700]",children:s})})]}),(0,n.jsxs)("div",{className:"ml-auto flex items-center",children:[r.infoUrl&&(0,n.jsx)(Y.Z,{tip:"Help/Docs",children:(0,n.jsx)(a.Z,{href:r.infoUrl,target:"_blank",rel:"noreferrer",variant:"ghostThemed",iconLeft:"infoCircle",children:(0,n.jsx)("span",{className:"sr-only",children:"Help/Docs"})})}),o===k.e4.Running&&(0,n.jsx)(q.Z,{}),r.editable&&r.onResume&&(0,n.jsx)(Y.Z,{tip:"Run only this block",children:(0,n.jsxs)(a.Z,{variant:"ghostThemed",onClick:e=>{e.stopPropagation(),r.onResume&&r.onResume(s)},children:[(0,n.jsx)(A.Z,{name:"play"}),(0,n.jsx)("span",{className:"sr-only",children:"Run only this block"})]})}),(0,n.jsx)("div",{className:"ml-auto",children:r.editable&&(0,n.jsxs)(V.Z,{buttonClassName:m()("menu-button","bg-transparent text-[--theme-500] hover:bg-[--theme-200] focus-visible:bg-[--theme-200]"),children:[r.onDelete&&(0,n.jsx)(V.Z.Item,{onClick:e=>{e.stopPropagation(),window.confirm("Are you sure you want to delete this block?")&&r.onDelete&&r.onDelete()},iconName:"delete",children:"Delete"}),r.onDuplicate&&(0,n.jsx)(V.Z.Item,{onClick:r.onDuplicate,iconName:"copy",children:"Duplicate"}),r.onMoveUp&&(0,n.jsx)(V.Z.Item,{onClick:e=>{e.stopPropagation(),r.onMoveUp&&r.onMoveUp()},iconName:"chevronUp",children:"Move Up"}),r.onMoveDown&&(0,n.jsx)(V.Z.Item,{onClick:e=>{e.stopPropagation(),r.onMoveDown&&r.onMoveDown()},iconName:"chevronDown",children:"Move Down"})]})})]})]}),(0,n.jsxs)(H.E.div,{className:"overflow-hidden",initial:c,animate:c,variants:{expanded:{height:"auto",opacity:1},collapsed:{height:0,opacity:0}},children:[(0,n.jsx)("div",{className:"space-y-3 px-4 pt-4",children:r.children}),(0,n.jsx)("button",{type:"button",className:"flex h-12 w-full items-center justify-center text-sm hover:bg-glif-stone-200",onClick:()=>d("collapsed"),children:"Close"})]},"children")]})}function K(e){let{metadata:l,editor:t,preview:a,map:s,debug:o=!1}=e,r=(0,i.useRef)(null),[c,d]=(0,i.useState)(!0);return(0,i.useEffect)(()=>{let e=new IntersectionObserver(e=>{let l=e[0];l&&d(l.isIntersecting)},{threshold:0});return r.current&&e.observe(r.current),()=>{r.current&&e.unobserve(r.current)}},[]),(0,n.jsxs)("div",{className:m()("md:grid md:grid-cols-2 md:gap-[40px]"),children:[(0,n.jsx)("div",{className:m()(o&&"bg-perfect-plum/50","border-b border-b-gray-200 pb-4 md:col-span-2 md:w-full"),children:l}),(0,n.jsx)("div",{className:m()(o&&"bg-glif-pink","md:w-full"),children:(0,n.jsx)("div",{className:m()(o&&"bg-perfect-plum/50","md:ml-auto md:w-full md:max-w-[600px]"),children:t})}),(0,n.jsxs)("div",{children:[(0,n.jsxs)("div",{ref:r,className:"py-s2",children:[a&&(0,n.jsx)("div",{className:m()(o&&"bg-aquamarine-allure/50"),children:a}),(0,n.jsx)("div",{className:m()(o&&"bg-emerald-200"),children:s})]}),(0,n.jsx)("div",{id:"portal_for_run_button",className:m()("pt-2 transition-opacity md:sticky md:top-0",c?"opacity-0":"opacity-100")})]})]})}var $=t(76164),Q=t(9579),X=t(99393),ee=t(44644),el=t(90778),et=t(75461),en=t.n(et),ea=t(3847),es=t(51095);let eo=ea.fC,er=ea.xz,ei=ea.ee,ec=i.forwardRef((e,l)=>{let{className:t,align:a="center",sideOffset:s=4,padded:o=!0,...r}=e;return(0,n.jsx)(ea.h_,{children:(0,n.jsx)(ea.VY,{ref:l,align:a,sideOffset:s,className:(0,es.cn)("z-50 w-72 rounded-md border bg-popover text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",o?"p-4":"",t),...r})})});ec.displayName=ea.VY.displayName;var ed=t(96089),eu=t(31757),eh=t(76102);function em(){var e;let l=(0,$.ij)(),{data:t}=ed.h.sphere.bySlug.useQuery({slug:"templates",includeSpells:!0},{retry:!1,useErrorBoundary:!1}),a=null!==(e=null==t?void 0:t.spells)&&void 0!==e?e:[];return 0===a.length?null:(0,n.jsx)(ep,{templateSpells:a,onSelect:function(e){if(null==e)throw Error("spell is null");console.log("Populating with template",e.id,e),l.spell.graph.nodes=e.data.nodes,l.spell.meta.name=e.name}})}function ep(e){let{templateSpells:l,onSelect:t}=e;return(0,n.jsxs)("div",{className:"flex w-full flex-col gap-2 rounded-xl border border-glif-stone-200 p-4",children:[(0,n.jsx)("p",{children:"Or get started with a template:"}),(0,n.jsx)("ul",{className:"flex flex-wrap gap-2",children:l.map((e,l)=>(0,n.jsx)("li",{children:(0,n.jsx)(ef,{spell:e,onSelect:()=>t(e)})},l))})]})}function ef(e){let{spell:l,onSelect:t}=e,[s,o]=(0,i.useState)(!1),r=(0,i.useMemo)(()=>{try{return(0,eh.Z)(l.data).nodes.map(e=>({...e,category:(0,y.pB)(e.type).category,iconName:(0,y.pB)(e.type).iconName,status:k.e4.Idle}))}catch(e){return null}},[l.data]),c="IMAGE"===l.outputType?l.output:(0,eu.Z)(l.id);return(0,n.jsxs)(eo,{open:s,onOpenChange:o,children:[(0,n.jsx)(ei,{className:"absolute bottom-0 left-1/2"}),(0,n.jsx)(er,{asChild:!0,children:(0,n.jsx)(a.Z,{variant:"secondary",children:l.name})}),(0,n.jsxs)(ec,{className:"w-[328px] overflow-hidden",padded:!1,children:[c&&(0,n.jsx)(en(),{src:c,alt:"",width:328,height:200,className:"h-[200px] w-[328px] object-cover"}),(0,n.jsxs)("div",{className:"space-y-6 p-6",children:[(0,n.jsxs)("div",{children:[(0,n.jsx)("h3",{className:"font-bold text-foreground",children:l.name}),(0,n.jsx)("p",{className:"text-muted-foreground",children:l.description})]}),r&&(0,n.jsx)(T,{sequence:r}),(0,n.jsxs)("div",{className:"flex justify-between",children:[(0,n.jsx)(a.Z,{variant:"secondary",onClick:()=>o(!1),children:"Cancel"}),(0,n.jsx)(a.Z,{variant:"default",onClick:()=>t(),children:"Use this template"})]})]})]})]})}var ex=e=>{let{metadata:l,previewArea:t=!0,saving:a}=e,s=(0,$.ij)(),{spell:{graph:o},executeGraph:r,resetRunState:c,setIsRunning:d}=s,{runUpdates:u,spell:{graph:h},isRunning:m}=(0,x.R)(s),{inputs:p,setInputs:f}=function(){let{defaultInputs:e}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},[l,t]=(0,i.useState)(null!=e?e:{});return{inputs:l,setInputs:t,updateInputValue:function(e,n){t({...l,[e]:n})}}}({defaultInputs:(0,N.F)(o)}),g=(0,i.useRef)(a),v=h.nodes.map(e=>{var l,t,n;return{name:e.name,status:null!==(n=null===(l=u[e.name])||void 0===l?void 0:l.status)&&void 0!==n?n:k.e4.Idle,output:null===(t=u[e.name])||void 0===t?void 0:t.output,category:(0,y.pB)(e.type).category,iconName:(0,y.pB)(e.type).iconName}}),b=(0,i.useCallback)(function(){f((0,N.F)(o)),c()},[o,c,f]),j=(0,i.useCallback)(function(){c()},[c]);(0,i.useEffect)(()=>{g.current=a},[a]),(0,i.useEffect)(()=>{f((0,N.F)(o))},[o,f]);let w=(0,i.useCallback)(async function(e){await r(new Map(Object.entries(p)),e)},[r,p]),C=async e=>{d(!0),setTimeout(()=>{let l=()=>{w(e).catch(console.error)};if(g.current){let e=setInterval(()=>{g.current||(clearInterval(e),l())},100)}else l()},700)},I=(0,i.useCallback)((e,l)=>{f(t=>({...t,[e]:l}))},[f]),S=(0,i.useRef)(null);return(0,n.jsx)(K,{metadata:l,editor:(0,n.jsx)(ey,{ref:S,onRun:C,onChangeInput:I}),preview:t?(0,n.jsx)(eb,{isExecuting:m,onReset:b,onCancel:j,onRun:C,inputs:p,onChangeInput:I}):void 0,map:(0,n.jsx)(ej,{blocksWithMetaAndState:v,onSelectBlock:e=>{var l;return null===(l=S.current)||void 0===l?void 0:l.scrollBlockIntoView(e)}})})};function eg(e){let{height:l,spellRun:t}=e,a=(0,U.Z)(t,(0,n.jsx)(n.Fragment,{}));return(0,n.jsxs)("div",{onClick:null==a?void 0:a.openModal,className:(null==a?void 0:a.openModal)?"cursor-zoom-in":"",children:[(0,ee.Z)(t,{height:l,maxHeight:l,showOriginalImage:!0}),null==a?void 0:a.modalElement]})}function ev(e){let{children:l}=e;return(0,n.jsxs)("div",{className:"relative",children:[(0,n.jsx)("div",{className:"flex w-full items-center justify-center py-9",children:(0,n.jsxs)("div",{className:"",children:[(0,n.jsx)("div",{className:"-mt-4",children:l}),(0,n.jsx)("p",{className:"-mt-3 font-medium text-foreground",children:"Start building with Glif blocks"})]})}),(0,n.jsx)(em,{})]})}let eb=(0,i.memo)(function(e){let{isExecuting:l,onReset:t,onCancel:a,onRun:s,inputs:r={},onChangeInput:i}=e,{spell:{graph:c},runFinalOutput:d,runUpdates:u}=(0,x.R)((0,$.ij)()),[,h]=(0,w.x)(null==d),m="detail";d?m="output":l&&(m="run");let p=c&&r&&(0,n.jsx)(P.Z,{graph:c,inputs:r,isLoggedIn:!0,isRunning:l,onChange:i,onConfirm:s,forceProcessingState:l,teleportRunButtonTo:document.getElementById("portal_for_run_button")});return(0,n.jsxs)("div",{className:"text-glif-900 grid  w-full rounded-t-xl bg-glif-stone-100",style:{"--glif-accent-col":"#f5f5f4"},children:[(0,n.jsxs)("h2",{className:"flex items-center justify-center gap-2 overflow-hidden rounded-t-xl bg-glif-stone-200 p-2 ",children:[(0,n.jsx)(A.Z,{name:"glifDot",size:8})," Glif Testing Area ",(0,n.jsx)(A.Z,{name:"glifDot",size:8})]}),(0,n.jsxs)("div",{className:"group relative flex h-full justify-stretch",children:[(0,n.jsx)("div",{className:"absolute right-s1 top-0 z-20 opacity-0 transition-opacity group-hover:opacity-100",children:l?(0,n.jsx)(o.Z,{iconName:"close",onClick:a,label:"Cancel",isAccessibilityLabel:!0}):(0,n.jsx)(o.Z,{iconName:"close",onClick:t,label:"Reset",isAccessibilityLabel:!0})}),(0,n.jsx)(M.Z,{children:(0,n.jsxs)("div",{className:"grid h-full w-full ",children:[(0,n.jsxs)("div",{className:"grid place-items-center md:min-h-[auto]",ref:h,children:[!d&&l&&(0,n.jsx)(H.E.div,{className:"col-start-1 row-start-1 h-[500px] w-[500px]",initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{opacity:{duration:.5,delay:.3}},children:(0,n.jsx)(H.E.div,{className:"h-full w-full",animate:m,children:(0,n.jsx)(O.Z,{height:"full",items:Object.values(u).map(e=>{let l=c.findBlockOrThrow(e.name),t=(0,y.pB)(l.type);return{name:l.name,category:t.category,iconName:t.iconName,status:e.status}})})})}),d&&(0,n.jsx)("div",{className:"col-start-1 row-start-1 mx-auto p-3",children:"MULTIPLE"===d.type?(0,n.jsx)("div",{children:"Can't display multiple outputs"}):(0,n.jsx)(eg,{height:500,spellRun:"IMAGE"===d.type?{output:d.value,outputType:d.type,outputImageHeight:d.height,outputImageWidth:d.width}:{output:d.value,outputType:d.type}})})]}),(0,n.jsx)("div",{className:"mx-2 mb-2 mt-0 py-1",children:p})]})})]})]})}),ej=(0,i.memo)(function(e){let{blocksWithMetaAndState:l,onSelectBlock:t}=e;return(0,n.jsxs)("div",{className:"text-glif-900 mt-4 h-full space-y-4 rounded-b-xl bg-white p-2",children:[(0,n.jsx)("h2",{className:"",children:"Block Sequence"}),0===l.length?(0,n.jsx)("span",{className:" text-glif-stone-500",children:"You haven’t used any spells yet, young glifling!"}):(0,n.jsx)(T,{sequence:l,onClickBlock:t})]})}),ey=(0,i.memo)((0,i.forwardRef)(function(e,l){let t=(0,$.ij)(),{spell:{graph:a}}=t,s=(0,x.R)(t),o=(e,l)=>{let t=l.trim();if(console.log("updateBlockName",{oldName:e,newName:t,rawNewName:l}),t){if(a.hasBlock(t)){f.Am.error("a block w/ that name already exists; choose another");return}if(el.hW.test(t))a.renameBlock(e,t);else{f.Am.error("block names may only contain letters, numbers, '_' or '-'");return}}else{f.Am.error("block name can't be blank");return}},r=(0,i.useRef)(null);(0,i.useImperativeHandle)(l,()=>({scrollBlockIntoView(e){var l,t,n;console.log("scrollBlockIntoView(".concat(e,")"));let a=null===(l=r.current)||void 0===l?void 0:l.querySelector('[data-block-id="'.concat(encodeURIComponent(e),'"]'));a&&(null===(n=r.current)||void 0===n||null===(t=n.querySelectorAll(".should-focus"))||void 0===t||t.forEach(e=>e.classList.remove("should-focus")),a.scrollIntoView({block:"start",behavior:"smooth"}),a.classList.add("should-focus"))}}));let c=0===a.nodes.length?(0,n.jsx)("div",{className:"pt-8",children:(0,n.jsx)(ev,{children:(0,n.jsx)(R,{index:0,graph:a})})}):(0,n.jsxs)("div",{className:"flex w-full flex-col space-y-0",ref:r,children:[s.spell.graph.nodes.map((l,t)=>{var r;let i=a.nodes[t-1],c=a.nodes[t],d=j(l),u=s.runUpdates[l.name],h=null!==(r=null==u?void 0:u.status)&&void 0!==r?r:k.e4.Idle,m=null==u?void 0:u.output,p=(0,y.pB)(l.type);return"BotInputBlock"===l.type?(0,n.jsx)("div",{className:"group/focus-block scroll-mt-[--glif-nav-h]","data-block-id":encodeURIComponent(l.name),children:(0,n.jsx)(eN,{block:l})},l.name):p.graphVisible?(0,n.jsxs)("div",{className:"group/focus-block scroll-mt-[--glif-nav-h]","data-block-id":encodeURIComponent(l.name),children:[(0,n.jsx)(R,{index:t-1,fromBlock:i,toBlock:c,graph:a}),(0,n.jsx)(W,{editable:!0,name:l.name,category:p.category,iconName:p.iconName,infoUrl:p.infoUrl,onChangeName:e=>o(l.name,e),onDelete:()=>c&&a.removeBlock(c),onDuplicate:()=>c&&a.duplicateBlock(c),onMoveUp:()=>c&&a.moveBlock(c,"up"),onMoveDown:()=>c&&a.moveBlock(c,"down"),onResume:l=>{console.log("Resuming from",l),e.onRun(l)},description:l.type,status:h,children:(0,n.jsx)(Q.Z,{fallback:X.Z,children:(0,n.jsx)(d,{block:c,status:h,category:p.category,iconName:p.iconName,onInputChange:t=>e.onChangeInput(l.name,t),output:m})})})]},l.name):null}),(0,n.jsx)(R,{index:a.nodes.length,fromBlock:a.nodes[a.nodes.length-1],graph:a})]});return(0,n.jsx)(n.Fragment,{children:c})}));function eN(e){let{block:l}=e,t=j(l),a=(0,y.pB)(l.type);return(0,n.jsx)("div",{"data-block-id":encodeURIComponent(l.name),className:"group/focus-block scroll-mt-[--glif-nav-h]",children:(0,n.jsx)(W,{editable:!1,name:l.name,category:a.category,iconName:a.iconName,infoUrl:a.infoUrl,status:k.e4.Idle,description:"",children:(0,n.jsx)(t,{block:l,category:a.category,iconName:a.iconName})})})}var ew=t(46200),ek=t(8970),eC=t(34364),eI=function(e){var l,t;let{disabled:a,children:s,onSave:o,...r}=e,[c,d]=(0,i.useState)(null!==(l=r.name)&&void 0!==l?l:""),[u,h]=(0,i.useState)(null!==(t=r.description)&&void 0!==t?t:""),{name:m,description:p}=r;return(0,i.useEffect)(()=>{d(null!=m?m:""),h(null!=p?p:"")},[p,m]),(0,n.jsxs)("div",{className:"flex w-full items-center gap-2",children:[(0,n.jsxs)("div",{className:"flex w-full max-w-[600px] flex-col",children:[(0,n.jsx)("div",{className:"text-2xl font-bold text-gray-950",children:(0,n.jsx)(J.Z,{disabled:a,showIcon:!1,Component:"h2",value:c,maxLength:140,onChange:e=>{""!=e&&(d(e),o({name:e,description:u}))}})}),(0,n.jsx)("div",{className:"w-full text-gray-400",children:(0,n.jsx)(J.Z,{disabled:a,showIcon:!1,Component:"p",maxLength:280,value:""===u.trim()?"":u,placeholder:"Description",onChange:e=>{h(e),o({name:c,description:e})}})})]}),(0,n.jsx)("div",{className:"ml-auto flex items-center gap-2",children:s})]})},eS=t(16673),eB=t(17539),eZ=t(10860),eD=t(14025),eE=t(64794),eL=t.n(eE),eR=t(8994),eG=t(79109);function eA(){return(0,n.jsxs)("span",{children:["Need help? Let us know in"," ",(0,n.jsx)("a",{className:"underline",href:eG.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,target:"_blank",children:"our Discord community"})]})}var eM=t(15823),eP=t(96202);function eO(e){var l;let{spell:t,isOwner:o}=e,h=(0,$.ij)(),p=h.spell.meta,g=(0,x.R)(h.spell),v=g.graph,b=(0,r.useRouter)(),j=(0,s.Z)({spellId:t.id}),y=(0,c.Z)({style:"spinner"}),N=(0,eC.Z)({id:t.id}),{isBotModeEnabled:w,toggleBotMode:I}=function(){let e=(0,$.ij)(),l=(0,x.R)(e.spell.graph).nodes.find(e=>"BotInputBlock"===e.type);return{isBotModeEnabled:l,toggleBotMode:function(){if(l){let l=e.spell.graph.findBlock(eP.GI);l&&e.spell.graph.removeBlock(l)}else{let l=(0,C.Ih)("BotInputBlock",eP.GI,{});e.spell.graph.insertBlockBetween(l,void 0,e.spell.graph.nodes[0])}}}}(),[S,B]=(0,i.useState)(!1),{saveMetadata:Z,saveGraph:D,publish:E}=function(e,l,t,n){let{graph:a,meta:s}=l,o=ed.h.useUtils(),r=ed.h.spell.updateDraftMetadata.useMutation({onSuccess(e){},onError(e){console.error("updateDraftMetadataMutation error",e),f.Am.error("Failed to update this glif's metadata!")}}).mutateAsync,c=ed.h.spell.updateDraftGraphJson.useMutation({onSuccess(e){},onError(e){console.error("updateDraftGraphJsonMutation error",e),f.Am.error("Failed to update this glif's data!")}}).mutateAsync,d=ed.h.spell.publish.useMutation({onSuccess(e){f.Am.success("Published glif",{duration:2e3}),console.log("publishSpellMutation a =>",e),(0,eS.j)("Glif published",{glifId:e.id})}}).mutateAsync,u=(0,i.useCallback)(()=>o.spell.byId.invalidate(),[o]),h=(0,i.useCallback)(()=>o.spell.getDraftVersion.invalidate(),[o]);return{saveMetadata:(0,i.useCallback)(async function(){t(!0);let{name:l,description:n}=s;try{await r({id:e,name:l,description:n}),h()}catch(e){throw console.error("handleSave - Error",e),(0,eB.f)(e),e}finally{t(!1)}},[h,s,t,e,r]),saveGraph:(0,i.useCallback)(async function(){t(!0);let l=JSON.stringify(a);if(l.length>eD.Rz){f.Am.error("Glif is too long to be saved (".concat((l.length-eD.Rz).toLocaleString()," characters over max length) - please shorten."),{duration:5e3,id:"glif-length-error"}),n(!0),t(!1);return}l.length>.9*eD.Rz&&(0,f.Am)("Glif is approaching maximum length. Consider shortening it to avoid issues.",{icon:"⚠️",duration:5e3,id:"glif-length-warning"}),n(!1);try{let{isValid:t,errorMessages:n}=k.IK.validate(a);if(!t&&n){console.log("handleSave error",n),(0,eZ.F1)(n,"Glif has errors and can't be saved");return}await c({id:e,graph:l}),h(),console.log("updateDraftGraphJsonMutateAsync done")}catch(e){throw console.error("handleSave - Error",e),(0,eB.f)(e),e}finally{t(!1)}},[a,h,t,e,c,n]),publish:(0,i.useCallback)(async function(){t(!0);let l=JSON.stringify(a);if(l.length>eD.Rz){console.log("handleSave - Graph data is too long to be saved."),f.Am.error("Glif is too long to be saved (".concat((l.length-eD.Rz).toLocaleString()," characters over max length) - please shorten."),{duration:5e3,id:"glif-length-error"}),n(!0),t(!1);return}try{await d({id:e}),u()}catch(e){console.error("handleSave - Error",e),(0,eB.f)(e)}finally{t(!1)}},[t,d,e,u,a,n])}}(t.id,g,y.setIsLoading,B),L=function(e){let{enabled:l,saveGraph:t,saveMetadata:a}=e,s=(0,$.OA)(),[o,c]=(0,i.useState)(s),d=(0,$.o0)(),[h,m]=(0,i.useState)(s),[p,f]=(0,i.useState)(null),x=s>o,g=d>h,v=l&&(x||g);(0,u.b)(()=>{async function e(){x&&(console.log("Saving graph...",s),await t(s),console.log("...graph done"),c(s)),g&&(console.log("Saving metadata...",d),await a(d),console.log("...metadata done"),m(d)),f(new Date)}v&&e()},[v,s,o,d,h,t],600),function(e,l){let t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"You have unsaved changes";(0,i.useEffect)(()=>{if(e){function n(e){e.preventDefault(),e.returnValue=t}window.addEventListener("beforeunload",n);let e=()=>{if(!l())throw r.Router.events.emit("routeChangeError"),"Abort route change. Please ignore this error."};return r.Router.events.on("routeChangeStart",e),()=>{window.removeEventListener("beforeunload",n),r.Router.events.off("routeChangeStart",e)}}},[l,e])}(v,()=>window.confirm("Your changes are still autosaving. Leave page? (you may lose data)"));let b=(0,i.useRef)([]);return(0,i.useEffect)(()=>{!1===v&&(b.current.forEach(e=>{try{e()}catch(e){console.error("Error running afterSave callback",e)}}),b.current=[])},[v]),{debugElement:(0,n.jsxs)("div",{className:"fixed left-0 top-0 z-glif-modal bg-emerald-300 p-2",children:[s," / ",o]}),currentGraphVersionNumber:s,lastSavedGraphVersionNumber:o,lastSavedDate:p,hasUnsavedChanges:v,runAfterSave:function(e){if(v)b.current.push(e);else try{e()}catch(e){console.error("Error running afterSave callback",e)}}}}({enabled:o,saveGraph:D,saveMetadata:Z}),R=(0,n.jsx)("div",{className:"flex items-center",children:(0,n.jsxs)(eI,{disabled:!o,name:g.meta.name,description:null!==(l=g.meta.description)&&void 0!==l?l:void 0,onSave:e=>{e.name&&(p.name=e.name),e.description&&(p.description=e.description)},children:[(0,n.jsxs)("p",{className:"mr-9 flex items-center text-xs font-medium text-gray-400",children:[(0,n.jsx)(A.Z,{name:"clock",className:"mr-1"}),(0,n.jsxs)("span",{className:"flex flex-col",children:["Saved"," ",(0,n.jsx)("time",{dateTime:t.updatedAt.toISOString(),children:(0,n.jsx)(ek.Z,{date:t.updatedAt})})]})]}),(0,n.jsx)(ew.Z,{owner:t.userId,children:(0,n.jsx)(a.Z,{variant:"secondary",className:y.isLoading?"cursor-not-allowed":"",disabled:S,onClick:()=>{L.runAfterSave(()=>E())},children:"Publish"})}),(0,n.jsx)(a.Z,{variant:"secondary",onClick:function(){if(!o){b.push((0,d.xN)(t));return}L.runAfterSave(()=>{b.push((0,d.xN)(t))})},disabled:y.isLoading,iconLeft:"close",children:(0,n.jsx)("span",{className:"sr-only",children:"Close"})}),(0,n.jsx)(eM.Z,{shareUrl:(0,d.OB)(t),spellName:t.name,variant:"default"}),(0,n.jsx)(ew.Z,{owner:t.userId,children:(0,n.jsxs)(V.Z,{iconAlignment:"vertical",children:[(0,n.jsxs)(ew.Z,{staff:!0,children:[(0,n.jsx)(V.Z.Item,{href:"/glifs/".concat(t.id,"/validate"),children:"Edit Graph JSON"}),(0,n.jsxs)(V.Z.Item,{onClick:()=>I(),children:[w?"Disable":"Enable"," bot mode"]})]}),(0,n.jsx)(V.Z.Item,{variant:"destructive",onClick:()=>j.handleSoftDelete(),children:"Delete"})]})})]})});return(0,n.jsxs)(n.Fragment,{children:[y.element,N.element,!o&&(0,n.jsxs)("div",{className:"sticky top-4 z-10 flex items-center justify-between gap-4 rounded-md bg-brand-200 px-4 py-3",children:["Remix this Glif to save changes"," ",(0,n.jsx)(a.Z,{iconLeft:"remix",onClick:function(){N.createFork({metadata:{name:t.name,description:t.description},graph:v})},children:"Remix"})]}),(0,n.jsx)("div",{className:m()("relative mt-[44px] flex"),children:(0,n.jsxs)("div",{className:"container",children:[j.element,(0,n.jsx)(Q.Z,{fallback:X.Z,children:(0,n.jsx)(eR.e,{lastSavedDate:L.lastSavedDate,children:(0,n.jsx)(ex,{metadata:R,previewArea:o,saving:L.hasUnsavedChanges})})}),(0,n.jsx)(e_,{spell:t})]})})]})}function eU(e){let l=e.spell;try{let t=(0,eh.Z)(l.data);return(0,n.jsx)($.Y2,{initialGraph:t,spell:l,children:(0,n.jsx)(eO,{spell:l,isOwner:e.isOwner})})}catch(e){if((0,eh.$)(e))return(0,n.jsxs)("div",{className:"px-8",children:[(0,n.jsx)("p",{className:"pt-12 text-lg ",children:"Unfortunately this glif is no longer runnable or editable"}),(0,n.jsx)("p",{className:"",children:(0,n.jsx)(eA,{})}),(0,n.jsxs)("div",{className:"pt-12",children:[(0,n.jsx)("div",{className:"font-semibold",children:"Errors:"}),e.issues.map((e,l)=>(0,n.jsxs)("div",{children:["- ",e.path.join(".")," → ",e.message]},l))]})]});throw e}}function e_(e){let{spell:l}=e,{spell:{graph:t}}=(0,x.R)((0,$.ij)()),s="graphDebug",[r,c]=(0,i.useState)("off");(0,i.useEffect)(()=>{let e=localStorage.getItem(s);e&&c(JSON.parse(e))},[]);let d=e=>{let l=null!=e?e:"off"===r?"saved":"off";c(l),localStorage.setItem(s,JSON.stringify(l))},u=null;return"saved"===r&&"id"in l?u=l.data:"live"===r&&(u={nodes:t.nodes}),(0,n.jsx)(n.Fragment,{children:(0,n.jsxs)("div",{className:"mt-4 space-x-2",children:[(0,n.jsxs)("div",{className:"flex flex-row space-x-2",children:[(0,n.jsxs)(a.Z,{variant:"secondary",onClick:()=>d(),children:[(0,n.jsx)("span",{className:"mr-1",children:"\uD83D\uDC1B"})," Debug"]}),(0,n.jsx)(ew.Z,{staff:!0,miniMode:!0,children:(0,n.jsx)(eL(),{href:"/glifs/".concat(l.id,"/validate"),children:(0,n.jsx)(a.Z,{variant:"secondary",children:"Edit Graph JSON"})})})]}),"off"!==r&&(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)("label",{children:["Saved",(0,n.jsx)("input",{type:"radio",name:"debug-graph",value:"saved",checked:"saved"===r,onChange:()=>d("saved")})]}),(0,n.jsxs)("label",{children:["Live",(0,n.jsx)("input",{type:"radio",name:"debug-graph",value:"live",checked:"live"===r,onChange:()=>d("live")})]})]}),u&&(0,n.jsx)("div",{className:"debug-graph flex flex-col-reverse justify-between gap-2 pt-4 md:flex-row",children:(0,n.jsxs)("div",{className:"overflow-auto border p-3 md:w-3/5",children:[(0,n.jsx)("h1",{className:"space-x-2",children:(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)("span",{children:"Raw graph"}),l.data&&(0,n.jsx)(o.Z,{iconName:"copy",label:"Copy",onClick:()=>{(0,p.Z)(JSON.stringify(u)),f.Am.success("Copied to clipboard")}})]})}),(0,n.jsx)("pre",{children:JSON.stringify(u,null,2)})]})})]})})}},28556:function(e,l,t){t.d(l,{Z:function(){return i}});var n=t(33741),a=t(16565),s=t(38980),o=t(84875),r=t.n(o);function i(e){let{Component:l="p",disabled:t,value:o,placeholder:i,onChange:c,showIcon:d=!0,maxLength:u}=e,[h,m]=(0,a.useState)(!1),p=(0,a.useRef)(null),f=()=>m(!1),x=()=>{t||m(!0)},g=()=>{var e;let l=null===(e=p.current)||void 0===e?void 0:e.value;h&&null!=l&&l!==o&&c(l),f()};return(0,n.jsxs)("div",{className:"flex w-full cursor-pointer gap-2",onClick:e=>{e.stopPropagation(),x()},children:[(0,n.jsx)(l,{className:r()("w-full text-[var(--theme-700,inherit)]"),children:h?(0,n.jsx)("input",{className:"w-full bg-transparent p-0 leading-[inherit] placeholder-current placeholder-glif-stone-500 [font-size:inherit] focus:border-none focus:outline-none focus:ring-0",autoFocus:!0,defaultValue:o,placeholder:i,disabled:t,ref:p,onBlur:g,maxLength:u,onKeyUp:e=>{"Enter"===e.code?(e.preventDefault(),g()):"Escape"===e.code&&(e.preventDefault(),f())}}):(0,n.jsx)("span",{className:""===o?"text-glif-stone-500":"text-[var(--theme-700,inherit)]",children:o||i})}),d&&(0,n.jsx)("div",{className:r()("text-[var(--theme-500,inherit)]",h?"pointer-events-none invisible":"visible"),children:(0,n.jsx)("button",{type:"button",onClick:x,"aria-hidden":h,children:(0,n.jsx)(s.Z,{name:"edit"})})})]},o)}},8994:function(e,l,t){t.d(l,{Z:function(){return r},e:function(){return o}});var n=t(33741),a=t(16565);let s=(0,a.createContext)({lastSavedDate:null});function o(e){let{lastSavedDate:l,children:t}=e,[o,r]=(0,a.useState)({lastSavedDate:l});return(0,a.useEffect)(()=>{r({lastSavedDate:l})},[l]),(0,n.jsx)(s.Provider,{value:o,children:t})}function r(){let e=(0,a.useContext)(s);if(null==e)throw Error("useAutoSaveState must be used within a AutoSaveStateProvider");return e}}}]);
+!function() {
+  try {
+    var e = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {}
+      , l = Error().stack;
+    l && (e._sentryDebugIds = e._sentryDebugIds || {},
+      e._sentryDebugIds[l] = "6cb554f6-c63d-4235-95d8-88a64fe4b022",
+      e._sentryDebugIdIdentifier = "sentry-dbid-6cb554f6-c63d-4235-95d8-88a64fe4b022")
+  } catch (e) {}
+}();
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[606], {
+  90606: function(e, l, t) {
+    t.d(l, {
+      Z: function() {
+        return eU
+      }
+    });
+    var n = t(33741)
+      , a = t(37056)
+      , s = t(59138)
+      , o = t(85061)
+      , r = t(86386)
+      , i = t(16565)
+      , c = t(6917)
+      , d = t(49736)
+      , u = t(60330)
+      , h = t(84875)
+      , m = t.n(h)
+      , p = t(19239)
+      , f = t(21309)
+      , x = t(55153)
+      , g = t(20584)
+      , v = t.n(g);
+    let b = {
+      CombinerBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(6001)]).then(t.bind(t, 76001)), {
+        loadableGenerated: {
+          webpack: () => [76001]
+        }
+      }),
+      GlifBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(1414)]).then(t.bind(t, 41414)), {
+        loadableGenerated: {
+          webpack: () => [41414]
+        }
+      }),
+      GPTBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(2270), t.e(1856), t.e(8395), t.e(5165), t.e(4925)]).then(t.bind(t, 54925)), {
+        loadableGenerated: {
+          webpack: () => [54925]
+        }
+      }),
+      HTMLBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(9671)]).then(t.bind(t, 89671)), {
+        loadableGenerated: {
+          webpack: () => [89671]
+        }
+      }),
+      CanvasBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(5143), t.e(773), t.e(9139)]).then(t.bind(t, 69139)), {
+        loadableGenerated: {
+          webpack: () => [69139]
+        }
+      }),
+      ImageGeneratorBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(2270), t.e(9581), t.e(8395), t.e(8954)]).then(t.bind(t, 98954)), {
+        loadableGenerated: {
+          webpack: () => [98954]
+        }
+      }),
+      LoraInputBlock: v()( () => Promise.all([t.e(7929), t.e(122)]).then(t.bind(t, 40122)), {
+        loadableGenerated: {
+          webpack: () => [40122]
+        }
+      }),
+      MultipickBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(3005)]).then(t.bind(t, 3005)), {
+        loadableGenerated: {
+          webpack: () => [3005]
+        }
+      }),
+      TextInputBlock: v()( () => Promise.all([t.e(7929), t.e(6573)]).then(t.bind(t, 86573)), {
+        loadableGenerated: {
+          webpack: () => [86573]
+        }
+      }),
+      WebFetcherBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(1110)]).then(t.bind(t, 71110)), {
+        loadableGenerated: {
+          webpack: () => [71110]
+        }
+      }),
+      ImageInputBlock: v()( () => Promise.all([t.e(7929), t.e(6519)]).then(t.bind(t, 76519)), {
+        loadableGenerated: {
+          webpack: () => [76519]
+        }
+      }),
+      ImageToTextBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(2270), t.e(8395), t.e(5165), t.e(3481)]).then(t.bind(t, 27461)), {
+        loadableGenerated: {
+          webpack: () => [27461]
+        }
+      }),
+      ComfyBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(7350)]).then(t.bind(t, 57350)), {
+        loadableGenerated: {
+          webpack: () => [57350]
+        }
+      }),
+      JSONBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(7240), t.e(8395), t.e(1719)]).then(t.bind(t, 31719)), {
+        loadableGenerated: {
+          webpack: () => [31719]
+        }
+      }),
+      AudioGeneratorBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(2270), t.e(8395), t.e(30)]).then(t.bind(t, 50030)), {
+        loadableGenerated: {
+          webpack: () => [50030]
+        }
+      }),
+      AudioInputBlock: v()( () => Promise.all([t.e(7929), t.e(1392)]).then(t.bind(t, 21392)), {
+        loadableGenerated: {
+          webpack: () => [21392]
+        }
+      }),
+      AudioToTextBlock: v()( () => Promise.all([t.e(8898), t.e(7929), t.e(9349), t.e(2139), t.e(8395), t.e(8451)]).then(t.bind(t, 8451)), {
+        loadableGenerated: {
+          webpack: () => [8451]
+        }
+      }),
+      BotInputBlock: v()( () => t.e(1223).then(t.bind(t, 91223)), {
+        loadableGenerated: {
+          webpack: () => [91223]
+        }
+      }),
+      VideoInputBlock: v()( () => Promise.all([t.e(7929), t.e(805)]).then(t.bind(t, 70805)), {
+        loadableGenerated: {
+          webpack: () => [70805]
+        }
+      })
+    };
+    function j(e) {
+      var l;
+      if ("object" == typeof e && null != e && "type"in e && "string" == typeof (l = e.type) && l in b)
+        return b[e.type];
+      throw console.error("No component found for block", e),
+        Error("No component found for block")
+    }
+    var y = t(71501)
+      , N = t(66601)
+      , w = t(5255)
+      , k = t(9894)
+      , C = t(26890)
+      , I = t(759)
+      , S = t.n(I)
+      , B = t(87851)
+      , Z = t(50381)
+      , D = t(5359)
+      , E = t(23460)
+      , L = e => {
+        let {createBlock: l, hideNewBlockDialog: t} = e
+          , [a,s] = (0,
+          i.useState)("")
+          , o = y.q7.filter(e => e.addBlockVisible).filter(e => e.displayName.toLowerCase().includes(a.toLowerCase()))
+          , r = S()(o, "category");
+        return (0,
+          n.jsx)(B.Z, {
+          isOpen: !0,
+          onClose: t,
+          showCloseButton: !0,
+          title: "Add Block",
+          header: (0,
+            n.jsx)(D.Z, {
+            type: "search",
+            value: a,
+            onChange: e => s(e.currentTarget.value),
+            iconLeft: "search",
+            onFocus: e => {
+              let l = e.currentTarget.value;
+              l === a && "" !== l && e.currentTarget.select()
+            }
+          }),
+          children: (0,
+            n.jsx)("div", {
+            className: "flex flex-col",
+            children: (0,
+              n.jsx)("ul", {
+              className: "space-y-6",
+              children: y.EE.map(e => {
+                  let {id: t, label: a} = e
+                    , s = r[t];
+                  return null == s ? null : (0,
+                    n.jsxs)("li", {
+                    style: (0,
+                      E._9)(t),
+                    children: [(0,
+                      n.jsx)("h3", {
+                      className: "sticky top-0 mb-2 bg-white text-[--theme-700]",
+                      children: a
+                    }), (0,
+                      n.jsx)("ul", {
+                      className: "space-y-2",
+                      children: s.map(e => (0,
+                        n.jsx)("li", {
+                        children: (0,
+                          n.jsxs)("button", {
+                          type: "button",
+                          className: "group grid w-full grid-cols-[max-content,1fr] text-sm",
+                          onClick: () => l(e.type),
+                          children: [(0,
+                            n.jsx)("div", {
+                            className: "grid h-14 w-14 place-items-center rounded-xl bg-[--theme-200] text-[--theme-700] group-hover:bg-[--theme-300]",
+                            children: (0,
+                              n.jsx)("div", {
+                              className: "h-10 w-10",
+                              children: (0,
+                                n.jsx)(Z.Z, {
+                                name: e.iconName
+                              })
+                            })
+                          }), (0,
+                            n.jsxs)("div", {
+                            className: "grow rounded-xl px-3 py-2 text-left group-hover:bg-glif-stone-50",
+                            children: [(0,
+                              n.jsx)("h3", {
+                              children: e.displayName
+                            }), (0,
+                              n.jsx)("p", {
+                              className: "text-glif-stone-500",
+                              children: e.description
+                            })]
+                          })]
+                        })
+                      }, e.type))
+                    })]
+                  }, t)
+                }
+              )
+            })
+          })
+        })
+      }
+      , R = e => {
+        let {graph: l, fromBlock: t, toBlock: a} = e
+          , [s,r] = (0,
+          i.useState)(!1);
+        return (0,
+          n.jsx)(n.Fragment, {
+          children: (0,
+            n.jsxs)("div", {
+            className: "flex flex-col items-center text-glif-stone-700",
+            children: [(0,
+              n.jsxs)("div", {
+              className: "grid grid-cols-1 grid-rows-[74px] place-items-center",
+              children: [t && a && (0,
+                n.jsx)(G, {}), (0,
+                n.jsx)("div", {
+                className: "col-start-1 row-start-1",
+                children: (0,
+                  n.jsx)(o.Z, {
+                  iconName: "plus",
+                  label: "Add block",
+                  onClick: () => r(!0),
+                  theme: "dark",
+                  isAccessibilityLabel: !0
+                })
+              })]
+            }), s && (0,
+              n.jsx)(L, {
+              createBlock: e => {
+                try {
+                  var n;
+                  let s;
+                  let o = l.nodes.filter(l => l.type === e).length
+                    , i = null === (n = y.q7.find(l => l.type === e)) || void 0 === n ? void 0 : n.shortName;
+                  if (null != i && "number" == typeof o && (s = l.findAvailableName(i, o + 1)),
+                    !s)
+                    throw Error("Could not find available name for block type ".concat(e));
+                  let c = (0,
+                    C.Ih)(e, s, {});
+                  l.insertBlockBetween(c, t, a),
+                    r(!1)
+                } catch (e) {
+                  throw f.Am.error("Error adding spell"),
+                    e
+                }
+              }
+              ,
+              hideNewBlockDialog: () => {
+                r(!1)
+              }
+            })]
+          })
+        })
+      }
+    ;
+    function G() {
+      return (0,
+        n.jsx)("svg", {
+        className: "col-start-1 row-start-1",
+        width: "16",
+        height: "74",
+        viewBox: "0 0 16 74",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: (0,
+          n.jsx)("path", {
+          d: "M7.2929 73.1734C7.68342 73.5639 8.31659 73.5639 8.70711 73.1734L15.0711 66.8095C15.4616 66.4189 15.4616 65.7858 15.0711 65.3952C14.6805 65.0047 14.0474 65.0047 13.6569 65.3952L8 71.0521L2.34315 65.3952C1.95262 65.0047 1.31946 65.0047 0.928935 65.3952C0.538411 65.7858 0.538411 66.4189 0.928935 66.8095L7.2929 73.1734ZM7 0.466309L7 72.4663L9 72.4663L9 0.466309L7 0.466309Z",
+          fill: "#D6D3D1"
+        })
+      })
+    }
+    var A = t(38980)
+      , M = t(26045)
+      , P = t(67039)
+      , O = t(1111)
+      , U = t(86127)
+      , _ = t(89686);
+    function T(e) {
+      let {sequence: l, onClickBlock: t} = e;
+      return (0,
+        n.jsx)("ol", {
+        className: "flex basis-0 flex-wrap items-center gap-y-2",
+        children: l.map( (e, l, a) => (0,
+          n.jsxs)("li", {
+          className: "flex basis-0 items-center",
+          children: [(0,
+            n.jsx)(_.Z, {
+            block: e,
+            onClick: t ? () => t(e.name) : void 0
+          }), l < a.length - 1 && (0,
+            n.jsx)(F, {})]
+        }, l))
+      })
+    }
+    function F() {
+      return (0,
+        n.jsx)("svg", {
+        width: "17",
+        height: "8",
+        viewBox: "0 0 17 8",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: (0,
+          n.jsx)("path", {
+          d: "M16.3536 4.35355C16.5488 4.15829 16.5488 3.84171 16.3536 3.64645L13.1716 0.464467C12.9763 0.269205 12.6597 0.269205 12.4645 0.464467C12.2692 0.659729 12.2692 0.976312 12.4645 1.17157L15.2929 4L12.4645 6.82843C12.2692 7.02369 12.2692 7.34027 12.4645 7.53553C12.6597 7.7308 12.9763 7.7308 13.1716 7.53554L16.3536 4.35355ZM-4.37114e-08 4.5L16 4.5L16 3.5L4.37114e-08 3.5L-4.37114e-08 4.5Z",
+          fill: "#1C1917"
+        })
+      })
+    }
+    var z = t(2970)
+      , V = t(28527)
+      , J = t(28556)
+      , q = t(35921)
+      , H = t(66724)
+      , Y = t(40261);
+    function W(e) {
+      let {category: l=z.$E.unknown, iconName: t, name: s, status: o, ...r} = e
+        , [c,d] = (0,
+        i.useState)("expanded");
+      return (0,
+        n.jsxs)("div", {
+        className: m()("overflow-hidden rounded-xl border-[1.5px] border-[--theme-500] bg-white"),
+        style: (0,
+          E._9)(l),
+        children: [(0,
+          n.jsxs)("div", {
+          className: m()("flex items-center bg-[--theme-100] px-3 py-4 group-[&.should-focus]/focus-block:animate-focus-block", r.editable ? "[&:not(:has(.menu-button:hover)):hover]:bg-[--theme-200]" : ""),
+          onClick: () => {
+            d(e => "collapsed" === e ? "expanded" : "collapsed")
+          }
+          ,
+          children: [(0,
+            n.jsxs)("div", {
+            className: "flex items-center gap-5",
+            children: [(0,
+              n.jsx)("div", {
+              className: "flex h-10 w-10 items-center justify-center text-[--theme-700]",
+              children: t && (0,
+                n.jsx)(Z.Z, {
+                name: t
+              })
+            }), (0,
+              n.jsx)("div", {
+              className: "",
+              children: r.editable ? (0,
+                n.jsx)(J.Z, {
+                Component: "h3",
+                value: s,
+                onChange: r.onChangeName
+              }) : (0,
+                n.jsx)("h3", {
+                className: "text-[--theme-700]",
+                children: s
+              })
+            })]
+          }), (0,
+            n.jsxs)("div", {
+            className: "ml-auto flex items-center",
+            children: [r.infoUrl && (0,
+              n.jsx)(Y.Z, {
+              tip: "Help/Docs",
+              children: (0,
+                n.jsx)(a.Z, {
+                href: r.infoUrl,
+                target: "_blank",
+                rel: "noreferrer",
+                variant: "ghostThemed",
+                iconLeft: "infoCircle",
+                children: (0,
+                  n.jsx)("span", {
+                  className: "sr-only",
+                  children: "Help/Docs"
+                })
+              })
+            }), o === k.e4.Running && (0,
+              n.jsx)(q.Z, {}), r.editable && r.onResume && (0,
+              n.jsx)(Y.Z, {
+              tip: "Run only this block",
+              children: (0,
+                n.jsxs)(a.Z, {
+                variant: "ghostThemed",
+                onClick: e => {
+                  e.stopPropagation(),
+                  r.onResume && r.onResume(s)
+                }
+                ,
+                children: [(0,
+                  n.jsx)(A.Z, {
+                  name: "play"
+                }), (0,
+                  n.jsx)("span", {
+                  className: "sr-only",
+                  children: "Run only this block"
+                })]
+              })
+            }), (0,
+              n.jsx)("div", {
+              className: "ml-auto",
+              children: r.editable && (0,
+                n.jsxs)(V.Z, {
+                buttonClassName: m()("menu-button", "bg-transparent text-[--theme-500] hover:bg-[--theme-200] focus-visible:bg-[--theme-200]"),
+                children: [r.onDelete && (0,
+                  n.jsx)(V.Z.Item, {
+                  onClick: e => {
+                    e.stopPropagation(),
+                    window.confirm("Are you sure you want to delete this block?") && r.onDelete && r.onDelete()
+                  }
+                  ,
+                  iconName: "delete",
+                  children: "Delete"
+                }), r.onDuplicate && (0,
+                  n.jsx)(V.Z.Item, {
+                  onClick: r.onDuplicate,
+                  iconName: "copy",
+                  children: "Duplicate"
+                }), r.onMoveUp && (0,
+                  n.jsx)(V.Z.Item, {
+                  onClick: e => {
+                    e.stopPropagation(),
+                    r.onMoveUp && r.onMoveUp()
+                  }
+                  ,
+                  iconName: "chevronUp",
+                  children: "Move Up"
+                }), r.onMoveDown && (0,
+                  n.jsx)(V.Z.Item, {
+                  onClick: e => {
+                    e.stopPropagation(),
+                    r.onMoveDown && r.onMoveDown()
+                  }
+                  ,
+                  iconName: "chevronDown",
+                  children: "Move Down"
+                })]
+              })
+            })]
+          })]
+        }), (0,
+          n.jsxs)(H.E.div, {
+          className: "overflow-hidden",
+          initial: c,
+          animate: c,
+          variants: {
+            expanded: {
+              height: "auto",
+              opacity: 1
+            },
+            collapsed: {
+              height: 0,
+              opacity: 0
+            }
+          },
+          children: [(0,
+            n.jsx)("div", {
+            className: "space-y-3 px-4 pt-4",
+            children: r.children
+          }), (0,
+            n.jsx)("button", {
+            type: "button",
+            className: "flex h-12 w-full items-center justify-center text-sm hover:bg-glif-stone-200",
+            onClick: () => d("collapsed"),
+            children: "Close"
+          })]
+        }, "children")]
+      })
+    }
+    function K(e) {
+      let {metadata: l, editor: t, preview: a, map: s, debug: o=!1} = e
+        , r = (0,
+        i.useRef)(null)
+        , [c,d] = (0,
+        i.useState)(!0);
+      return (0,
+        i.useEffect)( () => {
+          let e = new IntersectionObserver(e => {
+              let l = e[0];
+              l && d(l.isIntersecting)
+            }
+            ,{
+              threshold: 0
+            });
+          return r.current && e.observe(r.current),
+            () => {
+              r.current && e.unobserve(r.current)
+            }
+        }
+        , []),
+        (0,
+          n.jsxs)("div", {
+          className: m()("md:grid md:grid-cols-2 md:gap-[40px]"),
+          children: [(0,
+            n.jsx)("div", {
+            className: m()(o && "bg-perfect-plum/50", "border-b border-b-gray-200 pb-4 md:col-span-2 md:w-full"),
+            children: l
+          }), (0,
+            n.jsx)("div", {
+            className: m()(o && "bg-glif-pink", "md:w-full"),
+            children: (0,
+              n.jsx)("div", {
+              className: m()(o && "bg-perfect-plum/50", "md:ml-auto md:w-full md:max-w-[600px]"),
+              children: t
+            })
+          }), (0,
+            n.jsxs)("div", {
+            children: [(0,
+              n.jsxs)("div", {
+              ref: r,
+              className: "py-s2",
+              children: [a && (0,
+                n.jsx)("div", {
+                className: m()(o && "bg-aquamarine-allure/50"),
+                children: a
+              }), (0,
+                n.jsx)("div", {
+                className: m()(o && "bg-emerald-200"),
+                children: s
+              })]
+            }), (0,
+              n.jsx)("div", {
+              id: "portal_for_run_button",
+              className: m()("pt-2 transition-opacity md:sticky md:top-0", c ? "opacity-0" : "opacity-100")
+            })]
+          })]
+        })
+    }
+    var $ = t(76164)
+      , Q = t(9579)
+      , X = t(99393)
+      , ee = t(44644)
+      , el = t(90778)
+      , et = t(75461)
+      , en = t.n(et)
+      , ea = t(3847)
+      , es = t(51095);
+    let eo = ea.fC
+      , er = ea.xz
+      , ei = ea.ee
+      , ec = i.forwardRef( (e, l) => {
+        let {className: t, align: a="center", sideOffset: s=4, padded: o=!0, ...r} = e;
+        return (0,
+          n.jsx)(ea.h_, {
+          children: (0,
+            n.jsx)(ea.VY, {
+            ref: l,
+            align: a,
+            sideOffset: s,
+            className: (0,
+              es.cn)("z-50 w-72 rounded-md border bg-popover text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", o ? "p-4" : "", t),
+            ...r
+          })
+        })
+      }
+    );
+    ec.displayName = ea.VY.displayName;
+    var ed = t(96089)
+      , eu = t(31757)
+      , eh = t(76102);
+    function em() {
+      var e;
+      let l = (0,
+        $.ij)()
+        , {data: t} = ed.h.sphere.bySlug.useQuery({
+        slug: "templates",
+        includeSpells: !0
+      }, {
+        retry: !1,
+        useErrorBoundary: !1
+      })
+        , a = null !== (e = null == t ? void 0 : t.spells) && void 0 !== e ? e : [];
+      return 0 === a.length ? null : (0,
+        n.jsx)(ep, {
+        templateSpells: a,
+        onSelect: function(e) {
+          if (null == e)
+            throw Error("spell is null");
+          console.log("Populating with template", e.id, e),
+            l.spell.graph.nodes = e.data.nodes,
+            l.spell.meta.name = e.name
+        }
+      })
+    }
+    function ep(e) {
+      let {templateSpells: l, onSelect: t} = e;
+      return (0,
+        n.jsxs)("div", {
+        className: "flex w-full flex-col gap-2 rounded-xl border border-glif-stone-200 p-4",
+        children: [(0,
+          n.jsx)("p", {
+          children: "Or get started with a template:"
+        }), (0,
+          n.jsx)("ul", {
+          className: "flex flex-wrap gap-2",
+          children: l.map( (e, l) => (0,
+            n.jsx)("li", {
+            children: (0,
+              n.jsx)(ef, {
+              spell: e,
+              onSelect: () => t(e)
+            })
+          }, l))
+        })]
+      })
+    }
+    function ef(e) {
+      let {spell: l, onSelect: t} = e
+        , [s,o] = (0,
+        i.useState)(!1)
+        , r = (0,
+        i.useMemo)( () => {
+          try {
+            return (0,
+              eh.Z)(l.data).nodes.map(e => ({
+              ...e,
+              category: (0,
+                y.pB)(e.type).category,
+              iconName: (0,
+                y.pB)(e.type).iconName,
+              status: k.e4.Idle
+            }))
+          } catch (e) {
+            return null
+          }
+        }
+        , [l.data])
+        , c = "IMAGE" === l.outputType ? l.output : (0,
+        eu.Z)(l.id);
+      return (0,
+        n.jsxs)(eo, {
+        open: s,
+        onOpenChange: o,
+        children: [(0,
+          n.jsx)(ei, {
+          className: "absolute bottom-0 left-1/2"
+        }), (0,
+          n.jsx)(er, {
+          asChild: !0,
+          children: (0,
+            n.jsx)(a.Z, {
+            variant: "secondary",
+            children: l.name
+          })
+        }), (0,
+          n.jsxs)(ec, {
+          className: "w-[328px] overflow-hidden",
+          padded: !1,
+          children: [c && (0,
+            n.jsx)(en(), {
+            src: c,
+            alt: "",
+            width: 328,
+            height: 200,
+            className: "h-[200px] w-[328px] object-cover"
+          }), (0,
+            n.jsxs)("div", {
+            className: "space-y-6 p-6",
+            children: [(0,
+              n.jsxs)("div", {
+              children: [(0,
+                n.jsx)("h3", {
+                className: "font-bold text-foreground",
+                children: l.name
+              }), (0,
+                n.jsx)("p", {
+                className: "text-muted-foreground",
+                children: l.description
+              })]
+            }), r && (0,
+              n.jsx)(T, {
+              sequence: r
+            }), (0,
+              n.jsxs)("div", {
+              className: "flex justify-between",
+              children: [(0,
+                n.jsx)(a.Z, {
+                variant: "secondary",
+                onClick: () => o(!1),
+                children: "Cancel"
+              }), (0,
+                n.jsx)(a.Z, {
+                variant: "default",
+                onClick: () => t(),
+                children: "Use this template"
+              })]
+            })]
+          })]
+        })]
+      })
+    }
+    var ex = e => {
+        let {metadata: l, previewArea: t=!0, saving: a} = e
+          , s = (0,
+          $.ij)()
+          , {spell: {graph: o}, executeGraph: r, resetRunState: c, setIsRunning: d} = s
+          , {runUpdates: u, spell: {graph: h}, isRunning: m} = (0,
+          x.R)(s)
+          , {inputs: p, setInputs: f} = function() {
+          let {defaultInputs: e} = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}
+            , [l,t] = (0,
+            i.useState)(null != e ? e : {});
+          return {
+            inputs: l,
+            setInputs: t,
+            updateInputValue: function(e, n) {
+              t({
+                ...l,
+                [e]: n
+              })
+            }
+          }
+        }({
+          defaultInputs: (0,
+            N.F)(o)
+        })
+          , g = (0,
+          i.useRef)(a)
+          , v = h.nodes.map(e => {
+            var l, t, n;
+            return {
+              name: e.name,
+              status: null !== (n = null === (l = u[e.name]) || void 0 === l ? void 0 : l.status) && void 0 !== n ? n : k.e4.Idle,
+              output: null === (t = u[e.name]) || void 0 === t ? void 0 : t.output,
+              category: (0,
+                y.pB)(e.type).category,
+              iconName: (0,
+                y.pB)(e.type).iconName
+            }
+          }
+        )
+          , b = (0,
+          i.useCallback)(function() {
+          f((0,
+            N.F)(o)),
+            c()
+        }, [o, c, f])
+          , j = (0,
+          i.useCallback)(function() {
+          c()
+        }, [c]);
+        (0,
+          i.useEffect)( () => {
+            g.current = a
+          }
+          , [a]),
+          (0,
+            i.useEffect)( () => {
+              f((0,
+                N.F)(o))
+            }
+            , [o, f]);
+        let w = (0,
+          i.useCallback)(async function(e) {
+          await r(new Map(Object.entries(p)), e)
+        }, [r, p])
+          , C = async e => {
+          d(!0),
+            setTimeout( () => {
+                let l = () => {
+                    w(e).catch(console.error)
+                  }
+                ;
+                if (g.current) {
+                  let e = setInterval( () => {
+                      g.current || (clearInterval(e),
+                        l())
+                    }
+                    , 100)
+                } else
+                  l()
+              }
+              , 700)
+        }
+          , I = (0,
+          i.useCallback)( (e, l) => {
+            f(t => ({
+              ...t,
+              [e]: l
+            }))
+          }
+          , [f])
+          , S = (0,
+          i.useRef)(null);
+        return (0,
+          n.jsx)(K, {
+          metadata: l,
+          editor: (0,
+            n.jsx)(ey, {
+            ref: S,
+            onRun: C,
+            onChangeInput: I
+          }),
+          preview: t ? (0,
+            n.jsx)(eb, {
+            isExecuting: m,
+            onReset: b,
+            onCancel: j,
+            onRun: C,
+            inputs: p,
+            onChangeInput: I
+          }) : void 0,
+          map: (0,
+            n.jsx)(ej, {
+            blocksWithMetaAndState: v,
+            onSelectBlock: e => {
+              var l;
+              return null === (l = S.current) || void 0 === l ? void 0 : l.scrollBlockIntoView(e)
+            }
+          })
+        })
+      }
+    ;
+    function eg(e) {
+      let {height: l, spellRun: t} = e
+        , a = (0,
+        U.Z)(t, (0,
+        n.jsx)(n.Fragment, {}));
+      return (0,
+        n.jsxs)("div", {
+        onClick: null == a ? void 0 : a.openModal,
+        className: (null == a ? void 0 : a.openModal) ? "cursor-zoom-in" : "",
+        children: [(0,
+          ee.Z)(t, {
+          height: l,
+          maxHeight: l,
+          showOriginalImage: !0
+        }), null == a ? void 0 : a.modalElement]
+      })
+    }
+    function ev(e) {
+      let {children: l} = e;
+      return (0,
+        n.jsxs)("div", {
+        className: "relative",
+        children: [(0,
+          n.jsx)("div", {
+          className: "flex w-full items-center justify-center py-9",
+          children: (0,
+            n.jsxs)("div", {
+            className: "",
+            children: [(0,
+              n.jsx)("div", {
+              className: "-mt-4",
+              children: l
+            }), (0,
+              n.jsx)("p", {
+              className: "-mt-3 font-medium text-foreground",
+              children: "Start building with Glif blocks"
+            })]
+          })
+        }), (0,
+          n.jsx)(em, {})]
+      })
+    }
+    let eb = (0,
+      i.memo)(function(e) {
+      let {isExecuting: l, onReset: t, onCancel: a, onRun: s, inputs: r={}, onChangeInput: i} = e
+        , {spell: {graph: c}, runFinalOutput: d, runUpdates: u} = (0,
+        x.R)((0,
+        $.ij)())
+        , [,h] = (0,
+        w.x)(null == d)
+        , m = "detail";
+      d ? m = "output" : l && (m = "run");
+      let p = c && r && (0,
+        n.jsx)(P.Z, {
+        graph: c,
+        inputs: r,
+        isLoggedIn: !0,
+        isRunning: l,
+        onChange: i,
+        onConfirm: s,
+        forceProcessingState: l,
+        teleportRunButtonTo: document.getElementById("portal_for_run_button")
+      });
+      return (0,
+        n.jsxs)("div", {
+        className: "text-glif-900 grid  w-full rounded-t-xl bg-glif-stone-100",
+        style: {
+          "--glif-accent-col": "#f5f5f4"
+        },
+        children: [(0,
+          n.jsxs)("h2", {
+          className: "flex items-center justify-center gap-2 overflow-hidden rounded-t-xl bg-glif-stone-200 p-2 ",
+          children: [(0,
+            n.jsx)(A.Z, {
+            name: "glifDot",
+            size: 8
+          }), " Glif Testing Area ", (0,
+            n.jsx)(A.Z, {
+            name: "glifDot",
+            size: 8
+          })]
+        }), (0,
+          n.jsxs)("div", {
+          className: "group relative flex h-full justify-stretch",
+          children: [(0,
+            n.jsx)("div", {
+            className: "absolute right-s1 top-0 z-20 opacity-0 transition-opacity group-hover:opacity-100",
+            children: l ? (0,
+              n.jsx)(o.Z, {
+              iconName: "close",
+              onClick: a,
+              label: "Cancel",
+              isAccessibilityLabel: !0
+            }) : (0,
+              n.jsx)(o.Z, {
+              iconName: "close",
+              onClick: t,
+              label: "Reset",
+              isAccessibilityLabel: !0
+            })
+          }), (0,
+            n.jsx)(M.Z, {
+            children: (0,
+              n.jsxs)("div", {
+              className: "grid h-full w-full ",
+              children: [(0,
+                n.jsxs)("div", {
+                className: "grid place-items-center md:min-h-[auto]",
+                ref: h,
+                children: [!d && l && (0,
+                  n.jsx)(H.E.div, {
+                  className: "col-start-1 row-start-1 h-[500px] w-[500px]",
+                  initial: {
+                    opacity: 0
+                  },
+                  animate: {
+                    opacity: 1
+                  },
+                  exit: {
+                    opacity: 0
+                  },
+                  transition: {
+                    opacity: {
+                      duration: .5,
+                      delay: .3
+                    }
+                  },
+                  children: (0,
+                    n.jsx)(H.E.div, {
+                    className: "h-full w-full",
+                    animate: m,
+                    children: (0,
+                      n.jsx)(O.Z, {
+                      height: "full",
+                      items: Object.values(u).map(e => {
+                          let l = c.findBlockOrThrow(e.name)
+                            , t = (0,
+                            y.pB)(l.type);
+                          return {
+                            name: l.name,
+                            category: t.category,
+                            iconName: t.iconName,
+                            status: e.status
+                          }
+                        }
+                      )
+                    })
+                  })
+                }), d && (0,
+                  n.jsx)("div", {
+                  className: "col-start-1 row-start-1 mx-auto p-3",
+                  children: "MULTIPLE" === d.type ? (0,
+                    n.jsx)("div", {
+                    children: "Can't display multiple outputs"
+                  }) : (0,
+                    n.jsx)(eg, {
+                    height: 500,
+                    spellRun: "IMAGE" === d.type ? {
+                      output: d.value,
+                      outputType: d.type,
+                      outputImageHeight: d.height,
+                      outputImageWidth: d.width
+                    } : {
+                      output: d.value,
+                      outputType: d.type
+                    }
+                  })
+                })]
+              }), (0,
+                n.jsx)("div", {
+                className: "mx-2 mb-2 mt-0 py-1",
+                children: p
+              })]
+            })
+          })]
+        })]
+      })
+    })
+      , ej = (0,
+      i.memo)(function(e) {
+      let {blocksWithMetaAndState: l, onSelectBlock: t} = e;
+      return (0,
+        n.jsxs)("div", {
+        className: "text-glif-900 mt-4 h-full space-y-4 rounded-b-xl bg-white p-2",
+        children: [(0,
+          n.jsx)("h2", {
+          className: "",
+          children: "Block Sequence"
+        }), 0 === l.length ? (0,
+          n.jsx)("span", {
+          className: " text-glif-stone-500",
+          children: "You haven’t used any spells yet, young glifling!"
+        }) : (0,
+          n.jsx)(T, {
+          sequence: l,
+          onClickBlock: t
+        })]
+      })
+    })
+      , ey = (0,
+      i.memo)((0,
+      i.forwardRef)(function(e, l) {
+      let t = (0,
+        $.ij)()
+        , {spell: {graph: a}} = t
+        , s = (0,
+        x.R)(t)
+        , o = (e, l) => {
+        let t = l.trim();
+        if (console.log("updateBlockName", {
+          oldName: e,
+          newName: t,
+          rawNewName: l
+        }),
+          t) {
+          if (a.hasBlock(t)) {
+            f.Am.error("a block w/ that name already exists; choose another");
+            return
+          }
+          if (el.hW.test(t))
+            a.renameBlock(e, t);
+          else {
+            f.Am.error("block names may only contain letters, numbers, '_' or '-'");
+            return
+          }
+        } else {
+          f.Am.error("block name can't be blank");
+          return
+        }
+      }
+        , r = (0,
+        i.useRef)(null);
+      (0,
+        i.useImperativeHandle)(l, () => ({
+        scrollBlockIntoView(e) {
+          var l, t, n;
+          console.log("scrollBlockIntoView(".concat(e, ")"));
+          let a = null === (l = r.current) || void 0 === l ? void 0 : l.querySelector('[data-block-id="'.concat(encodeURIComponent(e), '"]'));
+          a && (null === (n = r.current) || void 0 === n || null === (t = n.querySelectorAll(".should-focus")) || void 0 === t || t.forEach(e => e.classList.remove("should-focus")),
+            a.scrollIntoView({
+              block: "start",
+              behavior: "smooth"
+            }),
+            a.classList.add("should-focus"))
+        }
+      }));
+      let c = 0 === a.nodes.length ? (0,
+        n.jsx)("div", {
+        className: "pt-8",
+        children: (0,
+          n.jsx)(ev, {
+          children: (0,
+            n.jsx)(R, {
+            index: 0,
+            graph: a
+          })
+        })
+      }) : (0,
+        n.jsxs)("div", {
+        className: "flex w-full flex-col space-y-0",
+        ref: r,
+        children: [s.spell.graph.nodes.map( (l, t) => {
+            var r;
+            let i = a.nodes[t - 1]
+              , c = a.nodes[t]
+              , d = j(l)
+              , u = s.runUpdates[l.name]
+              , h = null !== (r = null == u ? void 0 : u.status) && void 0 !== r ? r : k.e4.Idle
+              , m = null == u ? void 0 : u.output
+              , p = (0,
+              y.pB)(l.type);
+            return "BotInputBlock" === l.type ? (0,
+              n.jsx)("div", {
+              className: "group/focus-block scroll-mt-[--glif-nav-h]",
+              "data-block-id": encodeURIComponent(l.name),
+              children: (0,
+                n.jsx)(eN, {
+                block: l
+              })
+            }, l.name) : p.graphVisible ? (0,
+              n.jsxs)("div", {
+              className: "group/focus-block scroll-mt-[--glif-nav-h]",
+              "data-block-id": encodeURIComponent(l.name),
+              children: [(0,
+                n.jsx)(R, {
+                index: t - 1,
+                fromBlock: i,
+                toBlock: c,
+                graph: a
+              }), (0,
+                n.jsx)(W, {
+                editable: !0,
+                name: l.name,
+                category: p.category,
+                iconName: p.iconName,
+                infoUrl: p.infoUrl,
+                onChangeName: e => o(l.name, e),
+                onDelete: () => c && a.removeBlock(c),
+                onDuplicate: () => c && a.duplicateBlock(c),
+                onMoveUp: () => c && a.moveBlock(c, "up"),
+                onMoveDown: () => c && a.moveBlock(c, "down"),
+                onResume: l => {
+                  console.log("Resuming from", l),
+                    e.onRun(l)
+                }
+                ,
+                description: l.type,
+                status: h,
+                children: (0,
+                  n.jsx)(Q.Z, {
+                  fallback: X.Z,
+                  children: (0,
+                    n.jsx)(d, {
+                    block: c,
+                    status: h,
+                    category: p.category,
+                    iconName: p.iconName,
+                    onInputChange: t => e.onChangeInput(l.name, t),
+                    output: m
+                  })
+                })
+              })]
+            }, l.name) : null
+          }
+        ), (0,
+          n.jsx)(R, {
+          index: a.nodes.length,
+          fromBlock: a.nodes[a.nodes.length - 1],
+          graph: a
+        })]
+      });
+      return (0,
+        n.jsx)(n.Fragment, {
+        children: c
+      })
+    }));
+    function eN(e) {
+      let {block: l} = e
+        , t = j(l)
+        , a = (0,
+        y.pB)(l.type);
+      return (0,
+        n.jsx)("div", {
+        "data-block-id": encodeURIComponent(l.name),
+        className: "group/focus-block scroll-mt-[--glif-nav-h]",
+        children: (0,
+          n.jsx)(W, {
+          editable: !1,
+          name: l.name,
+          category: a.category,
+          iconName: a.iconName,
+          infoUrl: a.infoUrl,
+          status: k.e4.Idle,
+          description: "",
+          children: (0,
+            n.jsx)(t, {
+            block: l,
+            category: a.category,
+            iconName: a.iconName
+          })
+        })
+      })
+    }
+    var ew = t(46200)
+      , ek = t(8970)
+      , eC = t(34364)
+      , eI = function(e) {
+      var l, t;
+      let {disabled: a, children: s, onSave: o, ...r} = e
+        , [c,d] = (0,
+        i.useState)(null !== (l = r.name) && void 0 !== l ? l : "")
+        , [u,h] = (0,
+        i.useState)(null !== (t = r.description) && void 0 !== t ? t : "")
+        , {name: m, description: p} = r;
+      return (0,
+        i.useEffect)( () => {
+          d(null != m ? m : ""),
+            h(null != p ? p : "")
+        }
+        , [p, m]),
+        (0,
+          n.jsxs)("div", {
+          className: "flex w-full items-center gap-2",
+          children: [(0,
+            n.jsxs)("div", {
+            className: "flex w-full max-w-[600px] flex-col",
+            children: [(0,
+              n.jsx)("div", {
+              className: "text-2xl font-bold text-gray-950",
+              children: (0,
+                n.jsx)(J.Z, {
+                disabled: a,
+                showIcon: !1,
+                Component: "h2",
+                value: c,
+                maxLength: 140,
+                onChange: e => {
+                  "" != e && (d(e),
+                    o({
+                      name: e,
+                      description: u
+                    }))
+                }
+              })
+            }), (0,
+              n.jsx)("div", {
+              className: "w-full text-gray-400",
+              children: (0,
+                n.jsx)(J.Z, {
+                disabled: a,
+                showIcon: !1,
+                Component: "p",
+                maxLength: 280,
+                value: "" === u.trim() ? "" : u,
+                placeholder: "Description",
+                onChange: e => {
+                  h(e),
+                    o({
+                      name: c,
+                      description: e
+                    })
+                }
+              })
+            })]
+          }), (0,
+            n.jsx)("div", {
+            className: "ml-auto flex items-center gap-2",
+            children: s
+          })]
+        })
+    }
+      , eS = t(16673)
+      , eB = t(17539)
+      , eZ = t(10860)
+      , eD = t(14025)
+      , eE = t(64794)
+      , eL = t.n(eE)
+      , eR = t(8994)
+      , eG = t(79109);
+    function eA() {
+      return (0,
+        n.jsxs)("span", {
+        children: ["Need help? Let us know in", " ", (0,
+          n.jsx)("a", {
+          className: "underline",
+          href: eG.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,
+          target: "_blank",
+          children: "our Discord community"
+        })]
+      })
+    }
+    var eM = t(15823)
+      , eP = t(96202);
+    function eO(e) {
+      var l;
+      let {spell: t, isOwner: o} = e
+        , h = (0,
+        $.ij)()
+        , p = h.spell.meta
+        , g = (0,
+        x.R)(h.spell)
+        , v = g.graph
+        , b = (0,
+        r.useRouter)()
+        , j = (0,
+        s.Z)({
+        spellId: t.id
+      })
+        , y = (0,
+        c.Z)({
+        style: "spinner"
+      })
+        , N = (0,
+        eC.Z)({
+        id: t.id
+      })
+        , {isBotModeEnabled: w, toggleBotMode: I} = function() {
+        let e = (0,
+          $.ij)()
+          , l = (0,
+          x.R)(e.spell.graph).nodes.find(e => "BotInputBlock" === e.type);
+        return {
+          isBotModeEnabled: l,
+          toggleBotMode: function() {
+            if (l) {
+              let l = e.spell.graph.findBlock(eP.GI);
+              l && e.spell.graph.removeBlock(l)
+            } else {
+              let l = (0,
+                C.Ih)("BotInputBlock", eP.GI, {});
+              e.spell.graph.insertBlockBetween(l, void 0, e.spell.graph.nodes[0])
+            }
+          }
+        }
+      }()
+        , [S,B] = (0,
+        i.useState)(!1)
+        , {saveMetadata: Z, saveGraph: D, publish: E} = function(e, l, t, n) {
+        let {graph: a, meta: s} = l
+          , o = ed.h.useUtils()
+          , r = ed.h.spell.updateDraftMetadata.useMutation({
+          onSuccess(e) {},
+          onError(e) {
+            console.error("updateDraftMetadataMutation error", e),
+              f.Am.error("Failed to update this glif's metadata!")
+          }
+        }).mutateAsync
+          , c = ed.h.spell.updateDraftGraphJson.useMutation({
+          onSuccess(e) {},
+          onError(e) {
+            console.error("updateDraftGraphJsonMutation error", e),
+              f.Am.error("Failed to update this glif's data!")
+          }
+        }).mutateAsync
+          , d = ed.h.spell.publish.useMutation({
+          onSuccess(e) {
+            f.Am.success("Published glif", {
+              duration: 2e3
+            }),
+              console.log("publishSpellMutation a =>", e),
+              (0,
+                eS.j)("Glif published", {
+                glifId: e.id
+              })
+          }
+        }).mutateAsync
+          , u = (0,
+          i.useCallback)( () => o.spell.byId.invalidate(), [o])
+          , h = (0,
+          i.useCallback)( () => o.spell.getDraftVersion.invalidate(), [o]);
+        return {
+          saveMetadata: (0,
+            i.useCallback)(async function() {
+            t(!0);
+            let {name: l, description: n} = s;
+            try {
+              await r({
+                id: e,
+                name: l,
+                description: n
+              }),
+                h()
+            } catch (e) {
+              throw console.error("handleSave - Error", e),
+                (0,
+                  eB.f)(e),
+                e
+            } finally {
+              t(!1)
+            }
+          }, [h, s, t, e, r]),
+          saveGraph: (0,
+            i.useCallback)(async function() {
+            t(!0);
+            let l = JSON.stringify(a);
+            if (l.length > eD.Rz) {
+              f.Am.error("Glif is too long to be saved (".concat((l.length - eD.Rz).toLocaleString(), " characters over max length) - please shorten."), {
+                duration: 5e3,
+                id: "glif-length-error"
+              }),
+                n(!0),
+                t(!1);
+              return
+            }
+            l.length > .9 * eD.Rz && (0,
+              f.Am)("Glif is approaching maximum length. Consider shortening it to avoid issues.", {
+              icon: "⚠️",
+              duration: 5e3,
+              id: "glif-length-warning"
+            }),
+              n(!1);
+            try {
+              let {isValid: t, errorMessages: n} = k.IK.validate(a);
+              if (!t && n) {
+                console.log("handleSave error", n),
+                  (0,
+                    eZ.F1)(n, "Glif has errors and can't be saved");
+                return
+              }
+              await c({
+                id: e,
+                graph: l
+              }),
+                h(),
+                console.log("updateDraftGraphJsonMutateAsync done")
+            } catch (e) {
+              throw console.error("handleSave - Error", e),
+                (0,
+                  eB.f)(e),
+                e
+            } finally {
+              t(!1)
+            }
+          }, [a, h, t, e, c, n]),
+          publish: (0,
+            i.useCallback)(async function() {
+            t(!0);
+            let l = JSON.stringify(a);
+            if (l.length > eD.Rz) {
+              console.log("handleSave - Graph data is too long to be saved."),
+                f.Am.error("Glif is too long to be saved (".concat((l.length - eD.Rz).toLocaleString(), " characters over max length) - please shorten."), {
+                  duration: 5e3,
+                  id: "glif-length-error"
+                }),
+                n(!0),
+                t(!1);
+              return
+            }
+            try {
+              await d({
+                id: e
+              }),
+                u()
+            } catch (e) {
+              console.error("handleSave - Error", e),
+                (0,
+                  eB.f)(e)
+            } finally {
+              t(!1)
+            }
+          }, [t, d, e, u, a, n])
+        }
+      }(t.id, g, y.setIsLoading, B)
+        , L = function(e) {
+        let {enabled: l, saveGraph: t, saveMetadata: a} = e
+          , s = (0,
+          $.OA)()
+          , [o,c] = (0,
+          i.useState)(s)
+          , d = (0,
+          $.o0)()
+          , [h,m] = (0,
+          i.useState)(s)
+          , [p,f] = (0,
+          i.useState)(null)
+          , x = s > o
+          , g = d > h
+          , v = l && (x || g);
+        (0,
+          u.b)( () => {
+            async function e() {
+              x && (console.log("Saving graph...", s),
+                await t(s),
+                console.log("...graph done"),
+                c(s)),
+              g && (console.log("Saving metadata...", d),
+                await a(d),
+                console.log("...metadata done"),
+                m(d)),
+                f(new Date)
+            }
+            v && e()
+          }
+          , [v, s, o, d, h, t], 600),
+          function(e, l) {
+            let t = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "You have unsaved changes";
+            (0,
+              i.useEffect)( () => {
+                if (e) {
+                  function n(e) {
+                    e.preventDefault(),
+                      e.returnValue = t
+                  }
+                  window.addEventListener("beforeunload", n);
+                  let e = () => {
+                      if (!l())
+                        throw r.Router.events.emit("routeChangeError"),
+                          "Abort route change. Please ignore this error."
+                    }
+                  ;
+                  return r.Router.events.on("routeChangeStart", e),
+                    () => {
+                      window.removeEventListener("beforeunload", n),
+                        r.Router.events.off("routeChangeStart", e)
+                    }
+                }
+              }
+              , [l, e])
+          }(v, () => window.confirm("Your changes are still autosaving. Leave page? (you may lose data)"));
+        let b = (0,
+          i.useRef)([]);
+        return (0,
+          i.useEffect)( () => {
+            !1 === v && (b.current.forEach(e => {
+                try {
+                  e()
+                } catch (e) {
+                  console.error("Error running afterSave callback", e)
+                }
+              }
+            ),
+              b.current = [])
+          }
+          , [v]),
+          {
+            debugElement: (0,
+              n.jsxs)("div", {
+              className: "fixed left-0 top-0 z-glif-modal bg-emerald-300 p-2",
+              children: [s, " / ", o]
+            }),
+            currentGraphVersionNumber: s,
+            lastSavedGraphVersionNumber: o,
+            lastSavedDate: p,
+            hasUnsavedChanges: v,
+            runAfterSave: function(e) {
+              if (v)
+                b.current.push(e);
+              else
+                try {
+                  e()
+                } catch (e) {
+                  console.error("Error running afterSave callback", e)
+                }
+            }
+          }
+      }({
+        enabled: o,
+        saveGraph: D,
+        saveMetadata: Z
+      })
+        , R = (0,
+        n.jsx)("div", {
+        className: "flex items-center",
+        children: (0,
+          n.jsxs)(eI, {
+          disabled: !o,
+          name: g.meta.name,
+          description: null !== (l = g.meta.description) && void 0 !== l ? l : void 0,
+          onSave: e => {
+            e.name && (p.name = e.name),
+            e.description && (p.description = e.description)
+          }
+          ,
+          children: [(0,
+            n.jsxs)("p", {
+            className: "mr-9 flex items-center text-xs font-medium text-gray-400",
+            children: [(0,
+              n.jsx)(A.Z, {
+              name: "clock",
+              className: "mr-1"
+            }), (0,
+              n.jsxs)("span", {
+              className: "flex flex-col",
+              children: ["Saved", " ", (0,
+                n.jsx)("time", {
+                dateTime: t.updatedAt.toISOString(),
+                children: (0,
+                  n.jsx)(ek.Z, {
+                  date: t.updatedAt
+                })
+              })]
+            })]
+          }), (0,
+            n.jsx)(ew.Z, {
+            owner: t.userId,
+            children: (0,
+              n.jsx)(a.Z, {
+              variant: "secondary",
+              className: y.isLoading ? "cursor-not-allowed" : "",
+              disabled: S,
+              onClick: () => {
+                L.runAfterSave( () => E())
+              }
+              ,
+              children: "Publish"
+            })
+          }), (0,
+            n.jsx)(a.Z, {
+            variant: "secondary",
+            onClick: function() {
+              if (!o) {
+                b.push((0,
+                  d.xN)(t));
+                return
+              }
+              L.runAfterSave( () => {
+                  b.push((0,
+                    d.xN)(t))
+                }
+              )
+            },
+            disabled: y.isLoading,
+            iconLeft: "close",
+            children: (0,
+              n.jsx)("span", {
+              className: "sr-only",
+              children: "Close"
+            })
+          }), (0,
+            n.jsx)(eM.Z, {
+            shareUrl: (0,
+              d.OB)(t),
+            spellName: t.name,
+            variant: "default"
+          }), (0,
+            n.jsx)(ew.Z, {
+            owner: t.userId,
+            children: (0,
+              n.jsxs)(V.Z, {
+              iconAlignment: "vertical",
+              children: [(0,
+                n.jsxs)(ew.Z, {
+                staff: !0,
+                children: [(0,
+                  n.jsx)(V.Z.Item, {
+                  href: "/glifs/".concat(t.id, "/validate"),
+                  children: "Edit Graph JSON"
+                }), (0,
+                  n.jsxs)(V.Z.Item, {
+                  onClick: () => I(),
+                  children: [w ? "Disable" : "Enable", " bot mode"]
+                })]
+              }), (0,
+                n.jsx)(V.Z.Item, {
+                variant: "destructive",
+                onClick: () => j.handleSoftDelete(),
+                children: "Delete"
+              })]
+            })
+          })]
+        })
+      });
+      return (0,
+        n.jsxs)(n.Fragment, {
+        children: [y.element, N.element, !o && (0,
+          n.jsxs)("div", {
+          className: "sticky top-4 z-10 flex items-center justify-between gap-4 rounded-md bg-brand-200 px-4 py-3",
+          children: ["Remix this Glif to save changes", " ", (0,
+            n.jsx)(a.Z, {
+            iconLeft: "remix",
+            onClick: function() {
+              N.createFork({
+                metadata: {
+                  name: t.name,
+                  description: t.description
+                },
+                graph: v
+              })
+            },
+            children: "Remix"
+          })]
+        }), (0,
+          n.jsx)("div", {
+          className: m()("relative mt-[44px] flex"),
+          children: (0,
+            n.jsxs)("div", {
+            className: "container",
+            children: [j.element, (0,
+              n.jsx)(Q.Z, {
+              fallback: X.Z,
+              children: (0,
+                n.jsx)(eR.e, {
+                lastSavedDate: L.lastSavedDate,
+                children: (0,
+                  n.jsx)(ex, {
+                  metadata: R,
+                  previewArea: o,
+                  saving: L.hasUnsavedChanges
+                })
+              })
+            }), (0,
+              n.jsx)(e_, {
+              spell: t
+            })]
+          })
+        })]
+      })
+    }
+    function eU(e) {
+      let l = e.spell;
+      try {
+        let t = (0,
+          eh.Z)(l.data);
+        return (0,
+          n.jsx)($.Y2, {
+          initialGraph: t,
+          spell: l,
+          children: (0,
+            n.jsx)(eO, {
+            spell: l,
+            isOwner: e.isOwner
+          })
+        })
+      } catch (e) {
+        if ((0,
+          eh.$)(e))
+          return (0,
+            n.jsxs)("div", {
+            className: "px-8",
+            children: [(0,
+              n.jsx)("p", {
+              className: "pt-12 text-lg ",
+              children: "Unfortunately this glif is no longer runnable or editable"
+            }), (0,
+              n.jsx)("p", {
+              className: "",
+              children: (0,
+                n.jsx)(eA, {})
+            }), (0,
+              n.jsxs)("div", {
+              className: "pt-12",
+              children: [(0,
+                n.jsx)("div", {
+                className: "font-semibold",
+                children: "Errors:"
+              }), e.issues.map( (e, l) => (0,
+                n.jsxs)("div", {
+                children: ["- ", e.path.join("."), " → ", e.message]
+              }, l))]
+            })]
+          });
+        throw e
+      }
+    }
+    function e_(e) {
+      let {spell: l} = e
+        , {spell: {graph: t}} = (0,
+        x.R)((0,
+        $.ij)())
+        , s = "graphDebug"
+        , [r,c] = (0,
+        i.useState)("off");
+      (0,
+        i.useEffect)( () => {
+          let e = localStorage.getItem(s);
+          e && c(JSON.parse(e))
+        }
+        , []);
+      let d = e => {
+        let l = null != e ? e : "off" === r ? "saved" : "off";
+        c(l),
+          localStorage.setItem(s, JSON.stringify(l))
+      }
+        , u = null;
+      return "saved" === r && "id"in l ? u = l.data : "live" === r && (u = {
+        nodes: t.nodes
+      }),
+        (0,
+          n.jsx)(n.Fragment, {
+          children: (0,
+            n.jsxs)("div", {
+            className: "mt-4 space-x-2",
+            children: [(0,
+              n.jsxs)("div", {
+              className: "flex flex-row space-x-2",
+              children: [(0,
+                n.jsxs)(a.Z, {
+                variant: "secondary",
+                onClick: () => d(),
+                children: [(0,
+                  n.jsx)("span", {
+                  className: "mr-1",
+                  children: "\uD83D\uDC1B"
+                }), " Debug"]
+              }), (0,
+                n.jsx)(ew.Z, {
+                staff: !0,
+                miniMode: !0,
+                children: (0,
+                  n.jsx)(eL(), {
+                  href: "/glifs/".concat(l.id, "/validate"),
+                  children: (0,
+                    n.jsx)(a.Z, {
+                    variant: "secondary",
+                    children: "Edit Graph JSON"
+                  })
+                })
+              })]
+            }), "off" !== r && (0,
+              n.jsxs)(n.Fragment, {
+              children: [(0,
+                n.jsxs)("label", {
+                children: ["Saved", (0,
+                  n.jsx)("input", {
+                  type: "radio",
+                  name: "debug-graph",
+                  value: "saved",
+                  checked: "saved" === r,
+                  onChange: () => d("saved")
+                })]
+              }), (0,
+                n.jsxs)("label", {
+                children: ["Live", (0,
+                  n.jsx)("input", {
+                  type: "radio",
+                  name: "debug-graph",
+                  value: "live",
+                  checked: "live" === r,
+                  onChange: () => d("live")
+                })]
+              })]
+            }), u && (0,
+              n.jsx)("div", {
+              className: "debug-graph flex flex-col-reverse justify-between gap-2 pt-4 md:flex-row",
+              children: (0,
+                n.jsxs)("div", {
+                className: "overflow-auto border p-3 md:w-3/5",
+                children: [(0,
+                  n.jsx)("h1", {
+                  className: "space-x-2",
+                  children: (0,
+                    n.jsxs)(n.Fragment, {
+                    children: [(0,
+                      n.jsx)("span", {
+                      children: "Raw graph"
+                    }), l.data && (0,
+                      n.jsx)(o.Z, {
+                      iconName: "copy",
+                      label: "Copy",
+                      onClick: () => {
+                        (0,
+                          p.Z)(JSON.stringify(u)),
+                          f.Am.success("Copied to clipboard")
+                      }
+                    })]
+                  })
+                }), (0,
+                  n.jsx)("pre", {
+                  children: JSON.stringify(u, null, 2)
+                })]
+              })
+            })]
+          })
+        })
+    }
+  },
+  28556: function(e, l, t) {
+    t.d(l, {
+      Z: function() {
+        return i
+      }
+    });
+    var n = t(33741)
+      , a = t(16565)
+      , s = t(38980)
+      , o = t(84875)
+      , r = t.n(o);
+    function i(e) {
+      let {Component: l="p", disabled: t, value: o, placeholder: i, onChange: c, showIcon: d=!0, maxLength: u} = e
+        , [h,m] = (0,
+          a.useState)(!1)
+        , p = (0,
+          a.useRef)(null)
+        , f = () => m(!1)
+        , x = () => {
+          t || m(!0)
+        }
+        , g = () => {
+          var e;
+          let l = null === (e = p.current) || void 0 === e ? void 0 : e.value;
+          h && null != l && l !== o && c(l),
+            f()
+        }
+      ;
+      return (0,
+        n.jsxs)("div", {
+        className: "flex w-full cursor-pointer gap-2",
+        onClick: e => {
+          e.stopPropagation(),
+            x()
+        }
+        ,
+        children: [(0,
+          n.jsx)(l, {
+          className: r()("w-full text-[var(--theme-700,inherit)]"),
+          children: h ? (0,
+            n.jsx)("input", {
+            className: "w-full bg-transparent p-0 leading-[inherit] placeholder-current placeholder-glif-stone-500 [font-size:inherit] focus:border-none focus:outline-none focus:ring-0",
+            autoFocus: !0,
+            defaultValue: o,
+            placeholder: i,
+            disabled: t,
+            ref: p,
+            onBlur: g,
+            maxLength: u,
+            onKeyUp: e => {
+              "Enter" === e.code ? (e.preventDefault(),
+                g()) : "Escape" === e.code && (e.preventDefault(),
+                f())
+            }
+          }) : (0,
+            n.jsx)("span", {
+            className: "" === o ? "text-glif-stone-500" : "text-[var(--theme-700,inherit)]",
+            children: o || i
+          })
+        }), d && (0,
+          n.jsx)("div", {
+          className: r()("text-[var(--theme-500,inherit)]", h ? "pointer-events-none invisible" : "visible"),
+          children: (0,
+            n.jsx)("button", {
+            type: "button",
+            onClick: x,
+            "aria-hidden": h,
+            children: (0,
+              n.jsx)(s.Z, {
+              name: "edit"
+            })
+          })
+        })]
+      }, o)
+    }
+  },
+  8994: function(e, l, t) {
+    t.d(l, {
+      Z: function() {
+        return r
+      },
+      e: function() {
+        return o
+      }
+    });
+    var n = t(33741)
+      , a = t(16565);
+    let s = (0,
+      a.createContext)({
+      lastSavedDate: null
+    });
+    function o(e) {
+      let {lastSavedDate: l, children: t} = e
+        , [o,r] = (0,
+        a.useState)({
+        lastSavedDate: l
+      });
+      return (0,
+        a.useEffect)( () => {
+          r({
+            lastSavedDate: l
+          })
+        }
+        , [l]),
+        (0,
+          n.jsx)(s.Provider, {
+          value: o,
+          children: t
+        })
+    }
+    function r() {
+      let e = (0,
+        a.useContext)(s);
+      if (null == e)
+        throw Error("useAutoSaveState must be used within a AutoSaveStateProvider");
+      return e
+    }
+  }
+}]);
