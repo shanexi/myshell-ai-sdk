@@ -2850,7 +2850,6 @@
             },
             children: [(0,
               i.jsx)("div", {
-              className: "pointer-events-none absolute inset-0 bg-glif-stone-100 bg-glif-dot-green bg-center"
             }), (0,
               i.jsx)("div", {
               ref: z,
@@ -2915,29 +2914,11 @@
               i.jsxs)(Q, {
               initialFonts: [...c],
               children: [(0,
-                i.jsx)(eN.Z, {
-                title: "Canvas",
-                isOpen: o,
-                onClose: () => r(!1),
-                showCloseButton: !0,
-                actions: (0,
-                  i.jsx)(eS, {
-                  lastSavedDate: l
-                }),
+                i.jsx)("div", {
                 children: (0,
                   i.jsx)("div", {
-                  className: "h-[90vh] w-[90vw]",
                   children: (0,
                     i.jsx)(eb, {})
-                })
-              }), (0,
-                i.jsx)("div", {
-                // className: "flex justify-center",
-                children: (0,
-                  i.jsx)(eP.Z, {
-                  variant: "secondary",
-                  onClick: () => r(!0),
-                  children: "Open Canvas"
                 })
               }), (0,
                 i.jsx)(ey, {
