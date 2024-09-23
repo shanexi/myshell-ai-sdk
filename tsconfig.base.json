@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@myshell-ai-sdk/chat": ["libs/chat/src/index.ts"],
-      "@myshell-ai-sdk/def": ["libs/def/src/index.ts"]
+      "@myshell-ai-sdk/def": ["libs/def/src/index.ts"],
+      "@myshell-ai-sdk/glif-canvas": ["libs/glif-canvas/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
