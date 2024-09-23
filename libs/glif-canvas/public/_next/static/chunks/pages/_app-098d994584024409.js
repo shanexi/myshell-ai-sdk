@@ -16937,7 +16937,7 @@ Error:`, t)
                               r.jsx)(t, {
                               ...i
                             }), !v && h && !s && !l && (0,
-                              r.jsx)(z, {
+                              r.jsx)("div", {
                               onAccept: () => {
                                 d()
                               }
@@ -47878,19 +47878,6 @@ to {
         , ed = ({reverseOrder: e, position: t="top-center", toastOptions: n, gutter: r, children: i, containerStyle: o, containerClassName: a}) => {
         let {toasts: l, handlers: u} = $(n);
         return s.createElement("div", {
-          style: {
-            position: "fixed",
-            zIndex: 9999,
-            top: 16,
-            left: 16,
-            right: 16,
-            bottom: 16,
-            pointerEvents: "none",
-            ...o
-          },
-          className: a,
-          onMouseEnter: u.startPause,
-          onMouseLeave: u.endPause
         }, l.map(n => {
             let o = n.position || t
               , a = eu(o, u.calculateOffset(n, {

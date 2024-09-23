@@ -2932,7 +2932,7 @@
                 })
               }), (0,
                 i.jsx)("div", {
-                className: "flex justify-center",
+                // className: "flex justify-center",
                 children: (0,
                   i.jsx)(eP.Z, {
                   variant: "secondary",

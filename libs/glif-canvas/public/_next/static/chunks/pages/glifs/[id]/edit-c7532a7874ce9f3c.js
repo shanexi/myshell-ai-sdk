@@ -65,7 +65,6 @@
                 nav: "inline",
                 children: (0,
                 i.jsx)("div", {
-                    className: "w-full",
                     children: (0,
                     i.jsx)(u.Z, {
                         spell: y,

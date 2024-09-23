@@ -1,1802 +1,1711 @@
 !function() {
-    try {
-        var e = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {}
-          , t = Error().stack;
-        t && (e._sentryDebugIds = e._sentryDebugIds || {},
-        e._sentryDebugIds[t] = "e09dc9f5-b0fb-4933-af0f-ff48fc661b89",
-        e._sentryDebugIdIdentifier = "sentry-dbid-e09dc9f5-b0fb-4933-af0f-ff48fc661b89")
-    } catch (e) {}
+  try {
+    var e = "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {}
+      , t = Error().stack;
+    t && (e._sentryDebugIds = e._sentryDebugIds || {},
+      e._sentryDebugIds[t] = "e09dc9f5-b0fb-4933-af0f-ff48fc661b89",
+      e._sentryDebugIdIdentifier = "sentry-dbid-e09dc9f5-b0fb-4933-af0f-ff48fc661b89")
+  } catch (e) {}
 }();
 "use strict";
 (self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[4020], {
-    97089: function(e, t, s) {
-        s.d(t, {
-            Z: function() {
-                return a
-            }
-        });
-        var n = s(16565)
-          , r = s(8219);
-        function a() {
-            return (0,
-            n.useContext)(r.J)
-        }
-    },
-    44020: function(e, t, s) {
-        s.d(t, {
-            oB: function() {
-                return eI
-            },
-            XP: function() {
-                return eC
-            },
-            ZP: function() {
-                return ek
-            }
-        });
-        var n = s(33741)
-          , r = s(21309)
-          , a = s(68164)
-          , l = s(21341)
-          , i = s(64794)
-          , o = s.n(i)
-          , c = s(66724)
-          , d = s(38980)
-          , u = s(77077);
-        let m = (0,
-        c.E)(d.Z);
-        function h(e) {
-            let {active: t, layoutId: s, children: r, iconName: a} = e;
-            return (0,
-            n.jsxs)("div", {
-                className: "flex items-center gap-1 text-lg font-bold hover:text-brand-600 active:text-brand-600",
-                children: [a && t ? (0,
-                n.jsx)(m, {
-                    layoutId: s,
-                    name: a,
-                    size: 8
-                }) : (0,
-                n.jsx)("span", {
-                    className: "block h-2 w-2"
-                }), r]
-            })
-        }
-        function f(e) {
-            let t = (0,
-            u.usePathname)()
-              , s = e.href === t
-              , r = e.activeHref === e.href
-              , a = null == e.activeHref;
-            return (0,
-            n.jsx)(o(), {
-                href: e.href,
-                children: (0,
-                n.jsx)(h, {
-                    ...e,
-                    active: s && a || r
-                })
-            })
-        }
-        var x = s(98050)
-          , p = s(17728)
-          , g = s(41709)
-          , j = s(84875)
-          , b = s.n(j)
-          , v = s(49736)
-          , y = s(96089)
-          , N = s(79109)
-          , w = s(46200);
-        let _ = "transition-colors block mx-1.5 p-4 text-left outline-none hover:bg-brand-100 focus:bg-brand-100 rounded-md"
-          , k = "text-black";
-        function C(e) {
-            let {user: t, onSignOut: s} = e
-              , {data: r, refetch: a} = y.h.user.rateLimitInfo.useQuery(void 0);
-            return (0,
-            n.jsx)("div", {
-                className: "relative",
-                children: (0,
-                n.jsx)(x.v, {
-                    children: (0,
-                    n.jsxs)(p.bv, {
-                        portal: !0,
-                        shift: !0,
-                        offset: -50,
-                        placement: "bottom-end",
-                        enter: "transition duration-100 ease-out",
-                        enterFrom: "transform scale-95 opacity-0",
-                        enterTo: "transform scale-100 opacity-100",
-                        leave: "transition duration-75 ease-out",
-                        leaveFrom: "transform scale-100 opacity-100",
-                        leaveTo: "transform scale-95 opacity-0",
-                        onShow: a,
-                        children: [(0,
-                        n.jsxs)(x.v.Button, {
-                            className: () => b()("h-12 rounded-full p-1 outline-none", " bg-white text-glif-stone-700 "),
-                            children: [(0,
-                            n.jsx)("span", {
-                                className: "sr-only",
-                                children: "Open user menu"
-                            }), (0,
-                            n.jsx)(g.Z, {
-                                user: t,
-                                size: "lg",
-                                linked: !1,
-                                variant: "only-icon"
-                            })]
-                        }), (0,
-                        n.jsxs)(x.v.Items, {
-                            className: "w-max-content flex min-w-[240px] max-w-[340px] flex-col rounded-xl bg-white py-1 shadow-dropdown outline-none",
-                            children: [(0,
-                            n.jsx)(x.v.Item, {
-                                children: (0,
-                                n.jsxs)("div", {
-                                    className: "flex items-center px-4 py-3",
-                                    children: [(0,
-                                    n.jsx)("div", {
-                                        className: "mr-auto line-clamp-1 text-lg font-bold",
-                                        children: t.username
-                                    }), (0,
-                                    n.jsx)(g.Z, {
-                                        user: t,
-                                        variant: "only-icon",
-                                        linked: !1,
-                                        size: "lg"
-                                    })]
-                                })
-                            }), (0,
-                            n.jsx)(I, {}), (0,
-                            n.jsx)(L, {
-                                href: (0,
-                                v.D2)(t),
-                                children: "Your Glifs"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: (0,
-                                v.cp)(t),
-                                children: "Your Likes"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: "/settings",
-                                children: "Settings"
-                            }), (0,
-                            n.jsx)(w.Z, {
-                                staff: !0,
-                                children: (0,
-                                n.jsx)(L, {
-                                    href: "/admin",
-                                    children: "Admin"
-                                })
-                            }), r && (0,
-                            n.jsxs)(L, {
-                                target: "_blank",
-                                href: "https://docs.glif.app/getting-started/faqs",
-                                className: "flex items-center justify-between",
-                                children: [(0,
-                                n.jsxs)("span", {
-                                    className: "flex items-center gap-x-1",
-                                    children: [r.limitLabel.endsWith("h") ? "Hourly" : "Daily", " Rate Limit", (0,
-                                    n.jsx)(d.Z, {
-                                        name: "infoCircle"
-                                    })]
-                                }), (0,
-                                n.jsx)("span", {
-                                    className: " text-base font-normal",
-                                    children: r.remaining
-                                })]
-                            }), (0,
-                            n.jsx)(I, {}), (0,
-                            n.jsx)(L, {
-                                href: N.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,
-                                children: "Discord Community"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: "/docs",
-                                children: "Guides"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: "/api",
-                                children: "API"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: "https://chromewebstore.google.com/detail/glif-remix-the-web-with-a/abfbooehhdjcgmbmcpkcebcmpfnlingo",
-                                children: "Chrome Extension"
-                            }), (0,
-                            n.jsx)(L, {
-                                href: "/contact",
-                                children: "Contact Us"
-                            }), (0,
-                            n.jsx)(I, {}), (0,
-                            n.jsx)(E, {
-                                onClick: s,
-                                children: "Logout"
-                            })]
-                        })]
-                    })
-                })
-            })
-        }
-        function I() {
-            return (0,
-            n.jsx)("div", {
-                className: "py-1",
-                children: (0,
-                n.jsx)("hr", {})
-            })
-        }
-        function E(e) {
-            let {className: t, onClick: s, children: r} = e;
-            return (0,
-            n.jsx)(x.v.Item, {
-                children: (0,
-                n.jsx)("button", {
-                    type: "button",
-                    className: b()(_, k, t),
-                    onClick: s,
-                    children: r
-                })
-            })
-        }
-        function L(e) {
-            let {className: t, href: s, children: r, target: a} = e;
-            return (0,
-            n.jsx)(x.v.Item, {
-                children: (0,
-                n.jsx)(o(), {
-                    target: a,
-                    className: b()(_, k, t),
-                    href: s,
-                    children: r
-                })
-            })
-        }
-        var R = s(11474)
-          , S = s(97089)
-          , F = s(50943)
-          , A = s(51263)
-          , D = s(73485);
-        function Z() {
-            let {recentSpellRuns: e, getRunStatus: t} = (0,
-            S.Z)()
-              , s = e.length > 0;
-            return (0,
-            n.jsxs)("div", {
-                className: "bg-glif-stone-300 w-[100vw] max-w-[352px] rounded-2xl p-2 pr-0 shadow-[0px_4px_24px_0px_#29252414]",
-                children: [(0,
-                n.jsx)("h3", {
-                    className: "sr-only",
-                    children: "Recent Runs"
-                }), !s && (0,
-                n.jsx)("div", {
-                    className: "p-s2 mr-2 rounded-xl bg-white/60",
-                    children: "Glifs you’ve run recently will appear here"
-                }), s && (0,
-                n.jsx)("ul", {
-                    className: "max-h-[444px] space-y-1.5 overflow-y-auto rounded-2xl pr-2",
-                    children: e.map(e => {
-                        let s = t(e);
-                        return (0,
-                        n.jsx)(D.H, {
-                            children: (0,
-                            n.jsx)(P, {
-                                status: s,
-                                spellRun: e
-                            })
-                        }, e.id)
-                    }
-                    )
-                })]
-            })
-        }
-        function P(e) {
-            let {status: t, spellRun: s} = e
-              , r = null;
-            if ("completed" === t && (0,
-            F.m)(s))
-                r = (0,
-                n.jsx)(A.Z, {
-                    status: t,
-                    spellRun: s
-                });
-            else if ("completed" === t || (0,
-            F.m)(s))
-                throw Error("Unexpected spell run status");
-            else
-                r = (0,
-                n.jsx)(A.Z, {
-                    status: t,
-                    spellRun: s
-                });
-            return (0,
-            n.jsx)("li", {
-                children: r
-            })
-        }
-        var T = s(16565)
-          , U = s(30627)
-          , O = s(16673);
-        let G = {
-            common: "relative transition-colors w-12 h-12 rounded-full flex items-center justify-center focus:outline-none",
-            idle: "bg-white hover:bg-glif-stone-200 focus-visible:bg-glif-stone-200 text-glif-stone-700",
-            running: "bg-glif-lime-200 hover:bg-glif-lime-400 focus-visible:bg-glif-lime-400 text-glif-lime-700 text-sm",
-            complete: "bg-glif-lime-500 hover:bg-glif-lime-700 focus-visible:bg-glif-lime-700 text-white text-sm"
-        };
-        var B = () => {
-            let {currentlyRunningSpellRunsIds: e, recentSpellRuns: t} = (0,
-            S.Z)()
-              , [s,r] = (0,
-            T.useState)(!1);
-            (0,
-            T.useEffect)(function() {
-                e.length > 0 && r(!0)
-            }, [e.length]);
-            let a = "idle";
-            e.length > 0 ? a = "running" : s && t.length > 0 && (a = "complete");
-            let l = (0,
-            n.jsxs)(n.Fragment, {
-                children: ["idle" === a && (0,
-                n.jsx)(d.Z, {
-                    name: "clock"
-                }), "running" === a && (0,
-                n.jsxs)("span", {
-                    children: [(0,
-                    n.jsx)("span", {
-                        className: "absolute inset-0 flex items-center justify-center p-1.5",
-                        children: (0,
-                        n.jsx)(U.$, {})
-                    }), e.length, " ", (0,
-                    n.jsx)("span", {
-                        className: "sr-only",
-                        children: "Glifs running"
-                    })]
-                }), "complete" === a && (0,
-                n.jsx)(d.Z, {
-                    name: "tick"
-                })]
-            });
-            return (0,
-            n.jsx)("div", {
-                className: "",
-                children: (0,
-                n.jsx)(R.J, {
-                    className: "relative",
-                    children: e => {
-                        let {} = e;
-                        return (0,
-                        n.jsx)(n.Fragment, {
-                            children: (0,
-                            n.jsxs)(p.bv, {
-                                portal: !0,
-                                shift: !0,
-                                offset: 24,
-                                placement: "bottom",
-                                enter: "transition duration-100 ease-out",
-                                enterFrom: "transform scale-95 opacity-0",
-                                enterTo: "transform scale-100 opacity-100",
-                                leave: "transition duration-75 ease-out",
-                                leaveFrom: "transform scale-100 opacity-100",
-                                leaveTo: "transform scale-95 opacity-0",
-                                children: [(0,
-                                n.jsxs)(R.J.Button, {
-                                    className: b()(G.common, G[a]),
-                                    onClick: () => {
-                                        r(!1),
-                                        (0,
-                                        O.j)("RecentRunsList shown")
-                                    }
-                                    ,
-                                    children: [(0,
-                                    n.jsx)("span", {
-                                        className: "sr-only",
-                                        children: "View running Glifs"
-                                    }), l]
-                                }), (0,
-                                n.jsx)(R.J.Panel, {
-                                    children: (0,
-                                    n.jsx)(Z, {})
-                                })]
-                            })
-                        })
-                    }
-                })
-            })
-        }
-          , z = s(42651)
-          , M = s(23221)
-          , X = s(17469)
-          , H = s(30313)
-          , K = s(79408)
-          , V = s.n(K);
-        let Y = e => {
-            let[t,s] = (0,
-            T.useState)("")
-              , [n,r] = (0,
-            T.useState)([])
-              , [a,l] = (0,
-            T.useState)(!1)
-              , [i,o] = (0,
-            T.useState)(!0)
-              , [c,d] = (0,
-            T.useState)(0)
-              , [u,m] = (0,
-            T.useState)(!1)
-              , h = (0,
-            T.useRef)("")
-              , f = (0,
-            T.useRef)(0)
-              , x = (0,
-            T.useMemo)( () => V()(N.O.NEXT_PUBLIC_ALGOLIA_APP_ID, e), [e])
-              , p = (0,
-            T.useMemo)( () => x.initIndex(N.O.NEXT_PUBLIC_ALGOLIA_INDEX_NAME), [x])
-              , g = (0,
-            T.useCallback)(async function(e) {
-                let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
-                if (!a) {
-                    l(!0);
-                    try {
-                        let {hits: s, nbPages: n} = await p.search(e, {
-                            hitsPerPage: 20,
-                            page: t
-                        });
-                        f.current = n,
-                        r(n => {
-                            let r;
-                            if (0 === t || e !== h.current)
-                                r = s,
-                                h.current = e;
-                            else {
-                                let e = new Set(n.map(e => e.objectID))
-                                  , t = s.filter(t => !e.has(t.objectID));
-                                r = [...n, ...t]
-                            }
-                            return r
-                        }
-                        ),
-                        o(t < n - 1),
-                        d(t),
-                        m(!0)
-                    } catch (e) {
-                        console.error("Error searching", e)
-                    } finally {
-                        l(!1)
-                    }
-                }
-            }, [p, a])
-              , j = (0,
-            T.useCallback)( () => {
-                i && !a && c < f.current - 1 && g(t, c + 1)
-            }
-            , [i, a, g, t, c]);
-            return (0,
-            T.useEffect)( () => {
-                let e = setTimeout( () => {
-                    t && t !== h.current ? (d(0),
-                    g(t, 0)) : t || (r([]),
-                    m(!1),
-                    h.current = "")
-                }
-                , 300);
-                return () => clearTimeout(e)
-            }
-            , [t, g]),
-            {
-                query: t,
-                setQuery: s,
-                searchResults: n,
-                isSearching: a,
-                hasMore: i,
-                currentPage: c,
-                hasSearched: u,
-                performSearch: g,
-                loadMoreResults: j
-            }
-        }
-        ;
-        var W = e => {
-            let {query: t, setQuery: s, onFocus: r, onBlur: a, onKeyDown: l, placeholder: i="Search...", isMobile: o=!1} = e;
-            return (0,
-            n.jsxs)("div", {
-                className: o ? "grow" : "flex min-h-[48px] items-center justify-center rounded-full border-[3px] border-gray-950 bg-white py-1 shadow-input transition-all focus-within:shadow-input-focus",
-                children: [!o && (0,
-                n.jsx)(d.Z, {
-                    name: "search",
-                    className: "ml-3",
-                    size: 20
-                }), (0,
-                n.jsx)("input", {
-                    type: "text",
-                    value: t,
-                    onChange: e => s(e.target.value),
-                    onFocus: r,
-                    onBlur: a,
-                    onKeyDown: l,
-                    placeholder: i,
-                    className: o ? "focus:border-blue-500 w-full rounded-full border-2 border-gray-300 bg-white px-4 py-2 focus:outline-none" : "text-inherit m-0 w-full border-none bg-transparent px-3 py-0 placeholder-glif-stone-400 focus:border-none focus:outline-none focus:ring-0",
-                    autoFocus: o
-                })]
-            })
-        }
-          , J = s(75461)
-          , q = s.n(J)
-          , Q = s(95998)
-          , $ = s(19613);
-        let ee = e => {
-            let {value: t, highlight: s} = e
-              , r = (null == s ? void 0 : s.matchedWords) || [];
-            return 0 === r.length ? t : t.split(RegExp("(".concat(r.join("|"), ")"), "gi")).map( (e, t) => r.includes(e.toLowerCase()) ? (0,
-            n.jsx)("mark", {
-                children: e
-            }, t) : e)
-        }
-          , et = e => {
-            var t, s, r;
-            let {hit: a, isSelected: l} = e;
-            return (0,
-            n.jsxs)("div", {
-                className: "style-search-results relative rounded-[4px] p-1 ".concat(l ? "bg-brand-100" : "hover:bg-brand-100"),
-                children: [(0,
-                n.jsx)(o(), {
-                    className: "absolute left-0 top-0 z-10 h-full w-full",
-                    href: "/@".concat(a.user.name, "/glifs/").concat(a.objectID)
-                }), (0,
-                n.jsxs)("div", {
-                    className: "flex gap-x-3",
-                    children: [a.output && "IMAGE" == a.outputType ? (0,
-                    n.jsx)(q(), {
-                        src: a.output,
-                        alt: "",
-                        width: 70,
-                        height: 70,
-                        className: "h-16 h-auto w-16 shrink-0 rounded-[4px] bg-gray-100"
-                    }) : (0,
-                    n.jsx)("div", {
-                        className: "h-16 w-16 shrink-0 rounded-[4px] bg-gray-100"
-                    }), (0,
-                    n.jsxs)("div", {
-                        className: "flex flex-col truncate",
-                        children: [(0,
-                        n.jsx)("strong", {
-                            className: "truncate text-sm",
-                            children: ee({
-                                value: a.name,
-                                highlight: null === (t = a._highlightResult) || void 0 === t ? void 0 : t.name
-                            })
-                        }), (0,
-                        n.jsxs)("div", {
-                            className: "mb-1 flex items-center text-sm",
-                            children: [!!a.user.avatar && (0,
-                            n.jsx)(g.Z, {
-                                user: {
-                                    name: a.user.name,
-                                    id: a.user.id,
-                                    username: a.user.username,
-                                    image: a.user.avatar
-                                },
-                                size: "md",
-                                variant: "only-icon"
-                            }), (0,
-                            n.jsx)("span", {
-                                className: "ml-2",
-                                children: ee({
-                                    value: a.user.username,
-                                    highlight: null === (r = a._highlightResult) || void 0 === r ? void 0 : null === (s = r.user) || void 0 === s ? void 0 : s.username
-                                })
-                            })]
-                        }), (0,
-                        n.jsxs)("div", {
-                            className: "mt-1 flex items-center gap-x-2 text-xs text-gray-400",
-                            children: [(0,
-                            n.jsxs)("div", {
-                                className: "flex items-center gap-x-1 text-gray-400",
-                                children: [(0,
-                                n.jsx)(Q.l, {
-                                    isLiked: !1,
-                                    height: 18,
-                                    width: 18
-                                }), (0,
-                                $.sH)(a.likesCount)]
-                            }), (0,
-                            n.jsxs)("div", {
-                                className: "flex items-center text-gray-400 ",
-                                children: [(0,
-                                n.jsx)(d.Z, {
-                                    name: "play",
-                                    size: 18,
-                                    className: "text-gray-400"
-                                }), (0,
-                                $.sH)(a.spellRunCount)]
-                            })]
-                        })]
-                    })]
-                })]
-            })
-        }
-        ;
-        var es = e => {
-            let {searchResults: t, selectedIndex: s, isSearching: r, hasSearched: a, onResultClick: l, lastElementRef: i, isMobile: o, loadMoreResults: c} = e
-              , d = (0,
-            T.useRef)(null);
-            (0,
-            T.useEffect)( () => {
-                if (d.current && s >= 0) {
-                    let e = d.current.children[s];
-                    e && e.scrollIntoView({
-                        block: "nearest",
-                        behavior: "smooth"
-                    })
-                }
-            }
-            , [s]);
-            let u = (0,
-            T.useCallback)(e => {
-                e.length > 0 && e[0] && e[0].isIntersecting && c()
-            }
-            , [c]);
-            return (0,
-            T.useEffect)( () => {
-                let e = new IntersectionObserver(u,{
-                    threshold: .1
-                })
-                  , t = i.current;
-                return t && e.observe(t),
-                () => {
-                    t && e.unobserve(t)
-                }
-            }
-            , [i, u]),
-            (0,
-            n.jsxs)("div", {
-                ref: d,
-                className: "md:max-h-[360px] md:overflow-y-auto",
-                children: [t.map( (e, r) => (0,
-                n.jsx)("div", {
-                    ref: r === t.length - 1 ? i : null,
-                    onClick: l,
-                    children: (0,
-                    n.jsx)(et, {
-                        hit: e,
-                        isSelected: r === s
-                    })
-                }, e.objectID)), r && (0,
-                n.jsx)("div", {
-                    className: "p-4 text-center",
-                    children: "Loading..."
-                }), !r && !a && o && (0,
-                n.jsx)("div", {
-                    className: "p-4 text-center text-gray-500",
-                    children: "Type to search"
-                }), !r && !a && !o && (0,
-                n.jsx)("div", {
-                    className: "p-4 text-center",
-                    children: "Loading..."
-                }), !r && a && 0 === t.length && (0,
-                n.jsx)("div", {
-                    className: "p-4 text-center text-glif-error-800",
-                    children: "No results found"
-                })]
-            })
-        }
-        ;
-        let en = (0,
-        T.forwardRef)(function(e, t) {
-            let {closeModal: s, searchKey: r} = e
-              , {query: a, setQuery: l, searchResults: i, isSearching: c, hasMore: u, hasSearched: m, loadMoreResults: h} = Y(r)
-              , f = (0,
-            T.useRef)(null)
-              , x = (0,
-            T.useRef)(null)
-              , {update: p} = (0,
-            H.o)();
-            (0,
-            T.useEffect)( () => (p({
-                hideDefaultLauncher: !0
-            }),
-            x.current && (0,
-            X.disablePageScroll)(x.current),
-            () => {
-                p({
-                    hideDefaultLauncher: !1
-                }),
-                (0,
-                X.enablePageScroll)()
-            }
-            ), [p]);
-            let g = (0,
-            T.useCallback)( () => {
-                if (x.current) {
-                    let {scrollTop: e, scrollHeight: t, clientHeight: s} = x.current;
-                    t - e <= 1.5 * s && h()
-                }
-            }
-            , [h]);
-            return (0,
-            T.useEffect)( () => {
-                let e = x.current;
-                return e && e.addEventListener("scroll", g),
-                () => {
-                    e && e.removeEventListener("scroll", g)
-                }
-            }
-            , [g]),
-            (0,
-            n.jsxs)("div", {
-                className: "fixed inset-0 z-20 flex flex-col bg-white md:hidden",
-                ref: t,
-                children: [(0,
-                n.jsxs)("header", {
-                    className: "flex items-center gap-x-4 p-4",
-                    children: [(0,
-                    n.jsx)("button", {
-                        type: "button",
-                        onClick: s,
-                        children: (0,
-                        n.jsx)(d.Z, {
-                            name: "backArrow",
-                            size: 24
-                        })
-                    }), (0,
-                    n.jsx)(W, {
-                        query: a,
-                        setQuery: l,
-                        placeholder: "Search...",
-                        isMobile: !0
-                    })]
-                }), (0,
-                n.jsx)("div", {
-                    ref: x,
-                    className: "flex-grow overflow-y-auto",
-                    children: (0,
-                    n.jsx)(es, {
-                        searchResults: i,
-                        selectedIndex: -1,
-                        isSearching: c,
-                        hasSearched: m,
-                        hasMore: u,
-                        onResultClick: s,
-                        lastElementRef: f,
-                        isMobile: !0,
-                        loadMoreResults: h
-                    })
-                }), i.length > 0 && (0,
-                n.jsx)("div", {
-                    className: "border-t border-gray-200 p-2 text-center",
-                    children: (0,
-                    n.jsx)(o(), {
-                        href: "/explore?q=".concat(a),
-                        className: "text-sm text-gray-600 underline",
-                        onClick: s,
-                        children: "View More"
-                    })
-                })]
-            })
-        });
-        var er = s(93748)
-          , ea = e => {
-            let {onFocus: t, searchKey: s} = e
-              , {query: r, setQuery: a, searchResults: l, isSearching: i, hasMore: c, hasSearched: d, loadMoreResults: u} = Y(s)
-              , [m,h] = (0,
-            T.useState)(!1)
-              , [f,x] = (0,
-            T.useState)(-1)
-              , p = (0,
-            T.useRef)(null)
-              , g = (0,
-            T.useRef)(null)
-              , j = (0,
-            T.useRef)(null)
-              , b = (0,
-            er.useRouter)();
-            return (0,
-            n.jsxs)("div", {
-                className: "relative hidden md:block",
-                children: [(0,
-                n.jsx)(W, {
-                    query: r,
-                    setQuery: a,
-                    onFocus: () => {
-                        h(!0),
-                        t()
-                    }
-                    ,
-                    onBlur: e => {
-                        p.current && !p.current.contains(e.relatedTarget) && h(!1)
-                    }
-                    ,
-                    onKeyDown: e => {
-                        var t, s;
-                        if ("ArrowDown" === e.key)
-                            e.preventDefault(),
-                            x(e => e < l.length - 1 ? e + 1 : e);
-                        else if ("ArrowUp" === e.key)
-                            e.preventDefault(),
-                            x(e => e > 0 ? e - 1 : -1),
-                            0 === f && (null === (t = g.current) || void 0 === t || t.focus());
-                        else if ("Enter" === e.key && (e.preventDefault(),
-                        f >= 0)) {
-                            let e = l[f];
-                            e && (b.push((0,
-                            v.xN)({
-                                id: e.objectID,
-                                user: {
-                                    username: e.user.name
-                                }
-                            })),
-                            h(!1),
-                            null === (s = g.current) || void 0 === s || s.blur())
-                        }
-                    }
-                }), (0,
-                n.jsx)(z.u, {
-                    show: m && r.length > 0,
-                    enter: "transition ease-out duration-200",
-                    enterFrom: "opacity-0 translate-y-1",
-                    enterTo: "opacity-100 translate-y-0",
-                    leave: "transition ease-in duration-150",
-                    leaveFrom: "opacity-100 translate-y-0",
-                    leaveTo: "opacity-0 translate-y-1",
-                    children: (0,
-                    n.jsxs)("div", {
-                        ref: p,
-                        className: "absolute left-0 right-auto top-[calc(100%+1rem)] w-[350px] rounded-xl border-[6px] border-gray-300 border-white bg-white shadow-dropdown",
-                        children: [(0,
-                        n.jsx)(es, {
-                            searchResults: l,
-                            selectedIndex: f,
-                            isSearching: i,
-                            hasSearched: d,
-                            hasMore: c,
-                            onResultClick: () => h(!1),
-                            lastElementRef: j,
-                            isMobile: !1,
-                            loadMoreResults: u
-                        }), l.length > 0 && (0,
-                        n.jsx)("div", {
-                            className: "border-t border-gray-200 p-2 text-center",
-                            children: (0,
-                            n.jsx)(o(), {
-                                href: "/explore?q=".concat(r),
-                                className: "text-sm text-gray-600 underline",
-                                onClick: () => h(!1),
-                                children: "View More"
-                            })
-                        })]
-                    })
-                })]
-            })
-        }
-          , el = s(37056)
-          , ei = s(84)
-          , eo = s(66466)
-          , ec = s(17963)
-          , ed = s(50786)
-          , eu = s(13342);
-        function em() {
-            let {setTheme: e} = (0,
-            ed.F)();
-            return (0,
-            n.jsxs)(eu.h_, {
-                children: [(0,
-                n.jsx)(eu.$F, {
-                    asChild: !0,
-                    children: (0,
-                    n.jsxs)(el.Z, {
-                        variant: "outline",
-                        size: "icon",
-                        children: [(0,
-                        n.jsx)(eo.Z, {
-                            className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-                        }), (0,
-                        n.jsx)(ec.Z, {
-                            className: "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-                        }), (0,
-                        n.jsx)("span", {
-                            className: "sr-only",
-                            children: "Toggle theme"
-                        })]
-                    })
-                }), (0,
-                n.jsxs)(eu.AW, {
-                    align: "end",
-                    children: [(0,
-                    n.jsx)(eu.Xi, {
-                        onClick: () => e("light"),
-                        children: "Light"
-                    }), (0,
-                    n.jsx)(eu.Xi, {
-                        onClick: () => e("dark"),
-                        children: "Dark"
-                    }), (0,
-                    n.jsx)(eu.Xi, {
-                        onClick: () => e("system"),
-                        children: "System"
-                    })]
-                })]
-            })
-        }
-        function eh() {
-            let {data: e, status: t} = (0,
-            l.useSession)()
-              , [s,r] = (0,
-            T.useState)(!1)
-              , [a,i] = (0,
-            T.useState)("")
-              , [o,c] = (0,
-            T.useState)(!1)
-              , u = y.h.user.getAlgoliaSearchKeyForUser.useMutation({
-                onSuccess(e) {
-                    i(e)
-                }
-            })
-              , m = (0,
-            T.useCallback)( () => {
-                o || (u.mutate(),
-                c(!0))
-            }
-            , [u, o]);
-            return (0,
-            T.useEffect)( () => {
-                N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && i(N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY || "")
-            }
-            , []),
-            (0,
-            T.useEffect)( () => {
-                "authenticated" === t && (null == e ? void 0 : e.user) && s ? m() : N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && "" == a && i(N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY || "")
-            }
-            , [t, e, s, m, a]),
-            (0,
-            n.jsxs)(n.Fragment, {
-                children: [(0,
-                n.jsx)(z.u, {
-                    appear: !0,
-                    show: s,
-                    as: T.Fragment,
-                    children: (0,
-                    n.jsx)(z.u.Child, {
-                        as: T.Fragment,
-                        enter: "ease-out duration-300",
-                        enterFrom: "opacity-0",
-                        enterTo: "opacity-100",
-                        leave: "ease-in duration-200",
-                        leaveFrom: "opacity-100",
-                        leaveTo: "opacity-0",
-                        children: N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && a && (0,
-                        n.jsx)(en, {
-                            closeModal: () => r(!1),
-                            searchKey: a
-                        })
-                    })
-                }), (0,
-                n.jsxs)("nav", {
-                    className: "flex items-center justify-between",
-                    children: [(0,
-                    n.jsxs)("div", {
-                        className: "flex items-center gap-x-4",
-                        children: [(0,
-                        n.jsx)(M.Z, {}), (0,
-                        n.jsx)("button", {
-                            type: "button",
-                            onClick: () => r(!0),
-                            className: "block md:hidden",
-                            children: (0,
-                            n.jsx)(d.Z, {
-                                name: "search",
-                                size: 24
-                            })
-                        }), N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && a && (0,
-                        n.jsx)(ea, {
-                            searchKey: a,
-                            onFocus: () => {
-                                "authenticated" == t && e.user && m()
-                            }
-                        }), (0,
-                        n.jsx)("div", {
-                            className: "hidden md:block",
-                            children: (0,
-                            n.jsx)(w.Z, {
-                                staff: !0,
-                                miniMode: !0,
-                                children: (0,
-                                n.jsx)(em, {})
-                            })
-                        })]
-                    }), "loading" !== t && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)(ef, {}), "authenticated" === t && e.user ? (0,
-                        n.jsxs)("div", {
-                            className: "flex flex-row justify-end space-x-1",
-                            children: [(0,
-                            n.jsx)(B, {}), (0,
-                            n.jsx)(C, {
-                                user: e.user,
-                                onSignOut: l.signOut
-                            })]
-                        }) : (0,
-                        n.jsx)("div", {
-                            className: "flex flex-row justify-end space-x-1",
-                            children: (0,
-                            n.jsx)(el.Z, {
-                                onClick: () => (0,
-                                l.signIn)(),
-                                children: "Sign In"
-                            })
-                        })]
-                    })]
-                })]
-            })
-        }
-        function ef() {
-            let {create: e, isLoading: t, element: s} = (0,
-            ei.Z)();
-            return (0,
-            n.jsxs)("div", {
-                className: "flex gap-3 md:gap-[44px]",
-                children: [s, (0,
-                n.jsx)(f, {
-                    layoutId: "NavLinks",
-                    iconName: "glifDot",
-                    href: "/explore",
-                    children: "Glifs"
-                }), (0,
-                n.jsx)(f, {
-                    layoutId: "NavLinks",
-                    iconName: "glifDot",
-                    href: "/feed",
-                    children: "Feed"
-                }), (0,
-                n.jsx)(o(), {
-                    href: "/glifs/new",
-                    onClick: s => {
-                        t || (s.preventDefault(),
-                        e())
-                    }
-                    ,
-                    children: (0,
-                    n.jsx)("button", {
-                        type: "button",
-                        disabled: t,
-                        children: (0,
-                        n.jsx)(h, {
-                            layoutId: "NavLinks",
-                            iconName: "glifDot",
-                            active: !1,
-                            children: "Build"
-                        })
-                    })
-                })]
-            })
-        }
-        var ex = s(63629)
-          , ep = s.n(ex);
-        function eg(e) {
-            let {message: t, status: s="info", dismissable: r=!1, bannerId: l} = e
-              , [i,o] = (0,
-            a._)("site-banner.".concat(l), "")
-              , [u,m] = (0,
-            T.useState)(!1);
-            return (0,
-            T.useEffect)( () => {
-                let e = "dismissed" === i;
-                "persist" === r ? m(!e) : m(!0)
-            }
-            , [i, r]),
-            (0,
-            n.jsxs)(c.E.div, {
-                className: b()("group flex items-center justify-center overflow-hidden", {
-                    info: "bg-glif-lime-200 text-glif-lime-900",
-                    warn: "bg-glif-lime-200 text-glif-lime-900",
-                    error: "bg-glif-error-200 text-glif-error-900"
-                }[s], {
-                    hidden: !u
-                }),
-                initial: {
-                    height: 0
-                },
-                animate: u ? {
-                    height: "auto"
-                } : {
-                    height: 0
-                },
-                children: [(0,
-                n.jsx)("span", {
-                    className: "px-s2 py-s1 text-sm md:text-base",
-                    children: t
-                }), r && (0,
-                n.jsx)("button", {
-                    type: "button",
-                    className: "inline-block p-s1 underline",
-                    onClick: () => {
-                        m(!1),
-                        "persist" === r && null != l && o("dismissed")
-                    }
-                    ,
-                    children: (0,
-                    n.jsx)(d.Z, {
-                        name: "close"
-                    })
-                })]
-            })
-        }
-        function ej(e) {
-            let {overrideMessage: t} = e
-              , {data: s, isLoading: r} = y.h.admin.currentSiteBanner.useQuery(void 0, {
-                enabled: !t
-            })
-              , a = function(e) {
-                switch (e) {
-                case "openai":
-                    return {
-                        message: (0,
-                        n.jsxs)(n.Fragment, {
-                            children: ["⚠︎ OpenAI is", " ", (0,
-                            n.jsx)("a", {
-                                href: "https://status.openai.com/",
-                                target: "_blank",
-                                className: "underline",
-                                children: "partially offline partially offline"
-                            }), " ", "and some Glifs may not work as expected"]
-                        })
-                    };
-                case "dalle-disabled":
-                    return {
-                        message: (0,
-                        n.jsx)(n.Fragment, {
-                            children: "⚠︎ DALLE image generation is temporarily disabled. Some Glifs may not work as expected"
-                        })
-                    };
-                case "general":
-                    return {
-                        message: (0,
-                        n.jsx)(n.Fragment, {
-                            children: "⚠︎ We are experiencing site-wide issues and working on a fix"
-                        })
-                    };
-                case "load":
-                    return {
-                        message: (0,
-                        n.jsx)(n.Fragment, {
-                            children: "⚠︎ We are experiencing heavy load, runs might fail"
-                        })
-                    };
-                default:
-                    return {
-                        message: null
-                    }
-                }
-            }(s)
-              , l = t || (null == a ? void 0 : a.message);
-            return (!r || t) && l ? (0,
-            n.jsx)(eg, {
-                status: "error",
-                message: l,
-                dismissable: !1
-            }) : null
-        }
-        function eb() {
-            let e = (0,
-            er.useRouter)()
-              , {data: t, isFetched: s} = y.h.meta.version.useQuery()
-              , r = N.O.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
-              , a = s && (null == t ? void 0 : t.version) !== r;
-            return a ? (0,
-            n.jsxs)(c.E.div, {
-                className: "group flex w-screen items-center justify-center bg-glif-lime-200 text-glif-lime-900",
-                animate: a ? "open" : "closed",
-                variants: {
-                    open: {
-                        height: "auto"
-                    },
-                    closed: {
-                        height: 0
-                    }
-                },
-                children: [(0,
-                n.jsx)("span", {
-                    className: "py-s1",
-                    children: "A new version of Glif is available"
-                }), (0,
-                n.jsx)("button", {
-                    type: "button",
-                    className: "inline-block p-s1 underline",
-                    onClick: () => e.refresh(),
-                    children: "Refresh"
-                })]
-            }) : null
-        }
-        var ev = s(6060);
-        function ey() {
-            return (0,
-            n.jsx)(eg, {
-                dismissable: "persist",
-                bannerId: "glif-creator-pass-1",
-                message: (0,
-                n.jsx)(n.Fragment, {
-                    children: (0,
-                    n.jsxs)("a", {
-                        target: "_blank",
-                        href: ev.a,
-                        children: ["Daily runs are limited to 20 per day due to high demand. Get more runs with the", " ", (0,
-                        n.jsx)("span", {
-                            className: "font-semibold underline",
-                            children: "free Creator Pass"
-                        })]
-                    })
-                }),
-                status: "info"
-            })
-        }
-        function eN() {
-            let e = (0,
-            n.jsx)(ej, {})
-              , t = (0,
-            n.jsx)(eb, {})
-              , s = (0,
-            n.jsx)(ey, {});
-            return (0,
-            n.jsxs)(n.Fragment, {
-                children: [e, t, s]
-            })
-        }
-        function ew() {
-            return (0,
-            n.jsx)("div", {
-                className: "mt-10 bg-glif-stone-900 text-glif-stone-300 md:mt-20",
-                children: (0,
-                n.jsxs)("footer", {
-                    className: "container grid grid-cols-[20%,1fr,20%] items-center gap-x-4 gap-y-8 overflow-auto px-4 pb-8 pt-8 md:pb-10 md:pt-10",
-                    children: [(0,
-                    n.jsx)("img", {
-                        src: "/logos/logo-white.svg",
-                        alt: "Glif",
-                        className: "h-[48px]"
-                    }), (0,
-                    n.jsxs)("ul", {
-                        className: "col-start-1 flex flex-col items-start justify-center gap-4 whitespace-nowrap text-left md:col-start-2 md:flex-row md:items-center",
-                        children: [(0,
-                        n.jsx)(e_, {
-                            href: "/docs",
-                            children: "Guide/Docs"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "/api",
-                            children: "API"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "https://chromewebstore.google.com/detail/glif-remix-the-web-with-a/abfbooehhdjcgmbmcpkcebcmpfnlingo",
-                            target: "_blank",
-                            children: "Chrome Extension"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "/contact",
-                            children: "Contact Us"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "mailto:jobs@glif.xyz?subject=Glif%20looks%20cool%2C%20would%20love%20to%20chat&body=Hi%20there%2C",
-                            rel: "noopener",
-                            children: "Jobs"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "/legal",
-                            children: "Legal"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "/privacy",
-                            children: "Privacy Policy"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "/security",
-                            children: "Security"
-                        }), (0,
-                        n.jsx)(e_, {
-                            href: "https://twitter.com/heyglif",
-                            target: "_blank",
-                            children: "Twitter"
-                        })]
-                    }), (0,
-                    n.jsx)("div", {
-                        className: "col-start-3 row-start-1 flex flex-col items-end justify-start",
-                        children: (0,
-                        n.jsx)(o(), {
-                            href: N.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,
-                            target: "_blank",
-                            children: (0,
-                            n.jsx)(el.Z, {
-                                iconLeft: "discord",
-                                children: "Join Discord"
-                            })
-                        })
-                    }), (0,
-                    n.jsx)("p", {
-                        className: "col-span-3 text-sm text-white/50",
-                        children: "\xa9 2023 Spellcasters, Inc."
-                    })]
-                })
-            })
-        }
-        function e_(e) {
-            return (0,
-            n.jsx)("li", {
-                children: (0,
-                n.jsx)("a", {
-                    ...e,
-                    className: "font-normal hover:text-glif-stone-100"
-                })
-            })
-        }
-        function ek(e) {
-            var t;
-            let {children: s, container: l=!0, title: i, openGraph: o, nav: c="inline", backgroundColor: d="bg-background", showFooter: u=!0} = e
-              , [m,{height: h}] = (0,
-            a.h4)()
-              , f = null !== (t = null != i ? i : null == o ? void 0 : o.title) && void 0 !== t ? t : "glif";
-            return (0,
-            n.jsxs)(n.Fragment, {
-                children: [(0,
-                n.jsxs)(ep(), {
-                    children: [(0,
-                    n.jsx)("title", {
-                        children: null != i ? i : "glif"
-                    }), (0,
-                    n.jsx)("meta", {
-                        name: "robots",
-                        content: "max-image-preview:large"
-                    }), (0,
-                    n.jsx)("meta", {
-                        name: "viewport",
-                        content: "width=device-width, initial-scale=1, maximum-scale=1"
-                    }), o && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)("meta", {
-                            property: "og:type",
-                            content: "website"
-                        }), (0,
-                        n.jsx)("meta", {
-                            property: "og:site_name",
-                            content: "glif"
-                        }), (0,
-                        n.jsx)("meta", {
-                            property: "og:title",
-                            content: f
-                        }), (0,
-                        n.jsx)("meta", {
-                            property: "og:url",
-                            content: o.url
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:card",
-                            content: "summary_large_image"
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:title",
-                            content: f
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:url",
-                            content: o.url
-                        }), (0,
-                        n.jsx)("link", {
-                            rel: "canonical",
-                            href: o.url
-                        })]
-                    }), (null == o ? void 0 : o.image) && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)("meta", {
-                            property: "og:image",
-                            content: o.image
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:image",
-                            content: o.image
-                        })]
-                    }), (null == o ? void 0 : o.video) && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)("meta", {
-                            property: "og:video",
-                            content: o.video
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:player",
-                            content: o.video
-                        })]
-                    }), (null == o ? void 0 : o.audio) && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)("meta", {
-                            property: "og:audio",
-                            content: o.audio
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:player",
-                            content: o.audio
-                        })]
-                    }), (null == o ? void 0 : o.description) && (0,
-                    n.jsxs)(n.Fragment, {
-                        children: [(0,
-                        n.jsx)("meta", {
-                            property: "og:description",
-                            content: o.description
-                        }), (0,
-                        n.jsx)("meta", {
-                            name: "twitter:description",
-                            content: o.description
-                        })]
-                    })]
-                }), (0,
-                n.jsx)(r.x7, {
-                    position: "top-right",
-                    containerStyle: {
-                        top: "".concat(h, "px")
-                    }
-                }), (0,
-                n.jsxs)("div", {
-                    className: "grid min-h-[100vh] grid-rows-[max-content,1fr,max-content] ".concat(d),
-                    style: {
-                        "--glif-nav-h": "".concat(h, "px")
-                    },
-                    children: [(0,
-                    n.jsxs)("div", {
-                        className: b()("z-glif-nav", "sticky" === c ? "sticky top-0" : ""),
-                        ref: m,
-                        children: [(0,
-                        n.jsx)(eN, {}), (0,
-                        n.jsx)("div", {
-                            className: "bg-[linear-gradient(180deg,_#FFF_10.94%,_rgba(255,255,255,0.7)_70%,_rgba(255,255,255,0.0)_100%)]",
-                            children: (0,
-                            n.jsx)("div", {
-                                className: "container py-s2 pr-s1 md:mx-auto md:px-0",
-                                children: "hidden" !== c && (0,
-                                n.jsx)(eh, {})
-                            })
-                        })]
-                    }), (0,
-                    n.jsx)("main", {
-                        className: b()("relative", l ? "md:px-auto container px-2" : ""),
-                        children: s
-                    }), u && (0,
-                    n.jsx)(ew, {})]
-                })]
-            })
-        }
-        function eC(e) {
-            let {children: t, container: s=!0, title: a, banner: l} = e;
-            return (0,
-            n.jsxs)(n.Fragment, {
-                children: [(0,
-                n.jsx)(ep(), {
-                    children: (0,
-                    n.jsx)("title", {
-                        children: null != a ? a : "glif"
-                    })
-                }), (0,
-                n.jsx)(r.x7, {
-                    position: "top-right"
-                }), l, (0,
-                n.jsxs)("div", {
-                    className: "grid min-h-[100vh] grid-rows-[max-content,1fr,1fr]",
-                    children: [(0,
-                    n.jsx)("div", {
-                        className: "sticky top-0 z-glif-nav bg-glif-global-background",
-                        children: (0,
-                        n.jsx)("div", {
-                            className: "container mx-s1 my-s2 sm:mx-auto",
-                            children: (0,
-                            n.jsx)("div", {
-                                children: (0,
-                                n.jsx)(M.Z, {})
-                            })
-                        })
-                    }), (0,
-                    n.jsx)("main", {
-                        className: s ? "container" : "",
-                        children: t
-                    })]
-                })]
-            })
-        }
-        function eI(e) {
-            let {title: t, banner: s} = e;
-            return (0,
-            n.jsxs)(n.Fragment, {
-                children: [(0,
-                n.jsx)(ep(), {
-                    children: (0,
-                    n.jsx)("title", {
-                        children: null != t ? t : "glif"
-                    })
-                }), (0,
-                n.jsx)(r.x7, {
-                    position: "top-right"
-                }), s]
-            })
-        }
-    },
-    23221: function(e, t, s) {
-        s.d(t, {
-            Z: function() {
-                return o
-            }
-        });
-        var n = s(33741)
-          , r = s(64794)
-          , a = s.n(r)
-          , l = s(75461)
-          , i = s.n(l);
-        function o() {
-            return (0,
-            n.jsxs)(a(), {
-                href: "/glifs",
-                className: "focus:outline-none",
-                children: [(0,
-                n.jsx)(i(), {
-                    src: "/logos/logo-black-alpha.svg",
-                    width: 82,
-                    height: 48,
-                    alt: "GLIF",
-                    className: "hidden max-w-md md:block",
-                    priority: !0
-                }), (0,
-                n.jsx)("div", {
-                    className: "flex h-12 w-12 items-center justify-center md:hidden",
-                    children: (0,
-                    n.jsx)(i(), {
-                        src: "/logos/g-symbol-black-alpha.svg",
-                        width: 48,
-                        height: 48,
-                        alt: "GLIF",
-                        className: "h-12 w-12"
-                    })
-                })]
-            })
-        }
-    },
-    84: function(e, t, s) {
-        s.d(t, {
-            Z: function() {
-                return d
-            }
-        });
-        var n = s(93748)
-          , r = s(21341)
-          , a = s(6917)
-          , l = s(49736)
-          , i = s(96089)
-          , o = s(17539)
-          , c = s(21309);
-        function d() {
-            let e = (0,
-            n.useRouter)()
-              , {isLoading: t, setIsLoading: s, element: d} = (0,
-            a.Z)({
-                style: "overlay"
-            })
-              , {data: u} = (0,
-            r.useSession)()
-              , m = i.h.spell.createWithDraftVersion.useMutation({
-                onSuccess(t) {
-                    e.push((0,
-                    l.ss)(t))
-                }
-            });
-            return {
-                create: async () => {
-                    if (!u) {
-                        (0,
-                        c.ZP)("You need to sign in to make a glif! Redirecting you...", {
-                            icon: "\uD83E\uDD2D"
-                        }),
-                        setTimeout( () => {
-                            (0,
-                            r.signIn)(void 0, {
-                                callbackUrl: "/glifs/new"
-                            })
-                        }
-                        , 1e3);
-                        return
-                    }
-                    s(!0);
-                    try {
-                        await m.mutateAsync()
-                    } catch (e) {
-                        (0,
-                        o.f)(e)
-                    } finally {
-                        s(!1)
-                    }
-                }
-                ,
-                isLoading: t,
-                element: d
-            }
-        }
-    },
-    73485: function(e, t, s) {
-        s.d(t, {
-            H: function() {
-                return a
-            }
-        });
-        var n = s(33741)
-          , r = s(16104);
-        function a(e) {
-            let {children: t} = e;
-            return (0,
-            n.jsx)(r.SV, {
-                children: t
-            })
-        }
-    },
-    13342: function(e, t, s) {
-        s.d(t, {
-            $F: function() {
-                return u
-            },
-            AW: function() {
-                return m
-            },
-            VD: function() {
-                return x
-            },
-            Xi: function() {
-                return h
-            },
-            bO: function() {
-                return f
-            },
-            h_: function() {
-                return d
-            }
-        });
-        var n = s(33741)
-          , r = s(16565)
-          , a = s(2087)
-          , l = s(21070)
-          , i = s(82377)
-          , o = s(21547)
-          , c = s(51095);
-        let d = a.fC
-          , u = a.xz;
-        a.ZA,
-        a.Uv,
-        a.Tr,
-        a.Ee,
-        r.forwardRef( (e, t) => {
-            let {className: s, inset: r, children: i, ...o} = e;
-            return (0,
-            n.jsxs)(a.fF, {
-                ref: t,
-                className: (0,
-                c.cn)("flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent", r && "pl-8", s),
-                ...o,
-                children: [i, (0,
-                n.jsx)(l.Z, {
-                    className: "ml-auto h-4 w-4"
-                })]
-            })
-        }
-        ).displayName = a.fF.displayName,
-        r.forwardRef( (e, t) => {
-            let {className: s, ...r} = e;
-            return (0,
-            n.jsx)(a.tu, {
-                ref: t,
-                className: (0,
-                c.cn)("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", s),
-                ...r
-            })
-        }
-        ).displayName = a.tu.displayName;
-        let m = r.forwardRef( (e, t) => {
-            let {className: s, sideOffset: r=4, ...l} = e;
-            return (0,
-            n.jsx)(a.Uv, {
-                children: (0,
-                n.jsx)(a.VY, {
-                    ref: t,
-                    sideOffset: r,
-                    className: (0,
-                    c.cn)("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", s),
-                    ...l
-                })
-            })
-        }
-        );
-        m.displayName = a.VY.displayName;
-        let h = r.forwardRef( (e, t) => {
-            let {className: s, inset: r, ...l} = e;
-            return (0,
-            n.jsx)(a.ck, {
-                ref: t,
-                className: (0,
-                c.cn)("relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", r && "pl-8", s),
-                ...l
-            })
-        }
-        );
-        h.displayName = a.ck.displayName;
-        let f = r.forwardRef( (e, t) => {
-            let {className: s, children: r, checked: l, ...o} = e;
-            return (0,
-            n.jsxs)(a.oC, {
-                ref: t,
-                className: (0,
-                c.cn)("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", s),
-                checked: l,
-                ...o,
-                children: [(0,
-                n.jsx)("span", {
-                    className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
-                    children: (0,
-                    n.jsx)(a.wU, {
-                        children: (0,
-                        n.jsx)(i.Z, {
-                            className: "h-4 w-4"
-                        })
-                    })
-                }), r]
-            })
-        }
-        );
-        f.displayName = a.oC.displayName,
-        r.forwardRef( (e, t) => {
-            let {className: s, children: r, ...l} = e;
-            return (0,
-            n.jsxs)(a.Rk, {
-                ref: t,
-                className: (0,
-                c.cn)("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", s),
-                ...l,
-                children: [(0,
-                n.jsx)("span", {
-                    className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
-                    children: (0,
-                    n.jsx)(a.wU, {
-                        children: (0,
-                        n.jsx)(o.Z, {
-                            className: "h-2 w-2 fill-current"
-                        })
-                    })
-                }), r]
-            })
-        }
-        ).displayName = a.Rk.displayName,
-        r.forwardRef( (e, t) => {
-            let {className: s, inset: r, ...l} = e;
-            return (0,
-            n.jsx)(a.__, {
-                ref: t,
-                className: (0,
-                c.cn)("px-2 py-1.5 text-sm font-semibold", r && "pl-8", s),
-                ...l
-            })
-        }
-        ).displayName = a.__.displayName;
-        let x = r.forwardRef( (e, t) => {
-            let {className: s, ...r} = e;
-            return (0,
-            n.jsx)(a.Z0, {
-                ref: t,
-                className: (0,
-                c.cn)("-mx-1 my-1 h-px bg-muted", s),
-                ...r
-            })
-        }
-        );
-        x.displayName = a.Z0.displayName
-    },
-    50943: function(e, t, s) {
-        function n(e) {
-            return !!e.completedAt && !!e.output && !!e.outputType
-        }
-        s.d(t, {
-            m: function() {
-                return n
-            },
-            w: function() {
-                return r
-            }
-        });
-        let r = s(87689).z.enum(["openai", "dalle-disabled", "general", "load"])
+  97089: function(e, t, s) {
+    s.d(t, {
+      Z: function() {
+        return a
+      }
+    });
+    var n = s(16565)
+      , r = s(8219);
+    function a() {
+      return (0,
+        n.useContext)(r.J)
     }
+  },
+  44020: function(e, t, s) {
+    s.d(t, {
+      oB: function() {
+        return eI
+      },
+      XP: function() {
+        return eC
+      },
+      ZP: function() {
+        return ek
+      }
+    });
+    var n = s(33741)
+      , r = s(21309)
+      , a = s(68164)
+      , l = s(21341)
+      , i = s(64794)
+      , o = s.n(i)
+      , c = s(66724)
+      , d = s(38980)
+      , u = s(77077);
+    let m = (0,
+      c.E)(d.Z);
+    function h(e) {
+      let {active: t, layoutId: s, children: r, iconName: a} = e;
+      return (0,
+        n.jsxs)("div", {
+        className: "flex items-center gap-1 text-lg font-bold hover:text-brand-600 active:text-brand-600",
+        children: [a && t ? (0,
+          n.jsx)(m, {
+          layoutId: s,
+          name: a,
+          size: 8
+        }) : (0,
+          n.jsx)("span", {
+          className: "block h-2 w-2"
+        }), r]
+      })
+    }
+    function f(e) {
+      let t = (0,
+        u.usePathname)()
+        , s = e.href === t
+        , r = e.activeHref === e.href
+        , a = null == e.activeHref;
+      return (0,
+        n.jsx)(o(), {
+        href: e.href,
+        children: (0,
+          n.jsx)(h, {
+          ...e,
+          active: s && a || r
+        })
+      })
+    }
+    var x = s(98050)
+      , p = s(17728)
+      , g = s(41709)
+      , j = s(84875)
+      , b = s.n(j)
+      , v = s(49736)
+      , y = s(96089)
+      , N = s(79109)
+      , w = s(46200);
+    let _ = "transition-colors block mx-1.5 p-4 text-left outline-none hover:bg-brand-100 focus:bg-brand-100 rounded-md"
+      , k = "text-black";
+    function C(e) {
+      let {user: t, onSignOut: s} = e
+        , {data: r, refetch: a} = y.h.user.rateLimitInfo.useQuery(void 0);
+      return (0,
+        n.jsx)("div", {
+        className: "relative",
+        children: (0,
+          n.jsx)(x.v, {
+          children: (0,
+            n.jsxs)(p.bv, {
+            portal: !0,
+            shift: !0,
+            offset: -50,
+            placement: "bottom-end",
+            enter: "transition duration-100 ease-out",
+            enterFrom: "transform scale-95 opacity-0",
+            enterTo: "transform scale-100 opacity-100",
+            leave: "transition duration-75 ease-out",
+            leaveFrom: "transform scale-100 opacity-100",
+            leaveTo: "transform scale-95 opacity-0",
+            onShow: a,
+            children: [(0,
+              n.jsxs)(x.v.Button, {
+              className: () => b()("h-12 rounded-full p-1 outline-none", " bg-white text-glif-stone-700 "),
+              children: [(0,
+                n.jsx)("span", {
+                className: "sr-only",
+                children: "Open user menu"
+              }), (0,
+                n.jsx)(g.Z, {
+                user: t,
+                size: "lg",
+                linked: !1,
+                variant: "only-icon"
+              })]
+            }), (0,
+              n.jsxs)(x.v.Items, {
+              className: "w-max-content flex min-w-[240px] max-w-[340px] flex-col rounded-xl bg-white py-1 shadow-dropdown outline-none",
+              children: [(0,
+                n.jsx)(x.v.Item, {
+                children: (0,
+                  n.jsxs)("div", {
+                  className: "flex items-center px-4 py-3",
+                  children: [(0,
+                    n.jsx)("div", {
+                    className: "mr-auto line-clamp-1 text-lg font-bold",
+                    children: t.username
+                  }), (0,
+                    n.jsx)(g.Z, {
+                    user: t,
+                    variant: "only-icon",
+                    linked: !1,
+                    size: "lg"
+                  })]
+                })
+              }), (0,
+                n.jsx)(I, {}), (0,
+                n.jsx)(L, {
+                href: (0,
+                  v.D2)(t),
+                children: "Your Glifs"
+              }), (0,
+                n.jsx)(L, {
+                href: (0,
+                  v.cp)(t),
+                children: "Your Likes"
+              }), (0,
+                n.jsx)(L, {
+                href: "/settings",
+                children: "Settings"
+              }), (0,
+                n.jsx)(w.Z, {
+                staff: !0,
+                children: (0,
+                  n.jsx)(L, {
+                  href: "/admin",
+                  children: "Admin"
+                })
+              }), r && (0,
+                n.jsxs)(L, {
+                target: "_blank",
+                href: "https://docs.glif.app/getting-started/faqs",
+                className: "flex items-center justify-between",
+                children: [(0,
+                  n.jsxs)("span", {
+                  className: "flex items-center gap-x-1",
+                  children: [r.limitLabel.endsWith("h") ? "Hourly" : "Daily", " Rate Limit", (0,
+                    n.jsx)(d.Z, {
+                    name: "infoCircle"
+                  })]
+                }), (0,
+                  n.jsx)("span", {
+                  className: " text-base font-normal",
+                  children: r.remaining
+                })]
+              }), (0,
+                n.jsx)(I, {}), (0,
+                n.jsx)(L, {
+                href: N.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,
+                children: "Discord Community"
+              }), (0,
+                n.jsx)(L, {
+                href: "/docs",
+                children: "Guides"
+              }), (0,
+                n.jsx)(L, {
+                href: "/api",
+                children: "API"
+              }), (0,
+                n.jsx)(L, {
+                href: "https://chromewebstore.google.com/detail/glif-remix-the-web-with-a/abfbooehhdjcgmbmcpkcebcmpfnlingo",
+                children: "Chrome Extension"
+              }), (0,
+                n.jsx)(L, {
+                href: "/contact",
+                children: "Contact Us"
+              }), (0,
+                n.jsx)(I, {}), (0,
+                n.jsx)(E, {
+                onClick: s,
+                children: "Logout"
+              })]
+            })]
+          })
+        })
+      })
+    }
+    function I() {
+      return (0,
+        n.jsx)("div", {
+        className: "py-1",
+        children: (0,
+          n.jsx)("hr", {})
+      })
+    }
+    function E(e) {
+      let {className: t, onClick: s, children: r} = e;
+      return (0,
+        n.jsx)(x.v.Item, {
+        children: (0,
+          n.jsx)("button", {
+          type: "button",
+          className: b()(_, k, t),
+          onClick: s,
+          children: r
+        })
+      })
+    }
+    function L(e) {
+      let {className: t, href: s, children: r, target: a} = e;
+      return (0,
+        n.jsx)(x.v.Item, {
+        children: (0,
+          n.jsx)(o(), {
+          target: a,
+          className: b()(_, k, t),
+          href: s,
+          children: r
+        })
+      })
+    }
+    var R = s(11474)
+      , S = s(97089)
+      , F = s(50943)
+      , A = s(51263)
+      , D = s(73485);
+    function Z() {
+      let {recentSpellRuns: e, getRunStatus: t} = (0,
+        S.Z)()
+        , s = e.length > 0;
+      return (0,
+        n.jsxs)("div", {
+        className: "bg-glif-stone-300 w-[100vw] max-w-[352px] rounded-2xl p-2 pr-0 shadow-[0px_4px_24px_0px_#29252414]",
+        children: [(0,
+          n.jsx)("h3", {
+          className: "sr-only",
+          children: "Recent Runs"
+        }), !s && (0,
+          n.jsx)("div", {
+          className: "p-s2 mr-2 rounded-xl bg-white/60",
+          children: "Glifs you’ve run recently will appear here"
+        }), s && (0,
+          n.jsx)("ul", {
+          className: "max-h-[444px] space-y-1.5 overflow-y-auto rounded-2xl pr-2",
+          children: e.map(e => {
+              let s = t(e);
+              return (0,
+                n.jsx)(D.H, {
+                children: (0,
+                  n.jsx)(P, {
+                  status: s,
+                  spellRun: e
+                })
+              }, e.id)
+            }
+          )
+        })]
+      })
+    }
+    function P(e) {
+      let {status: t, spellRun: s} = e
+        , r = null;
+      if ("completed" === t && (0,
+        F.m)(s))
+        r = (0,
+          n.jsx)(A.Z, {
+          status: t,
+          spellRun: s
+        });
+      else if ("completed" === t || (0,
+        F.m)(s))
+        throw Error("Unexpected spell run status");
+      else
+        r = (0,
+          n.jsx)(A.Z, {
+          status: t,
+          spellRun: s
+        });
+      return (0,
+        n.jsx)("li", {
+        children: r
+      })
+    }
+    var T = s(16565)
+      , U = s(30627)
+      , O = s(16673);
+    let G = {
+      common: "relative transition-colors w-12 h-12 rounded-full flex items-center justify-center focus:outline-none",
+      idle: "bg-white hover:bg-glif-stone-200 focus-visible:bg-glif-stone-200 text-glif-stone-700",
+      running: "bg-glif-lime-200 hover:bg-glif-lime-400 focus-visible:bg-glif-lime-400 text-glif-lime-700 text-sm",
+      complete: "bg-glif-lime-500 hover:bg-glif-lime-700 focus-visible:bg-glif-lime-700 text-white text-sm"
+    };
+    var B = () => {
+      let {currentlyRunningSpellRunsIds: e, recentSpellRuns: t} = (0,
+        S.Z)()
+        , [s,r] = (0,
+        T.useState)(!1);
+      (0,
+        T.useEffect)(function() {
+        e.length > 0 && r(!0)
+      }, [e.length]);
+      let a = "idle";
+      e.length > 0 ? a = "running" : s && t.length > 0 && (a = "complete");
+      let l = (0,
+        n.jsxs)(n.Fragment, {
+        children: ["idle" === a && (0,
+          n.jsx)(d.Z, {
+          name: "clock"
+        }), "running" === a && (0,
+          n.jsxs)("span", {
+          children: [(0,
+            n.jsx)("span", {
+            className: "absolute inset-0 flex items-center justify-center p-1.5",
+            children: (0,
+              n.jsx)(U.$, {})
+          }), e.length, " ", (0,
+            n.jsx)("span", {
+            className: "sr-only",
+            children: "Glifs running"
+          })]
+        }), "complete" === a && (0,
+          n.jsx)(d.Z, {
+          name: "tick"
+        })]
+      });
+      return (0,
+        n.jsx)("div", {
+        className: "",
+        children: (0,
+          n.jsx)(R.J, {
+          className: "relative",
+          children: e => {
+            let {} = e;
+            return (0,
+              n.jsx)(n.Fragment, {
+              children: (0,
+                n.jsxs)(p.bv, {
+                portal: !0,
+                shift: !0,
+                offset: 24,
+                placement: "bottom",
+                enter: "transition duration-100 ease-out",
+                enterFrom: "transform scale-95 opacity-0",
+                enterTo: "transform scale-100 opacity-100",
+                leave: "transition duration-75 ease-out",
+                leaveFrom: "transform scale-100 opacity-100",
+                leaveTo: "transform scale-95 opacity-0",
+                children: [(0,
+                  n.jsxs)(R.J.Button, {
+                  className: b()(G.common, G[a]),
+                  onClick: () => {
+                    r(!1),
+                      (0,
+                        O.j)("RecentRunsList shown")
+                  }
+                  ,
+                  children: [(0,
+                    n.jsx)("span", {
+                    className: "sr-only",
+                    children: "View running Glifs"
+                  }), l]
+                }), (0,
+                  n.jsx)(R.J.Panel, {
+                  children: (0,
+                    n.jsx)(Z, {})
+                })]
+              })
+            })
+          }
+        })
+      })
+    }
+      , z = s(42651)
+      , M = s(23221)
+      , X = s(17469)
+      , H = s(30313)
+      , K = s(79408)
+      , V = s.n(K);
+    let Y = e => {
+        let[t,s] = (0,
+          T.useState)("")
+          , [n,r] = (0,
+          T.useState)([])
+          , [a,l] = (0,
+          T.useState)(!1)
+          , [i,o] = (0,
+          T.useState)(!0)
+          , [c,d] = (0,
+          T.useState)(0)
+          , [u,m] = (0,
+          T.useState)(!1)
+          , h = (0,
+          T.useRef)("")
+          , f = (0,
+          T.useRef)(0)
+          , x = (0,
+          T.useMemo)( () => V()(N.O.NEXT_PUBLIC_ALGOLIA_APP_ID, e), [e])
+          , p = (0,
+          T.useMemo)( () => x.initIndex(N.O.NEXT_PUBLIC_ALGOLIA_INDEX_NAME), [x])
+          , g = (0,
+          T.useCallback)(async function(e) {
+          let t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
+          if (!a) {
+            l(!0);
+            try {
+              let {hits: s, nbPages: n} = await p.search(e, {
+                hitsPerPage: 20,
+                page: t
+              });
+              f.current = n,
+                r(n => {
+                    let r;
+                    if (0 === t || e !== h.current)
+                      r = s,
+                        h.current = e;
+                    else {
+                      let e = new Set(n.map(e => e.objectID))
+                        , t = s.filter(t => !e.has(t.objectID));
+                      r = [...n, ...t]
+                    }
+                    return r
+                  }
+                ),
+                o(t < n - 1),
+                d(t),
+                m(!0)
+            } catch (e) {
+              console.error("Error searching", e)
+            } finally {
+              l(!1)
+            }
+          }
+        }, [p, a])
+          , j = (0,
+          T.useCallback)( () => {
+            i && !a && c < f.current - 1 && g(t, c + 1)
+          }
+          , [i, a, g, t, c]);
+        return (0,
+          T.useEffect)( () => {
+            let e = setTimeout( () => {
+                t && t !== h.current ? (d(0),
+                  g(t, 0)) : t || (r([]),
+                  m(!1),
+                  h.current = "")
+              }
+              , 300);
+            return () => clearTimeout(e)
+          }
+          , [t, g]),
+          {
+            query: t,
+            setQuery: s,
+            searchResults: n,
+            isSearching: a,
+            hasMore: i,
+            currentPage: c,
+            hasSearched: u,
+            performSearch: g,
+            loadMoreResults: j
+          }
+      }
+    ;
+    var W = e => {
+      let {query: t, setQuery: s, onFocus: r, onBlur: a, onKeyDown: l, placeholder: i="Search...", isMobile: o=!1} = e;
+      return (0,
+        n.jsxs)("div", {
+        className: o ? "grow" : "flex min-h-[48px] items-center justify-center rounded-full border-[3px] border-gray-950 bg-white py-1 shadow-input transition-all focus-within:shadow-input-focus",
+        children: [!o && (0,
+          n.jsx)(d.Z, {
+          name: "search",
+          className: "ml-3",
+          size: 20
+        }), (0,
+          n.jsx)("input", {
+          type: "text",
+          value: t,
+          onChange: e => s(e.target.value),
+          onFocus: r,
+          onBlur: a,
+          onKeyDown: l,
+          placeholder: i,
+          className: o ? "focus:border-blue-500 w-full rounded-full border-2 border-gray-300 bg-white px-4 py-2 focus:outline-none" : "text-inherit m-0 w-full border-none bg-transparent px-3 py-0 placeholder-glif-stone-400 focus:border-none focus:outline-none focus:ring-0",
+          autoFocus: o
+        })]
+      })
+    }
+      , J = s(75461)
+      , q = s.n(J)
+      , Q = s(95998)
+      , $ = s(19613);
+    let ee = e => {
+        let {value: t, highlight: s} = e
+          , r = (null == s ? void 0 : s.matchedWords) || [];
+        return 0 === r.length ? t : t.split(RegExp("(".concat(r.join("|"), ")"), "gi")).map( (e, t) => r.includes(e.toLowerCase()) ? (0,
+          n.jsx)("mark", {
+          children: e
+        }, t) : e)
+      }
+      , et = e => {
+        var t, s, r;
+        let {hit: a, isSelected: l} = e;
+        return (0,
+          n.jsxs)("div", {
+          className: "style-search-results relative rounded-[4px] p-1 ".concat(l ? "bg-brand-100" : "hover:bg-brand-100"),
+          children: [(0,
+            n.jsx)(o(), {
+            className: "absolute left-0 top-0 z-10 h-full w-full",
+            href: "/@".concat(a.user.name, "/glifs/").concat(a.objectID)
+          }), (0,
+            n.jsxs)("div", {
+            className: "flex gap-x-3",
+            children: [a.output && "IMAGE" == a.outputType ? (0,
+              n.jsx)(q(), {
+              src: a.output,
+              alt: "",
+              width: 70,
+              height: 70,
+              className: "h-16 h-auto w-16 shrink-0 rounded-[4px] bg-gray-100"
+            }) : (0,
+              n.jsx)("div", {
+              className: "h-16 w-16 shrink-0 rounded-[4px] bg-gray-100"
+            }), (0,
+              n.jsxs)("div", {
+              className: "flex flex-col truncate",
+              children: [(0,
+                n.jsx)("strong", {
+                className: "truncate text-sm",
+                children: ee({
+                  value: a.name,
+                  highlight: null === (t = a._highlightResult) || void 0 === t ? void 0 : t.name
+                })
+              }), (0,
+                n.jsxs)("div", {
+                className: "mb-1 flex items-center text-sm",
+                children: [!!a.user.avatar && (0,
+                  n.jsx)(g.Z, {
+                  user: {
+                    name: a.user.name,
+                    id: a.user.id,
+                    username: a.user.username,
+                    image: a.user.avatar
+                  },
+                  size: "md",
+                  variant: "only-icon"
+                }), (0,
+                  n.jsx)("span", {
+                  className: "ml-2",
+                  children: ee({
+                    value: a.user.username,
+                    highlight: null === (r = a._highlightResult) || void 0 === r ? void 0 : null === (s = r.user) || void 0 === s ? void 0 : s.username
+                  })
+                })]
+              }), (0,
+                n.jsxs)("div", {
+                className: "mt-1 flex items-center gap-x-2 text-xs text-gray-400",
+                children: [(0,
+                  n.jsxs)("div", {
+                  className: "flex items-center gap-x-1 text-gray-400",
+                  children: [(0,
+                    n.jsx)(Q.l, {
+                    isLiked: !1,
+                    height: 18,
+                    width: 18
+                  }), (0,
+                    $.sH)(a.likesCount)]
+                }), (0,
+                  n.jsxs)("div", {
+                  className: "flex items-center text-gray-400 ",
+                  children: [(0,
+                    n.jsx)(d.Z, {
+                    name: "play",
+                    size: 18,
+                    className: "text-gray-400"
+                  }), (0,
+                    $.sH)(a.spellRunCount)]
+                })]
+              })]
+            })]
+          })]
+        })
+      }
+    ;
+    var es = e => {
+        let {searchResults: t, selectedIndex: s, isSearching: r, hasSearched: a, onResultClick: l, lastElementRef: i, isMobile: o, loadMoreResults: c} = e
+          , d = (0,
+          T.useRef)(null);
+        (0,
+          T.useEffect)( () => {
+            if (d.current && s >= 0) {
+              let e = d.current.children[s];
+              e && e.scrollIntoView({
+                block: "nearest",
+                behavior: "smooth"
+              })
+            }
+          }
+          , [s]);
+        let u = (0,
+          T.useCallback)(e => {
+            e.length > 0 && e[0] && e[0].isIntersecting && c()
+          }
+          , [c]);
+        return (0,
+          T.useEffect)( () => {
+            let e = new IntersectionObserver(u,{
+              threshold: .1
+            })
+              , t = i.current;
+            return t && e.observe(t),
+              () => {
+                t && e.unobserve(t)
+              }
+          }
+          , [i, u]),
+          (0,
+            n.jsxs)("div", {
+            ref: d,
+            className: "md:max-h-[360px] md:overflow-y-auto",
+            children: [t.map( (e, r) => (0,
+              n.jsx)("div", {
+              ref: r === t.length - 1 ? i : null,
+              onClick: l,
+              children: (0,
+                n.jsx)(et, {
+                hit: e,
+                isSelected: r === s
+              })
+            }, e.objectID)), r && (0,
+              n.jsx)("div", {
+              className: "p-4 text-center",
+              children: "Loading..."
+            }), !r && !a && o && (0,
+              n.jsx)("div", {
+              className: "p-4 text-center text-gray-500",
+              children: "Type to search"
+            }), !r && !a && !o && (0,
+              n.jsx)("div", {
+              className: "p-4 text-center",
+              children: "Loading..."
+            }), !r && a && 0 === t.length && (0,
+              n.jsx)("div", {
+              className: "p-4 text-center text-glif-error-800",
+              children: "No results found"
+            })]
+          })
+      }
+    ;
+    let en = (0,
+      T.forwardRef)(function(e, t) {
+      let {closeModal: s, searchKey: r} = e
+        , {query: a, setQuery: l, searchResults: i, isSearching: c, hasMore: u, hasSearched: m, loadMoreResults: h} = Y(r)
+        , f = (0,
+        T.useRef)(null)
+        , x = (0,
+        T.useRef)(null)
+        , {update: p} = (0,
+        H.o)();
+      (0,
+        T.useEffect)( () => (p({
+          hideDefaultLauncher: !0
+        }),
+        x.current && (0,
+          X.disablePageScroll)(x.current),
+          () => {
+            p({
+              hideDefaultLauncher: !1
+            }),
+              (0,
+                X.enablePageScroll)()
+          }
+      ), [p]);
+      let g = (0,
+        T.useCallback)( () => {
+          if (x.current) {
+            let {scrollTop: e, scrollHeight: t, clientHeight: s} = x.current;
+            t - e <= 1.5 * s && h()
+          }
+        }
+        , [h]);
+      return (0,
+        T.useEffect)( () => {
+          let e = x.current;
+          return e && e.addEventListener("scroll", g),
+            () => {
+              e && e.removeEventListener("scroll", g)
+            }
+        }
+        , [g]),
+        (0,
+          n.jsxs)("div", {
+          className: "fixed inset-0 z-20 flex flex-col bg-white md:hidden",
+          ref: t,
+          children: [(0,
+            n.jsxs)("header", {
+            className: "flex items-center gap-x-4 p-4",
+            children: [(0,
+              n.jsx)("button", {
+              type: "button",
+              onClick: s,
+              children: (0,
+                n.jsx)(d.Z, {
+                name: "backArrow",
+                size: 24
+              })
+            }), (0,
+              n.jsx)(W, {
+              query: a,
+              setQuery: l,
+              placeholder: "Search...",
+              isMobile: !0
+            })]
+          }), (0,
+            n.jsx)("div", {
+            ref: x,
+            className: "flex-grow overflow-y-auto",
+            children: (0,
+              n.jsx)(es, {
+              searchResults: i,
+              selectedIndex: -1,
+              isSearching: c,
+              hasSearched: m,
+              hasMore: u,
+              onResultClick: s,
+              lastElementRef: f,
+              isMobile: !0,
+              loadMoreResults: h
+            })
+          }), i.length > 0 && (0,
+            n.jsx)("div", {
+            className: "border-t border-gray-200 p-2 text-center",
+            children: (0,
+              n.jsx)(o(), {
+              href: "/explore?q=".concat(a),
+              className: "text-sm text-gray-600 underline",
+              onClick: s,
+              children: "View More"
+            })
+          })]
+        })
+    });
+    var er = s(93748)
+      , ea = e => {
+      let {onFocus: t, searchKey: s} = e
+        , {query: r, setQuery: a, searchResults: l, isSearching: i, hasMore: c, hasSearched: d, loadMoreResults: u} = Y(s)
+        , [m,h] = (0,
+        T.useState)(!1)
+        , [f,x] = (0,
+        T.useState)(-1)
+        , p = (0,
+        T.useRef)(null)
+        , g = (0,
+        T.useRef)(null)
+        , j = (0,
+        T.useRef)(null)
+        , b = (0,
+        er.useRouter)();
+      return (0,
+        n.jsxs)("div", {
+        className: "relative hidden md:block",
+        children: [(0,
+          n.jsx)(W, {
+          query: r,
+          setQuery: a,
+          onFocus: () => {
+            h(!0),
+              t()
+          }
+          ,
+          onBlur: e => {
+            p.current && !p.current.contains(e.relatedTarget) && h(!1)
+          }
+          ,
+          onKeyDown: e => {
+            var t, s;
+            if ("ArrowDown" === e.key)
+              e.preventDefault(),
+                x(e => e < l.length - 1 ? e + 1 : e);
+            else if ("ArrowUp" === e.key)
+              e.preventDefault(),
+                x(e => e > 0 ? e - 1 : -1),
+              0 === f && (null === (t = g.current) || void 0 === t || t.focus());
+            else if ("Enter" === e.key && (e.preventDefault(),
+            f >= 0)) {
+              let e = l[f];
+              e && (b.push((0,
+                v.xN)({
+                id: e.objectID,
+                user: {
+                  username: e.user.name
+                }
+              })),
+                h(!1),
+              null === (s = g.current) || void 0 === s || s.blur())
+            }
+          }
+        }), (0,
+          n.jsx)(z.u, {
+          show: m && r.length > 0,
+          enter: "transition ease-out duration-200",
+          enterFrom: "opacity-0 translate-y-1",
+          enterTo: "opacity-100 translate-y-0",
+          leave: "transition ease-in duration-150",
+          leaveFrom: "opacity-100 translate-y-0",
+          leaveTo: "opacity-0 translate-y-1",
+          children: (0,
+            n.jsxs)("div", {
+            ref: p,
+            className: "absolute left-0 right-auto top-[calc(100%+1rem)] w-[350px] rounded-xl border-[6px] border-gray-300 border-white bg-white shadow-dropdown",
+            children: [(0,
+              n.jsx)(es, {
+              searchResults: l,
+              selectedIndex: f,
+              isSearching: i,
+              hasSearched: d,
+              hasMore: c,
+              onResultClick: () => h(!1),
+              lastElementRef: j,
+              isMobile: !1,
+              loadMoreResults: u
+            }), l.length > 0 && (0,
+              n.jsx)("div", {
+              className: "border-t border-gray-200 p-2 text-center",
+              children: (0,
+                n.jsx)(o(), {
+                href: "/explore?q=".concat(r),
+                className: "text-sm text-gray-600 underline",
+                onClick: () => h(!1),
+                children: "View More"
+              })
+            })]
+          })
+        })]
+      })
+    }
+      , el = s(37056)
+      , ei = s(84)
+      , eo = s(66466)
+      , ec = s(17963)
+      , ed = s(50786)
+      , eu = s(13342);
+    function em() {
+      let {setTheme: e} = (0,
+        ed.F)();
+      return (0,
+        n.jsxs)(eu.h_, {
+        children: [(0,
+          n.jsx)(eu.$F, {
+          asChild: !0,
+          children: (0,
+            n.jsxs)(el.Z, {
+            variant: "outline",
+            size: "icon",
+            children: [(0,
+              n.jsx)(eo.Z, {
+              className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+            }), (0,
+              n.jsx)(ec.Z, {
+              className: "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            }), (0,
+              n.jsx)("span", {
+              className: "sr-only",
+              children: "Toggle theme"
+            })]
+          })
+        }), (0,
+          n.jsxs)(eu.AW, {
+          align: "end",
+          children: [(0,
+            n.jsx)(eu.Xi, {
+            onClick: () => e("light"),
+            children: "Light"
+          }), (0,
+            n.jsx)(eu.Xi, {
+            onClick: () => e("dark"),
+            children: "Dark"
+          }), (0,
+            n.jsx)(eu.Xi, {
+            onClick: () => e("system"),
+            children: "System"
+          })]
+        })]
+      })
+    }
+    function eh() {
+      let {data: e, status: t} = (0,
+        l.useSession)()
+        , [s,r] = (0,
+        T.useState)(!1)
+        , [a,i] = (0,
+        T.useState)("")
+        , [o,c] = (0,
+        T.useState)(!1)
+        , u = y.h.user.getAlgoliaSearchKeyForUser.useMutation({
+        onSuccess(e) {
+          i(e)
+        }
+      })
+        , m = (0,
+        T.useCallback)( () => {
+          o || (u.mutate(),
+            c(!0))
+        }
+        , [u, o]);
+      return (0,
+        T.useEffect)( () => {
+          N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && i(N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY || "")
+        }
+        , []),
+        (0,
+          T.useEffect)( () => {
+            "authenticated" === t && (null == e ? void 0 : e.user) && s ? m() : N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && "" == a && i(N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY || "")
+          }
+          , [t, e, s, m, a]),
+        (0,
+          n.jsxs)(n.Fragment, {
+          children: [(0,
+            n.jsx)(z.u, {
+            appear: !0,
+            show: s,
+            as: T.Fragment,
+            children: (0,
+              n.jsx)(z.u.Child, {
+              as: T.Fragment,
+              enter: "ease-out duration-300",
+              enterFrom: "opacity-0",
+              enterTo: "opacity-100",
+              leave: "ease-in duration-200",
+              leaveFrom: "opacity-100",
+              leaveTo: "opacity-0",
+              children: N.O.NEXT_PUBLIC_ALGOLIA_PUBLIC_SECURE_SEARCH_KEY && a && (0,
+                n.jsx)(en, {
+                closeModal: () => r(!1),
+                searchKey: a
+              })
+            })
+          }), (0,
+            n.jsxs)("nav", {
+            className: "flex items-center justify-between",
+            children: [(0,
+              n.jsxs)("div", {
+            }), "loading" !== t && (0,
+              n.jsxs)(n.Fragment, {
+              children: [(0,
+                n.jsx)(ef, {}), "authenticated" === t && e.user ? (0,
+                n.jsxs)("div", {
+                className: "flex flex-row justify-end space-x-1",
+                children: []
+              }) : (0,
+                n.jsx)("div", {
+              })]
+            })]
+          })]
+        })
+    }
+    function ef() {
+      let {create: e, isLoading: t, element: s} = (0,
+        ei.Z)();
+      return (0,
+        n.jsxs)("div", {
+        className: "flex gap-3 md:gap-[44px]",
+        children: []
+      })
+    }
+    var ex = s(63629)
+      , ep = s.n(ex);
+    function eg(e) {
+      let {message: t, status: s="info", dismissable: r=!1, bannerId: l} = e
+        , [i,o] = (0,
+        a._)("site-banner.".concat(l), "")
+        , [u,m] = (0,
+        T.useState)(!1);
+      return (0,
+        T.useEffect)( () => {
+          let e = "dismissed" === i;
+          "persist" === r ? m(!e) : m(!0)
+        }
+        , [i, r]),
+        (0,
+          n.jsxs)(c.E.div, {
+          className: b()("group flex items-center justify-center overflow-hidden", {
+            info: "bg-glif-lime-200 text-glif-lime-900",
+            warn: "bg-glif-lime-200 text-glif-lime-900",
+            error: "bg-glif-error-200 text-glif-error-900"
+          }[s], {
+            hidden: !u
+          }),
+          initial: {
+            height: 0
+          },
+          animate: u ? {
+            height: "auto"
+          } : {
+            height: 0
+          },
+          children: [(0,
+            n.jsx)("span", {
+            className: "px-s2 py-s1 text-sm md:text-base",
+            children: t
+          }), r && (0,
+            n.jsx)("button", {
+            type: "button",
+            className: "inline-block p-s1 underline",
+            onClick: () => {
+              m(!1),
+              "persist" === r && null != l && o("dismissed")
+            }
+            ,
+            children: (0,
+              n.jsx)(d.Z, {
+              name: "close"
+            })
+          })]
+        })
+    }
+    function ej(e) {
+      let {overrideMessage: t} = e
+        , {data: s, isLoading: r} = y.h.admin.currentSiteBanner.useQuery(void 0, {
+        enabled: !t
+      })
+        , a = function(e) {
+        switch (e) {
+          case "openai":
+            return {
+              message: (0,
+                n.jsxs)(n.Fragment, {
+                children: ["⚠︎ OpenAI is", " ", (0,
+                  n.jsx)("a", {
+                  href: "https://status.openai.com/",
+                  target: "_blank",
+                  className: "underline",
+                  children: "partially offline partially offline"
+                }), " ", "and some Glifs may not work as expected"]
+              })
+            };
+          case "dalle-disabled":
+            return {
+              message: (0,
+                n.jsx)(n.Fragment, {
+                children: "⚠︎ DALLE image generation is temporarily disabled. Some Glifs may not work as expected"
+              })
+            };
+          case "general":
+            return {
+              message: (0,
+                n.jsx)(n.Fragment, {
+                children: "⚠︎ We are experiencing site-wide issues and working on a fix"
+              })
+            };
+          case "load":
+            return {
+              message: (0,
+                n.jsx)(n.Fragment, {
+                children: "⚠︎ We are experiencing heavy load, runs might fail"
+              })
+            };
+          default:
+            return {
+              message: null
+            }
+        }
+      }(s)
+        , l = t || (null == a ? void 0 : a.message);
+      return (!r || t) && l ? (0,
+        n.jsx)(eg, {
+        status: "error",
+        message: l,
+        dismissable: !1
+      }) : null
+    }
+    function eb() {
+      let e = (0,
+        er.useRouter)()
+        , {data: t, isFetched: s} = y.h.meta.version.useQuery()
+        , r = N.O.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
+        , a = s && (null == t ? void 0 : t.version) !== r;
+      return a ? (0,
+        n.jsxs)(c.E.div, {
+        className: "group flex w-screen items-center justify-center bg-glif-lime-200 text-glif-lime-900",
+        animate: a ? "open" : "closed",
+        variants: {
+          open: {
+            height: "auto"
+          },
+          closed: {
+            height: 0
+          }
+        },
+        children: [(0,
+          n.jsx)("span", {
+          className: "py-s1",
+          children: "A new version of Glif is available"
+        }), (0,
+          n.jsx)("button", {
+          type: "button",
+          className: "inline-block p-s1 underline",
+          onClick: () => e.refresh(),
+          children: "Refresh"
+        })]
+      }) : null
+    }
+    var ev = s(6060);
+    function ey() {
+      return (0,
+        n.jsx)(eg, {
+        dismissable: "persist",
+        bannerId: "glif-creator-pass-1",
+        message: (0,
+          n.jsx)(n.Fragment, {
+          children: (0,
+            n.jsxs)("a", {
+            target: "_blank",
+            href: ev.a,
+            children: ["Daily runs are limited to 20 per day due to high demand. Get more runs with the", " ", (0,
+              n.jsx)("span", {
+              className: "font-semibold underline",
+              children: "free Creator Pass"
+            })]
+          })
+        }),
+        status: "info"
+      })
+    }
+    function eN() {
+      let e = (0,
+        n.jsx)(ej, {})
+        , t = (0,
+        n.jsx)(eb, {})
+        , s = (0,
+        n.jsx)(ey, {});
+      return (0,
+        n.jsxs)(n.Fragment, {
+        children: [e, t, s]
+      })
+    }
+    function ew() {
+      return (0,
+        n.jsx)("div", {
+        className: "mt-10 bg-glif-stone-900 text-glif-stone-300 md:mt-20",
+        children: (0,
+          n.jsxs)("footer", {
+          className: "container grid grid-cols-[20%,1fr,20%] items-center gap-x-4 gap-y-8 overflow-auto px-4 pb-8 pt-8 md:pb-10 md:pt-10",
+          children: [(0,
+            n.jsx)("img", {
+            src: "/logos/logo-white.svg",
+            alt: "Glif",
+            className: "h-[48px]"
+          }), (0,
+            n.jsxs)("ul", {
+            className: "col-start-1 flex flex-col items-start justify-center gap-4 whitespace-nowrap text-left md:col-start-2 md:flex-row md:items-center",
+            children: [(0,
+              n.jsx)(e_, {
+              href: "/docs",
+              children: "Guide/Docs"
+            }), (0,
+              n.jsx)(e_, {
+              href: "/api",
+              children: "API"
+            }), (0,
+              n.jsx)(e_, {
+              href: "https://chromewebstore.google.com/detail/glif-remix-the-web-with-a/abfbooehhdjcgmbmcpkcebcmpfnlingo",
+              target: "_blank",
+              children: "Chrome Extension"
+            }), (0,
+              n.jsx)(e_, {
+              href: "/contact",
+              children: "Contact Us"
+            }), (0,
+              n.jsx)(e_, {
+              href: "mailto:jobs@glif.xyz?subject=Glif%20looks%20cool%2C%20would%20love%20to%20chat&body=Hi%20there%2C",
+              rel: "noopener",
+              children: "Jobs"
+            }), (0,
+              n.jsx)(e_, {
+              href: "/legal",
+              children: "Legal"
+            }), (0,
+              n.jsx)(e_, {
+              href: "/privacy",
+              children: "Privacy Policy"
+            }), (0,
+              n.jsx)(e_, {
+              href: "/security",
+              children: "Security"
+            }), (0,
+              n.jsx)(e_, {
+              href: "https://twitter.com/heyglif",
+              target: "_blank",
+              children: "Twitter"
+            })]
+          }), (0,
+            n.jsx)("div", {
+            className: "col-start-3 row-start-1 flex flex-col items-end justify-start",
+            children: (0,
+              n.jsx)(o(), {
+              href: N.O.NEXT_PUBLIC_DISCORD_INVITE_LINK,
+              target: "_blank",
+              children: (0,
+                n.jsx)(el.Z, {
+                iconLeft: "discord",
+                children: "Join Discord"
+              })
+            })
+          }), (0,
+            n.jsx)("p", {
+            className: "col-span-3 text-sm text-white/50",
+            children: "\xa9 2023 Spellcasters, Inc."
+          })]
+        })
+      })
+    }
+    function e_(e) {
+      return (0,
+        n.jsx)("li", {
+        children: (0,
+          n.jsx)("a", {
+          ...e,
+          className: "font-normal hover:text-glif-stone-100"
+        })
+      })
+    }
+    function ek(e) {
+      var t;
+      let {children: s, container: l=!0, title: i, openGraph: o, nav: c="inline", backgroundColor: d="bg-background", showFooter: u=!0} = e
+        , [m,{height: h}] = (0,
+        a.h4)()
+        , f = null !== (t = null != i ? i : null == o ? void 0 : o.title) && void 0 !== t ? t : "glif";
+      return (0,
+        n.jsxs)(n.Fragment, {
+        children: [(0,
+          n.jsxs)(ep(), {
+          children: [(0,
+            n.jsx)("title", {
+            children: null != i ? i : "glif"
+          }), (0,
+            n.jsx)("meta", {
+            name: "robots",
+            content: "max-image-preview:large"
+          }), (0,
+            n.jsx)("meta", {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1, maximum-scale=1"
+          }), o && (0,
+            n.jsxs)(n.Fragment, {
+            children: [(0,
+              n.jsx)("meta", {
+              property: "og:type",
+              content: "website"
+            }), (0,
+              n.jsx)("meta", {
+              property: "og:site_name",
+              content: "glif"
+            }), (0,
+              n.jsx)("meta", {
+              property: "og:title",
+              content: f
+            }), (0,
+              n.jsx)("meta", {
+              property: "og:url",
+              content: o.url
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:card",
+              content: "summary_large_image"
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:title",
+              content: f
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:url",
+              content: o.url
+            }), (0,
+              n.jsx)("link", {
+              rel: "canonical",
+              href: o.url
+            })]
+          }), (null == o ? void 0 : o.image) && (0,
+            n.jsxs)(n.Fragment, {
+            children: [(0,
+              n.jsx)("meta", {
+              property: "og:image",
+              content: o.image
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:image",
+              content: o.image
+            })]
+          }), (null == o ? void 0 : o.video) && (0,
+            n.jsxs)(n.Fragment, {
+            children: [(0,
+              n.jsx)("meta", {
+              property: "og:video",
+              content: o.video
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:player",
+              content: o.video
+            })]
+          }), (null == o ? void 0 : o.audio) && (0,
+            n.jsxs)(n.Fragment, {
+            children: [(0,
+              n.jsx)("meta", {
+              property: "og:audio",
+              content: o.audio
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:player",
+              content: o.audio
+            })]
+          }), (null == o ? void 0 : o.description) && (0,
+            n.jsxs)(n.Fragment, {
+            children: [(0,
+              n.jsx)("meta", {
+              property: "og:description",
+              content: o.description
+            }), (0,
+              n.jsx)("meta", {
+              name: "twitter:description",
+              content: o.description
+            })]
+          })]
+        }), (0,
+          n.jsx)(r.x7, {
+          position: "top-right",
+          containerStyle: {
+            top: "".concat(h, "px")
+          }
+        }), (0,
+          n.jsxs)("div", {
+          style: {
+            "--glif-nav-h": "".concat(h, "px")
+          },
+          children: [(0,
+            n.jsx)("main", {
+            children: s
+          })]
+        })]
+      })
+    }
+    function eC(e) {
+      let {children: t, container: s=!0, title: a, banner: l} = e;
+      return (0,
+        n.jsxs)(n.Fragment, {
+        children: [(0,
+          n.jsx)(ep(), {
+          children: (0,
+            n.jsx)("title", {
+            children: null != a ? a : "glif"
+          })
+        }), (0,
+          n.jsx)(r.x7, {
+          position: "top-right"
+        }), l, (0,
+          n.jsxs)("div", {
+          className: "grid min-h-[100vh] grid-rows-[max-content,1fr,1fr]",
+          children: [(0,
+            n.jsx)("div", {
+            className: "sticky top-0 z-glif-nav bg-glif-global-background",
+            children: (0,
+              n.jsx)("div", {
+              className: "container mx-s1 my-s2 sm:mx-auto",
+              children: (0,
+                n.jsx)("div", {
+                children: (0,
+                  n.jsx)(M.Z, {})
+              })
+            })
+          }), (0,
+            n.jsx)("main", {
+            className: s ? "container" : "",
+            children: t
+          })]
+        })]
+      })
+    }
+    function eI(e) {
+      let {title: t, banner: s} = e;
+      return (0,
+        n.jsxs)(n.Fragment, {
+        children: [(0,
+          n.jsx)(ep(), {
+          children: (0,
+            n.jsx)("title", {
+            children: null != t ? t : "glif"
+          })
+        }), (0,
+          n.jsx)(r.x7, {
+          position: "top-right"
+        }), s]
+      })
+    }
+  },
+  23221: function(e, t, s) {
+    s.d(t, {
+      Z: function() {
+        return o
+      }
+    });
+    var n = s(33741)
+      , r = s(64794)
+      , a = s.n(r)
+      , l = s(75461)
+      , i = s.n(l);
+    function o() {
+      return (0,
+        n.jsxs)(a(), {
+        href: "/glifs",
+        className: "focus:outline-none",
+        children: [(0,
+          n.jsx)(i(), {
+          src: "/logos/logo-black-alpha.svg",
+          width: 82,
+          height: 48,
+          alt: "GLIF",
+          className: "hidden max-w-md md:block",
+          priority: !0
+        }), (0,
+          n.jsx)("div", {
+          className: "flex h-12 w-12 items-center justify-center md:hidden",
+          children: (0,
+            n.jsx)(i(), {
+            src: "/logos/g-symbol-black-alpha.svg",
+            width: 48,
+            height: 48,
+            alt: "GLIF",
+            className: "h-12 w-12"
+          })
+        })]
+      })
+    }
+  },
+  84: function(e, t, s) {
+    s.d(t, {
+      Z: function() {
+        return d
+      }
+    });
+    var n = s(93748)
+      , r = s(21341)
+      , a = s(6917)
+      , l = s(49736)
+      , i = s(96089)
+      , o = s(17539)
+      , c = s(21309);
+    function d() {
+      let e = (0,
+        n.useRouter)()
+        , {isLoading: t, setIsLoading: s, element: d} = (0,
+        a.Z)({
+        style: "overlay"
+      })
+        , {data: u} = (0,
+        r.useSession)()
+        , m = i.h.spell.createWithDraftVersion.useMutation({
+        onSuccess(t) {
+          e.push((0,
+            l.ss)(t))
+        }
+      });
+      return {
+        create: async () => {
+          if (!u) {
+            (0,
+              c.ZP)("You need to sign in to make a glif! Redirecting you...", {
+              icon: "\uD83E\uDD2D"
+            }),
+              setTimeout( () => {
+                  (0,
+                    r.signIn)(void 0, {
+                    callbackUrl: "/glifs/new"
+                  })
+                }
+                , 1e3);
+            return
+          }
+          s(!0);
+          try {
+            await m.mutateAsync()
+          } catch (e) {
+            (0,
+              o.f)(e)
+          } finally {
+            s(!1)
+          }
+        }
+        ,
+        isLoading: t,
+        element: d
+      }
+    }
+  },
+  73485: function(e, t, s) {
+    s.d(t, {
+      H: function() {
+        return a
+      }
+    });
+    var n = s(33741)
+      , r = s(16104);
+    function a(e) {
+      let {children: t} = e;
+      return (0,
+        n.jsx)(r.SV, {
+        children: t
+      })
+    }
+  },
+  13342: function(e, t, s) {
+    s.d(t, {
+      $F: function() {
+        return u
+      },
+      AW: function() {
+        return m
+      },
+      VD: function() {
+        return x
+      },
+      Xi: function() {
+        return h
+      },
+      bO: function() {
+        return f
+      },
+      h_: function() {
+        return d
+      }
+    });
+    var n = s(33741)
+      , r = s(16565)
+      , a = s(2087)
+      , l = s(21070)
+      , i = s(82377)
+      , o = s(21547)
+      , c = s(51095);
+    let d = a.fC
+      , u = a.xz;
+    a.ZA,
+      a.Uv,
+      a.Tr,
+      a.Ee,
+      r.forwardRef( (e, t) => {
+          let {className: s, inset: r, children: i, ...o} = e;
+          return (0,
+            n.jsxs)(a.fF, {
+            ref: t,
+            className: (0,
+              c.cn)("flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent", r && "pl-8", s),
+            ...o,
+            children: [i, (0,
+              n.jsx)(l.Z, {
+              className: "ml-auto h-4 w-4"
+            })]
+          })
+        }
+      ).displayName = a.fF.displayName,
+      r.forwardRef( (e, t) => {
+          let {className: s, ...r} = e;
+          return (0,
+            n.jsx)(a.tu, {
+            ref: t,
+            className: (0,
+              c.cn)("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", s),
+            ...r
+          })
+        }
+      ).displayName = a.tu.displayName;
+    let m = r.forwardRef( (e, t) => {
+        let {className: s, sideOffset: r=4, ...l} = e;
+        return (0,
+          n.jsx)(a.Uv, {
+          children: (0,
+            n.jsx)(a.VY, {
+            ref: t,
+            sideOffset: r,
+            className: (0,
+              c.cn)("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", s),
+            ...l
+          })
+        })
+      }
+    );
+    m.displayName = a.VY.displayName;
+    let h = r.forwardRef( (e, t) => {
+        let {className: s, inset: r, ...l} = e;
+        return (0,
+          n.jsx)(a.ck, {
+          ref: t,
+          className: (0,
+            c.cn)("relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", r && "pl-8", s),
+          ...l
+        })
+      }
+    );
+    h.displayName = a.ck.displayName;
+    let f = r.forwardRef( (e, t) => {
+        let {className: s, children: r, checked: l, ...o} = e;
+        return (0,
+          n.jsxs)(a.oC, {
+          ref: t,
+          className: (0,
+            c.cn)("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", s),
+          checked: l,
+          ...o,
+          children: [(0,
+            n.jsx)("span", {
+            className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
+            children: (0,
+              n.jsx)(a.wU, {
+              children: (0,
+                n.jsx)(i.Z, {
+                className: "h-4 w-4"
+              })
+            })
+          }), r]
+        })
+      }
+    );
+    f.displayName = a.oC.displayName,
+      r.forwardRef( (e, t) => {
+          let {className: s, children: r, ...l} = e;
+          return (0,
+            n.jsxs)(a.Rk, {
+            ref: t,
+            className: (0,
+              c.cn)("relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", s),
+            ...l,
+            children: [(0,
+              n.jsx)("span", {
+              className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
+              children: (0,
+                n.jsx)(a.wU, {
+                children: (0,
+                  n.jsx)(o.Z, {
+                  className: "h-2 w-2 fill-current"
+                })
+              })
+            }), r]
+          })
+        }
+      ).displayName = a.Rk.displayName,
+      r.forwardRef( (e, t) => {
+          let {className: s, inset: r, ...l} = e;
+          return (0,
+            n.jsx)(a.__, {
+            ref: t,
+            className: (0,
+              c.cn)("px-2 py-1.5 text-sm font-semibold", r && "pl-8", s),
+            ...l
+          })
+        }
+      ).displayName = a.__.displayName;
+    let x = r.forwardRef( (e, t) => {
+        let {className: s, ...r} = e;
+        return (0,
+          n.jsx)(a.Z0, {
+          ref: t,
+          className: (0,
+            c.cn)("-mx-1 my-1 h-px bg-muted", s),
+          ...r
+        })
+      }
+    );
+    x.displayName = a.Z0.displayName
+  },
+  50943: function(e, t, s) {
+    function n(e) {
+      return !!e.completedAt && !!e.output && !!e.outputType
+    }
+    s.d(t, {
+      m: function() {
+        return n
+      },
+      w: function() {
+        return r
+      }
+    });
+    let r = s(87689).z.enum(["openai", "dalle-disabled", "general", "load"])
+  }
 }]);

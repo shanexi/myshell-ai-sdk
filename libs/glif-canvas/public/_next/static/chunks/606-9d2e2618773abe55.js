@@ -237,48 +237,6 @@
           n.jsx)(n.Fragment, {
           children: (0,
             n.jsxs)("div", {
-            className: "flex flex-col items-center text-glif-stone-700",
-            children: [(0,
-              n.jsxs)("div", {
-              className: "grid grid-cols-1 grid-rows-[74px] place-items-center",
-              children: [t && a && (0,
-                n.jsx)(G, {}), (0,
-                n.jsx)("div", {
-                className: "col-start-1 row-start-1",
-                children: (0,
-                  n.jsx)(o.Z, {
-                  iconName: "plus",
-                  label: "Add block",
-                  onClick: () => r(!0),
-                  theme: "dark",
-                  isAccessibilityLabel: !0
-                })
-              })]
-            }), s && (0,
-              n.jsx)(L, {
-              createBlock: e => {
-                try {
-                  var n;
-                  let s;
-                  let o = l.nodes.filter(l => l.type === e).length
-                    , i = null === (n = y.q7.find(l => l.type === e)) || void 0 === n ? void 0 : n.shortName;
-                  if (null != i && "number" == typeof o && (s = l.findAvailableName(i, o + 1)),
-                    !s)
-                    throw Error("Could not find available name for block type ".concat(e));
-                  let c = (0,
-                    C.Ih)(e, s, {});
-                  l.insertBlockBetween(c, t, a),
-                    r(!1)
-                } catch (e) {
-                  throw f.Am.error("Error adding spell"),
-                    e
-                }
-              }
-              ,
-              hideNewBlockDialog: () => {
-                r(!1)
-              }
-            })]
           })
         })
       }
@@ -349,149 +307,12 @@
         i.useState)("expanded");
       return (0,
         n.jsxs)("div", {
-        className: m()("overflow-hidden rounded-xl border-[1.5px] border-[--theme-500] bg-white"),
-        style: (0,
-          E._9)(l),
+        // note: Open Canvas Button 的位置
+        // 渲染节点应该是动态根据类型加载不同的 Component
         children: [(0,
-          n.jsxs)("div", {
-          className: m()("flex items-center bg-[--theme-100] px-3 py-4 group-[&.should-focus]/focus-block:animate-focus-block", r.editable ? "[&:not(:has(.menu-button:hover)):hover]:bg-[--theme-200]" : ""),
-          onClick: () => {
-            d(e => "collapsed" === e ? "expanded" : "collapsed")
-          }
-          ,
-          children: [(0,
-            n.jsxs)("div", {
-            className: "flex items-center gap-5",
-            children: [(0,
-              n.jsx)("div", {
-              className: "flex h-10 w-10 items-center justify-center text-[--theme-700]",
-              children: t && (0,
-                n.jsx)(Z.Z, {
-                name: t
-              })
-            }), (0,
-              n.jsx)("div", {
-              className: "",
-              children: r.editable ? (0,
-                n.jsx)(J.Z, {
-                Component: "h3",
-                value: s,
-                onChange: r.onChangeName
-              }) : (0,
-                n.jsx)("h3", {
-                className: "text-[--theme-700]",
-                children: s
-              })
-            })]
-          }), (0,
-            n.jsxs)("div", {
-            className: "ml-auto flex items-center",
-            children: [r.infoUrl && (0,
-              n.jsx)(Y.Z, {
-              tip: "Help/Docs",
-              children: (0,
-                n.jsx)(a.Z, {
-                href: r.infoUrl,
-                target: "_blank",
-                rel: "noreferrer",
-                variant: "ghostThemed",
-                iconLeft: "infoCircle",
-                children: (0,
-                  n.jsx)("span", {
-                  className: "sr-only",
-                  children: "Help/Docs"
-                })
-              })
-            }), o === k.e4.Running && (0,
-              n.jsx)(q.Z, {}), r.editable && r.onResume && (0,
-              n.jsx)(Y.Z, {
-              tip: "Run only this block",
-              children: (0,
-                n.jsxs)(a.Z, {
-                variant: "ghostThemed",
-                onClick: e => {
-                  e.stopPropagation(),
-                  r.onResume && r.onResume(s)
-                }
-                ,
-                children: [(0,
-                  n.jsx)(A.Z, {
-                  name: "play"
-                }), (0,
-                  n.jsx)("span", {
-                  className: "sr-only",
-                  children: "Run only this block"
-                })]
-              })
-            }), (0,
-              n.jsx)("div", {
-              className: "ml-auto",
-              children: r.editable && (0,
-                n.jsxs)(V.Z, {
-                buttonClassName: m()("menu-button", "bg-transparent text-[--theme-500] hover:bg-[--theme-200] focus-visible:bg-[--theme-200]"),
-                children: [r.onDelete && (0,
-                  n.jsx)(V.Z.Item, {
-                  onClick: e => {
-                    e.stopPropagation(),
-                    window.confirm("Are you sure you want to delete this block?") && r.onDelete && r.onDelete()
-                  }
-                  ,
-                  iconName: "delete",
-                  children: "Delete"
-                }), r.onDuplicate && (0,
-                  n.jsx)(V.Z.Item, {
-                  onClick: r.onDuplicate,
-                  iconName: "copy",
-                  children: "Duplicate"
-                }), r.onMoveUp && (0,
-                  n.jsx)(V.Z.Item, {
-                  onClick: e => {
-                    e.stopPropagation(),
-                    r.onMoveUp && r.onMoveUp()
-                  }
-                  ,
-                  iconName: "chevronUp",
-                  children: "Move Up"
-                }), r.onMoveDown && (0,
-                  n.jsx)(V.Z.Item, {
-                  onClick: e => {
-                    e.stopPropagation(),
-                    r.onMoveDown && r.onMoveDown()
-                  }
-                  ,
-                  iconName: "chevronDown",
-                  children: "Move Down"
-                })]
-              })
-            })]
-          })]
-        }), (0,
-          n.jsxs)(H.E.div, {
-          className: "overflow-hidden",
-          initial: c,
-          animate: c,
-          variants: {
-            expanded: {
-              height: "auto",
-              opacity: 1
-            },
-            collapsed: {
-              height: 0,
-              opacity: 0
-            }
-          },
-          children: [(0,
-            n.jsx)("div", {
-            className: "space-y-3 px-4 pt-4",
-            children: r.children
-          }), (0,
-            n.jsx)("button", {
-            type: "button",
-            className: "flex h-12 w-full items-center justify-center text-sm hover:bg-glif-stone-200",
-            onClick: () => d("collapsed"),
-            children: "Close"
-          })]
-        }, "children")]
+          n.jsx)("div", {
+          children: r.children
+        })]
       })
     }
     function K(e) {
@@ -517,39 +338,17 @@
         , []),
         (0,
           n.jsxs)("div", {
-          className: m()("md:grid md:grid-cols-2 md:gap-[40px]"),
           children: [(0,
             n.jsx)("div", {
-            className: m()(o && "bg-perfect-plum/50", "border-b border-b-gray-200 pb-4 md:col-span-2 md:w-full"),
             children: l
           }), (0,
             n.jsx)("div", {
-            className: m()(o && "bg-glif-pink", "md:w-full"),
             children: (0,
               n.jsx)("div", {
-              className: m()(o && "bg-perfect-plum/50", "md:ml-auto md:w-full md:max-w-[600px]"),
               children: t
             })
           }), (0,
             n.jsxs)("div", {
-            children: [(0,
-              n.jsxs)("div", {
-              ref: r,
-              className: "py-s2",
-              children: [a && (0,
-                n.jsx)("div", {
-                className: m()(o && "bg-aquamarine-allure/50"),
-                children: a
-              }), (0,
-                n.jsx)("div", {
-                className: m()(o && "bg-emerald-200"),
-                children: s
-              })]
-            }), (0,
-              n.jsx)("div", {
-              id: "portal_for_run_button",
-              className: m()("pt-2 transition-opacity md:sticky md:top-0", c ? "opacity-0" : "opacity-100")
-            })]
           })]
         })
     }
@@ -903,117 +702,6 @@
       });
       return (0,
         n.jsxs)("div", {
-        className: "text-glif-900 grid  w-full rounded-t-xl bg-glif-stone-100",
-        style: {
-          "--glif-accent-col": "#f5f5f4"
-        },
-        children: [(0,
-          n.jsxs)("h2", {
-          className: "flex items-center justify-center gap-2 overflow-hidden rounded-t-xl bg-glif-stone-200 p-2 ",
-          children: [(0,
-            n.jsx)(A.Z, {
-            name: "glifDot",
-            size: 8
-          }), " Glif Testing Area ", (0,
-            n.jsx)(A.Z, {
-            name: "glifDot",
-            size: 8
-          })]
-        }), (0,
-          n.jsxs)("div", {
-          className: "group relative flex h-full justify-stretch",
-          children: [(0,
-            n.jsx)("div", {
-            className: "absolute right-s1 top-0 z-20 opacity-0 transition-opacity group-hover:opacity-100",
-            children: l ? (0,
-              n.jsx)(o.Z, {
-              iconName: "close",
-              onClick: a,
-              label: "Cancel",
-              isAccessibilityLabel: !0
-            }) : (0,
-              n.jsx)(o.Z, {
-              iconName: "close",
-              onClick: t,
-              label: "Reset",
-              isAccessibilityLabel: !0
-            })
-          }), (0,
-            n.jsx)(M.Z, {
-            children: (0,
-              n.jsxs)("div", {
-              className: "grid h-full w-full ",
-              children: [(0,
-                n.jsxs)("div", {
-                className: "grid place-items-center md:min-h-[auto]",
-                ref: h,
-                children: [!d && l && (0,
-                  n.jsx)(H.E.div, {
-                  className: "col-start-1 row-start-1 h-[500px] w-[500px]",
-                  initial: {
-                    opacity: 0
-                  },
-                  animate: {
-                    opacity: 1
-                  },
-                  exit: {
-                    opacity: 0
-                  },
-                  transition: {
-                    opacity: {
-                      duration: .5,
-                      delay: .3
-                    }
-                  },
-                  children: (0,
-                    n.jsx)(H.E.div, {
-                    className: "h-full w-full",
-                    animate: m,
-                    children: (0,
-                      n.jsx)(O.Z, {
-                      height: "full",
-                      items: Object.values(u).map(e => {
-                          let l = c.findBlockOrThrow(e.name)
-                            , t = (0,
-                            y.pB)(l.type);
-                          return {
-                            name: l.name,
-                            category: t.category,
-                            iconName: t.iconName,
-                            status: e.status
-                          }
-                        }
-                      )
-                    })
-                  })
-                }), d && (0,
-                  n.jsx)("div", {
-                  className: "col-start-1 row-start-1 mx-auto p-3",
-                  children: "MULTIPLE" === d.type ? (0,
-                    n.jsx)("div", {
-                    children: "Can't display multiple outputs"
-                  }) : (0,
-                    n.jsx)(eg, {
-                    height: 500,
-                    spellRun: "IMAGE" === d.type ? {
-                      output: d.value,
-                      outputType: d.type,
-                      outputImageHeight: d.height,
-                      outputImageWidth: d.width
-                    } : {
-                      output: d.value,
-                      outputType: d.type
-                    }
-                  })
-                })]
-              }), (0,
-                n.jsx)("div", {
-                className: "mx-2 mb-2 mt-0 py-1",
-                children: p
-              })]
-            })
-          })]
-        })]
       })
     })
       , ej = (0,
@@ -1021,20 +709,6 @@
       let {blocksWithMetaAndState: l, onSelectBlock: t} = e;
       return (0,
         n.jsxs)("div", {
-        className: "text-glif-900 mt-4 h-full space-y-4 rounded-b-xl bg-white p-2",
-        children: [(0,
-          n.jsx)("h2", {
-          className: "",
-          children: "Block Sequence"
-        }), 0 === l.length ? (0,
-          n.jsx)("span", {
-          className: " text-glif-stone-500",
-          children: "You haven’t used any spells yet, young glifling!"
-        }) : (0,
-          n.jsx)(T, {
-          sequence: l,
-          onClickBlock: t
-        })]
       })
     })
       , ey = (0,
@@ -1097,7 +771,6 @@
         })
       }) : (0,
         n.jsxs)("div", {
-        className: "flex w-full flex-col space-y-0",
         ref: r,
         children: [s.spell.graph.nodes.map( (l, t) => {
             var r;
@@ -1111,23 +784,10 @@
               y.pB)(l.type);
             return "BotInputBlock" === l.type ? (0,
               n.jsx)("div", {
-              className: "group/focus-block scroll-mt-[--glif-nav-h]",
-              "data-block-id": encodeURIComponent(l.name),
-              children: (0,
-                n.jsx)(eN, {
-                block: l
-              })
             }, l.name) : p.graphVisible ? (0,
               n.jsxs)("div", {
-              className: "group/focus-block scroll-mt-[--glif-nav-h]",
               "data-block-id": encodeURIComponent(l.name),
               children: [(0,
-                n.jsx)(R, {
-                index: t - 1,
-                fromBlock: i,
-                toBlock: c,
-                graph: a
-              }), (0,
                 n.jsx)(W, {
                 editable: !0,
                 name: l.name,
@@ -1560,105 +1220,6 @@
       })
         , R = (0,
         n.jsx)("div", {
-        className: "flex items-center",
-        children: (0,
-          n.jsxs)(eI, {
-          disabled: !o,
-          name: g.meta.name,
-          description: null !== (l = g.meta.description) && void 0 !== l ? l : void 0,
-          onSave: e => {
-            e.name && (p.name = e.name),
-            e.description && (p.description = e.description)
-          }
-          ,
-          children: [(0,
-            n.jsxs)("p", {
-            className: "mr-9 flex items-center text-xs font-medium text-gray-400",
-            children: [(0,
-              n.jsx)(A.Z, {
-              name: "clock",
-              className: "mr-1"
-            }), (0,
-              n.jsxs)("span", {
-              className: "flex flex-col",
-              children: ["Saved", " ", (0,
-                n.jsx)("time", {
-                dateTime: t.updatedAt.toISOString(),
-                children: (0,
-                  n.jsx)(ek.Z, {
-                  date: t.updatedAt
-                })
-              })]
-            })]
-          }), (0,
-            n.jsx)(ew.Z, {
-            owner: t.userId,
-            children: (0,
-              n.jsx)(a.Z, {
-              variant: "secondary",
-              className: y.isLoading ? "cursor-not-allowed" : "",
-              disabled: S,
-              onClick: () => {
-                L.runAfterSave( () => E())
-              }
-              ,
-              children: "Publish"
-            })
-          }), (0,
-            n.jsx)(a.Z, {
-            variant: "secondary",
-            onClick: function() {
-              if (!o) {
-                b.push((0,
-                  d.xN)(t));
-                return
-              }
-              L.runAfterSave( () => {
-                  b.push((0,
-                    d.xN)(t))
-                }
-              )
-            },
-            disabled: y.isLoading,
-            iconLeft: "close",
-            children: (0,
-              n.jsx)("span", {
-              className: "sr-only",
-              children: "Close"
-            })
-          }), (0,
-            n.jsx)(eM.Z, {
-            shareUrl: (0,
-              d.OB)(t),
-            spellName: t.name,
-            variant: "default"
-          }), (0,
-            n.jsx)(ew.Z, {
-            owner: t.userId,
-            children: (0,
-              n.jsxs)(V.Z, {
-              iconAlignment: "vertical",
-              children: [(0,
-                n.jsxs)(ew.Z, {
-                staff: !0,
-                children: [(0,
-                  n.jsx)(V.Z.Item, {
-                  href: "/glifs/".concat(t.id, "/validate"),
-                  children: "Edit Graph JSON"
-                }), (0,
-                  n.jsxs)(V.Z.Item, {
-                  onClick: () => I(),
-                  children: [w ? "Disable" : "Enable", " bot mode"]
-                })]
-              }), (0,
-                n.jsx)(V.Z.Item, {
-                variant: "destructive",
-                onClick: () => j.handleSoftDelete(),
-                children: "Delete"
-              })]
-            })
-          })]
-        })
       });
       return (0,
         n.jsxs)(n.Fragment, {
@@ -1681,10 +1242,10 @@
           })]
         }), (0,
           n.jsx)("div", {
-          className: m()("relative mt-[44px] flex"),
+          // className: m()("relative mt-[44px] flex"),
           children: (0,
             n.jsxs)("div", {
-            className: "container",
+            // className: "container",
             children: [j.element, (0,
               n.jsx)(Q.Z, {
               fallback: X.Z,
@@ -1777,90 +1338,6 @@
       }),
         (0,
           n.jsx)(n.Fragment, {
-          children: (0,
-            n.jsxs)("div", {
-            className: "mt-4 space-x-2",
-            children: [(0,
-              n.jsxs)("div", {
-              className: "flex flex-row space-x-2",
-              children: [(0,
-                n.jsxs)(a.Z, {
-                variant: "secondary",
-                onClick: () => d(),
-                children: [(0,
-                  n.jsx)("span", {
-                  className: "mr-1",
-                  children: "\uD83D\uDC1B"
-                }), " Debug"]
-              }), (0,
-                n.jsx)(ew.Z, {
-                staff: !0,
-                miniMode: !0,
-                children: (0,
-                  n.jsx)(eL(), {
-                  href: "/glifs/".concat(l.id, "/validate"),
-                  children: (0,
-                    n.jsx)(a.Z, {
-                    variant: "secondary",
-                    children: "Edit Graph JSON"
-                  })
-                })
-              })]
-            }), "off" !== r && (0,
-              n.jsxs)(n.Fragment, {
-              children: [(0,
-                n.jsxs)("label", {
-                children: ["Saved", (0,
-                  n.jsx)("input", {
-                  type: "radio",
-                  name: "debug-graph",
-                  value: "saved",
-                  checked: "saved" === r,
-                  onChange: () => d("saved")
-                })]
-              }), (0,
-                n.jsxs)("label", {
-                children: ["Live", (0,
-                  n.jsx)("input", {
-                  type: "radio",
-                  name: "debug-graph",
-                  value: "live",
-                  checked: "live" === r,
-                  onChange: () => d("live")
-                })]
-              })]
-            }), u && (0,
-              n.jsx)("div", {
-              className: "debug-graph flex flex-col-reverse justify-between gap-2 pt-4 md:flex-row",
-              children: (0,
-                n.jsxs)("div", {
-                className: "overflow-auto border p-3 md:w-3/5",
-                children: [(0,
-                  n.jsx)("h1", {
-                  className: "space-x-2",
-                  children: (0,
-                    n.jsxs)(n.Fragment, {
-                    children: [(0,
-                      n.jsx)("span", {
-                      children: "Raw graph"
-                    }), l.data && (0,
-                      n.jsx)(o.Z, {
-                      iconName: "copy",
-                      label: "Copy",
-                      onClick: () => {
-                        (0,
-                          p.Z)(JSON.stringify(u)),
-                          f.Am.success("Copied to clipboard")
-                      }
-                    })]
-                  })
-                }), (0,
-                  n.jsx)("pre", {
-                  children: JSON.stringify(u, null, 2)
-                })]
-              })
-            })]
-          })
         })
     }
   },
