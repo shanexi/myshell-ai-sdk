@@ -1034,11 +1034,11 @@
             t(!0);
             let {name: l, description: n} = s;
             try {
-              await r({
-                id: e,
-                name: l,
-                description: n
-              }),
+              // await r({
+              //   id: e,
+              //   name: l,
+              //   description: n
+              // }),
                 h()
             } catch (e) {
               throw console.error("handleSave - Error", e),
@@ -1071,16 +1071,17 @@
               n(!1);
             try {
               let {isValid: t, errorMessages: n} = k.IK.validate(a);
+              console.log('1111',l)
               if (!t && n) {
                 console.log("handleSave error", n),
                   (0,
                     eZ.F1)(n, "Glif has errors and can't be saved");
                 return
               }
-              await c({
-                id: e,
-                graph: l
-              }),
+              // await c({
+              //   id: e,
+              //   graph: l
+              // }),
                 h(),
                 console.log("updateDraftGraphJsonMutateAsync done")
             } catch (e) {

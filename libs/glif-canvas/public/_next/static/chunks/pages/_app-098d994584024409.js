@@ -15046,6 +15046,7 @@ Error:`, t)
           , r = new FormData;
         r.append("file", t),
           r.append("upload_preset", e);
+        console.log('1111', `upload image`)
         let i = await fetch("https://api.cloudinary.com/v1_1/".concat(s, "/").concat(n, "/upload"), {
           method: "POST",
           body: r
