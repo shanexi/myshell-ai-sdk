@@ -3823,11 +3823,21 @@
             ea = (0,
               a.removeTrailingSlash)(er);
           let es = !1;
+          function transformUrl(url) {
+            let parts = url.split('/');
+            const firstIdx = parts.findIndex(p => p === '@Shanehsi');
+            parts.splice(firstIdx, 1);
+            const lastPart = parts[parts.length - 1];
+            if (lastPart.endsWith('.html')) {
+              parts[parts.length - 1] = lastPart.slice(0, -5);
+            }
+            return parts.join('/');
+          }
           if ((0,
             p.isDynamicRoute)(ea)) {
             let e = (0,
               h.parseRelativeUrl)(eo)
-              , n = e.pathname
+              , n = transformUrl(e.pathname)
               , o = (0,
               g.getRouteRegex)(ea);
             es = (0,
