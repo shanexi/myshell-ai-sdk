@@ -56,6 +56,7 @@
     "cheerio": "^1.0.0",
     "concurrently": "^8.2.2",
     "cypress": "^12.2.0",
+    "cypress-await": "^1.6.12",
     "cypress-xpath": "^2.0.1",
     "eslint": "~8.15.0",
     "eslint-config-next": "13.1.1",
