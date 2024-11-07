@@ -42,6 +42,7 @@ specifiers:
   concurrently: ^8.2.2
   core-js: ^3.38.1
   cypress: ^12.2.0
+  cypress-xpath: ^2.0.1
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
   eslint-config-prettier: 8.1.0
@@ -125,6 +126,7 @@ devDependencies:
   cheerio: 1.0.0
   concurrently: 8.2.2
   cypress: 12.17.4
+  cypress-xpath: 2.0.1
   eslint: 8.15.0
   eslint-config-next: 13.1.1_hx5tgzcbd2ycqgjduqhliuc3jm
   eslint-config-prettier: 8.1.0_eslint@8.15.0
@@ -11513,9 +11515,15 @@ packages:
       fs-exists-sync: 0.1.0
     dev: true
 
+  /cypress-xpath/2.0.1:
+    resolution: {integrity: sha512-qMagjvinBppNJdMAkucWESP9aP4rDTs7c96m0vwMuZTVx3NqP2E3z/hkoRf8Ea9soL8yTvUuuyF1cg/Sb1Yhbg==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    dev: true
+
   /cypress/12.17.4:
     resolution: {integrity: sha512-gAN8Pmns9MA5eCDFSDJXWKUpaL3IDd89N9TtIupjYnzLSmlpVr+ZR+vb4U/qaMp+lB6tBvAmt7504c3Z4RU5KQ==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    hasBin: true
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.12
@@ -13328,6 +13336,7 @@ packages:
   /extract-zip/2.0.1_supports-color@8.1.1:
     resolution: {integrity: sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==}
     engines: {node: '>= 10.17.0'}
+    hasBin: true
     dependencies:
       debug: 4.3.7_supports-color@8.1.1
       get-stream: 5.2.0
@@ -14814,6 +14823,7 @@ packages:
 
   /is-ci/3.0.1:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
+    hasBin: true
     dependencies:
       ci-info: 3.9.0
     dev: true
@@ -19683,6 +19693,7 @@ packages:
   /sshpk/1.18.0:
     resolution: {integrity: sha512-2p2KJZTSqQ/I3+HX42EpYOa2l3f8Erv8MWKsy2I9uf4wA7yFIkXRffYdsx86y6z4vHtV8u7g+pPlr8/4ouAxsQ==}
     engines: {node: '>=0.10.0'}
+    hasBin: true
     dependencies:
       asn1: 0.2.6
       assert-plus: 1.0.0

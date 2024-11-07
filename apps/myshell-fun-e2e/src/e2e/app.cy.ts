@@ -1,9 +1,9 @@
 import { getGreeting } from '../support/app.po';
 
 describe('myshell-fun', () => {
-  beforeEach(() => cy.visit('/'));
-
   it('should display welcome message', () => {
+    // cy.visit('http://localhost:3000/app/detail?id=0ec12a92-9a92-11ef-b5ea-9ebb585eaf7d')
+    cy.visit('https://www.baidu.com');
     // Custom command example, see `../support/commands.ts` file
     cy.login('my-email@something.com', 'myPassword');
 
