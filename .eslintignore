@@ -1,2 +1,4 @@
 node_modules
 /libs/glif-canvas/public
+
+**/*.typegen.ts
