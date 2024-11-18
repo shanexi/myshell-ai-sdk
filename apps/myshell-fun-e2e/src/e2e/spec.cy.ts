@@ -32,6 +32,9 @@ describe('template spec', () => {
         },
       });
 
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(1000)
+
       const t_mode =
         '/html/body/div[2]/main/div/main/div/div[3]/div/div[2]/div[3]/div[2]/div/div/div/div[2]/form/div/div/div[4]/div[2]/div[1]/div/div/div[3]/button[1]';
       cy.xpath(t_mode).click();
@@ -39,7 +42,10 @@ describe('template spec', () => {
       const ui_mode = '/html/body/div[4]/div/div[1]';
       cy.xpath(ui_mode).click();
 
-      expect(win._get_app_builder_model_refs()).to.eql({});
+
+      cy.window().then((win) => {
+        expect(win._get_app_builder_model_refs()).to.eql({});
+      });
     });
   });
 });
