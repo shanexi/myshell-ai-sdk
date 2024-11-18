@@ -35,6 +35,7 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  '@xstate/react': 3.2.2
   auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   babel-loader: 8.1.0
@@ -71,11 +72,13 @@ specifiers:
   typescript: ~4.9.5
   url-loader: ^4.1.1
   wait-on: ^8.0.0
+  xstate: 4.38.3
   zustand: ^4.5.5
   zustand-computed-state: ^0.1.8
   zustand-signal: ^0.6.0
 
 dependencies:
+  '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
   core-js: 3.38.1
   immer: 10.1.1
@@ -84,6 +87,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tslib: 2.7.0
+  xstate: 4.38.3
   zustand: 4.5.5_aoddzyxqa26ioahc57csa6e2ii
   zustand-computed-state: 0.1.8_zustand@4.5.5
   zustand-signal: 0.6.0_react@18.2.0
@@ -9585,6 +9589,26 @@ packages:
 
   /@xobotyi/scrollbar-width/1.9.5:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
+    dev: false
+
+  /@xstate/react/3.2.2_cbas3qglrk7xf62c2jn3eesh2m:
+    resolution: {integrity: sha512-feghXWLedyq8JeL13yda3XnHPZKwYDN5HPBLykpLeuNpr9178tQd2/3d0NrH6gSd0sG5mLuLeuD+ck830fgzLQ==}
+    peerDependencies:
+      '@xstate/fsm': ^2.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      xstate: ^4.37.2
+    peerDependenciesMeta:
+      '@xstate/fsm':
+        optional: true
+      xstate:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-isomorphic-layout-effect: 1.1.2_pmekkgnqduwlme35zpnqhenc34
+      use-sync-external-store: 1.2.2_react@18.2.0
+      xstate: 4.38.3
+    transitivePeerDependencies:
+      - '@types/react'
     dev: false
 
   /@xtuc/ieee754/1.2.0:
@@ -21759,6 +21783,10 @@ packages:
 
   /xmlchars/2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
+
+  /xstate/4.38.3:
+    resolution: {integrity: sha512-SH7nAaaPQx57dx6qvfcIgqKRXIh4L0A1iYEqim4s1u7c9VoCgzZc+63FY90AKU4ZzOC2cfJzTnpO4zK7fCUzzw==}
+    dev: false
 
   /xtend/4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
