@@ -1,4 +1,5 @@
 import styles from './chat.module.css';
+import { def }from'@myshell-ai-sdk/def'
 
 /* eslint-disable-next-line */
 export interface ChatProps {}

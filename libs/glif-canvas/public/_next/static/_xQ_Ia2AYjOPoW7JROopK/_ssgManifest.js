@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fglifs\u002F[id]","\u002Fglifs\u002F[id]\u002Fremixes","\u002Fglifs\u002F[id]\u002Fsource","\u002Fglifs\u002F[id]\u002Fvalidate","\u002Fruns\u002F[spellRunId]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

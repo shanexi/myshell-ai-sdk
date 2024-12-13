@@ -1,6 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("@chakra-ui/react");
-const CommunityIcon = (props) => ((0, jsx_runtime_1.jsxs)(react_1.Icon, { viewBox: "0 0 30 30", fill: "none", ...props, children: [(0, jsx_runtime_1.jsx)("rect", { x: "3", y: "3", width: "24", height: "24", rx: "6", fill: props.selected ? 'white' : 'currentColor' }), (0, jsx_runtime_1.jsx)("path", { d: "M11.786 22.3743C12.0515 22.3743 12.2474 22.2479 12.5634 21.9634L14.8957 19.8587L19.0293 19.865C20.9318 19.865 22 18.7652 22 16.888V11.977C22 10.0998 20.9318 9 19.0293 9H10.9707C9.07449 9 8 10.0998 8 11.977V16.888C8 18.7716 9.10609 19.8587 10.9264 19.8587H11.1792V21.6916C11.1792 22.1088 11.4005 22.3743 11.786 22.3743ZM11.9567 14.4357C11.9567 14.0628 12.2158 13.8036 12.5824 13.8036H14.3837V12.0023C14.3837 11.6357 14.6366 11.3702 15.0032 11.3702C15.3698 11.3702 15.6352 11.6357 15.6352 12.0023V13.8036H17.4366C17.7968 13.8036 18.0623 14.0628 18.0623 14.4357C18.0623 14.7959 17.7968 15.0488 17.4366 15.0488H15.6352V16.8564C15.6352 17.2167 15.3698 17.4822 15.0032 17.4822C14.6366 17.4822 14.3837 17.2167 14.3837 16.8564V15.0488H12.5824C12.2158 15.0488 11.9567 14.7959 11.9567 14.4357Z", fill: props.selected ? 'currentColor' : 'white' })] }));
-exports.default = CommunityIcon;

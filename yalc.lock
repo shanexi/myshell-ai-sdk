@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "my_shell_react-build-new": {
-      "signature": "d5008d96115ffd4f3f44bd1944da0eed",
-      "file": true
-    }
-  }
-}
