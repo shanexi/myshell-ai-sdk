@@ -7,16 +7,15 @@
   },
   "private": true,
   "dependencies": {
+    "@xstate/react": "3.2.2",
     "auto-zustand-selectors-hook": "^2.0.5",
     "core-js": "^3.38.1",
     "immer": "^10.1.1",
-    "my_shell_react-build-new": "file:.yalc/my_shell_react-build-new",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tslib": "^2.3.0",
     "xstate": "4.38.3",
-    "@xstate/react": "3.2.2",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
     "zustand-signal": "^0.6.0"

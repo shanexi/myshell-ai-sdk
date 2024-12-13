@@ -13,6 +13,16 @@
         "forwardAllArgs": false
       }
     },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chat",
+        "main": "libs/chat/src/index.ts",
+        "tsConfig": "libs/chat/tsconfig.lib.json",
+        "assets": ["libs/chat/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
