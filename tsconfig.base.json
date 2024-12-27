@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myshell-ai-sdk/chat": ["libs/chat/src/index.ts"],
-      "@myshell-ai-sdk/def": ["libs/def/src/index.ts"]
+      "@myshell-run/automata": ["libs/automata/src/index.ts"],
+      "@myshell-run/chat": ["libs/chat/src/index.ts"],
+      "@myshell-run/def": ["libs/def/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

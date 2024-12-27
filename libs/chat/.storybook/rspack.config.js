@@ -4,7 +4,7 @@ module.exports = ({ config }) => {
   // eslint-disable-next-line no-param-reassign
   config.resolve.alias = {
     ...config.resolve.alias,
-    '@myshell-ai-sdk/def': path.resolve(__dirname, '../../def/src/index.ts'),
+    '@myshell-run/def': path.resolve(__dirname, '../../def/src/index.ts'),
   };
   return config;
 };
