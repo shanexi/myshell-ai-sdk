@@ -17,7 +17,8 @@
     "paths": {
       "@myshell-run/automata": ["libs/automata/src/index.ts"],
       "@myshell-run/chat": ["libs/chat/src/index.ts"],
-      "@myshell-run/def": ["libs/def/src/index.ts"]
+      "@myshell-run/def": ["libs/def/src/index.ts"],
+      "@myshell-run/figma-twcfg": ["libs/figma-twcfg/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
