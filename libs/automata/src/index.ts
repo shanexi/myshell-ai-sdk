@@ -1,1 +1,1 @@
-export * from './lib/automata';
+export * from './lib/automata-v1';

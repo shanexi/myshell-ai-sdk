@@ -2,3 +2,4 @@ node_modules
 /libs/glif-canvas/public
 
 **/*.typegen.ts
+/libs/automata/src/lib
