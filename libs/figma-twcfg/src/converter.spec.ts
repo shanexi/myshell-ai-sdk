@@ -1,12 +1,12 @@
-import { ConverterPlugin } from '../convert-plugin';
+import { ConverterPlugin } from './convert-plugin';
 import {
   collectScopeNameMap,
   collectScopes,
   getPlugin,
   shouldSkip,
-} from '../converter';
+} from './converter';
 
-describe('isInFilter', () => {
+describe('shouldSkip', () => {
   it('should return true when variable name is not in filter list', () => {
     const filter = ['color', 'spacing'];
     const varName = 'typography.h1';
@@ -62,7 +62,7 @@ describe('getPlugin', () => {
 describe('collectScopeNameMap', () => {
   it('should work', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const vars = require('../__fixtures__/Base.json').variables;
+    const vars = require('./__fixtures__/Base.json').variables;
     const scopeMap = collectScopeNameMap(vars);
     expect(scopeMap).toMatchInlineSnapshot(`
       Map {
@@ -151,7 +151,7 @@ describe('collectScopeNameMap', () => {
 describe('collectScopes', () => {
   it('should work', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const vars = require('../__fixtures__/Base.json').variables;
+    const vars = require('./__fixtures__/Base.json').variables;
     const scopes = collectScopes(vars);
     expect(scopes).toMatchInlineSnapshot(`
       [

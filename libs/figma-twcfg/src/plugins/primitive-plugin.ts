@@ -14,9 +14,8 @@ export class PrimitivePlugin implements ConverterPlugin {
   transform(varObj: z.infer<typeof varSchema>): [string, number] {
     return transform(primitivesSchema.parse(varObj));
   }
-
   get category() {
-    return 'cssvar' as const;
+    return 'spacing' as const;
   }
 }
 
@@ -28,7 +27,5 @@ export function transform(
 }
 
 export function toName(input: string): string {
-  return input
-    .replace('Primitives/', 'primitives-')
-    .replace(/\s*\([^)]*\)/g, '');
+  return input.replace('Primitives/', '').replace(/\s*\([^)]*\)/g, '');
 }

@@ -7,7 +7,7 @@ import { Converter } from '../converter';
 describe('primitive plugin', () => {
   it('name to name', () => {
     const input = 'Primitives/8 (32px)';
-    const output = 'primitives-8';
+    const output = '8';
     expect(toName(input)).toBe(output);
   });
 
@@ -26,7 +26,7 @@ describe('primitive plugin', () => {
 
     expect(transform(primitivesSchema.parse(input))).toMatchInlineSnapshot(`
       [
-        "primitives-8",
+        "8",
         32,
       ]
     `);
@@ -53,146 +53,146 @@ describe('Base', () => {
       vars: require('../__fixtures__/Base.json').variables,
       filter: ['Primitives/'],
     });
-    expect(converter.cssvar).toMatchInlineSnapshot(`
+    expect(converter.cfgData).toMatchInlineSnapshot(`
       [
         [
-          "primitives-0",
+          "0",
           0,
         ],
         [
-          "primitives-0․5",
+          "0․5",
           2,
         ],
         [
-          "primitives-1",
+          "1",
           4,
         ],
         [
-          "primitives-1․5",
+          "1․5",
           6,
         ],
         [
-          "primitives-2",
+          "2",
           8,
         ],
         [
-          "primitives-3",
+          "3",
           12,
         ],
         [
-          "primitives-4",
+          "4",
           16,
         ],
         [
-          "primitives-5",
+          "5",
           20,
         ],
         [
-          "primitives-6",
+          "6",
           24,
         ],
         [
-          "primitives-7",
+          "7",
           28,
         ],
         [
-          "primitives-8",
+          "8",
           32,
         ],
         [
-          "primitives-9",
+          "9",
           36,
         ],
         [
-          "primitives-10",
+          "10",
           40,
         ],
         [
-          "primitives-11",
+          "11",
           44,
         ],
         [
-          "primitives-12",
+          "12",
           48,
         ],
         [
-          "primitives-14",
+          "14",
           56,
         ],
         [
-          "primitives-16",
+          "16",
           64,
         ],
         [
-          "primitives-20",
+          "20",
           80,
         ],
         [
-          "primitives-24",
+          "24",
           96,
         ],
         [
-          "primitives-32",
+          "32",
           128,
         ],
         [
-          "primitives-40",
+          "40",
           160,
         ],
         [
-          "primitives-56",
+          "56",
           224,
         ],
         [
-          "primitives-64",
+          "64",
           256,
         ],
         [
-          "primitives-80",
+          "80",
           320,
         ],
         [
-          "primitives-96",
+          "96",
           384,
         ],
         [
-          "primitives-120",
+          "120",
           480,
         ],
         [
-          "primitives-140",
+          "140",
           560,
         ],
         [
-          "primitives-160",
+          "160",
           640,
         ],
         [
-          "primitives-180",
+          "180",
           720,
         ],
         [
-          "primitives-192",
+          "192",
           768,
         ],
         [
-          "primitives-256",
+          "256",
           1024,
         ],
         [
-          "primitives-320",
+          "320",
           1280,
         ],
         [
-          "primitives-360",
+          "360",
           1440,
         ],
         [
-          "primitives-400",
+          "400",
           1600,
         ],
         [
-          "primitives-480",
+          "480",
           1920,
         ],
       ]

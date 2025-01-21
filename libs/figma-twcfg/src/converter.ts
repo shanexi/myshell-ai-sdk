@@ -14,11 +14,11 @@ export const runInputSchema = z.object({
 @injectable()
 export class Converter {
   #varsMap: Map<string, z.infer<typeof varSchema>> = new Map();
-  #cssvar: [string, number][] = [];
+  #cfgData: [string, number][] = [];
   #scopeNameMap: Map<string, string[]> = new Map();
 
-  get cssvar() {
-    return [...this.#cssvar].sort((a, b) => a[1] - b[1]);
+  get cfgData() {
+    return [...this.#cfgData].sort((a, b) => a[1] - b[1]);
   }
 
   constructor(
@@ -37,7 +37,7 @@ export class Converter {
       if (shouldSkip(filter, varObj.name)) return;
       const plugin = getPlugin(varObj.name, this.plugins);
       const ret = plugin.transform(varObj);
-      this.#cssvar.push(ret);
+      this.#cfgData.push(ret);
     });
   }
 }

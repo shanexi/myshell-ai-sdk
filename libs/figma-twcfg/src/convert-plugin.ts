@@ -48,6 +48,6 @@ export const ConverterPluginSym = Symbol.for('ConverterPlugin');
 
 export interface ConverterPlugin {
   pattern: string;
-  category: keyof ThemeConfig | 'cssvar';
+  category: keyof ThemeConfig;
   transform(varObj: z.infer<typeof varSchema>): [string, number];
 }
