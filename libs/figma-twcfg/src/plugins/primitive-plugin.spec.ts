@@ -46,7 +46,7 @@ describe('Base', () => {
     container.restore();
   });
 
-  it('should work', () => {
+  it('transform Base.json', () => {
     const converter = container.get(Converter);
     converter.run({
       // eslint-disable-next-line @typescript-eslint/no-var-requires

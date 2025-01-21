@@ -15,6 +15,7 @@ export const runInputSchema = z.object({
 export class Converter {
   #varsMap: Map<string, z.infer<typeof varSchema>> = new Map();
   #cssvar: [string, number][] = [];
+  #scopeNameMap: Map<string, string[]> = new Map();
 
   get cssvar() {
     return [...this.#cssvar].sort((a, b) => a[1] - b[1]);
@@ -30,6 +31,8 @@ export class Converter {
 
     this.#varsMap = new Map(input.vars.map((v) => [v.id, v]));
 
+    this.#scopeNameMap = collectScopeNameMap(vars);
+
     vars.forEach((varObj) => {
       if (shouldSkip(filter, varObj.name)) return;
       const plugin = getPlugin(varObj.name, this.plugins);
@@ -37,6 +40,30 @@ export class Converter {
       this.#cssvar.push(ret);
     });
   }
+}
+
+export function collectScopes(vars: z.infer<typeof varSchema>[]) {
+  const scopes: string[][] = [];
+  vars.forEach((varObj) => {
+    const scopeStr = varObj.scopes.join(',');
+    if (!scopes.some((s) => s.join(',') === scopeStr)) {
+      scopes.push(varObj.scopes);
+    }
+  });
+  return scopes;
+}
+
+export function collectScopeNameMap(vars: z.infer<typeof varSchema>[]) {
+  const scopeMap = new Map<string, string[]>();
+  vars.forEach((varObj) => {
+    varObj.scopes.forEach((scope) => {
+      if (!scopeMap.has(scope)) {
+        scopeMap.set(scope, []);
+      }
+      scopeMap.get(scope)?.push(varObj.name);
+    });
+  });
+  return scopeMap;
 }
 
 export function getPlugin(

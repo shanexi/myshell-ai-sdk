@@ -41,6 +41,7 @@ export const varSchema = z.object({
       }),
     ])
   ),
+  scopes: z.array(z.string()),
 });
 
 export const ConverterPluginSym = Symbol.for('ConverterPlugin');
