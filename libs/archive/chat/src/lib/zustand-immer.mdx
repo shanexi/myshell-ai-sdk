@@ -1,0 +1,19 @@
+import { Canvas, Meta } from '@storybook/blocks';
+
+import * as ImmerStories from './zustand-immer.stories.tsx';
+
+<Meta of={ImmerStories} />
+
+# Reference
+
+- [Best practice for Typescript + Slice Pattern + Immer + Devtools #2070](https://github.com/pmndrs/zustand/discussions/2070)
+- [Typescript + Immer + Slice pattern #1796](https://github.com/pmndrs/zustand/discussions/1796)
+
+```typescript
+export type ImmerStateCreator<
+  T,
+  Mps extends [StoreMutatorIdentifier, unknown][] = [],
+  Mcs extends [StoreMutatorIdentifier, unknown][] = [],
+  U = T
+> = StateCreator<T, [...Mps, ['zustand/immer', never]], Mcs, U>;
+```

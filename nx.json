@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "myshell-ai-sdk",
+  "npmScope": "myshell-run",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
