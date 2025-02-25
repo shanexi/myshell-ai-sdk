@@ -1,0 +1,16 @@
+你需要完成的任务是将 figma Export/Import Variables 生成的文件转换成 tailwind 的配置文件
+
+你需要处理3个文件在目录
+`libs/figma-twcfg/src/__fixtures__`
+
+其中 `Base.json` 存储 spacing raidus 等非 color 相关的信息，其中 primitive 是没有 alias 的，其他都是 alias primitive 的变量
+
+`_Gradient Palette.json` 存储 color 变量相关的信息，注意有 light 和 dark 两种模式
+将 light 和 dark 作为 css 变量进行生成，并输出到一个改目录的 `global.css` 文件中，注意 dark 和 light 分开，但是同一个变量的变量名是一样的。同时 `Design Tokens.json` 生成的 tailwind config，引用 css 变量，dark light 两种模式引用的变量是一样的
+
+`Design Tokens.json` 则存储更定制的颜色信息，所有的颜色变量都是 alias `_Gradient Palette` 的变量
+
+生成的 `tailwind.config.js` 放到 `libs/figma-twcfg/src/__fixtures__`
+
+1. 类型定义文件 都在 `libs/figma-twcfg/src/__fixtures__`
+2. 实现完成的逻辑，并自动运行生成文件
