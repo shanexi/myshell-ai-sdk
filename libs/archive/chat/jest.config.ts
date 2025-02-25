@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'chat',
-  preset: '../../jest.preset.js',
+  displayName: 'archive-chat',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
       '@swc/jest',
@@ -9,7 +9,7 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/chat',
+  coverageDirectory: '../../../coverage/libs/archive/chat',
   coverageThreshold: {
     global: {
       branches: 80,
@@ -17,13 +17,13 @@ export default {
       lines: 80,
       statements: 80,
     },
-    './libs/chat/src/**/*.tsx': {
+    './libs/archive/chat/src/**/*.tsx': {
       branches: 60,
       functions: 60,
       lines: 60,
       statements: 60,
     },
-    './libs/chat/src/**/*.ts': {
+    './libs/archive/chat/src/**/*.ts': {
       branches: 90,
       functions: 90,
       lines: 90,

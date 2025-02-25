@@ -1,14 +1,14 @@
 {
-  "name": "automata",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/automata/src",
+  "name": "archive-automata",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/archive/automata/src",
   "projectType": "library",
   "targets": {
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
         "commands": ["tsc -p tsconfig.json --noEmit"],
-        "cwd": "libs/automata",
+        "cwd": "libs/archive/automata",
         "forwardAllArgs": false
       }
     },
@@ -16,24 +16,24 @@
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/automata",
-        "main": "libs/automata/src/index.ts",
-        "tsConfig": "libs/automata/tsconfig.lib.json",
-        "assets": ["libs/automata/*.md"]
+        "outputPath": "dist/libs/archive/automata",
+        "main": "libs/archive/automata/src/index.ts",
+        "tsConfig": "libs/archive/automata/tsconfig.lib.json",
+        "assets": ["libs/archive/automata/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/automata/**/*.ts"]
+        "lintFilePatterns": ["libs/archive/automata/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/automata/jest.config.ts",
+        "jestConfig": "libs/archive/automata/jest.config.ts",
         "passWithNoTests": true,
         "coverageReporters": ["text"]
       },

@@ -4,7 +4,7 @@ import * as SimpleStories from './zustand-simple.stories.tsx';
 
 <Meta of={SimpleStories} />
 
-#  zustand-computed-state
+# zustand-computed-state
 
 # auto-zustand-selectors-hook
 
@@ -25,6 +25,7 @@ The best approach is to avoid different slices, and it should be avoided.
 If dealing with legacy code, or create differenct stores with differenct middlewares (which can be done but is mentally challenging to maintain).
 
 then use `unkonwn`
+
 ```typescript
 export const useBoundStore = create<BoundStore>()(
   devtools(
@@ -33,20 +34,21 @@ export const useBoundStore = create<BoundStore>()(
         (...a: unknown[]) => ({
           ...createBearSlice(...a),
           ...createFishSlice(...a),
-          ...createSharedSlice(...a)
+          ...createSharedSlice(...a),
         }),
         {
-          name: "test",
+          name: 'test',
           partialize: (s: BoundStore) => ({
             ...partializeBearSlice(s),
-            ...partializeFishSlice(s)
-          })
+            ...partializeFishSlice(s),
+          }),
         }
       )
     )
   )
 );
 ```
+
 [codesandbox - ts-zustand-slice-middleware](https://codesandbox.io/p/sandbox/ts-zustand-slice-middleware-686w3w?file=%2Fsrc%2Fstores%2FbearSlice.ts)
 
 # TypeScript
@@ -59,9 +61,13 @@ export const useBoundStore = create<BoundStore>()(
 [Exclude function types from an object type](https://stackoverflow.com/questions/58210331/exclude-function-types-from-an-object-type)
 
 ```typescript
-type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+type FunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? K : never;
+}[keyof T];
 type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
 
-type NonFunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+type NonFunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K;
+}[keyof T];
 type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
 ```
