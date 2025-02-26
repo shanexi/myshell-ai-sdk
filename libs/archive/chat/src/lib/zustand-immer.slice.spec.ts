@@ -12,7 +12,7 @@ import {
 describe('createFishSlice', () => {
   it('should initialize with 0 fishes', () => {
     const store = createStore<FishSlice, [['zustand/immer', never]]>(
-      immer(createFishSlice)
+      immer(createFishSlice),
     );
     const { fishes } = store.getState();
     expect(fishes).toBe(0);
@@ -20,7 +20,7 @@ describe('createFishSlice', () => {
 
   it('should add a fish', () => {
     const store = createStore<FishSlice, [['zustand/immer', never]]>(
-      immer(createFishSlice)
+      immer(createFishSlice),
     );
     store.getState().addFish();
     const { fishes } = store.getState();
@@ -35,7 +35,7 @@ describe('createFishSlice', () => {
       immer((...a) => ({
         ...createBearSlice(...a),
         ...createFishSlice(...a),
-      }))
+      })),
     );
     const { bears, fishes } = store.getState();
     expect(bears).toBe(0);
@@ -50,7 +50,7 @@ describe('createFishSlice', () => {
       immer((...a) => ({
         ...createBearSlice(...a),
         ...createFishSlice(...a),
-      }))
+      })),
     );
     store.getState().addBear();
     const { bears } = store.getState();
@@ -65,7 +65,7 @@ describe('createFishSlice', () => {
       immer((...a) => ({
         ...createBearSlice(...a),
         ...createFishSlice(...a),
-      }))
+      })),
     );
     store.getState().addFish(); // Ensure there is at least one fish
     store.getState().eatFish();
@@ -84,7 +84,7 @@ describe('createSharedSlice', () => {
         ...createBearSlice(...a),
         ...createFishSlice(...a),
         ...createSharedSlice(...a),
-      }))
+      })),
     );
 
     const state = store.getState();
@@ -102,7 +102,7 @@ describe('createSharedSlice', () => {
         ...createBearSlice(...a),
         ...createFishSlice(...a),
         ...createSharedSlice(...a),
-      }))
+      })),
     );
 
     const state = store.getState();

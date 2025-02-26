@@ -98,6 +98,9 @@
   "pnpm": {
     "overrides": {
       "@babel/parser": "7.21.9"
+    },
+    "patchedDependencies": {
+      "nx@15.9.7": "patches/nx@15.9.7.patch"
     }
   }
 }

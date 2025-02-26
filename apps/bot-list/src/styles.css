@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -345,11 +345,17 @@
   --color-alpha-mask-desktop-light: var(--alpha-black-75);
   --color-alpha-mask-desktop-dark: var(--alpha-black-75);
   --color-surface-container-selected-default-light: var(--neutral-variant-95);
-  --color-surface-container-selected-default-dark: var(--dark-neutral-special-10);
+  --color-surface-container-selected-default-dark: var(
+    --dark-neutral-special-10
+  );
   --color-surface-container-selected-hovered-light: var(--neutral-variant-90);
-  --color-surface-container-selected-hovered-dark: var(--dark-neutral-special-30);
+  --color-surface-container-selected-hovered-dark: var(
+    --dark-neutral-special-30
+  );
   --color-surface-container-selected-pressed-light: var(--neutral-variant-88);
-  --color-surface-container-selected-pressed-dark: var(--dark-neutral-special-40);
+  --color-surface-container-selected-pressed-dark: var(
+    --dark-neutral-special-40
+  );
   --color-surface-inverse-light: var(--neutral-0);
   --color-surface-inverse-dark: var(--neutral-100);
   --color-surface-lemon-subtlest-light: var(--neutral-100);
@@ -677,9 +683,13 @@
   --color-surface-container-special-subtle-light: var(--neutral-variant-99);
   --color-surface-container-special-subtle-dark: var(--dark-neutral-special-5);
   --color-surface-container-special-default-light: var(--neutral-variant-85);
-  --color-surface-container-special-default-dark: var(--dark-neutral-special-20);
+  --color-surface-container-special-default-dark: var(
+    --dark-neutral-special-20
+  );
   --color-surface-container-special-hovered-light: var(--neutral-variant-80);
-  --color-surface-container-special-hovered-dark: var(--dark-neutral-special-30);
+  --color-surface-container-special-hovered-dark: var(
+    --dark-neutral-special-30
+  );
 
   /* _GRADIENT PALETTE */
   --neutral-0: #1a1c1d;
@@ -981,4 +991,4 @@
   --sky-blue-800: #1849a9;
   --sky-blue-900: #194185;
   --sky-blue-950: #102a56;
- }
+}

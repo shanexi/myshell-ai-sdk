@@ -16,7 +16,7 @@ export const boundStore = createStore<BearSlice & FishSlice & SharedSlice>(
     ...createBearSlice(...a),
     ...createFishSlice(...a),
     ...createSharedSlice(...a),
-  })
+  }),
 );
 
 function BearCounter() {

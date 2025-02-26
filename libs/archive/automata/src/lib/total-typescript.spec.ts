@@ -42,10 +42,10 @@ describe('automata', () => {
     // step 2: build a merge array of object type helper
     type MergeArrayOfObject<
       TArr extends readonly object[],
-      T1 = {} // 累加器
+      T1 = {}, // 累加器
     > = TArr extends [
       infer T2 extends object, // infer 推断（取）这个语法类似 rest，T2 就是第一个
-      ...infer TRest extends object[]
+      ...infer TRest extends object[],
     ]
       ? MergeArrayOfObject<TRest, Merge<T1, T2>> // （尾）递归
       : T1; // 数组空就返回最终结果（累加器）
@@ -54,7 +54,7 @@ describe('automata', () => {
       [
         { foo: string; bar: string },
         { foo: number },
-        { foo: boolean; baz: string }
+        { foo: boolean; baz: string },
       ]
     >;
 
@@ -67,7 +67,7 @@ describe('automata', () => {
     const example3 = merge(
       { foo: 123 },
       { foo: true, baz: 'abc' },
-      { foo: 'abc', bar: 123 }
+      { foo: 'abc', bar: 123 },
     );
   });
 
@@ -102,7 +102,7 @@ describe('automata', () => {
     it('retry', async () => {
       async function retry<T>(
         fn: () => Promise<T>,
-        retries: number = 5
+        retries: number = 5,
       ): Promise<T> {
         try {
           return await fn();
@@ -169,7 +169,7 @@ describe('automata', () => {
       }
 
       function exampleFunc<T extends keyof Example>(
-        key: T
+        key: T,
         // 出现 never 是因为当 key 不存在，则推导为 never
       ): Example[T] {
         if (key === 'foo') {
@@ -272,7 +272,7 @@ describe('automata', () => {
 
     const userForm = <TValues>(
       schema: z.Schema<TValues>,
-      onSubmit: (values: TValues) => void
+      onSubmit: (values: TValues) => void,
     ) => {
       return {
         onSubmit: (values: unknown) => {
@@ -292,7 +292,7 @@ describe('automata', () => {
       }),
       (values) => {
         console.log(values);
-      }
+      },
     );
   });
 

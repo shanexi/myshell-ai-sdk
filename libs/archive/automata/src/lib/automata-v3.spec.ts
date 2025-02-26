@@ -17,7 +17,7 @@ describe('automata', () => {
     class Input1 {
       constructor(
         @inject(CtxVal1) public description: CtxVal1,
-        @inject(CtxVal1) public defaultValue: CtxVal1
+        @inject(CtxVal1) public defaultValue: CtxVal1,
       ) {}
       toJSON() {
         return this.constructor.name;
@@ -36,7 +36,7 @@ describe('automata', () => {
     class Output1 {
       constructor(
         @inject(CtxVal1) public name: CtxVal1,
-        @inject(Input2) public value: Input2
+        @inject(Input2) public value: Input2,
       ) {}
 
       execute() {
@@ -54,7 +54,7 @@ describe('automata', () => {
         @inject(Input1) public input1: Input1,
         @inject(Input2) public input2: Input2,
         @inject(Output1) public output1: Output1,
-        @inject(Button1) public button1: Button1
+        @inject(Button1) public button1: Button1,
       ) {}
       toJSON() {
         return this.constructor.name;

@@ -19,8 +19,8 @@ export const useBoundStoreBase = create<BearSlice & FishSlice & SharedSlice>()(
       ...createBearSlice(...a),
       ...createFishSlice(...a),
       ...createSharedSlice(...a),
-    }))
-  )
+    })),
+  ),
 );
 
 const useBoundStore = createSelectorFunctions(useBoundStoreBase);

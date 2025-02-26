@@ -14,6 +14,6 @@ export type ImmerStateCreator<
   T,
   Mps extends [StoreMutatorIdentifier, unknown][] = [],
   Mcs extends [StoreMutatorIdentifier, unknown][] = [],
-  U = T
+  U = T,
 > = StateCreator<T, [...Mps, ['zustand/immer', never]], Mcs, U>;
 ```

@@ -26,22 +26,22 @@ if (options.ci) {
   run('pnpm', 'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts');
   run(
     'yalc',
-    'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +'
+    'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +',
   );
   run(
     'pnpm again',
-    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
+    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts',
   );
 }
 
 if (!options.ci && options.yalc) {
   run(
     'yalc',
-    'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +'
+    'find ./node_modules/.pnpm -type d -name "file+.yalc+*" -print -exec rm -r {} +',
   );
   run(
     'pnpm again',
-    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts'
+    'pnpm dlx pnpm@7.33.7 i --frozen-lockfile --ignore-scripts',
   );
 }
 
@@ -52,7 +52,10 @@ if (!options.ci && options.reset) {
 if (!options.pr) {
   run('lint', './node_modules/.bin/nx run-many --target lint');
   run('build', './node_modules/.bin/nx run-many --target build');
-  run('test', './node_modules/.bin/nx run-many --target test --output-style=static');
+  run(
+    'test',
+    './node_modules/.bin/nx run-many --target test --output-style=static',
+  );
 } else {
   // run test use ArtiomTr/jest-coverage-report-action@v2
   run('cypress', './node_modules/.bin/cypress install');

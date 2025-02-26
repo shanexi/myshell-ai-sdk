@@ -17,7 +17,7 @@ function run(name, port) {
     {
       cwd: path.join(__dirname, '..'),
       stdio: 'inherit',
-    }
+    },
   );
   console.timeEnd(`test-storybook ${name}`);
 }

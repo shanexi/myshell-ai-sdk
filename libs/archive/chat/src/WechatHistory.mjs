@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const inputFilePath = path.join(
   __dirname,
-  './WechatHistory/MyShell ShellAgent 内测.html'
+  './WechatHistory/MyShell ShellAgent 内测.html',
 );
 const outputDir = path.join(__dirname, './WechatHistory');
 
