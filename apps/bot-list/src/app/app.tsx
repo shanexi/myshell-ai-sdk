@@ -1,8 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 export function App() {
   return (
-    <div className="bg-amber-500">
+    <div className="bg-white dark:bg-black text-black dark:text-white">
       <h1>App</h1>
     </div>
   );
