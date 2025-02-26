@@ -1,8 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
 
 export function App() {
-  return <>App</>;
+  return (
+    <div className="bg-red-500">
+      <h1>App</h1>
+    </div>
+  );
 }
 
 export default App;
