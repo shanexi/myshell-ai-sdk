@@ -1,3 +1,18 @@
 module.exports = {
-  "singleQuote": true
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.spec.ts",
+      "options": {
+        "semi": true
+      }
+    },
+    {
+      "files": "*.tsx",
+      "options": {
+        "plugins": ["prettier-plugin-tailwindcss"],
+        "tailwindStylesheet": "./apps/bot-list/src/styles.css",
+      }
+    },
+  ]
 }

@@ -2,6 +2,6 @@ import { def } from './def';
 
 describe('def', () => {
   it('should work', () => {
-    expect(def()).toEqual('def');
+    expect(def()).toMatchInlineSnapshot(`"def"`);
   });
 });
