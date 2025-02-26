@@ -103,7 +103,10 @@
       "@babel/parser": "7.21.9"
     },
     "patchedDependencies": {
-      "nx@15.9.7": "patches/nx@15.9.7.patch"
+      "nx@15.9.7": "patches/nx@15.9.7.patch",
+      "prettier@2.8.8": "patches/prettier@2.8.8.patch",
+      "@nrwl/devkit@15.9.7": "patches/@nrwl__devkit@15.9.7.patch",
+      "@nrwl/js@15.9.7": "patches/@nrwl__js@15.9.7.patch"
     }
   }
 }

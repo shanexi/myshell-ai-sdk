@@ -17,7 +17,8 @@
     "paths": {
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
       "@myshell-run/archive-chat": ["libs/archive/chat/src/index.ts"],
-      "@myshell-run/def": ["libs/def/src/index.ts"]
+      "@myshell-run/def": ["libs/def/src/index.ts"],
+      "@myshell-run/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
