@@ -1,5 +1,6 @@
 module.exports = {
   singleQuote: true,
+  trailingComma: 'all',
   overrides: [
     {
       files: '*.spec.ts',
