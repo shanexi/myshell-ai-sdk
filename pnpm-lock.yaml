@@ -42,6 +42,7 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  '@virtuoso.dev/message-list': ^1.9.15
   '@xstate/react': 3.2.2
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: ^2.0.5
@@ -51,6 +52,7 @@ specifiers:
   core-js: ^3.38.1
   cross-fetch: ^4.1.0
   cypress: ^12.2.0
+  daisyui: 5.0.0-beta.8
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
   eslint-config-prettier: 8.1.0
@@ -78,6 +80,7 @@ specifiers:
   react-dom: 18.2.0
   react-refresh: ^0.10.0
   react-test-renderer: 18.2.0
+  react-virtuoso: ^4.12.5
   storybook-react-rspack: 7.0.0-rc.25
   tailwindcss: ^4.0.9
   ts-jest: ^29.0.5
@@ -92,6 +95,7 @@ specifiers:
   zustand-signal: ^0.6.0
 
 dependencies:
+  '@virtuoso.dev/message-list': 1.9.15_biqbaboplfbrettd7655fr4n2y
   '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
@@ -101,6 +105,7 @@ dependencies:
   next: 13.1.1_ogpcfxstozvqf23dbtqn6fjxke
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-virtuoso: 4.12.5_biqbaboplfbrettd7655fr4n2y
   tslib: 2.7.0
   xstate: 4.38.3
   zod: 3.24.1
@@ -147,6 +152,7 @@ devDependencies:
   concurrently: 8.2.2
   cross-fetch: 4.1.0
   cypress: 12.17.4
+  daisyui: 5.0.0-beta.8
   eslint: 8.15.0
   eslint-config-next: 13.1.1_hx5tgzcbd2ycqgjduqhliuc3jm
   eslint-config-prettier: 8.1.0_eslint@8.15.0
@@ -8405,6 +8411,33 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
+  /@virtuoso.dev/gurx/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution:
+      {
+        integrity: sha512-VBkH+/aOigAGNpETpJ0KXrCGw/jX9UDhcISuRkc+mjhBENHBMhkN+PAmJlMgeqJOKd5cbw0CHTpjQVePJhvcmA==,
+      }
+    peerDependencies:
+      react: '>= 18 || >= 19'
+      react-dom: '>= 18 || >= 19'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@virtuoso.dev/message-list/1.9.15_biqbaboplfbrettd7655fr4n2y:
+    resolution:
+      {
+        integrity: sha512-zk7IY8ESfOAG7xJntvQEttA/Y2u2UGIBihVKUcwDyfbK+b9pncs8cBOLw1zXP9IKPtAUCyyVPRY+G3RT73RIEw==,
+      }
+    peerDependencies:
+      react: '>= 18 || >= 19'
+      react-dom: '>= 18 || >= 19'
+    dependencies:
+      '@virtuoso.dev/gurx': 1.0.0_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@webassemblyjs/ast/1.12.1:
     resolution:
       {
@@ -11106,6 +11139,13 @@ packages:
       tmp: 0.2.3
       untildify: 4.0.0
       yauzl: 2.10.0
+    dev: true
+
+  /daisyui/5.0.0-beta.8:
+    resolution:
+      {
+        integrity: sha512-jSokqm5i+Pv1jG80wliNzMHjmcF+iMx5xRUpk0/QExVoVNyQNWeCsaWJQubPvUq7bt9nzSsQTR2uIZBoyIIoaA==,
+      }
     dev: true
 
   /damerau-levenshtein/1.0.8:
@@ -19456,6 +19496,19 @@ packages:
       react-shallow-renderer: 16.15.0_react@18.2.0
       scheduler: 0.23.2
     dev: true
+
+  /react-virtuoso/4.12.5_biqbaboplfbrettd7655fr4n2y:
+    resolution:
+      {
+        integrity: sha512-YeCbRRsC9CLf0buD0Rct7WsDbzf+yBU1wGbo05/XjbcN2nJuhgh040m3y3+6HVogTZxEqVm45ac9Fpae4/MxRQ==,
+      }
+    peerDependencies:
+      react: '>=16 || >=17 || >= 18 || >= 19'
+      react-dom: '>=16 || >=17 || >= 18 || >=19'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution:

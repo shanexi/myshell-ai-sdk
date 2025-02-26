@@ -1,7 +1,24 @@
 @import 'tailwindcss';
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@layer components {
+  .display-md-emphasized {
+    /* Display/md/Emphasized */
+    font-family: 'PP Telegraf';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 133.333% */
+  }
+}
+
+/* BEGIN */
 @theme {
   /* BASE */
   --radius-xl: var(--primitives-3-12px);
@@ -992,3 +1009,5 @@
   --sky-blue-900: #194185;
   --sky-blue-950: #102a56;
 }
+
+/* END */
