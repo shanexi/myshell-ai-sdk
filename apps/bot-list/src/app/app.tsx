@@ -1,5 +1,6 @@
 import { ReactComponent as Search } from './search.svg';
 import { Energy } from '@myshell-run/ui';
+import * as Portals from '@ionic/portals';
 
 export function App() {
   return (
@@ -21,7 +22,12 @@ export function App() {
       <ul className="list rounded-box bg-base-100 shadow-md">
         <li className="p-4 pb-2 text-xs tracking-wide opacity-60">Popular</li>
 
-        <li className="list-row">
+        <li
+          className="list-row"
+          onClick={() => {
+            Portals.publish({ topic: 'nav-to-chat', data: null });
+          }}
+        >
           <div>
             <img
               className="rounded-box size-10"
