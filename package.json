@@ -91,7 +91,8 @@
     "tailwindcss": "^4.0.9",
     "ts-jest": "^29.0.5",
     "ts-node": "10.9.1",
-    "typescript": "~4.9.5",
+    "typescript": "~5.7.3",
+    "url-loader": "^4.1.1",
     "wait-on": "^8.0.0"
   },
   "engines": {
@@ -106,7 +107,8 @@
       "nx@15.9.7": "patches/nx@15.9.7.patch",
       "prettier@2.8.8": "patches/prettier@2.8.8.patch",
       "@nrwl/devkit@15.9.7": "patches/@nrwl__devkit@15.9.7.patch",
-      "@nrwl/js@15.9.7": "patches/@nrwl__js@15.9.7.patch"
+      "@nrwl/js@15.9.7": "patches/@nrwl__js@15.9.7.patch",
+      "@nrwl/webpack@15.9.7": "patches/@nrwl__webpack@15.9.7.patch"
     }
   }
 }
