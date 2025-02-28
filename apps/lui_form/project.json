@@ -1,0 +1,73 @@
+{
+  "name": "lui_form",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/lui_form/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/lui_form",
+        "index": "apps/lui_form/src/index.html",
+        "baseHref": "/",
+        "main": "apps/lui_form/src/main.tsx",
+        "tsConfig": "apps/lui_form/tsconfig.app.json",
+        "assets": ["apps/lui_form/src/assets"],
+        "styles": ["apps/lui_form/src/styles.css"],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/lui_form/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/lui_form/src/environments/environment.ts",
+              "with": "apps/lui_form/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "lui_form:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "lui_form:build:development"
+        },
+        "production": {
+          "buildTarget": "lui_form:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/lui_form/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
