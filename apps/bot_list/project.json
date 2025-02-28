@@ -1,7 +1,7 @@
 {
-  "name": "bot-list",
+  "name": "bot_list",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/bot-list/src",
+  "sourceRoot": "apps/bot_list/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,17 +10,17 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/bot-list",
-        "index": "apps/bot-list/src/index.html",
+        "outputPath": "dist/apps/bot_list",
+        "index": "apps/bot_list/src/index.html",
         "baseHref": "/",
-        "main": "apps/bot-list/src/main.tsx",
-        "tsConfig": "apps/bot-list/tsconfig.app.json",
-        "assets": ["apps/bot-list/src/assets"],
+        "main": "apps/bot_list/src/main.tsx",
+        "tsConfig": "apps/bot_list/tsconfig.app.json",
+        "assets": ["apps/bot_list/src/assets"],
         "styles": [],
         "scripts": [],
         "isolatedConfig": true,
-        "webpackConfig": "apps/bot-list/webpack.config.js",
-        "postcssConfig": "apps/bot-list/postcss.config.js"
+        "webpackConfig": "apps/bot_list/webpack.config.js",
+        "postcssConfig": "apps/bot_list/postcss.config.js"
       },
       "configurations": {
         "development": {
@@ -32,8 +32,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/bot-list/src/environments/environment.ts",
-              "with": "apps/bot-list/src/environments/environment.prod.ts"
+              "replace": "apps/bot_list/src/environments/environment.ts",
+              "with": "apps/bot_list/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -50,15 +50,15 @@
       "executor": "@nrwl/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "bot-list:build",
+        "buildTarget": "bot_list:build",
         "hmr": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "bot-list:build:development"
+          "buildTarget": "bot_list:build:development"
         },
         "production": {
-          "buildTarget": "bot-list:build:production",
+          "buildTarget": "bot_list:build:production",
           "hmr": false
         }
       }
@@ -67,7 +67,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/bot-list/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/bot_list/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
