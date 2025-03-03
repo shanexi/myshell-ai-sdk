@@ -14,7 +14,7 @@ interface Message {
 
 let idCounter = 0;
 
-function randomMessage(user: Message['user']): Message {
+export function randomMessage(user: Message['user']): Message {
   return {
     user,
     key: `${idCounter++}`,
@@ -107,7 +107,7 @@ export function ChatDemo() {
 }
 
 // 生成随机文本的辅助函数
-function randPhrase(): string {
+export function randPhrase(): string {
   const phrases = [
     '你好！',
     '很高兴见到你',
@@ -129,7 +129,13 @@ function randPhrase(): string {
 }
 
 // 生成指定长度范围内的随机文本
-function randTextRange({ min, max }: { min: number; max: number }): string {
+export function randTextRange({
+  min,
+  max,
+}: {
+  min: number;
+  max: number;
+}): string {
   const length = Math.floor(Math.random() * (max - min + 1)) + min;
   let result = '';
 
