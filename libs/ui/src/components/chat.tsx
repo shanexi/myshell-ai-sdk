@@ -1,3 +1,18 @@
+import { BotInfo } from './bot-info';
+import { ChatInput } from './chat-input';
+import { ChatTop } from './chat-top';
+
 export function Chat() {
-  return <div className="flex">Chat</div>;
+  return (
+    <div className="flex h-screen flex-col">
+      <div className="flex-none">
+        <ChatTop />
+      </div>
+      <div className="flex-grow overflow-auto p-4">message</div>
+      <div className="mb-[34px] flex-none border-t-[0.5px] border-border-default-light">
+        <ChatInput />
+        <BotInfo />
+      </div>
+    </div>
+  );
 }

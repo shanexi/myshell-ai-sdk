@@ -4,11 +4,13 @@ import { ReactComponent as Audio } from './audio.svg';
 
 export function ChatInput() {
   return (
-    <label className="input rounded-4xl">
-      <Action />
-      <Plus />
-      <input type="search" className="grow" placeholder="Write a message" />
-      <Audio />
-    </label>
+    <div className="mx-[8px] my-spacing-md">
+      <label className="input w-full rounded-4xl">
+        <Action />
+        <Plus />
+        <input type="search" className="grow" placeholder="Write a message" />
+        <Audio />
+      </label>
+    </div>
   );
 }

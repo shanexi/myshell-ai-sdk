@@ -3,6 +3,9 @@ import { Chat } from './chat';
 
 const meta: Meta<typeof Chat> = {
   component: Chat,
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 export default meta;
 

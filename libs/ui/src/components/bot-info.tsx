@@ -5,7 +5,7 @@ import { ReactComponent as Share } from './share.svg';
 
 export function BotInfo() {
   return (
-    <div className="x-bot-info flex items-center justify-between">
+    <div className="x-bot-info flex items-center justify-between px-[8px] py-[4px]">
       <div className="flex items-center">
         <img
           className="mr-[8px] h-[36px] w-[36px] rounded-lg"
