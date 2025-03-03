@@ -24,6 +24,7 @@ specifiers:
   '@babel/core': ^7.16.0
   '@babel/preset-react': ^7.14.5
   '@babel/preset-typescript': ^7.16.0
+  '@capacitor-community/sqlite': ~6.0.2
   '@capacitor/android': ^6.2.0
   '@capacitor/cli': ^6.2.0
   '@capacitor/core': ^6.2.0
@@ -69,7 +70,7 @@ specifiers:
   core-js: ^3.38.1
   cross-fetch: ^4.1.0
   cypress: ^12.2.0
-  daisyui: 5.0.0-beta.8
+  daisyui: 5.0.0
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
   eslint-config-prettier: 8.1.0
@@ -87,6 +88,8 @@ specifiers:
   jest-environment-jsdom: ^29.4.1
   jest-environment-node: ^29.4.1
   lint-staged: ^15.2.10
+  mobx: ^6.13.6
+  mobx-react-lite: ^4.1.0
   next: 13.1.1
   nx: 15.9.7
   postcss: ^8.5.3
@@ -98,6 +101,7 @@ specifiers:
   react-refresh: ^0.10.0
   react-test-renderer: 18.2.0
   react-virtuoso: ^4.12.5
+  reflect-metadata: ^0.2.2
   storybook-react-rspack: 7.0.0-rc.25
   tailwindcss: ^4.0.9
   ts-jest: ^29.0.5
@@ -113,6 +117,7 @@ specifiers:
   zustand-signal: ^0.6.0
 
 dependencies:
+  '@capacitor-community/sqlite': 6.0.2_@capacitor+core@6.2.0
   '@capacitor/core': 6.2.0
   '@ionic/portals': 0.10.0_@capacitor+core@6.2.0
   '@virtuoso.dev/message-list': 1.9.15_biqbaboplfbrettd7655fr4n2y
@@ -122,10 +127,13 @@ dependencies:
   core-js: 3.38.1
   immer: 10.1.1
   inversify: 6.2.1_reflect-metadata@0.2.2
+  mobx: 6.13.6
+  mobx-react-lite: 4.1.0_wjzp6r4nmlh2cx74xogx4za4te
   next: 13.1.1_ogpcfxstozvqf23dbtqn6fjxke
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-virtuoso: 4.12.5_biqbaboplfbrettd7655fr4n2y
+  reflect-metadata: 0.2.2
   tslib: 2.7.0
   xstate: 4.38.3
   zod: 3.24.1
@@ -175,7 +183,7 @@ devDependencies:
   concurrently: 8.2.2
   cross-fetch: 4.1.0
   cypress: 12.17.4
-  daisyui: 5.0.0-beta.8
+  daisyui: 5.0.0
   eslint: 8.15.0
   eslint-config-next: 13.1.1_q4ppokopo2arvobk4e62rbzadi
   eslint-config-prettier: 8.1.0_eslint@8.15.0
@@ -2259,6 +2267,19 @@ packages:
         integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==,
       }
     dev: true
+
+  /@capacitor-community/sqlite/6.0.2_@capacitor+core@6.2.0:
+    resolution:
+      {
+        integrity: sha512-sj+2SPLu7E/3dM3xxcWwfNomG+aQHuN96/EFGrOtp4Dv30/2y5oIPyi6hZGjQGjPc5GDNoTQwW7vxWNzybjuMg==,
+      }
+    engines: { node: '>=16.0.0' }
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+    dependencies:
+      '@capacitor/core': 6.2.0
+      jeep-sqlite: 2.8.0
+    dev: false
 
   /@capacitor/android/6.2.0_@capacitor+core@6.2.0:
     resolution:
@@ -5861,6 +5882,15 @@ packages:
     dependencies:
       '@sinonjs/commons': 3.0.1
     dev: true
+
+  /@stencil/core/4.27.1:
+    resolution:
+      {
+        integrity: sha512-wJ+U3yJ9xSrME1PheHh8DnZrgFhjTlvF54mkA0tzTDXYdrEAYXIEAAeWbXx3munYX2Lqj3oDBEDsbsJNxDkwzA==,
+      }
+    engines: { node: '>=16.0.0', npm: '>=7.10.0' }
+    hasBin: true
+    dev: false
 
   /@storybook/addon-actions/7.6.20:
     resolution:
@@ -10104,6 +10134,13 @@ packages:
       }
     dev: true
 
+  /browser-fs-access/0.35.0:
+    resolution:
+      {
+        integrity: sha512-sLoadumpRfsjprP8XzVjpQc0jK8yqHBx0PtUTGYj2fftT+P/t+uyDAQdMgGAPKD011in/O+YYGh7fIs0oG/viw==,
+      }
+    dev: false
+
   /browserslist/4.23.3:
     resolution:
       {
@@ -10996,7 +11033,6 @@ packages:
       {
         integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==,
       }
-    dev: true
 
   /corser/2.0.1:
     resolution:
@@ -11439,10 +11475,10 @@ packages:
       yauzl: 2.10.0
     dev: true
 
-  /daisyui/5.0.0-beta.8:
+  /daisyui/5.0.0:
     resolution:
       {
-        integrity: sha512-jSokqm5i+Pv1jG80wliNzMHjmcF+iMx5xRUpk0/QExVoVNyQNWeCsaWJQubPvUq7bt9nzSsQTR2uIZBoyIIoaA==,
+        integrity: sha512-U0K9Bac3Bi3zZGm6ojrw12F0vBHTpEgf46zv/BYxLe07hF0Xnx7emIQliwaRBgJuYhY0BhwQ6wSnq5cJXHA2yA==,
       }
     dev: true
 
@@ -14986,6 +15022,13 @@ packages:
     dev: true
     optional: true
 
+  /immediate/3.0.6:
+    resolution:
+      {
+        integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==,
+      }
+    dev: false
+
   /immer/10.1.1:
     resolution:
       {
@@ -15062,7 +15105,6 @@ packages:
       {
         integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==,
       }
-    dev: true
 
   /ini/1.3.8:
     resolution:
@@ -15676,7 +15718,6 @@ packages:
       {
         integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==,
       }
-    dev: true
 
   /isarray/2.0.5:
     resolution:
@@ -15848,6 +15889,19 @@ packages:
       filelist: 1.0.4
       minimatch: 3.1.2
     dev: true
+
+  /jeep-sqlite/2.8.0:
+    resolution:
+      {
+        integrity: sha512-FWNUP6OAmrUHwiW7H1xH5YUQ8tN2O4l4psT1sLd7DQtHd5PfrA1nvNdeKPNj+wQBtu7elJa8WoUibTytNTaaCg==,
+      }
+    dependencies:
+      '@stencil/core': 4.27.1
+      browser-fs-access: 0.35.0
+      jszip: 3.10.1
+      localforage: 1.10.0
+      sql.js: 1.12.0
+    dev: false
 
   /jest-changed-files/29.7.0:
     resolution:
@@ -16687,6 +16741,18 @@ packages:
       object.values: 1.2.0
     dev: true
 
+  /jszip/3.10.1:
+    resolution:
+      {
+        integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==,
+      }
+    dependencies:
+      lie: 3.3.0
+      pako: 1.0.11
+      readable-stream: 2.3.8
+      setimmediate: 1.0.5
+    dev: false
+
   /keyv/4.5.4:
     resolution:
       {
@@ -16844,6 +16910,24 @@ packages:
       webpack: 5.94.0_5xyalivd3ohpxdpc2g5bxbkfja
       webpack-sources: 3.2.3
     dev: true
+
+  /lie/3.1.1:
+    resolution:
+      {
+        integrity: sha512-RiNhHysUjhrDQntfYSfY4MU24coXXdEOgw9WGcKHNeEwffDYbF//u87M1EWaMGzuFoSbqW0C9C6lEEhDOAswfw==,
+      }
+    dependencies:
+      immediate: 3.0.6
+    dev: false
+
+  /lie/3.3.0:
+    resolution:
+      {
+        integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==,
+      }
+    dependencies:
+      immediate: 3.0.6
+    dev: false
 
   /lightningcss-darwin-arm64/1.29.1:
     resolution:
@@ -17095,6 +17179,15 @@ packages:
       emojis-list: 3.0.0
       json5: 2.2.3
     dev: true
+
+  /localforage/1.10.0:
+    resolution:
+      {
+        integrity: sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==,
+      }
+    dependencies:
+      lie: 3.1.1
+    dev: false
 
   /locate-path/5.0.0:
     resolution:
@@ -17711,6 +17804,35 @@ packages:
     engines: { node: '>=10' }
     hasBin: true
     dev: true
+
+  /mobx-react-lite/4.1.0_wjzp6r4nmlh2cx74xogx4za4te:
+    resolution:
+      {
+        integrity: sha512-QEP10dpHHBeQNv1pks3WnHRCem2Zp636lq54M2nKO2Sarr13pL4u6diQXf65yzXUn0mkk18SyIDCm9UOJYTi1w==,
+      }
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18 || ^19
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.13.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.4.0_react@18.2.0
+    dev: false
+
+  /mobx/6.13.6:
+    resolution:
+      {
+        integrity: sha512-r19KNV0uBN4b+ER8Z0gA4y+MzDYIQ2SvOmn3fUrqPnWXdQfakd9yfbPBDBF/p5I+bd3N5Rk1fHONIvMay+bJGA==,
+      }
+    dev: false
 
   /ms/2.0.0:
     resolution:
@@ -18466,6 +18588,13 @@ packages:
         integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==,
       }
     dev: true
+
+  /pako/1.0.11:
+    resolution:
+      {
+        integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==,
+      }
+    dev: false
 
   /param-case/3.0.4:
     resolution:
@@ -19472,7 +19601,6 @@ packages:
       {
         integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==,
       }
-    dev: true
 
   /process-on-spawn/1.0.0:
     resolution:
@@ -20007,7 +20135,6 @@ packages:
       safe-buffer: 5.1.2
       string_decoder: 1.1.1
       util-deprecate: 1.0.2
-    dev: true
 
   /readable-stream/3.6.2:
     resolution:
@@ -20514,7 +20641,6 @@ packages:
       {
         integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==,
       }
-    dev: true
 
   /safe-buffer/5.2.1:
     resolution:
@@ -20803,6 +20929,13 @@ packages:
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.2
     dev: true
+
+  /setimmediate/1.0.5:
+    resolution:
+      {
+        integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==,
+      }
+    dev: false
 
   /setprototypeof/1.1.0:
     resolution:
@@ -21186,6 +21319,13 @@ packages:
       }
     dev: true
 
+  /sql.js/1.12.0:
+    resolution:
+      {
+        integrity: sha512-Bi+43yMx/tUFZVYD4AUscmdL6NHn3gYQ+CM+YheFWLftOmrEC/Mz6Yh7E96Y2WDHYz3COSqT+LP6Z79zgrwJlA==,
+      }
+    dev: false
+
   /sshpk/1.18.0:
     resolution:
       {
@@ -21563,7 +21703,6 @@ packages:
       }
     dependencies:
       safe-buffer: 5.1.2
-    dev: true
 
   /string_decoder/1.3.0:
     resolution:
@@ -22927,12 +23066,22 @@ packages:
       react: 18.2.0
     dev: false
 
+  /use-sync-external-store/1.4.0_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==,
+      }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /util-deprecate/1.0.2:
     resolution:
       {
         integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==,
       }
-    dev: true
 
   /util/0.12.5:
     resolution:

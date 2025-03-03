@@ -54,7 +54,7 @@ export function App() {
         height: 500,
         display: 'flex',
         flexDirection: 'column',
-        fontSize: '70%',
+        // fontSize: '70%',
       }}
     >
       <VirtuosoMessageListLicense licenseKey="">
