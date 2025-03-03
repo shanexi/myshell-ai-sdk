@@ -1,1 +1,1 @@
-export * from './lib/energy';
+export * from './components/energy';
