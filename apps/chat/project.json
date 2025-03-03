@@ -16,7 +16,7 @@
         "main": "apps/chat/src/main.tsx",
         "tsConfig": "apps/chat/tsconfig.app.json",
         "assets": ["apps/chat/src/favicon.ico", "apps/chat/src/assets"],
-        "styles": ["apps/chat/src/styles.css"],
+        "styles": [],
         "scripts": [],
         "isolatedConfig": true,
         "webpackConfig": "apps/chat/webpack.config.js",

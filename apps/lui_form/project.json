@@ -16,7 +16,7 @@
         "main": "apps/lui_form/src/main.tsx",
         "tsConfig": "apps/lui_form/tsconfig.app.json",
         "assets": ["apps/lui_form/src/assets"],
-        "styles": ["apps/lui_form/src/styles.css"],
+        "styles": [],
         "scripts": [],
         "isolatedConfig": true,
         "webpackConfig": "apps/lui_form/webpack.config.js"
