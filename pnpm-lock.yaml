@@ -66,6 +66,7 @@ specifiers:
   auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   cheerio: ^1.0.0
+  clsx: ^2.1.1
   concurrently: ^8.2.2
   core-js: ^3.38.1
   cross-fetch: ^4.1.0
@@ -103,6 +104,7 @@ specifiers:
   react-virtuoso: ^4.12.5
   reflect-metadata: ^0.2.2
   storybook-react-rspack: 7.0.0-rc.25
+  tailwind-merge: ^3.0.2
   tailwindcss: ^4.0.9
   ts-jest: ^29.0.5
   ts-node: 10.9.1
@@ -124,6 +126,7 @@ dependencies:
   '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
+  clsx: 2.1.1
   core-js: 3.38.1
   immer: 10.1.1
   inversify: 6.2.1_reflect-metadata@0.2.2
@@ -134,6 +137,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-virtuoso: 4.12.5_biqbaboplfbrettd7655fr4n2y
   reflect-metadata: 0.2.2
+  tailwind-merge: 3.0.2
   tslib: 2.7.0
   xstate: 4.38.3
   zod: 3.24.1
@@ -10657,6 +10661,14 @@ packages:
       kind-of: 6.0.3
       shallow-clone: 3.0.1
     dev: true
+
+  /clsx/2.1.1:
+    resolution:
+      {
+        integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==,
+      }
+    engines: { node: '>=6' }
+    dev: false
 
   /co/4.6.0:
     resolution:
@@ -21982,6 +21994,13 @@ packages:
         integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==,
       }
     dev: true
+
+  /tailwind-merge/3.0.2:
+    resolution:
+      {
+        integrity: sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==,
+      }
+    dev: false
 
   /tailwindcss/4.0.9:
     resolution:
