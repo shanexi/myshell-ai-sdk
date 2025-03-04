@@ -5,7 +5,7 @@ import { ChatTop } from './chat-top';
 
 export function Chat() {
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col bg-surface-container-default-light">
       <div className="flex-none">
         <ChatTop />
       </div>

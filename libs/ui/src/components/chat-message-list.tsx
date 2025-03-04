@@ -23,10 +23,10 @@ const ItemContent: VirtuosoMessageListProps<Message, null>['ItemContent'] = ({
     <div className="flex pb-8">
       <div
         className={cn(
-          'max-w-[80%] rounded-2xl p-4',
+          'max-w-[80%] rounded-br-[16px] rounded-bl-[16px] p-4',
           ownMessage
-            ? 'ml-auto bg-surface-primary-subtle-default-light text-text-brand-light'
-            : 'bg-surface-default-light text-text-default-light',
+            ? 'ml-auto rounded-tl-[16px] rounded-tr-[2px] bg-surface-primary-subtle-default-light text-text-brand-light'
+            : 'rounded-tl-[2px] rounded-tr-[16px] bg-surface-default-light text-text-default-light',
         )}
       >
         {data.text}
