@@ -1,0 +1,75 @@
+{
+  "name": "bot_list",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bot_list/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/bot_list",
+        "index": "apps/bot_list/src/index.html",
+        "baseHref": "/",
+        "main": "apps/bot_list/src/main.tsx",
+        "tsConfig": "apps/bot_list/tsconfig.app.json",
+        "assets": ["apps/bot_list/src/assets"],
+        "styles": [],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/bot_list/webpack.config.js",
+        "postcssConfig": "apps/bot_list/postcss.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": true,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/bot_list/src/environments/environment.ts",
+              "with": "apps/bot_list/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "statsJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bot_list:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bot_list:build:development"
+        },
+        "production": {
+          "buildTarget": "bot_list:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bot_list/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

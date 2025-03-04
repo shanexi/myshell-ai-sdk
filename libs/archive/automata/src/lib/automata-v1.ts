@@ -84,7 +84,7 @@ export class Output {
 
   constructor(
     private name: string | Context,
-    private value: string | Input | Context
+    private value: string | Input | Context,
   ) {}
 
   get_options() {

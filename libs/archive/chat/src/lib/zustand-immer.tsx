@@ -18,8 +18,8 @@ export const useBoundStore = create<BearSlice & FishSlice & SharedSlice>()(
       ...createBearSlice(...a),
       ...createFishSlice(...a),
       ...createSharedSlice(...a),
-    }))
-  )
+    })),
+  ),
 );
 
 function BearCounter() {
