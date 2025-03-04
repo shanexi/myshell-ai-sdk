@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-     - name: Display GitHub Run ID
+      - name: Display GitHub Run ID
         run: |
           echo "GitHub Run ID: ${{ github.run_id }}"
 
