@@ -24,4 +24,4 @@ jobs:
           echo "查看 commit diff 的前几行："
           head -n 20 commit_diff.txt
           echo "将 commit diff 发送到 webhook..."
-          curl -X POST -H "Content-Type: text/plain" --data-binary @commit_diff.txt https://n8n.myshell.run/webhook-test/fea4ad7b-e0bd-4d06-8462-1d844410f554
+          curl -X POST -H "Content-Type: text/plain" --data-binary @commit_diff.txt https://n8n.myshell.run/webhook/fea4ad7b-e0bd-4d06-8462-1d844410f554
