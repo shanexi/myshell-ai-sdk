@@ -8,12 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    env:
-      # CYPRESS_INSTALL_BINARY: '0'
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
-      NX_DAEMON: 'false'
 
     steps:
+     - name: Display GitHub Run ID
+        run: |
+          echo "GitHub Run ID: ${{ github.run_id }}"
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
