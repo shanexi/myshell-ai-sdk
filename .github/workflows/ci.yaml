@@ -20,7 +20,7 @@ jobs:
 
       - name: Get commit diff
         run: |
-          git diff HEAD^ HEAD > commit_diff.txt
+          git diff HEAD^ HEAD --diff-filter=AM > commit_diff.txt
           echo "查看 commit diff 的前几行："
           head -n 20 commit_diff.txt
 
