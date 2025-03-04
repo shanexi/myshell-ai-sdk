@@ -21,4 +21,4 @@ jobs:
           head -n 20 commit_diff.txt
           echo "将 commit diff 发送到 webhook..."
           PR_NUMBER=$(echo $GITHUB_REF | sed 's/refs\/pull\///' | sed 's/\/merge//')
-          curl -X POST -H "Content-Type: text/plain" -H "X-PR-Number: $PR_NUMBER" --data-binary @commit_diff.txt https://n8n.myshell.run/webhook/fea4ad7b-e0bd-4d06-8462-1d844410f554
+          curl -X POST -H "Content-Type: text/plain" -H "X-PR-Number: $PR_NUMBER" --data-binary @commit_diff.txt ${{ secrets.N8N_AUDIT_WEBHOOK }}
