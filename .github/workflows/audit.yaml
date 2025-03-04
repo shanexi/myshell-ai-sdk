@@ -1,8 +1,8 @@
 name: audit
 
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - main
 
 jobs:
@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Display GitHub Run ID
-        run: |
-          echo "GitHub Run ID: ${{ github.run_id }}"
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
@@ -24,4 +20,5 @@ jobs:
           echo "查看 commit diff 的前几行："
           head -n 20 commit_diff.txt
           echo "将 commit diff 发送到 webhook..."
-          curl -X POST -H "Content-Type: text/plain" --data-binary @commit_diff.txt https://n8n.myshell.run/webhook/fea4ad7b-e0bd-4d06-8462-1d844410f554
+          PR_NUMBER=$(echo $GITHUB_REF | sed 's/refs\/pull\///' | sed 's/\/merge//')
+          curl -X POST -H "Content-Type: text/plain" -H "X-PR-Number: $PR_NUMBER" --data-binary @commit_diff.txt ${{ secrets.N8N_AUDIT_WEBHOOK }}
