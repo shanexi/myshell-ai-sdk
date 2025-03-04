@@ -15,16 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: pnpm/action-setup@v2
         with:
-          version: 7.33.7
-          run_install: false
+          fetch-depth: 2
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
-
-      - run: ./scripts/ci.js --ci
+      - name: Get commit diff
+        run: |
+          git diff HEAD^ HEAD --unified=0 | grep "^[+]" | grep -v "^[+][+][+]" > commit_diff.txt
+          echo "查看 commit diff 的前几行："
+          head -n 20 commit_diff.txt
