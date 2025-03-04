@@ -15,6 +15,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Get commit diff
+        run: |
+          git diff HEAD^ HEAD > commit_diff.txt
+          echo "查看 commit diff 的前几行："
+          head -n 20 commit_diff.txt
 
       - uses: pnpm/action-setup@v2
         with:
