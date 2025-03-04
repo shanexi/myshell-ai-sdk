@@ -1,3 +1,5 @@
+name: slack test
+
 on: [push]
 
 jobs:
