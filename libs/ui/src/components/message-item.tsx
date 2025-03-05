@@ -15,6 +15,12 @@ export const MessageItem: VirtuosoMessageListProps<
 
   return (
     <div className="flex pb-8">
+      {ownMessage ? null : (
+        <img
+          className="mr-[8px] h-[32px] w-[32px] rounded-lg"
+          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+        />
+      )}
       <div
         className={cn(
           'max-w-[80%] rounded-br-[16px] rounded-bl-[16px] p-4',
