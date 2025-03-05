@@ -17,7 +17,7 @@ export const Primary: StoryObj<typeof MessageItem> = {
   },
 };
 
-export const Other: StoryObj<typeof MessageItem> = {
+export const Reply: StoryObj<typeof MessageItem> = {
   args: {
     data: {
       key: '2',
