@@ -17,13 +17,42 @@ let newContent = content;
 const baseMatch = content.match(baseToDesignTokenRegex);
 if (baseMatch) {
   let baseSection = baseMatch[1];
-  const updatedBaseSection = baseSection.replace(
+
+  // 替换 --redius-radius 为 --radius
+  baseSection = baseSection.replace(
     /--redius-radius-/g,
     '--radius-',
   );
+
+  // 添加 --spacing- 前缀到特定变量
+  // 1. 包含 width 的变量
+  baseSection = baseSection.replace(
+    /--(?!spacing-)([\w-]*width[\w-]*):/g,
+    '--spacing-$1:',
+  );
+
+  // 2. 包含 padding 的变量
+  baseSection = baseSection.replace(
+    /--(?!spacing-)([\w-]*padding[\w-]*):/g,
+    '--spacing-$1:',
+  );
+
+  // 3. 包含 height 的变量
+  baseSection = baseSection.replace(
+    /--(?!spacing-)([\w-]*height[\w-]*):/g,
+    '--spacing-$1:',
+  );
+
+  // 4. 包含 spacing 的变量
+  baseSection = baseSection.replace(
+    /--(?!spacing-)([\w-]*spacing[\w-]*):/g,
+    '--spacing-$1:',
+  );
+
+  // 更新文件内容
   newContent = newContent.replace(
     baseToDesignTokenRegex,
-    `/* BASE */${updatedBaseSection}/* DESIGN TOKEN */`,
+    `/* BASE */${baseSection}/* DESIGN TOKEN */`,
   );
 }
 
@@ -49,7 +78,8 @@ if (designTokenMatch) {
 
   console.log('Successfully:');
   console.log('1. Replaced --redius-radius- with --radius- in BASE section');
-  console.log('2. Added --color prefix to design tokens');
+  console.log('2. Added --spacing- prefix to width, padding, height, and spacing variables in BASE section');
+  console.log('3. Added --color prefix to design tokens');
 } else {
   console.error('Could not find required sections in the file');
 }
