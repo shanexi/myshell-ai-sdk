@@ -46,6 +46,12 @@ if (baseMatch) {
     '--spacing-$1:',
   );
 
+  // 5. 包含 radius 的变量
+  baseSection = baseSection.replace(
+    /--(?!radius-)([\w-]*radius[\w-]*):/g,
+    '--radius-$1:',
+  );
+
   // 更新文件内容
   newContent = newContent.replace(
     baseToDesignTokenRegex,

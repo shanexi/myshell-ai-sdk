@@ -14,6 +14,14 @@
     font-weight: 400;
     line-height: 32px; /* 133.333% */
   }
+  .display-sm-semibold {
+    /* Display/sm/Semibold */
+    font-family: 'SF Pro';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 28px;
+  }
   .heading-h4 {
     /* Heading/h4 */
     font-family: 'SF Pro';
@@ -30,6 +38,20 @@
     font-weight: 510;
     line-height: 20px;
   }
+
+  .text-lg-medium {
+    /* Text/lg/Medium */
+    font-family: 'SF Pro';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 510;
+    line-height: 24px;
+  }
+}
+
+@theme {
+  --shadow-button-basic: 0px 1px 0px 0px
+    var(--color-shadows-button-basic-light, rgba(0, 0, 0, 0.05));
 }
 
 /* BEGIN */
@@ -150,16 +172,16 @@
   --primitives-11-44px: 44px;
   --primitives-11-44px-rem: 2.75rem;
   --spacing-components-button-lg-spacing: var(--primitives-1-5-6px);
-  --components-button-lg-radius: var(--radius-full);
+  --radius-components-button-lg-radius: var(--radius-full);
   --spacing-components-button-lg-padding: var(--primitives-6-24px);
-  --components-button-md-radius: var(--radius-full);
+  --radius-components-button-md-radius: var(--radius-full);
   --spacing-components-button-md-spacing: var(--primitives-1-5-6px);
   --spacing-components-button-md-padding: var(--primitives-4-16px);
   --spacing-components-button-md-height: var(--primitives-9-36px);
   --spacing-components-button-md-min-width: var(--primitives-9-36px);
   --primitives-9-36px: 36px;
   --primitives-9-36px-rem: 2.25rem;
-  --components-button-sm-radius: var(--radius-full);
+  --radius-components-button-sm-radius: var(--radius-full);
   --spacing-components-button-sm-spacing: var(--primitives-1-5-6px);
   --spacing-components-button-sm-padding: var(--primitives-3-12px);
   --spacing-components-button-sm-height: var(--primitives-7-28px);
@@ -167,13 +189,13 @@
   --primitives-7-28px: 28px;
   --primitives-7-28px-rem: 1.75rem;
   --spacing-components-chip-sm-height: var(--primitives-7-28px);
-  --components-chip-sm-radius: var(--radius-lg);
+  --radius-components-chip-sm-radius: var(--radius-lg);
   --spacing-components-chip-sm-spacing: var(--primitives-1-4px);
   --spacing-components-chip-sm-padding: var(--primitives-3-12px);
   --spacing-components-input-height: var(--primitives-10-40px);
   --radius-5xl: var(--primitives-7-28px);
   --spacing-components-button-xs-height: var(--primitives-5-20px);
-  --components-button-xs-radius: var(--radius-full);
+  --radius-components-button-xs-radius: var(--radius-full);
   --spacing-components-button-xs-spacing: var(--primitives-1-5-6px);
   --spacing-components-button-xs-min-width: var(--primitives-5-20px);
   --spacing-containers-container-padding-mobile-chat: var(--primitives-1-5-6px);
