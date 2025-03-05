@@ -1,39 +1,11 @@
 import {
-  type VirtuosoMessageListProps,
   type VirtuosoMessageListMethods,
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
 } from '@virtuoso.dev/message-list';
 import { useEffect, useRef } from 'react';
 import { randPhrase, randomMessage } from './chat-demo';
-import { cn } from '../utils';
-
-interface Message {
-  key: string;
-  text: string;
-  user: 'me' | 'other';
-}
-
-const ItemContent: VirtuosoMessageListProps<Message, null>['ItemContent'] = ({
-  data,
-}) => {
-  const ownMessage = data.user === 'me';
-
-  return (
-    <div className="flex pb-8">
-      <div
-        className={cn(
-          'max-w-[80%] rounded-br-[16px] rounded-bl-[16px] p-4',
-          ownMessage
-            ? 'ml-auto rounded-tl-[16px] rounded-tr-[2px] bg-surface-primary-subtle-default-light text-text-brand-light'
-            : 'rounded-tl-[2px] rounded-tr-[16px] bg-surface-default-light text-text-default-light',
-        )}
-      >
-        {data.text}
-      </div>
-    </div>
-  );
-};
+import { Message, MessageItem } from './message-item';
 
 export function ChatMessageList() {
   const virtuoso = useRef<VirtuosoMessageListMethods<Message>>(null);
@@ -78,7 +50,7 @@ export function ChatMessageList() {
         computeItemKey={({ data }) => data.key}
         initialLocation={{ index: 'LAST', align: 'end' }}
         shortSizeAlign="bottom-smooth"
-        ItemContent={ItemContent}
+        ItemContent={MessageItem}
       />
     </VirtuosoMessageListLicense>
   );
