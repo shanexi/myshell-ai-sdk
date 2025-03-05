@@ -19,10 +19,7 @@ if (baseMatch) {
   let baseSection = baseMatch[1];
 
   // 替换 --redius-radius 为 --radius
-  baseSection = baseSection.replace(
-    /--redius-radius-/g,
-    '--radius-',
-  );
+  baseSection = baseSection.replace(/--redius-radius-/g, '--radius-');
 
   // 添加 --spacing- 前缀到特定变量
   // 1. 包含 width 的变量
@@ -78,7 +75,9 @@ if (designTokenMatch) {
 
   console.log('Successfully:');
   console.log('1. Replaced --redius-radius- with --radius- in BASE section');
-  console.log('2. Added --spacing- prefix to width, padding, height, and spacing variables in BASE section');
+  console.log(
+    '2. Added --spacing- prefix to width, padding, height, and spacing variables in BASE section',
+  );
   console.log('3. Added --color prefix to design tokens');
 } else {
   console.error('Could not find required sections in the file');

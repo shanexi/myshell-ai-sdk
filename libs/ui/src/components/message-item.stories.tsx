@@ -4,11 +4,6 @@ import { MessageItem } from './message-item';
 const meta: Meta<typeof MessageItem> = {
   // @ts-expect-error 暂不处理 props 复杂的类型
   component: MessageItem,
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
 };
 export default meta;
 

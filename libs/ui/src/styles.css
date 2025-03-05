@@ -142,7 +142,9 @@
   --spacing-widths-paragraph-max-width: var(--primitives-180-720px);
   --spacing-containers-container-padding-mobile: var(--primitives-4-16px);
   --spacing-containers-container-padding-desktop: var(--primitives-6-24px);
-  --spacing-containers-container-max-width-desktop: var(--primitives-320-1-280px);
+  --spacing-containers-container-max-width-desktop: var(
+    --primitives-320-1-280px
+  );
   --spacing-components-button-lg-height: var(--primitives-11-44px);
   --spacing-components-button-lg-min-width: var(--primitives-11-44px);
   --primitives-11-44px: 44px;
