@@ -4,7 +4,9 @@ export const LuiForm = () => {
   return (
     <div>
       <LuiFormHeader />
-      <div>Form body</div>
+      <div className="px-spacing-xl pt-spacing-lg pb-spacing-3xl">
+        Form body
+      </div>
       <LuiFormFooter />
     </div>
   );
