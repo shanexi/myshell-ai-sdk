@@ -66,6 +66,7 @@ specifiers:
   auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   cheerio: ^1.0.0
+  class-variance-authority: ^0.7.1
   clsx: ^2.1.1
   concurrently: ^8.2.2
   core-js: ^3.38.1
@@ -126,6 +127,7 @@ dependencies:
   '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
+  class-variance-authority: 0.7.1
   clsx: 2.1.1
   core-js: 3.38.1
   immer: 10.1.1
@@ -10519,6 +10521,15 @@ packages:
         integrity: sha512-N1NGmowPlGBLsOZLPvm48StN04V4YvQRL0i6b7ctrVY3epjP/ct7hFLOItz6pDIvRjwpfPxi52a2UWV2ziir8g==,
       }
     dev: true
+
+  /class-variance-authority/0.7.1:
+    resolution:
+      {
+        integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==,
+      }
+    dependencies:
+      clsx: 2.1.1
+    dev: false
 
   /clean-css/5.2.0:
     resolution:

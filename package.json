@@ -14,6 +14,7 @@
     "@xstate/react": "3.2.2",
     "arktype": "2.0.0-rc.30",
     "auto-zustand-selectors-hook": "^2.0.5",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "core-js": "^3.38.1",
     "immer": "^10.1.1",
