@@ -1,4 +1,5 @@
 import { LuiFormButton } from './lui-form-button';
+import { Textarea } from './textarea';
 import { Upload } from './upload';
 
 export const LuiForm = () => {
@@ -9,6 +10,9 @@ export const LuiForm = () => {
         <LuiFormItem label="Title" description="This is a simple description.">
           <Upload />
         </LuiFormItem>
+        <LuiFormItem label="Description">
+          <Textarea />
+        </LuiFormItem>
       </div>
       <LuiFormFooter />
     </div>
@@ -17,19 +21,19 @@ export const LuiForm = () => {
 
 export const LuiFormItem = (props: {
   label: string;
-  description: string;
+  description?: string;
   children: React.ReactNode;
 }) => {
   const { label, description, children } = props;
   return (
-    <div>
-      <div className="text-sm-medium mb-[4px] text-text-default-light">
-        {label}
-      </div>
-      <div className="text-sm-regular mb-[6px] text-text-subtler-light">
-        {description}
-      </div>
-      {children}
+    <div className="mb-spacing-3xl">
+      <div className="text-sm-medium text-text-default-light">{label}</div>
+      {description && (
+        <div className="text-sm-regular mt-[4px] text-text-subtler-light">
+          {description}
+        </div>
+      )}
+      <div className="mt-spacing-sm">{children}</div>
     </div>
   );
 };
