@@ -66,6 +66,7 @@ specifiers:
   auto-zustand-selectors-hook: ^2.0.5
   babel-jest: ^29.4.1
   cheerio: ^1.0.0
+  class-variance-authority: ^0.7.1
   clsx: ^2.1.1
   concurrently: ^8.2.2
   core-js: ^3.38.1
@@ -99,6 +100,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.6.11
   react: 18.2.0
   react-dom: 18.2.0
+  react-masonry-css: ^1.0.16
   react-refresh: ^0.10.0
   react-test-renderer: 18.2.0
   react-virtuoso: ^4.12.5
@@ -126,6 +128,7 @@ dependencies:
   '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
+  class-variance-authority: 0.7.1
   clsx: 2.1.1
   core-js: 3.38.1
   immer: 10.1.1
@@ -135,6 +138,7 @@ dependencies:
   next: 13.1.1_ogpcfxstozvqf23dbtqn6fjxke
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-masonry-css: 1.0.16_react@18.2.0
   react-virtuoso: 4.12.5_biqbaboplfbrettd7655fr4n2y
   reflect-metadata: 0.2.2
   tailwind-merge: 3.0.2
@@ -10520,6 +10524,15 @@ packages:
       }
     dev: true
 
+  /class-variance-authority/0.7.1:
+    resolution:
+      {
+        integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==,
+      }
+    dependencies:
+      clsx: 2.1.1
+    dev: false
+
   /clean-css/5.2.0:
     resolution:
       {
@@ -19957,6 +19970,17 @@ packages:
         integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==,
       }
     dev: true
+
+  /react-masonry-css/1.0.16_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-KSW0hR2VQmltt/qAa3eXOctQDyOu7+ZBevtKgpNDSzT7k5LA/0XntNa9z9HKCdz3QlxmJHglTZ18e4sX4V8zZQ==,
+      }
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-refresh/0.10.0:
     resolution:
