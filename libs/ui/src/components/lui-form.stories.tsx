@@ -3,6 +3,9 @@ import { LuiForm } from './lui-form';
 
 const meta: Meta<typeof LuiForm> = {
   component: LuiForm,
+  parameters: {
+    // layout: 'fullscreen',
+  },
 };
 export default meta;
 
