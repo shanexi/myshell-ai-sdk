@@ -55,6 +55,19 @@ function makeConfig(useRspack = true) {
         }
         return false;
       });
+
+      config.module.rules.push({
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+      });
+
       return config;
     },
   };
