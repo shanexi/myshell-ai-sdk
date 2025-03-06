@@ -38,6 +38,14 @@
     font-weight: 510;
     line-height: 20px;
   }
+  .text-sm-regular {
+    /* Text/sm/Regular */
+    font-family: 'SF Pro';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
 
   .text-lg-medium {
     /* Text/lg/Medium */
@@ -47,11 +55,23 @@
     font-weight: 510;
     line-height: 24px;
   }
+
+  .description-lg-regular {
+    /* Description/lg/Regular */
+    font-family: 'SF Pro';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+  }
 }
 
 @theme {
   --shadow-button-basic: 0px 1px 0px 0px
     var(--color-shadows-button-basic-light, rgba(0, 0, 0, 0.05));
+
+  --shadow-background-default: 0px 1px 2px 0px
+    var(--color-shadows-surface-default-light, rgba(0, 0, 0, 0.05));
 }
 
 /* BEGIN */
