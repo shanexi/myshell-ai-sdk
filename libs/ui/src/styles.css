@@ -66,6 +66,26 @@
   }
 }
 
+/* https://github.com/paulcollett/react-masonry-css */
+@layer components {
+  .my-masonry-grid {
+    display: flex;
+    margin-left: -8px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 8px; /* gutter size */
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  .my-masonry-grid_column > div {
+    /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 4px;
+  }
+}
+
 @theme {
   --shadow-button-basic: 0px 1px 0px 0px
     var(--color-shadows-button-basic-light, rgba(0, 0, 0, 0.05));
