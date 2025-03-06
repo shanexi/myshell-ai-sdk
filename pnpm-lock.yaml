@@ -44,6 +44,7 @@ specifiers:
   '@playwright/test': ^1.47.0
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.7
   '@storybook/addon-essentials': ^8.6.4
+  '@storybook/addon-interactions': ^8.6.4
   '@storybook/builder-webpack5': ^8.6.4
   '@storybook/core-server': ^8.6.4
   '@storybook/react': ^8.6.4
@@ -174,6 +175,7 @@ devDependencies:
   '@playwright/test': 1.47.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.15_vb45em2rqei7enu62bgfoc4jgu
   '@storybook/addon-essentials': 8.6.4_auedahpnw6x7p36ofd3zyxn6ba
+  '@storybook/addon-interactions': 8.6.4_storybook@8.6.4
   '@storybook/builder-webpack5': 8.6.4_f2mmyqcacabbi5uxetffhlaq4m
   '@storybook/core-server': 8.6.4_storybook@8.6.4
   '@storybook/react': 8.6.4_vln3w3eqvoouxvbqrzrqq25xfe
@@ -5062,6 +5064,22 @@ packages:
     dependencies:
       '@storybook/global': 5.0.0
       storybook: 8.6.4_prettier@3.5.2
+    dev: true
+
+  /@storybook/addon-interactions/8.6.4_storybook@8.6.4:
+    resolution:
+      {
+        integrity: sha512-MZAAZjyvmJXCvM35zEiPpXz7vK+fimovt+WZKAMayAbXy5fT+7El0c9dDyTQ2norNKNj9QU/8hiU/1zARSUELQ==,
+      }
+    peerDependencies:
+      storybook: ^8.6.4
+    dependencies:
+      '@storybook/global': 5.0.0
+      '@storybook/instrumenter': 8.6.4_storybook@8.6.4
+      '@storybook/test': 8.6.4_storybook@8.6.4
+      polished: 4.3.1
+      storybook: 8.6.4_prettier@3.5.2
+      ts-dedent: 2.2.0
     dev: true
 
   /@storybook/addon-measure/8.6.4_storybook@8.6.4:

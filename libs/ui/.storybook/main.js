@@ -30,7 +30,11 @@ function makeConfig(useRspack = true) {
       options: {},
     },
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: ['@storybook/addon-essentials', '@nrwl/react/plugins/storybook'],
+    addons: [
+      '@storybook/addon-essentials',
+      '@storybook/addon-interactions',
+      '@nrwl/react/plugins/storybook',
+    ],
     // https://storybook.js.org/docs/api/main-config-typescript#skipbabel
     // typescript: {
     //   check: false,
