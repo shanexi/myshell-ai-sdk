@@ -1,3 +1,4 @@
+import { ImageChoice } from './image-choice';
 import { LuiFormButton } from './lui-form-button';
 import { Textarea } from './textarea';
 import { Upload } from './upload';
@@ -12,6 +13,12 @@ export const LuiForm = () => {
         </LuiFormItem>
         <LuiFormItem label="Description">
           <Textarea />
+        </LuiFormItem>
+        <LuiFormItem
+          label="Prompt"
+          description="The prompt to guide QR Code generation."
+        >
+          <ImageChoice />
         </LuiFormItem>
       </div>
       <LuiFormFooter />
