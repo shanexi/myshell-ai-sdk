@@ -24,6 +24,39 @@
           "quiet": true
         }
       }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/ui",
+        "command": "../../node_modules/.bin/test-storybook --url http://localhost:4400"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ui",
+        "configDir": "libs/ui/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "ui:build-storybook",
+        "staticFilePath": "dist/storybook/ui"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "ui:build-storybook:ci"
+        }
+      }
     }
   }
 }
