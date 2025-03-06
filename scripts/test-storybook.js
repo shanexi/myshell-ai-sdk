@@ -22,6 +22,7 @@ function run(name, port) {
   console.timeEnd(`test-storybook ${name}`);
 }
 
-run('archive-chat', 4201);
+// run('archive-chat', 4201);
+run('ui', 4201);
 
 console.log('\x1b[32m%s\x1b[0m', 'done');
