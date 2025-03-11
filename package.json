@@ -26,6 +26,7 @@
     "mobx-react-lite": "^4.1.0",
     "next": "13.1.1",
     "react": "18.2.0",
+    "react-aria": "^3.38.1",
     "react-aria-components": "^1.7.1",
     "react-dom": "18.2.0",
     "react-masonry-css": "^1.0.16",
