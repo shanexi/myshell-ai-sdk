@@ -1,13 +1,7 @@
+import { Select, SelectItem } from '../aria-components/Select';
+import { Tab, TabList, Tabs } from '../aria-components/Tabs';
+import { cn } from '../utils';
 import { FormHeader } from './lui-form';
-import {
-  Button,
-  Label,
-  ListBox,
-  ListBoxItem,
-  Popover,
-  Select,
-  SelectValue,
-} from 'react-aria-components';
 
 export const ChatSettings = () => {
   return (
@@ -29,27 +23,22 @@ export const ChatSettings = () => {
           <Toggle checked={true} />
         </FormItem>
         <hr className="mb-spacing-lg border-border-default-light" />
-        <div>
-          <label className="body-lg-regular mb-[8px]">
+        <div className="mb-spacing-lg">
+          <label className="body-lg-regular mb-[8px] inline-block">
             Your Speaking Language
           </label>
-          <Select>
-            <Label>Favorite Animal</Label>
-            <Button>
-              <SelectValue />
-              <span aria-hidden="true">▼</span>
-            </Button>
-            <Popover>
-              <ListBox>
-                <ListBoxItem>Aardvark</ListBoxItem>
-                <ListBoxItem>Cat</ListBoxItem>
-                <ListBoxItem>Dog</ListBoxItem>
-                <ListBoxItem>Kangaroo</ListBoxItem>
-                <ListBoxItem>Panda</ListBoxItem>
-                <ListBoxItem>Snake</ListBoxItem>
-              </ListBox>
-            </Popover>
+          <Select placeholder="Mixed Language">
+            <SelectItem>Chocolate</SelectItem>
+            <SelectItem id="mint">Mint</SelectItem>
+            <SelectItem>Strawberry</SelectItem>
+            <SelectItem>Vanilla</SelectItem>
           </Select>
+        </div>
+        <div className="mb-spacing-lg">
+          <label className="body-lg-regular mb-[8px] inline-block">
+            Audio Speed
+          </label>
+          <ButtonGroup />
         </div>
       </div>
     </div>
@@ -74,5 +63,29 @@ const Toggle = (props: { checked: boolean }) => {
       defaultChecked={checked}
       className="toggle rounded-full border-none bg-[#e5e7eb] p-[2px] text-surface-default-light shadow-none before:rounded-full before:shadow-none checked:border-text-brand-light checked:bg-text-brand-light"
     />
+  );
+};
+
+const ButtonGroup = () => {
+  return (
+    <Tabs selectedKey="1">
+      <TabList
+        aria-label="Audio Speed"
+        className="justify-between rounded-full border border-border-bolder-light bg-surface-container-default-light"
+      >
+        {[0.5, 0.75, 1, 1.25, 1.5].map((speed) => (
+          <Tab
+            id={speed.toString()}
+            className={cn(
+              'flex-1 justify-center',
+              speed === 1 &&
+                'border border-border-default-light bg-surface-default-light text-text-brand-light',
+            )}
+          >
+            {speed}
+          </Tab>
+        ))}
+      </TabList>
+    </Tabs>
   );
 };

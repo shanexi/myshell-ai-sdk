@@ -4,7 +4,7 @@ import { Button } from './Button';
 import { Radio, RadioGroup } from './RadioGroup';
 
 export default {
-  title: 'RadioGroup',
+  // title: 'RadioGroup',
   component: RadioGroup,
   parameters: {
     layout: 'centered',

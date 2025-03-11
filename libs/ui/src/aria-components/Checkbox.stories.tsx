@@ -1,7 +1,7 @@
 import { Checkbox } from './Checkbox';
 
 export default {
-  title: 'Checkbox',
+  // title: 'Checkbox',
   component: Checkbox,
   parameters: {
     layout: 'centered',
