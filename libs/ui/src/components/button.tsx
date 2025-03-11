@@ -9,6 +9,8 @@ const buttonVariants = cva(
         default: 'bg-surface-searchfield-light text-text-subtle-light',
         primary:
           'bg-surface-primary-default-light text-text-static-white-light',
+        warning:
+          'bg-surface-warning-default-light text-text-static-white-light',
       },
     },
     defaultVariants: {
