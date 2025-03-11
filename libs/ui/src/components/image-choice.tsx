@@ -26,45 +26,37 @@ export const ImageChoice = () => {
   );
 };
 
-const items: { img: string; alt: string; size: [number, number] }[] = [
+const items: { img: string; alt: string }[] = [
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061432/e034cbd2c0df1d325a88750e1a8feae2/1040g00831dn5glo3h0505pb71g26a0ep83jdvug!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
     alt: '1',
-    size: [640, 853],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061432/dfdec2e4ec0428bfa6ec9e6c3011c9cb/1040g00831dpl7dp8gu705pnqa3p7c984ns3s6jo!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
     alt: '2',
-    size: [640, 640],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061440/4255894c1c5e28f42c7e13091fd08d3d/1040g2sg31dlp5sfdgc005oid3m4417fnaeh1900!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg',
     alt: '3',
-    size: [640, 853],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061440/94e4f771259ec0291e95b7ebdf6d0846/1040g2sg31dpg40up12cg5p0j0le4iditfqb6nao!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg',
     alt: '4',
-    size: [640, 1183],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061442/c918b5f69df56d213fff6f5711575c0b/1040g00831dn5878q10005plr7d12u6a0hi6dpa8!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg',
     alt: '5',
-    size: [640, 832],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061448/b0462d029c6ea01fa5b244c6c51ea4b4/1040g00830n7sf7glli6g5p2r25dl2ccdneas2pg!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg',
     alt: '6',
-    size: [640, 637],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061448/b1f8bcf02303ddc9500bf53d66be698f/1040g00830n5gd97uli005o047cig83op0i7bbkg!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg',
     alt: '7',
-    size: [640, 641],
   },
   {
-    img: 'https://sns-webpic-qc.xhscdn.com/202503061450/363eaedfc84fcc44ba430f05849fb024/1000g0082e8matacha0005o44mcpg8hd49o70960!nc_n_webp_mw_1',
+    img: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg',
     alt: '8',
-    size: [640, 480],
   },
 ];
