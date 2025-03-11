@@ -2,4 +2,3 @@ node_modules
 
 **/*.typegen.ts
 /libs/archive/automata/src/lib
-/libs/ui/src/aria-components

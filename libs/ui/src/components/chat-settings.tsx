@@ -1,5 +1,10 @@
-import { Select, SelectItem } from '../aria-components/Select';
-import { Tab, TabList, Tabs } from '../aria-components/Tabs';
+import {
+  Select,
+  SelectItem,
+  Tab,
+  TabList,
+  Tabs,
+} from '@myshell-run/react-aria-tailwind-starter';
 import { cn } from '../utils';
 import { FormHeader } from './lui-form';
 
