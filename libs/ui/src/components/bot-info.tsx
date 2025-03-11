@@ -1,7 +1,6 @@
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { ReactComponent as Company } from './company.svg';
-import { ReactComponent as Up } from './up.svg';
-import { ReactComponent as Share } from './share.svg';
+import { ChevronsUp, Share } from 'lucide-react';
 
 export function BotInfo() {
   return (
@@ -24,10 +23,10 @@ export function BotInfo() {
       </div>
       <div className="flex">
         <div className="mr-spacing-xs p-[7px]">
-          <Up />
+          <ChevronsUp className="text-text-brand-light" />
         </div>
         <div className="p-[7px]">
-          <Share />
+          <Share className="text-text-brand-light" />
         </div>
       </div>
     </div>
