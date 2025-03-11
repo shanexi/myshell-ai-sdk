@@ -1,5 +1,5 @@
 import { ImageChoice } from './image-choice';
-import { LuiFormButton } from './lui-form-button';
+import { Button } from './button';
 import { Textarea } from './textarea';
 import { Upload } from './upload';
 import { cn } from '../utils';
@@ -66,10 +66,10 @@ export const FormHeader = (props: {
 export const LuiFormFooter = () => {
   return (
     <div className="flex border-t border-t-border-default-light bg-surface-default-light px-spacing-3xl pt-spacing-lg pb-spacing-sm">
-      <LuiFormButton>Cancel</LuiFormButton>
-      <LuiFormButton variant="primary" className="ml-[8px] flex-auto">
+      <Button>Cancel</Button>
+      <Button variant="primary" className="ml-[8px] flex-auto">
         Generate
-      </LuiFormButton>
+      </Button>
     </div>
   );
 };

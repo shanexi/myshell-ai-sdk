@@ -17,12 +17,12 @@ const buttonVariants = cva(
   },
 );
 
-export type LuiFormButtonProps = {
+export type ButtonProps = {
   children: React.ReactNode;
   className?: string;
 } & VariantProps<typeof buttonVariants>;
 
-export const LuiFormButton = (props: LuiFormButtonProps) => {
+export const Button = (props: ButtonProps) => {
   const { children, variant, className } = props;
   return (
     <button className={cn(buttonVariants({ variant }), className)}>
