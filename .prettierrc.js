@@ -12,7 +12,7 @@ module.exports = {
       files: '*.tsx',
       options: {
         plugins: ['prettier-plugin-tailwindcss'],
-        tailwindStylesheet: './libs/ui/src/styles.css',
+        tailwindStylesheet: './libs/tailwind-cfg/styles.css',
       },
     },
   ],

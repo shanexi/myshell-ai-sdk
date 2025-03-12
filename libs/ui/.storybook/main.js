@@ -10,7 +10,10 @@ const cssCfg = {
       loader: require.resolve('postcss-loader'),
       options: {
         postcssOptions: {
-          config: path.resolve(__dirname, './postcss.config.js'),
+          config: path.resolve(
+            __dirname,
+            '../../tailwind-cfg/postcss.config.js',
+          ),
         },
       },
     },
