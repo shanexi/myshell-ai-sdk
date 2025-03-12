@@ -1,8 +1,4 @@
-export interface Message {
-  key: string;
-  text: string;
-  user: 'me' | 'other';
-}
+import { Message } from '@myshell-run/def';
 
 export const ReplyMessage = (props: Message) => {
   return (

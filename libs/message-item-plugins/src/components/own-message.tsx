@@ -1,4 +1,4 @@
-import { Message } from './reply-message';
+import { Message } from '@myshell-run/def';
 
 export const OwnMessage = (props: Message) => {
   return (

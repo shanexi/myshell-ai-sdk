@@ -21,6 +21,7 @@
     "core-js": "^3.38.1",
     "immer": "^10.1.1",
     "inversify": "^6.2.1",
+    "inversify-react": "^1.2.0",
     "lucide-react": "^0.479.0",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",
