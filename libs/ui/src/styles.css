@@ -1,8 +1,10 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@plugin 'tailwindcss-animate';
+@plugin "tailwindcss-react-aria-components";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer components {
@@ -63,6 +65,24 @@
     font-style: normal;
     font-weight: 400;
     line-height: 16px;
+  }
+
+  .special-20 {
+    /* 20px/Special */
+    font-family: 'PP Telegraf';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .body-lg-regular {
+    /* Body/lg/Regular */
+    font-family: 'Mona Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
   }
 }
 

@@ -18,6 +18,12 @@ export const Primary: StoryObj<typeof MessageItem> = {
 };
 
 export const Reply: StoryObj<typeof MessageItem> = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/PyibahIqkubOp9rSsHLa6K/Chat-Basic?node-id=14522-121105&m=dev',
+    },
+  },
   args: {
     data: {
       key: '2',

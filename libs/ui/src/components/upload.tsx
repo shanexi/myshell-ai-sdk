@@ -1,11 +1,11 @@
-import { ReactComponent as ArrowUpTray } from './arrow-up-tray.svg';
+import { Upload as UploadIcon } from 'lucide-react';
 
 export const Upload = () => {
   return (
     <div className="rounded-lg border border-border-default-light bg-surface-default-light p-spacing-xl shadow-background-default">
       <div className="flex items-center">
         <div className="mr-spacing-lg rounded-[10px] bg-surface-accent-gray-subtlest-light p-[12px]">
-          <ArrowUpTray />
+          <UploadIcon />
         </div>
         <div>
           <div className="text-sm-medium text-text-default-light">

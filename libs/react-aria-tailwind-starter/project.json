@@ -1,0 +1,64 @@
+{
+  "name": "react-aria-tailwind-starter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/react-aria-tailwind-starter/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/react-aria-tailwind-starter/src/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/react-aria-tailwind-starter/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/react-aria-tailwind-starter",
+        "command": "../../node_modules/.bin/test-storybook --url http://localhost:4400"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/react-aria-tailwind-starter",
+        "configDir": "libs/react-aria-tailwind-starter/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "react-aria-tailwind-starter:build-storybook",
+        "staticFilePath": "dist/storybook/react-aria-tailwind-starter"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "react-aria-tailwind-starter:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

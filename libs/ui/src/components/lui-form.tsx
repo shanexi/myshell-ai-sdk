@@ -1,12 +1,18 @@
 import { ImageChoice } from './image-choice';
-import { LuiFormButton } from './lui-form-button';
+import { Button } from './button';
 import { Textarea } from './textarea';
 import { Upload } from './upload';
+import { cn } from '../utils';
+import { cva } from 'class-variance-authority';
 
 export const LuiForm = () => {
   return (
     <div>
-      <LuiFormHeader />
+      <FormHeader>
+        <div className="display-sm-semibold pt-spacing-md">
+          Image Configuration
+        </div>
+      </FormHeader>
       <div className="bg-surface-default-light px-spacing-xl pt-spacing-lg pb-spacing-3xl">
         <LuiFormItem label="Title" description="This is a simple description.">
           <Upload />
@@ -45,12 +51,14 @@ export const LuiFormItem = (props: {
   );
 };
 
-export const LuiFormHeader = () => {
+export const FormHeader = (props: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const { children } = props;
   return (
     <div className="flex justify-center rounded-tl-2xl rounded-tr-2xl border-b border-b-border-default-light bg-surface-default-light px-spacing-3xl py-spacing-lg">
-      <div className="display-sm-semibold pt-spacing-md">
-        Image Configuration
-      </div>
+      {children}
     </div>
   );
 };
@@ -58,10 +66,10 @@ export const LuiFormHeader = () => {
 export const LuiFormFooter = () => {
   return (
     <div className="flex border-t border-t-border-default-light bg-surface-default-light px-spacing-3xl pt-spacing-lg pb-spacing-sm">
-      <LuiFormButton>Cancel</LuiFormButton>
-      <LuiFormButton variant="primary" className="ml-[8px] flex-auto">
+      <Button>Cancel</Button>
+      <Button variant="primary" className="ml-[8px] flex-auto">
         Generate
-      </LuiFormButton>
+      </Button>
     </div>
   );
 };
