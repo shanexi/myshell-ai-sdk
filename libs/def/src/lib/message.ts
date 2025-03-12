@@ -1,5 +1,5 @@
-import { type ReactNode } from 'react';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as React from 'react';
 export interface Message {
   key: string;
   text: string;
@@ -10,5 +10,5 @@ export const MessageItem = Symbol('MessageItem');
 
 export interface MessageItem {
   type: string;
-  render: (data: Message) => ReactNode;
+  render: (data: Message) => JSX.Element;
 }

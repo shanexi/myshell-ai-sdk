@@ -7,6 +7,7 @@ export interface Message {
   key: string;
   text: string;
   user: 'me' | 'other';
+  type?: string;
 }
 
 export const MessageItem: VirtuosoMessageListProps<
@@ -15,8 +16,8 @@ export const MessageItem: VirtuosoMessageListProps<
 >['ItemContent'] = (props) => {
   const svc = useInjection(MessageItemSvc);
   const { data } = props;
-  // todo: message item plugin
   const ownMessage = data.user === 'me';
   if (ownMessage) return <OwnMessage {...data} />;
-  return <ReplyMessage {...data} />;
+  const item = svc.getItem(data.type ?? 'reply');
+  return item.render(data);
 };
