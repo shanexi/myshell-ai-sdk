@@ -6,14 +6,7 @@ import {
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';
 import { useInjection } from 'inversify-react';
 import { MessageItemSvc } from './message-item.svc';
-import { MessageListContext } from './chat-message-list';
-
-export interface Message {
-  key: string;
-  text: string;
-  user: 'me' | 'other';
-  type?: string;
-}
+import { Message, MessageListContext } from '@myshell-run/def';
 
 export const MessageItem: VirtuosoMessageListProps<
   Message,

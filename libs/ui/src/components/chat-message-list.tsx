@@ -4,21 +4,23 @@ import {
   VirtuosoMessageList,
 } from '@virtuoso.dev/message-list';
 import { useEffect, useRef } from 'react';
-import { Message, MessageItem } from './message-item';
+import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';
 import {
   REPLY_MESSAGE_EXECUTING_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/message-item-plugins';
+import { Message, MessageListContext } from '@myshell-run/def';
+import { cn } from '../utils';
 
-export type MessageListContext = {
-  //
-};
-
-export function ChatMessageList() {
+export function ChatMessageList(props: { className?: string }) {
+  const { className } = props;
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
+  useEffect(() => {
+    (window as any).vref = virtuoso.current;
+  }, []);
   // mock data
   useEffect(() => {
     const myMessage = randomMessage('me');
@@ -64,16 +66,19 @@ export function ChatMessageList() {
   }, []);
 
   return (
-    <VirtuosoMessageListLicense licenseKey="">
-      <VirtuosoMessageList<Message, MessageListContext>
-        ref={virtuoso}
-        context={{}}
-        style={{ flex: 1 }}
-        computeItemKey={({ data }) => data.key}
-        initialLocation={{ index: 'LAST', align: 'end' }}
-        shortSizeAlign="bottom-smooth"
-        ItemContent={MessageItem}
-      />
-    </VirtuosoMessageListLicense>
+    // 必须 flex flex-col 才能让 `virtuoso.current.scrollToItem({ index: 0, align: "end" })` 正常工作，原因未细究，参考 https://virtuoso.dev/virtuoso-message-list/examples/ai-chatbot/
+    <div className={cn('flex flex-col', className)}>
+      <VirtuosoMessageListLicense licenseKey="">
+        <VirtuosoMessageList<Message, MessageListContext>
+          ref={virtuoso}
+          context={{}}
+          style={{ flex: 1 }}
+          computeItemKey={({ data }) => data.key}
+          initialLocation={{ index: 'LAST', align: 'end' }}
+          shortSizeAlign="bottom-smooth"
+          ItemContent={MessageItem}
+        />
+      </VirtuosoMessageListLicense>
+    </div>
   );
 }
