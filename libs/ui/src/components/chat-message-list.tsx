@@ -4,11 +4,20 @@ import {
   VirtuosoMessageList,
 } from '@virtuoso.dev/message-list';
 import { useEffect, useRef } from 'react';
-import { randPhrase, randomMessage } from './chat-demo';
 import { Message, MessageItem } from './message-item';
+import { randPhrase, randomMessage } from './chat-demo';
+import {
+  REPLY_MESSAGE_EXECUTING_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/message-item-plugins';
+
+export type MessageListContext = {
+  //
+};
 
 export function ChatMessageList() {
-  const virtuoso = useRef<VirtuosoMessageListMethods<Message>>(null);
+  const virtuoso =
+    useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
   // mock data
   useEffect(() => {
@@ -26,7 +35,12 @@ export function ChatMessageList() {
 
     setTimeout(() => {
       const botMessage = randomMessage('other');
-      virtuoso.current?.data.append([botMessage]);
+      virtuoso.current?.data.append([
+        {
+          ...botMessage,
+          type: REPLY_MESSAGE_EXECUTING_TYPE,
+        },
+      ]);
 
       let counter = 0;
       const interval = setInterval(() => {
@@ -35,7 +49,14 @@ export function ChatMessageList() {
         }
         virtuoso.current?.data.map((message) => {
           return message.key === botMessage.key
-            ? { ...message, text: message.text + ' ' + randPhrase() }
+            ? {
+                ...message,
+                text: message.text + ' ' + randPhrase(),
+                type:
+                  counter > 20
+                    ? REPLY_MESSAGE_TYPE
+                    : REPLY_MESSAGE_EXECUTING_TYPE,
+              }
             : message;
         }, 'smooth');
       }, 150);
@@ -44,8 +65,9 @@ export function ChatMessageList() {
 
   return (
     <VirtuosoMessageListLicense licenseKey="">
-      <VirtuosoMessageList<Message, null>
+      <VirtuosoMessageList<Message, MessageListContext>
         ref={virtuoso}
+        context={{}}
         style={{ flex: 1 }}
         computeItemKey={({ data }) => data.key}
         initialLocation={{ index: 'LAST', align: 'end' }}
