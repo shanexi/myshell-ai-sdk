@@ -15,7 +15,13 @@ export const Reply: StoryObj<typeof ReplyMessage> = {
   },
   args: {
     key: '2',
-    text: 'I am fine, thank you!',
+    text: `
+你好！我正在为你审查 libs/ui 目录中的 TypeScript 文件，检查是否存在安全漏洞。我已经看到了目录结构，主要的代码应该在 src 目录中。让我继续查看 src 目录的内容。
+
+~~~js
+console.log('It works!')
+~~~
+`,
     user: 'other',
   },
 };

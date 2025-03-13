@@ -5,6 +5,8 @@ import { observer } from 'mobx-react-lite';
 import { useInjection } from 'inversify-react';
 import { ExecutingMessageModel } from './executing-message-model';
 import { ReplyMessageFrame } from '@myshell-run/ui-primitives';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 // todo 增加一些动效 当从后端收到真实倒计时的时候（重置）做一个闪烁的效果 然后再更新值
 export const ExecutingMessage = observer((props: Message) => {
@@ -54,7 +56,23 @@ export const ReplyMessage = (props: Message) => {
         </div>
       }
     >
-      {props.text}
+      <article className="prose dark:prose-invert">
+        <Markdown
+          children={props.text}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code(props) {
+              const { children, className, node, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || '');
+              return (
+                <code {...rest} className={className}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
+      </article>
     </ReplyMessageFrame>
   );
 };
