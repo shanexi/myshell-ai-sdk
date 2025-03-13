@@ -47,6 +47,9 @@ const ItemContent: VirtuosoMessageListProps<Message, null>['ItemContent'] = ({
 
 export function ChatDemo() {
   const virtuoso = React.useRef<VirtuosoMessageListMethods<Message>>(null);
+  React.useEffect(() => {
+    (window as any).vref = virtuoso.current;
+  }, []);
   return (
     <div
       className="tall-example"

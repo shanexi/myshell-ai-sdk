@@ -1,24 +1,79 @@
 import { Message } from '@myshell-run/def';
+import { ReactComponent as Loading } from './loading.svg';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useInjection } from 'inversify-react';
+import { ExecutingMessageModel } from './executing-message-model';
+import { ReplyMessageFrame } from '@myshell-run/ui-primitives';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+// todo 增加一些动效 当从后端收到真实倒计时的时候（重置）做一个闪烁的效果 然后再更新值
+export const ExecutingMessage = observer((props: Message) => {
+  // mobx 管理 估计需要注意下 map 管理（by message key）
+  const model = useInjection(ExecutingMessageModel);
+
+  useEffect(() => {
+    if (model.timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      model.timeLeft--;
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+  const minutes = Math.floor(model.timeLeft / 60);
+  const seconds = model.timeLeft % 60;
+
+  return (
+    <ReplyMessageFrame>
+      <div className="flex items-center">
+        <Loading className="me-2 animate-spin" />
+        <span className="text-sm-regular text-text-subtle-light">
+          AI is generating.
+        </span>
+      </div>
+      <span className="text-sm-regular text-text-subtler-light">
+        It will take about{' '}
+        <span className="text-sm-medium text-text-brand-light">
+          {minutes > 0 ? `${minutes} min ` : ''}
+          {seconds} sec
+        </span>
+        .
+      </span>
+    </ReplyMessageFrame>
+  );
+});
 
 export const ReplyMessage = (props: Message) => {
   return (
-    <div className="flex pb-8">
-      <img
-        className="mr-[8px] h-[32px] w-[32px] rounded-lg"
-        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-      />
-      <div className="w-[80%]">
-        <div className="bg-surface-default-light text-text-default-light rounded-bl-[16px] rounded-br-[16px] rounded-tl-[2px] rounded-tr-[16px] p-4">
-          {props.text}
+    <ReplyMessageFrame
+      button={
+        // button 布局收敛
+        <div className="-mx-spacing-xs flex justify-between">
+          <LuiButton>🪄 Upscale (Subtle)</LuiButton>
+          <LuiButton>💥 Upscale (Creative)</LuiButton>
         </div>
-        <div className="mt-[8px]">
-          <div className="-mx-spacing-xs flex justify-between">
-            <LuiButton>🪄 Upscale (Subtle)</LuiButton>
-            <LuiButton>💥 Upscale (Creative)</LuiButton>
-          </div>
-        </div>
-      </div>
-    </div>
+      }
+    >
+      <article className="prose dark:prose-invert">
+        <Markdown
+          children={props.text}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code(props) {
+              const { children, className, node, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || '');
+              return (
+                <code {...rest} className={className}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
+      </article>
+    </ReplyMessageFrame>
   );
 };
 

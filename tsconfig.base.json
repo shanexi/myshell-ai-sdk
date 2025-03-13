@@ -25,7 +25,8 @@
         "libs/react-aria-tailwind-starter/src/index.ts"
       ],
       "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"],
-      "@myshell-run/ui": ["libs/ui/src/index.ts"]
+      "@myshell-run/ui": ["libs/ui/src/index.ts"],
+      "@myshell-run/ui-primitives": ["libs/ui-primitives/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

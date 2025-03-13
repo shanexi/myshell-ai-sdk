@@ -9,15 +9,7 @@ export function Chat() {
       <div className="flex-none">
         <ChatTop />
       </div>
-      <div className="flex-grow overflow-auto px-[8px]">
-        <ChatMessageList />
-        <div
-          dangerouslySetInnerHTML={{
-            __html:
-              new URLSearchParams(window.location.search).get('message') || '',
-          }}
-        />
-      </div>
+      <ChatMessageList className="flex-grow overflow-auto px-[8px]" />
       <div className="mb-[34px] flex-none border-t-[0.5px] border-border-default-light">
         <ChatInput />
         <BotInfo />
