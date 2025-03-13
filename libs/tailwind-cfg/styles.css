@@ -106,6 +106,13 @@
   }
 }
 
+/* https://react-spectrum.adobe.com/react-aria/Button.html#styling */
+@layer components {
+  .x-custom-react-aria-Button[data-pressed] {
+    background: transparent !important;
+  }
+}
+
 @theme {
   --shadow-button-basic: 0px 1px 0px 0px
     var(--color-shadows-button-basic-light, rgba(0, 0, 0, 0.05));

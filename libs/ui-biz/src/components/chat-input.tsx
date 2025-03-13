@@ -12,26 +12,26 @@ import {
 export function ChatInput() {
   return (
     <div className="mx-[8px] my-spacing-md">
-      <label className="input w-full rounded-4xl border-border-default-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
+      <div className="input w-full rounded-4xl border-border-default-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
         <MenuTrigger>
-          <Button variant="icon">
+          <Button
+            variant="icon"
+            className="x-custom-react-aria-Button data-hovered:bg-transparent"
+          >
             <AlignJustify className="text-text-brand-light" />
           </Button>
           <Menu>
-            <MenuItem id="clear">
-              <Clear className="h-5 w-5" />
-              Clear Memory
-            </MenuItem>
-            <MenuItem id="delete">
-              <Trash className="h-5 w-5" />
-              Delete Chat History
-            </MenuItem>
+            <MenuItem id="new">New…</MenuItem>
+            <MenuItem id="open">Open…</MenuItem>
+            <MenuItem id="save">Save</MenuItem>
+            <MenuItem id="saveAs">Save as…</MenuItem>
+            <MenuItem id="print">Print…</MenuItem>
           </Menu>
         </MenuTrigger>
         <CirclePlus className="text-text-brand-light" />
         <input type="search" className="grow" placeholder="Write a message" />
         <Audio />
-      </label>
+      </div>
     </div>
   );
 }
