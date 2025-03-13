@@ -1,4 +1,4 @@
-export const ReplyMessageFrame = (props: {
+export const ReplyMsgFrame = (props: {
   children: React.ReactNode;
   button?: React.ReactNode;
 }) => {

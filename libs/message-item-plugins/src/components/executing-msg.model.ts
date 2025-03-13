@@ -2,7 +2,7 @@ import { injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
 
 @injectable()
-export class ExecutingMessageModel {
+export class ExecutingMsgModel {
   @observable timeLeft = 80;
 
   constructor() {

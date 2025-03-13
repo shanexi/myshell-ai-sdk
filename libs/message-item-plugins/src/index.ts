@@ -1,3 +1,3 @@
-export * from './components/reply-message';
-export * from './components/own-message';
+export * from './components/reply-msg';
+export * from './components/own-msg';
 export * from './message-item-plugins.module';
