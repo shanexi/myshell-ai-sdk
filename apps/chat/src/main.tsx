@@ -3,7 +3,7 @@ import '@myshell-run/tailwind-cfg/styles.css';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import { Chat } from '@myshell-run/ui';
+import { Chat } from '@myshell-run/ui-biz';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
