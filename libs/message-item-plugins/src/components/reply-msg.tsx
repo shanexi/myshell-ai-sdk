@@ -6,6 +6,12 @@ import remarkGfm from 'remark-gfm';
 export const ReplyMsg = (props: Message) => {
   return (
     <ReplyMsgFrame
+      avatar={
+        <img
+          className="mr-[8px] h-[32px] w-[32px] rounded-lg"
+          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+        />
+      }
       button={
         // button 布局收敛
         <div className="-mx-spacing-xs flex justify-between">

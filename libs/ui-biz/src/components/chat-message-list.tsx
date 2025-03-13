@@ -7,6 +7,7 @@ import { useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';
 import {
+  AGENT_MESSAGE_LIST_DIRECTORY_TYPE,
   REPLY_MESSAGE_EXECUTING_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/message-item-plugins';
@@ -56,7 +57,7 @@ export function ChatMessageList(props: { className?: string }) {
                 text: message.text + ' ' + randPhrase(),
                 type:
                   counter > 20
-                    ? REPLY_MESSAGE_TYPE
+                    ? AGENT_MESSAGE_LIST_DIRECTORY_TYPE
                     : REPLY_MESSAGE_EXECUTING_TYPE,
               }
             : message;

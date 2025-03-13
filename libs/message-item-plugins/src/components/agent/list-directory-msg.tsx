@@ -25,34 +25,36 @@ const rows = [
 
 export const ListDirectoryMsg = () => {
   return (
-    <ReplyMsgFrame>
-      <Disclosure>
-        <DisclosureHeader>Files</DisclosureHeader>
-        <DisclosurePanel>
-          <Table aria-label="Files">
-            <TableHeader>
-              <Column id="name" isRowHeader allowsSorting>
-                Name
-              </Column>
-              <Column id="type" allowsSorting>
-                Type
-              </Column>
-              <Column id="date" allowsSorting>
-                Date Modified
-              </Column>
-            </TableHeader>
-            <TableBody items={rows}>
-              {(row) => (
-                <Row>
-                  <Cell>{row.name}</Cell>
-                  <Cell>{row.type}</Cell>
-                  <Cell>{row.date}</Cell>
-                </Row>
-              )}
-            </TableBody>
-          </Table>
-        </DisclosurePanel>
-      </Disclosure>
-    </ReplyMsgFrame>
+    <div className="w-full">
+      <div className="p-4 text-text-default-light">
+        <Disclosure className="bg-surface-default-light">
+          <DisclosureHeader>Files</DisclosureHeader>
+          <DisclosurePanel>
+            <Table aria-label="Files">
+              <TableHeader>
+                <Column id="name" isRowHeader allowsSorting>
+                  Name
+                </Column>
+                <Column id="type" allowsSorting>
+                  Type
+                </Column>
+                <Column id="date" allowsSorting>
+                  Date Modified
+                </Column>
+              </TableHeader>
+              <TableBody items={rows}>
+                {(row) => (
+                  <Row>
+                    <Cell>{row.name}</Cell>
+                    <Cell>{row.type}</Cell>
+                    <Cell>{row.date}</Cell>
+                  </Row>
+                )}
+              </TableBody>
+            </Table>
+          </DisclosurePanel>
+        </Disclosure>
+      </div>
+    </div>
   );
 };
