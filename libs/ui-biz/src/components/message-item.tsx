@@ -1,7 +1,6 @@
 import {
   OwnMessage,
   REPLY_MESSAGE_TYPE,
-  ReplyMsg,
 } from '@myshell-run/message-item-plugins';
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';
 import { useInjection } from 'inversify-react';
