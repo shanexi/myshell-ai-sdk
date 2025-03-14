@@ -21,11 +21,14 @@ export function ChatInput() {
             <AlignJustify className="text-text-brand-light" />
           </Button>
           <Menu>
-            <MenuItem id="new">New…</MenuItem>
-            <MenuItem id="open">Open…</MenuItem>
-            <MenuItem id="save">Save</MenuItem>
-            <MenuItem id="saveAs">Save as…</MenuItem>
-            <MenuItem id="print">Print…</MenuItem>
+            <MenuItem id="clear">
+              <Clear className="h-5 w-5" />
+              Clear Memory
+            </MenuItem>
+            <MenuItem id="delete">
+              <Trash className="h-5 w-5" />
+              Delete Chat History
+            </MenuItem>
           </Menu>
         </MenuTrigger>
         <CirclePlus className="text-text-brand-light" />

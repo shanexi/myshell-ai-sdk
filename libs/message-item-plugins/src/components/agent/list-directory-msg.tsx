@@ -1,4 +1,3 @@
-import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
 import {
   Disclosure,
   DisclosureHeader,
