@@ -1,0 +1,28 @@
+{
+  "name": "simple-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/simple-server/src",
+  "projectType": "application",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/simple-server/**/*.ts"]
+      }
+    },
+    "dev": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "dev"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "deploy"
+      }
+    }
+  },
+  "tags": []
+}
