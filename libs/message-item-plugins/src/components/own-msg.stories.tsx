@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { OwnMessage } from './own-message';
+import { OwnMessage } from './own-msg';
 
 const meta: Meta<typeof OwnMessage> = {
   component: OwnMessage,

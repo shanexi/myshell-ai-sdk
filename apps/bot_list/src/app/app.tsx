@@ -1,5 +1,5 @@
 import { ReactComponent as Search } from './search.svg';
-import { Energy } from '@myshell-run/ui';
+import { Energy } from '@myshell-run/ui-biz';
 import * as Portals from '@ionic/portals';
 
 export function App() {
