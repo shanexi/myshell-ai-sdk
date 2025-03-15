@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "my-app",
+  "name": "sweet-meadow-2de4",
   "main": "./dist/index.js",
   "compatibility_date": "2025-03-15",
   "compatibility_flags": ["nodejs_compat"],
