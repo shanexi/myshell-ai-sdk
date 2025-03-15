@@ -2,10 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sweet-meadow-2de4",
   "main": "src/index.tsx",
-  "compatibility_date": "2025-03-14",
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
+  "compatibility_date": "2025-03-10",
+  "compatibility_flags": ["nodejs_compat"],
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },

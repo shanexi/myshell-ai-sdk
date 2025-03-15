@@ -4,6 +4,9 @@ overrides:
   '@babel/parser': 7.21.9
 
 patchedDependencies:
+  '@nodelib/fs.scandir@2.1.5':
+    hash: eyme2l4selbmgp36gt72bqlfyq
+    path: patches/@nodelib__fs.scandir@2.1.5.patch
   '@nrwl/devkit@15.9.7':
     hash: 6ee44cgqbn5okyq6iuxtn7xr6i
     path: patches/@nrwl__devkit@15.9.7.patch
@@ -19,6 +22,9 @@ patchedDependencies:
   prettier@2.8.8:
     hash: ukdn7hz7p2e5dfkyxisiekbmji
     path: patches/prettier@2.8.8.patch
+  tailwindcss@3.4.17:
+    hash: aits3ofvxjnreifawpd4eyklsu
+    path: patches/tailwindcss@3.4.17.patch
 
 specifiers:
   '@babel/core': ^7.16.0
@@ -135,7 +141,7 @@ specifiers:
   tailwind-merge: ^3.0.2
   tailwind-variants: ^1.0.0
   tailwindcss: ^4.0.9
-  tailwindcss-3: npm:tailwindcss@^3.4.9
+  tailwindcss-3: npm:tailwindcss@3.4.17
   tailwindcss-animate: ^1.0.7
   tailwindcss-react-aria-components: ^2.0.0
   ts-jest: ^29.0.5
@@ -279,7 +285,7 @@ devDependencies:
   react-test-renderer: 18.2.0_react@18.2.0
   storybook-react-rspack: 7.0.0-rc.25_okskjztxtjlhrwikrgz3tdbmdi
   tailwindcss: 4.0.9
-  tailwindcss-3: /tailwindcss/3.4.17_ts-node@10.9.1
+  tailwindcss-3: /tailwindcss/3.4.17_aits3ofvxjnreifawpd4eyklsu_ts-node@10.9.1
   ts-jest: 29.2.5_6nolridwwwwmcxvp4o5xts7zga
   ts-node: 10.9.1_pjozwyfheqlxp6lxfuo425ceyi
   typescript: 5.7.3
@@ -3781,13 +3787,14 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@nodelib/fs.scandir/2.1.5:
+  /@nodelib/fs.scandir/2.1.5_eyme2l4selbmgp36gt72bqlfyq:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
       run-parallel: 1.2.0
     dev: true
+    patched: true
 
   /@nodelib/fs.stat/2.0.5:
     resolution: {integrity: sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==}
@@ -3798,7 +3805,7 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
     dependencies:
-      '@nodelib/fs.scandir': 2.1.5
+      '@nodelib/fs.scandir': 2.1.5_eyme2l4selbmgp36gt72bqlfyq
       fastq: 1.17.1
     dev: true
 
@@ -19638,7 +19645,7 @@ packages:
       tailwindcss: 4.0.9
     dev: false
 
-  /tailwindcss/3.4.17_ts-node@10.9.1:
+  /tailwindcss/3.4.17_aits3ofvxjnreifawpd4eyklsu_ts-node@10.9.1:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -19668,6 +19675,7 @@ packages:
     transitivePeerDependencies:
       - ts-node
     dev: true
+    patched: true
 
   /tailwindcss/4.0.9:
     resolution: {integrity: sha512-12laZu+fv1ONDRoNR9ipTOpUD7RN9essRVkX36sjxuRUInpN7hIiHN4lBd/SIFjbISvnXzp8h/hXzmU8SQQYhw==}

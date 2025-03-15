@@ -60,7 +60,6 @@ describe('simpleServices', () => {
     const outputHtml = dom.serialize();
 
     // 验证结果包含了生成的CSS
-
     expect(outputHtml).toMatchSnapshot();
   });
 });
