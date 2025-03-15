@@ -23,6 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "core-js": "^3.38.1",
+    "dotenv-cli": "^8.0.0",
     "hono": "^4.7.4",
     "immer": "^10.1.1",
     "inversify": "^6.2.1",
