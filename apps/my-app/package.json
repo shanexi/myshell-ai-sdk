@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev2": "vite",
+    "dev": "wrangler dev",
     "build": "vite build --mode client && vite build",
     "preview": "wrangler dev",
     "deploy": "npm run build && wrangler deploy"

@@ -35,6 +35,11 @@ if (isNotSSG) {
 
 const app = createApp<HonoEnv>({
   app: happ,
+  NOT_FOUND: {},
+  ERROR: {},
+  RENDERER: {},
+  MIDDLEWARE: {},
+  ROUTES: {},
 });
 
 showRoutes(app);

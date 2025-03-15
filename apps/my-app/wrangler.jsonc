@@ -1,7 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sweet-meadow-2de4",
-  "main": "./dist/index.js",
+  // "main": "./dist/index.js",
+  "main": "./app/server.ts",
   "compatibility_date": "2025-03-15",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
