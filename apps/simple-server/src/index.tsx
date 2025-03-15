@@ -4,7 +4,7 @@ import { Container } from 'inversify';
 import { loadModule } from './loadModule';
 import { renderer } from './renderer';
 import { TrpcRouter } from './trpc-router';
-import { hello } from './middlewares/hello';
+// import { hello } from './middlewares/hello';
 
 const container = new Container();
 loadModule(container);
@@ -12,7 +12,7 @@ const trpcRouter = container.get(TrpcRouter);
 
 const app = new Hono<{ Bindings: Env }>();
 app.use(renderer);
-app.use(hello('Hello'));
+// app.use(hello('Hello'));
 
 app.use(
   '/trpc/*',

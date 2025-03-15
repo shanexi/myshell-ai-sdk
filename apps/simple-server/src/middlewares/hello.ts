@@ -7,8 +7,9 @@ import autoprefixer from 'autoprefixer';
 export const hello = (message = 'Hello!') => {
   return createMiddleware(async (c, next) => {
     await next();
-    const inputHtml = await c.res.clone().text();
 
+    const t0 = performance.now();
+    const inputHtml = await c.res.clone().text();
     const inputCss = `
     @tailwind base;
     @tailwind components;
@@ -25,9 +26,9 @@ export const hello = (message = 'Hello!') => {
       }),
       autoprefixer,
     ]).process(inputCss, { from: undefined });
-
+    const t2 = performance.now();
+    console.log(`[tw] ${t2 - t0}ms`);
     const processedCss = result.css;
-
     c.res.headers.append('X-Message', message);
   });
 };

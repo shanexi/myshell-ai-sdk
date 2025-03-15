@@ -33,6 +33,7 @@ describe('simpleServices', () => {
     `;
 
     // 使用PostCSS处理CSS
+    const t0 = performance.now();
     const result = await postcss([
       tailwindcss({
         content: [{ raw: inputHtml }],
@@ -43,6 +44,8 @@ describe('simpleServices', () => {
       }),
       autoprefixer,
     ]).process(inputCss, { from: undefined });
+    const t1 = performance.now();
+    console.log(`[tw0-1] ${t1 - t0}ms`);
 
     // 获取处理后的CSS
     const processedCss = result.css;
