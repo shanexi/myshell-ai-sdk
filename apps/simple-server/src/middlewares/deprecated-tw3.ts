@@ -4,6 +4,9 @@ import tailwindcss from 'tailwindcss-3';
 import autoprefixer from 'autoprefixer';
 // import { JSDOM } from 'jsdom';
 
+/**
+ * @deprecated tailwindcss 耗时太长 就算使用全量的生成的 css 只需要 10ms+
+ */
 export const hello = (message = 'Hello!') => {
   return createMiddleware(async (c, next) => {
     await next();
