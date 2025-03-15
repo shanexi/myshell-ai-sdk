@@ -27,9 +27,7 @@
       "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"],
       "@myshell-run/ui-biz": ["libs/ui-biz/src/index.ts"],
       "@myshell-run/ui-primitives": ["libs/ui-primitives/src/index.ts"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
