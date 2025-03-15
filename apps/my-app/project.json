@@ -14,7 +14,8 @@
     "dev": {
       "executor": "nx:run-script",
       "options": {
-        "script": "dev"
+        "script": "dev",
+        "envFile": "apps/my-app/.env"
       }
     },
     "preview": {
