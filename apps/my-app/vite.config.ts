@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 import honox from 'honox/vite';
 import ssg from '@hono/vite-ssg';
 import { defineConfig } from 'vite';
+import mdx from '@mdx-js/rollup';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
 export default defineConfig(({ mode }) => {
   return {
@@ -15,6 +18,10 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       build(),
       ssg({ entry: './app/server.ts' }),
+      mdx({
+        jsxImportSource: 'hono/jsx',
+        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      }),
     ],
   };
 });
