@@ -4,9 +4,7 @@ import Counter from '../islands/counter';
 import type { Meta } from './types';
 
 const factory = createFactory<{
-  Bindings: {
-    DB_MYSHELL_RUN_TEST: D1Database;
-  };
+  Bindings: Env;
 }>();
 
 export const createRoute = factory.createHandlers;
