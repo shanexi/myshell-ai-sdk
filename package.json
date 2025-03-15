@@ -57,9 +57,7 @@
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
-    "zustand-signal": "^0.6.0"
-  },
-  "devDependencies": {
+    "zustand-signal": "^0.6.0",
     "@babel/core": "^7.16.0",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.16.0",
@@ -139,7 +137,9 @@
     "url-loader": "^4.1.1",
     "vite": "^6.1.1",
     "wait-on": "^8.0.0",
-    "wrangler": "^3.109.2"
+    "wrangler": "^3.109.2",
+    "honox": "^0.1.38",
+    "@tailwindcss/vite": "^4.0.9"
   },
   "engines": {
     "node": ">= 16 < 20",
