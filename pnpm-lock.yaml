@@ -58,6 +58,7 @@ specifiers:
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.7
   '@prisma/adapter-d1': ^6.5.0
   '@prisma/client': ^6.5.0
+  '@prisma/extension-accelerate': ^1.2.2
   '@storybook/addon-designs': ^8.2.1
   '@storybook/addon-essentials': ^8.6.4
   '@storybook/addon-interactions': ^8.6.4
@@ -197,6 +198,7 @@ dependencies:
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.15_vb45em2rqei7enu62bgfoc4jgu
   '@prisma/adapter-d1': 6.5.0
   '@prisma/client': 6.5.0_lofndujtxpriew7whktlt5nwta
+  '@prisma/extension-accelerate': 1.2.2_@prisma+client@6.5.0
   '@storybook/addon-designs': 8.2.1_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 8.6.4_auedahpnw6x7p36ofd3zyxn6ba
   '@storybook/addon-interactions': 8.6.4_storybook@8.6.4
@@ -4717,6 +4719,15 @@ packages:
       '@prisma/engines-version': 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
       '@prisma/fetch-engine': 6.5.0
       '@prisma/get-platform': 6.5.0
+    dev: false
+
+  /@prisma/extension-accelerate/1.2.2_@prisma+client@6.5.0:
+    resolution: {integrity: sha512-LOlfkG6If+o8PFRzLzp26ackP/d+j2HrkTJaxuV/Wd+sdAHz/AkmzEDGbo2UpHFpxEM9hWMBe3ScSwUKYUDOXg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@prisma/client': '>=4.16.1'
+    dependencies:
+      '@prisma/client': 6.5.0_lofndujtxpriew7whktlt5nwta
     dev: false
 
   /@prisma/fetch-engine/6.5.0:

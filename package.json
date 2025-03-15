@@ -22,6 +22,7 @@
     "@hono/vite-dev-server": "^0.18.2",
     "@hono/vite-ssg": "^0.1.1",
     "@ionic/portals": "~0.10.0",
+    "@mdx-js/rollup": "^3.0.0",
     "@nrwl/cypress": "15.9.7",
     "@nrwl/eslint-plugin-nx": "15.9.7",
     "@nrwl/jest": "15.9.7",
@@ -37,6 +38,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@prisma/adapter-d1": "^6.5.0",
     "@prisma/client": "^6.5.0",
+    "@prisma/extension-accelerate": "^1.2.2",
     "@storybook/addon-designs": "^8.2.1",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",
@@ -118,8 +120,10 @@
     "react-virtuoso": "^4.12.5",
     "reflect-metadata": "^0.2.2",
     "remark-breaks": "^4.0.0",
+    "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
+    "remark-mdx-frontmatter": "^4.0.0",
     "storybook-react-rspack": "7.0.0-rc.25",
     "tailwind-merge": "^3.0.2",
     "tailwind-variants": "^1.0.0",
@@ -140,10 +144,7 @@
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
-    "zustand-signal": "^0.6.0",
-    "@mdx-js/rollup": "^3.0.0",
-    "remark-frontmatter": "^5.0.0",
-    "remark-mdx-frontmatter": "^4.0.0"
+    "zustand-signal": "^0.6.0"
   },
   "engines": {
     "node": ">= 16 < 20",
