@@ -1,8 +1,30 @@
-import { createRoute } from 'honox/factory';
+import { createFactory } from 'hono/factory';
+
 import Counter from '../islands/counter';
 import type { Meta } from './types';
 
-export default createRoute((c) => {
+const factory = createFactory<{
+  Bindings: {
+    DB_MYSHELL_RUN_TEST: D1Database;
+  };
+}>();
+
+export const createRoute = factory.createHandlers;
+
+export type User = {
+  id: string;
+  email: string;
+  name: string;
+};
+
+export default createRoute(async (c) => {
+  let users: User[] = [];
+  if (import.meta.env.VITE_SSG !== '1') {
+    const db = c.env.DB_MYSHELL_RUN_TEST;
+    const { results } = await db.prepare('SELECT * FROM User').all<User>();
+    users = results;
+  }
+
   const name = c.req.query('name') ?? 'Hono';
   const posts = import.meta.glob<{ frontmatter: Meta }>('./posts/*.mdx', {
     eager: true,
@@ -23,6 +45,12 @@ export default createRoute((c) => {
               </li>
             );
           }
+        })}
+      </ul>
+
+      <ul class="user-list">
+        {Object.entries(users).map(([id, module]) => {
+          return <li>{module.name}</li>;
         })}
       </ul>
     </div>,

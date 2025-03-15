@@ -8,7 +8,7 @@ import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
     plugins: [
       honox({
@@ -17,7 +17,9 @@ export default defineConfig(({ mode }) => {
       }),
       tailwindcss(),
       build(),
-      ssg({ entry: './app/server.ts' }),
+      ...(process.env.VITE_SSG === '1'
+        ? [ssg({ entry: './app/server.ts' })]
+        : []),
       mdx({
         jsxImportSource: 'hono/jsx',
         remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],

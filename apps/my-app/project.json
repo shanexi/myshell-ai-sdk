@@ -34,6 +34,14 @@
       "options": {
         "script": "deploy"
       }
+    },
+    "ssg": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "../../node_modules/.bin/vite build --mode client && ../../node_modules/.bin/vite build",
+        "cwd": "apps/my-app",
+        "envFile": "apps/my-app/.env.ssg"
+      }
     }
   },
   "tags": []
