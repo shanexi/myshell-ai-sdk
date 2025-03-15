@@ -1,6 +1,7 @@
 import { Container, interfaces } from 'inversify';
 import prismaClients from './prisma';
 import { PrismaClient } from '@prisma/client-simple';
+import { TrpcRouter } from './trpc-router';
 
 export type PrismaClientProvider = (db: D1Database) => Promise<PrismaClient>;
 
@@ -13,4 +14,5 @@ export function loadModule(container: Container) {
         return prisma;
       };
     });
+  container.bind(TrpcRouter).toSelf().inSingletonScope();
 }
