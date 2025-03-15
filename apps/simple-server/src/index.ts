@@ -16,7 +16,6 @@ app.get('/', async (c) => {
   console.log('c.env', c.env);
   const prisma = await prismaClients.fetch(c.env.DB_MYSHELL_RUN_TEST);
   const users = await prisma.user.findMany();
-  console.log('users', users);
   return c.json(users);
 });
 
