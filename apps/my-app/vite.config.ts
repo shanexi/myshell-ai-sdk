@@ -6,8 +6,6 @@ import ssg from '@hono/vite-ssg';
 import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => {
-  // default
-  const entry = './app/server.ts';
   return {
     plugins: [
       honox({
@@ -15,8 +13,8 @@ export default defineConfig(({ mode }) => {
         client: { input: ['./app/style.css'] },
       }),
       tailwindcss(),
-      // ssg({ entry }),
       build(),
+      ssg({ entry: './app/server.ts' }),
     ],
   };
 });
