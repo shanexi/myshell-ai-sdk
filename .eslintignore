@@ -1,4 +1,5 @@
 node_modules
 
 **/*.typegen.ts
+**/.wrangler/**/*
 /libs/archive/automata/src/lib

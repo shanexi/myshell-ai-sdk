@@ -1,0 +1,17 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../../../node_modules/@prisma/client-simple"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite" // d1 is sql base database
+  url      = env("DATABASE_URL")
+}
+
+// Create a simple model database
+model User {
+  id    String @id  @default(uuid())
+  email String  @unique
+  name  String?
+}
