@@ -18,9 +18,9 @@ export type User = {
 export default createRoute(async (c) => {
   let users: User[] = [];
   if (import.meta.env.VITE_SSG !== '1') {
-    // const db = c.env.DB_MYSHELL_RUN_TEST;
-    // const { results } = await db.prepare('SELECT * FROM User').all<User>();
-    // users = results;
+    const db = c.env.DB_MYSHELL_RUN_TEST;
+    const { results } = await db.prepare('SELECT * FROM User').all<User>();
+    users = results;
   }
 
   const name = c.req.query('name') ?? 'Hono';
