@@ -1,11 +1,15 @@
 {
   "extends": "../../tsconfig.base.json",
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
-  "compilerOptions": {}
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "strict": true,
+    "lib": ["DOM", "ESNext"],
+    "types": ["vite/client"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
