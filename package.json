@@ -17,6 +17,7 @@
     "@capacitor/ios": "^6.2.0",
     "@cloudflare/workers-types": "^4.20250214.0",
     "@headlessui/react": "^2.2.0",
+    "@hono/react-renderer": "^0.3.0",
     "@hono/trpc-server": "^0.3.4",
     "@hono/vite-build": "^1.2.0",
     "@hono/vite-dev-server": "^0.18.2",
