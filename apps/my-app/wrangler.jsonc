@@ -1,0 +1,36 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sweet-meadow-2de4",
+  "main": "./dist/index.js",
+  "compatibility_date": "2025-03-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist"
+  },
+  // "vars": {
+  //   "MY_VAR": "my-variable"
+  // },
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  "d1_databases": [
+    {
+      "binding": "DB_MYSHELL_RUN_TEST",
+      "database_name": "myshell_run_test",
+      "database_id": "0227f88d-d8ab-415a-b0cf-91d6518d030e",
+      "migrations_dir": "../../libs/simple-prisma/prisma/migrations"
+    }
+  ]
+  // "ai": {
+  //   "binding": "AI"
+  // }
+}

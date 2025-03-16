@@ -1,0 +1,49 @@
+{
+  "name": "my-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/my-app/src",
+  "projectType": "application",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/my-app/**/*.ts"]
+      }
+    },
+    "dev": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "dev",
+        "envFile": "apps/my-app/.env"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "preview"
+      }
+    },
+    "build": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "build"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "deploy"
+      }
+    },
+    "ssg": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "../../node_modules/.bin/vite build --mode client && ../../node_modules/.bin/vite build",
+        "cwd": "apps/my-app",
+        "envFile": "apps/my-app/.env.ssg"
+      }
+    }
+  },
+  "tags": []
+}
