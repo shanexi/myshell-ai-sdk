@@ -146,6 +146,7 @@ specifiers:
   remark-gfm: ^4.0.1
   remark-math: ^6.0.0
   remark-mdx-frontmatter: ^4.0.0
+  rollup-plugin-visualizer: ^5.14.0
   storybook-react-rspack: 7.0.0-rc.25
   tailwind-merge: ^3.0.2
   tailwind-variants: ^1.0.0
@@ -288,6 +289,7 @@ dependencies:
   remark-gfm: 4.0.1
   remark-math: 6.0.0
   remark-mdx-frontmatter: 4.0.0
+  rollup-plugin-visualizer: 5.14.0_rollup@4.35.0
   storybook-react-rspack: 7.0.0-rc.25_okskjztxtjlhrwikrgz3tdbmdi
   tailwind-merge: 3.0.2
   tailwind-variants: 1.0.0_tailwindcss@4.0.9
@@ -9562,12 +9564,12 @@ packages:
       acorn-walk: 8.3.3
     dev: false
 
-  /acorn-import-attributes/1.9.5_acorn@8.12.1:
+  /acorn-import-attributes/1.9.5_acorn@8.14.0:
     resolution: {integrity: sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==}
     peerDependencies:
       acorn: ^8
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.14.0
     dev: false
 
   /acorn-jsx/5.3.2_acorn@7.4.1:
@@ -9576,14 +9578,6 @@ packages:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       acorn: 7.4.1
-    dev: false
-
-  /acorn-jsx/5.3.2_acorn@8.12.1:
-    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.12.1
     dev: false
 
   /acorn-jsx/5.3.2_acorn@8.14.0:
@@ -9608,12 +9602,13 @@ packages:
     resolution: {integrity: sha512-MxXdReSRhGO7VlFe1bRG/oI7/mdLV9B9JJT0N8vZOhF7gFRR5l3M8W9G8JxmKV+JC5mGqJ0QvqfSOLsCPa4nUw==}
     engines: {node: '>=0.4.0'}
     dependencies:
-      acorn: 8.12.1
+      acorn: 8.14.0
     dev: false
 
   /acorn/7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
     engines: {node: '>=0.4.0'}
+    hasBin: true
     dev: false
 
   /acorn/8.12.1:
@@ -12950,8 +12945,8 @@ packages:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.12.1
-      acorn-jsx: 5.3.2_acorn@8.12.1
+      acorn: 8.14.0
+      acorn-jsx: 5.3.2_acorn@8.14.0
       eslint-visitor-keys: 3.4.3
     dev: false
 
@@ -15802,7 +15797,7 @@ packages:
         optional: true
     dependencies:
       abab: 2.0.6
-      acorn: 8.12.1
+      acorn: 8.14.0
       acorn-globals: 7.0.1
       cssom: 0.5.0
       cssstyle: 2.3.0
@@ -19989,6 +19984,26 @@ packages:
       rollup-plugin-inject: 3.0.2
     dev: false
 
+  /rollup-plugin-visualizer/5.14.0_rollup@4.35.0:
+    resolution: {integrity: sha512-VlDXneTDaKsHIw8yzJAFWtrzguoJ/LnQ+lMpoVfYJ3jJF4Ihe5oYLAqLklIK/35lgUY+1yEzCkHyZ1j4A5w5fA==}
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      rolldown: 1.x
+      rollup: 2.x || 3.x || 4.x
+    peerDependenciesMeta:
+      rolldown:
+        optional: true
+      rollup:
+        optional: true
+    dependencies:
+      open: 8.4.2
+      picomatch: 4.0.2
+      rollup: 4.35.0
+      source-map: 0.7.4
+      yargs: 17.7.2
+    dev: false
+
   /rollup-pluginutils/2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
     dependencies:
@@ -22503,8 +22518,8 @@ packages:
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
-      acorn: 8.12.1
-      acorn-import-attributes: 1.9.5_acorn@8.12.1
+      acorn: 8.14.0
+      acorn-import-attributes: 1.9.5_acorn@8.14.0
       browserslist: 4.23.3
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.18.1
