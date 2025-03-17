@@ -4,7 +4,9 @@
     "dev": "vite",
     "build": "vite build --mode client && vite build",
     "preview": "wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "ssg": "vite build --mode client &&VITE_SSG=1 vite build",
+    "ssg:debug": "NODE_ENV=development VITE_SSG=1 node --inspect-brk ../../node_modules/vite/bin/vite.js build"
   },
   "private": true
 }

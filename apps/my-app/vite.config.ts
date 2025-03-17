@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => {
           ? [ssg({ entry: './app/server.ts' })]
           : []),
         mdx({
-          jsxImportSource: 'hono/jsx',
+          jsxImportSource: 'react',
           remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
         }),
       ],
