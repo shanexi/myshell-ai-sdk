@@ -7,6 +7,7 @@ import { defineConfig } from 'vite';
 import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig(({ mode }) => {
   if (mode === 'client') {
@@ -20,9 +21,10 @@ export default defineConfig(({ mode }) => {
             assetFileNames: 'static/assets/[name].[ext]',
           },
         },
-        emptyOutDir: false,
+        emptyOutDir: true,
+        plugins: [],
       },
-      plugins: [tailwindcss()],
+      plugins: [tailwindcss(), visualizer()],
     };
   } else {
     return {
