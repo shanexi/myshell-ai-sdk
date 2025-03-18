@@ -24,13 +24,7 @@ export default defineConfig(({ mode }) => {
         emptyOutDir: true,
         plugins: [],
       },
-      plugins: [
-        tailwindcss(),
-        visualizer({
-          emitFile: true,
-          filename: 'stats.html',
-        }),
-      ],
+      plugins: [tailwindcss(), visualizer()],
     };
   } else {
     return {
