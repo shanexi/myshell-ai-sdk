@@ -6,20 +6,7 @@ export default reactRenderer(({ children }) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {import.meta.env.VITE_SSG === '1' ? (
-          <>
-            <script
-              crossOrigin="anonymous"
-              src="https://unpkg.com/react@18/umd/react.development.js"
-            ></script>
-            <script
-              crossOrigin="anonymous"
-              src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-            ></script>
-            <script src="/static/js/client.js"></script>
-            <link href="/static/css/style.css" rel="stylesheet" />
-          </>
-        ) : import.meta.env.PROD ? (
+        {import.meta.env.PROD || import.meta.env.VITE_SSG === '1' ? (
           <>
             <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
             <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
