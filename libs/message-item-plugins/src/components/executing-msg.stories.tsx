@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChatMessageList } from './chat-message-list';
+import { ExecutingMsg } from './executing-msg';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { Container } from 'inversify';
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { uiBizModule } from '../ui-biz.module';
+import { messageItemPluginsModule } from '../message-item-plugins.module';
 
 const container = new Container();
 container.load(messageItemPluginsModule);
-container.load(uiBizModule);
 
-const meta: Meta<typeof ChatMessageList> = {
-  component: ChatMessageList,
+const meta: Meta<typeof ExecutingMsg> = {
+  component: ExecutingMsg,
   decorators: [
     (Story) => (
       <InversifyProvider container={container}>
@@ -21,6 +19,7 @@ const meta: Meta<typeof ChatMessageList> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof ChatMessageList> = {
+export const Reply: StoryObj<typeof ExecutingMsg> = {
+  parameters: {},
   args: {},
 };

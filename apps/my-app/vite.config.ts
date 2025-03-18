@@ -13,6 +13,7 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({ mode }) => {
   if (mode === 'client') {
+    console.log('building client');
     return {
       build: {
         rollupOptions: {
@@ -46,7 +47,15 @@ export default defineConfig(({ mode }) => {
   } else {
     return {
       ssr: {
-        external: ['react', 'react-dom', 'mobx-react-lite', 'mobx'],
+        external: [
+          'react',
+          'react-dom',
+          'mobx-react-lite',
+          'mobx',
+          'react-markdown',
+          'remark-gfm',
+          'use-sync-external-store',
+        ],
       },
       plugins: [
         ViteTsConfigPathsPlugin({

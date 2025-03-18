@@ -1,7 +1,7 @@
 import { ReactComponent as Loading } from './loading.svg';
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useInjection } from 'inversify-react';
+import { useInjection } from '@myshell-run/ui-primitives';
 import { ExecutingMsgModel } from './executing-msg.model';
 import { Message } from '@myshell-run/def';
 import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
