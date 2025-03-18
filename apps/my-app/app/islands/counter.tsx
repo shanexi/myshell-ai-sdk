@@ -3,7 +3,7 @@ import { container } from './container';
 import { CounterModel } from './counter.model';
 import { InversifyProvider, useInjection } from './inversify-context';
 import { def } from '@myshell-run/def';
-import { Energy } from '@myshell-run/ui-biz';
+import { Energy, ImageChoice } from '@myshell-run/ui-biz';
 
 export const Counter = observer(() => {
   const store = useInjection(CounterModel);
@@ -18,6 +18,8 @@ export const Counter = observer(() => {
       >
         Increment
       </button>
+      <ImageChoice />
+      {/* <MdViewer /> */}
     </div>
   );
 });
