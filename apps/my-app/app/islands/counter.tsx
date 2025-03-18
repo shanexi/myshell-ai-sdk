@@ -1,9 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { container } from './container';
 import { CounterModel } from './counter.model';
+import { InversifyProvider, useInjection } from './inversify-context';
 
-export const Counter = observer(() => {
-  const store = container.get(CounterModel);
+export const Counter1 = observer(() => {
+  const store = useInjection(CounterModel);
   return (
     <div>
       <p className="py-2 text-2xl">{store.count}</p>
@@ -16,3 +17,11 @@ export const Counter = observer(() => {
     </div>
   );
 });
+
+export const Counter = () => {
+  return (
+    <InversifyProvider container={container}>
+      <Counter1 />
+    </InversifyProvider>
+  );
+};
