@@ -10,30 +10,50 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig(({ mode }) => {
-  if (mode === 'client') {
+  if (mode === 'client-js') {
+    console.log('building client js');
     return {
       build: {
+        minify: false,
         rollupOptions: {
-          input: ['./app/client.ts', './app/style.css'],
+          input: './app/client.ts',
+          external: ['react', 'react-dom'],
           output: {
-            entryFileNames: 'static/client.js',
-            chunkFileNames: 'static/assets/[name]-[hash].js',
-            assetFileNames: 'static/assets/[name].[ext]',
+            format: 'umd',
+            globals: {
+              react: 'React',
+              'react-dom': 'ReactDOM',
+            },
+            dir: 'dist/static/js',
+            entryFileNames: 'client.js',
           },
         },
         emptyOutDir: true,
         plugins: [],
       },
-      plugins: [
-        tailwindcss(),
-        visualizer({
-          emitFile: true,
-          filename: 'stats.html',
-        }),
-      ],
+      plugins: [visualizer()],
+    };
+  }
+  if (mode === 'client-css') {
+    console.log('building client css');
+    return {
+      build: {
+        minify: false,
+        rollupOptions: {
+          input: './app/style.css',
+          output: {
+            dir: 'dist/static/css',
+            assetFileNames: '[name].[ext]',
+          },
+        },
+        emptyOutDir: true,
+        plugins: [],
+      },
+      plugins: [tailwindcss()],
     };
   } else {
     return {
+      minify: false,
       ssr: {
         external: ['react', 'react-dom', 'mobx-react-lite', 'mobx'],
       },

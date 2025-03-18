@@ -5,7 +5,10 @@
     "build": "vite build --mode client && vite build",
     "preview": "wrangler dev",
     "deploy": "npm run build && wrangler deploy",
-    "ssg": "vite build --mode client && NODE_ENV=development VITE_SSG=1 vite build",
+    "ssg": "npm run ssg:client-js && npm run ssg:client-css && npm run ssg:ssr",
+    "ssg:client-js": "VITE_SSG=1 vite build --mode client-js",
+    "ssg:client-css": "VITE_SSG=1 vite build --mode client-css",
+    "ssg:ssr": "NODE_ENV=development VITE_SSG=1 vite build",
     "ssg:debug": "NODE_ENV=development VITE_SSG=1 node --inspect-brk ../../node_modules/vite/bin/vite.js build"
   },
   "private": true
