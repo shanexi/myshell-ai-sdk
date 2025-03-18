@@ -9,6 +9,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { visualizer } from 'rollup-plugin-visualizer';
 import ViteTsConfigPathsPlugin from 'vite-tsconfig-paths';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({ mode }) => {
   if (mode === 'client') {
@@ -29,6 +30,16 @@ export default defineConfig(({ mode }) => {
           root: '../../',
         }),
         tailwindcss(),
+        // https://github.com/nrwl/nx/issues/19282
+        svgr({
+          svgrOptions: {
+            exportType: 'named',
+            ref: true,
+            svgo: false,
+            titleProp: true,
+          },
+          include: '**/*.svg',
+        }),
         visualizer(),
       ],
     };
@@ -53,6 +64,15 @@ export default defineConfig(({ mode }) => {
         mdx({
           jsxImportSource: 'react',
           remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+        }),
+        svgr({
+          svgrOptions: {
+            exportType: 'named',
+            ref: true,
+            svgo: false,
+            titleProp: true,
+          },
+          include: '**/*.svg',
         }),
       ],
     };
