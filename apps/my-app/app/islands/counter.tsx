@@ -3,6 +3,7 @@ import { container } from './container';
 import { CounterModel } from './counter.model';
 import { InversifyProvider, useInjection } from './inversify-context';
 import { def } from '@myshell-run/def';
+import { Textarea } from '@myshell-run/ui-biz';
 
 export const Counter = observer(() => {
   const store = useInjection(CounterModel);
@@ -10,6 +11,7 @@ export const Counter = observer(() => {
   return (
     <div>
       <p className="py-2 text-2xl">{store.count}</p>
+      <Textarea />
       <button
         className="cursor-pointer rounded bg-orange-400 px-4 py-2 text-white"
         onClick={() => store.increment()}

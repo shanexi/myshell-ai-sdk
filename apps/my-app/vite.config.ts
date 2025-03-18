@@ -22,8 +22,6 @@ export default defineConfig(({ mode }) => {
             assetFileNames: 'static/assets/[name].[ext]',
           },
         },
-        emptyOutDir: true,
-        plugins: [],
       },
       plugins: [
         // build need this plugin, dev not need

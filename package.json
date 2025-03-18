@@ -41,6 +41,8 @@
     "@prisma/client": "^6.5.0",
     "@prisma/extension-accelerate": "^1.2.2",
     "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@storybook/addon-designs": "^8.2.1",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",
@@ -141,6 +143,7 @@
     "tslib": "^2.3.0",
     "typescript": "~5.7.3",
     "url-loader": "^4.1.1",
+    "use-sync-external-store": "1.5.0-canary-fbcda19a-20250317",
     "vite": "^6.1.1",
     "vite-tsconfig-paths": "^5.1.4",
     "wait-on": "^8.0.0",
@@ -157,7 +160,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@babel/parser": "7.21.9"
+      "@babel/parser": "7.21.9",
+      "use-sync-external-store": "1.5.0-canary-fbcda19a-20250317"
     },
     "patchedDependencies": {
       "nx@15.9.7": "patches/nx@15.9.7.patch",

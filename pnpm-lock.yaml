@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   '@babel/parser': 7.21.9
+  use-sync-external-store: 1.5.0-canary-fbcda19a-20250317
 
 patchedDependencies:
   '@nodelib/fs.scandir@2.1.5':
@@ -61,6 +62,8 @@ specifiers:
   '@prisma/client': ^6.5.0
   '@prisma/extension-accelerate': ^1.2.2
   '@rollup/plugin-alias': ^5.1.1
+  '@rollup/plugin-commonjs': ^28.0.3
+  '@rollup/plugin-node-resolve': ^16.0.1
   '@storybook/addon-designs': ^8.2.1
   '@storybook/addon-essentials': ^8.6.4
   '@storybook/addon-interactions': ^8.6.4
@@ -161,6 +164,7 @@ specifiers:
   tslib: ^2.3.0
   typescript: ~5.7.3
   url-loader: ^4.1.1
+  use-sync-external-store: 1.5.0-canary-fbcda19a-20250317
   vite: ^6.1.1
   vite-tsconfig-paths: ^5.1.4
   wait-on: ^8.0.0
@@ -206,6 +210,8 @@ dependencies:
   '@prisma/client': 6.5.0_lofndujtxpriew7whktlt5nwta
   '@prisma/extension-accelerate': 1.2.2_@prisma+client@6.5.0
   '@rollup/plugin-alias': 5.1.1_rollup@4.35.0
+  '@rollup/plugin-commonjs': 28.0.3_rollup@4.35.0
+  '@rollup/plugin-node-resolve': 16.0.1_rollup@4.35.0
   '@storybook/addon-designs': 8.2.1_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 8.6.4_auedahpnw6x7p36ofd3zyxn6ba
   '@storybook/addon-interactions': 8.6.4_storybook@8.6.4
@@ -306,6 +312,7 @@ dependencies:
   tslib: 2.7.0
   typescript: 5.7.3
   url-loader: 4.1.1_webpack@5.94.0
+  use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
   vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
   vite-tsconfig-paths: 5.1.4_hwalmxo7da3gzmpg53uor646oa
   wait-on: 8.0.0
@@ -5007,7 +5014,7 @@ packages:
       '@swc/helpers': 0.5.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.4.0_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /@react-aria/color/3.0.5_biqbaboplfbrettd7655fr4n2y:
@@ -5269,7 +5276,7 @@ packages:
       '@swc/helpers': 0.5.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.4.0_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /@react-aria/link/3.7.10_biqbaboplfbrettd7655fr4n2y:
@@ -6091,7 +6098,7 @@ packages:
     dependencies:
       '@swc/helpers': 0.5.1
       react: 18.2.0
-      use-sync-external-store: 1.4.0_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /@react-stately/toggle/3.8.2_react@18.2.0:
@@ -6425,6 +6432,42 @@ packages:
       rollup:
         optional: true
     dependencies:
+      rollup: 4.35.0
+    dev: false
+
+  /@rollup/plugin-commonjs/28.0.3_rollup@4.35.0:
+    resolution: {integrity: sha512-pyltgilam1QPdn+Zd9gaCfOLcnjMEJ9gV+bTw6/r73INdvzf1ah9zLIJBm+kW7R6IUFIQ1YO+VqZtYxZNWFPEQ==}
+    engines: {node: '>=16.0.0 || 14 >= 14.17'}
+    peerDependencies:
+      rollup: ^2.68.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.1.4_rollup@4.35.0
+      commondir: 1.0.1
+      estree-walker: 2.0.2
+      fdir: 6.4.3_picomatch@4.0.2
+      is-reference: 1.2.1
+      magic-string: 0.30.11
+      picomatch: 4.0.2
+      rollup: 4.35.0
+    dev: false
+
+  /@rollup/plugin-node-resolve/16.0.1_rollup@4.35.0:
+    resolution: {integrity: sha512-tk5YCxJWIG81umIvNkSod2qK5KyQW19qcBF/B78n1bjtOON6gzKoVeSzAE8yHCZEDmqkHKkxplExA8KzdJLJpA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.1.4_rollup@4.35.0
+      '@types/resolve': 1.20.2
+      deepmerge: 4.3.1
+      is-module: 1.0.0
+      resolve: 1.22.8
       rollup: 4.35.0
     dev: false
 
@@ -8980,6 +9023,10 @@ packages:
       csstype: 3.1.3
     dev: false
 
+  /@types/resolve/1.20.2:
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
+    dev: false
+
   /@types/resolve/1.20.6:
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
     dev: false
@@ -9528,7 +9575,7 @@ packages:
     dependencies:
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2_pmekkgnqduwlme35zpnqhenc34
-      use-sync-external-store: 1.2.2_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
       xstate: 4.38.3
     transitivePeerDependencies:
       - '@types/react'
@@ -13316,6 +13363,17 @@ packages:
       pend: 1.2.0
     dev: false
 
+  /fdir/6.4.3_picomatch@4.0.2:
+    resolution: {integrity: sha512-PMXmW2y1hDDfTSRc9gaXIuCCRpuoz3Kaz8cUelp3smouvfT632ozg2vrT6lJsHKKOF59YLbOGfAWGUcKEfRMQw==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+    dependencies:
+      picomatch: 4.0.2
+    dev: false
+
   /figures/3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
     engines: {node: '>=8'}
@@ -14925,6 +14983,10 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
+  /is-module/1.0.0:
+    resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
+    dev: false
+
   /is-nan/1.3.2:
     resolution: {integrity: sha512-E+zBKpQ2t6MEo1VsonYmluk9NxGrbzpeeLC2xIViuO2EjU2xsXsBPwTr3Ykv9l08UYEVEdWeRZNouaZqF6RN0w==}
     engines: {node: '>= 0.4'}
@@ -14984,6 +15046,12 @@ packages:
 
   /is-potential-custom-element-name/1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
+    dev: false
+
+  /is-reference/1.2.1:
+    resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
+    dependencies:
+      '@types/estree': 1.0.6
     dev: false
 
   /is-regex/1.1.4:
@@ -17539,7 +17607,7 @@ packages:
       mobx: 6.13.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      use-sync-external-store: 1.4.0_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /mobx/6.13.6:
@@ -19216,7 +19284,7 @@ packages:
       react-aria: 3.38.1_biqbaboplfbrettd7655fr4n2y
       react-dom: 18.2.0_react@18.2.0
       react-stately: 3.36.1_react@18.2.0
-      use-sync-external-store: 1.4.0_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /react-aria/3.38.1_biqbaboplfbrettd7655fr4n2y:
@@ -22122,18 +22190,10 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /use-sync-external-store/1.2.2_react@18.2.0:
-    resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
+  /use-sync-external-store/1.5.0-canary-fbcda19a-20250317_react@18.2.0:
+    resolution: {integrity: sha512-Bu8h3H1fiwGj0sZzJ63KfrVEqXOxRCX7/o2oxMVBV2Ux6DIKd6k15do5t6OXkmrcHKc5cmBQksHRULXBWVZUdg==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
-  /use-sync-external-store/1.4.0_react@18.2.0:
-    resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.1.0-canary-fbcda19a-20250317
     dependencies:
       react: 18.2.0
     dev: false
@@ -23043,7 +23103,7 @@ packages:
       '@types/react': 18.0.28
       immer: 10.1.1
       react: 18.2.0
-      use-sync-external-store: 1.2.2_react@18.2.0
+      use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
     dev: false
 
   /zwitch/1.0.5:
