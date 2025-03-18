@@ -60,6 +60,7 @@ specifiers:
   '@prisma/adapter-d1': ^6.5.0
   '@prisma/client': ^6.5.0
   '@prisma/extension-accelerate': ^1.2.2
+  '@rollup/plugin-alias': ^5.1.1
   '@storybook/addon-designs': ^8.2.1
   '@storybook/addon-essentials': ^8.6.4
   '@storybook/addon-interactions': ^8.6.4
@@ -161,6 +162,7 @@ specifiers:
   typescript: ~5.7.3
   url-loader: ^4.1.1
   vite: ^6.1.1
+  vite-tsconfig-paths: ^5.1.4
   wait-on: ^8.0.0
   wrangler: ^3.109.2
   xstate: 4.38.3
@@ -203,6 +205,7 @@ dependencies:
   '@prisma/adapter-d1': 6.5.0
   '@prisma/client': 6.5.0_lofndujtxpriew7whktlt5nwta
   '@prisma/extension-accelerate': 1.2.2_@prisma+client@6.5.0
+  '@rollup/plugin-alias': 5.1.1_rollup@4.35.0
   '@storybook/addon-designs': 8.2.1_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 8.6.4_auedahpnw6x7p36ofd3zyxn6ba
   '@storybook/addon-interactions': 8.6.4_storybook@8.6.4
@@ -304,6 +307,7 @@ dependencies:
   typescript: 5.7.3
   url-loader: 4.1.1_webpack@5.94.0
   vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
+  vite-tsconfig-paths: 5.1.4_hwalmxo7da3gzmpg53uor646oa
   wait-on: 8.0.0
   wrangler: 3.114.1_bpplktul4dg3otdxfcbtvuskli
   xstate: 4.38.3
@@ -6410,6 +6414,18 @@ packages:
       '@react-types/overlays': 3.8.13_react@18.2.0
       '@react-types/shared': 3.28.0_react@18.2.0
       react: 18.2.0
+    dev: false
+
+  /@rollup/plugin-alias/5.1.1_rollup@4.35.0:
+    resolution: {integrity: sha512-PR9zDb+rOzkRb2VD+EuKB7UC41vU5DIwZ5qqCpk0KJudcWAyi8rvYOhS7+L5aZCspw1stTViLgN5v6FF1p5cgQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 4.35.0
     dev: false
 
   /@rollup/pluginutils/5.1.4_rollup@4.35.0:
@@ -13978,6 +13994,10 @@ packages:
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 4.0.0
+    dev: false
+
+  /globrex/0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: false
 
   /gonzales-pe/4.3.0:
@@ -21567,6 +21587,19 @@ packages:
       yn: 3.1.1
     dev: false
 
+  /tsconfck/3.1.5_typescript@5.7.3:
+    resolution: {integrity: sha512-CLDfGgUp7XPswWnezWwsCRxNmgQjhYq3VXHM0/XIRxhVrKw0M1if9agzryh1QS3nxjCROvV+xWxoJO1YctzzWg==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.7.3
+    dev: false
+
   /tsconfig-paths-webpack-plugin/4.0.0:
     resolution: {integrity: sha512-fw/7265mIWukrSHd0i+wSwx64kYUSAKPfxRDksjKIYTxSAp9W9/xcZVBF4Kl0eqQd5eBpAQ/oQrc5RyM/0c1GQ==}
     engines: {node: '>=10.13.0'}
@@ -22216,6 +22249,23 @@ packages:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+    dev: false
+
+  /vite-tsconfig-paths/5.1.4_hwalmxo7da3gzmpg53uor646oa:
+    resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
+    peerDependencies:
+      vite: '*'
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      debug: 4.3.7
+      globrex: 0.1.2
+      tsconfck: 3.1.5_typescript@5.7.3
+      vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: false
 
   /vite/6.2.2_hr4xl2h6kn4g22b2gygzohly5i:

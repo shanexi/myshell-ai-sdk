@@ -8,6 +8,7 @@ import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { visualizer } from 'rollup-plugin-visualizer';
+import ViteTsConfigPathsPlugin from 'vite-tsconfig-paths';
 
 export default defineConfig(({ mode }) => {
   if (mode === 'client') {
@@ -24,7 +25,14 @@ export default defineConfig(({ mode }) => {
         emptyOutDir: true,
         plugins: [],
       },
-      plugins: [tailwindcss(), visualizer()],
+      plugins: [
+        // build need this plugin, dev not need
+        ViteTsConfigPathsPlugin({
+          root: '../../',
+        }),
+        tailwindcss(),
+        visualizer(),
+      ],
     };
   } else {
     return {
@@ -32,6 +40,9 @@ export default defineConfig(({ mode }) => {
         external: ['react', 'react-dom', 'mobx-react-lite', 'mobx'],
       },
       plugins: [
+        ViteTsConfigPathsPlugin({
+          root: '../../',
+        }),
         honox({
           devServer: { adapter },
           client: { input: ['./app/style.css'] },

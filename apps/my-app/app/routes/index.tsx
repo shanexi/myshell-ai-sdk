@@ -1,6 +1,6 @@
 import { createFactory } from 'hono/factory';
 
-import { Counter } from '../islands/counter';
+import { CounterWrapper } from '../islands/counter';
 import type { Meta } from './types';
 import { Kysely } from 'kysely';
 import { D1Dialect } from '../kysely-d1';
@@ -43,7 +43,7 @@ export default createRoute(async (c) => {
     <div className="py-8 text-center">
       <title>{name}</title>
       <h1 className="text-3xl font-bold">Hello, {name}!</h1>
-      <Counter />
+      <CounterWrapper />
       <ul className="article-list">
         {Object.entries(posts).map(([id, module]) => {
           if (module.frontmatter) {
