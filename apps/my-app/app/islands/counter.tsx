@@ -1,20 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import { action, makeObservable, observable } from 'mobx';
-class CounterStore {
-  count = 0;
-  constructor() {
-    makeObservable(this, {
-      count: observable,
-      increment: action,
-    });
-  }
-  increment = () => {
-    this.count++;
-  };
-}
-const store = new CounterStore();
+import { container } from './container';
+import { CounterModel } from './counter.model';
 
 export const Counter = observer(() => {
+  const store = container.get(CounterModel);
   return (
     <div>
       <p className="py-2 text-2xl">{store.count}</p>
