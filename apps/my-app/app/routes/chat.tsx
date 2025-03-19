@@ -14,7 +14,10 @@ export default createRoute(async (c) => {
       <div className="flex-none">
         <ChatTop />
       </div>
-      <ChatMessageListIsland className="flex-grow overflow-auto px-[8px]" />
+      <ChatMessageListIsland
+        className="flex-grow overflow-auto px-[8px]"
+        licenseKey={c.env.LIC}
+      />
       <ChatFoot>
         <ChatInputRoot>
           <ChatInputMenuIsland />

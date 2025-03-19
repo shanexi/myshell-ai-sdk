@@ -14,8 +14,11 @@ import {
 import { Message, MessageListContext } from '@myshell-run/def';
 import { cn } from '../utils';
 
-export function ChatMessageList(props: { className?: string }) {
-  const { className } = props;
+export function ChatMessageList(props: {
+  className?: string;
+  licenseKey?: string;
+}) {
+  const { className, licenseKey } = props;
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
@@ -69,7 +72,7 @@ export function ChatMessageList(props: { className?: string }) {
   return (
     // 必须 flex flex-col 才能让 `virtuoso.current.scrollToItem({ index: 0, align: "end" })` 正常工作，原因未细究，参考 https://virtuoso.dev/virtuoso-message-list/examples/ai-chatbot/
     <div className={cn('flex flex-col', className)}>
-      <VirtuosoMessageListLicense licenseKey="">
+      <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
         <VirtuosoMessageList<Message, MessageListContext>
           ref={virtuoso}
           context={{}}

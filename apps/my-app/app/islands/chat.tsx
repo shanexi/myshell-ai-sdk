@@ -4,10 +4,14 @@ import { container } from './container';
 
 export const ChatInputMenuIsland = ChatInputMenu;
 
-export const ChatMessageListIsland = (props: { className?: string }) => {
+export const ChatMessageListIsland = (props: {
+  className?: string;
+  licenseKey?: string;
+}) => {
+  const { className, licenseKey } = props;
   return (
     <InversifyProvider container={container}>
-      <ChatMessageList />
+      <ChatMessageList className={className} licenseKey={licenseKey} />
     </InversifyProvider>
   );
 };
