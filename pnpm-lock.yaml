@@ -169,6 +169,7 @@ specifiers:
   url-loader: ^4.1.1
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317
   vite: ^6.1.1
+  vite-bundle-analyzer: ^0.18.0
   vite-plugin-svgr: ^4.3.0
   vite-tsconfig-paths: ^5.1.4
   wait-on: ^8.0.0
@@ -318,6 +319,7 @@ dependencies:
   url-loader: 4.1.1_webpack@5.94.0
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@18.2.0
   vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
+  vite-bundle-analyzer: 0.18.0
   vite-plugin-svgr: 4.3.0_efs6rfv7gysf3ncfdndrtesjb4
   vite-tsconfig-paths: 5.1.4_hwalmxo7da3gzmpg53uor646oa
   wait-on: 8.0.0
@@ -22446,6 +22448,11 @@ packages:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+    dev: false
+
+  /vite-bundle-analyzer/0.18.0:
+    resolution: {integrity: sha512-FCVZ7zN3hEdn65QZoV0VpbsbVO3QekfESO1DgFd3algXWqiEIM+DgpdCzCoc5fKKEh3CmUCMbuyIL7HEu7Eiog==}
+    hasBin: true
     dev: false
 
   /vite-plugin-svgr/4.3.0_efs6rfv7gysf3ncfdndrtesjb4:
