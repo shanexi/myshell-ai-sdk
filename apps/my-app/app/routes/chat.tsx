@@ -1,20 +1,26 @@
+import {
+  BotInfo,
+  ChatFoot,
+  ChatInputRoot,
+  ChatRoot,
+  ChatTop,
+} from '@myshell-run/ui-biz';
 import { createRoute } from '../createRoute';
-import { BotInfo, ChatInputRoot, ChatTop } from '@myshell-run/ui-biz';
-import { ChatInputMenuIsland } from '../islands/chat';
+import { ChatInputMenuIsland, ChatMessageListIsland } from '../islands/chat';
 
 export default createRoute(async (c) => {
   return c.render(
-    <div className="flex h-screen flex-col bg-surface-container-default-light">
+    <ChatRoot>
       <div className="flex-none">
         <ChatTop />
       </div>
-      123
-      <div className="mb-[34px] flex-none border-t-[0.5px] border-border-default-light">
+      <ChatMessageListIsland className="flex-grow overflow-auto px-[8px]" />
+      <ChatFoot>
         <ChatInputRoot>
           <ChatInputMenuIsland />
         </ChatInputRoot>
         <BotInfo />
-      </div>
-    </div>,
+      </ChatFoot>
+    </ChatRoot>,
   );
 });

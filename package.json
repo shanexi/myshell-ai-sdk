@@ -171,7 +171,8 @@
       "@nrwl/js@15.9.7": "patches/@nrwl__js@15.9.7.patch",
       "@nrwl/webpack@15.9.7": "patches/@nrwl__webpack@15.9.7.patch",
       "tailwindcss@3.4.17": "patches/tailwindcss@3.4.17.patch",
-      "@nodelib/fs.scandir@2.1.5": "patches/@nodelib__fs.scandir@2.1.5.patch"
+      "@nodelib/fs.scandir@2.1.5": "patches/@nodelib__fs.scandir@2.1.5.patch",
+      "honox@0.1.38": "patches/honox@0.1.38.patch"
     }
   }
 }

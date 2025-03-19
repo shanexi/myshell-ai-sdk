@@ -17,6 +17,9 @@ patchedDependencies:
   '@nrwl/webpack@15.9.7':
     hash: wlanh73r7jo5q4uwvurgisjkwu
     path: patches/@nrwl__webpack@15.9.7.patch
+  honox@0.1.38:
+    hash: ofn3moo66c4n6ivinb7k7vqkm4
+    path: patches/honox@0.1.38.patch
   nx@15.9.7:
     hash: fstqeyj5qchhaklvfisvwgbhta
     path: patches/nx@15.9.7.patch
@@ -262,7 +265,7 @@ dependencies:
   eslint-plugin-react-hooks: 4.6.0_eslint@8.15.0
   fs-extra: 11.2.0
   hono: 4.7.4
-  honox: 0.1.38_ylkpmjv3czoeqdw3iup25rgalq
+  honox: 0.1.38_ofn3moo66c4n6ivinb7k7vqkm4_ylkpmjv3czoeqdw3iup25rgalq
   html-webpack-plugin: 5.6.0_webpack@5.94.0
   husky: 9.1.5
   immer: 10.1.1
@@ -14431,7 +14434,7 @@ packages:
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /honox/0.1.38_ylkpmjv3czoeqdw3iup25rgalq:
+  /honox/0.1.38_ofn3moo66c4n6ivinb7k7vqkm4_ylkpmjv3czoeqdw3iup25rgalq:
     resolution: {integrity: sha512-UW6Ao7nobujpkwhD1mcaJIK7zVCTEBrJWV+gmcYBEVfMR7f/zS7XeSlpTuGPGfODS10ldzHWljJ3V0rf1fcrYA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -14452,6 +14455,7 @@ packages:
       - supports-color
       - wrangler
     dev: false
+    patched: true
 
   /hpack.js/2.1.6:
     resolution: {integrity: sha512-zJxVehUdMGIKsRaNt7apO2Gqp0BdqW5yaiGHXXmbpvxgBYVZnAql+BJb4RO5ad2MgpbZKn5G6nMnegrH1FcNYQ==}
