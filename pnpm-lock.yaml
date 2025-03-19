@@ -153,6 +153,7 @@ specifiers:
   remark-gfm: ^4.0.1
   remark-math: ^6.0.0
   remark-mdx-frontmatter: ^4.0.0
+  resize-observer-polyfill: ^1.5.1
   rollup-plugin-visualizer: ^5.14.0
   storybook-react-rspack: 7.0.0-rc.25
   tailwind-merge: ^3.0.2
@@ -303,6 +304,7 @@ dependencies:
   remark-gfm: 4.0.1
   remark-math: 6.0.0
   remark-mdx-frontmatter: 4.0.0
+  resize-observer-polyfill: 1.5.1
   rollup-plugin-visualizer: 5.14.0_rollup@4.35.0
   storybook-react-rspack: 7.0.0-rc.25_okskjztxtjlhrwikrgz3tdbmdi
   tailwind-merge: 3.0.2
@@ -20087,6 +20089,10 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+    dev: false
+
+  /resize-observer-polyfill/1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
     dev: false
 
   /resolve-cwd/3.0.0:

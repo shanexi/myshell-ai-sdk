@@ -26,18 +26,18 @@ export function ChatMessageList(props: {
     (window as any).vref = virtuoso.current;
   }, []);
   // mock data
+  const myMessage = randomMessage('me');
   useEffect(() => {
-    const myMessage = randomMessage('me');
-    virtuoso.current?.data.append(
-      [myMessage],
-      ({ scrollInProgress, atBottom }) => {
-        return {
-          index: 'LAST',
-          align: 'end',
-          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
-        };
-      },
-    );
+    // virtuoso.current?.data.append(
+    //   [myMessage],
+    //   ({ scrollInProgress, atBottom }) => {
+    //     return {
+    //       index: 'LAST',
+    //       align: 'end',
+    //       behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+    //     };
+    //   },
+    // );
 
     setTimeout(() => {
       const botMessage = randomMessage('other');
@@ -80,6 +80,7 @@ export function ChatMessageList(props: {
           computeItemKey={({ data }) => data.key}
           initialLocation={{ index: 'LAST', align: 'end' }}
           shortSizeAlign="bottom-smooth"
+          initialData={[myMessage]}
           ItemContent={MessageItem}
         />
       </VirtuosoMessageListLicense>
