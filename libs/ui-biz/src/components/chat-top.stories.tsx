@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChatTop } from './chat-top';
+import { ChatTopMenu, ChatTopRoot } from './chat-top';
+
+export function ChatTop() {
+  return (
+    <ChatTopRoot>
+      <ChatTopMenu />
+    </ChatTopRoot>
+  );
+}
 
 const meta: Meta<typeof ChatTop> = {
   component: ChatTop,

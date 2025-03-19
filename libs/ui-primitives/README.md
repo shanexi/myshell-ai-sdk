@@ -1,7 +1,1 @@
-# ui-primitives
-
-This library was generated with [Nx](https://nx.dev).
-
-## Running unit tests
-
-Run `nx test ui-primitives` to execute the unit tests via [Jest](https://jestjs.io).
+如果被 message-item-plugins 依赖，则认为是 ui primitives，否则为了简单，放到 ui biz 中。

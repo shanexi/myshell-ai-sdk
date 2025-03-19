@@ -3,19 +3,25 @@ import {
   ChatFoot,
   ChatInputRoot,
   ChatRoot,
-  ChatTop,
+  ChatTopRoot,
 } from '@myshell-run/ui-biz';
 import { createRoute } from '../createRoute';
-import { ChatInputMenuIsland, ChatMessageListIsland } from '../islands/chat';
+import {
+  ChatInputMenuIsland,
+  ChatMessageListIsland,
+  ChatTopMenuIsland,
+} from '../islands/chat';
 
 export default createRoute(async (c) => {
   return c.render(
     <ChatRoot>
       <div className="flex-none">
-        <ChatTop />
+        <ChatTopRoot>
+          <ChatTopMenuIsland />
+        </ChatTopRoot>
       </div>
       <ChatMessageListIsland
-        className="flex-grow overflow-auto px-[8px]"
+        className="flex flex-grow flex-col overflow-auto px-[8px]"
         licenseKey={c.env.LIC}
       />
       <ChatFoot>
