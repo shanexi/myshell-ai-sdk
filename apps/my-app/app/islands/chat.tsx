@@ -1,11 +1,3 @@
-import { Chat } from '@myshell-run/ui-biz';
-import { container } from './container';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { ChatInputMenu } from '@myshell-run/ui-biz';
 
-export const ChatWrapper = () => {
-  return (
-    <InversifyProvider container={container}>
-      <Chat />
-    </InversifyProvider>
-  );
-};
+export const ChatInputMenuIsland = ChatInputMenu;

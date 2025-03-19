@@ -8,3 +8,7 @@ export * from './components/chat';
 export * from './components/mdviewer';
 export * from './components/textarea';
 export * from './components/image-choice';
+export * from './components/bot-info';
+export * from './components/chat-input';
+export * from './components/chat-message-list';
+export * from './components/chat-top';

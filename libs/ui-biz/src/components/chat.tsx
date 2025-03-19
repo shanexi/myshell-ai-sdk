@@ -1,5 +1,5 @@
 import { BotInfo } from './bot-info';
-import { ChatInput } from './chat-input';
+import { ChatInputRoot } from './chat-input';
 import { ChatMessageList } from './chat-message-list';
 import { ChatTop } from './chat-top';
 
@@ -11,7 +11,7 @@ export function Chat() {
       </div>
       <ChatMessageList className="flex-grow overflow-auto px-[8px]" />
       <div className="mb-[34px] flex-none border-t-[0.5px] border-border-default-light">
-        <ChatInput />
+        <ChatInputRoot />
         <BotInfo />
       </div>
     </div>

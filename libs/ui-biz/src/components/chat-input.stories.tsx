@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChatInput } from './chat-input';
+import { ChatInputRoot, ChatInputMenu } from './chat-input';
 
-const meta: Meta<typeof ChatInput> = {
-  component: ChatInput,
+const meta: Meta<typeof ChatInputRoot> = {
+  component: ChatInputRoot,
   parameters: {
     design: {
       type: 'figma',
@@ -12,6 +12,8 @@ const meta: Meta<typeof ChatInput> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof ChatInput> = {
-  args: {},
+export const Primary: StoryObj<typeof ChatInputRoot> = {
+  args: {
+    children: <ChatInputMenu />,
+  },
 };
