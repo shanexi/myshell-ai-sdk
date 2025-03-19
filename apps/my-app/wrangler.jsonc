@@ -7,9 +7,7 @@
   "assets": {
     "directory": "./dist"
   },
-  "vars": {
-    "LIC": ""
-  },
+  "vars": {},
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

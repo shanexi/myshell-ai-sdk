@@ -4,14 +4,7 @@ import { CounterWrapper } from '../islands/counter';
 import type { Meta } from './types';
 import { Kysely } from 'kysely';
 import { D1Dialect } from '../kysely-d1';
-import { InversifyProvider } from '../islands/inversify-context';
-import { container } from '../islands/container';
-
-const factory = createFactory<{
-  Bindings: Env;
-}>();
-
-export const createRoute = factory.createHandlers;
+import { createRoute } from '../createRoute';
 
 export type User = {
   id: string;

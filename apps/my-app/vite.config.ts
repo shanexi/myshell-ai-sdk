@@ -23,6 +23,12 @@ export default defineConfig(({ mode }) => {
             entryFileNames: 'static/client.js',
             chunkFileNames: 'static/assets/[name]-[hash].js',
             assetFileNames: 'static/assets/[name].[ext]',
+            manualChunks: {
+              reactgroup: ['react', 'react-dom'],
+              mobxgroup: ['mobx', 'mobx-react-lite'],
+              reactariagroup: ['react-aria-components'],
+              reactmarkdowngroup: ['react-markdown', 'remark-gfm'],
+            },
           },
         },
       },
@@ -43,7 +49,7 @@ export default defineConfig(({ mode }) => {
           include: '**/*.svg',
         }),
         // visualizer(),
-        analyzer(),
+        // analyzer(),
       ],
     };
   } else {
