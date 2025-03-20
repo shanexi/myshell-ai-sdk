@@ -91,6 +91,7 @@ specifiers:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  '@virtuoso.dev/gurx': ^1.0.0
   '@virtuoso.dev/message-list': ^1.9.15
   '@xstate/react': 3.2.2
   arktype: 2.0.0-rc.30
@@ -242,6 +243,7 @@ dependencies:
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': 5.62.0_edtxjm46ih2fdzgblryi2zzihu
   '@typescript-eslint/parser': 5.62.0_q4ppokopo2arvobk4e62rbzadi
+  '@virtuoso.dev/gurx': 1.0.0_biqbaboplfbrettd7655fr4n2y
   '@virtuoso.dev/message-list': 1.9.15_biqbaboplfbrettd7655fr4n2y
   '@xstate/react': 3.2.2_cbas3qglrk7xf62c2jn3eesh2m
   arktype: 2.0.0-rc.30

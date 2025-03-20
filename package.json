@@ -67,6 +67,7 @@
     "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "@virtuoso.dev/gurx": "^1.0.0",
     "@virtuoso.dev/message-list": "^1.9.15",
     "@xstate/react": "3.2.2",
     "arktype": "2.0.0-rc.30",
