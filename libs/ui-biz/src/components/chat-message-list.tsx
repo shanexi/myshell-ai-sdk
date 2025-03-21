@@ -17,8 +17,9 @@ import { cn } from '../utils';
 export function ChatMessageList(props: {
   className?: string;
   licenseKey?: string;
+  initialMessages?: Message[];
 }) {
-  const { className, licenseKey } = props;
+  const { className, licenseKey, initialMessages } = props;
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
@@ -26,7 +27,7 @@ export function ChatMessageList(props: {
     (window as any).vref = virtuoso.current;
   }, []);
   // mock data
-  const myMessage = randomMessage('me');
+  // const myMessage = randomMessage('me');
   useEffect(() => {
     // virtuoso.current?.data.append(
     //   [myMessage],
@@ -79,8 +80,9 @@ export function ChatMessageList(props: {
           style={{ flex: 1 }}
           computeItemKey={({ data }) => data.key}
           initialLocation={{ index: 'LAST', align: 'end' }}
-          shortSizeAlign="bottom-smooth"
-          initialData={[myMessage]}
+          // 注释的话，ssr 会至少暂时一条数据 然后记得 initialMessages 要在 SSR 传入
+          // shortSizeAlign="bottom-smooth"
+          initialData={initialMessages}
           ItemContent={MessageItem}
         />
       </VirtuosoMessageListLicense>
