@@ -3,3 +3,5 @@ node_modules
 **/*.typegen.ts
 **/.wrangler/**/*
 /libs/archive/automata/src/lib
+
+/libs/ui-biz/src/components/message-list/

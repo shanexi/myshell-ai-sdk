@@ -2,7 +2,7 @@ import {
   type VirtuosoMessageListMethods,
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
-} from '@virtuoso.dev/message-list';
+} from './message-list';
 import { useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';
