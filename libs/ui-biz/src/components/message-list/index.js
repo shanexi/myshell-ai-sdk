@@ -1,26 +1,30 @@
-import { jsx as E, jsxs as en, Fragment as fo } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import {
-  Cell as u,
-  Signal as x,
-  map as p,
-  filter as m,
-  withLatestFrom as S,
-  scan as se,
-  debounceTime as be,
-  mapTo as F,
-  throttleTime as Ft,
-  delayWithMicrotask as Bt,
-  onNext as tn,
-  Action as _t,
-  useCellValue as C,
-  useRealm as Ht,
-  Realm as ho,
-  RealmContext as go,
-  useCellValues as mo,
-} from './gurx';
-import h from 'react';
+  Cell,
+  Signal,
+  map,
+  filter,
+  withLatestFrom,
+  scan,
+  debounceTime,
+  mapTo,
+  throttleTime,
+  delayWithMicrotask,
+  onNext,
+  Action,
+  useCellValue,
+  useRealm,
+  Realm,
+  RealmContext,
+  useCellValues,
+} from '@virtuoso.dev/gurx';
+import React from 'react';
+
+// uncomment this line to disable warning in ssr
+React.useLayoutEffect = React.useEffect
+
 function Ie(e, t) {
-  const n = u(e, (o) => {
+  const n = Cell(e, (o) => {
     o.link(t(o), n);
   });
   return n;
@@ -59,10 +63,10 @@ function B(e, t, n) {
   return I(e)
     ? nn(t, n, 1)
     : t === e.k
-    ? M(e, { k: t, v: n })
-    : t < e.k
-    ? qt(M(e, { l: B(e.l, t, n) }))
-    : qt(M(e, { r: B(e.r, t, n) }));
+      ? M(e, { k: t, v: n })
+      : t < e.k
+        ? qt(M(e, { l: B(e.l, t, n) }))
+        : qt(M(e, { r: B(e.r, t, n) }));
 }
 function $t(e, t, n) {
   if (I(e)) return [];
@@ -89,8 +93,8 @@ function vo(e, t, n) {
     s < t
       ? ((o = B(o, s, l)), (i = l))
       : s > t + n
-      ? (o = B(o, s - n, l))
-      : r >= t + n && i !== l && (o = B(o, t, l));
+        ? (o = B(o, s - n, l))
+        : r >= t + n && i !== l && (o = B(o, t, l));
   return o;
 }
 function ve(e) {
@@ -176,7 +180,7 @@ function cn(e) {
 }
 function lt(e, t, n, o = 0) {
   let i = e.length - 1;
-  for (; o <= i; ) {
+  for (; o <= i;) {
     const s = Math.floor((o + i) / 2),
       r = e[s],
       l = n(r, t);
@@ -254,10 +258,10 @@ function $o(e, t) {
     }
     const l = rn(e, s - 1, r + 1);
     if (l.some(Eo(o))) continue;
-    let c = !1,
-      a = !1;
+    let c = false,
+      a = false;
     for (const { start: g, end: b, value: v } of l)
-      c ? (r >= g || i === v) && (e = Et(e, g)) : ((a = v !== i), (c = !0)),
+      c ? (r >= g || i === v) && (e = Et(e, g)) : ((a = v !== i), (c = true)),
         b > r && r >= g && v !== i && (e = B(e, r + 1, v));
     a && (e = B(e, s, i));
   }
@@ -272,93 +276,93 @@ function wo(e, [t, n]) {
   }
   return $o(e, t);
 }
-const me = x();
-u([]);
-u([]);
-u(0);
-u(null);
-u(Number.NaN);
-const Ee = u(!1),
-  pe = u(ft, (e) => {
+const me = Signal();
+Cell([]);
+Cell([]);
+Cell(0);
+Cell(null);
+Cell(Number.NaN);
+const Ee = Cell(false),
+  pe = Cell(ft, (e) => {
     e.link(
       e.pipe(
         me,
-        m((t) => t.length > 0),
-        S(G),
-        p(([t, n]) => wo(n, [t, []])),
+        filter((t) => t.length > 0),
+        withLatestFrom(sizeTree$),
+        map(([t, n]) => wo(n, [t, []])),
       ),
       pe,
     );
   }),
-  G = u(ft[0], (e) => {
+  sizeTree$ = Cell(ft[0], (e) => {
     e.link(
       e.pipe(
         pe,
-        p(([t]) => t),
+        map(([t]) => t),
       ),
-      G,
+      sizeTree$,
     );
   }),
-  pn = u(ft[1], (e) => {
+  pn = Cell(ft[1], (e) => {
     e.link(
       e.pipe(
         pe,
-        p(([, t]) => t),
+        map(([, t]) => t),
       ),
       pn,
     );
   }),
-  $e = u(ye[1]),
-  we = u(ye[0]),
-  Fe = u(ye, (e) => {
+  $e = Cell(ye[1]),
+  offsetTree$ = Cell(ye[0]),
+  Fe = Cell(ye, (e) => {
     e.link(
       e.pipe(
-        G,
-        S(pn),
-        se(([t], [n, o]) => yo(t, [n, o]), ye),
+        sizeTree$,
+        withLatestFrom(pn),
+        scan(([t], [n, o]) => yo(t, [n, o]), ye),
       ),
       Fe,
     ),
       e.link(
         e.pipe(
           Fe,
-          p(([, t]) => t),
+          map(([, t]) => t),
         ),
         $e,
       ),
       e.link(
         e.pipe(
           Fe,
-          p(([t]) => t),
+          map(([t]) => t),
         ),
-        we,
+        offsetTree$,
       );
   }),
-  fn = u(ye[2], (e) => {
+  fn = Cell(ye[2], (e) => {
     e.link(
       e.pipe(
         Fe,
-        p(([, , t]) => t),
+        map(([, , t]) => t),
       ),
       fn,
     );
   }),
-  hn = u(ye[3], (e) => {
+  hn = Cell(ye[3], (e) => {
     e.link(
       e.pipe(
         Fe,
-        p(([, , , t]) => t),
+        map(([, , , t]) => t),
       ),
       hn,
     );
   }),
-  Ae = u(0, (e) => {
+  totalHeight$ = Cell(0, (e) => {
     e.link(
       e.pipe(
-        e.combine(ke, hn, fn, $e),
-        p(([t, n, o, i]) => o + (t - n) * i),
+        e.combine(totalCount$, hn, fn, $e),
+        map(([t, n, o, i]) => o + (t - n) * i),
       ),
-      Ae,
+      totalHeight$,
     );
   });
 function gn(e, t) {
@@ -374,12 +378,12 @@ function dn(e, t) {
 }
 function mn() {
   return typeof navigator > 'u'
-    ? !1
+    ? false
     : (/Macintosh/i.test(navigator.userAgent) &&
-        navigator.maxTouchPoints &&
-        navigator.maxTouchPoints > 1) ||
-        (/iP(ad|od|hone)/i.test(navigator.userAgent) &&
-          /WebKit/i.test(navigator.userAgent));
+      navigator.maxTouchPoints &&
+      navigator.maxTouchPoints > 1) ||
+    (/iP(ad|od|hone)/i.test(navigator.userAgent) &&
+      /WebKit/i.test(navigator.userAgent));
 }
 function bn(e) {
   return !e;
@@ -406,7 +410,7 @@ const In = 'up',
   Tt = 'down',
   Ro = 'none',
   Mo = {
-    atBottom: !1,
+    atBottom: false,
     notAtBottomBecause: 'NOT_SHOWING_LAST_ITEM',
     state: {
       offsetBottom: 0,
@@ -429,39 +433,39 @@ function Gt(e) {
     );
   };
 }
-u(!1);
-const kn = u(!0);
-x();
-const de = u(!1),
-  No = x((e) => {
-    e.link(e.pipe(kn, Ft(50)), No);
+Cell(false);
+const kn = Cell(true);
+Signal();
+const de = Cell(false),
+  No = Signal((e) => {
+    e.link(e.pipe(kn, throttleTime(50)), No);
   }),
-  Sn = u(Oo),
-  Vo = u(Ao, (e) => {
+  Sn = Cell(Oo),
+  Vo = Cell(Ao, (e) => {
     e.link(
       e.pipe(
         e.combine($, Vo),
-        p(([t, n]) => t <= n),
+        map(([t, n]) => t <= n),
       ),
       kn,
     );
   }),
-  We = u(!1, (e) => {
-    e.link(e.pipe($, Gt(1), F(!0)), We),
-      e.link(e.pipe($, Gt(1), F(!1), be(100)), We);
+  We = Cell(false, (e) => {
+    e.link(e.pipe($, Gt(1), mapTo(true)), We),
+      e.link(e.pipe($, Gt(1), mapTo(false), debounceTime(100)), We);
   }),
-  Rt = u(!1, (e) => {
-    e.link(e.pipe(re, F(!0)), Rt), e.link(e.pipe(re, F(!1), be(200)), Rt);
+  Rt = Cell(false, (e) => {
+    e.link(e.pipe(re, mapTo(true)), Rt), e.link(e.pipe(re, mapTo(false), debounceTime(200)), Rt);
   }),
-  xn = u(!1),
-  tt = u(
+  xn = Cell(false),
+  tt = Cell(
     null,
     (e) => {
       e.link(
         e.pipe(
-          e.combine(j, $, Z, $n, Sn, at, gt, G),
-          m(([, , , , , , , t]) => !I(t)),
-          se((t, [n, o, i, s, r, l]) => {
+          e.combine(j, $, viewportHeight, $n, Sn, marginTop$, paddingBottom$, sizeTree$),
+          filter(([, , , , , , , t]) => !I(t)),
+          scan((t, [n, o, i, s, r, l]) => {
             const a = o + i - n + l > -r,
               g = {
                 viewportWidth: s,
@@ -478,7 +482,7 @@ const de = u(!1),
                   : ((v = n === i ? 'LIST_TOO_SHORT' : 'SIZE_DECREASED'),
                     (T = t.state.scrollTop - o || t.scrollTopDelta)),
                 {
-                  atBottom: !0,
+                  atBottom: true,
                   state: g,
                   atBottomBecause: v,
                   scrollTopDelta: T,
@@ -490,19 +494,19 @@ const de = u(!1),
               i < t.state.viewportHeight
                 ? (b = 'VIEWPORT_HEIGHT_DECREASING')
                 : s < t.state.viewportWidth
-                ? (b = 'VIEWPORT_WIDTH_DECREASING')
-                : o < t.state.scrollTop
-                ? (b = 'SCROLLING_UPWARDS')
-                : g.scrollHeight > t.state.scrollHeight ||
-                  g.listMarginTop < t.state.listMarginTop
-                ? t.atBottom
-                  ? (b = 'SIZE_INCREASED')
-                  : (b = t.notAtBottomBecause)
-                : t.atBottom
-                ? (b = 'NOT_FULLY_SCROLLED_TO_LAST_ITEM_BOTTOM')
-                : (b = t.notAtBottomBecause),
+                  ? (b = 'VIEWPORT_WIDTH_DECREASING')
+                  : o < t.state.scrollTop
+                    ? (b = 'SCROLLING_UPWARDS')
+                    : g.scrollHeight > t.state.scrollHeight ||
+                      g.listMarginTop < t.state.listMarginTop
+                      ? t.atBottom
+                        ? (b = 'SIZE_INCREASED')
+                        : (b = t.notAtBottomBecause)
+                      : t.atBottom
+                        ? (b = 'NOT_FULLY_SCROLLED_TO_LAST_ITEM_BOTTOM')
+                        : (b = t.notAtBottomBecause),
               {
-                atBottom: !1,
+                atBottom: false,
                 notAtBottomBecause: b,
                 state: g,
               }
@@ -514,7 +518,7 @@ const de = u(!1),
         e.link(
           e.pipe(
             tt,
-            se(
+            scan(
               ({ prev: t }, n) => {
                 const o = !!(
                   t &&
@@ -528,25 +532,25 @@ const de = u(!1),
                   shouldScroll: o,
                 };
               },
-              { prev: null, shouldScroll: !1 },
+              { prev: null, shouldScroll: false },
             ),
-            p(({ shouldScroll: t }) => t),
+            map(({ shouldScroll: t }) => t),
           ),
           xn,
         ),
         e.sub(
           e.pipe(
-            Z,
-            S(tt),
-            se(
+            viewportHeight,
+            withLatestFrom(tt),
+            scan(
               (t, [n, o]) => {
                 let i = 0;
                 return (
                   t.viewportHeight > n &&
-                    o &&
-                    !o.atBottom &&
-                    o.notAtBottomBecause === 'VIEWPORT_HEIGHT_DECREASING' &&
-                    (i = t.viewportHeight - n),
+                  o &&
+                  !o.atBottom &&
+                  o.notAtBottomBecause === 'VIEWPORT_HEIGHT_DECREASING' &&
+                  (i = t.viewportHeight - n),
                   { viewportHeight: n, delta: i }
                 );
               },
@@ -560,75 +564,75 @@ const de = u(!1),
     },
     (e, t) =>
       !e || e.atBottom !== (t == null ? void 0 : t.atBottom)
-        ? !1
+        ? false
         : !e.atBottom && !t.atBottom
-        ? e.notAtBottomBecause === t.notAtBottomBecause
-        : !0,
+          ? e.notAtBottomBecause === t.notAtBottomBecause
+          : true,
   ),
-  Tn = u(0, (e) => {
+  Tn = Cell(0, (e) => {
     e.link(
       e.pipe(
-        e.combine($, j, Z),
-        se(
+        e.combine($, j, viewportHeight),
+        scan(
           (t, [n, o, i]) => {
             if (!dn(t.scrollHeight, o)) {
               const s = o - (n + i) < 1;
               return t.scrollTop !== n && s
                 ? {
-                    scrollHeight: o,
-                    scrollTop: n,
-                    jump: t.scrollTop - n,
-                    changed: !0,
-                  }
+                  scrollHeight: o,
+                  scrollTop: n,
+                  jump: t.scrollTop - n,
+                  changed: true,
+                }
                 : {
-                    scrollHeight: o,
-                    scrollTop: n,
-                    jump: 0,
-                    changed: !0,
-                  };
+                  scrollHeight: o,
+                  scrollTop: n,
+                  jump: 0,
+                  changed: true,
+                };
             }
             return {
               scrollTop: n,
               scrollHeight: o,
               jump: 0,
-              changed: !1,
+              changed: false,
             };
           },
-          { scrollHeight: 0, jump: 0, scrollTop: 0, changed: !1 },
+          { scrollHeight: 0, jump: 0, scrollTop: 0, changed: false },
         ),
-        m((t) => t.changed),
-        p((t) => t.jump),
+        filter((t) => t.changed),
+        map((t) => t.jump),
       ),
       Tn,
     );
   }),
-  ut = u(Tt, (e) => {
+  ut = Cell(Tt, (e) => {
     e.link(
       e.pipe(
         $,
-        se(
+        scan(
           (t, n) =>
             e.getValue(Rt)
               ? { direction: t.direction, prevScrollTop: n }
               : { direction: n < t.prevScrollTop ? In : Tt, prevScrollTop: n },
           { direction: Tt, prevScrollTop: 0 },
         ),
-        p((t) => t.direction),
+        map((t) => t.direction),
       ),
       ut,
     ),
-      e.link(e.pipe($, be(100), F(Ro)), ut);
+      e.link(e.pipe($, debounceTime(100), mapTo(Ro)), ut);
   }),
-  Zt = u(0, (e) => {
-    e.link(e.pipe(We, m(bn), F(0)), Zt),
+  Zt = Cell(0, (e) => {
+    e.link(e.pipe(We, filter(bn), mapTo(0)), Zt),
       e.link(
         e.pipe(
           $,
-          Ft(100),
-          S(We),
-          m(([, t]) => !!t),
-          se(([, t], [n]) => [t, n], [0, 0]),
-          p(([t, n]) => n - t),
+          throttleTime(100),
+          withLatestFrom(We),
+          filter(([, t]) => !!t),
+          scan(([, t], [n]) => [t, n], [0, 0]),
+          map(([t, n]) => n - t),
         ),
         Zt,
       );
@@ -651,87 +655,87 @@ function Pt(e, t) {
     e.index === 'LAST'
       ? (n.index = t)
       : e.index < 0
-      ? (n.index = t + e.index)
-      : (n.index = e.index),
+        ? (n.index = t + e.index)
+        : (n.index = e.index),
     n
   );
 }
 function yn({
-  location: e,
-  sizeTree: t,
-  offsetTree: n,
-  totalHeight: o,
-  totalCount: i,
-  viewportHeight: s,
-  headerHeight: r,
-  stickyHeaderHeight: l,
-  stickyFooterHeight: c,
+  location,
+  sizeTree,
+  offsetTree,
+  totalHeight,
+  totalCount,
+  viewportHeight,
+  headerHeight,
+  stickyHeaderHeight,
+  stickyFooterHeight,
 }) {
-  const { align: a, behavior: g, offset: b, index: v } = Pt(e, i - 1);
+  const { align, behavior, offset, index } = Pt(location, totalCount - 1);
   function T() {
-    const W = ae(t, v)[1];
-    if (W === void 0) throw new Error(`Item at index ${v} not found`);
+    const W = ae(sizeTree, index)[1];
+    if (W === void 0) throw new Error(`Item at index ${index} not found`);
     return W;
   }
-  s -= l + c;
-  let k = Lt(v, n) + r - l;
-  a === 'end' ? (k = k - s + T()) : a === 'center' && (k = k - s / 2 + T() / 2),
-    b && (k += b);
+  viewportHeight -= stickyHeaderHeight + stickyFooterHeight;
+  let k = Lt(index, offsetTree) + headerHeight - stickyHeaderHeight;
+  align === 'end' ? (k = k - viewportHeight + T()) : align === 'center' && (k = k - viewportHeight / 2 + T() / 2),
+    offset && (k += offset);
   let d = 0;
   return (
-    a === 'start' && (d = Math.max(0, Math.min(k - (o - s)))),
+    align === 'start' && (d = Math.max(0, Math.min(k - (totalHeight - viewportHeight)))),
     (k = Math.max(0, k)),
-    { top: k, behavior: g, align: a, forceBottomSpace: d }
+    { top: k, behavior: behavior, align: align, forceBottomSpace: d }
   );
 }
-const De = u(null),
-  Do = u(!1),
-  nt = u(!0),
-  Mt = x((e) => {
+const De = Cell(null),
+  Do = Cell(false),
+  nt = Cell(true),
+  Mt = Signal((e) => {
     e.link(
       e.pipe(
         Mt,
-        p(() => !0),
+        map(() => true),
       ),
       nt,
     ),
       e.link(
         e.pipe(
           Mt,
-          p(() => null),
+          map(() => null),
         ),
         De,
       );
   }),
-  En = x((e) => {
+  En = Signal((e) => {
     e.link(
       e.pipe(
         En,
-        S(ke, we, qe),
-        p(([t, n, o, i]) => {
+        withLatestFrom(totalCount$, offsetTree$, qe),
+        map(([t, n, o, i]) => {
           let { align: s, behavior: r, offset: l, index: c } = Pt(t, n - 1);
           const a = typeof t != 'number' ? t.done : void 0,
             [g, b] = gn(c, o);
           return g < -i.listOffset
             ? ((typeof t == 'number' || t.align === void 0) &&
-                (s = 'start-no-overflow'),
+              (s = 'start-no-overflow'),
               { index: c, align: s, behavior: r, offset: l, done: a })
             : g + b > -i.listOffset + i.visibleListHeight
-            ? ((typeof t == 'number' || t.align === void 0) && (s = 'end'),
-              { index: c, align: s, behavior: r, offset: l, done: a })
-            : null;
+              ? ((typeof t == 'number' || t.align === void 0) && (s = 'end'),
+                { index: c, align: s, behavior: r, offset: l, done: a })
+              : null;
         }),
-        m((t) => t !== null),
+        filter((t) => t !== null),
       ),
       // @ts-expect-error contra variance
       te,
     );
   }),
-  te = x((e) => {
+  te = Signal((e) => {
     const t = e.pipe(
       te,
-      S(G, we, ke, Z, ht, Ke, Ue, Ae),
-      p(([n, o, i, s, r, l, c, a, g]) => {
+      withLatestFrom(sizeTree$, offsetTree$, totalCount$, viewportHeight, headerHeight$, stickyHeaderHeight$, stickyFooterHeight$, totalHeight$),
+      map(([n, o, i, s, r, l, c, a, g]) => {
         try {
           return yn({
             location: n,
@@ -748,81 +752,81 @@ const De = u(null),
           return null;
         }
       }),
-      m((n) => n !== null),
+      filter((n) => n !== null),
     );
     e.link(te, De),
       e.link(t, Re),
       e.link(
         e.pipe(
           te,
-          m((n) => typeof n != 'number' && n.index === 'LAST'),
-          F(!0),
+          filter((n) => typeof n != 'number' && n.index === 'LAST'),
+          mapTo(true),
         ),
         de,
       ),
-      e.link(e.pipe(t, F(!1)), nt),
-      e.link(e.pipe(t, F(!1)), Do),
+      e.link(e.pipe(t, mapTo(false)), nt),
+      e.link(e.pipe(t, mapTo(false)), Do),
       e.link(
         e.pipe(
-          G,
+          sizeTree$,
           // wait for the list to render with the specified sizeTree, so that enough space is available to scroll by
-          be(0),
-          S(nt, De),
-          m(([, n, o]) => !n && o !== null),
-          p(([, , n]) => n),
+          debounceTime(0),
+          withLatestFrom(nt, De),
+          filter(([, n, o]) => !n && o !== null),
+          map(([, , n]) => n),
         ),
         te,
       ),
-      e.sub(e.pipe(ze, be(10)), () => {
+      e.sub(e.pipe(ze, debounceTime(10)), () => {
         const n = e.getValue(De);
         n !== null && typeof n != 'number' && n.done !== void 0 && n.done(),
           e.pubIn({
             [De]: null,
-            [nt]: !0,
+            [nt]: true,
           });
       }),
       e.link(
         e.pipe(
-          it,
+          anchorOffset$,
           // wait for the list to render with the specified scrollOffset, so that enough space is available to scroll by
-          Bt(),
-          m((n) => n !== 0),
+          delayWithMicrotask(),
+          filter((n) => n !== 0),
         ),
         re,
       ),
       e.link(
         e.pipe(
-          it,
-          tn($),
-          p(() => 0),
+          anchorOffset$,
+          onNext($),
+          map(() => 0),
         ),
-        it,
+        anchorOffset$,
       );
   }),
-  Be = u(null),
-  Le = u(null, (e) => {
+  location$ = Cell(null),
+  initialLocation$ = Cell(null, (e) => {
     e.link(
       e.pipe(
-        Le,
-        m((n) => n !== null),
+        initialLocation$,
+        filter((n) => n !== null),
       ),
-      Be,
+      location$,
     );
     const t = e.pipe(
-      e.combine(Le, G),
-      S(Be),
-      m(([[n, o], i]) => n !== null && !I(o) && i !== null),
-      p(([[n]]) => n),
+      e.combine(initialLocation$, sizeTree$),
+      withLatestFrom(location$),
+      filter(([[n, o], i]) => n !== null && !I(o) && i !== null),
+      map(([[n]]) => n),
     );
-    e.link(e.pipe(t, Bt()), te),
+    e.link(e.pipe(t, delayWithMicrotask()), te),
       e.link(
         e.pipe(
           t,
-          tn(e.pipe(Ye, m(bn))),
-          F(null),
+          onNext(e.pipe(Ye, filter(bn))),
+          mapTo(null),
           // unset the location after the scroll completes
         ),
-        Be,
+        location$,
       );
   });
 function Co(e, t) {
@@ -838,270 +842,270 @@ function Co(e, t) {
     },
   ];
 }
-const Fo = [],
-  Ce = {
-    items: Fo,
-    listBottom: 0,
-    listTop: 0,
-    offsetTree: [],
-    paddingBottom: 0,
-    paddingTop: 0,
-    totalCount: 0,
-    totalHeight: 0,
-    deviationDelta: 0,
-    data: null,
-  },
-  Oe = u(Ce, (e) => {
-    e.link(
-      e.pipe(
-        e.combine(Bo, Rn, G, we, ke, Ae, L, it, Le, Be, je, Ke, Ue, H, Ee, q),
-        m((t) => {
-          const n = t[t.length - 2],
-            o = t[t.length - 1];
-          return !n && !o;
-        }),
-        se((t, [n, o, i, s, r, l, c, a, g, b, v, T, k, d]) => {
-          var fe;
-          if ((c == null ? void 0 : c.length) === 0) return Ce;
-          if (I(i)) {
-            let X = 0;
-            return (
-              g !== null && (X = Pt(g, r - 1).index),
-              { ...Ce, items: Co(X, c), offsetTree: s, totalCount: r, data: c }
-            );
+const Fo = []
+const initialValues = {
+  items: Fo,
+  listBottom: 0,
+  listTop: 0,
+  offsetTree: [],
+  paddingBottom: 0,
+  paddingTop: 0,
+  totalCount: 0,
+  totalHeight: 0,
+  deviationDelta: 0,
+  data: null,
+}
+const initialValues$ = Cell(initialValues, (r) => {
+  r.link(
+    r.pipe(
+      r.combine(scrollTop$, viewportHeight$, sizeTree$, offsetTree$, totalCount$, totalHeight$, items$, anchorOffset$, initialLocation$, location$, scrollOffset$, stickyHeaderHeight$, stickyFooterHeight$, scrollDelta$, Ee, q),
+      filter((t) => {
+        const n = t[t.length - 2],
+          o = t[t.length - 1];
+        return !n && !o;
+      }),
+      scan((t, [scrollTop, viewportHeight, sizeTree, offsetTree, totalCount, totalHeight, itemsData, anchorOffset, initialLocation, location, scrollOffset, stickyHeaderHeight, stickyFooterHeight, scrollDelta]) => {
+        var fe;
+        if ((itemsData == null ? void 0 : itemsData.length) === 0) return initialValues;
+        if (I(sizeTree)) {
+          let X = 0;
+          return (
+            initialLocation !== null && (X = Pt(initialLocation, totalCount - 1).index),
+            { ...initialValues, items: Co(X, itemsData), offsetTree: offsetTree, totalCount: totalCount, data: itemsData }
+          );
+        }
+        let W = 0;
+        location !== null &&
+          scrollTop === 0 &&
+          (W =
+            yn({
+              totalHeight,
+              location,
+              sizeTree,
+              offsetTree,
+              totalCount,
+              viewportHeight: r.getValue(viewportHeight),
+              headerHeight: r.getValue(headerHeight$),
+              stickyHeaderHeight,
+              stickyFooterHeight,
+            }).top ?? 0);
+        let deviationDelta = 0;
+        r.getValue($) !== 0 &&
+          !r.getValue(Ye) &&
+          r.getValue(ut) === In &&
+          t.totalCount === totalCount &&
+          t.items.length > 0 &&
+          ((deviationDelta = totalHeight - t.totalHeight), deviationDelta !== 0 && (deviationDelta += r.getValue(Tn)));
+        const P = Math.min(Math.max(scrollTop + W + anchorOffset - scrollDelta - scrollOffset + deviationDelta, 0), totalHeight - viewportHeight),
+          J = P + viewportHeight;
+        if (
+          t.offsetTree === offsetTree &&
+          t.totalCount === totalCount &&
+          t.data === itemsData &&
+          P >= t.listTop &&
+          J <= t.listBottom
+        )
+          return t;
+        const items = [],
+          ne = totalCount - 1,
+          y = 0,
+          le = To(offsetTree, P, J, y);
+        let listBottom = 0,
+          listTop = 0,
+          w = false;
+        for (const X of le) {
+          const {
+            value: { offset, height },
+          } = X;
+          let Q = X.start;
+          (listBottom = offset),
+            offset < P &&
+            ((Q += Math.floor((P - offset) / height)), (listBottom += (Q - X.start) * height)),
+            Q < y && ((listBottom += (y - Q) * height), (Q = y));
+          const vt = Math.min(X.end, ne);
+          for (let i = Q; i <= vt && !(listBottom >= J); i++) {
+            const item = {
+              data: itemsData == null ? void 0 : itemsData[i],
+              prevData: (itemsData == null ? void 0 : itemsData[i - 1]) ?? null,
+              nextData: (itemsData == null ? void 0 : itemsData[i + 1]) ?? null,
+              height: height,
+              index: i,
+              offset: listBottom,
+              type: 'flat',
+            };
+            w || ((w = true), (listTop = listBottom)), items.push(item), (listBottom += height);
           }
-          let W = 0;
-          b !== null &&
-            n === 0 &&
-            (W =
-              yn({
-                totalHeight: l,
-                location: b,
-                sizeTree: i,
-                offsetTree: s,
-                totalCount: r,
-                viewportHeight: e.getValue(Z),
-                headerHeight: e.getValue(ht),
-                stickyHeaderHeight: T,
-                stickyFooterHeight: k,
-              }).top ?? 0);
-          let U = 0;
-          e.getValue($) !== 0 &&
-            !e.getValue(Ye) &&
-            e.getValue(ut) === In &&
-            t.totalCount === r &&
-            t.items.length > 0 &&
-            ((U = l - t.totalHeight), U !== 0 && (U += e.getValue(Tn)));
-          const P = Math.min(Math.max(n + W + a - d - v + U, 0), l - o),
-            J = P + o;
-          if (
-            t.offsetTree === s &&
-            t.totalCount === r &&
-            t.data === c &&
-            P >= t.listTop &&
-            J <= t.listBottom
-          )
-            return t;
-          const Y = [],
-            ne = r - 1,
-            y = 0,
-            le = To(s, P, J, y);
-          let D = 0,
-            Ge = 0,
-            w = !1;
-          for (const X of le) {
-            const {
-              value: { offset: Se, height: ie },
-            } = X;
-            let Q = X.start;
-            (D = Se),
-              Se < P &&
-                ((Q += Math.floor((P - Se) / ie)), (D += (Q - X.start) * ie)),
-              Q < y && ((D += (y - Q) * ie), (Q = y));
-            const vt = Math.min(X.end, ne);
-            for (let ee = Q; ee <= vt && !(D >= J); ee++) {
-              const Ze = {
-                data: c == null ? void 0 : c[ee],
-                prevData: (c == null ? void 0 : c[ee - 1]) ?? null,
-                nextData: (c == null ? void 0 : c[ee + 1]) ?? null,
-                height: ie,
-                index: ee,
-                offset: D,
-                type: 'flat',
-              };
-              w || ((w = !0), (Ge = D)), Y.push(Ze), (D += ie);
-            }
-          }
-          const oe = l - D,
-            bt = ((fe = Y[0]) == null ? void 0 : fe.offset) || 0;
-          return {
-            items: Y,
-            listBottom: D,
-            listTop: Ge,
-            offsetTree: s,
-            paddingBottom: oe,
-            paddingTop: bt,
-            totalCount: r,
-            totalHeight: l,
-            data: c,
-            deviationDelta: U,
-          };
-        }, Ce),
-      ),
-      Oe,
-    );
-  }),
+        }
+        const paddingBottom = totalHeight - listBottom,
+          paddingTop = ((fe = items[0]) == null ? void 0 : fe.offset) || 0;
+        return {
+          items,
+          listBottom,
+          listTop,
+          offsetTree,
+          paddingBottom,
+          paddingTop,
+          totalCount,
+          totalHeight,
+          data: itemsData,
+          deviationDelta,
+        };
+      }, initialValues),
+    ),
+    initialValues$,
+  );
+}),
   ct = Ie([], (e) =>
     e.pipe(
-      e.combine(Oe, $),
-      p(([t, n]) => {
+      e.combine(initialValues$, $),
+      map(([t, n]) => {
         const o = t.items.slice();
-        for (; o.length > 0 && o[0].offset + o[0].height < n; ) o.shift();
+        for (; o.length > 0 && o[0].offset + o[0].height < n;) o.shift();
         return o.map((i) => i.data);
       }),
     ),
   ),
-  q = u(!1),
-  _e = u(!1),
-  ot = x((e) => {
-    e.link(
-      e.pipe(
-        Oe,
-        p((t) => t.deviationDelta),
-        m((t) => t !== 0),
+  q = Cell(false),
+  _e = Cell(false),
+  ot = Signal((r) => {
+    r.link(
+      r.pipe(
+        initialValues$,
+        map((t) => t.deviationDelta),
+        filter((t) => t !== 0),
       ),
       ot,
     ),
       mn()
-        ? (e.sub(e.pipe(ot, S(H, $)), ([t, n]) => {
-            e.pub(H, n - t);
-          }),
-          e.sub(e.pipe(e.combine($, H, Ee, _e)), ([t, n, o, i]) => {
+      ? (r.sub(r.pipe(ot, withLatestFrom(scrollDelta$, $)), ([t, n]) => {
+        r.pub(scrollDelta$, n - t);
+        }),
+        r.sub(r.pipe(r.combine($, scrollDelta$, Ee, _e)), ([t, n, o, i]) => {
             o ||
               i ||
               (n > 0 && t < n
-                ? (e.pub(q, !0),
-                  e.pub(Re, { top: 0, behavior: 'instant' }),
+              ? (r.pub(q, true),
+                r.pub(Re, { top: 0, behavior: 'instant' }),
                   setTimeout(() => {
-                    e.pubIn({
-                      [q]: !1,
-                      [H]: 0,
+                    r.pubIn({
+                      [q]: false,
+                      [scrollDelta$]: 0,
                     });
                   }))
                 : n < 0 &&
-                  t <= 0 &&
-                  (e.pubIn({
-                    [q]: !0,
-                    [H]: 0,
-                  }),
+                t <= 0 &&
+              (r.pubIn({
+                [q]: true,
+                  [scrollDelta$]: 0,
+                }),
                   setTimeout(() => {
-                    e.pub(Re, { top: 0, behavior: 'instant' }), e.pub(q, !1);
+                    r.pub(Re, { top: 0, behavior: 'instant' }), r.pub(q, false);
                   })));
           }),
-          e.sub(
-            e.pipe(
-              e.combine(We, H, q, Ee, _e),
-              m(([t, n, o, i, s]) => !t && n !== 0 && !o && !i && !s),
-              Ft(100),
+        r.sub(
+          r.pipe(
+            r.combine(We, scrollDelta$, q, Ee, _e),
+              filter(([t, n, o, i, s]) => !t && n !== 0 && !o && !i && !s),
+              throttleTime(100),
             ),
             ([, t]) => {
-              e.pub(q, !0),
+              r.pub(q, true),
                 t < 0
                   ? requestAnimationFrame(() => {
-                      e.pub(re, -t),
-                        e.pub(H, 0),
-                        requestAnimationFrame(() => {
-                          e.pub(q, !1);
-                        });
-                    })
+                    r.pub(re, -t),
+                      r.pub(scrollDelta$, 0),
+                      requestAnimationFrame(() => {
+                        r.pub(q, false);
+                      });
+                  })
                   : requestAnimationFrame(() => {
-                      e.pub(re, -t),
-                        e.pub(H, 0),
-                        requestAnimationFrame(() => {
-                          e.pub(q, !1);
-                        });
-                    });
+                    r.pub(re, -t),
+                      r.pub(scrollDelta$, 0),
+                      requestAnimationFrame(() => {
+                        r.pub(q, false);
+                      });
+                  });
             },
           ))
-        : e.link(ot, re);
+        : r.link(ot, re);
   }),
-  Ye = x(),
-  Yt = u(!1),
-  ze = x((e) => {
-    e.link(e.pipe(ze, F(!1)), Ye);
-  }, !1),
-  $ = u(0),
-  Z = u(0),
-  $n = u(0),
-  j = u(0),
-  Bo = $,
-  it = u(0),
-  Ke = u(0),
-  je = u(0),
-  Ue = u(0),
-  zt = u(0),
-  At = u(null),
-  wn = _t(),
+  Ye = Signal(),
+  Yt = Cell(false),
+  ze = Signal((e) => {
+    e.link(e.pipe(ze, mapTo(false)), Ye);
+  }, false),
+  $ = Cell(0),
+  viewportHeight = Cell(0),
+  $n = Cell(0),
+  j = Cell(0),
+  scrollTop$ = $,
+  anchorOffset$ = Cell(0),
+  stickyHeaderHeight$ = Cell(0),
+  scrollOffset$ = Cell(0),
+  stickyFooterHeight$ = Cell(0),
+  zt = Cell(0),
+  At = Cell(null),
+  wn = Action(),
   _o = Lo,
   Ho = 50,
-  ht = Ie(0, (e) =>
+  headerHeight$ = Ie(0, (e) =>
     e.pipe(
-      e.combine(Ke, je),
-      p(([t, n]) => t + n),
+      e.combine(stickyHeaderHeight$, scrollOffset$),
+      map(([t, n]) => t + n),
     ),
   ),
   Ln = Ie(0, (e) =>
     e.pipe(
-      e.combine(Ue, zt),
-      p(([t, n]) => t + n),
+      e.combine(stickyFooterHeight$, zt),
+      map(([t, n]) => t + n),
     ),
   ),
   Wo = Ie(0, (e) =>
     e.pipe(
-      e.combine(Ke, je, $),
-      p(([t, n, o]) => t + Math.max(n - o, 0)),
+      e.combine(stickyHeaderHeight$, scrollOffset$, $),
+      map(([t, n, o]) => t + Math.max(n - o, 0)),
     ),
   ),
   Po = Ie(0, (e) =>
     e.pipe(
-      e.combine(Ue, zt, $, Z, j),
-      p(([t, n, o, i, s]) => {
+      e.combine(stickyFooterHeight$, zt, $, viewportHeight, j),
+      map(([t, n, o, i, s]) => {
         o = Math.min(o, s - i);
         const r = Math.max(n - (s - (o + i)), 0);
         return t + r;
       }),
     ),
   ),
-  Rn = Ie(0, (e) =>
+  viewportHeight$ = Ie(0, (e) =>
     e.pipe(
-      e.combine(Z, Wo, Po),
-      p(([t, n, o]) => t - n - o),
+      e.combine(viewportHeight, Wo, Po),
+      map(([t, n, o]) => t - n - o),
     ),
   ),
-  gt = u(0),
-  Mn = u(0, (e) => {
+  paddingBottom$ = Cell(0),
+  Mn = Cell(0, (e) => {
     e.link(
       e.pipe(
-        e.combine(Mn, Ae, Z),
-        p(([t, n, o]) => (t === 0 ? 0 : Math.max(0, Math.min(t - (n - o))))),
+        e.combine(Mn, totalHeight$, viewportHeight),
+        map(([t, n, o]) => (t === 0 ? 0 : Math.max(0, Math.min(t - (n - o))))),
       ),
-      gt,
+      paddingBottom$,
     );
   }),
-  Re = x((e) => {
+  Re = Signal((e) => {
     e.link(
       e.pipe(
         Re,
-        p((t) => (t.align === 'start' ? t.top ?? 0 : 0)),
+        map((t) => (t.align === 'start' ? t.top ?? 0 : 0)),
       ),
       Mn,
     ),
       e.link(
         e.pipe(
           Re,
-          S($),
-          m(([t, n]) => t.top !== n),
-          F(!0),
+          withLatestFrom($),
+          filter(([t, n]) => t.top !== n),
+          mapTo(true),
         ),
         Ye,
       );
@@ -1112,13 +1116,13 @@ const Fo = [],
       visibleListHeight: 0,
       scrollHeight: 0,
       bottomOffset: 0,
-      isAtBottom: !1,
+      isAtBottom: false,
     },
     (e) =>
       e.pipe(
-        e.combine($, ht, Ln, je, Rn, j, gt, Ee, Be, q, de),
-        m(([, , , , , , , t, n, o]) => !t && n === null && !o),
-        p(([t, n, o, i, s, r, l, c, a, g, b]) => {
+        e.combine($, headerHeight$, Ln, scrollOffset$, viewportHeight$, j, paddingBottom$, Ee, location$, q, de),
+        filter(([, , , , , , , t, n, o]) => !t && n === null && !o),
+        map(([t, n, o, i, s, r, l, c, a, g, b]) => {
           const v = e.getValue(Sn),
             T = r - n - o,
             k = -t + i,
@@ -1133,33 +1137,33 @@ const Fo = [],
         }),
       ),
   ),
-  Ot = x((e) => {
+  Ot = Signal((e) => {
     e.link(
       e.pipe(
         $,
-        be(0),
-        S(qe),
-        m(([, t]) => t.scrollHeight > 0),
-        p(([, t]) => t),
+        debounceTime(0),
+        withLatestFrom(qe),
+        filter(([, t]) => t.scrollHeight > 0),
+        map(([, t]) => t),
       ),
       Ot,
     );
   }),
-  re = x(),
-  H = u(0),
-  st = u(0),
-  at = u(0),
-  An = u(''),
-  Kt = x(),
-  On = _t(),
-  Nn = _t();
+  re = Signal(),
+  scrollDelta$ = Cell(0),
+  st = Cell(0),
+  marginTop$ = Cell(0),
+  transition$ = Cell(''),
+  Kt = Signal(),
+  On = Action(),
+  Nn = Action();
 function Yo(e, t) {
   var r, l;
   const n = t.slice();
   let o = 0;
   const i = [];
   for (const { k: c, v: a } of ve(e)) {
-    for (; n.length && n[0] < c; ) n.shift(), o++;
+    for (; n.length && n[0] < c;) n.shift(), o++;
     const g = Math.max(0, c - o),
       b = ((r = i.at(-1)) == null ? void 0 : r.k) ?? -1;
     g === b
@@ -1172,30 +1176,30 @@ function Yo(e, t) {
   for (const { k: c, v: a } of i) s = B(s, c, a);
   return s;
 }
-const ke = u(0),
-  Pe = u(null),
-  L = u(null, (e) => {
+const totalCount$ = Cell(0),
+  context$ = Cell(null),
+  items$ = Cell(null, (e) => {
     e.link(
       e.pipe(
-        L,
-        m((t) => t !== null),
-        p((t) => t.length),
+        items$,
+        filter((t) => t !== null),
+        map((t) => t.length),
       ),
-      ke,
+      totalCount$,
     );
   }),
-  Ve = u(null),
-  ue = x((e) => {
+  Ve = Cell(null),
+  ue = Signal((e) => {
     e.link(
       e.pipe(
         ue,
-        S($e),
-        p(([n, o]) => -(o * n.length)),
+        withLatestFrom($e),
+        map(([n, o]) => -(o * n.length)),
       ),
-      H,
+      scrollDelta$,
     ),
-      e.link(e.pipe(ue, F(!0)), _e),
-      e.link(e.pipe(ue, Bt()), Ve);
+      e.link(e.pipe(ue, mapTo(true)), _e),
+      e.link(e.pipe(ue, delayWithMicrotask()), Ve);
     function t(n, o) {
       e.pubIn({
         [re]: n,
@@ -1203,52 +1207,52 @@ const ke = u(0),
       }),
         o
           ? requestAnimationFrame(() => {
-              e.pubIn({
-                [H]: 0,
-                [st]: 0,
-                [Ve]: null,
-                [_e]: !1,
-              });
-            })
-          : e.pubIn({
-              [H]: 0,
+            e.pubIn({
+              [scrollDelta$]: 0,
               [st]: 0,
               [Ve]: null,
-              [_e]: !1,
+              [_e]: false,
             });
+          })
+          : e.pubIn({
+            [scrollDelta$]: 0,
+            [st]: 0,
+            [Ve]: null,
+            [_e]: false,
+          });
     }
     e.sub(
       e.pipe(
-        we,
-        S(Ve),
-        m(([, n]) => n !== null),
-        p(([n, o]) => {
+        offsetTree$,
+        withLatestFrom(Ve),
+        filter(([, n]) => n !== null),
+        map(([n, o]) => {
           if (o === null) throw new Error('Unexpected null items');
           return Lt(o.length, n);
         }),
       ),
       (n) => {
-        t(n, !1);
+        t(n, false);
       },
     ),
       e.sub(
         e.pipe(
           ue,
           vn(2),
-          S(we, Ve),
-          m(([, , n]) => n !== null),
-          p(([n, o]) => Lt(n.length, o)),
+          withLatestFrom(offsetTree$, Ve),
+          filter(([, , n]) => n !== null),
+          map(([n, o]) => Lt(n.length, o)),
         ),
         (n) => {
-          t(n, !0);
+          t(n, true);
         },
       ),
-      e.changeWith(L, ue, (n, o) => (n ? [...o, ...n] : o.slice())),
+      e.changeWith(items$, ue, (n, o) => (n ? [...o, ...n] : o.slice())),
       e.link(
         e.pipe(
           ue,
-          S(G, $e),
-          p(([n, o, i]) => {
+          withLatestFrom(sizeTree$, $e),
+          map(([n, o, i]) => {
             const s = n.length,
               r = i;
             return ve(o).reduce(
@@ -1275,13 +1279,13 @@ const ke = u(0),
         me,
       );
   }),
-  dt = x((e) => {
+  dt = Signal((e) => {
     const t = e.pipe(
       dt,
-      S(qe, Yt, Pe, G),
-      m(([, , , , o]) => !I(o)),
-      p(([{ data: o, scrollToBottom: i }, s, r, l]) => {
-        if (i === !1 || i === void 0) return null;
+      withLatestFrom(qe, Yt, context$, sizeTree$),
+      filter(([, , , , o]) => !I(o)),
+      map(([{ data: o, scrollToBottom: i }, s, r, l]) => {
+        if (i === false || i === void 0) return null;
         let c = 'auto';
         const a = s.isAtBottom;
         if (typeof i == 'function') {
@@ -1302,55 +1306,55 @@ const ke = u(0),
           c = i;
         }
         return (
-          c === !0 && (c = 'auto'), { index: 'LAST', align: 'end', behavior: c }
+          c === true && (c = 'auto'), { index: 'LAST', align: 'end', behavior: c }
         );
       }),
     );
     e.link(
       e.pipe(
         t,
-        m((o) => o !== null),
-        p(() => !0),
+        filter((o) => o !== null),
+        map(() => true),
       ),
       de,
     ),
       e.link(
         e.pipe(
           ze,
-          S(de),
-          m(([o, i]) => i),
-          p(() => !1),
+          withLatestFrom(de),
+          filter(([o, i]) => i),
+          map(() => false),
         ),
         de,
       );
     const n = e.pipe(
       Kt,
-      S(de),
-      m(([o, i]) => o === 'up' && i),
+      withLatestFrom(de),
+      filter(([o, i]) => o === 'up' && i),
     );
     e.link(
       e.pipe(
         n,
-        p(() => !1),
+        map(() => false),
       ),
       de,
     ),
-      e.link(e.pipe(n, F(!0)), Mt),
+      e.link(e.pipe(n, mapTo(true)), Mt),
       e.link(
         e.pipe(
           t,
-          m((o) => o !== null),
-          be(20),
+          filter((o) => o !== null),
+          debounceTime(20),
         ),
         te,
       );
   }),
-  pt = x((e) => {
-    e.changeWith(L, pt, (t, n) => (t ? [...t, ...n.data] : n.data.slice())),
+  pt = Signal((e) => {
+    e.changeWith(items$, pt, (t, n) => (t ? [...t, ...n.data] : n.data.slice())),
       e.link(pt, dt);
   }),
-  rt = x((e) => {
-    e.changeWith(L, rt, (t, n) =>
+  rt = Signal((e) => {
+    e.changeWith(items$, rt, (t, n) =>
       t
         ? [...t.slice(0, n.offset), ...n.data, ...t.slice(n.offset)]
         : n.data.slice(),
@@ -1362,43 +1366,43 @@ const ke = u(0),
       }),
       e.link(rt, dt);
   }),
-  Nt = x((e) => {
-    e.changeWith(L, Nt, (t, { offset: n, count: o }) =>
+  Nt = Signal((e) => {
+    e.changeWith(items$, Nt, (t, { offset: n, count: o }) =>
       t ? t.slice(0, n).concat(t.slice(n + o)) : [],
     ),
       e.changeWith(pe, Nt, ([t], { offset: n, count: o }) => [vo(t, n, o), n]);
   }),
-  yt = u(null),
-  He = x((e) => {
+  yt = Cell(null),
+  He = Signal((e) => {
     e.sub(
       e.pipe(
         He,
-        S(L),
-        m(([{ purgeItemSizes: t }, n]) => !!t || n === null || n.length === 0),
+        withLatestFrom(items$),
+        filter(([{ purgeItemSizes: t }, n]) => !!t || n === null || n.length === 0),
       ),
       ([t, n]) => {
         n === null || n.length === 0
           ? e.pubIn({
-              ...(t.initialLocation ? { [Le]: t.initialLocation } : {}),
-              [L]: t.data.slice(),
-            })
+            ...(t.initialLocation ? { [initialLocation$]: t.initialLocation } : {}),
+            [items$]: t.data.slice(),
+          })
           : e.pubIn({
-              ...(t.initialLocation ? { [Le]: t.initialLocation } : {}),
-              [pe]: ft,
-              [Oe]: Ce,
-              [yt]: t.data.slice(),
-            });
+            ...(t.initialLocation ? { [initialLocation$]: t.initialLocation } : {}),
+            [pe]: ft,
+            [initialValues$]: initialValues,
+            [yt]: t.data.slice(),
+          });
       },
     ),
       e.sub(
         e.pipe(
           Nn,
-          S(yt),
-          m(([, t]) => t !== null),
+          withLatestFrom(yt),
+          filter(([, t]) => t !== null),
         ),
         ([, t]) => {
           e.pubIn({
-            [L]: t,
+            [items$]: t,
             [yt]: null,
           });
         },
@@ -1406,10 +1410,10 @@ const ke = u(0),
       e.link(
         e.pipe(
           He,
-          m(({ purgeItemSizes: t }) => !t),
-          S($e),
-          m(([, t]) => t > 0),
-          p(([{ data: t }, n]) => [
+          filter(({ purgeItemSizes: t }) => !t),
+          withLatestFrom($e),
+          filter(([, t]) => t > 0),
+          map(([{ data: t }, n]) => [
             {
               size: n,
               startIndex: t.length,
@@ -1422,7 +1426,7 @@ const ke = u(0),
       e.sub(
         e.pipe(
           He,
-          m(({ purgeItemSizes: t }) => !t),
+          filter(({ purgeItemSizes: t }) => !t),
         ),
         ({ data: t, initialLocation: n, suppressItemMeasure: o }) => {
           requestAnimationFrame(() => {
@@ -1435,25 +1439,25 @@ const ke = u(0),
               });
           }),
             e.pubIn({
-              [L]: t.slice(),
+              [items$]: t.slice(),
             });
         },
       );
   }),
-  Jt = x((e) => {
-    e.changeWith(L, Jt, (t, n) => (t ? t.slice(n) : [])),
+  Jt = Signal((e) => {
+    e.changeWith(items$, Jt, (t, n) => (t ? t.slice(n) : [])),
       e.changeWith(pe, Jt, ([t], n) => [
         ve(t).reduce((i, { k: s, v: r }) => B(i, Math.max(0, s - n), r), Me()),
         0,
       ]);
   }),
-  Xt = x((e) => {
-    e.changeWith(L, Xt, (t, n) => (t ? t.slice(0, t.length - n) : [])),
+  Xt = Signal((e) => {
+    e.changeWith(items$, Xt, (t, n) => (t ? t.slice(0, t.length - n) : [])),
       e.link(
         e.pipe(
           Xt,
-          S(ke, $e),
-          p(([, t, n]) => [
+          withLatestFrom(totalCount$, $e),
+          map(([, t, n]) => [
             {
               size: n,
               startIndex: t,
@@ -1464,11 +1468,11 @@ const ke = u(0),
         me,
       );
   }),
-  Vn = x((e) => {
+  Vn = Signal((e) => {
     const t = e.pipe(
       Vn,
-      S(L),
-      p(([n, o]) => {
+      withLatestFrom(items$),
+      map(([n, o]) => {
         if (!o) return [];
         const i = [];
         return (
@@ -1479,53 +1483,55 @@ const ke = u(0),
         );
       }),
     );
-    e.changeWith(L, t, (n, o) => (n ? n.filter((i, s) => !o.includes(s)) : [])),
+    e.changeWith(items$, t, (n, o) => (n ? n.filter((i, s) => !o.includes(s)) : [])),
       e.changeWith(pe, t, ([n], o) => [Yo(n, o), 0]);
   }),
-  Vt = x((e) => {
-    e.changeWith(L, Vt, (t, { mapper: n }) => (t ? t.map(n) : [])),
+  Vt = Signal((e) => {
+    e.changeWith(items$, Vt, (t, { mapper: n }) => (t ? t.map(n) : [])),
       e.link(
         e.pipe(
           Vt,
           vn(3),
-          S(xn),
-          m(([{ autoscrollToBottomBehavior: t }, n]) => n && !!t),
-          p(([{ autoscrollToBottomBehavior: t }]) =>
+          withLatestFrom(xn),
+          filter(([{ autoscrollToBottomBehavior: t }, n]) => n && !!t),
+          map(([{ autoscrollToBottomBehavior: t }]) =>
             typeof t == 'object'
               ? t.location()
               : { index: 'LAST', align: 'end', behavior: t },
           ),
-          m((t) => !!t),
+          filter((t) => !!t),
         ),
         te,
       );
   }),
-  zo = ({ item: e, ItemContent: t, mount: n, unmount: o }) => {
-    const i = C(Pe),
-      s = h.useRef(null),
-      r = h.useCallback(
+  zo = ({ item, ItemContent, mount, unmount }) => {
+    const i = useCellValue(context$),
+      s = React.useRef(null),
+      r = React.useCallback(
         (l) => {
           l
-            ? ((s.current = l), n(l))
-            : s.current && (o(s.current), (s.current = null));
+            ? ((s.current = l), mount(l))
+            : s.current && (unmount(s.current), (s.current = null));
         },
-        [n, o],
+        [mount, unmount],
       );
-    return /* @__PURE__ */ E('div', {
+    return /* @__PURE__ */ jsx('div', {
       ref: r,
-      'data-index': e.index,
-      'data-known-size': e.height,
-      style: {
-        overflowAnchor: 'none',
-        position: 'absolute',
-        width: '100%',
-        top: e.offset,
-      },
-      children: /* @__PURE__ */ E(t, {
-        index: e.index,
-        prevData: e.prevData,
-        nextData: e.nextData,
-        data: e.data,
+      'data-index': item.index,
+      'data-known-size': item.height,
+      style:
+        typeof window === 'undefined' ? {} :
+          {
+            overflowAnchor: 'none',
+            position: 'absolute',
+            width: '100%',
+            top: item.offset,
+          },
+      children: /* @__PURE__ */ jsx(ItemContent, {
+        index: item.index,
+        prevData: item.prevData,
+        nextData: item.nextData,
+        data: item.data,
         context: i,
       }),
     });
@@ -2010,42 +2016,42 @@ function Jo(e) {
   return { orderNumber: r, expiryDate: l };
 }
 const Xo = {
-    valid: !1,
-    consoleMessage:
-      'The VirtuosoMessageList license wrapper component is missing. Enclose the VirtuosoMessageList with VirtuosoMessageListLicense and add your key at the lisenceKey property.',
-    watermarkMessage:
-      'The VirtuosoMessageList license wrapper component is missing. Enclose the VirtuosoMessageList with VirtuosoMessageListLicense and add your key at the lisenceKey property.',
-  },
+  valid: false,
+  consoleMessage:
+    'The VirtuosoMessageList license wrapper component is missing. Enclose the VirtuosoMessageList with VirtuosoMessageListLicense and add your key at the lisenceKey property.',
+  watermarkMessage:
+    'The VirtuosoMessageList license wrapper component is missing. Enclose the VirtuosoMessageList with VirtuosoMessageListLicense and add your key at the lisenceKey property.',
+},
   Qo = {
-    valid: !1,
+    valid: false,
     consoleMessage:
       'Your VirtuosoMessageListLicense is missing a license key. Purchase one from https://virtuoso.dev/pricing/',
     watermarkMessage:
       'Your VirtuosoMessageListLicense is missing a license key. Purchase one from https://virtuoso.dev/pricing/',
   },
   ei = {
-    valid: !1,
+    valid: false,
     consoleMessage:
       'Your VirtuosoMessageListLicense component is missing a license key - this component will not work if deployed in production. Purchase a key from https://virtuoso.dev/pricing/ before you deploy to production.',
   },
   Cn = {
-    valid: !0,
+    valid: true,
   },
   ti = {
-    valid: !1,
+    valid: false,
     consoleMessage:
       'Your Virtuoso Message List license key is invalid. Ensure that you have copy-pasted the key from the purchase email correctly.',
     watermarkMessage: 'Your Virtuoso Message List license key is invalid',
   },
   ni = {
-    valid: !1,
+    valid: false,
     consoleMessage:
       'Your annual license key to use Virtuoso Message List in non-production environments has expired. You can still use it in production. To keep using it in development, purchase a new key from https://virtuoso.dev/pricing/',
     watermarkMessage:
       'Your annual license key to use Virtuoso Message List in non-production environments has expired. You can still use it in production. To keep using it in development, purchase a new key from https://virtuoso.dev/pricing/',
   },
   oi = {
-    valid: !1,
+    valid: false,
     consoleMessage:
       'You have installed a version of `@virtuoso.dev/message-list` that is newer than the period of your license key. Either downgrade to a supported version, or purchase a new license from https://virtuoso.dev/pricing/',
     watermarkMessage:
@@ -2066,24 +2072,24 @@ function li({ licenseKey: e, now: t, hostname: n, packageTimestamp: o }) {
   }
   return Cn;
 }
-const Fn = h.createContext(Xo),
-  ui = ({ licenseKey: e, children: t }) => {
+const VirtuosoMessageListLicenseContext = React.createContext(Xo),
+  VirtuosoMessageListLicense = ({ licenseKey: e, children: t }) => {
     const n = li({
       licenseKey: e,
       hostname: typeof window < 'u' ? window.location.hostname : 'localhost',
       now: /* @__PURE__ */ new Date(),
       packageTimestamp: 1740169352098,
     });
-    return /* @__PURE__ */ E(Fn.Provider, { value: n, children: t });
+    return /* @__PURE__ */ jsx(VirtuosoMessageListLicenseContext.Provider, { value: n, children: t });
   };
-ui.displayName = Math.random().toString(36).slice(2, 8);
-const ci = h.createContext(void 0),
-  Bn = u(null),
-  _n = u(null),
-  Hn = u(null),
-  Wn = u(null),
-  Pn = u(null),
-  Yn = u('div'),
+VirtuosoMessageListLicense.displayName = Math.random().toString(36).slice(2, 8);
+const VirtuosoMessageListTestingContext = React.createContext(void 0),
+  Header$ = Cell(null),
+  StickyHeader$ = Cell(null),
+  Footer$ = Cell(null),
+  StickyFooter$ = Cell(null),
+  EmptyPlaceholder$ = Cell(null),
+  ScrollElement$ = Cell('div'),
   ai = {
     position: 'sticky',
     top: 0,
@@ -2096,55 +2102,55 @@ const ci = h.createContext(void 0),
     position: 'sticky',
     bottom: 0,
   },
-  zn = h.forwardRef((e, t) =>
-    /* @__PURE__ */ E('div', { style: { zIndex: 1 }, ...e, ref: t }),
+  HeaderWrapperDefault = React.forwardRef((e, t) =>
+    /* @__PURE__ */ jsx('div', { style: { zIndex: 1 }, ...e, ref: t }),
   ),
-  Kn = h.forwardRef((e, t) => /* @__PURE__ */ E('div', { ...e, ref: t })),
-  jn = h.forwardRef(({ style: e, ...t }, n) =>
-    /* @__PURE__ */ E('div', { ...t, style: { ...ai, ...e }, ref: n }),
+  FooterWrapperDefault = React.forwardRef((e, t) => /* @__PURE__ */ jsx('div', { ...e, ref: t })),
+  StickyHeaderWrapperDefault = React.forwardRef(({ style: e, ...t }, n) =>
+    /* @__PURE__ */ jsx('div', { ...t, style: { ...ai, ...e }, ref: n }),
   ),
-  Un = h.forwardRef(({ style: e, ...t }, n) =>
-    /* @__PURE__ */ E('div', { ...t, style: { ...pi, ...e }, ref: n }),
+  StickFooterWrapperDefault = React.forwardRef(({ style: e, ...t }, n) =>
+    /* @__PURE__ */ jsx('div', { ...t, style: { ...pi, ...e }, ref: n }),
   ),
-  qn = u(zn),
-  Gn = u(jn),
-  Zn = u(Kn),
-  Jn = u(Un),
-  Xn = ({ index: e }) =>
-    /* @__PURE__ */ en('div', {
-      children: ['Item ', e],
-    }),
-  Qn = ({ index: e }) => e,
-  Dt = u(Xn),
-  eo = u(Qn),
-  Ct = u('top', (e) => {
-    e.link(
-      e.pipe(
-        e.combine(Ct, Ae, Z, ht, Ln),
-        m(([t]) => t === 'bottom' || t === 'bottom-smooth'),
-        p(([, t, n, o, i]) => Math.max(0, n - t - o - i)),
+  HeaderWrapper$ = Cell(HeaderWrapperDefault),
+  StickyHeaderWrapper$ = Cell(StickyHeaderWrapperDefault),
+  FooterWrapper$ = Cell(FooterWrapperDefault),
+  StickFooterWrapper$ = Cell(StickFooterWrapperDefault),
+  ItemContentDefault = ({ index: e }) =>
+    /* @__PURE__ */ jsxs('div', {
+    children: ['Item ', e],
+  }),
+  computerKeyDefault = ({ index: e }) => e,
+  ItemContent$ = Cell(ItemContentDefault),
+  computeItemKey$ = Cell(computerKeyDefault),
+  shortSizeAlign$ = Cell('top', (r) => {
+    r.link(
+      r.pipe(
+        r.combine(shortSizeAlign$, totalHeight$, viewportHeight, headerHeight$, Ln),
+        filter(([t]) => t === 'bottom' || t === 'bottom-smooth'),
+        map(([, t, n, o, i]) => Math.max(0, n - t - o - i)),
       ),
-      at,
+      marginTop$,
     ),
-      e.link(
-        e.pipe(
-          e.combine(at, Ct),
-          m(([, t]) => t === 'bottom-smooth'),
-          se((t, [n]) => [t[1], n], [0, 0]),
-          p(([t, n]) => (t > 0 && n > 0 ? 'margin-top 0.2s ease-out' : '')),
+      r.link(
+        r.pipe(
+          r.combine(marginTop$, shortSizeAlign$),
+          filter(([, t]) => t === 'bottom-smooth'),
+          scan((t, [n]) => [t[1], n], [0, 0]),
+          map(([t, n]) => (t > 0 && n > 0 ? 'margin-top 0.2s ease-out' : '')),
         ),
-        An,
+        transition$,
       );
   });
 function Qe(e) {
-  const t = h.useRef(null);
+  const t = React.useRef(null);
   return [
-    h.useCallback(
+    React.useCallback(
       (o) => {
         o
           ? ((t.current = o), e == null || e.observe(o, { box: 'border-box' }))
           : t.current &&
-            (e == null || e.unobserve(t.current), (t.current = null));
+          (e == null || e.unobserve(t.current), (t.current = null));
       },
       [e],
     ),
@@ -2152,24 +2158,24 @@ function Qe(e) {
   ];
 }
 function fi(e, t, n) {
-  const o = Ht(),
-    i = h.useRef(null),
-    s = h.useRef(null),
-    r = h.useCallback(() => {
+  const o = useRealm(),
+    i = React.useRef(null),
+    s = React.useRef(null),
+    r = React.useCallback(() => {
       i.current &&
         (cancelAnimationFrame(i.current),
-        (i.current = null),
-        (s.current = null));
+          (i.current = null),
+          (s.current = null));
     }, []);
-  h.useEffect(
+  React.useEffect(
     () =>
       o.sub(Kt, (a) => {
         a !== s.current && r();
       }),
     [o, r],
   ),
-    h.useEffect(() => o.sub(wn, r), [o, r]);
-  const l = h.useCallback(
+    React.useEffect(() => o.sub(wn, r), [o, r]);
+  const l = React.useCallback(
     (a, g, b) => {
       var W;
       i.current && r();
@@ -2186,7 +2192,7 @@ function fi(e, t, n) {
           k < b
             ? (i.current = requestAnimationFrame(d))
             : ((J = e.current) == null ||
-                J.scrollTo({ top: a, behavior: 'instant' }),
+              J.scrollTo({ top: a, behavior: 'instant' }),
               (i.current = null),
               (s.current = null));
       }
@@ -2194,7 +2200,7 @@ function fi(e, t, n) {
     },
     [e, r],
   );
-  return h.useCallback(
+  return React.useCallback(
     (a) => {
       var g, b, v, T;
       if (a.top === ((g = e.current) == null ? void 0 : g.scrollTop)) {
@@ -2202,11 +2208,11 @@ function fi(e, t, n) {
         return;
       }
       if (
-        (a.top !== void 0 && ((n.current = a.top), o.pub(Yt, !0)),
-        a.forceBottomSpace !== void 0 &&
+        (a.top !== void 0 && ((n.current = a.top), o.pub(Yt, true)),
+          a.forceBottomSpace !== void 0 &&
           t.current &&
           (t.current.style.paddingBottom = `${a.forceBottomSpace}px`),
-        a.behavior === 'smooth')
+          a.behavior === 'smooth')
       )
         l(a.top ?? 0, _o, Ho);
       else if (
@@ -2253,8 +2259,8 @@ function to(e) {
       findAndDelete: (t) => {
         e.pub(Vn, t);
       },
-      findIndex: (t) => e.getValue(L).findIndex(t),
-      find: (t) => e.getValue(L).find(t),
+      findIndex: (t) => e.getValue(items$).findIndex(t),
+      find: (t) => e.getValue(items$).find(t),
       insert: (t, n, o) => {
         e.pub(rt, {
           data: t,
@@ -2269,12 +2275,12 @@ function to(e) {
         });
       },
       batch: (t, n) => {
-        e.pub(Ee, !0),
+        e.pub(Ee, true),
           t(),
-          e.pub(Ee, !1),
+          e.pub(Ee, false),
           e.pub(dt, { data: [], scrollToBottom: n });
       },
-      get: () => e.getValue(L).slice(),
+      get: () => e.getValue(items$).slice(),
       getCurrentlyRendered: () => e.getValue(ct),
     },
     scrollToItem: (t) => {
@@ -2292,43 +2298,43 @@ function to(e) {
     },
     height: (t) => {
       var i;
-      const n = ((i = e.getValue(L)) == null ? void 0 : i.indexOf(t)) ?? -1;
+      const n = ((i = e.getValue(items$)) == null ? void 0 : i.indexOf(t)) ?? -1;
       if (n === -1) return 0;
-      const o = e.getValue(G);
+      const o = e.getValue(sizeTree$);
       return ae(o, n)[1] ?? 0;
     },
   };
 }
-let Qt = !1;
-const hi = h.forwardRef(
+let Qt = false;
+const VirtuosoMessageList = React.forwardRef(
   (
     {
-      initialData: e = [],
-      computeItemKey: t = Qn,
-      context: n = null,
-      initialLocation: o = null,
-      shortSizeAlign: i = 'top',
-      onScroll: s,
-      onRenderedDataChange: r,
-      ItemContent: l = Xn,
-      Header: c = null,
-      StickyHeader: a = null,
-      Footer: g = null,
-      StickyFooter: b = null,
-      EmptyPlaceholder: v = null,
-      HeaderWrapper: T = zn,
-      StickyHeaderWrapper: k = jn,
-      FooterWrapper: d = Kn,
-      StickyFooterWrapper: W = Un,
-      ScrollElement: U = 'div',
+      initialData = [],
+      computeItemKey = computerKeyDefault,
+      context = null,
+      initialLocation = null,
+      shortSizeAlign = 'top',
+      onScroll,
+      onRenderedDataChange,
+      ItemContent = ItemContentDefault,
+      Header = null,
+      StickyHeader = null,
+      Footer = null,
+      StickyFooter = null,
+      EmptyPlaceholder = null,
+      HeaderWrapper = HeaderWrapperDefault,
+      StickyHeaderWrapper = StickyHeaderWrapperDefault,
+      FooterWrapper = FooterWrapperDefault,
+      StickyFooterWrapper = StickFooterWrapperDefault,
+      ScrollElement = 'div',
       ...P
     },
     J,
   ) => {
-    const Y = h.useMemo(() => {
-      const y = new ho();
+    const Y = React.useMemo(() => {
+      const y = new Realm();
       return (
-        y.register(Oe),
+        y.register(initialValues$),
         y.register(Ye),
         y.register(ut),
         y.register(ot),
@@ -2337,92 +2343,92 @@ const hi = h.forwardRef(
         y.register(ue),
         y.register(He),
         y.pubIn({
-          [L]: e.slice(),
-          [Pe]: n,
-          [eo]: t,
-          [Le]: o,
-          [Dt]: l,
-          [Bn]: c,
-          [Hn]: g,
-          [_n]: a,
-          [Wn]: b,
-          [Pn]: v,
-          [Yn]: U,
-          [Jn]: W,
-          [Gn]: k,
-          [Zn]: d,
-          [qn]: T,
-          [Ct]: i,
+          [items$]: initialData.slice(),
+          [context$]: context,
+          [computeItemKey$]: computeItemKey,
+          [initialLocation$]: initialLocation,
+          [ItemContent$]: ItemContent,
+          [Header$]: Header,
+          [Footer$]: Footer,
+          [StickyHeader$]: StickyHeader,
+          [StickyFooter$]: StickyFooter,
+          [EmptyPlaceholder$]: EmptyPlaceholder,
+          [ScrollElement$]: ScrollElement,
+          [StickFooterWrapper$]: StickyFooterWrapper,
+          [StickyHeaderWrapper$]: StickyHeaderWrapper,
+          [FooterWrapper$]: FooterWrapper,
+          [HeaderWrapper$]: HeaderWrapper,
+          [shortSizeAlign$]: shortSizeAlign,
         }),
-        y.singletonSub(Ot, s),
-        y.singletonSub(ct, r),
+        y.singletonSub(Ot, onScroll),
+        y.singletonSub(ct, onRenderedDataChange),
         y
       );
     }, []);
-    h.useImperativeHandle(J, () => to(Y), [Y]),
-      h.useEffect(() => {
+    React.useImperativeHandle(J, () => to(Y), [Y]),
+      React.useEffect(() => {
         Y.pubIn({
-          [Pe]: n,
-          [Dt]: l,
+          [context$]: context,
+          [ItemContent$]: ItemContent,
         }),
-          Y.singletonSub(Ot, s),
-          Y.singletonSub(ct, r);
+          Y.singletonSub(Ot, onScroll),
+          Y.singletonSub(ct, onRenderedDataChange);
       });
-    const ne = h.useContext(Fn);
+    const ne = React.useContext(VirtuosoMessageListLicenseContext);
     return (
-      h.useEffect(() => {
+      React.useEffect(() => {
         ne.consoleMessage &&
-          (Qt || ((Qt = !0), console.warn(ne.consoleMessage)));
+          (Qt || ((Qt = true), console.warn(ne.consoleMessage)));
       }, [ne]),
-      h.useEffect(() => {
+      React.useEffect(() => {
         const y = (le) => {
           var D;
           (D = le.message) != null &&
             D.includes('ResizeObserver loop') &&
             (le.preventDefault(),
-            le.stopPropagation(),
-            le.stopImmediatePropagation());
+              le.stopPropagation(),
+              le.stopImmediatePropagation());
         };
         return (
-          window.addEventListener('error', y, { capture: !0 }),
+          window.addEventListener('error', y, { capture: true }),
           () => {
             window.removeEventListener('error', y);
           }
         );
       }, []),
       typeof window < 'u' && ne.watermarkMessage
-        ? /* @__PURE__ */ E('div', {
-            style: {
-              color: 'red',
-              pointerEvents: 'none',
-            },
-            children: ne.watermarkMessage,
-          })
-        : /* @__PURE__ */ E(go.Provider, {
-            value: Y,
-            children: /* @__PURE__ */ E(gi, { ...P }),
-          })
+        ? /* @__PURE__ */ jsx('div', {
+          style: {
+            color: 'red',
+            pointerEvents: 'none',
+          },
+          children: ne.watermarkMessage,
+        })
+        : /* @__PURE__ */ jsx(RealmContext.Provider, {
+          value: Y,
+          children: /* @__PURE__ */ jsx(gi, { ...P }),
+        })
     );
   },
 );
-hi.displayName = 'VirtuosoMessageList';
+VirtuosoMessageList.displayName = 'VirtuosoMessageList';
 const gi = ({ style: e, ...t }) => {
-  const n = Ht(),
-    o = h.useContext(ci),
-    [i, s, r, l, c, a, g, b, v, T, k] = mo(
-      Bn,
-      _n,
-      qn,
-      Gn,
-      Hn,
-      Wn,
-      Zn,
-      Jn,
-      Dt,
-      Pn,
-      Yn,
+  const curRealm = useRealm(),
+    o = React.useContext(VirtuosoMessageListTestingContext),
+    [Header, StickyHeader, HeaderWrapper, StickyHeaderWrapper, Footer, StickyFooter, FooterWrapper, StickFooterWrapper, ItemContent, EmptyPlaceholder, ScrollElement] = useCellValues(
+      Header$,
+      StickyHeader$,
+      HeaderWrapper$,
+      StickyHeaderWrapper$,
+      Footer$,
+      StickyFooter$,
+      FooterWrapper$,
+      StickFooterWrapper$,
+      ItemContent$,
+      EmptyPlaceholder$,
+      ScrollElement$,
     ),
-    [d] = h.useState(() => {
+    [resizeObs] = React.useState(() => {
       if (typeof window < 'u' && typeof ResizeObserver > 'u')
         throw new Error(
           'ResizeObserver not found. Please ensure that you have a polyfill installed.',
@@ -2439,7 +2445,7 @@ const gi = ({ style: e, ...t }) => {
             if (K === ne.current) {
               R = {
                 ...R,
-                [je]: ge.contentRect.height,
+                [scrollOffset$]: ge.contentRect.height,
                 [j]: (Je = w.current) == null ? void 0 : Je.scrollHeight,
               };
               continue;
@@ -2447,7 +2453,7 @@ const gi = ({ style: e, ...t }) => {
             if (K === le.current) {
               R = {
                 ...R,
-                [Ke]: ge.contentRect.height,
+                [stickyHeaderHeight$]: ge.contentRect.height,
                 [j]: (xe = w.current) == null ? void 0 : xe.scrollHeight,
               };
               continue;
@@ -2463,7 +2469,7 @@ const gi = ({ style: e, ...t }) => {
             if (K === J.current) {
               R = {
                 ...R,
-                [Ue]: ge.contentRect.height,
+                [stickyFooterHeight$]: ge.contentRect.height,
                 [j]: (jt = w.current) == null ? void 0 : jt.scrollHeight,
               };
               continue;
@@ -2473,7 +2479,7 @@ const gi = ({ style: e, ...t }) => {
                 ...R,
                 [$]: K.scrollTop,
                 [j]: K.scrollHeight,
-                [Z]: ge.contentRect.height,
+                [viewportHeight]: ge.contentRect.height,
                 [$n]: K.clientWidth,
               };
               continue;
@@ -2501,18 +2507,18 @@ const gi = ({ style: e, ...t }) => {
               ...R,
               [me]: _,
             }),
-            n.pubIn(R);
+            curRealm.pubIn(R);
         });
     }),
-    [W, U] = Qe(d),
-    [P, J] = Qe(d),
-    [Y, ne] = Qe(d),
-    [y, le] = Qe(d),
-    D = h.useCallback(
+    [W, U] = Qe(resizeObs),
+    [P, J] = Qe(resizeObs),
+    [Y, ne] = Qe(resizeObs),
+    [y, le] = Qe(resizeObs),
+    D = React.useCallback(
       (f) => {
         if (o) {
           const z = Number.parseInt(f.dataset.index ?? '');
-          n.pub(me, [
+          curRealm.pub(me, [
             {
               startIndex: z,
               endIndex: z,
@@ -2520,86 +2526,86 @@ const gi = ({ style: e, ...t }) => {
             },
           ]);
         }
-        d == null || d.observe(f);
+        resizeObs == null || resizeObs.observe(f);
       },
-      [d, n, o],
+      [resizeObs, curRealm, o],
     ),
-    Ge = h.useCallback(
+    Ge = React.useCallback(
       (f) => {
-        d == null || d.unobserve(f);
+        resizeObs == null || resizeObs.unobserve(f);
       },
-      [d],
+      [resizeObs],
     ),
-    w = h.useRef(null),
-    oe = h.useRef(null),
-    bt = h.useCallback(
+    w = React.useRef(null),
+    oe = React.useRef(null),
+    virtuosoListRef = React.useCallback(
       (f) => {
         f
-          ? ((oe.current = f), d == null || d.observe(f, { box: 'border-box' }))
+          ? ((oe.current = f), resizeObs == null || resizeObs.observe(f, { box: 'border-box' }))
           : oe.current &&
-            (d == null || d.unobserve(oe.current), (oe.current = null));
+          (resizeObs == null || resizeObs.unobserve(oe.current), (oe.current = null));
       },
-      [d],
+      [resizeObs],
     ),
-    fe = h.useRef(null),
+    fe = React.useRef(null),
     X = fi(w, oe, fe),
-    Se = h.useCallback((f) => {
+    Se = React.useCallback((f) => {
       w.current && (w.current.scrollTop += f);
     }, []),
-    ie = h.useCallback(() => {
+    ie = React.useCallback(() => {
       const f = w.current;
       if (f !== null) {
         if (fe.current !== null) {
           const z = f.scrollHeight - f.clientHeight;
           dn(f.scrollTop, Math.min(z, fe.current)) &&
-            ((fe.current = null), n.pub(Yt, !1), n.pub(ze, f.scrollTop));
+            ((fe.current = null), curRealm.pub(Yt, false), curRealm.pub(ze, f.scrollTop));
         }
-        n.pub($, f.scrollTop);
+        curRealm.pub($, f.scrollTop);
       }
-    }, [n]),
-    Q = h.useCallback(
+    }, [curRealm]),
+    Q = React.useCallback(
       (f) => {
-        n.pub(Kt, f.deltaY > 0 ? 'down' : 'up');
+        curRealm.pub(Kt, f.deltaY > 0 ? 'down' : 'up');
       },
-      [n],
+      [curRealm],
     ),
-    vt = h.useCallback(
+    virtuosoListRefCb = React.useCallback(
       (f) => {
         f
-          ? (n.pub(At, f),
+          ? (curRealm.pub(At, f),
             (w.current = f),
             f.addEventListener('scroll', ie),
             f.addEventListener('wheel', Q),
             o &&
-              n.pubIn({
-                [Z]: o.viewportHeight,
-                [j]: o.viewportHeight,
-                [$]: 0,
-              }),
-            d == null || d.observe(f, { box: 'border-box' }))
+          curRealm.pubIn({
+            [viewportHeight]: o.viewportHeight,
+              [j]: o.viewportHeight,
+              [$]: 0,
+            }),
+            resizeObs == null || resizeObs.observe(f, { box: 'border-box' }))
           : w.current &&
-            (w.current.removeEventListener('scroll', ie),
+          (w.current.removeEventListener('scroll', ie),
             w.current.removeEventListener('wheel', Q),
-            n.pub(At, null),
-            d == null || d.unobserve(w.current),
+            curRealm.pub(At, null),
+            resizeObs == null || resizeObs.unobserve(w.current),
             (w.current = null));
       },
-      [d, n, ie, Q, o],
+      [resizeObs, curRealm, ie, Q, o],
     ),
-    { items: ee } = C(Oe);
-  h.useLayoutEffect(() => {
+    { items } = useCellValue(initialValues$);
+  React.useLayoutEffect(() => {
     if (!mn()) return;
     const f = setInterval(() => {
       var z;
-      n.pub(j, (z = w.current) == null ? void 0 : z.scrollHeight);
+      curRealm.pub(j, (z = w.current) == null ? void 0 : z.scrollHeight);
     }, 1e3);
     return () => {
       clearInterval(f);
     };
-  }, [n]),
-    h.useLayoutEffect(() => n.sub(Re, X), [X, n]),
-    h.useLayoutEffect(() => n.sub(re, Se), [Se, n]);
-  const Ze = h.useCallback(() => {
+  }, [curRealm]),
+    React.useLayoutEffect(() => curRealm.sub(Re, X), [X, curRealm]),
+    React.useLayoutEffect(() => curRealm.sub(re, Se), [Se, curRealm]);
+  const Ze = React.useCallback(() => {
     var z;
     const f = [];
     for (const _ of ((z = oe.current) == null ? void 0 : z.children) ?? []) {
@@ -2613,109 +2619,112 @@ const gi = ({ style: e, ...t }) => {
         ? f.push({ endIndex: R, size: xe, startIndex: R })
         : f[f.length - 1].endIndex++;
     }
-    n.pub(me, f);
-  }, [n]);
-  h.useLayoutEffect(() => n.sub(On, Ze), [Ze, n]);
-  const no = C(H),
-    oo = C(st),
-    io = C(q),
-    so = C(at),
-    ro = C(gt),
-    lo = C(An),
-    he = C(Pe),
-    uo = C(eo),
-    co = C(ke),
-    ao = C(Ae);
+    curRealm.pub(me, f);
+  }, [curRealm]);
+  React.useLayoutEffect(() => curRealm.sub(On, Ze), [Ze, curRealm]);
+  const scrollDelta = useCellValue(scrollDelta$),
+    oo = useCellValue(st),
+    io = useCellValue(q),
+    marginTop = useCellValue(marginTop$),
+    paddingBottom = useCellValue(paddingBottom$),
+    transition = useCellValue(transition$),
+    conetxt = useCellValue(context$),
+    computeItemKey = useCellValue(computeItemKey$),
+    totalCount = useCellValue(totalCount$),
+    totalHeight = useCellValue(totalHeight$);
   return (
-    h.useLayoutEffect(() => {
-      ee.length === 0 && n.pub(Nn);
-    }, [ee, n]),
-    /* @__PURE__ */ E(fo, {
-      children: /* @__PURE__ */ en(k, {
+    React.useLayoutEffect(() => {
+      items.length === 0 && curRealm.pub(Nn);
+    }, [items, curRealm]),
+    /* @__PURE__ */ jsx(Fragment, {
+      children: /* @__PURE__ */ jsxs(ScrollElement, {
         ...t,
-        ref: vt,
+        ref: virtuosoListRefCb,
         'data-testid': 'virtuoso-scroller',
         style: {
           overflowY: io ? 'hidden' : 'scroll',
           boxSizing: 'border-box',
           ...e,
         },
-        ...(k === 'div' ? { context: he } : {}),
+        ...(ScrollElement === 'div' ? { context: conetxt } : {}),
         children: [
-          s &&
-            /* @__PURE__ */ E(l, {
-              ref: y,
-              style: Xe,
-              children: /* @__PURE__ */ E(s, { context: he }),
-            }),
-          i &&
-            /* @__PURE__ */ E(r, {
-              ref: Y,
-              style: Xe,
-              children: /* @__PURE__ */ E(i, { context: he }),
-            }),
-          co > 0
-            ? /* @__PURE__ */ E('div', {
-                ref: bt,
-                'data-testid': 'virtuoso-list',
-                style: {
-                  boxSizing: 'content-box',
-                  height: ao,
-                  paddingBottom: ro,
-                  overflowAnchor: 'none',
-                  marginTop: so,
-                  transition: lo,
-                  position: 'relative',
-                  transform: `translateY(${no + oo}px)`,
-                },
-                children: ee.map((f) =>
-                  /* @__PURE__ */ E(
-                    zo,
-                    {
-                      mount: D,
-                      unmount: Ge,
-                      item: f,
-                      ItemContent: v,
-                    },
-                    uo({ index: f.index, data: f.data, context: he }),
-                  ),
-                ),
-              })
-            : T
-            ? /* @__PURE__ */ E(T, { context: he })
-            : null,
-          c &&
-            /* @__PURE__ */ E(g, {
-              ref: W,
-              style: Xe,
-              children: /* @__PURE__ */ E(c, { context: he }),
-            }),
-          a &&
-            /* @__PURE__ */ E(b, {
-              ref: P,
-              style: Xe,
-              children: /* @__PURE__ */ E(a, { context: he }),
-            }),
+          StickyHeader &&
+            /* @__PURE__ */ jsx(StickyHeaderWrapper, {
+            ref: y,
+            style: Xe,
+              children: /* @__PURE__ */ jsx(StickyHeader, { context: conetxt }),
+          }),
+          Header &&
+            /* @__PURE__ */ jsx(HeaderWrapper, {
+            ref: Y,
+            style: Xe,
+              children: /* @__PURE__ */ jsx(Header, { context: conetxt }),
+          }),
+          totalCount > 0
+            ? /* @__PURE__ */ jsx('div', {
+              ref: virtuosoListRef,
+              'data-testid': 'virtuoso-list',
+              style:
+                typeof window === 'undefined' ? {} :
+                  {
+                    boxSizing: 'content-box',
+                    height: totalHeight,
+                    paddingBottom,
+                    overflowAnchor: 'none',
+                    marginTop,
+                    transition,
+                    position: 'relative',
+                    transform: `translateY(${scrollDelta + oo}px)`,
+                  },
+              children: items.map((f) => {
+                return /* @__PURE__ */ jsx(
+                  zo,
+                  {
+                    mount: D,
+                    unmount: Ge,
+                    item: f,
+                    ItemContent: ItemContent,
+                  },
+                  computeItemKey({ index: f.index, data: f.data, context: conetxt }),
+                )
+              },
+              ),
+            })
+            : EmptyPlaceholder
+              ? /* @__PURE__ */ jsx(EmptyPlaceholder, { context: conetxt })
+              : null,
+          Footer &&
+            /* @__PURE__ */ jsx(FooterWrapper, {
+            ref: W,
+            style: Xe,
+              children: /* @__PURE__ */ jsx(Footer, { context: conetxt }),
+          }),
+          StickyFooter &&
+            /* @__PURE__ */ jsx(StickFooterWrapper, {
+            ref: P,
+            style: Xe,
+              children: /* @__PURE__ */ jsx(StickyFooter, { context: conetxt }),
+          }),
         ],
       }),
     })
   );
 };
-function vi() {
-  return C(qe);
+function useVirtuosoLocation() {
+  return useCellValue(qe);
 }
-function Ii() {
-  return C(ct);
+function useCurrentlyRenderedData() {
+  return useCellValue(ct);
 }
-function ki() {
-  const e = Ht();
-  return h.useMemo(() => to(e), [e]);
+function useVirtuosoMethods() {
+  const e = useRealm();
+  return React.useMemo(() => to(e), [e]);
 }
 export {
-  hi as VirtuosoMessageList,
-  ui as VirtuosoMessageListLicense,
-  ci as VirtuosoMessageListTestingContext,
-  Ii as useCurrentlyRenderedData,
-  vi as useVirtuosoLocation,
-  ki as useVirtuosoMethods,
+  VirtuosoMessageList,
+  VirtuosoMessageListLicense,
+  VirtuosoMessageListTestingContext,
+  useCurrentlyRenderedData,
+  useVirtuosoLocation,
+  useVirtuosoMethods,
 };

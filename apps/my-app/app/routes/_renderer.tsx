@@ -18,7 +18,19 @@ export default reactRenderer(({ children }) => {
           </>
         )}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          const virtuosoList = document.querySelector('[data-testid="virtuoso-list"]');
+          if (virtuosoList) {
+            virtuosoList.scrollIntoView({ behavior: 'instant', block: 'end' });
+          }
+          `,
+          }}
+        ></script>
+      </body>
     </html>
   );
 });

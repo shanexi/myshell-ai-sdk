@@ -2,8 +2,9 @@ import {
   type VirtuosoMessageListMethods,
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
+  VirtuosoMessageListTestingContext,
 } from './message-list';
-import { useEffect, useRef } from 'react';
+import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';
 import {
@@ -16,10 +17,11 @@ import { cn } from '../utils';
 
 export function ChatMessageList(props: {
   className?: string;
+  style?: CSSProperties;
   licenseKey?: string;
   initialMessages?: Message[];
 }) {
-  const { className, licenseKey, initialMessages } = props;
+  const { className, style, licenseKey, initialMessages } = props;
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
@@ -28,7 +30,7 @@ export function ChatMessageList(props: {
   }, []);
   // mock data
   // const myMessage = randomMessage('me');
-  useEffect(() => {
+  /*  useEffect(() => {
     // virtuoso.current?.data.append(
     //   [myMessage],
     //   ({ scrollInProgress, atBottom }) => {
@@ -68,11 +70,11 @@ export function ChatMessageList(props: {
         }, 'smooth');
       }, 150);
     }, 1000);
-  }, []);
+  }, []); */
 
   return (
     // 必须 flex flex-col 才能让 `virtuoso.current.scrollToItem({ index: 0, align: "end" })` 正常工作，原因未细究，参考 https://virtuoso.dev/virtuoso-message-list/examples/ai-chatbot/
-    <div className={cn('flex flex-col', className)}>
+    <div className={cn('flex flex-col', className)} style={style}>
       <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
         <VirtuosoMessageList<Message, MessageListContext>
           ref={virtuoso}
@@ -80,8 +82,7 @@ export function ChatMessageList(props: {
           style={{ flex: 1 }}
           computeItemKey={({ data }) => data.key}
           initialLocation={{ index: 'LAST', align: 'end' }}
-          // 注释的话，ssr 会至少暂时一条数据 然后记得 initialMessages 要在 SSR 传入
-          // shortSizeAlign="bottom-smooth"
+          shortSizeAlign="bottom"
           initialData={initialMessages}
           ItemContent={MessageItem}
         />

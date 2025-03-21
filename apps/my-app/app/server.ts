@@ -7,6 +7,9 @@ import { trpcServer } from '@hono/trpc-server';
 import { Hono } from 'hono';
 import { isNotSSG } from './constants';
 
+import ResizeObserver from 'resize-observer-polyfill';
+global.ResizeObserver = ResizeObserver;
+
 const container = new Container();
 loadModule(container);
 

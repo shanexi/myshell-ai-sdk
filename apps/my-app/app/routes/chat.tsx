@@ -1,25 +1,28 @@
 import {
   BotInfo,
   ChatFoot,
+  ChatInputMenu,
   ChatInputRoot,
   ChatRoot,
+  ChatTopMenu,
   ChatTopRoot,
   randomMessage,
 } from '@myshell-run/ui-biz';
 import { createRoute } from '../createRoute';
-import {
-  ChatInputMenuIsland,
-  ChatMessageListIsland,
-  ChatTopMenuIsland,
-} from '../islands/chat';
+import { ChatMessageListIsland } from '../islands/chat';
 
 export default createRoute(async (c) => {
-  const initialMessages = [randomMessage('me')];
+  const initialMessages = [
+    randomMessage('me'),
+    randomMessage('me'),
+    randomMessage('me'),
+  ];
   return c.render(
     <ChatRoot>
       <div className="flex-none">
         <ChatTopRoot>
-          <ChatTopMenuIsland />
+          {/* <ChatTopMenuIsland /> */}
+          <ChatTopMenu />
         </ChatTopRoot>
       </div>
       <ChatMessageListIsland
@@ -30,7 +33,8 @@ export default createRoute(async (c) => {
       {/* <Counter initial={10}></Counter> */}
       <ChatFoot>
         <ChatInputRoot>
-          <ChatInputMenuIsland />
+          {/* <ChatInputMenuIsland /> */}
+          <ChatInputMenu />
         </ChatInputRoot>
         <BotInfo />
       </ChatFoot>

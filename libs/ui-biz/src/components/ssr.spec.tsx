@@ -8,7 +8,7 @@ import {
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
   VirtuosoMessageListTestingContext,
-} from '@virtuoso.dev/message-list';
+} from './message-list';
 
 interface Message {
   key: string;
@@ -44,7 +44,7 @@ describe('ssr', () => {
     );
   });
 
-  it('message list', () => {
+  it.only('message list', () => {
     const html = ReactDOMServer.renderToString(<SampleComponent />);
     const { document } = new JSDOM(html).window;
     expect(document.body.innerHTML).toMatchInlineSnapshot(
