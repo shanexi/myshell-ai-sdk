@@ -24,7 +24,11 @@ export default meta;
 
 export const Primary: StoryObj<typeof ChatMessageList> = {
   args: {
-    initialMessages: [randomMessage('me'), randomMessage('me')],
+    initialMessages: [
+      randomMessage('me'),
+      randomMessage('me'),
+      randomMessage('me'),
+    ],
     style: {
       height: 600,
       display: 'flex',

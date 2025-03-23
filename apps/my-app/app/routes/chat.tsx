@@ -16,6 +16,10 @@ export default createRoute(async (c) => {
     randomMessage('me'),
     randomMessage('me'),
     randomMessage('me'),
+    randomMessage('me'),
+    randomMessage('me'),
+    randomMessage('me'),
+    randomMessage('me'),
   ];
   return c.render(
     <ChatRoot>

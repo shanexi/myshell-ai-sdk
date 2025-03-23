@@ -3,7 +3,7 @@ import {
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
   VirtuosoMessageListTestingContext,
-} from './message-list';
+} from '@virtuoso.dev/message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';
@@ -82,7 +82,8 @@ export function ChatMessageList(props: {
           style={{ flex: 1 }}
           computeItemKey={({ data }) => data.key}
           initialLocation={{ index: 'LAST', align: 'end' }}
-          shortSizeAlign="bottom"
+          // TODO ssr 只支持 top, 因为 bottom 需要计算 marginTop
+          // shortSizeAlign="bottom"
           initialData={initialMessages}
           ItemContent={MessageItem}
         />

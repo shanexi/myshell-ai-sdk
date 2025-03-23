@@ -1,0 +1,76 @@
+diff --git a/dist/index.js b/dist/index.js
+index 621b8d6c588f7219b7badbe185cad745d65a7106..c0806f565e4efa8aa401be8c854a280d08e604bc 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -681,6 +681,13 @@ const De = u(null), Do = u(!1), nt = u(!0), Mt = x((e) => {
+     Be
+   );
+ });
++// ssr render all initialValues
++function CoX(e, t) {
++  return t.reduce((acc, cur, curIdx) => {
++    acc.push(Co(curIdx, t)[0])
++    return acc
++  }, [])
++}
+ function Co(e, t) {
+   return [
+     {
+@@ -752,7 +759,7 @@ const Fo = [], Ce = {
+             return Ce;
+           if (I(i)) {
+             let X = 0;
+-            return g !== null && (X = Pt(g, r - 1).index), { ...Ce, items: Co(X, c), offsetTree: s, totalCount: r, data: c };
++            return g !== null && (X = Pt(g, r - 1).index), { ...Ce, items: CoX(X, c), offsetTree: s, totalCount: r, data: c };
+           }
+           let W = 0;
+           b !== null && n === 0 && (W = yn({
+@@ -1239,7 +1246,7 @@ const ke = u(0), Pe = u(null), L = u(null, (e) => {
+     ),
+     te
+   );
+-}), zo = ({ item: e, ItemContent: t, mount: n, unmount: o }) => {
++}), zo = ({ item: e, ItemContent: t, mount: n, unmount: o, isClient }) => {
+   const i = C(Pe), s = h.useRef(null), r = h.useCallback(
+     (l) => {
+       l ? (s.current = l, n(l)) : s.current && (o(s.current), s.current = null);
+@@ -1254,7 +1261,7 @@ const ke = u(0), Pe = u(null), L = u(null, (e) => {
+       "data-known-size": e.height,
+       style: {
+         overflowAnchor: "none",
+-        position: "absolute",
++        position: isClient ? 'absolute' : undefined,
+         width: "100%",
+         top: e.offset
+       },
+@@ -2035,6 +2042,11 @@ const gi = ({ style: e, ...t }) => {
+   }, [n]);
+   h.useLayoutEffect(() => n.sub(On, Ze), [Ze, n]);
+   const no = C(H), oo = C(st), io = C(q), so = C(at), ro = C(gt), lo = C(An), he = C(Pe), uo = C(eo), co = C(ke), ao = C(Ae);
++    // see [two-pass rendering](https://react.dev/reference/react-dom/client/hydrateRoot#handling-different-client-and-server-content)
++    const [isClient, setIsClient] = h.useState(false)
++    h.useEffect(() => {
++      setIsClient(true);
++    }, [])
+   return h.useLayoutEffect(() => {
+     ee.length === 0 && n.pub(Nn);
+   }, [ee, n]), /* @__PURE__ */ E(fo, { children: /* @__PURE__ */ en(
+@@ -2059,7 +2071,7 @@ const gi = ({ style: e, ...t }) => {
+             "data-testid": "virtuoso-list",
+             style: {
+               boxSizing: "content-box",
+-              height: ao,
++              height: isClient ? ao : 'unset',
+               paddingBottom: ro,
+               overflowAnchor: "none",
+               marginTop: so,
+@@ -2073,7 +2085,8 @@ const gi = ({ style: e, ...t }) => {
+                 mount: D,
+                 unmount: Ge,
+                 item: f,
+-                ItemContent: v
++                ItemContent: v,
++                isClient,
+               },
+               uo({ index: f.index, data: f.data, context: he })
+             ))
