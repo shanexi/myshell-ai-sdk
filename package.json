@@ -63,8 +63,8 @@
     "@types/jest": "^29.4.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "18.14.2",
-    "@types/react": "19.0.12",
-    "@types/react-dom": "19.0.4",
+    "@types/react": "18.3.19",
+    "@types/react-dom": "18.3.5",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "@virtuoso.dev/gurx": "^1.0.0",
@@ -143,7 +143,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
-    "typescript": "~5.7.3",
+    "typescript": "5.8.2",
     "url-loader": "^4.1.1",
     "use-sync-external-store": "1.5.0-canary-fbcda19a-20250317",
     "vite": "^6.1.1",
@@ -167,9 +167,7 @@
       "@babel/parser": "7.21.9",
       "use-sync-external-store": "1.5.0-canary-fbcda19a-20250317",
       "react": "19.0.0",
-      "react-dom": "19.0.0",
-      "@types/react": "19.0.12",
-      "@types/react-dom": "19.0.4"
+      "react-dom": "19.0.0"
     },
     "patchedDependencies": {
       "nx@15.9.7": "patches/nx@15.9.7.patch",
