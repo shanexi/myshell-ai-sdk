@@ -3,7 +3,7 @@ import {
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
   VirtuosoMessageListTestingContext,
-} from '@virtuoso.dev/message-list';
+} from './message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import { randPhrase, randomMessage } from './chat-demo';

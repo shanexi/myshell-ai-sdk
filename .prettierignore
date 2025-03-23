@@ -6,4 +6,4 @@ pnpm-lock.yaml
 
 **/*.typegen.ts
 
-libs/ui-biz/src/components/message-list/
+libs/ui-biz/src/components/message-list/**/*
