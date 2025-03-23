@@ -31,7 +31,8 @@ export default createRoute(async (c) => {
       </div>
       <ChatMessageListIsland
         className="flex flex-grow flex-col overflow-auto px-[8px]"
-        licenseKey={c.env.LIC}
+        // TODO ssg 环境拿到 c.env? 先避免报错
+        licenseKey={c?.env?.LIC}
         initialMessages={initialMessages}
       />
       {/* <Counter initial={10}></Counter> */}
