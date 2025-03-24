@@ -1,19 +1,12 @@
+import { Message, MessageListContext } from '@myshell-run/def';
+import { CSSProperties, useEffect, useRef } from 'react';
+import { cn } from '../utils';
+import { MessageItem } from './message-item';
 import {
   type VirtuosoMessageListMethods,
-  VirtuosoMessageListLicense,
   VirtuosoMessageList,
-  VirtuosoMessageListTestingContext,
-} from './message-list';
-import { CSSProperties, useEffect, useRef } from 'react';
-import { MessageItem } from './message-item';
-import { randPhrase, randomMessage } from './chat-demo';
-import {
-  AGENT_MESSAGE_LIST_DIRECTORY_TYPE,
-  REPLY_MESSAGE_EXECUTING_TYPE,
-  REPLY_MESSAGE_TYPE,
-} from '@myshell-run/message-item-plugins';
-import { Message, MessageListContext } from '@myshell-run/def';
-import { cn } from '../utils';
+  VirtuosoMessageListLicense,
+} from '@virtuoso.dev/message-list';
 
 export function ChatMessageList(props: {
   className?: string;
