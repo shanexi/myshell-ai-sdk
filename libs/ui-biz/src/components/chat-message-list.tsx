@@ -79,7 +79,7 @@ export function ChatMessageList(props: {
         <VirtuosoMessageList<Message, MessageListContext>
           ref={virtuoso}
           context={{}}
-          style={{ flex: 1 }}
+          style={{ flex: 1, scrollbarWidth: 'none' }}
           computeItemKey={({ data }) => data.key}
           initialLocation={{ index: 'LAST', align: 'end' }}
           // TODO ssr 只支持 top, 因为 bottom 需要计算 marginTop
