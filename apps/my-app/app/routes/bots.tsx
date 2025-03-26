@@ -1,7 +1,7 @@
 import { Bot, Database } from '@myshell-run/simple-prisma';
 import { BotListHeader, BotListRoot } from '@myshell-run/ui-biz';
 import { Kysely } from 'kysely';
-import { createRoute } from '../createRoute';
+import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 import { D1Dialect } from '../kysely-d1';
 

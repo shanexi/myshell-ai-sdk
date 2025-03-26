@@ -1,4 +1,4 @@
-import { createRoute } from '../createRoute';
+import { createRoute } from '../create-route';
 import { CounterWrapper } from '../islands/counter';
 import type { Meta } from './types';
 

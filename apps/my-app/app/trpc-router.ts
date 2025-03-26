@@ -1,5 +1,5 @@
-import { inject, injectable } from 'inversify';
 import { initTRPC } from '@trpc/server';
+import { decorate, injectable } from 'inversify';
 import { z } from 'zod';
 
 const t = initTRPC
@@ -11,7 +11,6 @@ const t = initTRPC
 const publicProcedure = t.procedure;
 const router = t.router;
 
-@injectable()
 export class TrpcRouter {
   constructor() {
     //
@@ -25,5 +24,6 @@ export class TrpcRouter {
       }),
   });
 }
+decorate(injectable(), TrpcRouter);
 
 export type AppRouter = TrpcRouter[`appRouter`];

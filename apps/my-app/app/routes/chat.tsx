@@ -10,7 +10,7 @@ import {
   ChatTopRoot,
 } from '@myshell-run/ui-biz';
 import { Kysely } from 'kysely';
-import { createRoute } from '../createRoute';
+import { createRoute } from '../create-route';
 import { ChatMessageListIsland } from '../islands/chat';
 import { D1Dialect } from '../kysely-d1';
 

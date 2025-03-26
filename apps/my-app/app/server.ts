@@ -10,8 +10,8 @@ import { isNotSSG } from './constants';
 import ResizeObserver from 'resize-observer-polyfill';
 global.ResizeObserver = ResizeObserver;
 
-const container = new Container();
-loadModule(container);
+const serverContainer = new Container();
+isNotSSG && serverContainer.bind(TrpcRouter).toSelf().inSingletonScope();
 
 type HonoEnv = {
   Bindings: Env;
@@ -22,7 +22,7 @@ type HonoEnv = {
 const happ = new Hono<HonoEnv>();
 
 if (isNotSSG) {
-  const trpcRouter = container.get(TrpcRouter);
+  const trpcRouter = serverContainer.get(TrpcRouter);
   happ.use(
     '/trpc/*',
     trpcServer({

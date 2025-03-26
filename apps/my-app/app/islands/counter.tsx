@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { container } from './container';
+import { clientContainer } from './client.container';
 import { CounterModel } from './counter.model';
 import { InversifyProvider, useInjection } from '@myshell-run/ui-primitives';
 import { def } from '@myshell-run/def';
@@ -22,7 +22,7 @@ export const Counter = observer(() => {
 
 export const CounterWrapper = () => {
   return (
-    <InversifyProvider container={container}>
+    <InversifyProvider container={clientContainer}>
       <Counter />
     </InversifyProvider>
   );
