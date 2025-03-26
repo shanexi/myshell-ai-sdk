@@ -1,7 +1,8 @@
 import { Kysely } from 'kysely';
 import { createRoute } from '../createRoute';
-import { Bot, Database } from '../db';
+import { Bot, Database } from '@myshell-run/simple-prisma';
 import { D1Dialect } from '../kysely-d1';
+import { BotList } from '@myshell-run/ui-biz';
 
 export default createRoute(async (c) => {
   let bots: Bot[] = [];
@@ -14,13 +15,5 @@ export default createRoute(async (c) => {
     });
     bots = await db.selectFrom('bot').selectAll().execute();
   }
-  return c.render(
-    <div>
-      <ul>
-        {bots.map((bot) => {
-          return <li key={bot.id}>{bot.name}</li>;
-        })}
-      </ul>
-    </div>,
-  );
+  return c.render(<BotList initialBots={bots} />);
 });

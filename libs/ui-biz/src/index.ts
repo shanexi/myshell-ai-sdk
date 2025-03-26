@@ -13,3 +13,4 @@ export * from './components/chat-input';
 export * from './components/chat-message-list';
 export * from './components/chat-top';
 export * from './components/chat-demo';
+export * from './components/bot-list';

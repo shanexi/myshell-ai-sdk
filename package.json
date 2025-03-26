@@ -115,6 +115,7 @@
     "prettier-2": "npm:prettier@^2.6.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.5.0",
+    "prisma-kysely": "^1.8.0",
     "react": "19.0.0",
     "react-aria": "^3.38.1",
     "react-aria-components": "^1.7.1",

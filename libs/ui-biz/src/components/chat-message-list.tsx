@@ -1,6 +1,6 @@
 import { Message, MessageListContext } from '@myshell-run/def';
 import { CSSProperties, useEffect, useRef } from 'react';
-import { cn } from '../utils';
+import { cn } from '@myshell-run/ui-primitives';
 import { MessageItem } from './message-item';
 import {
   type VirtuosoMessageListMethods,
@@ -18,9 +18,6 @@ export function ChatMessageList(props: {
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
 
-  useEffect(() => {
-    (window as any).vref = virtuoso.current;
-  }, []);
   // mock data
   // const myMessage = randomMessage('me');
   /*  useEffect(() => {

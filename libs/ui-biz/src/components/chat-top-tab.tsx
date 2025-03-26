@@ -1,4 +1,4 @@
-import { cn } from '../utils';
+import { cn } from '@myshell-run/ui-primitives';
 
 export function ChatTopTab() {
   return (
