@@ -67,6 +67,7 @@ export function ChatMessageList(props: {
     <div className={cn('flex flex-col', className)} style={style}>
       <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
         <VirtuosoMessageList<Message, MessageListContext>
+          id="x-chat-message-list"
           ref={virtuoso}
           context={{}}
           style={{ flex: 1, scrollbarWidth: 'none' }}

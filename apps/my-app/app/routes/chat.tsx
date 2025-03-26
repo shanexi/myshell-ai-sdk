@@ -1,8 +1,10 @@
 import {
   BotInfo,
   ChatFoot,
+  ChatInputMenu,
   ChatInputRoot,
   ChatRoot,
+  ChatTopMenu,
   ChatTopRoot,
   randomMessage,
 } from '@myshell-run/ui-biz';
@@ -27,7 +29,7 @@ export default createRoute(async (c) => {
     <ChatRoot>
       <div className="flex-none">
         <ChatTopRoot>
-          <ChatTopMenuIsland />
+          <ChatTopMenu />
         </ChatTopRoot>
       </div>
       <ChatMessageListIsland
@@ -38,7 +40,8 @@ export default createRoute(async (c) => {
       />
       <ChatFoot>
         <ChatInputRoot>
-          <ChatInputMenuIsland />
+          {/* react-aria ssr 有问题 */}
+          <ChatInputMenu />
         </ChatInputRoot>
         <BotInfo />
       </ChatFoot>

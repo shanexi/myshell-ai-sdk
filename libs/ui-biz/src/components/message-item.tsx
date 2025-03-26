@@ -14,7 +14,8 @@ export const MessageItem: VirtuosoMessageListProps<
   const svc = useInjection(MessageItemSvc);
   const { data } = props;
   const ownMessage = data.user === 'me';
-  if (ownMessage) return <OwnMessage {...data} />;
+  const { key, ...rest } = data;
+  if (ownMessage) return <OwnMessage key={data.key} {...rest} />;
   const item = svc.getItem(data.type ?? REPLY_MESSAGE_TYPE);
   return item.render(data);
 };

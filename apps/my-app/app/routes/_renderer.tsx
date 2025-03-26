@@ -23,7 +23,7 @@ export default reactRenderer(({ children }) => {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-          const virtuosoList = document.querySelector('[data-testid="virtuoso-list"]');
+          const virtuosoList = document.querySelector('#x-chat-message-list > [data-testid="virtuoso-list"]');
           if (virtuosoList) {
             virtuosoList.scrollIntoView({ behavior: 'instant', block: 'end' });
           }

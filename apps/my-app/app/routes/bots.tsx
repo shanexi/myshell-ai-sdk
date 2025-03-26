@@ -8,6 +8,7 @@ import {
   BotListRoot,
   BotListSearch,
 } from '@myshell-run/ui-biz';
+import { BotListIsland } from '../islands/bot-list';
 
 export default createRoute(async (c) => {
   let bots: Bot[] = [];
@@ -22,9 +23,15 @@ export default createRoute(async (c) => {
   }
   return c.render(
     <BotListRoot>
-      <BotListHeader />
-      <BotListSearch />
-      <BotList initialBots={bots} />
+      <div className="flex-none">
+        <BotListHeader />
+        <BotListSearch />
+      </div>
+      <BotListIsland
+        licenseKey={c?.env?.LIC}
+        initialBots={bots}
+        className="flex-grow overflow-auto"
+      />
     </BotListRoot>,
   );
 });
