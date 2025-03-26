@@ -8,6 +8,7 @@ import { CSSProperties, useRef } from 'react';
 import { Bot } from '@myshell-run/simple-prisma';
 import { cn } from '@myshell-run/ui-primitives';
 import { ReactComponent as CheckBadge } from './check-badge.svg';
+import { Energy } from './energy';
 
 export type BotListContext = {
   //
@@ -53,6 +54,7 @@ export const BotListItem: VirtuosoMessageListProps<
       <img
         className="mr-spacing-md h-[56px] w-[56px] rounded-xl"
         src={avatar}
+        alt={name}
       />
       {/* 在右侧容器添加了 min-w-0 类 - 这是一个关键修改，它允许 flex 子项在必要时缩小到比其内容更小的尺寸 */}
       <div className="flex min-w-0 flex-1 flex-col justify-center">
@@ -69,3 +71,17 @@ export const BotListItem: VirtuosoMessageListProps<
     </div>
   );
 };
+
+export function BotListRoot(props: { children?: React.ReactNode }) {
+  const { children } = props;
+  return <div className="flex h-screen flex-col">{children}</div>;
+}
+
+export function BotListHeader() {
+  return (
+    <div className="mx-spacing-xl mt-spacing-lg mb-spacing-xs flex items-center justify-between">
+      <div className="display-md-emphasized text-text-default-light">Chat</div>
+      <Energy />
+    </div>
+  );
+}
