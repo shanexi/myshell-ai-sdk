@@ -15,5 +15,6 @@ model Bot {
   updatedAt DateTime @updatedAt
 
   name        String
+  avatar      String?
   description String
 }
