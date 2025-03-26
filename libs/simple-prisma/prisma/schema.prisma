@@ -9,9 +9,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Create a simple model database
-model User {
-  id    String  @id @default(uuid())
-  email String  @unique
-  name  String?
+model Bot {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String
 }
