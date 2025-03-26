@@ -1,14 +1,9 @@
+import { Bot, Database } from '@myshell-run/simple-prisma';
+import { BotListHeader, BotListRoot } from '@myshell-run/ui-biz';
 import { Kysely } from 'kysely';
 import { createRoute } from '../createRoute';
-import { Bot, Database } from '@myshell-run/simple-prisma';
+import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 import { D1Dialect } from '../kysely-d1';
-import {
-  BotList,
-  BotListHeader,
-  BotListRoot,
-  BotListSearch,
-} from '@myshell-run/ui-biz';
-import { BotListIsland } from '../islands/bot-list';
 
 export default createRoute(async (c) => {
   let bots: Bot[] = [];
@@ -34,7 +29,7 @@ export default createRoute(async (c) => {
     <BotListRoot>
       <div className="flex-none">
         <BotListHeader />
-        <BotListSearch />
+        <BotListSearchIsland />
       </div>
       <BotListIsland
         licenseKey={c?.env?.LIC}

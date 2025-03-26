@@ -1,7 +1,7 @@
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { container } from './container';
 import { Bot } from '@myshell-run/simple-prisma';
-import { BotList } from '@myshell-run/ui-biz';
+import { BotList, BotListSearch } from '@myshell-run/ui-biz';
 
 export const BotListIsland = (props: {
   className?: string;
@@ -16,6 +16,14 @@ export const BotListIsland = (props: {
         licenseKey={licenseKey}
         initialBots={initialBots}
       />
+    </InversifyProvider>
+  );
+};
+
+export const BotListSearchIsland = () => {
+  return (
+    <InversifyProvider container={container}>
+      <BotListSearch />
     </InversifyProvider>
   );
 };

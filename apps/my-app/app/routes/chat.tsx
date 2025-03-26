@@ -1,5 +1,5 @@
-import { Database, Message } from '@myshell-run/simple-prisma';
 import { Message as CMessage } from '@myshell-run/def';
+import { Database } from '@myshell-run/simple-prisma';
 import {
   BotInfo,
   ChatFoot,

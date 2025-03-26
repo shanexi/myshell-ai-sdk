@@ -4,42 +4,51 @@ import {
   VirtuosoMessageListLicense,
   VirtuosoMessageListProps,
 } from '@virtuoso.dev/message-list';
-import { CSSProperties, useRef } from 'react';
+import { CSSProperties, useEffect, useRef } from 'react';
 import { Bot } from '@myshell-run/simple-prisma';
-import { cn } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
+import { observer } from 'mobx-react-lite';
+import { BotListModel } from './bot-list.model';
 
 export type BotListContext = {
   //
 };
 
-export function BotList(props: {
-  initialBots: Bot[];
-  className?: string;
-  licenseKey?: string;
-  style?: CSSProperties;
-}) {
-  const { initialBots, className, licenseKey, style } = props;
-  const virtuoso =
-    useRef<VirtuosoMessageListMethods<Bot, BotListContext>>(null);
+export const BotList = observer(
+  (props: {
+    initialBots: Bot[];
+    className?: string;
+    licenseKey?: string;
+    style?: CSSProperties;
+  }) => {
+    const { initialBots, className, licenseKey, style } = props;
+    const model = useInjection(BotListModel);
+    const virtuoso =
+      useRef<VirtuosoMessageListMethods<Bot, BotListContext>>(null);
+    useEffect(() => {
+      model.setInitialBots(initialBots);
+      model.setVirtuosoRef(virtuoso);
+    }, []);
 
-  return (
-    <div className={cn('flex flex-col', className)} style={style}>
-      <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
-        <VirtuosoMessageList<Bot, BotListContext>
-          ref={virtuoso}
-          context={{}}
-          computeItemKey={({ data }) => data.id}
-          // TODO 设置为 index: 'LAST' 会导致白屏（有 initialData 但是却没有渲染任何 message）正好语义上也是 index: 0
-          initialLocation={{ index: 0, align: 'start' }}
-          initialData={initialBots}
-          ItemContent={BotListItem}
-        />
-      </VirtuosoMessageListLicense>
-    </div>
-  );
-}
+    return (
+      <div className={cn('flex flex-col', className)} style={style}>
+        <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
+          <VirtuosoMessageList<Bot, BotListContext>
+            ref={virtuoso}
+            context={{}}
+            computeItemKey={({ data }) => data.id}
+            // TODO 设置为 index: 'LAST' 会导致白屏（有 initialData 但是却没有渲染任何 message）正好语义上也是 index: 0
+            initialLocation={{ index: 0, align: 'start' }}
+            initialData={initialBots}
+            ItemContent={BotListItem}
+          />
+        </VirtuosoMessageListLicense>
+      </div>
+    );
+  },
+);
 const DEFAULT_AVATAR =
   'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp';
 
