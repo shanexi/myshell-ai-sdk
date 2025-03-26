@@ -7,6 +7,7 @@ import {
 import { CSSProperties, useRef } from 'react';
 import { Bot } from '@myshell-run/simple-prisma';
 import { cn } from '@myshell-run/ui-primitives';
+import { ReactComponent as CheckBadge } from './check-badge.svg';
 
 export type BotListContext = {
   //
@@ -46,7 +47,7 @@ export const BotListItem: VirtuosoMessageListProps<
   BotListContext
 >['ItemContent'] = (props) => {
   const { data } = props;
-  const { name, description, avatar = DEFAULT_AVATAR } = data;
+  const { name, description, avatar = DEFAULT_AVATAR, isOfficial } = data;
   return (
     <div className="flex px-spacing-xl py-spacing-lg">
       <img
@@ -55,8 +56,11 @@ export const BotListItem: VirtuosoMessageListProps<
       />
       {/* 在右侧容器添加了 min-w-0 类 - 这是一个关键修改，它允许 flex 子项在必要时缩小到比其内容更小的尺寸 */}
       <div className="flex min-w-0 flex-1 flex-col justify-center">
-        <div className="text-lg-regular truncate text-text-default-light">
-          {name}
+        <div className="flex items-center">
+          <div className="text-lg-regular truncate text-text-default-light">
+            {name}
+          </div>
+          {isOfficial && <CheckBadge className="ml-spacing-xs" />}
         </div>
         <div className="text-sm-regular truncate text-text-subtler-light">
           {description}

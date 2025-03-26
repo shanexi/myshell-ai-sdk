@@ -5,6 +5,7 @@ export const bot = z.object({
   name: z.string(),
   description: z.string().optional(),
   avatar: z.string().optional(),
+  isOfficial: z.boolean(),
 });
 
 export type Bot = z.infer<typeof bot>;

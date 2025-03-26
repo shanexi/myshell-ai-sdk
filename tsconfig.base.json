@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myshell-run/ac-biz": ["libs/ac-biz/src/index.ts"],
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
       "@myshell-run/archive-chat": ["libs/archive/chat/src/index.ts"],
       "@myshell-run/def": ["libs/def/src/index.ts"],
@@ -28,7 +29,6 @@
       "@myshell-run/simple-services": ["libs/simple-services/src/index.ts"],
       "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"],
       "@myshell-run/ui-biz": ["libs/ui-biz/src/index.ts"],
-      "@myshell-run/ac-biz": ["libs/ac-biz/src/index.ts"],
       "@myshell-run/ui-primitives": ["libs/ui-primitives/src/index.ts"]
     },
     "jsx": "react-jsx",

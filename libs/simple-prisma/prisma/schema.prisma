@@ -17,4 +17,5 @@ model Bot {
   name        String
   avatar      String?
   description String
+  isOfficial  Boolean @default(false)
 }
