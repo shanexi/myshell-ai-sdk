@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+[schema.prisma](mdc:libs/simple-prisma/prisma/schema.prisma)
+
+设计一个 message 表，要求：
+1. 生成的消息会记录在 message 表
+2. 需要保证时序正确
+3. 某些 message 能够动态更新
+4. 有些场景，会回溯到前面的一个消息，然后重新生成新的消息（类似时间分叉），此时要继续保持时许正确
+
+怎么设计？
+
+1. 首先 message 可以根据 bot 筛选
+2. 每一个 bot 的消息应该是不多的，可以做一个 seq，或者作为 edge db 我觉得都可以直接用 autoincrement，但是这样会跳（如果所有的 bot 都在一起）
+3. 一旦发生消息分叉，则可以删除后续消息（在 client 应该是方便的），重置 seq
+4. 一旦发生历史消息更新，则也删除
+
+也就是复杂的设计结构都放到后端吧。
+
+如果是 group chat
+则
+
+- You can @ files here
+- You can use markdown but dont have to

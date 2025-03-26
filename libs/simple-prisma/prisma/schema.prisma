@@ -19,3 +19,15 @@ model Bot {
   description String
   isOfficial  Boolean @default(false)
 }
+
+model Message {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  /// 会话 可能是 botId/ groupId
+  sessionId String
+
+  text     String
+  /// 可能是 botId/ userId
+  senderId String
+}

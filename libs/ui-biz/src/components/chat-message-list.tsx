@@ -1,12 +1,12 @@
 import { Message, MessageListContext } from '@myshell-run/def';
-import { CSSProperties, useEffect, useRef } from 'react';
 import { cn } from '@myshell-run/ui-primitives';
+import { CSSProperties, useRef } from 'react';
 import { MessageItem } from './message-item';
 import {
   type VirtuosoMessageListMethods,
   VirtuosoMessageList,
   VirtuosoMessageListLicense,
-} from '@virtuoso.dev/message-list';
+} from './message-list';
 
 export function ChatMessageList(props: {
   className?: string;

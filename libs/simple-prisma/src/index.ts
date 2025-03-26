@@ -10,6 +10,16 @@ export const bot = z.object({
 
 export type Bot = z.infer<typeof bot>;
 
+export const message = z.object({
+  id: z.string(),
+  createdAt: z.date(),
+  sessionId: z.string(),
+  text: z.string(),
+  senderId: z.string(),
+});
+
+export type Message = z.infer<typeof message>;
 export interface Database {
   bot: Bot;
+  message: Message;
 }
