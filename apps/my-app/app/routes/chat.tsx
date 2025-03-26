@@ -9,11 +9,7 @@ import {
   randomMessage,
 } from '@myshell-run/ui-biz';
 import { createRoute } from '../createRoute';
-import {
-  ChatInputMenuIsland,
-  ChatMessageListIsland,
-  ChatTopMenuIsland,
-} from '../islands/chat';
+import { ChatMessageListIsland } from '../islands/chat';
 
 export default createRoute(async (c) => {
   const initialMessages = [

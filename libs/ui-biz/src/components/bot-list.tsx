@@ -50,7 +50,7 @@ export const BotListItem: VirtuosoMessageListProps<
   const { data } = props;
   const { name, description, avatar = DEFAULT_AVATAR, isOfficial } = data;
   return (
-    <div className="flex px-spacing-xl py-spacing-lg">
+    <a className="flex px-spacing-xl py-spacing-lg" href={`/chat`}>
       <img
         className="mr-spacing-md h-[56px] w-[56px] rounded-xl"
         src={avatar}
@@ -68,7 +68,7 @@ export const BotListItem: VirtuosoMessageListProps<
           {description}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

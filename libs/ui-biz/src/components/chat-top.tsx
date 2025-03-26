@@ -31,7 +31,9 @@ export function ChatTopRoot(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
     <div className="flex items-center justify-between px-spacing-md py-[10px]">
-      <ArrowLeft className="text-text-brand-light" />
+      <a href="/bots">
+        <ArrowLeft className="text-text-brand-light" />
+      </a>
       <ChatTopTab />
       {children}
     </div>
