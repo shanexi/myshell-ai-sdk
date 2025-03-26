@@ -30,9 +30,9 @@ export function BotList(props: {
         <VirtuosoMessageList<Bot, BotListContext>
           ref={virtuoso}
           context={{}}
-          style={{ flex: 1, scrollbarWidth: 'none' }}
           computeItemKey={({ data }) => data.id}
-          initialLocation={{ index: 'LAST', align: 'end' }}
+          // TODO 设置为 index: 'LAST' 会导致白屏（有 initialData 但是却没有渲染任何 message）正好语义上也是 index: 0
+          initialLocation={{ index: 0, align: 'start' }}
           initialData={initialBots}
           ItemContent={BotListItem}
         />
