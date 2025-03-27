@@ -4,8 +4,15 @@ import { Kysely } from 'kysely';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 import { D1Dialect } from '../kysely-d1';
+import { getAuth } from '@hono/clerk-auth';
 
 export default createRoute(async (c) => {
+  const auth = getAuth(c);
+
+  if (!auth?.userId) {
+    return c.redirect('/signin');
+  }
+
   let bots: Bot[] = [];
   if (import.meta.env.VITE_SSG !== '1') {
     // const db = c.env.DB_MYSHELL_RUN_TEST;

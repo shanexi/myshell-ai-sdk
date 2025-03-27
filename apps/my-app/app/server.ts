@@ -1,11 +1,11 @@
-import { showRoutes } from 'hono/dev';
-import { createApp } from 'honox/server';
-import { loadModule } from './loadModule';
-import { Container } from 'inversify';
-import { TrpcRouter } from './trpc-router';
 import { trpcServer } from '@hono/trpc-server';
 import { Hono } from 'hono';
+import { showRoutes } from 'hono/dev';
+import { createApp } from 'honox/server';
+import { Container } from 'inversify';
 import { isNotSSG } from './constants';
+import { TrpcRouter } from './trpc-router';
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 
 import ResizeObserver from 'resize-observer-polyfill';
 global.ResizeObserver = ResizeObserver;
@@ -20,6 +20,8 @@ type HonoEnv = {
 };
 
 const happ = new Hono<HonoEnv>();
+
+happ.use('*', clerkMiddleware());
 
 if (isNotSSG) {
   const trpcRouter = serverContainer.get(TrpcRouter);

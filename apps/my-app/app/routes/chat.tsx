@@ -13,8 +13,15 @@ import { Kysely } from 'kysely';
 import { createRoute } from '../create-route';
 import { ChatMessageListIsland } from '../islands/chat';
 import { D1Dialect } from '../kysely-d1';
+import { getAuth } from '@hono/clerk-auth';
 
 export default createRoute(async (c) => {
+  const auth = getAuth(c);
+
+  if (!auth?.userId) {
+    return c.redirect('/signin');
+  }
+
   let messages: CMessage[] = [];
   if (import.meta.env.VITE_SSG !== '1') {
     const db = new Kysely<Database>({

@@ -1,9 +1,7 @@
 import { createFactory } from 'hono/factory';
 
 const factory = createFactory<{
-  Bindings: Env & {
-    LIC: string;
-  };
+  Bindings: Env;
 }>();
 
 export const createRoute = factory.createHandlers;

@@ -63,6 +63,7 @@ export default defineConfig(({ mode }) => {
           'react-markdown',
           'remark-gfm',
           'use-sync-external-store',
+          '@hono/clerk-auth',
         ],
       },
       plugins: [
