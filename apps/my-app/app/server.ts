@@ -8,6 +8,9 @@ import { TrpcRouter } from './trpc-router';
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 
 import ResizeObserver from 'resize-observer-polyfill';
+import { Kysely } from 'kysely';
+import { Database } from '@myshell-run/simple-prisma';
+import { D1Dialect } from './kysely-d1';
 global.ResizeObserver = ResizeObserver;
 
 const serverContainer = new Container();
@@ -20,6 +23,16 @@ type HonoEnv = {
 };
 
 const happ = new Hono<HonoEnv>();
+happ.use(async (c, next) => {
+  if (import.meta.env.VITE_SSG !== '1') {
+    const db = new Kysely<Database>({
+      dialect: new D1Dialect({ database: c.env.DB_MYSHELL_RUN_TEST }),
+    });
+    c.set('db', db);
+  }
+
+  await next();
+});
 
 happ.use('*', clerkMiddleware());
 

@@ -64,6 +64,7 @@ export default defineConfig(({ mode }) => {
           'remark-gfm',
           'use-sync-external-store',
           '@hono/clerk-auth',
+          '@clerk/backend',
         ],
       },
       plugins: [

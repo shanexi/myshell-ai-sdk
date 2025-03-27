@@ -18,9 +18,7 @@ export default createRoute(async (c) => {
     // const db = c.env.DB_MYSHELL_RUN_TEST;
     // const { results } = await db.prepare('SELECT * FROM User').all<User>();
     // users = results;
-    const db = new Kysely<Database>({
-      dialect: new D1Dialect({ database: c.env.DB_MYSHELL_RUN_TEST }),
-    });
+    const db = c.get('db');
     bots = await db
       .selectFrom('bot')
       .select(['id', 'avatar', 'name', 'isOfficial', 'description'])

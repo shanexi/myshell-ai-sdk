@@ -8,6 +8,10 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
+import { useInjection } from '@myshell-run/ui-primitives';
+import { ChatModel } from './chat.model';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 export const ChatInputMenu = () => {
   return (
@@ -38,10 +42,34 @@ export function ChatInputRoot(props: { children?: React.ReactNode }) {
     <div className="mx-[8px] my-spacing-md">
       <div className="input w-full rounded-4xl border-border-default-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
         {children}
-        <CirclePlus className="text-text-brand-light" />
-        <input type="search" className="grow" placeholder="Write a message" />
-        <Audio />
       </div>
     </div>
   );
 }
+
+export function ChatInputFile() {
+  return <CirclePlus className="text-text-brand-light" />;
+}
+
+export function ChatInputAudio() {
+  return <Audio />;
+}
+
+export const ChatInput = observer((props: { userId: string }) => {
+  const model = useInjection(ChatModel);
+
+  useEffect(() => {
+    const { userId } = props;
+    model.auth.setUserId(userId);
+  }, []);
+
+  return (
+    <input
+      type="search"
+      className="grow"
+      placeholder="Write a message"
+      value={model.inputText}
+      onChange={(e) => model.setInputText(e.target.value)}
+    />
+  );
+});

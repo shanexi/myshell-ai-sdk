@@ -3,6 +3,9 @@ import { Database } from '@myshell-run/simple-prisma';
 import {
   BotInfo,
   ChatFoot,
+  ChatInput,
+  ChatInputAudio,
+  ChatInputFile,
   ChatInputMenu,
   ChatInputRoot,
   ChatRoot,
@@ -11,22 +14,26 @@ import {
 } from '@myshell-run/ui-biz';
 import { Kysely } from 'kysely';
 import { createRoute } from '../create-route';
-import { ChatMessageListIsland } from '../islands/chat';
+import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
 import { D1Dialect } from '../kysely-d1';
 import { getAuth } from '@hono/clerk-auth';
+// import { createClerkClient } from '@clerk/backend';
 
 export default createRoute(async (c) => {
   const auth = getAuth(c);
-
   if (!auth?.userId) {
     return c.redirect('/signin');
   }
+  // 请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
+  // const clerk = createClerkClient({
+  //   secretKey: c.env.CLERK_SECRET_KEY,
+  // });
+  // const user = await clerk.users.getUser(auth.userId);
+  // console.log('user', user.emailAddresses[0].emailAddress);
 
   let messages: CMessage[] = [];
   if (import.meta.env.VITE_SSG !== '1') {
-    const db = new Kysely<Database>({
-      dialect: new D1Dialect({ database: c.env.DB_MYSHELL_RUN_TEST }),
-    });
+    const db = c.get('db');
     const msgs = await db
       .selectFrom('message')
       .select(['id', 'text', 'senderId'])
@@ -57,6 +64,9 @@ export default createRoute(async (c) => {
         <ChatInputRoot>
           {/* react-aria ssr 有问题 */}
           <ChatInputMenu />
+          <ChatInputFile />
+          <ChatInputIsland className="grow" userId={auth.userId} />
+          <ChatInputAudio />
         </ChatInputRoot>
         <BotInfo />
       </ChatFoot>

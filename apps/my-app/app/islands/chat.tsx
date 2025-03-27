@@ -1,4 +1,5 @@
 import {
+  ChatInput,
   ChatInputMenu,
   ChatMessageList,
   ChatTopMenu,
@@ -29,3 +30,15 @@ export const ChatMessageListIsland = (props: {
 };
 
 export const ChatTopMenuIsland = ChatTopMenu;
+
+export const ChatInputIsland = (props: {
+  className?: string;
+  userId: string;
+}) => {
+  const { userId } = props;
+  return (
+    <InversifyProvider container={clientContainer}>
+      <ChatInput userId={userId} />
+    </InversifyProvider>
+  );
+};
