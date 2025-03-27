@@ -12,7 +12,7 @@ export type Bot = z.infer<typeof bot>;
 
 export const message = z.object({
   id: z.string(),
-  createdAt: z.date(),
+  createdAt: z.date().optional(),
   sessionId: z.string(),
   text: z.string(),
   senderId: z.string(),

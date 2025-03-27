@@ -1,3 +1,12 @@
+import {
+  EventSourceMessage,
+  fetchEventSource,
+} from '@microsoft/fetch-event-source';
+import { Message, MessageListContext, MyAppTrpcClient } from '@myshell-run/def';
+import { type AppRouter } from '@myshell-run/simple-services';
+import { createId } from '@paralleldrive/cuid2';
+import { type TRPCClient } from '@trpc/client';
+import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
 import {
   action,
@@ -6,18 +15,8 @@ import {
   observable,
   runInAction,
 } from 'mobx';
-import { AuthModel } from './auth.model';
-import { Message, MessageListContext, MyAppTrpcClient } from '@myshell-run/def';
-import { type TRPCClient } from '@trpc/client';
-import { type AppRouter } from '@myshell-run/simple-services';
-import {
-  EventSourceMessage,
-  fetchEventSource,
-} from '@microsoft/fetch-event-source';
 import { RefObject } from 'react';
-import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
-import { createId } from '@paralleldrive/cuid2';
-import { randPhrase } from './chat-demo';
+import { AuthModel } from './auth.model';
 
 @injectable()
 export class ChatModel {
@@ -69,15 +68,17 @@ export class ChatModel {
 
   @action.bound
   sendText() {
+    const msgId = createId();
+    const replyMsgId = createId();
+
     this.appendMsg({
-      key: createId(),
+      key: msgId,
       text: this.inputText,
       user: 'me',
     });
+    // TODO replicache 确保不会漏消息
+
     const abortController = new AbortController();
-
-    const replyKey = createId();
-
     fetchEventSource('/api/chat', {
       method: 'POST',
       headers: {
@@ -85,6 +86,8 @@ export class ChatModel {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        msgId,
+        replyMsgId,
         prompt: this.inputText,
       }),
       signal: abortController.signal,
@@ -93,15 +96,15 @@ export class ChatModel {
         //
       },
       onmessage: (ev: EventSourceMessage) => {
-        if (this.isMsgNoExists(replyKey)) {
+        if (this.isMsgNoExists(replyMsgId)) {
           this.appendMsg({
-            key: replyKey,
+            key: replyMsgId,
             text: '',
             user: 'other',
           });
         } else {
           this.virtuosoRef?.current?.data.map((message) => {
-            return message.key === replyKey
+            return message.key === replyMsgId
               ? { ...message, text: message.text + ev.data }
               : message;
           }, 'smooth');

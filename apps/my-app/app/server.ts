@@ -1,4 +1,4 @@
-import { clerkMiddleware } from '@hono/clerk-auth';
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 import { trpcServer } from '@hono/trpc-server';
 import { zValidator } from '@hono/zod-validator';
 import { TrpcRouter } from '@myshell-run/simple-services';
@@ -62,11 +62,36 @@ if (isNotSSG) {
     zValidator(
       'json',
       z.object({
+        msgId: z.string(),
+        replyMsgId: z.string(),
         prompt: z.string(),
       }),
     ),
     async (c) => {
-      const { prompt } = c.req.valid('json');
+      const auth = getAuth(c);
+      if (!auth?.userId) {
+        return c.json(
+          {
+            error: 'Unauthorized',
+          },
+          401,
+        );
+      }
+
+      const { msgId, replyMsgId, prompt } = c.req.valid('json');
+      const db = c.get('db');
+
+      db.insertInto('message')
+        .values({
+          id: msgId,
+          text: prompt,
+          sessionId: 'bot-6',
+          senderId: `user-${auth.userId}`,
+        })
+        .executeTakeFirst();
+
+      console.log('me message insert db', msgId);
+
       const model = new ChatOpenAI({
         model: 'gpt-4o-mini',
         apiKey: c.env.OPENAI_KEY,
@@ -77,14 +102,27 @@ if (isNotSSG) {
 
       const chunks = await model.stream(prompt);
 
-      return streamSSE(c, async (stream) => {
+      const messages: string[] = [];
+      const res = streamSSE(c, async (stream) => {
         for await (const chunk of chunks) {
+          messages.push(chunk.text);
           await stream.writeSSE({
             data: chunk.text,
             id: chunk.id,
           });
         }
+        console.log('reply message done, insert db', replyMsgId);
+        db.insertInto('message')
+          .values({
+            id: replyMsgId,
+            text: messages.join(''),
+            sessionId: 'bot-6',
+            senderId: `bot-6`,
+          })
+          .executeTakeFirst();
       });
+
+      return res;
     },
   );
 }
