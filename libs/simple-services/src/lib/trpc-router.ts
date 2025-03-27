@@ -25,6 +25,21 @@ export class TrpcRouter {
         }),
       )
       .query(async ({ input, ctx }) => {
+        return input.message;
+      }),
+
+    chat: publicProcedure
+      .input(
+        z.object({
+          messages: z.array(
+            z.object({
+              role: z.enum(['user', 'assistant']),
+              content: z.string(),
+            }),
+          ),
+        }),
+      )
+      .mutation(async ({ input, ctx }) => {
         return input;
       }),
   });

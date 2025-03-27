@@ -7,7 +7,9 @@
   "assets": {
     "directory": "./dist"
   },
-  "vars": {},
+  "vars": {
+    "OPENAI_BASE_URL": "https://aihubmix.com/v1"
+  },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

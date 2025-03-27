@@ -1,5 +1,6 @@
 import { clerkMiddleware } from '@hono/clerk-auth';
 import { trpcServer } from '@hono/trpc-server';
+import { zValidator } from '@hono/zod-validator';
 import { TrpcRouter } from '@myshell-run/simple-services';
 import { Hono } from 'hono';
 import { showRoutes } from 'hono/dev';
@@ -10,8 +11,13 @@ import { isNotSSG } from './constants';
 import { Database } from '@myshell-run/simple-prisma';
 import { Kysely } from 'kysely';
 // import ResizeObserver from 'resize-observer-polyfill';
-import { D1Dialect } from './kysely-d1';
 // global.ResizeObserver = ResizeObserver;
+import { ChatOpenAI } from '@langchain/openai';
+
+import { z } from 'zod';
+import { D1Dialect } from './kysely-d1';
+
+import { streamSSE } from 'hono/streaming';
 
 const serverContainer = new Container();
 isNotSSG && serverContainer.bind(TrpcRouter).toSelf().inSingletonScope();
@@ -50,6 +56,37 @@ if (isNotSSG) {
       message: 'hi',
     });
   });
+
+  happ.post(
+    '/api/chat',
+    zValidator(
+      'json',
+      z.object({
+        prompt: z.string(),
+      }),
+    ),
+    async (c) => {
+      const { prompt } = c.req.valid('json');
+      const model = new ChatOpenAI({
+        model: 'gpt-4o-mini',
+        apiKey: c.env.OPENAI_KEY,
+        configuration: {
+          baseURL: c.env.OPENAI_BASE_URL,
+        },
+      });
+
+      const chunks = await model.stream(prompt);
+
+      return streamSSE(c, async (stream) => {
+        for await (const chunk of chunks) {
+          await stream.writeSSE({
+            data: chunk.text,
+            id: chunk.id,
+          });
+        }
+      });
+    },
+  );
 }
 
 const app = createApp<HonoEnv>({

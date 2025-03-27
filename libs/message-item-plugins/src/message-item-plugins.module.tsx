@@ -17,7 +17,10 @@ export const messageItemPluginsModule = new ContainerModule(
     ) {
       bind<MessageItem>(MessageItem).toConstantValue({
         type,
-        render: (data) => <Component {...data} />,
+        render: (data) => {
+          const { key, ...rest } = data;
+          return <Component key={key} {...rest} />;
+        },
       });
     }
 

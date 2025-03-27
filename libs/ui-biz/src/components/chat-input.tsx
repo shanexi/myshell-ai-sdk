@@ -60,7 +60,7 @@ export const ChatInput = observer((props: { userId: string }) => {
 
   return (
     <ChatInputRoot>
-      {model.isNotInputFocus && <ChatInputMenu />}
+      {model.isShowInputMenu && <ChatInputMenu />}
       <ChatInputText />
       {model.notHaveInputText ? (
         <>
@@ -107,6 +107,12 @@ export const ChatInputText = observer(() => {
       }}
       onBlur={(e) => {
         model.setInputFocus(false);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          model.sendText();
+        }
       }}
       type="search"
       className="grow [&::-webkit-search-cancel-button]:hidden"

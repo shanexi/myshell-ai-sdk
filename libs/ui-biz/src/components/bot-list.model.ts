@@ -1,6 +1,6 @@
 import { Bot } from '@myshell-run/simple-prisma';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
-import { decorate, injectable } from 'inversify';
+import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { type RefObject } from 'react';
 import { BotListContext } from './bot-list';

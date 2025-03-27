@@ -9,5 +9,8 @@
     "ssg:debug": "NODE_ENV=development VITE_SSG=1 node --inspect-brk ../../node_modules/vite/bin/vite.js build",
     "migrate": "./scripts/migrate.sh"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1"
+  }
 }

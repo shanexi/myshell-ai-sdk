@@ -65,6 +65,12 @@ export default defineConfig(({ mode }) => {
           'use-sync-external-store',
           '@hono/clerk-auth',
           '@clerk/backend',
+          '@ai-sdk/openai',
+          'ai',
+          'langchain',
+          '@langchain/core',
+          '@langchain/openai',
+          '@paralleldrive/cuid2',
         ],
       },
       plugins: [

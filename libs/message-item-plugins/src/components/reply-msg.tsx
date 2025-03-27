@@ -12,13 +12,13 @@ export const ReplyMsg = (props: Message) => {
           src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
         />
       }
-      button={
-        // button 布局收敛
-        <div className="-mx-spacing-xs flex justify-between">
-          <LuiButton>🪄 Upscale (Subtle)</LuiButton>
-          <LuiButton>💥 Upscale (Creative)</LuiButton>
-        </div>
-      }
+      // button={
+      //   // button 布局收敛
+      //   <div className="-mx-spacing-xs flex justify-between">
+      //     <LuiButton>🪄 Upscale (Subtle)</LuiButton>
+      //     <LuiButton>💥 Upscale (Creative)</LuiButton>
+      //   </div>
+      // }
     >
       <article className="prose dark:prose-invert">
         <Markdown
