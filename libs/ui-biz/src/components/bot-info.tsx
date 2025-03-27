@@ -1,14 +1,16 @@
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { ReactComponent as Company } from './company.svg';
 import { ChevronsUp, Share } from 'lucide-react';
+import { DEFAULT_AVATAR } from '@myshell-run/def';
 
-export function BotInfo() {
+export function BotInfo(props: { avatar?: string }) {
+  const { avatar } = props;
   return (
     <div className="x-bot-info flex items-center justify-between px-[8px] py-[4px]">
       <div className="flex items-center">
         <img
           className="mr-[8px] h-[36px] w-[36px] rounded-lg"
-          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+          src={avatar ?? DEFAULT_AVATAR}
         />
         <div>
           <div className="flex items-center">

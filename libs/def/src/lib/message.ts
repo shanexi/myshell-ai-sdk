@@ -9,6 +9,7 @@ export interface Message {
   text: string;
   user: 'me' | 'other';
   type?: string;
+  avatar?: string;
 }
 
 export const MessageItem = Symbol('MessageItem');
@@ -17,3 +18,6 @@ export interface MessageItem {
   type: string;
   render: (data: Message) => JSX.Element;
 }
+
+export const DEFAULT_AVATAR =
+  'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp';

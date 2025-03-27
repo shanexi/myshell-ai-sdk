@@ -1,10 +1,8 @@
-import { Bot, Database } from '@myshell-run/simple-prisma';
+import { getAuth } from '@hono/clerk-auth';
+import { Bot } from '@myshell-run/simple-prisma';
 import { BotListHeader, BotListRoot } from '@myshell-run/ui-biz';
-import { Kysely } from 'kysely';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
-import { D1Dialect } from '../kysely-d1';
-import { getAuth } from '@hono/clerk-auth';
 
 export default createRoute(async (c) => {
   const auth = getAuth(c);

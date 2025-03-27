@@ -9,6 +9,7 @@ import {
 } from '@myshell-run/ui-biz';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
+import { Bot } from '@myshell-run/simple-prisma';
 // import { createClerkClient } from '@clerk/backend';
 
 export default createRoute(async (c) => {
@@ -23,20 +24,39 @@ export default createRoute(async (c) => {
   // const user = await clerk.users.getUser(auth.userId);
   // console.log('user', user.emailAddresses[0].emailAddress);
 
+  const botId = c.req.query('botId');
+  if (botId == null) {
+    return c.html(`<div>botId is required</div>`);
+  }
+  if (isNaN(Number(botId))) {
+    return c.html(`<div>botId is not a number</div>`);
+  }
+
   let messages: CMessage[] = [];
+  let bot: Bot | undefined;
+
   if (import.meta.env.VITE_SSG !== '1') {
     const db = c.get('db');
-    const msgs = await db
-      .selectFrom('message')
-      .select(['id', 'text', 'senderId'])
-      .where('sessionId', '=', `bot-6`)
-      .orderBy('createdAt')
-      .limit(10)
-      .execute();
+    const [msgs, dbBot] = await Promise.all([
+      db
+        .selectFrom('message')
+        .select(['id', 'text', 'senderId'])
+        .where('sessionId', '=', `bot-6`)
+        .orderBy('createdAt')
+        .limit(10)
+        .execute(),
+      db
+        .selectFrom('bot')
+        .select(['id', 'avatar'])
+        .where('id', '=', Number(botId))
+        .execute(),
+    ]);
+    bot = dbBot[0] as Bot;
     messages = msgs.map((msg) => ({
       key: msg.id,
       text: msg.text,
       user: msg.senderId.includes('bot') ? 'other' : 'me',
+      // avatar: bot?.avatar,
     }));
   }
   return c.render(
@@ -51,10 +71,11 @@ export default createRoute(async (c) => {
         // TODO ssg 环境拿到 c.env? 先避免报错
         licenseKey={c?.env?.LIC}
         initialMessages={messages}
+        botAvatar={bot?.avatar}
       />
       <ChatFoot>
         <ChatInputIsland userId={auth.userId} />
-        <BotInfo />
+        <BotInfo avatar={bot?.avatar} />
       </ChatFoot>
     </ChatRoot>,
   );

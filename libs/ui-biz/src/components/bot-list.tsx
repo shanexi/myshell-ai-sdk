@@ -11,6 +11,7 @@ import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
 import { observer } from 'mobx-react-lite';
 import { BotListModel } from './bot-list.model';
+import { DEFAULT_AVATAR } from '@myshell-run/def';
 
 export type BotListContext = {
   //
@@ -49,8 +50,6 @@ export const BotList = observer(
     );
   },
 );
-const DEFAULT_AVATAR =
-  'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp';
 
 export const BotListItem: VirtuosoMessageListProps<
   Bot,
@@ -59,7 +58,10 @@ export const BotListItem: VirtuosoMessageListProps<
   const { data } = props;
   const { name, description, avatar = DEFAULT_AVATAR, isOfficial } = data;
   return (
-    <a className="flex px-spacing-xl py-spacing-lg" href={`/chat`}>
+    <a
+      className="flex px-spacing-xl py-spacing-lg"
+      href={`/chat?botId=${data.id}`}
+    >
       <img
         className="mr-spacing-md h-[56px] w-[56px] rounded-xl"
         src={avatar}
