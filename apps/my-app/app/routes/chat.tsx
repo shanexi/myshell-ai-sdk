@@ -1,12 +1,12 @@
 import { getAuth } from '@hono/clerk-auth';
-import { Message as CMessage } from '@myshell-run/def';
+import { Message as CMessage } from '@myshell-run/biz-def';
 import {
   BotInfo,
   ChatFoot,
   ChatRoot,
   ChatTopMenu,
   ChatTopRoot,
-} from '@myshell-run/ui-biz';
+} from '@myshell-run/biz-ui';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
 import { Bot } from '@myshell-run/simple-prisma';

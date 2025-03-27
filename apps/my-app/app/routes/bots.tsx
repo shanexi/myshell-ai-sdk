@@ -1,6 +1,6 @@
 import { getAuth } from '@hono/clerk-auth';
 import { Bot } from '@myshell-run/simple-prisma';
-import { BotListHeader, BotListRoot } from '@myshell-run/ui-biz';
+import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 

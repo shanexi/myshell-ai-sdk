@@ -1,5 +1,5 @@
 import styles from './chat.module.css';
-import { def } from '@myshell-run/def';
+import { def } from '@myshell-run/biz-def';
 
 /* eslint-disable-next-line */
 export interface ChatProps {}

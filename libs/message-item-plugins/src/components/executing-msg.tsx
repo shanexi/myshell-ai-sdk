@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useInjection } from '@myshell-run/ui-primitives';
 import { ExecutingMsgModel } from './executing-msg.model';
-import { Message } from '@myshell-run/def';
+import { Message } from '@myshell-run/biz-def';
 import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
 
 // todo 增加一些动效 当从后端收到真实倒计时的时候（重置）做一个闪烁的效果 然后再更新值

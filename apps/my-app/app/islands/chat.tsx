@@ -1,10 +1,10 @@
-import { Message } from '@myshell-run/def';
+import { Message } from '@myshell-run/biz-def';
 import {
   ChatInput,
   ChatInputMenu,
   ChatMessageList,
   ChatTopMenu,
-} from '@myshell-run/ui-biz';
+} from '@myshell-run/biz-ui';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { clientContainer } from './client.container';
 

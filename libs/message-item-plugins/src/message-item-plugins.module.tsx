@@ -1,4 +1,4 @@
-import { Message, MessageItem } from '@myshell-run/def';
+import { Message, MessageItem } from '@myshell-run/biz-def';
 import { ContainerModule } from 'inversify';
 import { ExecutingMsg } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';

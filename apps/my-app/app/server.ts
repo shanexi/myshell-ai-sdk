@@ -1,7 +1,7 @@
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 import { trpcServer } from '@hono/trpc-server';
 import { zValidator } from '@hono/zod-validator';
-import { TrpcRouter } from '@myshell-run/simple-services';
+import { TrpcRouter } from '@myshell-run/biz-service';
 import { Hono } from 'hono';
 import { showRoutes } from 'hono/dev';
 import { createApp } from 'honox/server';

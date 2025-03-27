@@ -11,7 +11,7 @@ import {
   ChatRoot,
   ChatTopMenu,
   ChatTopRoot,
-} from '@myshell-run/ui-biz';
+} from '@myshell-run/biz-ui';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

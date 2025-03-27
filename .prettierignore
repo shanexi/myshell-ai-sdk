@@ -2,8 +2,7 @@
 pnpm-lock.yaml
 /dist
 /coverage
-/libs/glif-canvas/public
 
 **/*.typegen.ts
 
-libs/ui-biz/src/components/message-list/**/*
+libs/biz/ui/src/components/message-list/**/*
