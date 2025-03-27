@@ -6,6 +6,16 @@ export default reactRenderer(({ children }) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;510;590&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
         {import.meta.env.PROD || import.meta.env.VITE_SSG === '1' ? (
           <>
             <script type="module" src="/static/client.js"></script>

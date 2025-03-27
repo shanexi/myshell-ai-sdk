@@ -1,7 +1,7 @@
 export function ChatRoot(props: { children?: React.ReactNode }) {
   const { children } = props;
   return (
-    <div className="flex h-screen flex-col bg-surface-container-default-light">
+    <div className="flex h-screen flex-col bg-surface-default-light">
       {children}
     </div>
   );
