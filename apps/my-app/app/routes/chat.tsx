@@ -14,7 +14,7 @@ import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
 export default createRoute(async (c) => {
   const auth = getAuth(c);
   if (!auth?.userId) {
-    return c.redirect('/signin');
+    return c.redirect(`/signin?redirect_url=${c.req.url}`);
   }
   // 请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
   // const clerk = createClerkClient({

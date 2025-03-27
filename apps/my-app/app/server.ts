@@ -69,6 +69,7 @@ if (isNotSSG) {
     ),
     async (c) => {
       const auth = getAuth(c);
+      console.log('auth', auth);
       if (!auth?.userId) {
         return c.json(
           {
@@ -103,7 +104,7 @@ if (isNotSSG) {
       const chunks = await model.stream(prompt);
 
       const messages: string[] = [];
-      const res = streamSSE(c, async (stream) => {
+      const res = await streamSSE(c, async (stream) => {
         for await (const chunk of chunks) {
           messages.push(chunk.text);
           await stream.writeSSE({
@@ -112,7 +113,8 @@ if (isNotSSG) {
           });
         }
         console.log('reply message done, insert db', replyMsgId);
-        db.insertInto('message')
+        await db
+          .insertInto('message')
           .values({
             id: replyMsgId,
             text: messages.join(''),
@@ -120,6 +122,11 @@ if (isNotSSG) {
             senderId: `bot-6`,
           })
           .executeTakeFirst();
+        console.log('reply message db inserted', replyMsgId);
+        await stream.writeSSE({
+          data: '',
+          event: 'inserted',
+        });
       });
 
       return res;

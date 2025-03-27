@@ -10,6 +10,10 @@
   "vars": {
     "OPENAI_BASE_URL": "https://aihubmix.com/v1"
   },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

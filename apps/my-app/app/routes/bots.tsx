@@ -10,7 +10,7 @@ export default createRoute(async (c) => {
   const auth = getAuth(c);
 
   if (!auth?.userId) {
-    return c.redirect('/signin');
+    return c.redirect(`/signin?redirect_url=${c.req.url}`);
   }
 
   let bots: Bot[] = [];
