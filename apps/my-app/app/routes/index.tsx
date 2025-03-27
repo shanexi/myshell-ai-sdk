@@ -1,5 +1,4 @@
 import { createRoute } from '../create-route';
-import { CounterWrapper } from '../islands/counter';
 import type { Meta } from './types';
 
 export default createRoute(async (c) => {
@@ -11,7 +10,6 @@ export default createRoute(async (c) => {
     <div className="py-8 text-center">
       <title>{name}</title>
       <h1 className="text-3xl font-bold">Hello, {name}!</h1>
-      <CounterWrapper />
       <ul className="article-list">
         {Object.entries(posts).map(([id, module]) => {
           if (module.frontmatter) {
