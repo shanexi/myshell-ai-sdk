@@ -91,6 +91,7 @@ specifiers:
   '@tailwindcss/typography': ^0.5.16
   '@tailwindcss/vite': ^4.0.9
   '@testing-library/react': 14.0.0
+  '@trpc/client': ^10.45.0
   '@trpc/server': ^10.45.2
   '@types/jest': ^29.4.0
   '@types/jsdom': ^21.1.7
@@ -247,6 +248,7 @@ dependencies:
   '@tailwindcss/typography': 0.5.16_tailwindcss@4.0.9
   '@tailwindcss/vite': 4.0.14_vite@6.2.2
   '@testing-library/react': 14.0.0_aaeipwxkab7qfgigzrqxk6gibe
+  '@trpc/client': 10.45.0_@trpc+server@10.45.2
   '@trpc/server': 10.45.2
   '@types/jest': 29.5.12
   '@types/jsdom': 21.1.7
@@ -9053,6 +9055,14 @@ packages:
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
+    dev: false
+
+  /@trpc/client/10.45.0_@trpc+server@10.45.2:
+    resolution: {integrity: sha512-m091R1qte9rvkvL8N1e/mzrbb8S4gb+Q4ZNJnEGDgd7kic/6a8DFgSciBTiCoSp0YwOTVhyQzSrrA/sZI6PhBg==}
+    peerDependencies:
+      '@trpc/server': 10.45.0
+    dependencies:
+      '@trpc/server': 10.45.2
     dev: false
 
   /@trpc/server/10.45.2:

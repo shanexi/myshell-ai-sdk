@@ -1,16 +1,17 @@
 import { initTRPC } from '@trpc/server';
-import { decorate, injectable } from 'inversify';
+import { injectable } from 'inversify';
 import { z } from 'zod';
 
 const t = initTRPC
   .context<{
-    env: Env;
+    //
   }>()
   .create();
 
 const publicProcedure = t.procedure;
 const router = t.router;
 
+@injectable()
 export class TrpcRouter {
   constructor() {
     //
@@ -18,12 +19,15 @@ export class TrpcRouter {
 
   appRouter = router({
     hello: publicProcedure
-      .input(z.string().nullish())
+      .input(
+        z.object({
+          message: z.string().nullish(),
+        }),
+      )
       .query(async ({ input, ctx }) => {
-        return [];
+        return input;
       }),
   });
 }
-decorate(injectable(), TrpcRouter);
 
 export type AppRouter = TrpcRouter[`appRouter`];
