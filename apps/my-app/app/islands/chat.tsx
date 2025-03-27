@@ -1,3 +1,4 @@
+import { Message } from '@myshell-run/def';
 import {
   ChatInput,
   ChatInputMenu,
@@ -6,7 +7,6 @@ import {
 } from '@myshell-run/ui-biz';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { clientContainer } from './client.container';
-import { Message } from '@myshell-run/def';
 
 export const ChatInputMenuIsland = ChatInputMenu;
 
@@ -31,10 +31,7 @@ export const ChatMessageListIsland = (props: {
 
 export const ChatTopMenuIsland = ChatTopMenu;
 
-export const ChatInputIsland = (props: {
-  className?: string;
-  userId: string;
-}) => {
+export const ChatInputIsland = (props: { userId: string }) => {
   const { userId } = props;
   return (
     <InversifyProvider container={clientContainer}>

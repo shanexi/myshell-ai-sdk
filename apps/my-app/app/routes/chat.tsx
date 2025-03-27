@@ -1,22 +1,14 @@
+import { getAuth } from '@hono/clerk-auth';
 import { Message as CMessage } from '@myshell-run/def';
-import { Database } from '@myshell-run/simple-prisma';
 import {
   BotInfo,
   ChatFoot,
-  ChatInput,
-  ChatInputAudio,
-  ChatInputFile,
-  ChatInputMenu,
-  ChatInputRoot,
   ChatRoot,
   ChatTopMenu,
   ChatTopRoot,
 } from '@myshell-run/ui-biz';
-import { Kysely } from 'kysely';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
-import { D1Dialect } from '../kysely-d1';
-import { getAuth } from '@hono/clerk-auth';
 // import { createClerkClient } from '@clerk/backend';
 
 export default createRoute(async (c) => {
@@ -61,13 +53,7 @@ export default createRoute(async (c) => {
         initialMessages={messages}
       />
       <ChatFoot>
-        <ChatInputRoot>
-          {/* react-aria ssr 有问题 */}
-          <ChatInputMenu />
-          <ChatInputFile />
-          <ChatInputIsland className="grow" userId={auth.userId} />
-          <ChatInputAudio />
-        </ChatInputRoot>
+        <ChatInputIsland userId={auth.userId} />
         <BotInfo />
       </ChatFoot>
     </ChatRoot>,

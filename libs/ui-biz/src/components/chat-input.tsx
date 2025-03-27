@@ -1,5 +1,6 @@
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { ReactComponent as Audio } from './audio.svg';
+import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Trash } from './trash.svg';
 import { MenuTrigger } from 'react-aria-components';
@@ -19,6 +20,8 @@ export const ChatInputMenu = () => {
       <Button
         variant="icon"
         className="x-custom-react-aria-Button data-hovered:bg-transparent"
+        // 指定 id 否则 hydrate 会报错
+        id={'chat-input-menu-btn'}
       >
         <AlignJustify className="text-text-brand-light" />
       </Button>
@@ -47,14 +50,6 @@ export function ChatInputRoot(props: { children?: React.ReactNode }) {
   );
 }
 
-export function ChatInputFile() {
-  return <CirclePlus className="text-text-brand-light" />;
-}
-
-export function ChatInputAudio() {
-  return <Audio />;
-}
-
 export const ChatInput = observer((props: { userId: string }) => {
   const model = useInjection(ChatModel);
 
@@ -64,9 +59,57 @@ export const ChatInput = observer((props: { userId: string }) => {
   }, []);
 
   return (
+    <ChatInputRoot>
+      {model.isNotInputFocus && <ChatInputMenu />}
+      <ChatInputText />
+      {model.notHaveInputText ? (
+        <>
+          <ChatInputAudio />
+          <ChatInputFile />
+        </>
+      ) : (
+        <ChatInputSend />
+      )}
+    </ChatInputRoot>
+  );
+});
+
+export function ChatInputFile() {
+  return (
+    <div className="flex h-[24px] w-[24px] flex-none items-center justify-center">
+      <CirclePlus className="text-text-brand-light" size={24} />
+    </div>
+  );
+}
+
+export function ChatInputAudio() {
+  return (
+    <div className="flex h-[22px] w-[22px] flex-none items-center justify-center">
+      <Audio className="h-full w-full" />
+    </div>
+  );
+}
+
+export function ChatInputSend() {
+  return (
+    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light">
+      <Send />
+    </div>
+  );
+}
+
+export const ChatInputText = observer(() => {
+  const model = useInjection(ChatModel);
+  return (
     <input
+      onFocus={(e) => {
+        model.setInputFocus(true);
+      }}
+      onBlur={(e) => {
+        model.setInputFocus(false);
+      }}
       type="search"
-      className="grow"
+      className="grow [&::-webkit-search-cancel-button]:hidden"
       placeholder="Write a message"
       value={model.inputText}
       onChange={(e) => model.setInputText(e.target.value)}
