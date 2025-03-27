@@ -83,7 +83,7 @@ export const BotListItem: VirtuosoMessageListProps<
 
 export function BotListRoot(props: { children?: React.ReactNode }) {
   const { children } = props;
-  return <div className="flex h-screen flex-col">{children}</div>;
+  return <div className="flex h-full flex-col">{children}</div>;
 }
 
 export function BotListHeader() {
