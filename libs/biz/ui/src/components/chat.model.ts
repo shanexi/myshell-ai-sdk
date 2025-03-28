@@ -2,14 +2,9 @@ import {
   EventSourceMessage,
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
-import {
-  Message,
-  MessageListContext,
-  MyAppTrpcClient,
-} from '@myshell-run/biz-def';
-import { type AppRouter } from '@myshell-run/biz-service';
+import { Message, MessageListContext } from '@myshell-run/biz-def';
 import { createId } from '@paralleldrive/cuid2';
-import { type TRPCClient } from '@trpc/client';
+// import { type TRPCClient } from '@trpc/client';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
 import {
@@ -41,8 +36,8 @@ export class ChatModel {
   }
   constructor(
     @inject(AuthModel) public auth: AuthModel,
-    @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
-  ) {
+  ) // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+  {
     makeObservable(this);
   }
 

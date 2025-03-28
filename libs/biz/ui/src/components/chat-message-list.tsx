@@ -6,7 +6,7 @@ import {
   type VirtuosoMessageListMethods,
   VirtuosoMessageList,
   VirtuosoMessageListLicense,
-} from './message-list';
+} from '@virtuoso.dev/message-list';
 import { ChatModel } from './chat.model';
 
 // 注意 VirtuosoMessageList 不要 observer

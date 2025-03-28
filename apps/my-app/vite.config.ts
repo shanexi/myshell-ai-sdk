@@ -24,10 +24,15 @@ export default defineConfig(({ mode }) => {
             chunkFileNames: 'static/assets/[name]-[hash].js',
             assetFileNames: 'static/assets/[name].[ext]',
             manualChunks: {
-              reactgroup: ['react', 'react-dom'],
-              mobxgroup: ['mobx', 'mobx-react-lite'],
-              reactariagroup: ['react-aria-components'],
-              reactmarkdowngroup: ['react-markdown', 'remark-gfm'],
+              // reactgroup: ['react', 'react-dom/client'],
+              // mobxgroup: [
+              //   'mobx',
+              //   'mobx-react-lite',
+              //   'reflect-metadata',
+              //   'inversify',
+              // ],
+              // // reactariagroup: ['react-aria-components', 'tailwind-merge'],
+              // reactmarkdowngroup: ['react-markdown', 'remark-gfm'],
             },
           },
         },
@@ -49,7 +54,7 @@ export default defineConfig(({ mode }) => {
           include: '**/*.svg',
         }),
         // visualizer(),
-        // analyzer(),
+        analyzer(),
       ],
     };
   } else {

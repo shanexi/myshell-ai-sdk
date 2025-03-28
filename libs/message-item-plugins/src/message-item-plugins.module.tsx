@@ -2,7 +2,6 @@ import { Message, MessageItem } from '@myshell-run/biz-def';
 import { ContainerModule } from 'inversify';
 import { ExecutingMsg } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';
-import { ListDirectoryMsg } from './components/agent/list-directory-msg';
 import { ReplyMsg } from './components/reply-msg';
 
 export const REPLY_MESSAGE_TYPE = 'reply';
@@ -26,7 +25,7 @@ export const messageItemPluginsModule = new ContainerModule(
 
     addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
     addMessagePlugin(REPLY_MESSAGE_EXECUTING_TYPE, ExecutingMsg);
-    addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
+    // addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
     bind(ExecutingMsgModel).toSelf();
   },
 );
