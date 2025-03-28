@@ -12,6 +12,7 @@ import { Energy } from './energy';
 import { observer } from 'mobx-react-lite';
 import { BotListModel } from './bot-list.model';
 import { DEFAULT_AVATAR } from '@myshell-run/biz-def';
+import { ReactComponent as Avatar } from './avatar.svg';
 
 export type BotListContext = {
   //
@@ -91,7 +92,14 @@ export function BotListRoot(props: { children?: React.ReactNode }) {
 export function BotListHeader() {
   return (
     <div className="mx-spacing-xl mt-spacing-lg mb-spacing-xs flex items-center justify-between">
-      <div className="display-md-emphasized text-text-default-light">Chat</div>
+      <div className="flex items-center">
+        <div className="broder mr-[12px] h-[32px] w-[32px] rounded-lg border-border-default-light bg-[#F6F6F7]">
+          <Avatar />
+        </div>
+        <div className="display-md-emphasized text-text-default-light">
+          Chat
+        </div>
+      </div>
       <Energy />
     </div>
   );
