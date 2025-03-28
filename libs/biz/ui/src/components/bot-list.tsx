@@ -32,6 +32,7 @@ export const BotList = observer(
     useEffect(() => {
       model.setInitialBots(initialBots);
       model.setVirtuosoRef(virtuoso);
+      model.getUser();
     }, []);
 
     return (

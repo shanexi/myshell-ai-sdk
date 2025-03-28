@@ -67,6 +67,7 @@ export default createRoute(async (c) => {
         </ChatTopRoot>
       </div>
       <ChatMessageListIsland
+        userId={auth.userId}
         className="flex flex-grow flex-col overflow-auto"
         // TODO ssg 环境拿到 c.env? 先避免报错
         licenseKey={c?.env?.LIC}

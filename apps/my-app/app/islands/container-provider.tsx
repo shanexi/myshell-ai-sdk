@@ -20,6 +20,6 @@ const Wrapper2 = (props: { userId: string; children: React.ReactNode }) => {
   const model = useInjection(AuthModel);
   useEffect(() => {
     model.setUserId(userId);
-  }, []);
+  }, [userId]);
   return children;
 };

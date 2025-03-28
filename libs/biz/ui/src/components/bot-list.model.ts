@@ -7,19 +7,24 @@ import { BotListContext } from './bot-list';
 import { MyAppTrpcClient } from '@myshell-run/biz-def';
 import { TRPCClient } from '@trpc/client';
 import { AppRouter } from '@myshell-run/biz-service';
-
+import { AuthModel } from './auth.model';
 @injectable()
 export class BotListModel {
   initialBots: Bot[] = [];
   @observable searchText = '';
   virtuosoRef?: RefObject<VirtuosoMessageListMethods<Bot, BotListContext>>;
 
-  constructor(@inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>) {
+  constructor(
+    @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+    @inject(AuthModel) public auth: AuthModel,
+  ) {
     makeObservable(this);
   }
 
-  getUser(userId: string) {
-    this.trpc.getUser.query({ userId });
+  getUser() {
+    if (this.auth.userId) {
+      this.trpc.getUser.query({ userId: this.auth.userId });
+    }
   }
 
   setInitialBots = (bots: Bot[]) => {
