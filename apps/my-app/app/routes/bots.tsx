@@ -16,20 +16,32 @@ export default createRoute(async (c) => {
     secretKey: c.env.CLERK_SECRET_KEY,
   });
   const db = c.get('db');
-  const [dbBots, user] = await Promise.all([
-    db
-      .selectFrom('bot')
-      .select(['id', 'avatar', 'name', 'isOfficial', 'description'])
-      .limit(30)
-      .execute(),
-    clerk.users.getUser(auth.userId),
-  ]);
+  console.time('db');
+  const dbBots = await db
+    .selectFrom('bot')
+    .select(['id', 'avatar', 'name', 'isOfficial', 'description'])
+    .limit(30)
+    .execute();
+  console.timeEnd('db');
+
   const bots: Bot[] = dbBots.map((bot) => ({
     ...bot,
     // FIXME 0 50 会导致 hyrdate 有 diff 奇怪 似乎是碰到了一些特殊字符
     description: bot.description?.slice(0, 60),
   }));
-  const avatar = user.imageUrl;
+
+  const key = `AVATAR_${auth.userId}`;
+  console.time(`get ${key}`);
+  let avatar = await c.env.MY_APP.get(key);
+  console.timeEnd(`get ${key}`);
+
+  if (!avatar) {
+    console.time('clerk');
+    const user = await clerk.users.getUser(auth.userId);
+    console.timeEnd('clerk');
+    avatar = user.imageUrl;
+    c.env.MY_APP.put(`AVATAR_${auth.userId}`, avatar);
+  }
 
   return c.render(
     <BotListRoot>
