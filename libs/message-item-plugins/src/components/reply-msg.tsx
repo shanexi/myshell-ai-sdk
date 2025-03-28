@@ -1,9 +1,7 @@
 import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
 import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
-import { lazy, Suspense } from 'react';
+import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-
-const Markdown = lazy(() => import('react-markdown'));
 
 export const ReplyMsg = (props: Message) => {
   const { avatar, user, text } = props;
@@ -25,23 +23,21 @@ export const ReplyMsg = (props: Message) => {
       // }
     >
       <article className="prose dark:prose-invert">
-        <Suspense fallback={<span></span>}>
-          <Markdown
-            children={text}
-            remarkPlugins={[remarkGfm]}
-            components={{
-              code(props) {
-                const { children, className, node, ...rest } = props;
-                const match = /language-(\w+)/.exec(className || '');
-                return (
-                  <code {...rest} className={className}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          />
-        </Suspense>
+        <Markdown
+          children={text}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code(props) {
+              const { children, className, node, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || '');
+              return (
+                <code {...rest} className={className}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
       </article>
     </ReplyMsgFrame>
   );

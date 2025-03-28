@@ -8,7 +8,7 @@ import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 // import { visualizer } from 'rollup-plugin-visualizer';
-// import { analyzer } from 'vite-bundle-analyzer';
+import { analyzer } from 'vite-bundle-analyzer';
 import ViteTsConfigPathsPlugin from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 

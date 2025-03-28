@@ -35,9 +35,8 @@ export class ChatModel {
     return this.isNotInputFocus && this.notHaveInputText;
   }
   constructor(
-    @inject(AuthModel) public auth: AuthModel,
-  ) // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
-  {
+    @inject(AuthModel) public auth: AuthModel, // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+  ) {
     makeObservable(this);
   }
 
