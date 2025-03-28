@@ -50,14 +50,8 @@ export function ChatInputRoot(props: { children?: React.ReactNode }) {
   );
 }
 
-export const ChatInput = observer((props: { userId: string }) => {
+export const ChatInput = observer(() => {
   const model = useInjection(ChatModel);
-
-  useEffect(() => {
-    const { userId } = props;
-    model.auth.setUserId(userId);
-  }, []);
-
   return (
     <ChatInputRoot>
       {model.isShowInputMenu && <ChatInputMenu />}

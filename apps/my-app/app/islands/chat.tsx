@@ -5,9 +5,8 @@ import {
   ChatMessageList,
   ChatTopMenu,
 } from '@myshell-run/biz-ui';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
-import { clientContainer } from './client.container';
 import { Bot } from '@myshell-run/simple-prisma';
+import { ContainerProvider } from './container-provider';
 
 export const ChatInputMenuIsland = ChatInputMenu;
 
@@ -16,10 +15,11 @@ export const ChatMessageListIsland = (props: {
   licenseKey?: string;
   initialMessages: Message[];
   bot?: Bot;
+  userId: string;
 }) => {
-  const { className, licenseKey, initialMessages, bot } = props;
+  const { className, licenseKey, initialMessages, bot, userId } = props;
   return (
-    <InversifyProvider container={clientContainer}>
+    <ContainerProvider userId={userId}>
       <ChatMessageList
         className={className}
         licenseKey={licenseKey}
@@ -30,7 +30,7 @@ export const ChatMessageListIsland = (props: {
         }))}
         bot={bot}
       />
-    </InversifyProvider>
+    </ContainerProvider>
   );
 };
 
@@ -39,8 +39,8 @@ export const ChatTopMenuIsland = ChatTopMenu;
 export const ChatInputIsland = (props: { userId: string }) => {
   const { userId } = props;
   return (
-    <InversifyProvider container={clientContainer}>
-      <ChatInput userId={userId} />
-    </InversifyProvider>
+    <ContainerProvider userId={userId}>
+      <ChatInput />
+    </ContainerProvider>
   );
 };

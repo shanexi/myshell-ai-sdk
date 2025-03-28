@@ -1,29 +1,30 @@
-import { InversifyProvider } from '@myshell-run/ui-primitives';
-import { clientContainer } from './client.container';
-import { Bot } from '@myshell-run/simple-prisma';
 import { BotList, BotListSearch } from '@myshell-run/biz-ui';
+import { Bot } from '@myshell-run/simple-prisma';
+import { ContainerProvider } from './container-provider';
 
 export const BotListIsland = (props: {
   className?: string;
   licenseKey?: string;
   initialBots: Bot[];
+  userId: string;
 }) => {
-  const { className, licenseKey, initialBots } = props;
+  const { className, licenseKey, initialBots, userId } = props;
   return (
-    <InversifyProvider container={clientContainer}>
+    <ContainerProvider userId={userId}>
       <BotList
         className={className}
         licenseKey={licenseKey}
         initialBots={initialBots}
       />
-    </InversifyProvider>
+    </ContainerProvider>
   );
 };
 
-export const BotListSearchIsland = () => {
+export const BotListSearchIsland = (props: { userId: string }) => {
+  const { userId } = props;
   return (
-    <InversifyProvider container={clientContainer}>
+    <ContainerProvider userId={userId}>
       <BotListSearch />
-    </InversifyProvider>
+    </ContainerProvider>
   );
 };

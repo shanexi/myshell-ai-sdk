@@ -3,7 +3,6 @@ import { Bot } from '@myshell-run/simple-prisma';
 import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
-import { createClerkClient } from '@clerk/backend';
 
 export default createRoute(async (c) => {
   const auth = getAuth(c);
@@ -11,10 +10,6 @@ export default createRoute(async (c) => {
   if (!auth?.userId) {
     return c.redirect(`/signin?redirect_url=${c.req.url}`);
   }
-
-  const clerk = createClerkClient({
-    secretKey: c.env.CLERK_SECRET_KEY,
-  });
 
   const db = c.get('db');
   console.time('db');
@@ -36,23 +31,14 @@ export default createRoute(async (c) => {
   const avatar = await c.env.MY_APP.get(key);
   console.timeEnd(`get ${key}`);
 
-  // TODO 放到 client 去请求 当然客户端也可以写 KV
-  // 减少服务端针对 third-party 调用
-  // if (!avatar) {
-  // console.time('clerk');
-  // const user = await clerk.users.getUser(auth.userId);
-  // console.timeEnd('clerk');
-  // avatar = user.imageUrl;
-  // c.env.MY_APP.put(`AVATAR_${auth.userId}`, avatar);
-  // }
-
   return c.render(
     <BotListRoot>
       <div className="flex-none">
         <BotListHeader avatar={avatar} />
-        <BotListSearchIsland />
+        <BotListSearchIsland userId={auth.userId} />
       </div>
       <BotListIsland
+        userId={auth.userId}
         licenseKey={c?.env?.LIC}
         initialBots={bots}
         className="flex-grow overflow-auto"
