@@ -89,12 +89,17 @@ export function BotListRoot(props: { children?: React.ReactNode }) {
   return <div className="flex h-full flex-col">{children}</div>;
 }
 
-export function BotListHeader() {
+export function BotListHeader(props: { avatar?: string }) {
+  const { avatar } = props;
   return (
     <div className="mx-spacing-xl mt-spacing-lg mb-spacing-xs flex items-center justify-between">
       <div className="flex items-center">
         <div className="broder mr-[12px] h-[32px] w-[32px] rounded-lg border-border-default-light bg-[#F6F6F7]">
-          <Avatar />
+          {avatar ? (
+            <img className="rounded-lg" src={avatar} alt="avatar" />
+          ) : (
+            <Avatar />
+          )}
         </div>
         <div className="display-md-emphasized text-text-default-light">
           Chat
