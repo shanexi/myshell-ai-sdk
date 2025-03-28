@@ -15,6 +15,7 @@ export default createRoute(async (c) => {
   const clerk = createClerkClient({
     secretKey: c.env.CLERK_SECRET_KEY,
   });
+
   const db = c.get('db');
   console.time('db');
   const dbBots = await db
@@ -32,16 +33,18 @@ export default createRoute(async (c) => {
 
   const key = `AVATAR_${auth.userId}`;
   console.time(`get ${key}`);
-  let avatar = await c.env.MY_APP.get(key);
+  const avatar = await c.env.MY_APP.get(key);
   console.timeEnd(`get ${key}`);
 
-  if (!avatar) {
-    console.time('clerk');
-    const user = await clerk.users.getUser(auth.userId);
-    console.timeEnd('clerk');
-    avatar = user.imageUrl;
-    c.env.MY_APP.put(`AVATAR_${auth.userId}`, avatar);
-  }
+  // TODO 放到 client 去请求 当然客户端也可以写 KV
+  // 减少服务端针对 third-party 调用
+  // if (!avatar) {
+  // console.time('clerk');
+  // const user = await clerk.users.getUser(auth.userId);
+  // console.timeEnd('clerk');
+  // avatar = user.imageUrl;
+  // c.env.MY_APP.put(`AVATAR_${auth.userId}`, avatar);
+  // }
 
   return c.render(
     <BotListRoot>

@@ -2,11 +2,16 @@ import {
   EventSourceMessage,
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
-import { Message, MessageListContext } from '@myshell-run/biz-def';
+import {
+  Message,
+  MessageListContext,
+  MyAppTrpcClient,
+} from '@myshell-run/biz-def';
 import { createId } from '@paralleldrive/cuid2';
-// import { type TRPCClient } from '@trpc/client';
+import { type TRPCClient } from '@trpc/client';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
+import { AppRouter } from '@myshell-run/biz-service';
 import {
   action,
   computed,
@@ -16,13 +21,14 @@ import {
 } from 'mobx';
 import { RefObject } from 'react';
 import { AuthModel } from './auth.model';
+import { Bot } from '@myshell-run/simple-prisma';
 
 @injectable()
 export class ChatModel {
   virtuosoRef?: RefObject<
     VirtuosoMessageListMethods<Message, MessageListContext>
   >;
-
+  bot?: Bot;
   @observable inputText = '';
   @observable isInputFocus = false;
   @computed get isNotInputFocus() {
@@ -35,7 +41,8 @@ export class ChatModel {
     return this.isNotInputFocus && this.notHaveInputText;
   }
   constructor(
-    @inject(AuthModel) public auth: AuthModel, // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+    @inject(AuthModel) public auth: AuthModel,
+    @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
   ) {
     makeObservable(this);
   }
@@ -87,6 +94,7 @@ export class ChatModel {
         msgId,
         replyMsgId,
         prompt: this.inputText,
+        botId: this.bot?.id,
       }),
       signal: abortController.signal,
       openWhenHidden: true,
@@ -129,5 +137,9 @@ export class ChatModel {
     ref: RefObject<VirtuosoMessageListMethods<Message, MessageListContext>>,
   ) => {
     this.virtuosoRef = ref;
+  };
+
+  setBot = (bot?: Bot) => {
+    this.bot = bot;
   };
 }

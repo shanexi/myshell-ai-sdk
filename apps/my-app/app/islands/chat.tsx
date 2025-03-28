@@ -7,6 +7,7 @@ import {
 } from '@myshell-run/biz-ui';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { clientContainer } from './client.container';
+import { Bot } from '@myshell-run/simple-prisma';
 
 export const ChatInputMenuIsland = ChatInputMenu;
 
@@ -14,9 +15,9 @@ export const ChatMessageListIsland = (props: {
   className?: string;
   licenseKey?: string;
   initialMessages: Message[];
-  botAvatar?: string;
+  bot?: Bot;
 }) => {
-  const { className, licenseKey, initialMessages, botAvatar } = props;
+  const { className, licenseKey, initialMessages, bot } = props;
   return (
     <InversifyProvider container={clientContainer}>
       <ChatMessageList
@@ -25,8 +26,9 @@ export const ChatMessageListIsland = (props: {
         initialMessages={initialMessages.map((msg) => ({
           ...msg,
           // 这样写 而不是在 ssr 层就 map 好，是为了减少 ssr 体积
-          avatar: botAvatar,
+          avatar: bot?.avatar,
         }))}
+        bot={bot}
       />
     </InversifyProvider>
   );

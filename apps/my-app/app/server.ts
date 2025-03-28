@@ -65,6 +65,7 @@ if (isNotSSG) {
         msgId: z.string(),
         replyMsgId: z.string(),
         prompt: z.string(),
+        botId: z.string(),
       }),
     ),
     async (c) => {
@@ -79,14 +80,14 @@ if (isNotSSG) {
         );
       }
 
-      const { msgId, replyMsgId, prompt } = c.req.valid('json');
+      const { msgId, replyMsgId, prompt, botId } = c.req.valid('json');
       const db = c.get('db');
 
       db.insertInto('message')
         .values({
           id: msgId,
           text: prompt,
-          sessionId: 'bot-6',
+          sessionId: `bot-${botId}`,
           senderId: `user-${auth.userId}`,
         })
         .executeTakeFirst();
@@ -118,8 +119,8 @@ if (isNotSSG) {
           .values({
             id: replyMsgId,
             text: messages.join(''),
-            sessionId: 'bot-6',
-            senderId: `bot-6`,
+            sessionId: `bot-${botId}`,
+            senderId: `bot-${botId}`,
           })
           .executeTakeFirst();
         console.log('reply message db inserted', replyMsgId);

@@ -33,32 +33,32 @@ export default createRoute(async (c) => {
   }
 
   let messages: CMessage[] = [];
-  let bot: Bot | undefined;
+  const db = c.get('db');
+  console.time('db');
+  const [msgs, dbBot] = await Promise.all([
+    db
+      .selectFrom('message')
+      .select(['id', 'text', 'senderId'])
+      .where('sessionId', '=', `bot-${botId}`)
+      .orderBy('createdAt')
+      .limit(10)
+      .execute(),
+    db
+      .selectFrom('bot')
+      .select(['id', 'avatar'])
+      .where('id', '=', Number(botId))
+      .execute(),
+  ]);
+  console.timeEnd('db');
 
-  if (import.meta.env.VITE_SSG !== '1') {
-    const db = c.get('db');
-    const [msgs, dbBot] = await Promise.all([
-      db
-        .selectFrom('message')
-        .select(['id', 'text', 'senderId'])
-        .where('sessionId', '=', `bot-6`)
-        .orderBy('createdAt')
-        .limit(10)
-        .execute(),
-      db
-        .selectFrom('bot')
-        .select(['id', 'avatar'])
-        .where('id', '=', Number(botId))
-        .execute(),
-    ]);
-    bot = dbBot[0] as Bot;
-    messages = msgs.map((msg) => ({
-      key: msg.id,
-      text: msg.text,
-      user: msg.senderId.includes('bot') ? 'other' : 'me',
-      // avatar: bot?.avatar,
-    }));
-  }
+  const bot = dbBot[0] as Bot;
+
+  messages = msgs.map((msg) => ({
+    key: msg.id,
+    text: msg.text,
+    user: msg.senderId.includes('bot') ? 'other' : 'me',
+    // avatar: bot?.avatar,
+  }));
   return c.render(
     <ChatRoot>
       <div className="flex-none">
@@ -71,7 +71,7 @@ export default createRoute(async (c) => {
         // TODO ssg 环境拿到 c.env? 先避免报错
         licenseKey={c?.env?.LIC}
         initialMessages={messages}
-        botAvatar={bot?.avatar}
+        bot={bot}
       />
       <ChatFoot>
         <ChatInputIsland userId={auth.userId} />

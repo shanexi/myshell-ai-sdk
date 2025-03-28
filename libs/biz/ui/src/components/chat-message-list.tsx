@@ -8,6 +8,7 @@ import {
   VirtuosoMessageListLicense,
 } from '@virtuoso.dev/message-list';
 import { ChatModel } from './chat.model';
+import { Bot } from '@myshell-run/simple-prisma';
 
 // 注意 VirtuosoMessageList 不要 observer
 export function ChatMessageList(props: {
@@ -15,13 +16,15 @@ export function ChatMessageList(props: {
   style?: CSSProperties;
   licenseKey?: string;
   initialMessages?: Message[];
+  bot?: Bot;
 }) {
   const model = useInjection(ChatModel);
-  const { className, style, licenseKey, initialMessages } = props;
+  const { className, style, licenseKey, initialMessages, bot } = props;
   const virtuoso =
     useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
   useEffect(() => {
     model.setVirtuosoRef(virtuoso);
+    model.setBot(bot);
   }, []);
 
   // mock data
