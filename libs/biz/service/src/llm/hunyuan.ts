@@ -2,14 +2,17 @@ import { inject, injectable } from 'inversify';
 import { hunyuan } from 'tencentcloud-sdk-nodejs-hunyuan';
 import { HonoCtx } from '../lib/hono-ctx';
 import { LLM, LLMMessage } from './llm';
-
+import { STATIC_URL, UploadSvc } from '../lib/upload.svc';
 const Client = hunyuan.v20230901.Client;
 
 // https://github.com/TencentCloud/tencentcloud-sdk-nodejs/blob/master/examples/hunyuan/v20230901/chat_completions.ts
 @injectable()
 export class Hunyuan implements LLM {
   model = 'hunyuan';
-  constructor(@inject(HonoCtx) private readonly ctx: HonoCtx) {
+  constructor(
+    @inject(HonoCtx) private readonly ctx: HonoCtx,
+    @inject(UploadSvc) private readonly uploadSvc: UploadSvc,
+  ) {
     //
   }
 
@@ -33,11 +36,20 @@ export class Hunyuan implements LLM {
     const res = await client.TextToImageLite({
       Prompt: prompt,
       Style: '201',
-      Resolution: '1024:1024',
+      Resolution: '512:512',
     });
 
-    yield {
-      content: res.ResultImage ?? '',
-    };
+    if (res.ResultImage) {
+      const imgUrl = await this.uploadSvc.uploadBase64(res.ResultImage);
+
+      yield {
+        content: imgUrl,
+      };
+    } else {
+      // TODO 异常处理
+      yield {
+        content: '',
+      };
+    }
   }
 }
