@@ -47,13 +47,8 @@ export class ChatService {
     const messages: string[] = [];
 
     for await (const chunk of chunks) {
-      // TODO 这块逻辑很难 generic? 因为没有 type
-      // 比较好的做法是一个类型，但是多个字段，相当于一个协议
-      const content = chunk.choices[0]?.delta?.content;
-      if (content) {
-        messages.push(content);
-        yield content;
-      }
+      messages.push(chunk.content);
+      yield chunk.content;
     }
 
     console.time('insert reply message');

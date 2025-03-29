@@ -1,11 +1,13 @@
-import { type ChatCompletionChunk } from 'openai/resources/chat';
-
 export const LLM = Symbol('LLM');
+
+export type LLMMessage = {
+  content: string;
+};
 
 export interface LLM {
   model: string;
   chat: (
     model: string,
     prompt: string,
-  ) => AsyncGenerator<ChatCompletionChunk, void, unknown>;
+  ) => AsyncGenerator<LLMMessage, void, unknown>;
 }

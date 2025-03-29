@@ -182,6 +182,8 @@ specifiers:
   tailwindcss-3: npm:tailwindcss@3.4.17
   tailwindcss-animate: ^1.0.7
   tailwindcss-react-aria-components: ^2.0.0
+  tencentcloud-sdk-nodejs-common: ^4.1.1
+  tencentcloud-sdk-nodejs-hunyuan: ^4.1.7
   ts-jest: ^29.0.5
   ts-loader: ^9.5.2
   ts-node: 10.9.1
@@ -348,6 +350,8 @@ dependencies:
   tailwindcss-3: /tailwindcss/3.4.17_aits3ofvxjnreifawpd4eyklsu_ts-node@10.9.1
   tailwindcss-animate: 1.0.7_tailwindcss@4.0.9
   tailwindcss-react-aria-components: 2.0.0_tailwindcss@4.0.9
+  tencentcloud-sdk-nodejs-common: 4.1.1
+  tencentcloud-sdk-nodejs-hunyuan: 4.1.7
   ts-jest: 29.2.5_eyqmts3h7i3bqwwzprh2kwqhlu
   ts-loader: 9.5.2_rx2svsro3t7os36zihllpvgfgu
   ts-node: 10.9.1_nqcc47kkvbo2l3aiidxihgyvce
@@ -8825,13 +8829,13 @@ packages:
   /@swc/helpers/0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
     dev: false
 
   /@swc/helpers/0.5.1:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
     dev: false
 
   /@swc/jest/0.2.20_@swc+core@1.7.23:
@@ -11031,6 +11035,10 @@ packages:
 
   /big.js/5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
+    dev: false
+
+  /bignumber.js/9.1.2:
+    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
     dev: false
 
   /binary-extensions/2.3.0:
@@ -14391,6 +14399,16 @@ packages:
       mime-types: 2.1.35
     dev: false
 
+  /form-data/3.0.3:
+    resolution: {integrity: sha512-q5YBMeWy6E2Un0nMGWMgI65MAKtaylxfNJGJxpGh45YDciZB4epbWpaAfImil6CPAPTYB4sh0URQNDRIZG5F2w==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      mime-types: 2.1.35
+    dev: false
+
   /form-data/4.0.0:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
@@ -16816,6 +16834,12 @@ packages:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: false
+
+  /json-bigint/1.0.0:
+    resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
+    dependencies:
+      bignumber.js: 9.1.2
     dev: false
 
   /json-buffer/3.0.1:
@@ -22605,6 +22629,34 @@ packages:
       unique-string: 2.0.0
     dev: false
 
+  /tencentcloud-sdk-nodejs-common/4.1.1:
+    resolution: {integrity: sha512-ipUKFgaAHwAFRI5MiWGvKAle0dilXJ/EzVoJNvOg2FTHSjtPbD1kbaOWuNKG2l1v3C1NtMMSbRRaWFi3HQWz3w==}
+    engines: {node: '>=10'}
+    dependencies:
+      form-data: 3.0.3
+      get-stream: 6.0.1
+      https-proxy-agent: 5.0.1
+      is-stream: 2.0.1
+      json-bigint: 1.0.0
+      node-fetch: 2.7.0
+      tslib: 1.13.0
+      uuid: 9.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /tencentcloud-sdk-nodejs-hunyuan/4.1.7:
+    resolution: {integrity: sha512-68VT5eA/w40K7va2oFAQ6+sv/xXXeFsAgvd6/IGqdYMuy0Bv8U9VXzvG6Ddy16nmUybolHeSxrEben+956Y3oA==}
+    engines: {node: '>=10'}
+    dependencies:
+      tencentcloud-sdk-nodejs-common: 4.1.1
+      tslib: 1.13.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /terminal-link/2.1.1:
     resolution: {integrity: sha512-un0FmiRUQNr5PJqy9kP7c40F5BOfpGlYTrxonDChEZB7pzZxRNp/bt+ymiy9/npwXya9KH99nJ/GXFIiUkYGFQ==}
     engines: {node: '>=8'}
@@ -22982,6 +23034,10 @@ packages:
       json5: 2.2.3
       minimist: 1.2.8
       strip-bom: 3.0.0
+    dev: false
+
+  /tslib/1.13.0:
+    resolution: {integrity: sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==}
     dev: false
 
   /tslib/1.14.1:

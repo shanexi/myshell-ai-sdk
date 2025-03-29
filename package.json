@@ -153,6 +153,8 @@
     "tailwindcss-3": "npm:tailwindcss@3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-react-aria-components": "^2.0.0",
+    "tencentcloud-sdk-nodejs-common": "^4.1.1",
+    "tencentcloud-sdk-nodejs-hunyuan": "^4.1.7",
     "ts-jest": "^29.0.5",
     "ts-loader": "^9.5.2",
     "ts-node": "10.9.1",
