@@ -11,29 +11,38 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { analyzer } from 'vite-bundle-analyzer';
 import ViteTsConfigPathsPlugin from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const packageJson = JSON.parse(
+  readFileSync(join(__dirname, '../../package.json'), 'utf-8'),
+);
 
 export default defineConfig(({ mode }) => {
   if (mode === 'client') {
     console.log('building client');
     return {
       build: {
+        minify: false,
         rollupOptions: {
           input: ['./app/client.ts', './app/style.css'],
+          cache: false,
+          // 注意：目前先将稳定的、大的库 external 其他库 external 可能是负优化
+          external: [
+            'react',
+            'react-dom/client',
+            'mobx',
+            'mobx-react-lite',
+            'react-markdown',
+            'remark-gfm',
+            'inversify',
+            'reflect-metadata',
+            'tailwind-merge',
+          ],
           output: {
             entryFileNames: 'static/client.js',
             chunkFileNames: 'static/assets/[name]-[hash].js',
             assetFileNames: 'static/assets/[name].[ext]',
-            manualChunks: {
-              // reactgroup: ['react', 'react-dom/client'],
-              // mobxgroup: [
-              //   'mobx',
-              //   'mobx-react-lite',
-              //   'reflect-metadata',
-              //   'inversify',
-              // ],
-              // // reactariagroup: ['react-aria-components', 'tailwind-merge'],
-              // reactmarkdowngroup: ['react-markdown', 'remark-gfm'],
-            },
           },
         },
       },
@@ -60,23 +69,10 @@ export default defineConfig(({ mode }) => {
   } else {
     return {
       ssr: {
-        external: [
-          'react',
-          'react-dom',
-          'mobx-react-lite',
-          'mobx',
-          'react-markdown',
-          'remark-gfm',
-          'use-sync-external-store',
-          '@hono/clerk-auth',
-          '@clerk/backend',
-          '@ai-sdk/openai',
-          'ai',
-          'langchain',
-          '@langchain/core',
-          '@langchain/openai',
-          '@paralleldrive/cuid2',
-        ],
+        // 一劳永逸 默认 external 所有依赖 除了报错的（e.g. honox）
+        external: Object.keys(packageJson.dependencies).filter(
+          (dep) => dep !== 'honox',
+        ),
       },
       plugins: [
         ViteTsConfigPathsPlugin({

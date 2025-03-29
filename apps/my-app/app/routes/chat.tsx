@@ -40,7 +40,7 @@ export default createRoute(async (c) => {
       .selectFrom('message')
       .select(['id', 'text', 'senderId'])
       .where('sessionId', '=', `bot-${botId}`)
-      .orderBy('createdAt')
+      .orderBy('createdAt', 'desc')
       .limit(10)
       .execute(),
     db
@@ -53,7 +53,7 @@ export default createRoute(async (c) => {
 
   const bot = dbBot[0] as Bot;
 
-  messages = msgs.map((msg) => ({
+  messages = msgs.reverse().map((msg) => ({
     key: msg.id,
     text: msg.text,
     user: msg.senderId.includes('bot') ? 'other' : 'me',

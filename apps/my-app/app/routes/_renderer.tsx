@@ -21,6 +21,26 @@ export default reactRenderer(({ children }) => {
         />
         {import.meta.env.PROD || import.meta.env.VITE_SSG === '1' ? (
           <>
+            <script
+              type="importmap"
+              dangerouslySetInnerHTML={{
+                __html: `
+{
+  "imports": {
+    "react": "https://esm.sh/react",
+    "react-dom/client": "https://esm.sh/react-dom/client",
+    "mobx": "https://esm.sh/mobx",
+    "mobx-react-lite": "https://esm.sh/mobx-react-lite",
+    "react-markdown": "https://esm.sh/react-markdown",
+    "remark-gfm": "https://esm.sh/remark-gfm",
+    "inversify": "https://esm.sh/inversify@6.2.1",
+    "reflect-metadata": "https://esm.sh/reflect-metadata",
+    "tailwind-merge": "https://esm.sh/tailwind-merge"
+  }
+}
+          `,
+              }}
+            ></script>
             <script type="module" src="/static/client.js"></script>
             <link href="/static/assets/style.css" rel="stylesheet" />
           </>

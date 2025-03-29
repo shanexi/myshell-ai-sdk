@@ -2,16 +2,11 @@ import {
   EventSourceMessage,
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
-import {
-  Message,
-  MessageListContext,
-  MyAppTrpcClient,
-} from '@myshell-run/biz-def';
+import { Message, MessageListContext } from '@myshell-run/biz-def';
+import { Bot } from '@myshell-run/simple-prisma';
 import { createId } from '@paralleldrive/cuid2';
-import { type TRPCClient } from '@trpc/client';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
-import { AppRouter } from '@myshell-run/biz-service';
 import {
   action,
   computed,
@@ -21,7 +16,6 @@ import {
 } from 'mobx';
 import { RefObject } from 'react';
 import { AuthModel } from './auth.model';
-import { Bot } from '@myshell-run/simple-prisma';
 
 @injectable()
 export class ChatModel {
@@ -41,8 +35,7 @@ export class ChatModel {
     return this.isNotInputFocus && this.notHaveInputText;
   }
   constructor(
-    @inject(AuthModel) public auth: AuthModel,
-    @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+    @inject(AuthModel) public auth: AuthModel, // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
   ) {
     makeObservable(this);
   }
@@ -105,7 +98,7 @@ export class ChatModel {
         if (this.isMsgNoExists(replyMsgId)) {
           this.appendMsg({
             key: replyMsgId,
-            text: '',
+            text: ev.data,
             user: 'other',
           });
         } else {
