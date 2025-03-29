@@ -22,9 +22,7 @@ export class BotListModel {
   }
 
   getUser() {
-    if (this.auth.userId) {
-      this.trpc.getUser.query({ userId: this.auth.userId });
-    }
+    this.trpc.getUser.query({});
   }
 
   setInitialBots = (bots: Bot[]) => {

@@ -1,13 +1,12 @@
-import { getAuth } from '@hono/clerk-auth';
-import { Bot } from '@myshell-run/simple-prisma';
 import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
+import { Bot } from '@myshell-run/simple-prisma';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
+import { getAuth } from '@hono/clerk-auth';
 
 export default createRoute(async (c) => {
   const auth = getAuth(c);
-
-  if (!auth?.userId) {
+  if (!auth) {
     return c.redirect(`/signin?redirect_url=${c.req.url}`);
   }
 
@@ -35,10 +34,9 @@ export default createRoute(async (c) => {
     <BotListRoot>
       <div className="flex-none">
         <BotListHeader avatar={avatar} />
-        <BotListSearchIsland userId={auth.userId} />
+        <BotListSearchIsland />
       </div>
       <BotListIsland
-        userId={auth.userId}
         licenseKey={c?.env?.LIC}
         initialBots={bots}
         className="flex-grow overflow-auto"

@@ -2,12 +2,12 @@ import { initTRPC } from '@trpc/server';
 import { injectable } from 'inversify';
 import { z } from 'zod';
 import { createClerkClient } from '@clerk/backend';
+import { getAuth } from '@hono/clerk-auth';
 
 const t = initTRPC
   .context<{
-    env: {
-      CLERK_PUBLISHABLE_KEY: string;
-    };
+    env: Env;
+    auth: ReturnType<typeof getAuth>;
   }>()
   .create();
 
@@ -32,16 +32,15 @@ export class TrpcRouter {
       }),
 
     getUser: publicProcedure
-      .input(
-        z.object({
-          userId: z.string(),
-        }),
-      )
+      .input(z.object({}))
       .query(async ({ input, ctx }) => {
         const clerk = createClerkClient({
-          secretKey: ctx.env.CLERK_PUBLISHABLE_KEY,
+          secretKey: ctx.env.CLERK_SECRET_KEY,
         });
-        const user = await clerk.users.getUser(input.userId);
+        if (!ctx.auth?.userId) {
+          throw new Error('Unauthorized');
+        }
+        const user = await clerk.users.getUser(ctx.auth.userId);
         return user;
       }),
   });

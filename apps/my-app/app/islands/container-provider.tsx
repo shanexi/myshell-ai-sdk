@@ -1,25 +1,11 @@
-import { AuthModel } from '@myshell-run/biz-ui';
+import { InversifyProvider } from '@myshell-run/ui-primitives';
 import { clientContainer } from './client.container';
-import { InversifyProvider, useInjection } from '@myshell-run/ui-primitives';
-import { useEffect } from 'react';
 
-export const ContainerProvider = (props: {
-  userId: string;
-  children: React.ReactNode;
-}) => {
-  const { userId, children } = props;
+export const ContainerProvider = (props: { children: React.ReactNode }) => {
+  const { children } = props;
   return (
     <InversifyProvider container={clientContainer}>
-      <Wrapper2 userId={userId}>{children}</Wrapper2>
+      {children}
     </InversifyProvider>
   );
-};
-
-const Wrapper2 = (props: { userId: string; children: React.ReactNode }) => {
-  const { userId, children } = props;
-  const model = useInjection(AuthModel);
-  useEffect(() => {
-    model.setUserId(userId);
-  }, [userId]);
-  return children;
 };

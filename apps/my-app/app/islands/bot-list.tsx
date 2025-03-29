@@ -6,11 +6,10 @@ export const BotListIsland = (props: {
   className?: string;
   licenseKey?: string;
   initialBots: Bot[];
-  userId: string;
 }) => {
-  const { className, licenseKey, initialBots, userId } = props;
+  const { className, licenseKey, initialBots } = props;
   return (
-    <ContainerProvider userId={userId}>
+    <ContainerProvider>
       <BotList
         className={className}
         licenseKey={licenseKey}
@@ -20,10 +19,9 @@ export const BotListIsland = (props: {
   );
 };
 
-export const BotListSearchIsland = (props: { userId: string }) => {
-  const { userId } = props;
+export const BotListSearchIsland = () => {
   return (
-    <ContainerProvider userId={userId}>
+    <ContainerProvider>
       <BotListSearch />
     </ContainerProvider>
   );

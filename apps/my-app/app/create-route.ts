@@ -1,7 +1,6 @@
 import { createFactory } from 'hono/factory';
+import { HonoEnv } from './server';
 
-const factory = createFactory<{
-  Bindings: Env;
-}>();
+export const factory = createFactory<HonoEnv>();
 
 export const createRoute = factory.createHandlers;

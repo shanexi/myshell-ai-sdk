@@ -1,4 +1,3 @@
-import { getAuth } from '@hono/clerk-auth';
 import { Message as CMessage } from '@myshell-run/biz-def';
 import {
   BotInfo,
@@ -7,17 +6,13 @@ import {
   ChatTopMenu,
   ChatTopRoot,
 } from '@myshell-run/biz-ui';
+import { Bot } from '@myshell-run/simple-prisma';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
-import { Bot } from '@myshell-run/simple-prisma';
 // import { createClerkClient } from '@clerk/backend';
 
 export default createRoute(async (c) => {
-  const auth = getAuth(c);
-  if (!auth?.userId) {
-    return c.redirect(`/signin?redirect_url=${c.req.url}`);
-  }
-  // 请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
+  // 弱依赖 + 耗时请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
   // const clerk = createClerkClient({
   //   secretKey: c.env.CLERK_SECRET_KEY,
   // });
@@ -67,7 +62,6 @@ export default createRoute(async (c) => {
         </ChatTopRoot>
       </div>
       <ChatMessageListIsland
-        userId={auth.userId}
         className="flex flex-grow flex-col overflow-auto"
         // TODO ssg 环境拿到 c.env? 先避免报错
         licenseKey={c?.env?.LIC}
@@ -75,7 +69,7 @@ export default createRoute(async (c) => {
         bot={bot}
       />
       <ChatFoot>
-        <ChatInputIsland userId={auth.userId} />
+        <ChatInputIsland />
         <BotInfo avatar={bot?.avatar} />
       </ChatFoot>
     </ChatRoot>,

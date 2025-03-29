@@ -15,11 +15,10 @@ export const ChatMessageListIsland = (props: {
   licenseKey?: string;
   initialMessages: Message[];
   bot?: Bot;
-  userId: string;
 }) => {
-  const { className, licenseKey, initialMessages, bot, userId } = props;
+  const { className, licenseKey, initialMessages, bot } = props;
   return (
-    <ContainerProvider userId={userId}>
+    <ContainerProvider>
       <ChatMessageList
         className={className}
         licenseKey={licenseKey}
@@ -36,10 +35,9 @@ export const ChatMessageListIsland = (props: {
 
 export const ChatTopMenuIsland = ChatTopMenu;
 
-export const ChatInputIsland = (props: { userId: string }) => {
-  const { userId } = props;
+export const ChatInputIsland = () => {
   return (
-    <ContainerProvider userId={userId}>
+    <ContainerProvider>
       <ChatInput />
     </ContainerProvider>
   );
