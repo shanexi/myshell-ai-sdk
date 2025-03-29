@@ -1,10 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { HonoCtx } from './hono-ctx';
-import OpenAI from 'openai';
+import { OpenAI } from '../llm/openai';
 
 @injectable()
 export class ChatService {
-  constructor(@inject(HonoCtx) private readonly ctx: HonoCtx) {}
+  constructor(
+    @inject(HonoCtx) private readonly ctx: HonoCtx,
+    @inject(OpenAI) private readonly openai: OpenAI,
+  ) {}
 
   async *chat(
     botId: number,
@@ -38,21 +41,11 @@ export class ChatService {
       throw new Error('Only LLM bot can be used');
     }
 
-    const client = new OpenAI({
-      apiKey: this.ctx.env.OPENAI_KEY,
-      baseURL: this.ctx.env.OPENAI_BASE_URL,
-    });
-
-    const chunks = await client.chat.completions.create({
-      model: dbBot.llmModelId,
-      messages: [{ role: 'user', content: prompt }],
-      stream: true,
-    });
+    const chunks = this.openai.chat(dbBot.llmModelId, prompt);
 
     const messages: string[] = [];
 
-    for await (const event of chunks) {
-      const content = event.choices[0]?.delta?.content;
+    for await (const content of chunks) {
       if (content) {
         messages.push(content);
         yield content;
