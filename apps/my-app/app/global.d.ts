@@ -1,8 +1,7 @@
 /* eslint-disable */
-import type {} from 'hono';
 import { type Database } from '@myshell-run/simple-prisma';
+import type {} from 'hono';
 import { type Kysely } from 'kysely';
-import { type ClerkAuth } from '@hono/clerk-auth';
 declare module 'hono' {
   interface Env {
     Variables: {};
@@ -10,6 +9,5 @@ declare module 'hono' {
   }
   interface ContextVariableMap {
     db: Kysely<Database>;
-    auth: ClerkAuth;
   }
 }

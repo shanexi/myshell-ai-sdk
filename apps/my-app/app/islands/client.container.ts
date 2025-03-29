@@ -8,7 +8,10 @@ import { MyAppTrpcClient } from '@myshell-run/biz-def';
 const trpc = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: 'http://localhost:5173/trpc',
+      url:
+        typeof window !== 'undefined'
+          ? `${window.location.origin}/trpc`
+          : 'http://localhost:5173/trpc',
     }),
   ],
 });

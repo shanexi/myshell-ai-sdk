@@ -1,6 +1,6 @@
-import { clerkMiddleware } from '@hono/clerk-auth';
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 import { trpcServer } from '@hono/trpc-server';
-import { TrpcRouter } from '@myshell-run/biz-service';
+import { HonoCtx, TrpcRouter } from '@myshell-run/biz-service';
 import { Hono } from 'hono';
 import { showRoutes } from 'hono/dev';
 import { createApp } from 'honox/server';
@@ -10,6 +10,7 @@ import { setDb } from './middlewares/set-db';
 
 const serverContainer = new Container();
 serverContainer.bind(TrpcRouter).toSelf().inSingletonScope();
+serverContainer.bind(HonoCtx).toSelf().inSingletonScope();
 
 export type HonoEnv = {
   Bindings: Env;
@@ -20,6 +21,13 @@ export type HonoEnv = {
 const happ = new Hono<HonoEnv>();
 happ.use('*', clerkMiddleware());
 happ.use(setDb);
+happ.use(async (c, next) => {
+  const honoCtx = serverContainer.get(HonoCtx);
+  honoCtx.setEnv(c.env);
+  const auth = c.get('clerkAuth');
+  honoCtx.setAuth(auth);
+  await next();
+});
 
 const trpcRouter = serverContainer.get(TrpcRouter);
 happ.use(
@@ -28,8 +36,8 @@ happ.use(
   trpcServer({
     router: trpcRouter.appRouter,
     createContext: (opts, c) => {
-      // 因为 c.get('auth') 并没有透传到 trpc 这里重复处理下
-      const auth = c.get('auth');
+      // 因为 c.get('clerkAuth') 并没有透传到 trpc 这里重复处理下
+      const auth = getAuth(c);
       return {
         auth,
       };

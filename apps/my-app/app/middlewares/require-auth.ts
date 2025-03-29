@@ -14,6 +14,5 @@ export const requireAuth = factory.createMiddleware(async (c, next) => {
       401,
     );
   }
-  c.set('auth', auth);
   await next();
 });

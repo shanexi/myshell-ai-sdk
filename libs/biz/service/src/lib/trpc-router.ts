@@ -1,7 +1,8 @@
-import { initTRPC } from '@trpc/server';
-import { injectable } from 'inversify';
-import { z } from 'zod';
 import { createClerkClient } from '@clerk/backend';
+import { initTRPC } from '@trpc/server';
+import { inject, injectable } from 'inversify';
+import { z } from 'zod';
+import { HonoCtx } from './hono-ctx';
 import { getAuth } from '@hono/clerk-auth';
 
 const t = initTRPC
@@ -16,21 +17,11 @@ const router = t.router;
 
 @injectable()
 export class TrpcRouter {
-  constructor() {
+  constructor(@inject(HonoCtx) private honoCtx: HonoCtx) {
     //
   }
 
   appRouter = router({
-    hello: publicProcedure
-      .input(
-        z.object({
-          message: z.string().nullish(),
-        }),
-      )
-      .query(async ({ input, ctx }) => {
-        return input.message;
-      }),
-
     getUser: publicProcedure
       .input(z.object({}))
       .query(async ({ input, ctx }) => {
@@ -40,8 +31,8 @@ export class TrpcRouter {
         if (!ctx.auth?.userId) {
           throw new Error('Unauthorized');
         }
-        const user = await clerk.users.getUser(ctx.auth.userId);
-        return user;
+        const user = await clerk.users.getUser(ctx.auth?.userId);
+        return user.imageUrl;
       }),
   });
 }

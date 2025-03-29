@@ -20,7 +20,10 @@ export default createRoute(requireAuth, async (c) => {
     description: bot.description?.slice(0, 60),
   }));
 
-  const auth = c.get('auth');
+  const auth = c.get('clerkAuth');
+  if (!auth?.userId) {
+    throw new Error('Unauthorized');
+  }
   const key = `AVATAR_${auth.userId}`;
   console.time(`get ${key}`);
   const avatar = await c.env.MY_APP.get(key);

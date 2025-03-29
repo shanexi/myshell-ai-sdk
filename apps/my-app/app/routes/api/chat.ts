@@ -21,7 +21,10 @@ export default createRoute(
   async (c) => {
     const { msgId, replyMsgId, prompt, botId } = c.req.valid('json');
     const db = c.get('db');
-    const auth = c.get('auth');
+    const auth = c.get('clerkAuth');
+    if (!auth?.userId) {
+      throw new Error('Unauthorized');
+    }
     db.insertInto('message')
       .values({
         id: msgId,

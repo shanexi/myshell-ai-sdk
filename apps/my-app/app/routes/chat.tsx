@@ -79,7 +79,10 @@ async function getUser(c: Context<HonoEnv>) {
   const clerk = createClerkClient({
     secretKey: c.env.CLERK_SECRET_KEY,
   });
-  const auth = c.get('auth');
+  const auth = c.get('clerkAuth');
+  if (!auth?.userId) {
+    throw new Error('Unauthorized');
+  }
   const user = await clerk.users.getUser(auth.userId);
   console.log('user', user.emailAddresses[0].emailAddress);
 }
