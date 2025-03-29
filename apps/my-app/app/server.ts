@@ -7,10 +7,10 @@ import { createApp } from 'honox/server';
 import { Container } from 'inversify';
 import { requireAuth } from './middlewares/require-auth';
 import { setDb } from './middlewares/set-db';
+import { bizServiceModule } from '@myshell-run/biz-service';
 
 const serverContainer = new Container();
-serverContainer.bind(TrpcRouter).toSelf().inSingletonScope();
-serverContainer.bind(HonoCtx).toSelf().inSingletonScope();
+serverContainer.load(bizServiceModule);
 
 export type HonoEnv = {
   Bindings: Env;
@@ -23,9 +23,8 @@ happ.use('*', clerkMiddleware());
 happ.use(setDb);
 happ.use(async (c, next) => {
   const honoCtx = serverContainer.get(HonoCtx);
-  honoCtx.setEnv(c.env);
-  const auth = c.get('clerkAuth');
-  honoCtx.setAuth(auth);
+  honoCtx.init(c.env, c.get('clerkAuth'), c.get('db'));
+  c.set('container', serverContainer);
   await next();
 });
 

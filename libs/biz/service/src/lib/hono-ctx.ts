@@ -1,15 +1,39 @@
 import { getAuth } from '@hono/clerk-auth';
 import { injectable } from 'inversify';
+import { type Kysely } from 'kysely';
+// eslint-disable-next-line
+import { type Database } from '@myshell-run/simple-prisma';
 
 @injectable()
 export class HonoCtx {
-  env?: Env;
-  auth?: ReturnType<typeof getAuth>;
+  private _env?: Env;
+  private _auth?: ReturnType<typeof getAuth>;
+  private _db?: Kysely<Database>;
 
-  setEnv(env: Env) {
-    this.env = env;
+  get env() {
+    if (!this._env) {
+      throw new Error('env is not set');
+    }
+    return this._env;
   }
-  setAuth(auth: ReturnType<typeof getAuth>) {
-    this.auth = auth;
+
+  get auth() {
+    if (!this._auth) {
+      throw new Error('auth is not set');
+    }
+    return this._auth;
+  }
+
+  get db() {
+    if (!this._db) {
+      throw new Error('db is not set');
+    }
+    return this._db;
+  }
+
+  init(env: Env, auth: ReturnType<typeof getAuth>, db: Kysely<Database>) {
+    this._env = env;
+    this._auth = auth;
+    this._db = db;
   }
 }
