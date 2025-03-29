@@ -2,9 +2,9 @@ import { ReactComponent as CheckBadge } from './check-badge.svg';
 // import { ReactComponent as Company } from './company.svg';
 import { ChevronsUp, Share } from 'lucide-react';
 import { DEFAULT_AVATAR } from '@myshell-run/biz-def';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 
-export function BotInfo(props: { bot: Bot }) {
+export function BotInfo(props: { bot: DbBot }) {
   const { bot } = props;
   const { avatar = DEFAULT_AVATAR, name = 'Bot', isOfficial } = bot;
   return (

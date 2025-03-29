@@ -5,7 +5,7 @@ import {
   VirtuosoMessageListProps,
 } from '@virtuoso.dev/message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
@@ -20,7 +20,7 @@ export type BotListContext = {
 
 export const BotList = observer(
   (props: {
-    initialBots: Bot[];
+    initialBots: DbBot[];
     className?: string;
     licenseKey?: string;
     style?: CSSProperties;
@@ -28,7 +28,7 @@ export const BotList = observer(
     const { initialBots, className, licenseKey, style } = props;
     const model = useInjection(BotListModel);
     const virtuoso =
-      useRef<VirtuosoMessageListMethods<Bot, BotListContext>>(null);
+      useRef<VirtuosoMessageListMethods<DbBot, BotListContext>>(null);
     useEffect(() => {
       model.setInitialBots(initialBots);
       model.setVirtuosoRef(virtuoso);
@@ -38,7 +38,7 @@ export const BotList = observer(
     return (
       <div className={cn('flex flex-col', className)} style={style}>
         <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
-          <VirtuosoMessageList<Bot, BotListContext>
+          <VirtuosoMessageList<DbBot, BotListContext>
             ref={virtuoso}
             context={{}}
             computeItemKey={({ data }) => data.id}
@@ -54,7 +54,7 @@ export const BotList = observer(
 );
 
 export const BotListItem: VirtuosoMessageListProps<
-  Bot,
+  DbBot,
   BotListContext
 >['ItemContent'] = (props) => {
   const { data } = props;

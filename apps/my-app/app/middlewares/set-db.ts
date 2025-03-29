@@ -1,4 +1,4 @@
-import { Database } from '@myshell-run/simple-prisma';
+import { Database } from '@myshell-run/biz-def';
 import { Kysely } from 'kysely';
 import { factory } from '../create-route';
 import { D1Dialect } from '../kysely-d1';

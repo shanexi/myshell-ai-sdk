@@ -5,7 +5,7 @@ import {
   ChatMessageList,
   ChatTopMenu,
 } from '@myshell-run/biz-ui';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 import { ContainerProvider } from './container-provider';
 
 export const ChatInputMenuIsland = ChatInputMenu;
@@ -14,7 +14,7 @@ export const ChatMessageListIsland = (props: {
   className?: string;
   licenseKey?: string;
   initialMessages: Message[];
-  bot?: Bot;
+  bot?: DbBot;
 }) => {
   const { className, licenseKey, initialMessages, bot } = props;
   return (

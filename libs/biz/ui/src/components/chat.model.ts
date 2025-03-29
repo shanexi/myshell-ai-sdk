@@ -2,8 +2,7 @@ import {
   EventSourceMessage,
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
-import { Message, MessageListContext } from '@myshell-run/biz-def';
-import { Bot } from '@myshell-run/simple-prisma';
+import { Message, MessageListContext, DbBot } from '@myshell-run/biz-def';
 import { createId } from '@paralleldrive/cuid2';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { injectable } from 'inversify';
@@ -21,7 +20,7 @@ export class ChatModel {
   virtuosoRef?: RefObject<
     VirtuosoMessageListMethods<Message, MessageListContext>
   >;
-  bot?: Bot;
+  bot?: DbBot;
   @observable inputText = '';
   @observable isInputFocus = false;
   @computed get isNotInputFocus() {
@@ -131,7 +130,7 @@ export class ChatModel {
     this.virtuosoRef = ref;
   };
 
-  setBot = (bot?: Bot) => {
+  setBot = (bot?: DbBot) => {
     this.bot = bot;
   };
 }

@@ -9,9 +9,9 @@ export const bot = z.object({
   llmModelId: z.string().optional(),
 });
 
-export type Bot = z.infer<typeof bot>;
+export type DbBot = z.infer<typeof bot>;
 
-export const message = z.object({
+const message = z.object({
   id: z.string(),
   createdAt: z.date().optional(),
   sessionId: z.string(),
@@ -19,8 +19,9 @@ export const message = z.object({
   senderId: z.string(),
 });
 
-export type Message = z.infer<typeof message>;
+export type DbMessage = z.infer<typeof message>;
+
 export interface Database {
-  bot: Bot;
-  message: Message;
+  bot: DbBot;
+  message: DbMessage;
 }

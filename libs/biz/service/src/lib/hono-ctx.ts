@@ -1,8 +1,7 @@
 import { getAuth } from '@hono/clerk-auth';
 import { injectable } from 'inversify';
 import { type Kysely } from 'kysely';
-// eslint-disable-next-line
-import { type Database } from '@myshell-run/simple-prisma';
+import { type Database } from '@myshell-run/biz-def';
 
 @injectable()
 export class HonoCtx {

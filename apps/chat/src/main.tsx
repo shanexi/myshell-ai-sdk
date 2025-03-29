@@ -25,7 +25,15 @@ root.render(
       <ChatMessageList className="flex flex-grow flex-col overflow-auto px-[8px]" />
       <ChatFoot>
         <ChatInputRoot />
-        <BotInfo />
+        <BotInfo
+          bot={{
+            id: 1,
+            name: 'test',
+            isOfficial: true,
+            description: 'test',
+            avatar: 'test',
+          }}
+        />
       </ChatFoot>
     </ChatRoot>
   </StrictMode>,

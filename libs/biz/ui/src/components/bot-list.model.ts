@@ -1,6 +1,6 @@
 import { MyAppTrpcClient } from '@myshell-run/biz-def';
 import { AppRouter } from '@myshell-run/biz-service';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 import { TRPCClient } from '@trpc/client';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
@@ -9,9 +9,9 @@ import { type RefObject } from 'react';
 import { BotListContext } from './bot-list';
 @injectable()
 export class BotListModel {
-  initialBots: Bot[] = [];
+  initialBots: DbBot[] = [];
   @observable searchText = '';
-  virtuosoRef?: RefObject<VirtuosoMessageListMethods<Bot, BotListContext>>;
+  virtuosoRef?: RefObject<VirtuosoMessageListMethods<DbBot, BotListContext>>;
 
   constructor(@inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>) {
     makeObservable(this);
@@ -21,7 +21,7 @@ export class BotListModel {
     this.trpc.getUser.query({});
   }
 
-  setInitialBots = (bots: Bot[]) => {
+  setInitialBots = (bots: DbBot[]) => {
     this.initialBots = bots;
   };
 
@@ -35,7 +35,7 @@ export class BotListModel {
   }
 
   setVirtuosoRef = (
-    ref: RefObject<VirtuosoMessageListMethods<Bot, BotListContext>>,
+    ref: RefObject<VirtuosoMessageListMethods<DbBot, BotListContext>>,
   ) => {
     this.virtuosoRef = ref;
   };

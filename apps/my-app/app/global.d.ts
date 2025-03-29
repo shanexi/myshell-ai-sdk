@@ -1,4 +1,4 @@
-import { type Database } from '@myshell-run/simple-prisma';
+import { type Database } from '@myshell-run/def';
 import type {} from 'hono';
 import { type Kysely } from 'kysely';
 import { type Container } from 'inversify';

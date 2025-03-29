@@ -1,5 +1,5 @@
 import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 import { requireAuth } from '../middlewares/require-auth';
@@ -14,7 +14,7 @@ export default createRoute(requireAuth, async (c) => {
     .execute();
   console.timeEnd('db');
 
-  const bots: Bot[] = dbBots.map((bot) => ({
+  const bots: DbBot[] = dbBots.map((bot) => ({
     ...bot,
     // FIXME 0 50 会导致 hyrdate 有 diff 奇怪 似乎是碰到了一些特殊字符
     description: bot.description?.slice(0, 60),

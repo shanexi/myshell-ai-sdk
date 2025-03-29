@@ -8,7 +8,7 @@ import {
   VirtuosoMessageListLicense,
 } from '@virtuoso.dev/message-list';
 import { ChatModel } from './chat.model';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 
 // 注意 VirtuosoMessageList 不要 observer
 export function ChatMessageList(props: {
@@ -16,7 +16,7 @@ export function ChatMessageList(props: {
   style?: CSSProperties;
   licenseKey?: string;
   initialMessages?: Message[];
-  bot?: Bot;
+  bot?: DbBot;
 }) {
   const model = useInjection(ChatModel);
   const { className, style, licenseKey, initialMessages, bot } = props;

@@ -6,7 +6,7 @@ import {
   ChatTopMenu,
   ChatTopRoot,
 } from '@myshell-run/biz-ui';
-import { Bot } from '@myshell-run/simple-prisma';
+import { DbBot } from '@myshell-run/biz-def';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
 import { requireAuth } from '../middlewares/require-auth';
@@ -43,7 +43,7 @@ export default createRoute(requireAuth, async (c) => {
   ]);
   console.timeEnd('db');
 
-  const bot = dbBot[0] as Bot;
+  const bot = dbBot[0] as DbBot;
 
   messages = msgs.reverse().map((msg) => ({
     key: msg.id,
