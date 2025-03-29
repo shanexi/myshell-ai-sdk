@@ -7,7 +7,7 @@ import { requireAuth } from '../../middlewares/require-auth';
 // import { ChatOpenAI } from '@langchain/openai';
 import OpenAI from 'openai';
 
-export default createRoute(
+export const POST = createRoute(
   requireAuth,
   zValidator(
     'json',
@@ -41,8 +41,20 @@ export default createRoute(
       baseURL: c.env.OPENAI_BASE_URL,
     });
 
+    console.time('dbBot');
+    const dbBot = await db
+      .selectFrom('bot')
+      .select(['id', 'llmModelId'])
+      .where('id', '=', botId)
+      .executeTakeFirst();
+    console.timeEnd('dbBot');
+
+    if (!dbBot?.llmModelId) {
+      throw new Error('Only LLM bot can be used');
+    }
+
     const chunks = await client.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: dbBot.llmModelId,
       messages: [{ role: 'user', content: prompt }],
       stream: true,
     });

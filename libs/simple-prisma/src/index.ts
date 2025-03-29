@@ -6,6 +6,7 @@ export const bot = z.object({
   description: z.string().optional(),
   avatar: z.string().optional(),
   isOfficial: z.boolean(),
+  llmModelId: z.string().optional(),
 });
 
 export type Bot = z.infer<typeof bot>;

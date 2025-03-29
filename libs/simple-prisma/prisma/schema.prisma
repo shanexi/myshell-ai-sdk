@@ -18,6 +18,7 @@ model Bot {
   avatar      String?
   description String
   isOfficial  Boolean @default(false)
+  llmModelId  String?
 }
 
 model Message {
