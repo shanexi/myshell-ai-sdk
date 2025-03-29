@@ -37,7 +37,7 @@ export default createRoute(requireAuth, async (c) => {
       .execute(),
     db
       .selectFrom('bot')
-      .select(['id', 'avatar'])
+      .select(['id', 'avatar', 'name', 'isOfficial'])
       .where('id', '=', Number(botId))
       .execute(),
   ]);
@@ -67,7 +67,7 @@ export default createRoute(requireAuth, async (c) => {
       />
       <ChatFoot>
         <ChatInputIsland />
-        <BotInfo avatar={bot?.avatar} />
+        <BotInfo bot={bot} />
       </ChatFoot>
     </ChatRoot>,
   );

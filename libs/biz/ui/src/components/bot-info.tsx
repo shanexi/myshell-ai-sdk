@@ -1,26 +1,23 @@
 import { ReactComponent as CheckBadge } from './check-badge.svg';
-import { ReactComponent as Company } from './company.svg';
+// import { ReactComponent as Company } from './company.svg';
 import { ChevronsUp, Share } from 'lucide-react';
 import { DEFAULT_AVATAR } from '@myshell-run/biz-def';
+import { Bot } from '@myshell-run/simple-prisma';
 
-export function BotInfo(props: { avatar?: string }) {
-  const { avatar } = props;
+export function BotInfo(props: { bot: Bot }) {
+  const { bot } = props;
+  const { avatar = DEFAULT_AVATAR, name = 'Bot', isOfficial } = bot;
   return (
     <div className="x-bot-info flex items-center justify-between px-[8px] py-[4px]">
       <div className="flex items-center">
-        <img
-          className="mr-[8px] h-[36px] w-[36px] rounded-lg"
-          src={avatar ?? DEFAULT_AVATAR}
-        />
+        <img className="mr-[8px] h-[36px] w-[36px] rounded-lg" src={avatar} />
         <div>
           <div className="flex items-center">
-            <label className="heading-h4 text-text-default-light">
-              Arcane Generator
-            </label>
-            <CheckBadge className="ml-spacing-xs" />
-            <Company className="ml-spacing-xs" />
+            <label className="heading-h4 text-text-default-light">{name}</label>
+            {isOfficial && <CheckBadge className="ml-spacing-xs" />}
+            {/* <Company className="ml-spacing-xs" /> */}
           </div>
-          <div className="text-sm-medium text-text-brand-light">@Sam</div>
+          {/* <div className="text-sm-medium text-text-brand-light">@Sam</div> */}
         </div>
       </div>
       <div className="flex">
