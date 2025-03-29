@@ -4,13 +4,13 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 export const ReplyMsg = (props: Message) => {
-  const { avatar, user, text } = props;
+  const { avatar = DEFAULT_AVATAR, user, text } = props;
   return (
     <ReplyMsgFrame
       avatar={
         <img
           className="mr-[8px] h-[32px] w-[32px] rounded-lg"
-          src={avatar ?? DEFAULT_AVATAR}
+          src={avatar}
           alt={`${user} avatar`}
         />
       }

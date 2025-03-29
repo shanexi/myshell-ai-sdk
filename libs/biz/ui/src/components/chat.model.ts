@@ -98,6 +98,7 @@ export class ChatModel {
             key: replyMsgId,
             text: ev.data,
             user: 'other',
+            avatar: this.bot?.avatar,
           });
         } else {
           this.virtuosoRef?.current?.data.map((message) => {
