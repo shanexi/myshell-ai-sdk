@@ -4,8 +4,9 @@ interface Env {
   MY_APP: KVNamespace;
   OPENAI_BASE_URL: 'https://aihubmix.com/v1';
   LIC: string;
+  OPENAI_KEY: string;
   CLERK_PUBLISHABLE_KEY: string;
   CLERK_SECRET_KEY: string;
-  OPENAI_KEY: string;
+  HUNYUAN_API_KEY: string;
   DB_MYSHELL_RUN_TEST: D1Database;
 }

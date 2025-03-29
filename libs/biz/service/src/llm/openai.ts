@@ -1,9 +1,12 @@
 import { inject, injectable } from 'inversify';
 import { default as OpenAISdk } from 'openai';
 import { HonoCtx } from '../lib/hono-ctx';
+import { LLM } from './llm';
+import { type ChatCompletionChunk } from 'openai/resources/chat/completions';
 
 @injectable()
-export class OpenAI {
+export class OpenAI implements LLM {
+  model = 'aihubmix';
   constructor(@inject(HonoCtx) private readonly ctx: HonoCtx) {
     //
   }
@@ -11,7 +14,7 @@ export class OpenAI {
   async *chat(
     model: string,
     prompt: string,
-  ): AsyncGenerator<string, void, unknown> {
+  ): AsyncGenerator<ChatCompletionChunk, void, unknown> {
     const client = new OpenAISdk({
       apiKey: this.ctx.env.OPENAI_KEY,
       baseURL: this.ctx.env.OPENAI_BASE_URL,
@@ -21,11 +24,8 @@ export class OpenAI {
       messages: [{ role: 'user', content: prompt }],
       stream: true,
     });
-    for await (const event of chunks) {
-      const content = event.choices[0]?.delta?.content;
-      if (content) {
-        yield content;
-      }
+    for await (const chunk of chunks) {
+      yield chunk;
     }
   }
 }

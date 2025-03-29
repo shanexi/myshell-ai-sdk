@@ -1,12 +1,12 @@
-import { inject, injectable } from 'inversify';
+import { inject, injectable, multiInject } from 'inversify';
+import { LLM } from '../llm/llm';
 import { HonoCtx } from './hono-ctx';
-import { OpenAI } from '../llm/openai';
 
 @injectable()
 export class ChatService {
   constructor(
     @inject(HonoCtx) private readonly ctx: HonoCtx,
-    @inject(OpenAI) private readonly openai: OpenAI,
+    @multiInject(LLM) private readonly llms: LLM[],
   ) {}
 
   async *chat(
@@ -41,11 +41,15 @@ export class ChatService {
       throw new Error('Only LLM bot can be used');
     }
 
-    const chunks = this.openai.chat(dbBot.llmModelId, prompt);
+    const llm = this.getLLM(dbBot.llmModelId);
+    const chunks = llm.chat(dbBot.llmModelId, prompt);
 
     const messages: string[] = [];
 
-    for await (const content of chunks) {
+    for await (const chunk of chunks) {
+      // TODO 这块逻辑很难 generic? 因为没有 type
+      // 比较好的做法是一个类型，但是多个字段，相当于一个协议
+      const content = chunk.choices[0]?.delta?.content;
       if (content) {
         messages.push(content);
         yield content;
@@ -63,5 +67,18 @@ export class ChatService {
       })
       .executeTakeFirst();
     console.timeEnd('insert reply message');
+  }
+
+  getLLM(llmModelId: string): LLM {
+    let llm: LLM | undefined;
+    llm = this.llms.find((llm) => llm.model === llmModelId);
+    if (llm) return llm;
+    else {
+      llm = this.llms.find((llm) => llm.model === 'aihubmix');
+      if (!llm) {
+        throw new Error(`aihubmix not found`);
+      }
+      return llm;
+    }
   }
 }
