@@ -2,14 +2,9 @@ import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
 import { Bot } from '@myshell-run/simple-prisma';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
-import { getAuth } from '@hono/clerk-auth';
+import { requireAuth } from '../middlewares/require-auth';
 
-export default createRoute(async (c) => {
-  const auth = getAuth(c);
-  if (!auth) {
-    return c.redirect(`/signin?redirect_url=${c.req.url}`);
-  }
-
+export default createRoute(requireAuth, async (c) => {
   const db = c.get('db');
   console.time('db');
   const dbBots = await db
@@ -25,6 +20,7 @@ export default createRoute(async (c) => {
     description: bot.description?.slice(0, 60),
   }));
 
+  const auth = c.get('auth');
   const key = `AVATAR_${auth.userId}`;
   console.time(`get ${key}`);
   const avatar = await c.env.MY_APP.get(key);

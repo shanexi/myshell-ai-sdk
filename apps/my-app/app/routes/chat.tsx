@@ -9,16 +9,13 @@ import {
 import { Bot } from '@myshell-run/simple-prisma';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
-// import { createClerkClient } from '@clerk/backend';
+import { requireAuth } from '../middlewares/require-auth';
+import { createClerkClient } from '@clerk/backend';
+import { HonoEnv } from '../server';
+import { type Context } from 'hono';
 
-export default createRoute(async (c) => {
-  // 弱依赖 + 耗时请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
-  // const clerk = createClerkClient({
-  //   secretKey: c.env.CLERK_SECRET_KEY,
-  // });
-  // const user = await clerk.users.getUser(auth.userId);
-  // console.log('user', user.emailAddresses[0].emailAddress);
-
+export default createRoute(requireAuth, async (c) => {
+  // getUser(c);
   const botId = c.req.query('botId');
   if (botId == null) {
     return c.html(`<div>botId is required</div>`);
@@ -75,3 +72,14 @@ export default createRoute(async (c) => {
     </ChatRoot>,
   );
 });
+
+// 弱依赖 + 耗时请求一般在用到再发送，不会再 ssr 这里，影响 TTFB
+// see trpc.getUser.query({});
+async function getUser(c: Context<HonoEnv>) {
+  const clerk = createClerkClient({
+    secretKey: c.env.CLERK_SECRET_KEY,
+  });
+  const auth = c.get('auth');
+  const user = await clerk.users.getUser(auth.userId);
+  console.log('user', user.emailAddresses[0].emailAddress);
+}

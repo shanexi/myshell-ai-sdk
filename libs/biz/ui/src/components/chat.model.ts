@@ -6,7 +6,7 @@ import { Message, MessageListContext } from '@myshell-run/biz-def';
 import { Bot } from '@myshell-run/simple-prisma';
 import { createId } from '@paralleldrive/cuid2';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
-import { inject, injectable } from 'inversify';
+import { injectable } from 'inversify';
 import {
   action,
   computed,
@@ -15,7 +15,6 @@ import {
   runInAction,
 } from 'mobx';
 import { RefObject } from 'react';
-import { AuthModel } from './auth.model';
 
 @injectable()
 export class ChatModel {
@@ -34,9 +33,8 @@ export class ChatModel {
   @computed get isShowInputMenu() {
     return this.isNotInputFocus && this.notHaveInputText;
   }
-  constructor(
-    @inject(AuthModel) public auth: AuthModel, // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
-  ) {
+  constructor() {
+    // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
     makeObservable(this);
   }
 

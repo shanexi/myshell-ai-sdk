@@ -1,16 +1,13 @@
 import { zValidator } from '@hono/zod-validator';
+import { streamSSE } from 'hono/streaming';
+import { z } from 'zod';
 import { createRoute } from '../../create-route';
 import { requireAuth } from '../../middlewares/require-auth';
-import { setDb } from '../../middlewares/set-db';
-import { z } from 'zod';
-import { streamSSE } from 'hono/streaming';
 // FIXME: langchain 会导致 vite hang
 // import { ChatOpenAI } from '@langchain/openai';
 import OpenAI from 'openai';
-import { clerkMiddleware } from '@hono/clerk-auth';
 
 export default createRoute(
-  clerkMiddleware(),
   requireAuth,
   zValidator(
     'json',
@@ -21,7 +18,6 @@ export default createRoute(
       botId: z.number(),
     }),
   ),
-  setDb,
   async (c) => {
     const { msgId, replyMsgId, prompt, botId } = c.req.valid('json');
     const db = c.get('db');

@@ -1,23 +1,19 @@
+import { MyAppTrpcClient } from '@myshell-run/biz-def';
+import { AppRouter } from '@myshell-run/biz-service';
 import { Bot } from '@myshell-run/simple-prisma';
+import { TRPCClient } from '@trpc/client';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { type RefObject } from 'react';
 import { BotListContext } from './bot-list';
-import { MyAppTrpcClient } from '@myshell-run/biz-def';
-import { TRPCClient } from '@trpc/client';
-import { AppRouter } from '@myshell-run/biz-service';
-import { AuthModel } from './auth.model';
 @injectable()
 export class BotListModel {
   initialBots: Bot[] = [];
   @observable searchText = '';
   virtuosoRef?: RefObject<VirtuosoMessageListMethods<Bot, BotListContext>>;
 
-  constructor(
-    @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
-    @inject(AuthModel) public auth: AuthModel,
-  ) {
+  constructor(@inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>) {
     makeObservable(this);
   }
 
