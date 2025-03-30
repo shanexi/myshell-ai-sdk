@@ -6,7 +6,6 @@ import { requireAuth } from '../../middlewares/require-auth';
 // FIXME: langchain 会导致 vite hang
 // import { ChatOpenAI } from '@langchain/openai';
 import { ChatService } from '@myshell-run/biz-service';
-import { MYAPP_SERVER_CONTAINER } from '@myshell-run/biz-def';
 
 export const POST = createRoute(
   requireAuth,
