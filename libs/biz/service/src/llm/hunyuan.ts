@@ -43,7 +43,7 @@ export class Hunyuan implements LLM {
       const imgUrl = await this.uploadSvc.uploadBase64(res.ResultImage);
 
       yield {
-        content: imgUrl,
+        content: `![](${imgUrl})`,
       };
     } else {
       // TODO 异常处理
