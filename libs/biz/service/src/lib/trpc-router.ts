@@ -4,10 +4,10 @@ import { inject, injectable } from 'inversify';
 import { z } from 'zod';
 import { HonoCtx } from './hono-ctx';
 import { getAuth } from '@hono/clerk-auth';
-
+import type { MyAppEnv } from '@myshell-run/biz-def';
 const t = initTRPC
   .context<{
-    env: Env;
+    env: MyAppEnv;
     auth: ReturnType<typeof getAuth>;
   }>()
   .create();

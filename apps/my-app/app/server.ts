@@ -8,12 +8,13 @@ import { Container } from 'inversify';
 import { requireAuth } from './middlewares/require-auth';
 import { setDb } from './middlewares/set-db';
 import { bizServiceModule } from '@myshell-run/biz-service';
+import type { MyAppEnv } from '@myshell-run/biz-def';
 
 const serverContainer = new Container();
 serverContainer.load(bizServiceModule);
 
 export type HonoEnv = {
-  Bindings: Env;
+  Bindings: MyAppEnv;
   // eslint-disable-next-line @typescript-eslint/ban-types
   Variables: {};
 };

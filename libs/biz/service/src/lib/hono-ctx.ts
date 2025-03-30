@@ -1,11 +1,11 @@
 import { getAuth } from '@hono/clerk-auth';
 import { injectable } from 'inversify';
 import { type Kysely } from 'kysely';
-import { type Database } from '@myshell-run/biz-def';
+import { type Database, type MyAppEnv } from '@myshell-run/biz-def';
 
 @injectable()
 export class HonoCtx {
-  private _env?: Env;
+  private _env?: MyAppEnv;
   private _auth?: ReturnType<typeof getAuth>;
   private _db?: Kysely<Database>;
 
@@ -30,7 +30,7 @@ export class HonoCtx {
     return this._db;
   }
 
-  init(env: Env, auth: ReturnType<typeof getAuth>, db: Kysely<Database>) {
+  init(env: MyAppEnv, auth: ReturnType<typeof getAuth>, db: Kysely<Database>) {
     this._env = env;
     this._auth = auth;
     this._db = db;
