@@ -8,7 +8,7 @@ const Client = hunyuan.v20230901.Client;
 // https://github.com/TencentCloud/tencentcloud-sdk-nodejs/blob/master/examples/hunyuan/v20230901/chat_completions.ts
 @injectable()
 export class Hunyuan implements LLM {
-  model = 'hunyuan';
+  model = 'hunyuan-TextToImageLite';
   constructor(
     @inject(HonoCtx) private readonly ctx: HonoCtx,
     @inject(UploadSvc) private readonly uploadSvc: UploadSvc,
