@@ -1,14 +1,13 @@
 import { createClerkClient } from '@clerk/backend';
+import { MyAppALS, type HonoEnv, type MyAppEnv } from '@myshell-run/biz-def';
 import { initTRPC } from '@trpc/server';
+import { AsyncLocalStorage } from 'async_hooks';
+import { Context } from 'hono';
 import { inject, injectable } from 'inversify';
 import { z } from 'zod';
-import { HonoCtx } from './hono-ctx';
-import { getAuth } from '@hono/clerk-auth';
-import type { MyAppEnv } from '@myshell-run/biz-def';
 const t = initTRPC
   .context<{
     env: MyAppEnv;
-    auth: ReturnType<typeof getAuth>;
   }>()
   .create();
 
@@ -17,7 +16,9 @@ const router = t.router;
 
 @injectable()
 export class TrpcRouter {
-  constructor(@inject(HonoCtx) private honoCtx: HonoCtx) {
+  constructor(
+    @inject(MyAppALS) private als: AsyncLocalStorage<Context<HonoEnv>>,
+  ) {
     //
   }
 
@@ -28,10 +29,11 @@ export class TrpcRouter {
         const clerk = createClerkClient({
           secretKey: ctx.env.CLERK_SECRET_KEY,
         });
-        if (!ctx.auth?.userId) {
+        const auth = this.als.getStore()?.get('clerkAuth');
+        if (!auth?.userId) {
           throw new Error('Unauthorized');
         }
-        const user = await clerk.users.getUser(ctx.auth?.userId);
+        const user = await clerk.users.getUser(auth.userId);
         return user.imageUrl;
       }),
   });

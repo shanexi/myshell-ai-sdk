@@ -1,4 +1,4 @@
-import { type Database } from '@myshell-run/biz-def';
+import { type Database } from './lib/database';
 import type {} from 'hono';
 import { type Kysely } from 'kysely';
 import { interfaces } from 'inversify';

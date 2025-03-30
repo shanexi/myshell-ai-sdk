@@ -1,33 +1,27 @@
-import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
+import { clerkMiddleware } from '@hono/clerk-auth';
 import { trpcServer } from '@hono/trpc-server';
-import { HonoCtx, TrpcRouter } from '@myshell-run/biz-service';
-import { Hono } from 'hono';
+import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
+import { bizServiceModule, TrpcRouter } from '@myshell-run/biz-service';
+import { AsyncLocalStorage } from 'async_hooks';
+import { Context, Hono } from 'hono';
 import { showRoutes } from 'hono/dev';
 import { createApp } from 'honox/server';
 import { Container } from 'inversify';
+import { inversify } from './middlewares/inversify';
 import { requireAuth } from './middlewares/require-auth';
 import { setDb } from './middlewares/set-db';
-import { bizServiceModule } from '@myshell-run/biz-service';
-import type { MyAppEnv } from '@myshell-run/biz-def';
+import { als } from './middlewares/als';
 
 const serverContainer = new Container();
 serverContainer.load(bizServiceModule);
 
-export type HonoEnv = {
-  Bindings: MyAppEnv;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  Variables: {};
-};
+const asyncLocalStorage = new AsyncLocalStorage<Context<HonoEnv>>();
 
 const happ = new Hono<HonoEnv>();
 happ.use('*', clerkMiddleware());
 happ.use(setDb);
-happ.use(async (c, next) => {
-  const honoCtx = serverContainer.get(HonoCtx);
-  honoCtx.init(c.env, c.get('clerkAuth'), c.get('db'));
-  c.set('container', serverContainer);
-  await next();
-});
+happ.use(als(asyncLocalStorage, serverContainer));
+happ.use(inversify(serverContainer));
 
 const trpcRouter = serverContainer.get(TrpcRouter);
 happ.use(
@@ -36,11 +30,7 @@ happ.use(
   trpcServer({
     router: trpcRouter.appRouter,
     createContext: (opts, c) => {
-      // 因为 c.get('clerkAuth') 并没有透传到 trpc 这里重复处理下
-      const auth = getAuth(c);
-      return {
-        auth,
-      };
+      return {};
     },
   }),
 );

@@ -1,12 +1,16 @@
 import { inject, injectable } from 'inversify';
 import { default as OpenAISdk } from 'openai';
-import { HonoCtx } from '../lib/hono-ctx';
 import { LLM, LLMMessage } from './llm';
+import { MyAppALS, type HonoEnv } from '@myshell-run/biz-def';
+import { Context } from 'hono';
+import { AsyncLocalStorage } from 'async_hooks';
 
 @injectable()
 export class OpenAI implements LLM {
   model = 'aihubmix';
-  constructor(@inject(HonoCtx) private readonly ctx: HonoCtx) {
+  constructor(
+    @inject(MyAppALS) private readonly als: AsyncLocalStorage<Context<HonoEnv>>,
+  ) {
     //
   }
 
@@ -14,9 +18,14 @@ export class OpenAI implements LLM {
     model: string,
     prompt: string,
   ): AsyncGenerator<LLMMessage, void, unknown> {
+    const ctx = this.als.getStore();
+    if (!ctx) {
+      throw new Error('No ctx');
+    }
+
     const client = new OpenAISdk({
-      apiKey: this.ctx.env.OPENAI_KEY,
-      baseURL: this.ctx.env.OPENAI_BASE_URL,
+      apiKey: ctx.env.OPENAI_KEY,
+      baseURL: ctx.env.OPENAI_BASE_URL,
     });
     const chunks = await client.chat.completions.create({
       model,

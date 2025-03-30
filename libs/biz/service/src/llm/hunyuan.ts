@@ -1,8 +1,10 @@
+import { MyAppALS, type HonoEnv } from '@myshell-run/biz-def';
+import { Context } from 'hono';
 import { inject, injectable } from 'inversify';
 import { hunyuan } from 'tencentcloud-sdk-nodejs-hunyuan';
-import { HonoCtx } from '../lib/hono-ctx';
+import { UploadSvc } from '../lib/upload.svc';
 import { LLM, LLMMessage } from './llm';
-import { STATIC_URL, UploadSvc } from '../lib/upload.svc';
+import { AsyncLocalStorage } from 'async_hooks';
 const Client = hunyuan.v20230901.Client;
 
 // https://github.com/TencentCloud/tencentcloud-sdk-nodejs/blob/master/examples/hunyuan/v20230901/chat_completions.ts
@@ -10,7 +12,7 @@ const Client = hunyuan.v20230901.Client;
 export class Hunyuan implements LLM {
   model = 'hunyuan-TextToImageLite';
   constructor(
-    @inject(HonoCtx) private readonly ctx: HonoCtx,
+    @inject(MyAppALS) private readonly als: AsyncLocalStorage<Context<HonoEnv>>,
     @inject(UploadSvc) private readonly uploadSvc: UploadSvc,
   ) {
     //
@@ -20,10 +22,15 @@ export class Hunyuan implements LLM {
     model: string,
     prompt: string,
   ): AsyncGenerator<LLMMessage, void, unknown> {
+    const ctx = this.als.getStore();
+    if (!ctx) {
+      throw new Error('No ctx');
+    }
+
     const client = new Client({
       credential: {
-        secretId: this.ctx.env.TECENT_CLOUD_SECRET_ID,
-        secretKey: this.ctx.env.TECENT_CLOUD_SECRET_KEY,
+        secretId: ctx.env.TECENT_CLOUD_SECRET_ID,
+        secretKey: ctx.env.TECENT_CLOUD_SECRET_KEY,
       },
       region: 'ap-guangzhou',
       profile: {

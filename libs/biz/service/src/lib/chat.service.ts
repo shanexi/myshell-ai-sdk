@@ -1,11 +1,14 @@
+import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
+import { AsyncLocalStorage } from 'async_hooks';
+import { Context } from 'hono';
 import { inject, injectable, multiInject } from 'inversify';
 import { LLM } from '../llm/llm';
-import { HonoCtx } from './hono-ctx';
-
+import { getAuth } from '@hono/clerk-auth';
 @injectable()
 export class ChatService {
   constructor(
-    @inject(HonoCtx) private readonly ctx: HonoCtx,
+    @inject(MyAppALS)
+    private readonly als: AsyncLocalStorage<Context<HonoEnv>>,
     @multiInject(LLM) private readonly llms: LLM[],
   ) {}
 
@@ -15,8 +18,15 @@ export class ChatService {
     msgId: string,
     replyMsgId: string,
   ): AsyncGenerator<string, void, unknown> {
-    const db = this.ctx.db;
-    const auth = this.ctx.auth;
+    const ctx = this.als.getStore();
+    if (!ctx) {
+      throw new Error('No ctx');
+    }
+    const db = ctx.get('db');
+    const auth = getAuth(ctx);
+    if (!auth?.userId) {
+      throw new Error('Unauthorized');
+    }
 
     console.time('insert me message');
     db.insertInto('message')
