@@ -38,6 +38,7 @@ function makeConfig(useRspack = true) {
       '@storybook/addon-interactions',
       '@nrwl/react/plugins/storybook',
       '@storybook/addon-designs',
+      '@storybook/addon-storysource',
     ],
     // https://storybook.js.org/docs/api/main-config-typescript#skipbabel
     // typescript: {

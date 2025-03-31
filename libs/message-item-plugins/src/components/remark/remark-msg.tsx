@@ -10,24 +10,12 @@ import rehypeStringify from 'rehype-stringify';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
-const md = `
-:::main{#readme}
-
-Lorem:br
-ipsum.
-
-::hr
-
-A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup Language"}.
-
-:::
-`;
-
-export const RemarkMsg = () => {
+export const RemarkMsg = (props: { text: string }) => {
+  const { text } = props;
   return (
     <article className="prose dark:prose-invert">
       <Markdown
-        children={md}
+        children={text}
         remarkPlugins={[
           remarkParse,
           remarkDirective,
