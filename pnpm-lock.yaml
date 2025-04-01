@@ -102,9 +102,10 @@ specifiers:
   '@testing-library/react': 14.0.0
   '@trpc/client': ^11.0.0
   '@trpc/server': ^11.0.0
+  '@types/hast': ^3.0.0
   '@types/jest': ^29.4.0
   '@types/jsdom': ^21.1.7
-  '@types/mdast': ^4.0.4
+  '@types/mdast': ^4.0.0
   '@types/mdx': ^2.0.13
   '@types/node': 18.14.2
   '@types/react': 18.3.19
@@ -127,6 +128,7 @@ specifiers:
   cross-fetch: ^4.1.0
   cypress: ^12.2.0
   daisyui: 5.0.0
+  devlop: ^1.1.0
   dotenv-cli: ^8.0.0
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
@@ -137,9 +139,11 @@ specifiers:
   eslint-plugin-react: 7.32.2
   eslint-plugin-react-hooks: 4.6.0
   fs-extra: ^11.2.0
+  hast-util-to-jsx-runtime: ^2.3.0
   hastscript: ^9.0.1
   hono: ^4.7.4
   honox: ^0.1.38
+  html-url-attributes: ^3.0.0
   html-webpack-plugin: ^5.5.0
   husky: ^9.1.5
   immer: ^10.1.1
@@ -154,6 +158,7 @@ specifiers:
   lint-staged: ^15.2.10
   lucide-react: ^0.479.0
   mdast: ^3.0.0
+  mdast-util-to-hast: ^13.0.0
   mobx: ^6.13.6
   mobx-react-lite: ^4.1.0
   next: 13.1.1
@@ -186,7 +191,7 @@ specifiers:
   remark-mdx: ^3.1.0
   remark-mdx-frontmatter: ^4.0.0
   remark-parse: ^11.0.0
-  remark-rehype: ^11.1.1
+  remark-rehype: ^11.0.0
   resize-observer-polyfill: ^1.5.1
   rollup-plugin-visualizer: ^5.14.0
   storybook-react-rspack: 7.0.0-rc.25
@@ -203,10 +208,11 @@ specifiers:
   ts-node: 10.9.1
   tslib: ^2.3.0
   typescript: 5.8.2
-  unified: ^11.0.5
+  unified: ^11.0.4
   unist-util-visit: ^5.0.0
   url-loader: ^4.1.1
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317
+  vfile: ^6.0.1
   vite: ^6.1.1
   vite-bundle-analyzer: ^0.18.0
   vite-plugin-svgr: ^4.3.0
@@ -286,6 +292,7 @@ dependencies:
   '@testing-library/react': 14.0.0_aaeipwxkab7qfgigzrqxk6gibe
   '@trpc/client': 11.0.0_6tm5ny4thdnpgeymwabofulkb4
   '@trpc/server': 11.0.0_typescript@5.8.2
+  '@types/hast': 3.0.4
   '@types/jest': 29.5.12
   '@types/jsdom': 21.1.7
   '@types/mdast': 4.0.4
@@ -311,6 +318,7 @@ dependencies:
   cross-fetch: 4.1.0
   cypress: 12.17.4
   daisyui: 5.0.0
+  devlop: 1.1.0
   dotenv-cli: 8.0.0
   eslint: 8.15.0
   eslint-config-next: 13.1.1_nf6pucg2mhaj5y3mvj2gp3upte
@@ -321,9 +329,11 @@ dependencies:
   eslint-plugin-react: 7.32.2_eslint@8.15.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.15.0
   fs-extra: 11.2.0
+  hast-util-to-jsx-runtime: 2.3.6
   hastscript: 9.0.1
   hono: 4.7.4
   honox: 0.1.38_ofn3moo66c4n6ivinb7k7vqkm4_ylkpmjv3czoeqdw3iup25rgalq
+  html-url-attributes: 3.0.1
   html-webpack-plugin: 5.6.0_webpack@5.94.0
   husky: 9.1.5
   immer: 10.1.1
@@ -338,6 +348,7 @@ dependencies:
   lint-staged: 15.2.10
   lucide-react: 0.479.0_react@19.0.0
   mdast: 3.0.0
+  mdast-util-to-hast: 13.2.0
   mobx: 6.13.6
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
   next: 13.1.1_itiuvzt4u37n7rg6c33anbmq2e
@@ -391,6 +402,7 @@ dependencies:
   unist-util-visit: 5.0.0
   url-loader: 4.1.1_webpack@5.94.0
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@19.0.0
+  vfile: 6.0.3
   vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
   vite-bundle-analyzer: 0.18.0
   vite-plugin-svgr: 4.3.0_s2bypduphj64xnc5alsyukz2au

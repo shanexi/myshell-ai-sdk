@@ -1,5 +1,5 @@
 import type { Root } from 'mdast';
-import Markdown from 'react-markdown';
+// import Markdown from 'react-markdown';
 import remarkDirective from 'remark-directive';
 import remarkParse from 'remark-parse';
 import type { Plugin } from 'unified';
@@ -8,7 +8,10 @@ import { h } from 'hastscript';
 import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
 import remarkRehype from 'remark-rehype';
+import rehypeReact from 'rehype-react';
+
 import { unified } from 'unified';
+import Markdown from './react-markdown';
 
 export const RemarkMsg = (props: { text: string }) => {
   const { text } = props;
