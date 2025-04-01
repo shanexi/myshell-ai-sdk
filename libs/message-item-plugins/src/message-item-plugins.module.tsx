@@ -26,6 +26,6 @@ export const messageItemPluginsModule = new ContainerModule(
     addMessagePlugin(REPLY_MESSAGE_TYPE, RemarkMsg);
     addMessagePlugin(REPLY_MESSAGE_EXECUTING_TYPE, ExecutingMsg);
     // addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
-    bind(ExecutingMsgModel).toSelf();
+    bind(ExecutingMsgModel).toSelf().inSingletonScope();
   },
 );

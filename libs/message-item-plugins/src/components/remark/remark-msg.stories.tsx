@@ -1,8 +1,21 @@
+import { InversifyProvider } from '@myshell-run/ui-primitives';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Container } from 'inversify';
+import { messageItemPluginsModule } from '../../message-item-plugins.module';
 import { RemarkMsg } from './remark-msg';
+
+const container = new Container();
+container.load(messageItemPluginsModule);
 
 const meta: Meta<typeof RemarkMsg> = {
   component: RemarkMsg,
+  decorators: [
+    (Story) => (
+      <InversifyProvider container={container}>
+        <Story />
+      </InversifyProvider>
+    ),
+  ],
 };
 export default meta;
 
@@ -32,5 +45,16 @@ export const Loading: StoryObj<typeof RemarkMsg> = {
     text: `
 ::x-loading[AI is generating]
     `,
+  },
+};
+
+export const Counter: StoryObj<typeof RemarkMsg> = {
+  parameters: {},
+  args: {
+    text: `
+::x-timer{#abc timeLeft=10}
+hello world
+::x-timer{#abc timeLeft=5}
+`,
   },
 };

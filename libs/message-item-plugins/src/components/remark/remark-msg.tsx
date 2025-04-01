@@ -10,10 +10,10 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
 import { post } from './react-markdown';
-import Counter from './counter';
 import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
 import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
-import { XLoading } from '../executing-msg';
+import { XLoading, Timer } from '../executing-msg';
+import Counter from './counter';
 
 const DEMO_TXT = `:::main{#readme}
 
@@ -31,8 +31,7 @@ A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup
 `;
 
 export const RemarkMsg = (props: Message) => {
-  const { avatar = DEFAULT_AVATAR, user } = props;
-  const { text } = props;
+  const { avatar = DEFAULT_AVATAR, user, text } = props;
   const processor = unified()
     .use(remarkParse)
     .use([remarkDirective, remarkThink])
@@ -64,6 +63,7 @@ export const RemarkMsg = (props: Message) => {
       // @ts-expect-error 先不处理 应该类似 web component 类型扩展方式
       'interactive-component': Counter,
       'x-loading': XLoading,
+      'x-timer': Timer,
     },
   });
   console.timeEnd('remark');
