@@ -25,12 +25,7 @@ export const ExecutingMsg = observer((props: Message) => {
 
   return (
     <ReplyMsgFrame>
-      <div className="flex items-center">
-        <Loading className="me-2 animate-spin" />
-        <span className="text-sm-regular text-text-subtle-light">
-          AI is generating.
-        </span>
-      </div>
+      <XLoading>AI is generating.</XLoading>
       <span className="text-sm-regular text-text-subtler-light">
         It will take about{' '}
         <span className="text-sm-medium text-text-brand-light">
@@ -42,3 +37,17 @@ export const ExecutingMsg = observer((props: Message) => {
     </ReplyMsgFrame>
   );
 });
+
+export const XLoading = (props: { children?: string } = {}) => {
+  const { children } = props;
+  return (
+    <div className="flex items-center">
+      <Loading className="me-2 animate-spin" />
+      {children && (
+        <span className="text-sm-regular text-text-subtle-light">
+          {children}
+        </span>
+      )}
+    </div>
+  );
+};

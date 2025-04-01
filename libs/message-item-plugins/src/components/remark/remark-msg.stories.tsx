@@ -18,11 +18,19 @@ ipsum.
 
 A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup Language"}.
 
-:button[🥰 generate]{#msg-id-generate.btn.btn-blue}
-
+::button[🥰 generate]{#msg-id-generate.btn.btn-blue}
 
 :::
 ::interactive-component
 `,
+  },
+};
+
+export const Loading: StoryObj<typeof RemarkMsg> = {
+  parameters: {},
+  args: {
+    text: `
+::x-loading[AI is generating]
+    `,
   },
 };

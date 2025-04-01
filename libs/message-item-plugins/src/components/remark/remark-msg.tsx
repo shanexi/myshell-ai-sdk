@@ -11,8 +11,27 @@ import { unified } from 'unified';
 import { VFile } from 'vfile';
 import { post } from './react-markdown';
 import Counter from './counter';
-import { SelectDemo } from './select-demo';
-export const RemarkMsg = (props: { text: string }) => {
+import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
+import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
+import { XLoading } from '../executing-msg';
+
+const DEMO_TXT = `:::main{#readme}
+
+Lorem:br
+ipsum.
+
+::hr
+
+A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup Language"}.
+
+:button[🥰 generate]{#msg-id-generate}
+
+:::
+::interactive-component
+`;
+
+export const RemarkMsg = (props: Message) => {
+  const { avatar = DEFAULT_AVATAR, user } = props;
   const { text } = props;
   const processor = unified()
     .use(remarkParse)
@@ -34,12 +53,33 @@ export const RemarkMsg = (props: { text: string }) => {
           </code>
         );
       },
+      button: (props) => {
+        const { children, ...rest } = props;
+        return (
+          <button {...rest} className="btn-blue btn">
+            {children}
+          </button>
+        );
+      },
       // @ts-expect-error 先不处理 应该类似 web component 类型扩展方式
-      'interactive-component': SelectDemo,
+      'interactive-component': Counter,
+      'x-loading': XLoading,
     },
   });
   console.timeEnd('remark');
-  return <article className="prose dark:prose-invert">{result}</article>;
+  return (
+    <ReplyMsgFrame
+      avatar={
+        <img
+          className="mr-[8px] h-[32px] w-[32px] rounded-lg"
+          src={avatar}
+          alt={`${user} avatar`}
+        />
+      }
+    >
+      <article className="prose dark:prose-invert">{result}</article>
+    </ReplyMsgFrame>
+  );
 };
 
 const remarkThink: Plugin<void[], Root> = function () {
