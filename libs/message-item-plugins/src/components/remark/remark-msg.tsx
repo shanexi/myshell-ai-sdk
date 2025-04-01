@@ -1,46 +1,45 @@
 import type { Root } from 'mdast';
 // import Markdown from 'react-markdown';
+import { h } from 'hastscript';
 import remarkDirective from 'remark-directive';
-import remarkParse from 'remark-parse';
 import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
-import { h } from 'hastscript';
-import rehypeFormat from 'rehype-format';
-import rehypeStringify from 'rehype-stringify';
+
+import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import rehypeReact from 'rehype-react';
-
 import { unified } from 'unified';
-import Markdown from './react-markdown';
-
+import { VFile } from 'vfile';
+import { post } from './react-markdown';
+import Counter from './counter';
+import { SelectDemo } from './select-demo';
 export const RemarkMsg = (props: { text: string }) => {
   const { text } = props;
-  return (
-    <article className="prose dark:prose-invert">
-      <Markdown
-        children={text}
-        remarkPlugins={[
-          remarkParse,
-          remarkDirective,
-          remarkThink,
-          remarkRehype,
-          rehypeFormat,
-          rehypeStringify,
-        ]}
-        components={{
-          code(props) {
-            const { children, className, node, ...rest } = props;
-            const match = /language-(\w+)/.exec(className || '');
-            return (
-              <code {...rest} className={className}>
-                {children}
-              </code>
-            );
-          },
-        }}
-      />
-    </article>
-  );
+  const processor = unified()
+    .use(remarkParse)
+    .use([remarkDirective, remarkThink])
+    .use(remarkRehype);
+
+  const file = new VFile();
+  file.value = text;
+
+  console.time('remark');
+  const result = post(processor.runSync(processor.parse(file), file), {
+    components: {
+      code(props) {
+        const { children, className, node, ...rest } = props;
+        const match = /language-(\w+)/.exec(className || '');
+        return (
+          <code {...rest} className={className}>
+            {children}
+          </code>
+        );
+      },
+      // @ts-expect-error 先不处理 应该类似 web component 类型扩展方式
+      'interactive-component': SelectDemo,
+    },
+  });
+  console.timeEnd('remark');
+  return <article className="prose dark:prose-invert">{result}</article>;
 };
 
 const remarkThink: Plugin<void[], Root> = function () {

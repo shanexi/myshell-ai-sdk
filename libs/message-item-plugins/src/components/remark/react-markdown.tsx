@@ -229,7 +229,7 @@ function createFile(options: Readonly<Options>): VFile {
 /**
  * Process the result from unified some more.
  */
-function post(tree: Nodes, options: Readonly<Options>): ReactElement {
+export function post(tree: Nodes, options: Readonly<Options>): ReactElement {
   const allowedElements = options.allowedElements;
   const allowElement = options.allowElement;
   const components = options.components;

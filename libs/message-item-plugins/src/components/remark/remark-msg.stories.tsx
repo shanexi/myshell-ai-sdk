@@ -20,6 +20,9 @@ A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup
 
 :button[🥰 generate]{#msg-id-generate.btn.btn-blue}
 
-:::`,
+
+:::
+::interactive-component
+`,
   },
 };
