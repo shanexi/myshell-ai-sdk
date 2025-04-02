@@ -1,6 +1,5 @@
 import type { Root } from 'mdast';
-// import Markdown from 'react-markdown';
-import { h } from 'hastscript';
+import { h, Properties } from 'hastscript';
 import type {
   ContainerDirective,
   LeafDirective,
@@ -11,7 +10,7 @@ import type { Plugin } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 
 import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
-import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
+import { ReplyMsgFrame, useInjection } from '@myshell-run/ui-primitives';
 import { useEffect, useState } from 'react';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -21,13 +20,20 @@ import { Timer, XLoading } from '../executing-msg';
 import Counter from './counter';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
-import { createId } from '@paralleldrive/cuid2';
-
+import { ExecutingMsgModel } from '../executing-msg.model';
 export const RemarkMsg = (props: Message) => {
+  const model = useInjection(ExecutingMsgModel);
   const { avatar = DEFAULT_AVATAR, user, text } = props;
   const processor = unified()
     .use(remarkParse)
-    .use([remarkDirective, remarkThink])
+    .use(remarkDirective)
+    .use(remarkThink, function myCb(props) {
+      // 需要放到 next tick 否则
+      // Cannot update a component (`Unknown`) while rendering a different component (`RemarkMsg`)
+      setTimeout(() => {
+        model.setTimeLeft(Number(props.timeLeft || 0));
+      });
+    })
     .use(remarkRehype);
 
   const file = new VFile();
@@ -81,7 +87,7 @@ variant
 2. 原来的消息置灰，新消息 append
 3. 删除原来的消息，新消息 append
 */
-const remarkThink: Plugin<void[], Root> = function () {
+const remarkThink: Plugin<[(props: Properties) => void], Root> = function (cb) {
   const seenNodes = new Map<
     string,
     ContainerDirective | LeafDirective | TextDirective
@@ -104,10 +110,11 @@ const remarkThink: Plugin<void[], Root> = function () {
         if (id != null) {
           const seenNode = seenNodes.get(id);
           if (seenNode != null && seenNode.data) {
-            seenNode.data.hProperties = {
-              key: createId(), // 强制刷新
-              ...node.data.hProperties,
-            };
+            // seenNode.data.hProperties = {
+            //   key: createId(), // 强制刷新
+            //   ...node.data.hProperties,
+            // };
+            cb(hast.properties);
             hide({
               nodes: [node as Exclude<typeof node, Root>],
               index,

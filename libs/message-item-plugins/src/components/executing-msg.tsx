@@ -29,44 +29,32 @@ export const XLoading = (props: { children?: string } = {}) => {
   );
 };
 
-export const Timer = (props: { timeLeft?: string }) => {
-  if (isNaN(Number(props.timeLeft))) {
-    throw new Error('timeLeft must be a number');
-  }
-  const timeLeftNum = Number(props.timeLeft);
-  const [timeLeft, setTimeLeft] = useState(timeLeftNum);
+export const Timer = observer((props: { timeLeft?: string }) => {
+  const model = useInjection(ExecutingMsgModel);
   useEffect(() => {
+    console.log('only run once');
+    const timeLeftNum = Number(props.timeLeft);
+    model.setTimeLeft(timeLeftNum);
     const timer = setInterval(() => {
-      setTimeLeft((timeLeft) => {
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          return 0;
-        } else {
-          return timeLeft - 1;
-        }
-      });
+      if (model.timeLeft <= 0) {
+        clearInterval(timer);
+      } else {
+        model.decreaseTimeLeft();
+      }
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
-
-  const displayTime = useMemo(() => {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    return minutes > 0 ? `${minutes} min ${seconds} sec` : `${seconds} sec`;
-  }, [timeLeft]);
-
   return (
     <span className="text-sm-regular text-text-subtler-light">
-      {timeLeft > 0 && (
+      {model.timeLeft > 0 && (
         <>
           It will take about{' '}
           <span className="text-sm-medium text-text-brand-light">
-            {displayTime}
+            {model.displayTime}
           </span>
           .
         </>
       )}
     </span>
   );
-};
+});
