@@ -19,7 +19,7 @@ import { unified } from 'unified';
 import { VFile } from 'vfile';
 import { Timer, XLoading } from '../executing-msg';
 import Counter from './counter';
-import { hide } from './hide';
+import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
 import { createId } from '@paralleldrive/cuid2';
 
