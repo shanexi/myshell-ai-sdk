@@ -1,6 +1,6 @@
 import { ReplyMsgFrame, useInjection } from '@myshell-run/ui-primitives';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { ExecutingMsgModel } from './executing-msg.model';
 import { ReactComponent as Loading } from './loading.svg';
 

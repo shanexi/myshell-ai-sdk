@@ -110,10 +110,7 @@ const remarkThink: Plugin<[(props: Properties) => void], Root> = function (cb) {
         if (id != null) {
           const seenNode = seenNodes.get(id);
           if (seenNode != null && seenNode.data) {
-            // seenNode.data.hProperties = {
-            //   key: createId(), // 强制刷新
-            //   ...node.data.hProperties,
-            // };
+            // 更新 props 通过 mobx model 从而组件粒度渲染（checkpoint useEffect 不要重复运行 即组件不销毁)
             cb(hast.properties);
             hide({
               nodes: [node as Exclude<typeof node, Root>],
