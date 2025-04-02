@@ -58,11 +58,15 @@ export const Timer = (props: { timeLeft?: string }) => {
 
   return (
     <span className="text-sm-regular text-text-subtler-light">
-      It will take about{' '}
-      <span className="text-sm-medium text-text-brand-light">
-        {displayTime}
-      </span>
-      .
+      {timeLeft > 0 && (
+        <>
+          It will take about{' '}
+          <span className="text-sm-medium text-text-brand-light">
+            {displayTime}
+          </span>
+          .
+        </>
+      )}
     </span>
   );
 };

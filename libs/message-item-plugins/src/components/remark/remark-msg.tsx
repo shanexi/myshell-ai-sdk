@@ -1,34 +1,27 @@
 import type { Root } from 'mdast';
 // import Markdown from 'react-markdown';
 import { h } from 'hastscript';
+import type {
+  ContainerDirective,
+  LeafDirective,
+  TextDirective,
+} from 'mdast-util-directive';
 import remarkDirective from 'remark-directive';
 import type { Plugin } from 'unified';
-import { visit } from 'unist-util-visit';
+import { SKIP, visit } from 'unist-util-visit';
 
+import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
+import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
+import { useEffect, useState } from 'react';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
-import { post } from './react-markdown';
-import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
-import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
-import { XLoading, Timer } from '../executing-msg';
+import { Timer, XLoading } from '../executing-msg';
 import Counter from './counter';
-
-const DEMO_TXT = `:::main{#readme}
-
-Lorem:br
-ipsum.
-
-::hr
-
-A :i[lovely]{.text-red-500} language know as :abbr[HTML]{title="HyperText Markup Language"}.
-
-:button[🥰 generate]{#msg-id-generate}
-
-:::
-::interactive-component
-`;
+import { hide } from './hide';
+import { post } from './react-markdown';
+import { createId } from '@paralleldrive/cuid2';
 
 export const RemarkMsg = (props: Message) => {
   const { avatar = DEFAULT_AVATAR, user, text } = props;
@@ -40,7 +33,7 @@ export const RemarkMsg = (props: Message) => {
   const file = new VFile();
   file.value = text;
 
-  console.time('remark');
+  // console.time('remark');
   const result = post(processor.runSync(processor.parse(file), file), {
     components: {
       code(props) {
@@ -66,7 +59,7 @@ export const RemarkMsg = (props: Message) => {
       'x-timer': Timer,
     },
   });
-  console.timeEnd('remark');
+  // console.timeEnd('remark');
   return (
     <ReplyMsgFrame
       avatar={
@@ -82,20 +75,77 @@ export const RemarkMsg = (props: Message) => {
   );
 };
 
+/*
+variant
+1. 替换原来的消息
+2. 原来的消息置灰，新消息 append
+3. 删除原来的消息，新消息 append
+*/
 const remarkThink: Plugin<void[], Root> = function () {
+  const seenNodes = new Map<
+    string,
+    ContainerDirective | LeafDirective | TextDirective
+  >();
   return function (tree) {
-    visit(tree, function (node) {
+    visit(tree, function (node, index, parent) {
       if (
-        node.type === 'containerDirective' ||
-        node.type === 'leafDirective' ||
-        node.type === 'textDirective'
+        index !== undefined &&
+        parent !== undefined &&
+        (node.type === 'containerDirective' ||
+          node.type === 'leafDirective' ||
+          node.type === 'textDirective')
       ) {
-        const data = node.data || (node.data = {});
         const hast = h(node.name, node.attributes || {});
-
+        const data = node.data || (node.data = {});
         data.hName = hast.tagName;
         data.hProperties = hast.properties;
+
+        const id = node.attributes?.id;
+        if (id != null) {
+          const seenNode = seenNodes.get(id);
+          if (seenNode != null && seenNode.data) {
+            seenNode.data.hProperties = {
+              key: createId(), // 强制刷新
+              ...node.data.hProperties,
+            };
+            hide({
+              nodes: [node as Exclude<typeof node, Root>],
+              index,
+              parent,
+            });
+            // 似乎不需要
+            return [SKIP, index]; // Skip the node we just processed
+          }
+          seenNodes.set(id, node);
+        }
       }
     });
   };
+};
+
+export const CounterStory = () => {
+  const lines = [
+    `::x-timer{#abc timeLeft=100}`,
+    '\n::p[hello world]{.not-prose}',
+    `\n::x-timer{#abc timeLeft=5}`,
+  ];
+  const [text, setText] = useState(lines[0]);
+  useEffect(() => {
+    let currentLine = 1;
+    const timer = setInterval(() => {
+      if (currentLine < lines.length) {
+        setText((prev: string) => {
+          const txt = prev + lines[currentLine];
+          currentLine++;
+          return txt;
+        });
+      } else {
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+  console.log(text);
+  return <RemarkMsg key="abc" user="me" text={text} />;
 };

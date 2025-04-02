@@ -102,6 +102,7 @@ specifiers:
   '@testing-library/react': 14.0.0
   '@trpc/client': ^11.0.0
   '@trpc/server': ^11.0.0
+  '@types/estree': ^1.0.0
   '@types/hast': ^3.0.0
   '@types/jest': ^29.4.0
   '@types/jsdom': ^21.1.7
@@ -110,6 +111,7 @@ specifiers:
   '@types/node': 18.14.2
   '@types/react': 18.3.19
   '@types/react-dom': 18.3.5
+  '@types/unist': ^3.0.3
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
   '@virtuoso.dev/gurx': ^1.0.0
@@ -123,6 +125,7 @@ specifiers:
   cheerio: ^1.0.0
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
+  comma-separated-tokens: ^2.0.0
   concurrently: ^8.2.2
   core-js: ^3.38.1
   cross-fetch: ^4.1.0
@@ -138,8 +141,10 @@ specifiers:
   eslint-plugin-jsx-a11y: 6.7.1
   eslint-plugin-react: 7.32.2
   eslint-plugin-react-hooks: 4.6.0
+  estree-util-is-identifier-name: ^3.0.0
   fs-extra: ^11.2.0
   hast-util-to-jsx-runtime: ^2.3.0
+  hast-util-whitespace: ^3.0.0
   hastscript: ^9.0.1
   hono: ^4.7.4
   honox: ^0.1.38
@@ -158,6 +163,11 @@ specifiers:
   lint-staged: ^15.2.10
   lucide-react: ^0.479.0
   mdast: ^3.0.0
+  mdast-util-directive: ^3.1.0
+  mdast-util-hidden: ^2.0.0
+  mdast-util-mdx-expression: ^2.0.0
+  mdast-util-mdx-jsx: ^3.0.0
+  mdast-util-mdxjs-esm: ^2.0.0
   mdast-util-to-hast: ^13.0.0
   mobx: ^6.13.6
   mobx-react-lite: ^4.1.0
@@ -170,6 +180,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.6.11
   prisma: ^6.5.0
   prisma-kysely: ^1.8.0
+  property-information: ^7.0.0
   react: 19.0.0
   react-aria: ^3.38.1
   react-aria-components: ^1.7.1
@@ -195,7 +206,9 @@ specifiers:
   remark-rehype: ^11.0.0
   resize-observer-polyfill: ^1.5.1
   rollup-plugin-visualizer: ^5.14.0
+  space-separated-tokens: ^2.0.0
   storybook-react-rspack: 7.0.0-rc.25
+  style-to-js: ^1.0.0
   tailwind-merge: ^3.0.2
   tailwind-variants: ^1.0.0
   tailwindcss: ^4.0.9
@@ -210,10 +223,13 @@ specifiers:
   tslib: ^2.3.0
   typescript: 5.8.2
   unified: ^11.0.4
+  unist-util-position: ^5.0.0
+  unist-util-remove-position: ^5.0.0
   unist-util-visit: ^5.0.0
   url-loader: ^4.1.1
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317
   vfile: ^6.0.1
+  vfile-message: ^4.0.0
   vite: ^6.1.1
   vite-bundle-analyzer: ^0.18.0
   vite-plugin-svgr: ^4.3.0
@@ -293,6 +309,7 @@ dependencies:
   '@testing-library/react': 14.0.0_aaeipwxkab7qfgigzrqxk6gibe
   '@trpc/client': 11.0.0_6tm5ny4thdnpgeymwabofulkb4
   '@trpc/server': 11.0.0_typescript@5.8.2
+  '@types/estree': 1.0.6
   '@types/hast': 3.0.4
   '@types/jest': 29.5.12
   '@types/jsdom': 21.1.7
@@ -301,6 +318,7 @@ dependencies:
   '@types/node': 18.14.2
   '@types/react': 18.3.19
   '@types/react-dom': 18.3.5_@types+react@18.3.19
+  '@types/unist': 3.0.3
   '@typescript-eslint/eslint-plugin': 5.62.0_lfuofezpc3g3u4wp5meoeaxwku
   '@typescript-eslint/parser': 5.62.0_nf6pucg2mhaj5y3mvj2gp3upte
   '@virtuoso.dev/gurx': 1.0.0_upmzqgzhjrquwzo2dphtigtdgi
@@ -314,6 +332,7 @@ dependencies:
   cheerio: 1.0.0
   class-variance-authority: 0.7.1
   clsx: 2.1.1
+  comma-separated-tokens: 2.0.3
   concurrently: 8.2.2
   core-js: 3.38.1
   cross-fetch: 4.1.0
@@ -329,8 +348,10 @@ dependencies:
   eslint-plugin-jsx-a11y: 6.7.1_eslint@8.15.0
   eslint-plugin-react: 7.32.2_eslint@8.15.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.15.0
+  estree-util-is-identifier-name: 3.0.0
   fs-extra: 11.2.0
   hast-util-to-jsx-runtime: 2.3.6
+  hast-util-whitespace: 3.0.0
   hastscript: 9.0.1
   hono: 4.7.4
   honox: 0.1.38_ofn3moo66c4n6ivinb7k7vqkm4_ylkpmjv3czoeqdw3iup25rgalq
@@ -349,6 +370,11 @@ dependencies:
   lint-staged: 15.2.10
   lucide-react: 0.479.0_react@19.0.0
   mdast: 3.0.0
+  mdast-util-directive: 3.1.0
+  mdast-util-hidden: 2.0.0
+  mdast-util-mdx-expression: 2.0.1
+  mdast-util-mdx-jsx: 3.2.0
+  mdast-util-mdxjs-esm: 2.0.1
   mdast-util-to-hast: 13.2.0
   mobx: 6.13.6
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
@@ -361,6 +387,7 @@ dependencies:
   prettier-plugin-tailwindcss: 0.6.11_prettier@3.5.2
   prisma: 6.5.0_typescript@5.8.2
   prisma-kysely: 1.8.0
+  property-information: 7.0.0
   react: 19.0.0
   react-aria: 3.38.1_upmzqgzhjrquwzo2dphtigtdgi
   react-aria-components: 1.7.1_upmzqgzhjrquwzo2dphtigtdgi
@@ -386,7 +413,9 @@ dependencies:
   remark-rehype: 11.1.1
   resize-observer-polyfill: 1.5.1
   rollup-plugin-visualizer: 5.14.0_rollup@4.35.0
+  space-separated-tokens: 2.0.2
   storybook-react-rspack: 7.0.0-rc.25_fotoydv2wzry6wf2ug25q3vidq
+  style-to-js: 1.1.16
   tailwind-merge: 3.0.2
   tailwind-variants: 1.0.0_tailwindcss@4.0.9
   tailwindcss: 4.0.9
@@ -401,10 +430,13 @@ dependencies:
   tslib: 2.7.0
   typescript: 5.8.2
   unified: 11.0.5
+  unist-util-position: 5.0.0
+  unist-util-remove-position: 5.0.0
   unist-util-visit: 5.0.0
   url-loader: 4.1.1_webpack@5.94.0
   use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@19.0.0
   vfile: 6.0.3
+  vfile-message: 4.0.2
   vite: 6.2.2_hr4xl2h6kn4g22b2gygzohly5i
   vite-bundle-analyzer: 0.18.0
   vite-plugin-svgr: 4.3.0_s2bypduphj64xnc5alsyukz2au
@@ -18085,6 +18117,16 @@ packages:
       mdast-util-to-markdown: 2.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /mdast-util-hidden/2.0.0:
+    resolution: {integrity: sha512-29ZygLXq3GXmAHRw5d/E7x3UnwEhBOdZYVwDhlLVEcuKt2+SVT3tspnYVutpdcUzLiz1nV1EE3giIITqwBtJfg==}
+    engines: {node: ^18.16.0 || >=20.4.0}
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/unist': 3.0.3
+      unist-util-remove-position: 5.0.0
+      unist-util-visit: 5.0.0
     dev: false
 
   /mdast-util-math/3.0.0:

@@ -11,7 +11,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { VFile } from 'vfile';
 import { visit, BuildVisitor } from 'unist-util-visit';
-import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
+import { toJsxRuntime } from './hast-util-to-jsx-runtime';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { urlAttributes } from 'html-url-attributes';
 import { unreachable } from 'devlop';

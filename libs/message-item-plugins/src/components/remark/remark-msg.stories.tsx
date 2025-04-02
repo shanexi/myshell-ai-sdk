@@ -47,14 +47,3 @@ export const Loading: StoryObj<typeof RemarkMsg> = {
     `,
   },
 };
-
-export const Counter: StoryObj<typeof RemarkMsg> = {
-  parameters: {},
-  args: {
-    text: `
-::x-timer{#abc timeLeft=10}
-hello world
-::x-timer{#abc timeLeft=5}
-`,
-  },
-};
