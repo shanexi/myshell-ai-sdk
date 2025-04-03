@@ -4,7 +4,7 @@ import {
   RegisterMap,
   Remarkable,
   RemarkableFactory,
-} from '@myshell-run/biz-def';
+} from '@myshell-run/common';
 import { ContainerModule, interfaces } from 'inversify';
 import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';
 import {

@@ -1,7 +1,7 @@
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 // import { ReactComponent as Company } from './company.svg';
 import { ChevronsUp, Share } from 'lucide-react';
-import { DEFAULT_AVATAR } from '@myshell-run/biz-def';
+import { DEFAULT_AVATAR } from '@myshell-run/common';
 import { DbBot } from '@myshell-run/biz-def';
 
 export function BotInfo(props: { bot: DbBot }) {

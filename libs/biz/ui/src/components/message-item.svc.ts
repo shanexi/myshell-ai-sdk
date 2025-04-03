@@ -1,5 +1,5 @@
 import { injectable, multiInject } from 'inversify';
-import { MessageItem } from '@myshell-run/biz-def';
+import { MessageItem } from '@myshell-run/common';
 @injectable()
 export class MessageItemSvc {
   constructor(@multiInject(MessageItem) private items: MessageItem[]) {}

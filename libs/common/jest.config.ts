@@ -1,12 +1,12 @@
 /* eslint-disable */
 export default {
-  displayName: 'biz-common',
-  preset: '../../../jest.preset.js',
+  displayName: 'common',
+  preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/chatModel',
+  coverageDirectory: '../../coverage/libs/chatModel',
   coverageThreshold: {
     global: {
       branches: 90,

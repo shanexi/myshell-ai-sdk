@@ -1,4 +1,4 @@
-import { Message } from '@myshell-run/biz-def';
+import { Message } from '@myshell-run/common';
 
 export const OwnMessage = (props: Message) => {
   return (

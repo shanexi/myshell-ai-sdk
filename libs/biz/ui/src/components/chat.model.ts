@@ -2,7 +2,8 @@ import {
   EventSourceMessage,
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
-import { Message, MessageListContext, DbBot } from '@myshell-run/biz-def';
+import { Message, MessageListContext } from '@myshell-run/common';
+import { DbBot } from '@myshell-run/biz-def';
 import { createId } from '@paralleldrive/cuid2';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { injectable } from 'inversify';

@@ -5,7 +5,7 @@ import {
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';
 import { useInjection } from '@myshell-run/ui-primitives';
 import { MessageItemSvc } from './message-item.svc';
-import { Message, MessageListContext } from '@myshell-run/biz-def';
+import { Message, MessageListContext } from '@myshell-run/common';
 
 export const MessageItem: VirtuosoMessageListProps<
   Message,
