@@ -8,6 +8,7 @@ import type {
 import remarkDirective from 'remark-directive';
 import type { Plugin } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
+import { createId } from '@paralleldrive/cuid2';
 
 import {
   DEFAULT_AVATAR,
@@ -127,8 +128,16 @@ const remarkMyPlugin: Plugin<
         if (id != null) {
           const seenNode = seenNodes.get(id);
           if (seenNode != null && seenNode.data) {
-            // 更新 props 通过 mobx model 从而组件粒度渲染（checkpoint useEffect 不要重复运行 即组件不销毁)
-            updateCb(hast.tagName, hast.properties);
+            // 兼容浏览器内置 tag 更好的做法是包一个 React Component
+            if (['img'].indexOf(hast.tagName) > -1) {
+              seenNode.data.hProperties = {
+                key: createId(), // 强制刷新
+                ...node.data.hProperties,
+              };
+            } else {
+              // 更新 props 通过 mobx model 从而组件粒度渲染（checkpoint useEffect 不要重复运行 即组件不销毁)
+              updateCb(hast.tagName, hast.properties);
+            }
             hide({
               nodes: [node as Exclude<typeof node, Root>],
               index,
