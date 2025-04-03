@@ -1,28 +1,30 @@
-import { Message } from '@myshell-run/def';
+import { DEFAULT_AVATAR, Message } from '@myshell-run/def';
 import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 export const ReplyMsg = (props: Message) => {
+  const { avatar = DEFAULT_AVATAR, user, text } = props;
   return (
     <ReplyMsgFrame
       avatar={
         <img
           className="mr-[8px] h-[32px] w-[32px] rounded-lg"
-          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+          src={avatar}
+          alt={`${user} avatar`}
         />
       }
-      button={
-        // button 布局收敛
-        <div className="-mx-spacing-xs flex justify-between">
-          <LuiButton>🪄 Upscale (Subtle)</LuiButton>
-          <LuiButton>💥 Upscale (Creative)</LuiButton>
-        </div>
-      }
+      // button={
+      //   // button 布局收敛
+      //   <div className="-mx-spacing-xs flex justify-between">
+      //     <LuiButton>🪄 Upscale (Subtle)</LuiButton>
+      //     <LuiButton>💥 Upscale (Creative)</LuiButton>
+      //   </div>
+      // }
     >
       <article className="prose dark:prose-invert">
         <Markdown
-          children={props.text}
+          children={text}
           remarkPlugins={[remarkGfm]}
           components={{
             code(props) {

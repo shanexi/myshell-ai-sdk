@@ -1,45 +1,42 @@
+import { clerkMiddleware } from '@hono/clerk-auth';
+import { trpcServer } from '@hono/trpc-server';
+import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
+import { bizServiceModule, TrpcRouter } from '@myshell-run/biz-service';
+import { AsyncLocalStorage } from 'async_hooks';
+import { Context, Hono } from 'hono';
 import { showRoutes } from 'hono/dev';
 import { createApp } from 'honox/server';
-import { loadModule } from './loadModule';
 import { Container } from 'inversify';
-import { TrpcRouter } from './trpc-router';
-import { trpcServer } from '@hono/trpc-server';
-import { Hono } from 'hono';
-import { isNotSSG } from './constants';
+import { inversify } from './middlewares/inversify';
+import { requireAuth } from './middlewares/require-auth';
+import { setDb } from './middlewares/set-db';
+import { als } from './middlewares/als';
 
-const container = new Container();
-loadModule(container);
+const serverContainer = new Container();
+serverContainer.load(bizServiceModule);
 
-type HonoEnv = {
-  Bindings: Env;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  Variables: {};
-};
+const asyncLocalStorage = new AsyncLocalStorage<Context<HonoEnv>>();
 
 const happ = new Hono<HonoEnv>();
+happ.use('*', clerkMiddleware());
+happ.use(setDb);
+happ.use(als(asyncLocalStorage, serverContainer));
+happ.use(inversify(serverContainer));
 
-if (isNotSSG) {
-  const trpcRouter = container.get(TrpcRouter);
-  happ.use(
-    '/trpc/*',
-    trpcServer({
-      router: trpcRouter.appRouter,
-    }),
-  );
-  happ.get('/hi', (c) => {
-    return c.json({
-      message: 'hi',
-    });
-  });
-}
+const trpcRouter = serverContainer.get(TrpcRouter);
+happ.use(
+  '/trpc/*',
+  requireAuth,
+  trpcServer({
+    router: trpcRouter.appRouter,
+    createContext: (opts, c) => {
+      return {};
+    },
+  }),
+);
 
 const app = createApp<HonoEnv>({
   app: happ,
-  // NOT_FOUND: {},
-  // ERROR: {},
-  // RENDERER: {},
-  // MIDDLEWARE: {},
-  // ROUTES: {},
 });
 
 showRoutes(app);

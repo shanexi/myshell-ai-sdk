@@ -1,29 +1,40 @@
 import { Message, MessageItem } from '@myshell-run/def';
-import { ContainerModule } from 'inversify';
-import { ExecutingMsg } from './components/executing-msg';
+import { RemarkMsg, setup } from '@myshell-run/ui-primitives';
+import { ContainerModule, interfaces } from 'inversify';
+import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';
-import { ListDirectoryMsg } from './components/agent/list-directory-msg';
-import { ReplyMsg } from './components/reply-msg';
+import Counter from './components/remark/counter';
 
 export const REPLY_MESSAGE_TYPE = 'reply';
 export const REPLY_MESSAGE_EXECUTING_TYPE = 'reply:executing';
 export const AGENT_MESSAGE_LIST_DIRECTORY_TYPE = 'agent:list-directory';
 
+function legacy(bind: interfaces.Bind) {
+  function addMessagePlugin(
+    type: string,
+    Component: React.ComponentType<Message>,
+  ) {
+    bind<MessageItem>(MessageItem).toConstantValue({
+      type,
+      render: (data) => {
+        const { key, ...rest } = data;
+        return <Component key={key} {...rest} />;
+      },
+    });
+  }
+
+  addMessagePlugin(REPLY_MESSAGE_TYPE, RemarkMsg);
+  addMessagePlugin(REPLY_MESSAGE_EXECUTING_TYPE, ExecutingMsg);
+  // addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
+}
+
 export const messageItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
-    function addMessagePlugin(
-      type: string,
-      Component: React.ComponentType<Message>,
-    ) {
-      bind<MessageItem>(MessageItem).toConstantValue({
-        type,
-        render: (data) => <Component {...data} />,
-      });
-    }
-
-    addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
-    addMessagePlugin(REPLY_MESSAGE_EXECUTING_TYPE, ExecutingMsg);
-    addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
-    bind(ExecutingMsgModel).toSelf();
+    legacy(bind);
+    const register = setup(bind);
+    // 涉及到了 JSX，可能会影响 unit test perf
+    register('x-timer', Timer, ExecutingMsgModel);
+    register('interactive-component', Counter);
+    register('x-loading', XLoading);
   },
 );

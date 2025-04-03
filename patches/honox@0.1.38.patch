@@ -1,0 +1,14 @@
+diff --git a/dist/vite/components/honox-island.js b/dist/vite/components/honox-island.js
+index 133c96efc1c0ee0f1e6cabb723cd9d9c87da9c96..5d8a89f0b51918111cd3a8fcd5eaa171e79e1f22 100644
+--- a/dist/vite/components/honox-island.js
++++ b/dist/vite/components/honox-island.js
+@@ -39,7 +39,8 @@ const HonoXIsland = ({
+         ...{
+           [COMPONENT_NAME]: componentName,
+           [COMPONENT_EXPORT]: componentExport || void 0,
+-          [DATA_SERIALIZED_PROPS]: JSON.stringify(restProps)
++          [DATA_SERIALIZED_PROPS]: JSON.stringify(restProps),
++          class: restProps.className
+         },
+         children: [
+           /* @__PURE__ */ jsx(IslandContext.Provider, { value: { ...islandState, [inIsland]: true }, children: /* @__PURE__ */ jsx(Component, { ...props }) }),

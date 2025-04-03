@@ -9,9 +9,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Create a simple model database
-model User {
-  id    String @id  @default(uuid())
-  email String  @unique
-  name  String?
+model Bot {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  avatar      String?
+  description String
+  isOfficial  Boolean @default(false)
+  llmModelId  String?
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  /// 会话 可能是 botId/ groupId
+  sessionId String
+
+  text     String
+  /// 可能是 botId/ userId
+  senderId String
 }

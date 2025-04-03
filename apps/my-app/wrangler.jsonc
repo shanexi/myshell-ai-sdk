@@ -7,15 +7,20 @@
   "assets": {
     "directory": "./dist"
   },
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
+  "vars": {
+    "OPENAI_BASE_URL": "https://aihubmix.com/v1",
+    "HUANYUAN_BASE_URL": "https://api.hunyuan.cloud.tencent.com/v1"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "kv_namespaces": [
+    {
+      "binding": "MY_APP",
+      "id": "70ef8c94a7314d4784efdaad98d1c2cd"
+    }
+  ],
   // "r2_buckets": [
   //   {
   //     "binding": "MY_BUCKET",

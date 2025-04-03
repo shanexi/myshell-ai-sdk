@@ -2,6 +2,8 @@
 pnpm-lock.yaml
 /dist
 /coverage
-/libs/glif-canvas/public
 
 **/*.typegen.ts
+
+libs/biz/ui/src/components/message-list/**/*
+libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*

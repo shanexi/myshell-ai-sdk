@@ -17,6 +17,10 @@
     "paths": {
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
       "@myshell-run/archive-chat": ["libs/archive/chat/src/index.ts"],
+      "@myshell-run/biz-ac": ["libs/biz/ac/src/index.ts"],
+      "@myshell-run/biz-def": ["libs/biz/def/src/index.ts"],
+      "@myshell-run/biz-service": ["libs/biz/service/src/index.ts"],
+      "@myshell-run/biz-ui": ["libs/biz/ui/src/index.ts"],
       "@myshell-run/def": ["libs/def/src/index.ts"],
       "@myshell-run/message-item-plugins": [
         "libs/message-item-plugins/src/index.ts"
@@ -24,9 +28,7 @@
       "@myshell-run/react-aria-tailwind-starter": [
         "libs/react-aria-tailwind-starter/src/index.ts"
       ],
-      "@myshell-run/simple-services": ["libs/simple-services/src/index.ts"],
       "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"],
-      "@myshell-run/ui-biz": ["libs/ui-biz/src/index.ts"],
       "@myshell-run/ui-primitives": ["libs/ui-primitives/src/index.ts"]
     },
     "jsx": "react-jsx",

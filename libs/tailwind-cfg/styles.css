@@ -2,47 +2,59 @@
 @plugin "@tailwindcss/typography";
 @plugin 'tailwindcss-animate';
 @plugin "tailwindcss-react-aria-components";
+
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer components {
   .display-md-emphasized {
     /* Display/md/Emphasized */
-    font-family: 'PP Telegraf';
+    /* font-family: 'PP Telegraf'; */
+    font-family: 'Space Grotesk';
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 32px; /* 133.333% */
+    line-height: 32px;
+    /* 133.333% */
   }
+
   .display-sm-semibold {
     /* Display/sm/Semibold */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
     font-weight: 590;
     line-height: 28px;
   }
+
   .heading-h4 {
     /* Heading/h4 */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 16px;
     font-style: normal;
     font-weight: 510;
     line-height: 24px;
   }
+
   .text-sm-medium {
     /* Text/sm/Medium */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 14px;
     font-style: normal;
     font-weight: 510;
     line-height: 20px;
   }
+
   .text-sm-regular {
     /* Text/sm/Regular */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -51,16 +63,28 @@
 
   .text-lg-medium {
     /* Text/lg/Medium */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 16px;
     font-style: normal;
     font-weight: 510;
     line-height: 24px;
   }
 
+  .text-lg-regular {
+    /* Text/lg/Regular */
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
   .description-lg-regular {
     /* Description/lg/Regular */
-    font-family: 'SF Pro';
+    /* font-family: 'SF Pro'; */
+    font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -69,7 +93,8 @@
 
   .special-20 {
     /* 20px/Special */
-    font-family: 'PP Telegraf';
+    /* font-family: 'PP Telegraf'; */
+    font-family: 'Space Grotesk';
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -90,11 +115,14 @@
 @layer components {
   .my-masonry-grid {
     display: flex;
-    margin-left: -8px; /* gutter size offset */
+    margin-left: -8px;
+    /* gutter size offset */
     width: auto;
   }
+
   .my-masonry-grid_column {
-    padding-left: 8px; /* gutter size */
+    padding-left: 8px;
+    /* gutter size */
     background-clip: padding-box;
   }
 
@@ -1114,4 +1142,5 @@
   --sky-blue-900: #194185;
   --sky-blue-950: #102a56;
 }
+
 /* END */

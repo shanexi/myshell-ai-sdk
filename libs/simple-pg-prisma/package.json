@@ -1,6 +1,0 @@
-{
-  "name": "@myshell-run/simple-prisma",
-  "scripts": {
-    "migrate": "../../node_modules/.bin/dotenv -e .env -- ../../node_modules/.bin/prisma migrate dev"
-  }
-}
