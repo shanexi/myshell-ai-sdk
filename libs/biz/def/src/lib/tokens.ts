@@ -1,2 +1,2 @@
-export const MyAppTrpcClient = Symbol.for('MyAppTrpcClient');
-export const MyAppALS = Symbol.for('MyAppALS');
+export const MyAppTrpcClient = Symbol('MyAppTrpcClient');
+export const MyAppALS = Symbol('MyAppALS');

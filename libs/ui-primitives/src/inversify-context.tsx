@@ -1,5 +1,7 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import { Container, interfaces } from 'inversify';
+import { RemarkableFactory } from '@myshell-run/biz-def';
+
 type ContextType = {
   container: Container;
 };
@@ -32,4 +34,17 @@ export function useInjection<T>(serviceId: interfaces.ServiceIdentifier<T>): T {
     throw new Error('Provider is not found');
   }
   return context.container.get(serviceId);
+}
+
+export function useRemarkable<T>(
+  serviceId: interfaces.ServiceIdentifier<T>,
+  id?: string,
+): T {
+  const context = useContext(InversifyContext);
+  if (!context) {
+    throw new Error('Provider is not found');
+  }
+  const factory = useInjection<RemarkableFactory>(RemarkableFactory);
+  const model = factory(serviceId, id);
+  return model as T;
 }

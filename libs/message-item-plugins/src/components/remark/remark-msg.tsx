@@ -1,5 +1,5 @@
-import type { Root } from 'mdast';
 import { h, Properties } from 'hastscript';
+import type { Root } from 'mdast';
 import type {
   ContainerDirective,
   LeafDirective,
@@ -10,29 +10,42 @@ import type { Plugin } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 
 import { DEFAULT_AVATAR, Message } from '@myshell-run/biz-def';
+import { RegisterMap, RemarkableFactory } from '@myshell-run/biz-def';
 import { ReplyMsgFrame, useInjection } from '@myshell-run/ui-primitives';
 import { useEffect, useState } from 'react';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
-import { Timer, XLoading } from '../executing-msg';
-import Counter from './counter';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
-import { ExecutingMsgModel } from '../executing-msg.model';
+
 export const RemarkMsg = (props: Message) => {
-  const model = useInjection(ExecutingMsgModel);
   const { avatar = DEFAULT_AVATAR, user, text } = props;
+  const factory = useInjection<RemarkableFactory>(RemarkableFactory);
+  const registerMap = useInjection<RegisterMap>('RegisterMap');
+  const registerComponents = Array.from(registerMap).reduce(
+    (acc, [key, [Component]]) => {
+      acc[key] = Component;
+      return acc;
+    },
+    {} as Record<string, React.ComponentType<unknown>>,
+  );
+
   const processor = unified()
     .use(remarkParse)
     .use(remarkDirective)
-    .use(remarkThink, function myCb(props) {
-      // 需要放到 next tick 否则
-      // Cannot update a component (`Unknown`) while rendering a different component (`RemarkMsg`)
-      setTimeout(() => {
-        model.setTimeLeft(Number(props.timeLeft || 0));
-      });
+    .use(remarkMyPlugin, function updateCb(tagName, props) {
+      const id = props.id;
+      if (typeof id === 'string') {
+        // 需要放到 next tick 否则 Cannot update a component (`Unknown`) while rendering a different component (`RemarkMsg`)
+        setTimeout(function () {
+          const model = registerMap.get(tagName)?.[1];
+          if (model) {
+            factory(model, id).onUpdate(props);
+          }
+        }, 0);
+      }
     })
     .use(remarkRehype);
 
@@ -59,10 +72,7 @@ export const RemarkMsg = (props: Message) => {
           </button>
         );
       },
-      // @ts-expect-error 先不处理 应该类似 web component 类型扩展方式
-      'interactive-component': Counter,
-      'x-loading': XLoading,
-      'x-timer': Timer,
+      ...registerComponents,
     },
   });
   // console.timeEnd('remark');
@@ -87,7 +97,10 @@ variant
 2. 原来的消息置灰，新消息 append
 3. 删除原来的消息，新消息 append
 */
-const remarkThink: Plugin<[(props: Properties) => void], Root> = function (cb) {
+const remarkMyPlugin: Plugin<
+  [(tagName: string, props: Properties) => void],
+  Root
+> = function (updateCb) {
   const seenNodes = new Map<
     string,
     ContainerDirective | LeafDirective | TextDirective
@@ -111,13 +124,13 @@ const remarkThink: Plugin<[(props: Properties) => void], Root> = function (cb) {
           const seenNode = seenNodes.get(id);
           if (seenNode != null && seenNode.data) {
             // 更新 props 通过 mobx model 从而组件粒度渲染（checkpoint useEffect 不要重复运行 即组件不销毁)
-            cb(hast.properties);
+            updateCb(hast.tagName, hast.properties);
             hide({
               nodes: [node as Exclude<typeof node, Root>],
               index,
               parent,
             });
-            // 似乎不需要
+            // TODO: 似乎不需要 不过参考的 remark-ignore 有，先保留
             return [SKIP, index]; // Skip the node we just processed
           }
           seenNodes.set(id, node);

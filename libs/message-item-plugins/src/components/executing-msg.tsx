@@ -1,4 +1,4 @@
-import { ReplyMsgFrame, useInjection } from '@myshell-run/ui-primitives';
+import { ReplyMsgFrame, useRemarkable } from '@myshell-run/ui-primitives';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { ExecutingMsgModel } from './executing-msg.model';
@@ -29,8 +29,8 @@ export const XLoading = (props: { children?: string } = {}) => {
   );
 };
 
-export const Timer = observer((props: { timeLeft?: string }) => {
-  const model = useInjection(ExecutingMsgModel);
+export const Timer = observer((props: { id?: string; timeLeft?: string }) => {
+  const model = useRemarkable(ExecutingMsgModel, props.id);
   useEffect(() => {
     console.log('only run once');
     const timeLeftNum = Number(props.timeLeft);
