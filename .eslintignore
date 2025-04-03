@@ -5,4 +5,4 @@ node_modules
 /libs/archive/automata/src/lib
 
 /libs/biz/ui/src/components/message-list/
-libs/message-item-plugins/src/components/remark/hast-util-to-jsx-runtime/
+libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/

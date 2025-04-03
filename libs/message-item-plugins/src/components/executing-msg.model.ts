@@ -2,18 +2,6 @@ import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { Remarkable } from '@myshell-run/def';
-@injectable()
-export class RemarkableManager {
-  @observable
-  private remarkableMap = new Map<string, Remarkable>();
-
-  set(id: string, remarkable: Remarkable) {
-    this.remarkableMap.set(id, remarkable);
-  }
-  get<T extends Remarkable>(id: string) {
-    return this.remarkableMap.get(id) as T;
-  }
-}
 
 @injectable()
 export class ExecutingMsgModel implements Remarkable {
