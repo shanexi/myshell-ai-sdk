@@ -21,7 +21,7 @@
       "@myshell-run/biz-def": ["libs/biz/def/src/index.ts"],
       "@myshell-run/biz-service": ["libs/biz/service/src/index.ts"],
       "@myshell-run/biz-ui": ["libs/biz/ui/src/index.ts"],
-      "@myshell-run/common": ["libs/common/src/index.ts"],
+      "@myshell-run/def": ["libs/def/src/index.ts"],
       "@myshell-run/message-item-plugins": [
         "libs/message-item-plugins/src/index.ts"
       ],

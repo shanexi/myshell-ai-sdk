@@ -11,7 +11,7 @@ import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
 import { observer } from 'mobx-react-lite';
 import { BotListModel } from './bot-list.model';
-import { DEFAULT_AVATAR } from '@myshell-run/common';
+import { DEFAULT_AVATAR } from '@myshell-run/def';
 import { ReactComponent as Avatar } from './avatar.svg';
 
 export type BotListContext = {

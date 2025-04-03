@@ -1,7 +1,7 @@
 import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { action, computed, makeObservable, observable } from 'mobx';
-import { Remarkable } from '@myshell-run/common';
+import { Remarkable } from '@myshell-run/def';
 @injectable()
 export class RemarkableManager {
   @observable

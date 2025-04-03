@@ -1,4 +1,4 @@
-import { Message, MessageListContext } from '@myshell-run/common';
+import { Message, MessageListContext } from '@myshell-run/def';
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';

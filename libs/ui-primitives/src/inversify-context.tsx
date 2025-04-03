@@ -1,6 +1,6 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import { Container, interfaces } from 'inversify';
-import { RemarkableFactory } from '@myshell-run/common';
+import { RemarkableFactory } from '@myshell-run/def';
 
 type ContextType = {
   container: Container;

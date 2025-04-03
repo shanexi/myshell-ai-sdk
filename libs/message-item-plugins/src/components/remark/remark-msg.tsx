@@ -9,8 +9,8 @@ import remarkDirective from 'remark-directive';
 import type { Plugin } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 
-import { DEFAULT_AVATAR, Message } from '@myshell-run/common';
-import { RegisterMap, RemarkableFactory } from '@myshell-run/common';
+import { DEFAULT_AVATAR, Message } from '@myshell-run/def';
+import { RegisterMap, RemarkableFactory } from '@myshell-run/def';
 import { ReplyMsgFrame, useInjection } from '@myshell-run/ui-primitives';
 import { useEffect, useState } from 'react';
 import remarkParse from 'remark-parse';
