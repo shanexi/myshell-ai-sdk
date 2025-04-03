@@ -23,6 +23,7 @@ function run(name, port) {
 }
 
 // run('archive-chat', 4201);
-run('ui-biz', 4201);
+run('biz-ui', 4201);
+run('message-item-plugins', 4202);
 
 console.log('\x1b[32m%s\x1b[0m', 'done');

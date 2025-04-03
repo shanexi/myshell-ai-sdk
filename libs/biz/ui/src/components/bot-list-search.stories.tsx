@@ -1,8 +1,29 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { BotListSearch } from './bot-list-search';
+import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { uiBizModule } from '../ui-biz.module';
+import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
+import { Container } from 'inversify';
+import { MyAppTrpcClient } from '@myshell-run/biz-def';
+import { TRPCClient } from '@trpc/client';
+import { AppRouter } from '@myshell-run/biz-service';
+
+const container = new Container();
+container.load(messageItemPluginsModule);
+container.load(uiBizModule);
+container
+  .bind<TRPCClient<AppRouter>>(MyAppTrpcClient)
+  .toConstantValue({} as TRPCClient<AppRouter>);
 
 const meta: Meta<typeof BotListSearch> = {
   component: BotListSearch,
+  decorators: [
+    (Story) => (
+      <InversifyProvider container={container}>
+        <Story />
+      </InversifyProvider>
+    ),
+  ],
 };
 export default meta;
 

@@ -22,7 +22,14 @@ function Chat() {
       <ChatMessageList className="flex flex-grow flex-col overflow-auto px-[8px]" />
       <ChatFoot>
         <ChatInputRoot />
-        <BotInfo />
+        <BotInfo
+          bot={{
+            id: 1,
+            name: 'MyShell',
+            avatar: 'https://picsum.photos/200/300',
+            isOfficial: true,
+          }}
+        />
       </ChatFoot>
     </ChatRoot>
   );

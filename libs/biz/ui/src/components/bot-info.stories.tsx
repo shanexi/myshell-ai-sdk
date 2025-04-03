@@ -7,5 +7,12 @@ const meta: Meta<typeof BotInfo> = {
 export default meta;
 
 export const Primary: StoryObj<typeof BotInfo> = {
-  args: {},
+  args: {
+    bot: {
+      id: 1,
+      name: 'MyShell',
+      avatar: 'https://picsum.photos/200/300',
+      isOfficial: true,
+    },
+  },
 };
