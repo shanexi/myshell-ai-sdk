@@ -1,10 +1,10 @@
 import * as NodeSdk from '@effect/opentelemetry/NodeSdk';
 
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import {
   BatchSpanProcessor,
   ConsoleSpanExporter,
 } from '@opentelemetry/sdk-trace-base';
-
 import { Effect } from 'effect';
 import { pipe } from 'effect/Function';
 
@@ -57,12 +57,21 @@ describe('effectDemo', () => {
     console.log(result);
   });
 
-  it('otel', async () => {
+  it.only('otel', async () => {
+    // @ts-expect-error 先忽略
     const NodeSdkLive = NodeSdk.layer(() => ({
       resource: {
         serviceName: 'example',
       },
-      spanProcessor: new BatchSpanProcessor(new ConsoleSpanExporter()),
+      // spanProcessor: new BatchSpanProcessor(new ConsoleSpanExporter()),
+      spanProcessor: new OTLPTraceExporter({
+        url: 'https://events.baselime.io/v1/traces',
+        headers: {
+          'x-api-key': '',
+          'Content-Type': 'application/json',
+          'x-service': 'my-service',
+        },
+      }),
     }));
     const program = pipe(Effect.log('Hello'), Effect.withSpan('a'));
 
