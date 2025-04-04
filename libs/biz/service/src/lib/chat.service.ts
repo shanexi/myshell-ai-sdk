@@ -23,7 +23,7 @@ export class ChatService {
     msgId: string,
     replyMsgId: string,
   ): AsyncGenerator<string, void, unknown> {
-    const NodeSdkLive = NodeSdk.layer(() => ({
+    /*  const NodeSdkLive = NodeSdk.layer(() => ({
       resource: {
         serviceName: 'chat.service',
       },
@@ -68,7 +68,7 @@ export class ChatService {
         Effect.provide(NodeSdkLive),
         Effect.catchAllCause(Effect.logError),
       ),
-    );
+    ); */
 
     const ctx = this.als.getStore();
     if (!ctx) {
