@@ -1,11 +1,8 @@
-import * as WebSdk from '@effect/opentelemetry/WebSdk';
+import * as NodeSdk from '@effect/opentelemetry/NodeSdk';
 import { getAuth } from '@hono/clerk-auth';
 import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
-import {
-  BatchSpanProcessor,
-  SimpleSpanProcessor,
-} from '@opentelemetry/sdk-trace-base';
+import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { AsyncLocalStorage } from 'async_hooks';
 import { Effect } from 'effect';
 import { Context } from 'hono';
@@ -26,10 +23,9 @@ export class ChatService {
     msgId: string,
     replyMsgId: string,
   ): AsyncGenerator<string, void, unknown> {
-    console.log('dsn', this.als.getStore()?.env.METRICS_DSN);
-    const WebSdkLive = WebSdk.layer(() => ({
+    const NodeSdkLive = NodeSdk.layer(() => ({
       resource: {
-        serviceName: 'chat-service',
+        serviceName: 'chat.service',
       },
       spanProcessor: new BatchSpanProcessor(
         new OTLPTraceExporter({
@@ -69,7 +65,7 @@ export class ChatService {
 
     Effect.runPromise(
       program.pipe(
-        Effect.provide(WebSdkLive),
+        Effect.provide(NodeSdkLive),
         Effect.catchAllCause(Effect.logError),
       ),
     );
