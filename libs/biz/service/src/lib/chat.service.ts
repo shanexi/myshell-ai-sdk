@@ -1,9 +1,17 @@
+import * as WebSdk from '@effect/opentelemetry/WebSdk';
+import { getAuth } from '@hono/clerk-auth';
 import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+import {
+  BatchSpanProcessor,
+  SimpleSpanProcessor,
+} from '@opentelemetry/sdk-trace-base';
 import { AsyncLocalStorage } from 'async_hooks';
+import { Effect } from 'effect';
 import { Context } from 'hono';
 import { inject, injectable, multiInject } from 'inversify';
 import { LLM } from '../llm/llm';
-import { getAuth } from '@hono/clerk-auth';
+
 @injectable()
 export class ChatService {
   constructor(
@@ -18,6 +26,54 @@ export class ChatService {
     msgId: string,
     replyMsgId: string,
   ): AsyncGenerator<string, void, unknown> {
+    console.log('dsn', this.als.getStore()?.env.METRICS_DSN);
+    const WebSdkLive = WebSdk.layer(() => ({
+      resource: {
+        serviceName: 'chat-service',
+      },
+      spanProcessor: new BatchSpanProcessor(
+        new OTLPTraceExporter({
+          url: this.als.getStore()?.env.METRICS_DSN,
+        }),
+      ),
+    }));
+
+    const task = (
+      name: string,
+      delay: number,
+      children: ReadonlyArray<Effect.Effect<void>> = [],
+    ) =>
+      Effect.gen(function* () {
+        yield* Effect.log(name);
+        yield* Effect.sleep(`${delay} millis`);
+        for (const child of children) {
+          yield* child;
+        }
+        yield* Effect.sleep(`${delay} millis`);
+      }).pipe(Effect.withSpan(name));
+
+    const poll = task('/poll', 1);
+
+    // Create a program with tasks and subtasks
+    const program = task('client', 2, [
+      task('/api', 3, [
+        task('/authN', 4, [task('/authZ', 5)]),
+        task('/payment Gateway', 6, [task('DB', 7), task('Ext. Merchant', 8)]),
+        task('/dispatch', 9, [
+          task('/dispatch/search', 10),
+          Effect.all([poll, poll, poll], { concurrency: 'inherit' }),
+          task('/pollDriver/{id}', 11),
+        ]),
+      ]),
+    ]);
+
+    Effect.runPromise(
+      program.pipe(
+        Effect.provide(WebSdkLive),
+        Effect.catchAllCause(Effect.logError),
+      ),
+    );
+
     const ctx = this.als.getStore();
     if (!ctx) {
       throw new Error('No ctx');

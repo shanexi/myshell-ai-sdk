@@ -57,7 +57,7 @@ describe('effectDemo', () => {
     console.log(result);
   });
 
-  it.only('otel', async () => {
+  it.skip('otel', async () => {
     // @ts-expect-error 先忽略
     const NodeSdkLive = NodeSdk.layer(() => ({
       resource: {
