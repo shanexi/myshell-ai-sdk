@@ -12,5 +12,8 @@ export interface MyAppEnv {
   TECENT_CLOUD_SECRET_ID: string;
   TECENT_CLOUD_SECRET_KEY: string;
   HTTP_SERVER_UPLOAD_TOKEN: string;
+  BASELIME_BASELIME_API_KEY: string;
+  SENTRY_DSN: string;
+  METRICS_DSN: string;
   DB_MYSHELL_RUN_TEST: D1Database;
 }
