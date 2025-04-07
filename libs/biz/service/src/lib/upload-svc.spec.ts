@@ -1,4 +1,4 @@
-import { uploadBase64 } from './upload.svc';
+import { uploadBase64 } from './upload.utils';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

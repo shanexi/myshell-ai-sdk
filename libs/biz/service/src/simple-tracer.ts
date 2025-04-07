@@ -41,6 +41,7 @@ export class Tracing {
     );
     const r = await Tracing.setContext(span.getContext(), lambda, span);
     span.end();
+    // TODO batch 一个窗口比如使用 scheduler
     Tracing.exporter(span);
     return r;
   }

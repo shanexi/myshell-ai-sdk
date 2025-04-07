@@ -1,4 +1,4 @@
-import crypto from 'node:crypto';
+import crypto from 'crypto';
 import { Tracing, EMPTY_CONTEXT } from '../simple-tracer';
 
 class Span {
