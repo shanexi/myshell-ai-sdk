@@ -51,6 +51,7 @@ specifiers:
   '@effect/opentelemetry': ^0.45.5
   '@headlessui/react': ^2.2.0
   '@hono/clerk-auth': ^2.0.0
+  '@hono/otel': ^0.1.0
   '@hono/react-renderer': ^0.3.0
   '@hono/sentry': ^1.2.1
   '@hono/trpc-server': ^0.3.4
@@ -197,6 +198,7 @@ specifiers:
   prisma: ^6.5.0
   prisma-kysely: ^1.8.0
   property-information: ^7.0.0
+  radash: ^12.1.0
   react: 19.0.0
   react-aria: ^3.38.1
   react-aria-components: ^1.7.1
@@ -274,6 +276,7 @@ dependencies:
   '@effect/opentelemetry': 0.45.5_pnr2wzqrnk6ndg6tuzgwnridke
   '@headlessui/react': 2.2.0_upmzqgzhjrquwzo2dphtigtdgi
   '@hono/clerk-auth': 2.0.0_rymmfltnjdlfb3wtwbpdpra76i
+  '@hono/otel': 0.1.0_hono@4.7.4
   '@hono/react-renderer': 0.3.0_hono@4.7.4
   '@hono/sentry': 1.2.1_hono@4.7.4
   '@hono/trpc-server': 0.3.4_c4ao7tdxgt3eyybiiiva4vclna
@@ -419,6 +422,7 @@ dependencies:
   prisma: 6.5.0_typescript@5.8.2
   prisma-kysely: 1.8.0
   property-information: 7.0.0
+  radash: 12.1.0
   react: 19.0.0
   react-aria: 3.38.1_upmzqgzhjrquwzo2dphtigtdgi
   react-aria-components: 1.7.1_upmzqgzhjrquwzo2dphtigtdgi
@@ -3339,6 +3343,16 @@ packages:
     peerDependencies:
       hono: ^4
     dependencies:
+      hono: 4.7.4
+    dev: false
+
+  /@hono/otel/0.1.0_hono@4.7.4:
+    resolution: {integrity: sha512-vLw4Wg2xLXpcmppEUNIOVDYeYtG6ma4VEYa1+xSBQ3hxjFdTLd5GOT0ZROWQhFNZp11cVHchBeof5eAhb7phoA==}
+    peerDependencies:
+      hono: '*'
+    dependencies:
+      '@opentelemetry/api': 1.9.0
+      '@opentelemetry/semantic-conventions': 1.30.0
       hono: 4.7.4
     dev: false
 
@@ -20791,6 +20805,11 @@ packages:
 
   /quote-unquote/1.0.0:
     resolution: {integrity: sha512-twwRO/ilhlG/FIgYeKGFqyHhoEhqgnKVkcmqMKi2r524gz3ZbDTcyFt38E9xjJI2vT+KbRNHVbnJ/e0I25Azwg==}
+    dev: false
+
+  /radash/12.1.0:
+    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
+    engines: {node: '>=14.18.0'}
     dev: false
 
   /ramda/0.29.0:

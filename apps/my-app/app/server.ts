@@ -17,7 +17,17 @@ import { als } from './middlewares/als';
 import { inversify } from './middlewares/inversify';
 import { requireAuth } from './middlewares/require-auth';
 import { setDb } from './middlewares/set-db';
+import { traceparent } from './middlewares/traceparent';
+
 // import { sentry } from '@hono/sentry';
+
+Tracing.tname = 'test-app';
+Tracing.globalAttributes = new Map([['service.name', 'test-app']]);
+
+Tracing.exporter = otlpExporter(
+  'https://metrics_01jr0emez9ener2ctwyf09w1gx.myshell.run/v1/traces',
+  {},
+);
 
 const serverContainer = new Container();
 serverContainer.load(bizServiceModule);
@@ -33,11 +43,13 @@ export type HonoEnv = {
 };
 
 const happ = new Hono<HonoEnv>();
-// happ.use('*', sentry());
-happ.use('*', clerkMiddleware());
-happ.use(setDb);
+happ.use(traceparent());
 happ.use(als(asyncLocalStorage, serverContainer));
 happ.use(inversify(serverContainer));
+// happ.use('*', sentry());
+happ.use(honoMiddleware);
+happ.use('*', clerkMiddleware());
+happ.use(setDb);
 
 const trpcRouter = serverContainer.get(TrpcRouter);
 happ.use(
