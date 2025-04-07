@@ -21,5 +21,7 @@ declare module 'hono' {
   interface ContextVariableMap {
     db: Kysely<Database>;
     resolve<T>(identifier: interfaces.ServiceIdentifier<T>): T;
+    traceID: string;
+    spanID: string;
   }
 }

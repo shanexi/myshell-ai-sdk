@@ -90,7 +90,7 @@ export function BotListRoot(props: { children?: React.ReactNode }) {
   return <div className="flex h-full flex-col">{children}</div>;
 }
 
-export function BotListHeader(props: { avatar?: string }) {
+export function BotListHeader(props: { avatar?: string | null }) {
   const { avatar } = props;
   return (
     <div className="mx-spacing-xl mt-spacing-lg mb-spacing-xs flex items-center justify-between">
