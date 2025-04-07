@@ -14,7 +14,10 @@ export class Tracing {
     //
   };
 
-  static getCurrentSpan = () => Tracing.asyncLocalStorage.getStore()!.span;
+  static getCurrentSpan = () => {
+    const ctx = Tracing.asyncLocalStorage.getStore()!;
+    return ctx.span;
+  };
 
   static getContext = () => Tracing.asyncLocalStorage.getStore();
 
@@ -42,3 +45,6 @@ export class Tracing {
     return r;
   }
 }
+
+export const EMPTY_CONTEXT = {};
+Tracing.asyncLocalStorage.enterWith(EMPTY_CONTEXT as Context);

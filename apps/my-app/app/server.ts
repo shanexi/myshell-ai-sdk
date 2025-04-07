@@ -21,7 +21,7 @@ import { traceparent } from './middlewares/traceparent';
 
 // import { sentry } from '@hono/sentry';
 
-Tracing.tname = 'test-app';
+Tracing.servicename = 'test-app';
 Tracing.globalAttributes = new Map([['service.name', 'test-app']]);
 
 Tracing.exporter = otlpExporter(

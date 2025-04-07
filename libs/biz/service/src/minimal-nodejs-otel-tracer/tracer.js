@@ -1,8 +1,5 @@
 import crypto from 'node:crypto';
-import { Tracing } from '../simple-tracer';
-
-const EMPTY_CONTEXT = {};
-Tracing.asyncLocalStorage.enterWith(EMPTY_CONTEXT);
+import { Tracing, EMPTY_CONTEXT } from '../simple-tracer';
 
 class Span {
   constructor(name, context = {}, attributes = new Map()) {
