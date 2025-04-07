@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck https://github.com/jmorrell/minimal-nodejs-otel-tracer
 import { AsyncLocalStorage } from 'node:async_hooks';
 import crypto from 'node:crypto';
 
