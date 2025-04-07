@@ -5,6 +5,7 @@ import { AsyncLocalStorage } from 'async_hooks';
 import { Context } from 'hono';
 import { inject, injectable } from 'inversify';
 import { z } from 'zod';
+import { Tracing } from '../simple-tracer';
 const t = initTRPC
   .context<{
     env: MyAppEnv;
@@ -33,7 +34,9 @@ export class TrpcRouter {
         if (!auth?.userId) {
           throw new Error('Unauthorized');
         }
-        const user = await clerk.users.getUser(auth.userId);
+        const user = await Tracing.startSpan('clerk_get_user', () =>
+          clerk.users.getUser(auth.userId),
+        );
         return user.imageUrl;
       }),
   });

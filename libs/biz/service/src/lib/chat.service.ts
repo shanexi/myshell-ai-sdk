@@ -1,13 +1,10 @@
-import * as NodeSdk from '@effect/opentelemetry/NodeSdk';
 import { getAuth } from '@hono/clerk-auth';
 import { HonoEnv, MyAppALS } from '@myshell-run/biz-def';
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
-import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { AsyncLocalStorage } from 'async_hooks';
-import { Effect } from 'effect';
 import { Context } from 'hono';
 import { inject, injectable, multiInject } from 'inversify';
 import { LLM } from '../llm/llm';
+import { Tracing } from '../simple-tracer';
 
 @injectable()
 export class ChatService {
@@ -80,24 +77,25 @@ export class ChatService {
       throw new Error('Unauthorized');
     }
 
-    console.time('insert me message');
-    db.insertInto('message')
-      .values({
-        id: msgId,
-        text: prompt,
-        sessionId: `bot-${botId}`,
-        senderId: `user-${auth.userId}`,
-      })
-      .executeTakeFirst();
-    console.timeEnd('insert me message');
+    Tracing.startSpan('insert_me_msg', () =>
+      db
+        .insertInto('message')
+        .values({
+          id: msgId,
+          text: prompt,
+          sessionId: `bot-${botId}`,
+          senderId: `user-${auth.userId}`,
+        })
+        .executeTakeFirst(),
+    );
 
-    console.time('dbBot');
-    const dbBot = await db
-      .selectFrom('bot')
-      .select(['id', 'llmModelId'])
-      .where('id', '=', botId)
-      .executeTakeFirst();
-    console.timeEnd('dbBot');
+    const dbBot = await Tracing.startSpan('db_select_bot', () =>
+      db
+        .selectFrom('bot')
+        .select(['id', 'llmModelId'])
+        .where('id', '=', botId)
+        .executeTakeFirst(),
+    );
 
     if (!dbBot?.llmModelId) {
       throw new Error('Only LLM bot can be used');
@@ -113,17 +111,17 @@ export class ChatService {
       yield chunk.content;
     }
 
-    console.time('insert reply message');
-    await db
-      .insertInto('message')
-      .values({
-        id: replyMsgId,
-        text: messages.join(''),
-        sessionId: `bot-${botId}`,
-        senderId: `bot-${botId}`,
-      })
-      .executeTakeFirst();
-    console.timeEnd('insert reply message');
+    await Tracing.startSpan('insert_reply_msg', () =>
+      db
+        .insertInto('message')
+        .values({
+          id: replyMsgId,
+          text: messages.join(''),
+          sessionId: `bot-${botId}`,
+          senderId: `bot-${botId}`,
+        })
+        .executeTakeFirst(),
+    );
   }
 
   getLLM(llmModelId: string): LLM {
