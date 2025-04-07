@@ -41,17 +41,23 @@ export default createRoute(requireAuth, async (c) => {
     avatar = await c.env.MY_APP.get(key);
   });
 
-  return c.render(
-    <BotListRoot>
-      <div className="flex-none">
-        <BotListHeader avatar={avatar} />
-        <BotListSearchIsland />
-      </div>
-      <BotListIsland
-        licenseKey={c?.env?.LIC}
-        initialBots={bots}
-        className="flex-grow overflow-auto"
-      />
-    </BotListRoot>,
-  );
+  let res;
+
+  await Tracing.startSpan('ssr_render', async () => {
+    res = c.render(
+      <BotListRoot>
+        <div className="flex-none">
+          <BotListHeader avatar={avatar} />
+          <BotListSearchIsland />
+        </div>
+        <BotListIsland
+          licenseKey={c?.env?.LIC}
+          initialBots={bots}
+          className="flex-grow overflow-auto"
+        />
+      </BotListRoot>,
+    );
+  });
+
+  return res;
 });
