@@ -1,18 +1,17 @@
-import { AlignJustify, CirclePlus } from 'lucide-react';
-import { ReactComponent as Audio } from './audio.svg';
-import { ReactComponent as Send } from './send.svg';
-import { ReactComponent as Clear } from './clear.svg';
-import { ReactComponent as Trash } from './trash.svg';
-import { MenuTrigger } from 'react-aria-components';
 import {
   Button,
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
 import { useInjection } from '@myshell-run/ui-primitives';
-import { ChatModel } from './chat.model';
+import { AlignJustify, CirclePlus } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { MenuTrigger } from 'react-aria-components';
+import { ReactComponent as Audio } from './audio.svg';
+import { ChatModel } from './chat.model';
+import { ReactComponent as Clear } from './clear.svg';
+import { ReactComponent as Send } from './send.svg';
+import { ReactComponent as Trash } from './trash.svg';
 
 export const ChatInputMenu = () => {
   return (

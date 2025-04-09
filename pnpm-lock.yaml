@@ -188,6 +188,7 @@ specifiers:
   mdast-util-to-hast: ^13.0.0
   mobx: ^6.13.6
   mobx-react-lite: ^4.1.0
+  neverthrow: ^8.2.0
   next: 13.1.1
   nx: 15.9.7
   openai: ^4.90.0
@@ -412,6 +413,7 @@ dependencies:
   mdast-util-to-hast: 13.2.0
   mobx: 6.13.6
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
+  neverthrow: 8.2.0
   next: 13.1.1_itiuvzt4u37n7rg6c33anbmq2e
   nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
   openai: 4.90.0_zod@3.24.1
@@ -19152,6 +19154,13 @@ packages:
 
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+    dev: false
+
+  /neverthrow/8.2.0:
+    resolution: {integrity: sha512-kOCT/1MCPAxY5iUV3wytNFUMUolzuwd/VF/1KCx7kf6CutrOsTie+84zTGTpgQycjvfLdBBdvBvFLqFD2c0wkQ==}
+    engines: {node: '>=18'}
+    optionalDependencies:
+      '@rollup/rollup-linux-x64-gnu': 4.35.0
     dev: false
 
   /new-github-issue-url/0.2.1:

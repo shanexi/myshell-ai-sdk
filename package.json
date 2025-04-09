@@ -158,6 +158,7 @@
     "mdast-util-to-hast": "^13.0.0",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",
+    "neverthrow": "^8.2.0",
     "next": "13.1.1",
     "nx": "15.9.7",
     "openai": "^4.90.0",

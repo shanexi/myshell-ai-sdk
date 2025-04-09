@@ -9,6 +9,7 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/* font 没有被转换成功 手动添加 */
 @layer components {
   .display-md-emphasized {
     /* Display/md/Emphasized */
@@ -138,6 +139,16 @@
 @layer components {
   .x-custom-react-aria-Button[data-pressed] {
     background: transparent !important;
+  }
+}
+
+/* 手动修改 svg 样式 */
+@layer components {
+  .svg-fill-white {
+    svg {
+      fill: white;
+      transition: fill 0.3s ease;
+    }
   }
 }
 
