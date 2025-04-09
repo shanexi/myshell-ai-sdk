@@ -14,6 +14,7 @@ import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
 import { useTransitionState } from 'react-transition-state';
 import { useEffect } from 'react';
+import { autorun } from 'mobx';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -81,8 +82,10 @@ export const AnimatedChatInputMenu = observer(() => {
     preEnter: true,
   });
   useEffect(() => {
-    toggle(model.isShowInputMenu);
-  }, [toggle, model.isShowInputMenu]);
+    autorun(() => {
+      toggle(model.isShowInputMenu);
+    });
+  }, [toggle]);
 
   return (
     <div className="relative flex min-h-[36px] flex-1 items-center">
