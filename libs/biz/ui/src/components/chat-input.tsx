@@ -82,9 +82,10 @@ export const AnimatedChatInputMenu = observer(() => {
     preEnter: true,
   });
   useEffect(() => {
-    autorun(() => {
+    const disposer = autorun(() => {
       toggle(model.isShowInputMenu);
     });
+    return () => disposer();
   }, [toggle]);
 
   return (
