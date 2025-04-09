@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { MenuTrigger } from 'react-aria-components';
@@ -12,13 +12,19 @@ import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
+import { useTransitionState } from 'react-transition-state';
+import { useEffect } from 'react';
 
-export const ChatInputMenu = () => {
+export const ChatInputMenu = (props: { className?: string }) => {
+  const { className } = props;
   return (
     <MenuTrigger>
       <Button
         variant="icon"
-        className="x-custom-react-aria-Button data-hovered:bg-transparent"
+        className={cn(
+          'x-custom-react-aria-Button z-10 data-hovered:bg-transparent',
+          className,
+        )}
         // 指定 id 否则 hydrate 会报错
         id={'chat-input-menu-btn'}
       >
@@ -53,8 +59,7 @@ export const ChatInput = observer(() => {
   const model = useInjection(ChatModel);
   return (
     <ChatInputRoot>
-      {model.isShowInputMenu && <ChatInputMenu />}
-      <ChatInputText />
+      <AnimatedChatInputMenu />
       {model.notHaveInputText ? (
         <>
           <ChatInputAudio />
@@ -64,6 +69,37 @@ export const ChatInput = observer(() => {
         <ChatInputSend />
       )}
     </ChatInputRoot>
+  );
+});
+
+export const AnimatedChatInputMenu = observer(() => {
+  const model = useInjection(ChatModel);
+  const [{ status, isMounted }, toggle] = useTransitionState({
+    timeout: 300,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    preEnter: true,
+  });
+  useEffect(() => {
+    toggle(model.isShowInputMenu);
+  }, [toggle, model.isShowInputMenu]);
+
+  return (
+    <div className="relative flex min-h-[36px] flex-1 items-center">
+      {model.isShowInputMenu && (
+        <ChatInputMenu
+          className={cn('transition-opacity', {
+            'opacity-0': status === 'preEnter' || status === 'unmounted',
+            'opacity-100': status === 'entering' || status === 'entered',
+          })}
+        />
+      )}
+      <ChatInputText
+        className={cn('absolute pl-[32px] transition-transform', {
+          '-translate-x-[32px]': status === 'exiting' || status === 'unmounted',
+        })}
+      />
+    </div>
   );
 });
 
@@ -91,7 +127,8 @@ export function ChatInputSend() {
   );
 }
 
-export const ChatInputText = observer(() => {
+export const ChatInputText = observer((props: { className?: string }) => {
+  const { className } = props;
   const model = useInjection(ChatModel);
   return (
     <input
@@ -108,7 +145,7 @@ export const ChatInputText = observer(() => {
         }
       }}
       type="search"
-      className="grow [&::-webkit-search-cancel-button]:hidden"
+      className={cn('[&::-webkit-search-cancel-button]:hidden', className)}
       placeholder="Write a message"
       value={model.inputText}
       onChange={(e) => model.setInputText(e.target.value)}
