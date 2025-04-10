@@ -1,8 +1,24 @@
-import { cn } from '@myshell-run/ui-primitives';
-import { useRef, useState } from 'react';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { useEffect, useRef, useState } from 'react';
 import { computeTextareaRows } from './chat-input.utils';
+import { observer } from 'mobx-react-lite';
+import { ChatModel } from './chat.model';
 
-export const ChatInput: React.FC<{
+export const ChatInput = observer(() => {
+  const model = useInjection(ChatModel);
+
+  return (
+    <div className="h-[200px]">
+      <ChatTextarea
+        placeholder="Write a message..."
+        value={model.inputText}
+        onChange={model.setInputText}
+      />
+    </div>
+  );
+});
+
+export const ChatTextarea: React.FC<{
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
@@ -28,6 +44,17 @@ export const ChatInput: React.FC<{
       textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
     }
   };
+
+  useEffect(() => {
+    if (!parentRef.current) return;
+    const resizeObserver = new ResizeObserver(() => {
+      adjustHeight();
+    });
+    resizeObserver.observe(parentRef.current);
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
     <div

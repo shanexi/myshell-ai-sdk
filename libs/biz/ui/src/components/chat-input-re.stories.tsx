@@ -1,32 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ChatInput } from './chat-input-re';
-import { Container } from 'inversify';
 import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { uiBizModule } from '../ui-biz.module';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Container } from 'inversify';
+import { uiBizModule } from '../ui-biz.module';
+import { ChatInput } from './chat-input-re';
+import { ChatModel } from './chat.model';
 
 const container = new Container();
 container.load(messageItemPluginsModule);
 container.load(uiBizModule);
+const model = container.get(ChatModel);
 
-// Example usage
-const Demo: React.FC = () => {
-  const [text, setText] = useState('');
+model.setInputText(
+  'useFloating() only calculates the position once on render, or when the reference/floating elements changed. Depending on the context in which the floating element lives, you may need to update its position in an Effect.',
+);
 
-  return (
-    <div style={{ height: '200px', width: '300px', border: '1px solid #ccc' }}>
-      <ChatInput
-        value={text}
-        onChange={setText}
-        placeholder="Type something..."
-      />
-    </div>
-  );
-};
-
-const meta: Meta<typeof Demo> = {
-  component: Demo,
+const meta: Meta<typeof ChatInput> = {
+  component: ChatInput,
   decorators: [
     (Story) => {
       return (
@@ -45,6 +35,6 @@ const meta: Meta<typeof Demo> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof Demo> = {
+export const Primary: StoryObj<typeof ChatInput> = {
   args: {},
 };
