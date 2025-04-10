@@ -1,6 +1,6 @@
 import { cn } from '@myshell-run/ui-primitives';
 import { useRef, useState } from 'react';
-import { calculateTextareaRows } from './chat-input.utils';
+import { computeTextareaRows } from './chat-input.utils';
 
 export const ChatInput: React.FC<{
   placeholder?: string;
@@ -16,7 +16,7 @@ export const ChatInput: React.FC<{
   const adjustHeight = () => {
     if (!textareaRef.current || !parentRef.current) return;
 
-    const { newRows, shouldScrollToBottom } = calculateTextareaRows(
+    const { newRows, shouldScrollToBottom } = computeTextareaRows(
       textareaRef.current,
       parentRef.current,
     );

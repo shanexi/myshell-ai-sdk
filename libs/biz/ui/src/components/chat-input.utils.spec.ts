@@ -1,91 +1,85 @@
-import { calculateTextareaRows } from './chat-input.utils';
+import { computeTextareaRows } from './chat-input.utils';
 
 describe('calculateTextareaRows', () => {
-  // Mock implementation for HTMLElement with needed properties
-  const createMockElement = (scrollHeight: number, lineHeight = '20px') => ({
-    scrollHeight,
-    clientHeight: 0,
-    style: {},
-    getComputedStyle: () => ({ lineHeight }),
-  });
+  let textarea: HTMLTextAreaElement;
+  let parent: HTMLElement;
 
   beforeEach(() => {
-    // Mock getComputedStyle
-    window.getComputedStyle = jest.fn().mockImplementation((element) => {
-      return {
-        lineHeight: element.getComputedStyle
-          ? element.getComputedStyle().lineHeight
-          : '20px',
-      };
+    // 创建测试用的 DOM 元素
+    textarea = document.createElement('textarea');
+    parent = document.createElement('div');
+
+    // 设置基本样式
+    Object.defineProperty(textarea.style, 'lineHeight', { value: '20px' });
+
+    // Mock 一些只读属性
+    jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 100);
+    jest.spyOn(textarea, 'clientHeight', 'get').mockImplementation(() => 60);
+    jest.spyOn(textarea, 'scrollTop', 'get').mockImplementation(() => 0);
+    jest.spyOn(parent, 'clientHeight', 'get').mockImplementation(() => 60);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  describe('shouldScrollToBottom calculation', () => {
+    it('should return true when content exceeds maxRows and viewport is at bottom', () => {
+      // 设置内容超出显示范围且视图在底部
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 100);
+      jest.spyOn(textarea, 'clientHeight', 'get').mockImplementation(() => 60);
+      jest.spyOn(textarea, 'scrollTop', 'get').mockImplementation(() => 40); // scrollTop + clientHeight = scrollHeight
+
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.shouldScrollToBottom).toBe(true);
+    });
+
+    it('should return false when content exceeds maxRows but viewport is not at bottom', () => {
+      // 设置内容超出显示范围但视图不在底部
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 100);
+      jest.spyOn(textarea, 'clientHeight', 'get').mockImplementation(() => 60);
+      jest.spyOn(textarea, 'scrollTop', 'get').mockImplementation(() => 20); // 在中间位置
+
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.shouldScrollToBottom).toBe(false);
+    });
+
+    it('should return false when content does not exceed maxRows', () => {
+      // 设置内容不超出显示范围
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 40);
+      jest.spyOn(textarea, 'clientHeight', 'get').mockImplementation(() => 60);
+      jest.spyOn(textarea, 'scrollTop', 'get').mockImplementation(() => 0);
+
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.shouldScrollToBottom).toBe(false);
+    });
+
+    it('should handle edge case with small scroll difference', () => {
+      // 测试接近底部但有小误差的情况
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 100);
+      jest.spyOn(textarea, 'clientHeight', 'get').mockImplementation(() => 60);
+      jest.spyOn(textarea, 'scrollTop', 'get').mockImplementation(() => 38); // 差值小于 10px
+
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.shouldScrollToBottom).toBe(true);
     });
   });
 
-  it('should return minimum 1 row when content is empty', () => {
-    const textarea = createMockElement(0) as unknown as HTMLTextAreaElement;
-    const parent = { clientHeight: 100 } as unknown as HTMLElement;
+  describe('newRows calculation', () => {
+    it('should calculate correct number of rows', () => {
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 80);
+      jest.spyOn(parent, 'clientHeight', 'get').mockImplementation(() => 60);
 
-    const result = calculateTextareaRows(textarea, parent);
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.newRows).toBe(3); // 80px / 20px(lineHeight) = 4 rows, but maxRows is 3
+    });
 
-    expect(result.newRows).toBe(1);
-    expect(result.shouldScrollToBottom).toBe(false);
-  });
+    it('should return at least 1 row', () => {
+      jest.spyOn(textarea, 'scrollHeight', 'get').mockImplementation(() => 0);
+      jest.spyOn(parent, 'clientHeight', 'get').mockImplementation(() => 60);
 
-  it('should calculate rows based on content height', () => {
-    const textarea = createMockElement(60) as unknown as HTMLTextAreaElement;
-    const parent = { clientHeight: 100 } as unknown as HTMLElement;
-
-    const result = calculateTextareaRows(textarea, parent);
-
-    // Content needs 3 rows (60px / 20px), parent can fit 5 rows (100px / 20px)
-    expect(result.newRows).toBe(3);
-    expect(result.shouldScrollToBottom).toBe(false);
-  });
-
-  it('should limit rows to parent container height', () => {
-    const textarea = createMockElement(120) as unknown as HTMLTextAreaElement;
-    const parent = { clientHeight: 60 } as unknown as HTMLElement;
-
-    const result = calculateTextareaRows(textarea, parent);
-
-    // Content needs 6 rows (120px / 20px), but parent can only fit 3 rows (60px / 20px)
-    expect(result.newRows).toBe(3);
-    expect(result.shouldScrollToBottom).toBe(true);
-  });
-
-  it('should handle custom line height', () => {
-    const textarea = createMockElement(
-      90,
-      '30px',
-    ) as unknown as HTMLTextAreaElement;
-    const parent = { clientHeight: 120 } as unknown as HTMLElement;
-
-    // Override the mock for this specific it
-    window.getComputedStyle = jest.fn().mockReturnValue({ lineHeight: '30px' });
-
-    const result = calculateTextareaRows(textarea, parent);
-
-    // Content needs 3 rows (90px / 30px), parent can fit 4 rows (120px / 30px)
-    expect(result.newRows).toBe(3);
-    expect(result.shouldScrollToBottom).toBe(false);
-  });
-
-  it('should handle invalid line height and use default', () => {
-    const textarea = createMockElement(
-      80,
-      'invalid',
-    ) as unknown as HTMLTextAreaElement;
-    const parent = { clientHeight: 100 } as unknown as HTMLElement;
-
-    // Override the mock for this specific it
-    window.getComputedStyle = jest
-      .fn()
-      .mockReturnValue({ lineHeight: 'invalid' });
-
-    const result = calculateTextareaRows(textarea, parent);
-
-    // Using default lineHeight of 20px
-    // Content needs 4 rows (80px / 20px), parent can fit 5 rows (100px / 20px)
-    expect(result.newRows).toBe(4);
-    expect(result.shouldScrollToBottom).toBe(false);
+      const result = computeTextareaRows(textarea, parent);
+      expect(result.newRows).toBe(1);
+    });
   });
 });
