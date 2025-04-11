@@ -11,9 +11,9 @@ container.load(messageItemPluginsModule);
 container.load(uiBizModule);
 const model = container.get(ChatModel);
 
-model.setInputText(
-  'useFloating() only calculates the position once on render, or when the reference/floating elements changed. Depending on the context in which the floating element lives, you may need to update its position in an Effect.',
-);
+// model.setInputText(
+//   'useFloating() only calculates the position once on render, or when the reference/floating elements changed. Depending on the context in which the floating element lives, you may need to update its position in an Effect.',
+// );
 
 const meta: Meta<typeof ChatInput> = {
   component: ChatInput,
@@ -21,7 +21,9 @@ const meta: Meta<typeof ChatInput> = {
     (Story) => {
       return (
         <InversifyProvider container={container}>
-          <Story />
+          <div className="flex h-[600px] flex-col justify-end">
+            <Story />
+          </div>
         </InversifyProvider>
       );
     },
@@ -36,5 +38,7 @@ const meta: Meta<typeof ChatInput> = {
 export default meta;
 
 export const Primary: StoryObj<typeof ChatInput> = {
-  args: {},
+  args: {
+    placeholder: 'Write a message',
+  },
 };
