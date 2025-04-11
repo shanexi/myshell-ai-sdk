@@ -29,7 +29,7 @@ export const ChatInputMenu = (props: { className?: string }) => {
         // 指定 id 否则 hydrate 会报错
         id={'chat-input-menu-btn'}
       >
-        <AlignJustify className="text-text-brand-light" />
+        <AlignJustify strokeWidth={1.5} className="text-text-brand-light" />
       </Button>
       <Menu>
         <MenuItem id="clear">
@@ -49,7 +49,7 @@ export function ChatInputRoot(props: { children?: React.ReactNode }) {
   const { children } = props;
   return (
     <div className="mx-[8px] my-spacing-md">
-      <div className="input w-full rounded-4xl border-border-default-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
+      <div className="input w-full rounded-4xl border-border-default-light bg-surface-container-special-subtle-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
         {children}
       </div>
     </div>
@@ -110,7 +110,11 @@ export const AnimatedChatInputMenu = observer(() => {
 export function ChatInputFile() {
   return (
     <div className="flex h-[24px] w-[24px] flex-none items-center justify-center">
-      <CirclePlus className="text-text-brand-light" size={24} />
+      <CirclePlus
+        strokeWidth={1.5}
+        className="text-text-brand-light"
+        size={24}
+      />
     </div>
   );
 }
