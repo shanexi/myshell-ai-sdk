@@ -24,6 +24,7 @@ export class ChatModel {
   bot?: DbBot;
   @observable inputText = '';
   @observable isInputFocus = false;
+  @observable isAnimatingInputFocus = false;
   @computed get isNotInputFocus() {
     return !this.isInputFocus;
   }
@@ -41,6 +42,11 @@ export class ChatModel {
   @action.bound
   setInputFocus(focus: boolean) {
     this.isInputFocus = focus;
+  }
+
+  @action.bound
+  setIsAnimatingInputFocus(isAnimating: boolean) {
+    this.isAnimatingInputFocus = isAnimating;
   }
 
   appendMsg(message: Message) {

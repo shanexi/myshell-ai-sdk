@@ -1,4 +1,4 @@
-import { useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren, useEffect, useRef } from 'react';
@@ -7,11 +7,26 @@ import { ReactComponent as Audio } from './audio.svg';
 import { ChatModel } from './chat.model';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import { reaction } from 'mobx';
+import { useTransitionState } from 'react-transition-state';
 
 export const ChatInput = observer<{ placeholder?: string }>(
   ({ placeholder }) => {
     const model = useInjection(ChatModel);
     const ref = useRef<HTMLTextAreaElement>(null);
+
+    const [{ status, isMounted }, toggle] = useTransitionState({
+      timeout: 500,
+      mountOnEnter: true,
+      unmountOnExit: true,
+      preEnter: true,
+      onStateChange: (ev) => {
+        if (ev.current.isMounted) {
+          model.setIsAnimatingInputFocus(true);
+        } else {
+          model.setIsAnimatingInputFocus(false);
+        }
+      },
+    });
 
     // mobx 就不依赖 useEffect deps， 使用 mobx 自带的 reaction
     useEffect(() => {
@@ -19,26 +34,38 @@ export const ChatInput = observer<{ placeholder?: string }>(
         () => model.isInputFocus,
         (isInputFocus) => {
           if (isInputFocus) {
+            toggle(true);
             setTimeout(() => {
               ref.current?.focus();
             }); // 先让 input blur 再 textarea focus
+          } else {
+            toggle(false);
           }
         },
       );
       return () => disposer();
-    }, []);
+    }, [toggle]);
 
     return (
       <ChatInputRoot>
-        {model.isInputFocus && (
-          <TextareaAutosize
-            placeholder={placeholder}
-            ref={ref}
-            maxRows={8}
-            className="text-sm-regular w-full resize-none outline-none"
-            value={model.inputText}
-            onChange={(e) => model.setInputText(e.target.value)}
-          />
+        {isMounted && (
+          <div
+            className={cn('transition-height overflow-hidden duration-500', {
+              'max-h-0': status === 'preEnter' || status === 'exiting',
+              // TODO 等根据父容器调整 maxRows 之后要逻辑更新
+              // 160 是 line-height (20) * maxRows (8)
+              'max-h-[160px]': status === 'entering' || status === 'entered',
+            })}
+          >
+            <TextareaAutosize
+              className={cn('text-sm-regular w-full resize-none outline-none')}
+              ref={ref}
+              placeholder={placeholder}
+              maxRows={8}
+              value={model.inputText}
+              onChange={(e) => model.setInputText(e.target.value)}
+            />
+          </div>
         )}
         <ChatInputActions placeholder={placeholder} />
       </ChatInputRoot>
@@ -101,7 +128,9 @@ export const ChatInputActions = observer<{ placeholder?: string }>(
           <input
             ref={ref}
             className="text-sm-regular mx-spacing-sm w-full caret-transparent outline-none"
-            placeholder={model.isNotInputFocus ? placeholder : ''}
+            readOnly
+            value={model.isAnimatingInputFocus ? '' : model.inputText}
+            placeholder={model.isAnimatingInputFocus ? '' : placeholder}
             onClick={(e) => {
               model.setInputFocus(true);
             }}
