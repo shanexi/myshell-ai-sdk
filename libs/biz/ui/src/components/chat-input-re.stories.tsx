@@ -21,7 +21,7 @@ const meta: Meta<typeof ChatInput> = {
     (Story) => {
       return (
         <InversifyProvider container={container}>
-          <div className="flex h-[600px] flex-col justify-end">
+          <div className="mb-2 flex h-full flex-col justify-end">
             <Story />
           </div>
         </InversifyProvider>
@@ -38,6 +38,9 @@ const meta: Meta<typeof ChatInput> = {
 export default meta;
 
 export const Primary: StoryObj<typeof ChatInput> = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {
     placeholder: 'Write a message',
   },
