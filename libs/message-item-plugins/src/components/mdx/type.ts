@@ -22,7 +22,9 @@ type FunctionElementType = Extract<
  */
 type ClassElementType = Extract<
   ElementType,
-  new (props: Record<string, any>) => any
+  new (
+    props: Record<string, any>,
+  ) => any
 >;
 
 /**
@@ -45,22 +47,26 @@ type FunctionComponent<Props> = ElementType extends never
   ? // If JSX.ElementType isn’t defined, the valid return type is JSX.Element
     (props: Props) => Element | null
   : FunctionElementType extends never
-  ? // If JSX.ElementType is defined, but doesn’t allow function components, function components are disallowed.
-    never
-  : // If JSX.ElementType allows function components, its return value determines what is a valid.
-    (props: Props) => ReturnType<FunctionElementType>;
+    ? // If JSX.ElementType is defined, but doesn’t allow function components, function components are disallowed.
+      never
+    : // If JSX.ElementType allows function components, its return value determines what is a valid.
+      (props: Props) => ReturnType<FunctionElementType>;
 
 /**
  * A valid JSX class component.
  */
 type ClassComponent<Props> = ElementType extends never
   ? // If JSX.ElementType isn’t defined, the valid return type is a constructor that returns JSX.ElementClass
-    new (props: Props) => JSX.ElementClass
+    new (
+      props: Props,
+    ) => JSX.ElementClass
   : ClassElementType extends never
-  ? // If JSX.ElementType is defined, but doesn’t allow constructors, function components are disallowed.
-    never
-  : // If JSX.ElementType allows class components, its return value determines what is a valid.
-    new (props: Props) => InstanceType<ClassElementType>;
+    ? // If JSX.ElementType is defined, but doesn’t allow constructors, function components are disallowed.
+      never
+    : // If JSX.ElementType allows class components, its return value determines what is a valid.
+      new (
+        props: Props,
+      ) => InstanceType<ClassElementType>;
 
 /**
  * Any allowed JSX component.

@@ -66,8 +66,8 @@ export function RangeCalendar<T extends DateValue>({
                       isSelected && (isSelectionStart || isSelectionEnd)
                         ? 'cap'
                         : isSelected
-                        ? 'middle'
-                        : 'none',
+                          ? 'middle'
+                          : 'none',
                     isDisabled,
                     isFocusVisible,
                   })}

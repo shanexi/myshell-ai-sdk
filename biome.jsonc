@@ -1,0 +1,24 @@
+{
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "ignore": [
+      "**/pnpm-lock.yaml",
+      "./dist",
+      "./coverage",
+      "**/*.typegen.ts",
+      "libs/biz/ui/src/components/message-list/**/*",
+      "libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*",
+      "apps/simple-server/public/static/style.css",
+      "apps/my-app/app/style.css",
+      "apps/my-app/dist"
+    ]
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    },
+    "parser": { "unsafeParameterDecoratorsEnabled": true }
+  }
+}

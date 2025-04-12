@@ -26,7 +26,7 @@ patchedDependencies:
     hash: ofn3moo66c4n6ivinb7k7vqkm4
     path: patches/honox@0.1.38.patch
   nx@15.9.7:
-    hash: fstqeyj5qchhaklvfisvwgbhta
+    hash: lwqsl4l7nhs6igmozion3zmegm
     path: patches/nx@15.9.7.patch
   prettier@2.8.8:
     hash: ukdn7hz7p2e5dfkyxisiekbmji
@@ -40,6 +40,7 @@ specifiers:
   '@babel/core': ^7.16.0
   '@babel/preset-react': ^7.14.5
   '@babel/preset-typescript': ^7.16.0
+  '@biomejs/biome': ^1.9.4
   '@capacitor-community/sqlite': ~6.0.2
   '@capacitor/android': ^6.2.0
   '@capacitor/cli': ^6.2.0
@@ -272,6 +273,7 @@ dependencies:
   '@babel/core': 7.25.2
   '@babel/preset-react': 7.24.7_@babel+core@7.25.2
   '@babel/preset-typescript': 7.24.7_@babel+core@7.25.2
+  '@biomejs/biome': 1.9.4
   '@capacitor-community/sqlite': 6.0.2_@capacitor+core@6.2.0
   '@capacitor/android': 6.2.0_@capacitor+core@6.2.0
   '@capacitor/cli': 6.2.0
@@ -422,7 +424,7 @@ dependencies:
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
   neverthrow: 8.2.0
   next: 13.1.1_itiuvzt4u37n7rg6c33anbmq2e
-  nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
+  nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23
   openai: 4.90.0_zod@3.24.1
   postcss: 8.5.3
   prettier: 3.5.2
@@ -2181,6 +2183,94 @@ packages:
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+
+  /@biomejs/biome/1.9.4:
+    resolution: {integrity: sha512-1rkd7G70+o9KkTn5KLmDYXihGoTaIGO9PIIN2ZB7UJxFrWw04CZHPYiMRjYsaDvVV7hP1dYNRLxSANLaBFGpog==}
+    engines: {node: '>=14.21.3'}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@biomejs/cli-darwin-arm64': 1.9.4
+      '@biomejs/cli-darwin-x64': 1.9.4
+      '@biomejs/cli-linux-arm64': 1.9.4
+      '@biomejs/cli-linux-arm64-musl': 1.9.4
+      '@biomejs/cli-linux-x64': 1.9.4
+      '@biomejs/cli-linux-x64-musl': 1.9.4
+      '@biomejs/cli-win32-arm64': 1.9.4
+      '@biomejs/cli-win32-x64': 1.9.4
+    dev: false
+
+  /@biomejs/cli-darwin-arm64/1.9.4:
+    resolution: {integrity: sha512-bFBsPWrNvkdKrNCYeAp+xo2HecOGPAy9WyNyB/jKnnedgzl4W4Hb9ZMzYNbf8dMCGmUdSavlYHiR01QaYR58cw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-darwin-x64/1.9.4:
+    resolution: {integrity: sha512-ngYBh/+bEedqkSevPVhLP4QfVPCpb+4BBe2p7Xs32dBgs7rh9nY2AIYUL6BgLw1JVXV8GlpKmb/hNiuIxfPfZg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-linux-arm64-musl/1.9.4:
+    resolution: {integrity: sha512-v665Ct9WCRjGa8+kTr0CzApU0+XXtRgwmzIf1SeKSGAv+2scAlW6JR5PMFo6FzqqZ64Po79cKODKf3/AAmECqA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-linux-arm64/1.9.4:
+    resolution: {integrity: sha512-fJIW0+LYujdjUgJJuwesP4EjIBl/N/TcOX3IvIHJQNsAqvV2CHIogsmA94BPG6jZATS4Hi+xv4SkBBQSt1N4/g==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-linux-x64-musl/1.9.4:
+    resolution: {integrity: sha512-gEhi/jSBhZ2m6wjV530Yy8+fNqG8PAinM3oV7CyO+6c3CEh16Eizm21uHVsyVBEB6RIM8JHIl6AGYCv6Q6Q9Tg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-linux-x64/1.9.4:
+    resolution: {integrity: sha512-lRCJv/Vi3Vlwmbd6K+oQ0KhLHMAysN8lXoCI7XeHlxaajk06u7G+UsFSO01NAs5iYuWKmVZjmiOzJ0OJmGsMwg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-win32-arm64/1.9.4:
+    resolution: {integrity: sha512-tlbhLk+WXZmgwoIKwHIHEBZUwxml7bRJgk0X2sPyNR3S93cdRq6XulAZRQJ17FYGGzWne0fgrXBKpl7l4M87Hg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@biomejs/cli-win32-x64/1.9.4:
+    resolution: {integrity: sha512-8Y5wMhVIPaWe6jw2H+KlEm4wP/f7EW3810ZLmDlrEEy5KvBsb9ECEfu/kMWD484ijfQ8+nIi0giMgu9g1UAuuA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /@capacitor-community/sqlite/6.0.2_@capacitor+core@6.2.0:
     resolution: {integrity: sha512-sj+2SPLu7E/3dM3xxcWwfNomG+aQHuN96/EFGrOtp4Dv30/2y5oIPyi6hZGjQGjPc5GDNoTQwW7vxWNzybjuMg==}
@@ -4509,7 +4599,7 @@ packages:
   /@nrwl/cli/15.9.7_@swc+core@1.7.23:
     resolution: {integrity: sha512-1jtHBDuJzA57My5nLzYiM372mJW0NY6rFKxlWt5a0RLsAZdPTHsd8lE3Gs9XinGC1jhXbruWmhhnKyYtZvX/zA==}
     dependencies:
-      nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
+      nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -4550,7 +4640,7 @@ packages:
     dependencies:
       ejs: 3.1.10
       ignore: 5.3.2
-      nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
+      nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23
       semver: 7.5.4
       tmp: 0.2.3
       tslib: 2.8.1
@@ -4835,7 +4925,7 @@ packages:
     resolution: {integrity: sha512-OBnHNvQf3vBH0qh9YnvBQQWyyFZ+PWguF6dJ8+1vyQYlrLVk/XZ8nJ4ukWFb+QfPv/O8VBmqaofaOI9aFC4yTw==}
     hasBin: true
     dependencies:
-      nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
+      nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -4947,7 +5037,7 @@ packages:
       ignore: 5.3.2
       minimatch: 3.0.5
       npm-run-path: 4.0.1
-      nx: 15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23
+      nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23
       open: 8.4.2
       rxjs: 6.6.7
       tmp: 0.2.3
@@ -19404,7 +19494,7 @@ packages:
     resolution: {integrity: sha512-p1TRH/edngVEHVbwqWnxUViEmq5znDvyB+Sik5cmuLpGOIfDf/39zLiq3swPF8Vakqn+gvNiOQAZu8djYlQILA==}
     dev: false
 
-  /nx/15.9.7_fstqeyj5qchhaklvfisvwgbhta_@swc+core@1.7.23:
+  /nx/15.9.7_lwqsl4l7nhs6igmozion3zmegm_@swc+core@1.7.23:
     resolution: {integrity: sha512-1qlEeDjX9OKZEryC8i4bA+twNg+lB5RKrozlNwWx/lLJHqWPUfvUTvxh+uxlPYL9KzVReQjUuxMLFMsHNqWUrA==}
     hasBin: true
     requiresBuild: true
