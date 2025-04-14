@@ -7,6 +7,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useTransitionState } from 'react-transition-state';
 import { ChatModel } from './chat.model';
 import { ChatInputActions } from './chat-input/chat-input-actions';
+import { createPortal } from 'react-dom';
+import * as Slot from '@radix-ui/react-slot';
 
 export const ChatInput = observer<{ placeholder?: string }>(
   ({ placeholder }) => {
@@ -17,6 +19,14 @@ export const ChatInput = observer<{ placeholder?: string }>(
     );
   },
 );
+
+export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <Slot.Root className="rounded-4xl border-border-default-light bg-surface-container-special-subtle-light">
+      <Slot.Slottable>{children}</Slot.Slottable>
+    </Slot.Root>
+  );
+};
 
 export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   const model = useInjection(ChatModel);
@@ -61,32 +71,42 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
 
   return (
     <div ref={containerRef} className="relative mx-[8px]">
-      <div className="relative z-10 rounded-4xl border-border-default-light bg-surface-container-special-subtle-light">
-        <div className="p-spacing-lg">{children}</div>
-      </div>
-      <div
-        className={cn(
-          'absolute bottom-[26px] w-full rounded-tl-4xl rounded-tr-4xl border-border-default-light bg-surface-container-special-subtle-light px-spacing-lg pb-[26px] transition-all',
-          {
-            'translate-y-full opacity-0':
-              status === 'preEnter' ||
-              status === 'exiting' ||
-              status === 'unmounted',
+      <Wrapper>
+        <div className="relative z-10">
+          <div className="p-spacing-lg">{children}</div>
+        </div>
+      </Wrapper>
 
-            'translate-y-0 opacity-100':
-              status === 'entering' || status === 'entered',
-          },
-        )}
-      >
-        <ChatInputHandlebar />
-        <TextareaAutosize
-          className="text-sm-regular w-full resize-none outline-none"
-          ref={textareaRef}
-          maxRows={8}
-          value={model.inputText}
-          onChange={(e) => model.setInputText(e.target.value)}
-        />
-      </div>
+      {createPortal(
+        <div className="w-full px-[8px]">
+          <Wrapper>
+            <div
+              className={cn(
+                'fixed bottom-[26px] w-full px-spacing-lg pb-[26px] transition-all',
+                {
+                  'translate-y-full opacity-0':
+                    status === 'preEnter' ||
+                    status === 'exiting' ||
+                    status === 'unmounted',
+
+                  'translate-y-0 opacity-100':
+                    status === 'entering' || status === 'entered',
+                },
+              )}
+            >
+              <ChatInputHandlebar />
+              <TextareaAutosize
+                className="text-sm-regular w-full resize-none outline-none"
+                ref={textareaRef}
+                maxRows={8}
+                value={model.inputText}
+                onChange={(e) => model.setInputText(e.target.value)}
+              />
+            </div>
+          </Wrapper>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 });

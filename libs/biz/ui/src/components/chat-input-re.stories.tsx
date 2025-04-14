@@ -19,7 +19,7 @@ const meta: Meta<typeof ChatInput> = {
     (Story) => {
       return (
         <InversifyProvider container={container}>
-          <div className="flex h-full flex-col justify-end overflow-hidden pb-2">
+          <div className="flex h-full flex-col justify-end pb-2">
             <Story />
           </div>
         </InversifyProvider>
