@@ -142,6 +142,10 @@
   }
 }
 
+@utility chat-input-base {
+  @apply rounded-4xl border-border-default-light bg-surface-container-special-subtle-light;
+}
+
 /* 手动修改 svg 样式 */
 @layer components {
   .svg-fill-white {
