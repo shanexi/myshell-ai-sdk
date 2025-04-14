@@ -20,11 +20,13 @@ export const ChatInput = observer<{ placeholder?: string }>(
   },
 );
 
-export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => (
-  <Slot.Root className="rounded-4xl border-border-default-light bg-surface-container-special-subtle-light">
-    <Slot.Slottable>{children}</Slot.Slottable>
-  </Slot.Root>
-);
+export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <Slot.Root className="rounded-4xl border-border-default-light bg-surface-container-special-subtle-light">
+      <Slot.Slottable>{children}</Slot.Slottable>
+    </Slot.Root>
+  );
+};
 
 export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   const model = useInjection(ChatModel);
@@ -69,35 +71,39 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
 
   return (
     <div ref={containerRef} className="relative mx-[8px]">
-      <div className="relative z-10 chat-input-base">
-        <div className="p-spacing-lg">{children}</div>
-      </div>
+      <Wrapper>
+        <div className="relative z-10">
+          <div className="p-spacing-lg">{children}</div>
+        </div>
+      </Wrapper>
 
       {createPortal(
         <div className="w-full px-[8px]">
-          <div
-            className={cn(
-              'fixed bottom-[26px] w-full chat-input-base px-spacing-lg pb-[26px] transition-all',
-              {
-                'translate-y-full opacity-0':
-                  status === 'preEnter' ||
-                  status === 'exiting' ||
-                  status === 'unmounted',
+          <Wrapper>
+            <div
+              className={cn(
+                'fixed bottom-[26px] w-full px-spacing-lg pb-[26px] transition-all',
+                {
+                  'translate-y-full opacity-0':
+                    status === 'preEnter' ||
+                    status === 'exiting' ||
+                    status === 'unmounted',
 
-                'translate-y-0 opacity-100':
-                  status === 'entering' || status === 'entered',
-              },
-            )}
-          >
-            <ChatInputHandlebar />
-            <TextareaAutosize
-              className="text-sm-regular w-full resize-none outline-none"
-              ref={textareaRef}
-              maxRows={8}
-              value={model.inputText}
-              onChange={(e) => model.setInputText(e.target.value)}
-            />
-          </div>
+                  'translate-y-0 opacity-100':
+                    status === 'entering' || status === 'entered',
+                },
+              )}
+            >
+              <ChatInputHandlebar />
+              <TextareaAutosize
+                className="text-sm-regular w-full resize-none outline-none"
+                ref={textareaRef}
+                maxRows={8}
+                value={model.inputText}
+                onChange={(e) => model.setInputText(e.target.value)}
+              />
+            </div>
+          </Wrapper>
         </div>,
         document.body,
       )}
