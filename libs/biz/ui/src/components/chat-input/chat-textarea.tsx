@@ -1,7 +1,7 @@
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useTransitionState } from 'react-transition-state';
@@ -75,6 +75,7 @@ export const ChatTextArea = observer(() => {
             )}
           >
             <ChatInputHandlebar />
+
             <TextareaAutosize
               className="text-sm-regular w-full resize-none outline-none"
               ref={textareaRef}

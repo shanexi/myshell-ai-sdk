@@ -49,6 +49,7 @@
     "@nrwl/web": "15.9.7",
     "@nrwl/webpack": "15.9.7",
     "@nrwl/workspace": "15.9.7",
+    "@nrwl/express": "15.9.7",
     "@opentelemetry/api": "^1.9",
     "@opentelemetry/core": "^1.25",
     "@opentelemetry/exporter-trace-otlp-http": "^0.52.0",
@@ -69,6 +70,7 @@
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rpldy/uploady": "^1.9.1",
     "@sentry/cloudflare": "^9.11.0",
     "@sentry/opentelemetry": "^9.11.0",
     "@storybook/addon-designs": "^8.2.1",
@@ -103,6 +105,10 @@
     "@types/unist": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "@uppy/core": "^4.4.4",
+    "@uppy/drag-drop": "^4.1.2",
+    "@uppy/react": "^4.2.3",
+    "@uppy/xhr-upload": "^4.3.3",
     "@virtuoso.dev/gurx": "^1.0.0",
     "@virtuoso.dev/message-list": "1.9.15",
     "@xstate/react": "3.2.2",
@@ -132,6 +138,7 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "estree-util-is-identifier-name": "^3.0.0",
+    "filepond": "^4.32.7",
     "fs-extra": "^11.2.0",
     "hast-util-to-jsx-runtime": "^2.3.0",
     "hast-util-whitespace": "^3.0.0",
@@ -161,6 +168,8 @@
     "mdast-util-to-hast": "^13.0.0",
     "mobx": "^6.13.6",
     "mobx-react-lite": "^4.1.0",
+    "msw": "^2.7.4",
+    "msw-storybook-addon": "^2.0.4",
     "neverthrow": "^8.2.0",
     "next": "13.1.1",
     "nx": "15.9.7",
@@ -178,6 +187,8 @@
     "react-aria-components": "^1.7.1",
     "react-detect-click-outside": "^1.1.7",
     "react-dom": "19.0.0",
+    "react-dropzone": "^14.3.8",
+    "react-filepond": "^7.1.3",
     "react-markdown": "^10.1.0",
     "react-masonry-css": "^1.0.16",
     "react-refresh": "^0.10.0",
@@ -264,5 +275,8 @@
   },
   "devDependencies": {
     "@nrwl/jest": "15.9.7"
+  },
+  "msw": {
+    "workerDirectory": ["public"]
   }
 }
