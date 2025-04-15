@@ -37,8 +37,8 @@ export const ChatInputActions = observer<{ placeholder?: string }>(
             ref={ref}
             className="text-sm-regular mx-spacing-sm w-full caret-transparent outline-none"
             readOnly
-            value={model.isAnimatingInputFocus ? '' : model.inputText}
-            placeholder={model.isAnimatingInputFocus ? '' : placeholder}
+            value={model.isInputFocus ? '' : model.inputText}
+            placeholder={model.isInputFocus ? '' : placeholder}
             onClick={(e) => {
               model.setInputFocus(true);
             }}

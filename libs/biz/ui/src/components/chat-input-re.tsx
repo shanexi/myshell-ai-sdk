@@ -22,7 +22,7 @@ export const ChatInput = observer<{ placeholder?: string }>(
 
 export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Slot.Root className="rounded-4xl border-border-default-light bg-surface-container-special-subtle-light">
+    <Slot.Root className="border-border-default-light bg-surface-container-special-subtle-light">
       <Slot.Slottable>{children}</Slot.Slottable>
     </Slot.Root>
   );
@@ -37,20 +37,21 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const timeout = 3000;
   const [{ status, isMounted }, toggle] = useTransitionState({
-    timeout: 500,
+    timeout,
     mountOnEnter: true,
     unmountOnExit: true,
     preEnter: true,
-    onStateChange: (ev) => {
-      if (ev.current.isMounted) {
-        model.setIsAnimatingInputFocus(true);
-      } else {
-        model.setIsAnimatingInputFocus(false);
-      }
-    },
+    // onStateChange: (ev) => {
+    //   if (ev.current.isMounted) {
+    //     model.setIsAnimatingInputFocus(true);
+    //   } else {
+    //     model.setIsAnimatingInputFocus(false);
+    //   }
+    // },
   });
-
+  console.log(status);
   // mobx 就不依赖 useEffect deps， 使用 mobx 自带的 reaction
   useEffect(() => {
     const disposer = reaction(
@@ -72,41 +73,49 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   return (
     <div ref={containerRef} className="relative mx-[8px]">
       <Wrapper>
-        <div className="relative z-10">
+        <div className="relative z-10 rounded-4xl">
           <div className="p-spacing-lg">{children}</div>
         </div>
       </Wrapper>
 
-      {createPortal(
-        <div className="w-full px-[8px]">
-          <Wrapper>
-            <div
-              className={cn(
-                'fixed bottom-[26px] w-full px-spacing-lg pb-[26px] transition-all',
-                {
-                  'translate-y-full opacity-0':
-                    status === 'preEnter' ||
-                    status === 'exiting' ||
-                    status === 'unmounted',
+      {isMounted &&
+        createPortal(
+          <div
+            style={{
+              transitionDuration: timeout + 'ms',
+            }}
+            className={cn(
+              `fixed bottom-[26px] w-full px-spacing-md transition-all`,
+              {
+                'translate-y-full opacity-0':
+                  status === 'preEnter' ||
+                  status === 'unmounted' ||
+                  status === 'exiting',
 
-                  'translate-y-0 opacity-100':
-                    status === 'entering' || status === 'entered',
-                },
-              )}
-            >
-              <ChatInputHandlebar />
-              <TextareaAutosize
-                className="text-sm-regular w-full resize-none outline-none"
-                ref={textareaRef}
-                maxRows={8}
-                value={model.inputText}
-                onChange={(e) => model.setInputText(e.target.value)}
-              />
-            </div>
-          </Wrapper>
-        </div>,
-        document.body,
-      )}
+                'translate-y-0 opacity-100':
+                  status === 'entering' || status === 'entered',
+              },
+            )}
+          >
+            <Wrapper>
+              <div
+                className={cn(
+                  'rounded-tl-4xl rounded-tr-4xl px-spacing-lg pb-[26px]',
+                )}
+              >
+                <ChatInputHandlebar />
+                <TextareaAutosize
+                  className="text-sm-regular w-full resize-none outline-none"
+                  ref={textareaRef}
+                  maxRows={8}
+                  value={model.inputText}
+                  onChange={(e) => model.setInputText(e.target.value)}
+                />
+              </div>
+            </Wrapper>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 });
