@@ -10,8 +10,11 @@ export const UppyDemo = () => {
   // https://uppy.io/docs/react/
   // IMPORTANT: passing an initializer function to prevent Uppy from being reinstantiated on every render.
   const [uppy] = useState(() =>
-    new Uppy().use(XHR, {
-      endpoint: 'https://upload.myshell.run/upload',
+    new Uppy({
+      autoProceed: true,
+      debug: true,
+    }).use(XHR, {
+      endpoint: 'http://localhost:3333/api/upload',
     }),
   );
   useEffect(() => {
