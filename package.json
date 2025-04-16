@@ -255,7 +255,15 @@
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
-    "zustand-signal": "^0.6.0"
+    "zustand-signal": "^0.6.0",
+    "@nrwl/express": "15.9.7",
+    "@nrwl/jest": "15.9.7",
+    "@nrwl/node": "15.9.7",
+    "@types/express": "4.17.13",
+    "@slidev/cli": "^51.5.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.13"
   },
   "engines": {
     "node": ">= 16 < 20",
@@ -279,11 +287,5 @@
       "honox@0.1.38": "patches/honox@0.1.38.patch",
       "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
     }
-  },
-  "devDependencies": {
-    "@nrwl/express": "15.9.7",
-    "@nrwl/jest": "15.9.7",
-    "@nrwl/node": "15.9.7",
-    "@types/express": "4.17.13"
   }
 }
