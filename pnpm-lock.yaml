@@ -140,7 +140,9 @@ specifiers:
   '@typescript-eslint/parser': ^5.36.1
   '@uppy/core': ^4.4.4
   '@uppy/drag-drop': ^4.1.2
+  '@uppy/drop-target': ^3.1.1
   '@uppy/react': ^4.2.3
+  '@uppy/thumbnail-generator': ^4.1.1
   '@uppy/xhr-upload': ^4.3.3
   '@virtuoso.dev/gurx': ^1.0.0
   '@virtuoso.dev/message-list': 1.9.15
@@ -388,7 +390,9 @@ dependencies:
   '@typescript-eslint/parser': 5.62.0_nf6pucg2mhaj5y3mvj2gp3upte
   '@uppy/core': 4.4.4
   '@uppy/drag-drop': 4.1.2_@uppy+core@4.4.4
+  '@uppy/drop-target': 3.1.1_@uppy+core@4.4.4
   '@uppy/react': 4.2.3_fujvmcm2fvfzzo5o5e3krw2yhu
+  '@uppy/thumbnail-generator': 4.1.1_@uppy+core@4.4.4
   '@uppy/xhr-upload': 4.3.3_@uppy+core@4.4.4
   '@virtuoso.dev/gurx': 1.0.0_upmzqgzhjrquwzo2dphtigtdgi
   '@virtuoso.dev/message-list': 1.9.15_pzah7me44lgxs7m5ltwh5nrdry_upmzqgzhjrquwzo2dphtigtdgi
@@ -10829,6 +10833,15 @@ packages:
       preact: 10.26.5
     dev: false
 
+  /@uppy/drop-target/3.1.1_@uppy+core@4.4.4:
+    resolution: {integrity: sha512-/2jnQ3DqfcWGjgoasLBLvwJ3fozavwSXFVULenDmPUI8YPjuxmEtOu61XnZ/OLhRnZo6Qm+kltSd+YUS0P/LNA==}
+    peerDependencies:
+      '@uppy/core': ^4.4.1
+    dependencies:
+      '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+    dev: false
+
   /@uppy/react/4.2.3_fujvmcm2fvfzzo5o5e3krw2yhu:
     resolution: {integrity: sha512-zIG2LzjB+gsiduHsgzfi+wSywTE+DSFPg+FAIlyWP24XF0HEv0ekai0fngewxjBUItZ6HGddWFkvMiRMD6+63g==}
     peerDependencies:
@@ -10860,6 +10873,16 @@ packages:
 
   /@uppy/store-default/4.2.0:
     resolution: {integrity: sha512-PieFVa8yTvRHIqsNKfpO/yaJw5Ae/hT7uT58ryw7gvCBY5bHrNWxH5N0XFe8PFHMpLpLn8v3UXGx9ib9QkB6+Q==}
+    dev: false
+
+  /@uppy/thumbnail-generator/4.1.1_@uppy+core@4.4.4:
+    resolution: {integrity: sha512-65znkGNgVTbVte51IKOhgxOpHGSwYj9Qik2jF2ZBocMbhBY4gPkWFwqMrKQBfddA9KbUa4jVe1psxhAQTzYgiA==}
+    peerDependencies:
+      '@uppy/core': ^4.4.1
+    dependencies:
+      '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+      exifr: 7.1.3
     dev: false
 
   /@uppy/utils/6.1.3:
@@ -14771,6 +14794,10 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       pify: 2.3.0
+    dev: false
+
+  /exifr/7.1.3:
+    resolution: {integrity: sha512-g/aje2noHivrRSLbAUtBPWFbxKdKhgj/xr1vATDdUXPOFYJlQ62Ft0oy+72V6XLIpDJfHs6gXLbBLAolqOXYRw==}
     dev: false
 
   /exit-hook/2.2.1:

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import Uppy from '@uppy/core';
-import DragDrop from '@uppy/drag-drop';
+// import DragDrop from '@uppy/drag-drop';
+import DropTarget from '@uppy/drop-target';
 import XHR from '@uppy/xhr-upload';
+import ThumbnailGenerator from '@uppy/thumbnail-generator';
 
 import '@uppy/core/dist/style.min.css';
 import '@uppy/drag-drop/dist/style.min.css';
@@ -13,19 +15,26 @@ export const UppyDemo = () => {
     new Uppy({
       autoProceed: true,
       debug: true,
-    }).use(XHR, {
-      endpoint: 'http://localhost:3333/api/upload',
-    }),
+    })
+      .use(ThumbnailGenerator)
+      .use(XHR, {
+        endpoint: 'http://localhost:3333/api/upload',
+      }),
   );
   useEffect(() => {
-    uppy.use(DragDrop, {
+    uppy.on('thumbnail:generated', (file, preview) =>
+      console.log('thumbnail:generated', file, preview),
+    );
+
+    uppy.use(DropTarget, {
       target: '#drag-drop',
-      onDrop: (evt) => {
-        console.log('onDrop', evt);
-      },
     });
+
+    // uppy.use(DragDrop, {
+    //   target: '#drag-drop',
+    // });
     return () => uppy.destroy();
   }, []);
 
-  return <div id="drag-drop"></div>;
+  return <div id="drag-drop" className="h-[50px] border border-sky-100"></div>;
 };
