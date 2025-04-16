@@ -48,4 +48,5 @@ export class Tracing {
 }
 
 export const EMPTY_CONTEXT = {};
-Tracing.asyncLocalStorage.enterWith(EMPTY_CONTEXT as Context);
+// Uncaught Error: asyncLocalStorage.enterWith() is not implemented
+// Tracing.asyncLocalStorage.enterWith(EMPTY_CONTEXT as Context);

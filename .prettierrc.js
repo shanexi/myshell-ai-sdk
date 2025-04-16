@@ -14,6 +14,6 @@ module.exports = {
         plugins: ['prettier-plugin-tailwindcss'],
         tailwindStylesheet: './libs/tailwind-cfg/styles.css',
       },
-    }
+    },
   ],
 };
