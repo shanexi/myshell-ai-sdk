@@ -144,6 +144,7 @@ specifiers:
   '@uppy/core': ^4.4.4
   '@uppy/drag-drop': ^4.1.2
   '@uppy/drop-target': ^3.1.1
+  '@uppy/file-input': ^4.1.2
   '@uppy/react': ^4.2.3
   '@uppy/thumbnail-generator': ^4.1.1
   '@uppy/xhr-upload': ^4.3.3
@@ -322,9 +323,9 @@ dependencies:
   '@ionic/portals': 0.10.0_@capacitor+core@6.2.0
   '@langchain/core': 0.3.43_openai@4.90.0
   '@langchain/openai': 0.5.0_@langchain+core@0.3.43
-  '@mdx-js/mdx': 3.1.0_acorn@8.14.0
+  '@mdx-js/mdx': 3.1.0_acorn@8.14.1
   '@mdx-js/react': 3.1.0_r56bmpqxsoyifhzf5ewu54nmsy
-  '@mdx-js/rollup': 3.1.0_acorn@8.14.0+rollup@4.35.0
+  '@mdx-js/rollup': 3.1.0_acorn@8.14.1+rollup@4.35.0
   '@microlabs/otel-cf-workers': 1.0.0-rc.49_@opentelemetry+api@1.9.0
   '@microsoft/fetch-event-source': 2.0.1
   '@nrwl/cypress': 15.9.7_4mbvnajp2rt6iiss7dsjoq5t5u
@@ -403,7 +404,8 @@ dependencies:
   '@uppy/core': 4.4.4
   '@uppy/drag-drop': 4.1.2_@uppy+core@4.4.4
   '@uppy/drop-target': 3.1.1_@uppy+core@4.4.4
-  '@uppy/react': 4.2.3_fujvmcm2fvfzzo5o5e3krw2yhu
+  '@uppy/file-input': 4.1.2_@uppy+core@4.4.4
+  '@uppy/react': 4.2.3_vl7gby234mkjmz6jfvkkaxhxge
   '@uppy/thumbnail-generator': 4.1.1_@uppy+core@4.4.4
   '@uppy/xhr-upload': 4.3.3_@uppy+core@4.4.4
   '@virtuoso.dev/gurx': 1.0.0_upmzqgzhjrquwzo2dphtigtdgi
@@ -4927,7 +4929,7 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/mdx/3.1.0_acorn@8.14.0:
+  /@mdx-js/mdx/3.1.0_acorn@8.14.1:
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
     dependencies:
       '@types/estree': 1.0.6
@@ -4942,7 +4944,7 @@ packages:
       hast-util-to-jsx-runtime: 2.3.6
       markdown-extensions: 2.0.0
       recma-build-jsx: 1.0.0
-      recma-jsx: 1.0.0_acorn@8.14.0
+      recma-jsx: 1.0.0_acorn@8.14.1
       recma-stringify: 1.0.0
       rehype-recma: 1.0.0
       remark-mdx: 3.1.0
@@ -4988,12 +4990,12 @@ packages:
       react: 19.0.0
     dev: false
 
-  /@mdx-js/rollup/3.1.0_acorn@8.14.0+rollup@4.35.0:
+  /@mdx-js/rollup/3.1.0_acorn@8.14.1+rollup@4.35.0:
     resolution: {integrity: sha512-q4xOtUXpCzeouE8GaJ8StT4rDxm/U5j6lkMHL2srb2Q3Y7cobE0aXyPzXVVlbeIMBi+5R5MpbiaVE5/vJUdnHg==}
     peerDependencies:
       rollup: '>=2'
     dependencies:
-      '@mdx-js/mdx': 3.1.0_acorn@8.14.0
+      '@mdx-js/mdx': 3.1.0_acorn@8.14.1
       '@rollup/pluginutils': 5.1.4_rollup@4.35.0
       rollup: 4.35.0
       source-map: 0.7.4
@@ -5916,7 +5918,7 @@ packages:
       '@types/shimmer': 1.2.0
       import-in-the-middle: 1.13.1
       require-in-the-middle: 7.5.2
-      semver: 7.6.3
+      semver: 7.7.1
       shimmer: 1.2.1
     transitivePeerDependencies:
       - supports-color
@@ -9687,7 +9689,7 @@ packages:
       prettier: 3.5.2
       process: 0.11.10
       recast: 0.23.9
-      semver: 7.6.3
+      semver: 7.7.1
       util: 0.12.5
       ws: 8.18.0
     transitivePeerDependencies:
@@ -11958,7 +11960,7 @@ packages:
       '@typescript-eslint/types': 8.26.1
       '@typescript-eslint/visitor-keys': 8.26.1
       debug: 4.3.7
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
@@ -12296,7 +12298,17 @@ packages:
       '@uppy/utils': 6.1.3
     dev: false
 
-  /@uppy/react/4.2.3_fujvmcm2fvfzzo5o5e3krw2yhu:
+  /@uppy/file-input/4.1.2_@uppy+core@4.4.4:
+    resolution: {integrity: sha512-tpxT41/00wI3WzqzbRaBPf9bphWYT8XMPxDhPhUqG7Y+k29PLhCu0rL57m/pvOfOWundug4E1CAejo9V01FNRg==}
+    peerDependencies:
+      '@uppy/core': ^4.4.4
+    dependencies:
+      '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+      preact: 10.26.5
+    dev: false
+
+  /@uppy/react/4.2.3_vl7gby234mkjmz6jfvkkaxhxge:
     resolution: {integrity: sha512-zIG2LzjB+gsiduHsgzfi+wSywTE+DSFPg+FAIlyWP24XF0HEv0ekai0fngewxjBUItZ6HGddWFkvMiRMD6+63g==}
     peerDependencies:
       '@uppy/core': ^4.4.4
@@ -12320,6 +12332,7 @@ packages:
     dependencies:
       '@uppy/core': 4.4.4
       '@uppy/drag-drop': 4.1.2_@uppy+core@4.4.4
+      '@uppy/file-input': 4.1.2_@uppy+core@4.4.4
       '@uppy/utils': 6.1.3
       react: 19.0.0
       use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@19.0.0
@@ -12846,6 +12859,14 @@ packages:
       acorn: 8.14.0
     dev: false
 
+  /acorn-import-attributes/1.9.5_acorn@8.14.1:
+    resolution: {integrity: sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==}
+    peerDependencies:
+      acorn: ^8
+    dependencies:
+      acorn: 8.14.1
+    dev: false
+
   /acorn-jsx/5.3.2_acorn@7.4.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -12860,6 +12881,14 @@ packages:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       acorn: 8.14.0
+    dev: false
+
+  /acorn-jsx/5.3.2_acorn@8.14.1:
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.14.1
     dev: false
 
   /acorn-walk/7.2.0:
@@ -18248,7 +18277,7 @@ packages:
     dependencies:
       array-union: 3.0.1
       dir-glob: 3.0.1
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 4.0.0
@@ -19108,8 +19137,8 @@ packages:
   /import-in-the-middle/1.13.1:
     resolution: {integrity: sha512-k2V9wNm9B+ysuelDTHjI9d5KPc4l8zAZTGqj+pcynvWkypZd857ryzN8jNC7Pg2YZXNMJcHRPpaDyCBbNyVRpA==}
     dependencies:
-      acorn: 8.14.0
-      acorn-import-attributes: 1.9.5_acorn@8.14.0
+      acorn: 8.14.1
+      acorn-import-attributes: 1.9.5_acorn@8.14.1
       cjs-module-lexer: 1.4.0
       module-details-from-path: 1.0.3
     dev: false
@@ -23911,7 +23940,7 @@ packages:
       lilconfig: 3.1.3
       postcss: 8.5.3
       ts-node: 10.9.1_nqcc47kkvbo2l3aiidxihgyvce
-      yaml: 2.5.1
+      yaml: 2.7.1
     dev: false
 
   /postcss-loader/6.2.1_j6727ib2hosbhx62a533trrq6y:
@@ -25136,10 +25165,10 @@ packages:
       vfile: 6.0.3
     dev: false
 
-  /recma-jsx/1.0.0_acorn@8.14.0:
+  /recma-jsx/1.0.0_acorn@8.14.1:
     resolution: {integrity: sha512-5vwkv65qWwYxg+Atz95acp8DMu1JDSqdGkA2Of1j6rCreyFUE/gp15fC8MnGEuG1W68UKjM6x6+YTWIh7hZM/Q==}
     dependencies:
-      acorn-jsx: 5.3.2_acorn@8.14.0
+      acorn-jsx: 5.3.2_acorn@8.14.1
       estree-util-to-js: 2.0.0
       recma-parse: 1.0.0
       recma-stringify: 1.0.0
@@ -25545,7 +25574,7 @@ packages:
     resolution: {integrity: sha512-gAZ+kLqBdHarXB64XpAe2VCjB7rIRv+mU8tfRWziHRJ5umKsIHN2tLLv6EtMw7WCdP19S0ERVMldNvxYCHnhSQ==}
     engines: {node: '>=8.6.0'}
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       module-details-from-path: 1.0.3
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -27118,7 +27147,7 @@ packages:
       chokidar: 3.6.0
       didyoumean: 1.2.2
       dlv: 1.1.3
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       glob-parent: 6.0.2
       is-glob: 4.0.3
       jiti: 1.21.7
