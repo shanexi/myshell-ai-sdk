@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { RemarkMsg } from '@myshell-run/ui-primitives';
+import imageStory from './image-story.md';
+import counterStory from './counter-story.md';
 
 export const CounterStory = () => {
-  const lines = [
-    `::x-timer{#abc timeLeft=100}`,
-    '\n::p[hello world]{.not-prose}',
-    `\n::x-timer{#abc timeLeft=5}`,
-  ];
+  const lines = counterStory.split('\n').map((line: string) => '\n' + line);
   const [text, setText] = useState(lines[0]);
   useEffect(() => {
     let currentLine = 1;
@@ -29,13 +27,7 @@ export const CounterStory = () => {
 };
 
 export const ImageStory = () => {
-  const lines = [
-    '\n::p[hello world]{.not-prose}',
-    `\n::img{#abc src=https://static.myshell.run/mini.PNG width=400}`,
-    `\n::img{#abc src=https://static.myshell.run/small.PNG width=400}`,
-    `\n::img{#abc src=https://static.myshell.run/medium.PNG width=400}`,
-    `\n::img{#abc src=https://static.myshell.run/big.PNG width=400}`,
-  ];
+  const lines = imageStory.split('\n').map((line: string) => '\n' + line);
   const [text, setText] = useState(lines[0]);
   useEffect(() => {
     let currentLine = 1;
