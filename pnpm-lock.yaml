@@ -267,6 +267,7 @@ specifiers:
   ts-jest: ^29.0.5
   ts-loader: ^9.5.2
   ts-node: 10.9.1
+  ts-pattern: ^5.7.0
   tslib: ^2.3.0
   typescript: 5.8.2
   unified: ^11.0.4
@@ -517,6 +518,7 @@ dependencies:
   ts-jest: 29.2.5_eyqmts3h7i3bqwwzprh2kwqhlu
   ts-loader: 9.5.2_rx2svsro3t7os36zihllpvgfgu
   ts-node: 10.9.1_nqcc47kkvbo2l3aiidxihgyvce
+  ts-pattern: 5.7.0
   tslib: 2.7.0
   typescript: 5.8.2
   unified: 11.0.5
@@ -23875,6 +23877,10 @@ packages:
 
   /ts-pattern/4.3.0:
     resolution: {integrity: sha512-pefrkcd4lmIVR0LA49Imjf9DYLK8vtWhqBPA3Ya1ir8xCW0O2yjL9dsCVvI7pCodLC5q7smNpEtDR2yVulQxOg==}
+    dev: false
+
+  /ts-pattern/5.7.0:
+    resolution: {integrity: sha512-0/FvIG4g3kNkYgbNwBBW5pZBkfpeYQnH+2AA3xmjkCAit/DSDPKmgwC3fKof4oYUq6gupClVOJlFl+939VRBMg==}
     dev: false
 
   /tsconfck/3.1.5_typescript@5.8.2:
