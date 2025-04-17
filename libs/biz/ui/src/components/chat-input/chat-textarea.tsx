@@ -38,37 +38,33 @@ export const ChatTextArea = observer(() => {
   }, [toggle]);
 
   return (
-    isMounted &&
-    createPortal(
+    isMounted && (
       <div
         style={{
           // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
           transitionDuration: timeout + 'ms',
         }}
-        className={cn(
-          `fixed bottom-[26px] w-full px-spacing-md transition-all`,
-          {
-            'translate-y-full opacity-0':
-              status === 'preEnter' ||
-              status === 'unmounted' ||
-              status === 'exiting',
+        className={cn(`absolute bottom-[26px] w-full px-[8px] transition-all`, {
+          'translate-y-full opacity-0':
+            status === 'preEnter' ||
+            status === 'unmounted' ||
+            status === 'exiting',
 
-            'translate-y-0 opacity-100':
-              status === 'entering' || status === 'entered',
-          },
-        )}
+          'translate-y-0 opacity-100':
+            status === 'entering' || status === 'entered',
+        })}
       >
         <Wrapper>
           <div
             className={cn(
               // 26px 是 chat input + actions 的高度 52px 的一半，目的是 border radius 视觉上统一
               // TODO 去除 magic number 处理这种 直接用 style + const 好一点
-              'rounded-tl-4xl rounded-tr-4xl px-spacing-lg pb-[26px]',
+              'rounded-tl-4xl rounded-tr-4xl',
             )}
           >
             <ChatInputHandlebar />
             <TextareaAutosize
-              className="text-sm-regular w-full resize-none outline-none"
+              className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
               ref={textareaRef}
               maxRows={8}
               value={model.inputText}
@@ -76,8 +72,7 @@ export const ChatTextArea = observer(() => {
             />
           </div>
         </Wrapper>
-      </div>,
-      document.body,
+      </div>
     )
   );
 });

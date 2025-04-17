@@ -21,7 +21,7 @@ const meta: Meta<typeof ChatInput> = {
     (Story) => {
       return (
         <InversifyProvider container={container}>
-          <div className="flex h-full flex-col justify-end">
+          <div className="fixed h-full w-full">
             <Story />
           </div>
         </InversifyProvider>
