@@ -37,40 +37,46 @@ export const ChatTextArea = observer(() => {
   }, [toggle]);
 
   return (
-    // isMounted &&
-    <div
-      style={{
-        // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
-        transitionDuration: timeout + 'ms',
-      }}
-      className={cn(`absolute bottom-[26px] w-full transition-all`, {
-        // 'translate-y-full opacity-0':
-        //   status === 'preEnter' ||
-        //   status === 'unmounted' ||
-        //   status === 'exiting',
-        // 'translate-y-0 opacity-100':
-        //   status === 'entering' || status === 'entered',
-      })}
-    >
-      <ChatInputHandlebar />
-      <Wrapper>
-        <TextareaAutosize
-          className="text-sm-regular mx-[8px] box-border w-full resize-none px-spacing-lg outline-none"
-          ref={textareaRef}
-          maxRows={8}
-          value={model.inputText}
-          onChange={(e) => model.setInputText(e.target.value)}
-        />
-      </Wrapper>
-    </div>
+    isMounted && (
+      <div
+        style={{
+          // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
+          transitionDuration: timeout + 'ms',
+        }}
+        className={cn(`absolute bottom-[26px] w-full px-2 transition-all`, {
+          'translate-y-full opacity-0':
+            status === 'preEnter' ||
+            status === 'unmounted' ||
+            status === 'exiting',
+          'translate-y-0 opacity-100':
+            status === 'entering' || status === 'entered',
+        })}
+      >
+        <ChatInputHandlebar />
+        <Wrapper>
+          <TextareaAutosize
+            className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
+            ref={textareaRef}
+            maxRows={8}
+            value={model.inputText}
+            onChange={(e) => model.setInputText(e.target.value)}
+          />
+        </Wrapper>
+      </div>
+    )
   );
 });
 
 export const ChatInputHandlebar = () => {
   return (
     <Wrapper>
-      {/* absolute top-0 -translate-y-full 永远在上方 像个屋顶 */}
-      <div className="absolute top-0 flex w-full -translate-y-full justify-center pt-spacing-md pb-spacing-lg">
+      <div
+        className={cn(
+          'flex justify-center rounded-tl-4xl rounded-tr-4xl pt-spacing-md pb-spacing-lg',
+          'absolute top-0 -translate-y-full', // 永远在上方 像个屋顶
+          'right-0 left-0 mx-2', // 针对 absolute 的元素，比 w-full 更好，w-full 会需要配合 box-border 总是搞不出来
+        )}
+      >
         <div className="w-[44px] rounded-full border-2 border-border-hovered-light"></div>
       </div>
     </Wrapper>

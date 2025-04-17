@@ -164,7 +164,7 @@ level: 2
     "botId": "1729238978",
     "text": "✨ Welcome ...",
     "voiceUrl": "",
-    "voiceFileDurationSeconds": 0,
+    "voiceFileDurationSeconds": 22,
     "audioSpeed": 1,
     "embedObjs": [],
     "extraInfo": { "consumeEnergy": 0 },
@@ -191,7 +191,7 @@ botId: 1729238978
 🌟 欢迎使用图片生成机器人！
 :::
 <!-- voice 包括速度 文件 电量  -->
-::voice{audioSpeed=1.2, voiceUrl="https://example.com/voice.mp3" consumeEnergy=1}
+::voice{audioSpeed=1.2, voiceUrl="https://example.com/voice.mp3" consumeEnergy=1 voiceFileDurationSeconds=22}
 <!-- embedObjs  -->
 ::img{#abc src=https://static.myshell.run/big.PNG width=400}
 ```
