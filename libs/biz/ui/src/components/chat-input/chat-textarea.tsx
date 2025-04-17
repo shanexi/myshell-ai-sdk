@@ -1,12 +1,12 @@
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useTransitionState } from 'react-transition-state';
-import { ChatModel } from '../chat.model';
 import { Wrapper } from '../chat-input-re';
+import { ChatModel } from '../chat.model';
 
 export const ChatTextArea = observer(() => {
   const model = useInjection(ChatModel);
@@ -18,14 +18,6 @@ export const ChatTextArea = observer(() => {
     mountOnEnter: true,
     unmountOnExit: true,
     preEnter: true,
-    // TODO: 更细腻的 timeline 得用 GSAP 了
-    // onStateChange: (ev) => {
-    //   if (ev.current.isMounted) {
-    //     model.setIsAnimatingInputFocus(true);
-    //   } else {
-    //     model.setIsAnimatingInputFocus(false);
-    //   }
-    // },
   });
   // mobx 就不依赖 useEffect deps， 使用 mobx 自带的 reaction
   useEffect(() => {
@@ -75,7 +67,6 @@ export const ChatTextArea = observer(() => {
             )}
           >
             <ChatInputHandlebar />
-
             <TextareaAutosize
               className="text-sm-regular w-full resize-none outline-none"
               ref={textareaRef}

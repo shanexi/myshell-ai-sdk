@@ -32,12 +32,14 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   });
 
   return (
-    <div ref={containerRef} className="relative mx-[8px]">
+    <div ref={containerRef} className="relative mx-[8px] mb-2">
       <Wrapper>
-        <div className="relative z-10 rounded-4xl">
+        <div className="relative z-20 rounded-4xl">
           <div className="p-spacing-lg">{children}</div>
         </div>
       </Wrapper>
+      {/* 遮住 input 底部一半背景色，这样后面的层 translate Y 的时候会遮挡住底部 */}
+      <div className="absolute bottom-0 z-10 h-[26px] w-full bg-surface-default-light"></div>
       <ChatTextArea />
     </div>
   );
