@@ -127,7 +127,7 @@ level: 2
 # 新 Message 协议
 
 ````md magic-move {lines: true}
-```json {*|3-18|19-23}
+```json {*|3-16|17-23}
 // step 1 原来的协议
 {
     "id": "1859187960051482624",
@@ -145,10 +145,10 @@ level: 2
     "extraInfo": { "consumeEnergy": 0 },
     "referenceText": "",
     "imSlashCommandInput": "",
-    "componentContainer": {},
-    "inputSetting": {},
-    "uploadSetting": {},
-    "recommendationQuestion": {}
+    "componentContainer": {}, // 表单
+    "inputSetting": {}, // 控制 chat input
+    "uploadSetting": {}, // 控制 chat input 的 upload
+    "recommendationQuestion": {} // chat input 上方的区域
 }
 ```
 
@@ -167,32 +167,31 @@ level: 2
     "voiceFileDurationSeconds": 0,
     "audioSpeed": 1,
     "embedObjs": [],
-    "extraInfo": {
-        "consumeEnergy": 0
-    },
-    "referenceText": ""
+    "extraInfo": { "consumeEnergy": 0 },
+    "referenceText": "🌟 欢迎使用图片生成机器人！"
 }
 ```
 
 ```mdc
 <!-- step 3 输出部分 MDC 协议 -->
-\`\`\`yaml
+``````yaml
 id: 1859187960051482624
 uid: f95739b7a27a4a8f91f1e3d94680be63
 userId: 3524834
 type: GREETING
 botId: 1729238978
-\`\`\`
+``````
+
+✨ Welcome ...
 
 <!-- 引用消息 变体1（完整） -->
 ::reference{msgId=1859187960051482624}
 <!-- 引用消息 变体2（复制的片段） -->
 :::reference{msgId=1859187960051482624}
 🌟 欢迎使用图片生成机器人！
-这是一个能够将您的照片转换成各种艺术风格的智能助手。我们建议上传正方形的图片，这样在桌面端和移动端都能获得最佳的显示效果。
 :::
 <!-- voice 包括速度 文件 电量  -->
-::voice{speed=1.2, url="https://example.com/voice.mp3" consumeEnergy=1}
+::voice{audioSpeed=1.2, voiceUrl="https://example.com/voice.mp3" consumeEnergy=1}
 <!-- embedObjs  -->
 ::img{#abc src=https://static.myshell.run/big.PNG width=400}
 ```
