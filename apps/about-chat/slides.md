@@ -124,7 +124,95 @@ level: 2
 ---
 ---
 
-# H5 设计要点
+# 新 Message 协议
+
+````md magic-move {lines: true}
+```json {*|3-18|19-23}
+// step 1 原来的协议
+{
+    "id": "1859187960051482624",
+    "uid": "f95739b7a27a4a8f91f1e3d94680be63",
+    "replyId": "",
+    "replyUid": "",
+    "userId": "3524834",
+    "type": "GREETING",
+    "botId": "1729238978",
+    "text": "✨ Welcome ...",
+    "voiceUrl": "",
+    "voiceFileDurationSeconds": 0,
+    "audioSpeed": 1,
+    "embedObjs": [],
+    "extraInfo": { "consumeEnergy": 0 },
+    "referenceText": "",
+    "imSlashCommandInput": "",
+    "componentContainer": {},
+    "inputSetting": {},
+    "uploadSetting": {},
+    "recommendationQuestion": {}
+}
+```
+
+```json {*}
+// step 2 先看输出
+{
+    "id": "1859187960051482624",
+    "uid": "f95739b7a27a4a8f91f1e3d94680be63",
+    "replyId": "",
+    "replyUid": "",
+    "userId": "3524834",
+    "type": "GREETING",
+    "botId": "1729238978",
+    "text": "✨ Welcome ...",
+    "voiceUrl": "",
+    "voiceFileDurationSeconds": 0,
+    "audioSpeed": 1,
+    "embedObjs": [],
+    "extraInfo": {
+        "consumeEnergy": 0
+    },
+    "referenceText": ""
+}
+```
+
+```mdc
+<!-- step 3 输出部分 MDC 协议 -->
+\`\`\`yaml
+id: 1859187960051482624
+uid: f95739b7a27a4a8f91f1e3d94680be63
+userId: 3524834
+type: GREETING
+botId: 1729238978
+\`\`\`
+
+<!-- 引用消息 变体1（完整） -->
+::reference{msgId=1859187960051482624}
+<!-- 引用消息 变体2（复制的片段） -->
+:::reference{msgId=1859187960051482624}
+🌟 欢迎使用图片生成机器人！
+这是一个能够将您的照片转换成各种艺术风格的智能助手。我们建议上传正方形的图片，这样在桌面端和移动端都能获得最佳的显示效果。
+:::
+<!-- voice 包括速度 文件 电量  -->
+::voice{speed=1.2, url="https://example.com/voice.mp3" consumeEnergy=1}
+<!-- embedObjs  -->
+::img{#abc src=https://static.myshell.run/big.PNG width=400}
+```
+
+```json
+// step 4 输入部分 输入部分是固定的，可以解耦请求，甚至可以预请求
+// 独立接口，支持 chat input、form 未来内部自定义组件、甚至小程序（小程序包信息元数据）
+{
+  "imSlashCommandInput": "",
+  "componentContainer": {}, // 表单
+  "inputSetting": {}, // 控制 chat input
+  "uploadSetting": {}, // 控制 chat input 的 upload
+  "recommendationQuestion": {} // chat input 上方的区域
+}
+```
+````
+
+ 
+
+
 
 
 

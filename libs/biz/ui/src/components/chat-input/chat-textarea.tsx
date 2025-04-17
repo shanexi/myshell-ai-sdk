@@ -2,7 +2,6 @@ import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useTransitionState } from 'react-transition-state';
 import { Wrapper } from '../chat-input-re';
@@ -38,49 +37,42 @@ export const ChatTextArea = observer(() => {
   }, [toggle]);
 
   return (
-    isMounted && (
-      <div
-        style={{
-          // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
-          transitionDuration: timeout + 'ms',
-        }}
-        className={cn(`absolute bottom-[26px] w-full px-[8px] transition-all`, {
-          'translate-y-full opacity-0':
-            status === 'preEnter' ||
-            status === 'unmounted' ||
-            status === 'exiting',
-
-          'translate-y-0 opacity-100':
-            status === 'entering' || status === 'entered',
-        })}
-      >
-        <Wrapper>
-          <div
-            className={cn(
-              // 26px 是 chat input + actions 的高度 52px 的一半，目的是 border radius 视觉上统一
-              // TODO 去除 magic number 处理这种 直接用 style + const 好一点
-              'rounded-tl-4xl rounded-tr-4xl',
-            )}
-          >
-            <ChatInputHandlebar />
-            <TextareaAutosize
-              className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
-              ref={textareaRef}
-              maxRows={8}
-              value={model.inputText}
-              onChange={(e) => model.setInputText(e.target.value)}
-            />
-          </div>
-        </Wrapper>
-      </div>
-    )
+    // isMounted &&
+    <div
+      style={{
+        // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
+        transitionDuration: timeout + 'ms',
+      }}
+      className={cn(`absolute bottom-[26px] w-full transition-all`, {
+        // 'translate-y-full opacity-0':
+        //   status === 'preEnter' ||
+        //   status === 'unmounted' ||
+        //   status === 'exiting',
+        // 'translate-y-0 opacity-100':
+        //   status === 'entering' || status === 'entered',
+      })}
+    >
+      <ChatInputHandlebar />
+      <Wrapper>
+        <TextareaAutosize
+          className="text-sm-regular mx-[8px] box-border w-full resize-none px-spacing-lg outline-none"
+          ref={textareaRef}
+          maxRows={8}
+          value={model.inputText}
+          onChange={(e) => model.setInputText(e.target.value)}
+        />
+      </Wrapper>
+    </div>
   );
 });
 
 export const ChatInputHandlebar = () => {
   return (
-    <div className="flex justify-center pt-spacing-md pb-spacing-lg">
-      <div className="w-[44px] rounded-full border-2 border-border-hovered-light"></div>
-    </div>
+    <Wrapper>
+      {/* absolute top-0 -translate-y-full 永远在上方 像个屋顶 */}
+      <div className="absolute top-0 flex w-full -translate-y-full justify-center pt-spacing-md pb-spacing-lg">
+        <div className="w-[44px] rounded-full border-2 border-border-hovered-light"></div>
+      </div>
+    </Wrapper>
   );
 };
