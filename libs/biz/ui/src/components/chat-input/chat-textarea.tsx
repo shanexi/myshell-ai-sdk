@@ -43,18 +43,26 @@ export const ChatTextArea = observer(() => {
           // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
           transitionDuration: timeout + 'ms',
         }}
-        className={cn(`absolute bottom-[26px] w-full px-2 transition-all`, {
-          'translate-y-full opacity-0':
-            status === 'preEnter' ||
-            status === 'unmounted' ||
-            status === 'exiting',
-          'translate-y-0 opacity-100':
-            status === 'entering' || status === 'entered',
-        })}
+        className={cn(
+          `absolute w-full px-2 transition-[translate,opacity]`,
+          'top-0', // 8px 是 containerRef mb-2
+          {
+            'opacity-0':
+              status === 'preEnter' ||
+              status === 'unmounted' ||
+              status === 'exiting',
+            '-translate-y-[calc(100%-8px)] opacity-100':
+              status === 'entering' || status === 'entered',
+          },
+        )}
       >
         <ChatInputHandlebar />
         <Wrapper>
           <TextareaAutosize
+            onHeightChange={(height, meta) => {
+              console.log('height', height);
+              console.log('meta', meta);
+            }}
             className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
             ref={textareaRef}
             maxRows={8}

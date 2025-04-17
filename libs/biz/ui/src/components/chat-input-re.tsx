@@ -1,4 +1,4 @@
-import { useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
 import * as Slot from '@radix-ui/react-slot';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
@@ -34,7 +34,19 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   return (
     <div ref={containerRef} className="absolute bottom-0 mb-2 w-full">
       <Wrapper>
-        <div className="relative z-10 mx-[8px] rounded-4xl">
+        <div
+          // border-radius 会触发 re paint
+          // https://blog.coolhead.in/css-animation-performance-cheatsheet?showSharer=true
+          // FIXME 比较好的做法是 transform 一块图出来，但是增加 composite layer 是不是也很费性能
+          className={cn(
+            'relative z-10 mx-[8px]',
+            'transition-border-radius duration-400 ease-in-out',
+            {
+              'rounded-4xl': !model.isInputFocus,
+              'rounded-br-4xl rounded-bl-4xl': model.isInputFocus,
+            },
+          )}
+        >
           <div className="p-spacing-lg">{children}</div>
         </div>
       </Wrapper>
