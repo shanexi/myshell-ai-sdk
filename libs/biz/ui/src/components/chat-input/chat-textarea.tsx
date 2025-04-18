@@ -1,59 +1,50 @@
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef } from 'react';
+import {
+  forwardRef,
+  PropsWithChildren,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { useTransitionState } from 'react-transition-state';
 import { Wrapper } from '../chat-input-re';
 import { ChatModel } from '../chat.model';
+import { useTransitionState } from 'react-transition-state';
 
 // 这个 6px 是 parent element 比 children elements (目前只有textarea) 多出的 6px
 // 原因不明
 const UNKNOWN_6px = '6px';
 
-export const ChatTextArea = observer(() => {
-  const model = useInjection(ChatModel);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+export interface MyMotionRef {
+  toggle: (toEnter?: boolean) => void;
+}
 
-  const timeout = 400;
-  const [{ status, isMounted }, toggle] = useTransitionState({
-    timeout,
-    mountOnEnter: true,
-    unmountOnExit: true,
-    preEnter: true,
-  });
-  // mobx 就不依赖 useEffect deps， 使用 mobx 自带的 reaction
-  useEffect(() => {
-    const disposer = reaction(
-      () => model.isInputFocus,
-      (isInputFocus) => {
-        if (isInputFocus) {
-          toggle(true);
-          // `setTimeout` 先让 input blur 再 textarea focus
-          setTimeout(() => {
-            textareaRef.current?.focus();
-            textareaRef.current?.setSelectionRange(
-              model.inputText.length,
-              model.inputText.length,
-            );
-          });
-        } else {
-          toggle(false);
-        }
-      },
-    );
-    return () => disposer();
-  }, [toggle]);
-  return (
-    isMounted && (
+export const MyMotion = forwardRef<MyMotionRef, PropsWithChildren>(
+  ({ children }, ref) => {
+    const timeout = 400;
+    const [{ status, isMounted }, toggle] = useTransitionState({
+      timeout,
+      mountOnEnter: true,
+      unmountOnExit: true,
+      preEnter: true,
+    });
+
+    useImperativeHandle(ref, () => ({
+      toggle,
+    }));
+
+    if (!isMounted) return null;
+
+    return (
       <div
         style={{
-          // 使用 inline style 是为了和 react transition-state 的 transitionDuration 保持一致
-          transitionDuration: timeout + 'ms',
+          transitionDuration: `${timeout}ms`,
         }}
         className={cn(
-          `absolute w-full px-2 transition-[translate,opacity]`,
-          'top-0', // 8px 是 containerRef mb-2
+          `absolute w-full px-2 transition-[translate,opacity] ease-in-out`,
+          'top-0',
           {
             'opacity-0':
               status === 'preEnter' ||
@@ -64,18 +55,50 @@ export const ChatTextArea = observer(() => {
           },
         )}
       >
-        <ChatInputHandlebar />
-        <Wrapper>
-          <TextareaAutosize
-            className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
-            ref={textareaRef}
-            maxRows={8}
-            value={model.inputText}
-            onChange={(e) => model.setInputText(e.target.value)}
-          />
-        </Wrapper>
+        {children}
       </div>
-    )
+    );
+  },
+);
+
+export const ChatTextArea = observer(() => {
+  const model = useInjection(ChatModel);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const myMotionRef = useRef<MyMotionRef>(null);
+
+  useEffect(() => {
+    const disposer = reaction(
+      () => model.isInputFocus,
+      (isInputFocus) => {
+        if (isInputFocus) {
+          myMotionRef.current?.toggle(true);
+          setTimeout(() => {
+            textareaRef.current?.focus();
+            textareaRef.current?.setSelectionRange(
+              model.inputText.length,
+              model.inputText.length,
+            );
+          });
+        } else {
+          myMotionRef.current?.toggle(false);
+        }
+      },
+    );
+    return () => disposer();
+  }, []);
+
+  return (
+    <MyMotion ref={myMotionRef}>
+      <Wrapper>
+        <TextareaAutosize
+          className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
+          ref={textareaRef}
+          maxRows={8}
+          value={model.inputText}
+          onChange={(e) => model.setInputText(e.target.value)}
+        />
+      </Wrapper>
+    </MyMotion>
   );
 });
 

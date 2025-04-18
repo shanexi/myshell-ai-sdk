@@ -22,6 +22,7 @@ const meta: Meta<typeof ChatInput> = {
       return (
         <InversifyProvider container={container}>
           <div className="fixed h-full w-full">
+            <button className="border border-red-500">click me!</button>
             <Story />
           </div>
         </InversifyProvider>
