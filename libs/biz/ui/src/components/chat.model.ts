@@ -28,11 +28,11 @@ export class ChatModel {
   @observable layers: Record<string, { sort: number; height: number }> = {
     upload: {
       sort: 1,
-      height: 40,
+      height: 0,
     },
     textarea: {
       sort: 2,
-      height: 80,
+      height: 0,
     },
   };
   @computed get isNotInputFocus() {

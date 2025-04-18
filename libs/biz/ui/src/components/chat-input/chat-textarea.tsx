@@ -50,7 +50,7 @@ export const ChatTextArea = observer(() => {
           ref={myMotionRef}
           className="absolute top-0"
           from={`translate-y-[${model.layers.upload.height}px] opacity-0`}
-          to={`-translate-y-[${model.layers.textarea.height}px]`}
+          to={`-translate-y-[calc(100%-${UNKNOWN_6px}px)]`}
         >
           {/* <ChatInputHandlebar /> */}
           <BgClz>

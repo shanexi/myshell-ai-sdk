@@ -1,8 +1,7 @@
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import * as Slot from '@radix-ui/react-slot';
-import { autorun } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import { ChatInputActions } from './chat-input/chat-input-actions';
 import { ChatTextArea } from './chat-input/chat-textarea';
@@ -32,14 +31,6 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
       // model.setInputFocus(false);
     },
   });
-
-  useEffect(() => {
-    const disposer = autorun(() => {
-      model.toggleUploadArea();
-      model.setInputFocus(true);
-    });
-    return disposer;
-  }, []);
 
   return (
     <div ref={containerRef} className="absolute bottom-0 mb-2 w-full">

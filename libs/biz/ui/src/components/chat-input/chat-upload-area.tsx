@@ -38,7 +38,7 @@ export const ChatUploadArea = observer(() => {
           className="absolute top-0"
           ref={myMotionRef}
           from="opacity-0"
-          to={`-translate-y-[${model.layers.textarea.height + model.layers.upload.height}px]`}
+          to={`-translate-y-[calc(100%+${model.layers.textarea.height}px)]`}
         >
           <BgClz>
             <div className="text-sm-regular h-[40px] px-spacing-lg">
