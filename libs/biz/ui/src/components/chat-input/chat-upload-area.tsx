@@ -28,8 +28,10 @@ export const ChatUploadArea = observer(() => {
       <MyMotion
         className="absolute top-0"
         ref={myMotionRef}
-        from="opacity-0"
-        to={`-translate-y-[calc(100%+80px)]`}
+        from=""
+        // 40px 是下方楼层的高度 由于 100% 是自身高度
+        // TODO 所以可以简化成自己的楼层高度
+        to={`-translate-y-[calc(100%+40px)]`}
       >
         <BgClz>
           <div className="text-sm-regular h-[40px] px-spacing-lg">

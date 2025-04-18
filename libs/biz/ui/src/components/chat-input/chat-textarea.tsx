@@ -42,7 +42,10 @@ export const ChatTextArea = observer(() => {
       <MyMotion
         ref={myMotionRef}
         className="absolute top-0"
-        from="opacity-0"
+        // 40px 是因为上方楼层的累加高度 通过这种方式能够做到视觉上一起升起的感觉
+        // TODO 通过一个逻辑来维护每层(layer)的高度
+        // 因为 100% 是自身高度，所以可以统一成从自己（底部计算） + 上方的高度
+        from="translate-y-[40px]"
         to={`-translate-y-[calc(100%-${UNKNOWN_6px}px)]`}
       >
         {/* <ChatInputHandlebar /> */}

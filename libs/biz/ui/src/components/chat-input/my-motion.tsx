@@ -1,5 +1,10 @@
 import { cn } from '@myshell-run/ui-primitives';
-import { forwardRef, PropsWithChildren, useImperativeHandle } from 'react';
+import {
+  forwardRef,
+  PropsWithChildren,
+  useEffect,
+  useImperativeHandle,
+} from 'react';
 import { useTransitionState } from 'react-transition-state';
 
 export interface MyMotionRef {
@@ -12,7 +17,7 @@ export const MyMotion = forwardRef<
     /**
      * debug 模式下，去掉动画，直接显示
      */
-    debug?: boolean;
+    debug?: 'from' | 'to';
     className: string;
     from: string;
     to: string;
@@ -30,7 +35,27 @@ export const MyMotion = forwardRef<
     toggle,
   }));
 
+  useEffect(() => {
+    if (debug) {
+      console.log('[DEBUG] motion class', clz);
+    }
+  }, []);
+
   if (!isMounted && !debug) return null;
+
+  const clz = cn(
+    className,
+    {
+      [from]: debug === 'from' ? from : undefined,
+      [to]: debug === 'to' ? to : undefined,
+    },
+    debug
+      ? {}
+      : {
+          [from]: ['preEnter', 'unmounted', 'exiting'].includes(status),
+          [to]: ['entering', 'entered'].includes(status),
+        },
+  );
 
   return (
     <div
@@ -38,18 +63,7 @@ export const MyMotion = forwardRef<
       style={{
         transitionDuration: `${timeout}ms`,
       }}
-      className={cn(
-        className,
-        debug
-          ? {}
-          : {
-              [from]:
-                status === 'preEnter' ||
-                status === 'unmounted' ||
-                status === 'exiting',
-              [to]: status === 'entering' || status === 'entered',
-            },
-      )}
+      className={clz}
     >
       {children}
     </div>
