@@ -25,6 +25,16 @@ export class ChatModel {
   @observable inputText = '';
   @observable isInputFocus = false;
   @observable isShowUploadArea = false;
+  @observable layers: Record<string, { sort: number; height: number }> = {
+    upload: {
+      sort: 1,
+      height: 40,
+    },
+    textarea: {
+      sort: 2,
+      height: 80,
+    },
+  };
   @computed get isNotInputFocus() {
     return !this.isInputFocus;
   }

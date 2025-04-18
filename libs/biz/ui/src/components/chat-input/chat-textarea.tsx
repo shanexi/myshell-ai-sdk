@@ -5,8 +5,9 @@ import { useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { BgClz } from '../chat-input-re';
 import { ChatModel } from '../chat.model';
-import { MyMotion, MyMotionRef } from './my-motion';
 import { MotionClz } from './chat-upload-area';
+import { MyMotion, MyMotionRef } from './my-motion';
+import { useFirstChildHeight } from './use-first-child-height';
 
 // 这个 6px 是 parent element 比 children elements (目前只有textarea) 多出的 6px 原因不明
 const UNKNOWN_6px = 6;
@@ -15,6 +16,11 @@ export const ChatTextArea = observer(() => {
   const model = useInjection(ChatModel);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const myMotionRef = useRef<MyMotionRef>(null);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useFirstChildHeight(ref, (height) => {
+    model.layers.textarea.height = height - UNKNOWN_6px;
+  });
 
   useEffect(() => {
     const disposer = reaction(
@@ -38,28 +44,30 @@ export const ChatTextArea = observer(() => {
   }, []);
 
   return (
-    <MotionClz>
-      <MyMotion
-        ref={myMotionRef}
-        className="absolute top-0"
-        // 40px 是因为上方楼层的累加高度 通过这种方式能够做到视觉上一起升起的感觉
-        // TODO 通过一个逻辑来维护每层(layer)的高度
-        // 因为 100% 是自身高度，所以可以统一成从自己（底部计算） + 上方的高度
-        from="translate-y-[40px]"
-        to={`-translate-y-[calc(100%-${UNKNOWN_6px}px)]`}
-      >
-        {/* <ChatInputHandlebar /> */}
-        <BgClz>
-          <TextareaAutosize
-            className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
-            ref={textareaRef}
-            maxRows={8}
-            value={model.inputText}
-            onChange={(e) => model.setInputText(e.target.value)}
-          />
-        </BgClz>
-      </MyMotion>
-    </MotionClz>
+    <div ref={ref}>
+      <MotionClz>
+        <MyMotion
+          ref={myMotionRef}
+          className="absolute top-0"
+          from={`translate-y-[${model.layers.upload.height}px] opacity-0`}
+          to={`-translate-y-[${model.layers.textarea.height}px]`}
+        >
+          {/* <ChatInputHandlebar /> */}
+          <BgClz>
+            <TextareaAutosize
+              className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
+              ref={textareaRef}
+              maxRows={8}
+              value={model.inputText}
+              onChange={(e) => model.setInputText(e.target.value)}
+              onHeightChange={(height) => {
+                model.layers.textarea.height = height;
+              }}
+            />
+          </BgClz>
+        </MyMotion>
+      </MotionClz>
+    </div>
   );
 });
 

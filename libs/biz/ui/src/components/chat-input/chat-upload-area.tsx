@@ -1,15 +1,22 @@
-import { PropsWithChildren, useEffect, useRef } from 'react';
-import { MyMotion, MyMotionRef } from './my-motion';
-import { observer } from 'mobx-react-lite';
 import { useInjection } from '@myshell-run/ui-primitives';
-import { ChatModel } from '../chat.model';
-import { reaction } from 'mobx';
-import { BgClz } from '../chat-input-re';
 import * as Slot from '@radix-ui/react-slot';
+import { reaction } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import { PropsWithChildren, useEffect, useRef } from 'react';
+import { BgClz } from '../chat-input-re';
+import { ChatModel } from '../chat.model';
+import { MyMotion, MyMotionRef } from './my-motion';
+import { useFirstChildHeight } from './use-first-child-height';
 
 export const ChatUploadArea = observer(() => {
   const model = useInjection(ChatModel);
   const myMotionRef = useRef<MyMotionRef>(null);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useFirstChildHeight(ref, (height) => {
+    model.layers.upload.height = height;
+  });
+
   useEffect(() => {
     const disposer = reaction(
       () => model.isShowUploadArea,
@@ -23,23 +30,24 @@ export const ChatUploadArea = observer(() => {
     );
     return disposer;
   }, []);
+
   return (
-    <MotionClz>
-      <MyMotion
-        className="absolute top-0"
-        ref={myMotionRef}
-        from=""
-        // 40px 是下方楼层的高度 由于 100% 是自身高度
-        // TODO 所以可以简化成自己的楼层高度
-        to={`-translate-y-[calc(100%+40px)]`}
-      >
-        <BgClz>
-          <div className="text-sm-regular h-[40px] px-spacing-lg">
-            ChatUploadArea
-          </div>
-        </BgClz>
-      </MyMotion>
-    </MotionClz>
+    <div ref={ref}>
+      <MotionClz>
+        <MyMotion
+          className="absolute top-0"
+          ref={myMotionRef}
+          from="opacity-0"
+          to={`-translate-y-[${model.layers.textarea.height + model.layers.upload.height}px]`}
+        >
+          <BgClz>
+            <div className="text-sm-regular h-[40px] px-spacing-lg">
+              ChatUploadArea
+            </div>
+          </BgClz>
+        </MyMotion>
+      </MotionClz>
+    </div>
   );
 });
 
