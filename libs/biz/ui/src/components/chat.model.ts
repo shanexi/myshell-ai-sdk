@@ -24,10 +24,7 @@ export class ChatModel {
   bot?: DbBot;
   @observable inputText = '';
   @observable isInputFocus = false;
-  /**
-   * @deprecated 效果不佳 先继续使用 isInputFocus 后续微调
-   */
-  // @observable isAnimatingInputFocus = false;
+  @observable isShowUploadArea = false;
   @computed get isNotInputFocus() {
     return !this.isInputFocus;
   }
@@ -46,11 +43,10 @@ export class ChatModel {
   setInputFocus(focus: boolean) {
     this.isInputFocus = focus;
   }
-
-  // @action.bound
-  // setIsAnimatingInputFocus(isAnimating: boolean) {
-  //   this.isAnimatingInputFocus = isAnimating;
-  // }
+  @action.bound
+  toggleUploadArea() {
+    this.isShowUploadArea = !this.isShowUploadArea;
+  }
 
   appendMsg(message: Message) {
     this.virtuosoRef?.current?.data.append(

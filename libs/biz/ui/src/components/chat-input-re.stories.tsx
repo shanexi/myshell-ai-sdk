@@ -22,7 +22,12 @@ const meta: Meta<typeof ChatInput> = {
       return (
         <InversifyProvider container={container}>
           <div className="fixed h-full w-full">
-            <button className="border border-red-500">click me!</button>
+            <button
+              className="border border-red-500"
+              onClick={() => model.toggleUploadArea()}
+            >
+              click me!
+            </button>
             <Story />
           </div>
         </InversifyProvider>

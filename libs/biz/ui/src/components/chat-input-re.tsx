@@ -1,10 +1,12 @@
 import { cn, useInjection } from '@myshell-run/ui-primitives';
 import * as Slot from '@radix-ui/react-slot';
+import { autorun } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import { ChatInputActions } from './chat-input/chat-input-actions';
 import { ChatTextArea } from './chat-input/chat-textarea';
+import { ChatUploadArea } from './chat-input/chat-upload-area';
 import { ChatModel } from './chat.model';
 
 export const ChatInput = observer<{ placeholder?: string }>(
@@ -17,7 +19,7 @@ export const ChatInput = observer<{ placeholder?: string }>(
   },
 );
 
-export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => (
+export const BgClz: React.FC<PropsWithChildren> = ({ children }) => (
   <Slot.Root className="border-border-default-light bg-surface-container-special-subtle-light">
     <Slot.Slottable>{children}</Slot.Slottable>
   </Slot.Root>
@@ -27,13 +29,21 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
   const model = useInjection(ChatModel);
   const containerRef = useDetectClickOutside({
     onTriggered: () => {
-      model.setInputFocus(false);
+      // model.setInputFocus(false);
     },
   });
 
+  useEffect(() => {
+    const disposer = autorun(() => {
+      model.toggleUploadArea();
+      model.setInputFocus(true);
+    });
+    return disposer;
+  }, []);
+
   return (
     <div ref={containerRef} className="absolute bottom-0 mb-2 w-full">
-      <Wrapper>
+      <BgClz>
         <div
           // border-radius 会触发 re paint
           // https://blog.coolhead.in/css-animation-performance-cheatsheet?showSharer=true
@@ -49,7 +59,8 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
         >
           <div className="p-spacing-lg">{children}</div>
         </div>
-      </Wrapper>
+      </BgClz>
+      <ChatUploadArea />
       <ChatTextArea />
     </div>
   );

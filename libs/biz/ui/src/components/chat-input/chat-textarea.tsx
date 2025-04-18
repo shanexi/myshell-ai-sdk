@@ -3,9 +3,13 @@ import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { Wrapper } from '../chat-input-re';
+import { BgClz } from '../chat-input-re';
 import { ChatModel } from '../chat.model';
 import { MyMotion, MyMotionRef } from './my-motion';
+import { MotionClz } from './chat-upload-area';
+
+// 这个 6px 是 parent element 比 children elements (目前只有textarea) 多出的 6px 原因不明
+const UNKNOWN_6px = 6;
 
 export const ChatTextArea = observer(() => {
   const model = useInjection(ChatModel);
@@ -30,21 +34,29 @@ export const ChatTextArea = observer(() => {
         }
       },
     );
-    return () => disposer();
+    return disposer;
   }, []);
 
   return (
-    <MyMotion ref={myMotionRef}>
-      <Wrapper>
-        <TextareaAutosize
-          className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
-          ref={textareaRef}
-          maxRows={8}
-          value={model.inputText}
-          onChange={(e) => model.setInputText(e.target.value)}
-        />
-      </Wrapper>
-    </MyMotion>
+    <MotionClz>
+      <MyMotion
+        ref={myMotionRef}
+        className="absolute top-0"
+        from="opacity-0"
+        to={`-translate-y-[calc(100%-${UNKNOWN_6px}px)]`}
+      >
+        {/* <ChatInputHandlebar /> */}
+        <BgClz>
+          <TextareaAutosize
+            className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
+            ref={textareaRef}
+            maxRows={8}
+            value={model.inputText}
+            onChange={(e) => model.setInputText(e.target.value)}
+          />
+        </BgClz>
+      </MyMotion>
+    </MotionClz>
   );
 });
 
@@ -52,7 +64,7 @@ export const ChatInputHandlebar: React.FC<{
   className?: string;
 }> = ({ className }) => {
   return (
-    <Wrapper>
+    <BgClz>
       <div
         className={cn(
           'flex justify-center rounded-tl-4xl rounded-tr-4xl pt-spacing-md pb-spacing-lg',
@@ -63,6 +75,6 @@ export const ChatInputHandlebar: React.FC<{
       >
         <div className="w-[44px] rounded-full border-2 border-border-hovered-light"></div>
       </div>
-    </Wrapper>
+    </BgClz>
   );
 };
