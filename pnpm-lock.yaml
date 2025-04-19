@@ -210,6 +210,8 @@ specifiers:
   mdast-util-to-hast: ^13.0.0
   mobx: ^6.13.6
   mobx-react-lite: ^4.1.0
+  mobx-utils: ^6.1.0
+  motion: ^12.7.4
   msw: ^2.7.4
   msw-storybook-addon: ^2.0.4
   multer: 1.4.5-lts.2
@@ -257,6 +259,7 @@ specifiers:
   remark-rehype: ^11.0.0
   resize-observer-polyfill: ^1.5.1
   rollup-plugin-visualizer: ^5.14.0
+  rxjs: ^6.6.3
   space-separated-tokens: ^2.0.0
   storybook-react-rspack: 7.0.0-rc.25
   style-to-js: ^1.0.0
@@ -470,6 +473,8 @@ dependencies:
   mdast-util-to-hast: 13.2.0
   mobx: 6.13.6
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
+  mobx-utils: 6.1.0_mobx@6.13.6
+  motion: 12.7.4_upmzqgzhjrquwzo2dphtigtdgi
   msw: 2.7.4_tpfei7cgrreqfbxq6tevankluy
   msw-storybook-addon: 2.0.4_msw@2.7.4
   multer: 1.4.5-lts.2
@@ -517,6 +522,7 @@ dependencies:
   remark-rehype: 11.1.1
   resize-observer-polyfill: 1.5.1
   rollup-plugin-visualizer: 5.14.0_rollup@4.35.0
+  rxjs: 6.6.7
   space-separated-tokens: 2.0.2
   storybook-react-rspack: 7.0.0-rc.25_fotoydv2wzry6wf2ug25q3vidq
   style-to-js: 1.1.16
@@ -14588,7 +14594,7 @@ packages:
       chalk: 4.1.2
       date-fns: 2.30.0
       lodash: 4.17.21
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       shell-quote: 1.8.1
       spawn-command: 0.0.2
       supports-color: 8.1.1
@@ -14705,7 +14711,7 @@ packages:
     peerDependencies:
       webpack: ^5.1.0
     dependencies:
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       glob-parent: 6.0.2
       globby: 12.2.0
       normalize-path: 3.0.0
@@ -16791,7 +16797,7 @@ packages:
       eslint: 8.15.0
       eslint-module-utils: 2.11.0_m2moow5h6xkvki42jpz4a2li5u
       eslint-plugin-import: 2.27.5_3plzrvwelkcitgi4wvrja7rwii
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       get-tsconfig: 4.8.0
       is-bun-module: 1.1.0
       is-glob: 4.0.3
@@ -17402,17 +17408,6 @@ packages:
       micromatch: 4.0.8
     dev: false
 
-  /fast-glob/3.3.2:
-    resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
-    engines: {node: '>=8.6.0'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.8
-    dev: false
-
   /fast-glob/3.3.3:
     resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
     engines: {node: '>=8.6.0'}
@@ -17819,6 +17814,27 @@ packages:
 
   /fraction.js/4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+    dev: false
+
+  /framer-motion/12.7.4_upmzqgzhjrquwzo2dphtigtdgi:
+    resolution: {integrity: sha512-jX0bPsTmU0oPZTYz/dVyD0dmOyEOEJvdn0TaZBE5I8g2GvVnnQnW9f65cJnoVfUkY3WZWNXGXnPbVA9YnaIfVA==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      motion-dom: 12.7.4
+      motion-utils: 12.7.2
+      react: 19.0.0
+      react-dom: 19.0.0_react@19.0.0
+      tslib: 2.8.1
     dev: false
 
   /framesync/6.1.2:
@@ -18265,7 +18281,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
@@ -21200,7 +21216,7 @@ packages:
       log-update: 4.0.0
       p-map: 4.0.0
       rfdc: 1.4.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: false
@@ -22548,6 +22564,14 @@ packages:
       use-sync-external-store: 1.5.0-canary-fbcda19a-20250317_react@19.0.0
     dev: false
 
+  /mobx-utils/6.1.0_mobx@6.13.6:
+    resolution: {integrity: sha512-P3qUVDFp3Kv5HXD7EIGJn3zlgJJnN+/ZpFHWQ+u6YNN1xDxY53iMvsQ9fM8kauTVdDmt7ulDgDQtDrOxb1NS9Q==}
+    peerDependencies:
+      mobx: ^6.0.0
+    dependencies:
+      mobx: 6.13.6
+    dev: false
+
   /mobx/6.13.6:
     resolution: {integrity: sha512-r19KNV0uBN4b+ER8Z0gA4y+MzDYIQ2SvOmn3fUrqPnWXdQfakd9yfbPBDBF/p5I+bd3N5Rk1fHONIvMay+bJGA==}
     dev: false
@@ -22567,6 +22591,36 @@ packages:
 
   /monaco-editor/0.51.0:
     resolution: {integrity: sha512-xaGwVV1fq343cM7aOYB6lVE4Ugf0UyimdD/x5PWcWBMKENwectaEu77FAN7c5sFiyumqeJdX1RPTh1ocioyDjw==}
+    dev: false
+
+  /motion-dom/12.7.4:
+    resolution: {integrity: sha512-1ZUHAoSUMMxP6jPqyxlk9XUfb6NxMsnWPnH2YGhrOhTURLcXWbETi6eemoKb60Pe32NVJYduL4B62VQSO5Jq8Q==}
+    dependencies:
+      motion-utils: 12.7.2
+    dev: false
+
+  /motion-utils/12.7.2:
+    resolution: {integrity: sha512-XhZwqctxyJs89oX00zn3OGCuIIpVevbTa+u82usWBC6pSHUd2AoNWiYa7Du8tJxJy9TFbZ82pcn5t7NOm1PHAw==}
+    dev: false
+
+  /motion/12.7.4_upmzqgzhjrquwzo2dphtigtdgi:
+    resolution: {integrity: sha512-MBGrMbYageHw4iZJn+pGTr7abq5n53jCxYkhFC1It3vYukQPRWg5zij46MnwYGpLR8KG465MLHSASXot9edYOw==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      framer-motion: 12.7.4_upmzqgzhjrquwzo2dphtigtdgi
+      react: 19.0.0
+      react-dom: 19.0.0_react@19.0.0
+      tslib: 2.8.1
     dev: false
 
   /mrmime/2.0.1:
@@ -25829,8 +25883,8 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /rxjs/7.8.1:
-    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+  /rxjs/7.8.2:
+    resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
     dependencies:
       tslib: 2.8.1
     dev: false
@@ -26990,7 +27044,7 @@ packages:
       stylus: '>=0.52.4'
       webpack: ^5.0.0
     dependencies:
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       normalize-path: 3.0.0
       stylus: 0.55.0
       webpack: 5.94.0_44aa3ybmo6fc3alcbblx3e4fky
@@ -28947,7 +29001,7 @@ packages:
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -28961,7 +29015,7 @@ packages:
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - debug
     dev: false
