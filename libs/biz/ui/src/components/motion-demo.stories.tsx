@@ -3,7 +3,6 @@ import { MotionDemo } from './motion-demo';
 
 const meta: Meta<typeof MotionDemo> = {
   component: MotionDemo,
-  title: 'Components/MotionDemo',
 };
 export default meta;
 
