@@ -4,7 +4,7 @@ import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren, useEffect, useRef } from 'react';
 import { BgClz } from '../chat-input-re';
-import { ChatModel } from '../chat.model';
+import { ChatModel } from '../../../chat.model';
 import { MyMotion, MyMotionRef } from './my-motion';
 import { useFirstChildHeight } from './use-first-child-height';
 

@@ -6,7 +6,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 import { ChatInputActions } from './chat-input/chat-input-actions';
 import { ChatTextArea } from './chat-input/chat-textarea';
 import { ChatUploadArea } from './chat-input/chat-upload-area';
-import { ChatModel } from './chat.model';
+import { ChatModel } from '../../chat.model';
 
 export const ChatInput = observer<{ placeholder?: string }>(
   ({ placeholder }) => {

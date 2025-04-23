@@ -2,8 +2,8 @@ import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { uiBizModule } from '../../ui-biz.module';
-import { ChatModel } from '../chat.model';
+import { uiBizModule } from '../../../../ui-biz.module';
+import { ChatModel } from '../../../chat.model';
 import { ChatInputActions } from './chat-input-actions';
 
 const container = new Container();

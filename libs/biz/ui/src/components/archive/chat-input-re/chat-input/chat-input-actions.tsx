@@ -3,8 +3,8 @@ import { AlignJustify, CirclePlus } from 'lucide-react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import { ReactComponent as Audio } from '../audio.svg';
-import { ChatModel } from '../chat.model';
+import { ReactComponent as Audio } from '../../../audio.svg';
+import { ChatModel } from '../../../chat.model';
 
 export const ChatInputActions = observer<{ placeholder?: string }>(
   ({ placeholder }) => {

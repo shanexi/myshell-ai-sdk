@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { BgClz } from '../chat-input-re';
-import { ChatModel } from '../chat.model';
+import { ChatModel } from '../../../chat.model';
 import { MotionClz } from './chat-upload-area';
 import { MyMotion, MyMotionRef } from './my-motion';
 import { useFirstChildHeight } from './use-first-child-height';
