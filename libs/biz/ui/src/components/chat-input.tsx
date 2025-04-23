@@ -15,6 +15,7 @@ import { ReactComponent as Trash } from './trash.svg';
 import { useTransitionState } from 'react-transition-state';
 import { useEffect } from 'react';
 import { autorun } from 'mobx';
+import { motion, AnimatePresence } from 'motion/react';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -61,14 +62,22 @@ export const ChatInput = observer(() => {
   return (
     <ChatInputRoot>
       <AnimatedChatInputMenu />
-      {model.notHaveInputText ? (
-        <>
-          <ChatInputAudio />
-          <ChatInputFile />
-        </>
-      ) : (
-        <ChatInputSend />
-      )}
+      <AnimatePresence>
+        {model.notHaveInputText ? (
+          <motion.div
+            className="flex items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+          >
+            <ChatInputAudio />
+            <ChatInputFile />
+          </motion.div>
+        ) : (
+          <ChatInputSend />
+        )}
+      </AnimatePresence>
     </ChatInputRoot>
   );
 });
@@ -129,9 +138,15 @@ export function ChatInputAudio() {
 
 export function ChatInputSend() {
   return (
-    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light">
+    <motion.div
+      className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
+    >
       <Send />
-    </div>
+    </motion.div>
   );
 }
 
