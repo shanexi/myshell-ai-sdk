@@ -12,7 +12,9 @@ import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
-import { motion, AnimatePresence } from 'motion/react';
+import { useTransitionState } from 'react-transition-state';
+import { useEffect } from 'react';
+import { autorun } from 'mobx';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -21,7 +23,7 @@ export const ChatInputMenu = (props: { className?: string }) => {
       <Button
         variant="icon"
         className={cn(
-          'x-custom-react-aria-Button z-10 bg-surface-container-special-subtle-light data-hovered:bg-transparent',
+          'x-custom-react-aria-Button z-10 data-hovered:bg-transparent',
           className,
         )}
         // 指定 id 否则 hydrate 会报错
@@ -73,27 +75,34 @@ export const ChatInput = observer(() => {
 
 export const AnimatedChatInputMenu = observer(() => {
   const model = useInjection(ChatModel);
+  const [{ status, isMounted }, toggle] = useTransitionState({
+    timeout: 300,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    preEnter: true,
+  });
+  useEffect(() => {
+    const disposer = autorun(() => {
+      toggle(model.isShowInputMenu);
+    });
+    return () => disposer();
+  }, [toggle]);
 
-  console.log('model.isShowInputMenu', model.isShowInputMenu);
   return (
     <div className="relative flex min-h-[36px] flex-1 items-center">
-      <AnimatePresence>
-        {model.isShowInputMenu && (
-          <motion.div
-            layout
-            initial={{ opacity: 1, width: 0 }}
-            animate={{ opacity: 1, width: 'auto' }}
-            exit={{ opacity: 0, width: 0 }}
-            transition={{
-              opacity: { duration: 0 },
-              width: { duration: 0.3 },
-            }}
-          >
-            <ChatInputMenu />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <ChatInputText />
+      {model.isShowInputMenu && (
+        <ChatInputMenu
+          className={cn('transition-opacity', {
+            'opacity-0': status === 'preEnter' || status === 'unmounted',
+            'opacity-100': status === 'entering' || status === 'entered',
+          })}
+        />
+      )}
+      <ChatInputText
+        className={cn('absolute pl-[32px] transition-transform', {
+          '-translate-x-[32px]': status === 'exiting' || status === 'unmounted',
+        })}
+      />
     </div>
   );
 });
