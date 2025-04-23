@@ -12,10 +12,6 @@ import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
-import { useTransitionState } from 'react-transition-state';
-import { useEffect } from 'react';
-import { autorun } from 'mobx';
-import { motion, AnimatePresence } from 'motion/react';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -62,56 +58,24 @@ export const ChatInput = observer(() => {
   return (
     <ChatInputRoot>
       <AnimatedChatInputMenu />
-      <AnimatePresence>
-        {model.notHaveInputText ? (
-          <motion.div
-            className="flex items-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.1 }}
-          >
-            <ChatInputAudio />
-            <ChatInputFile />
-          </motion.div>
-        ) : (
-          <ChatInputSend />
-        )}
-      </AnimatePresence>
+      {model.notHaveInputText ? (
+        <>
+          <ChatInputAudio />
+          <ChatInputFile />
+        </>
+      ) : (
+        <ChatInputSend />
+      )}
     </ChatInputRoot>
   );
 });
 
 export const AnimatedChatInputMenu = observer(() => {
   const model = useInjection(ChatModel);
-  const [{ status, isMounted }, toggle] = useTransitionState({
-    timeout: 300,
-    mountOnEnter: true,
-    unmountOnExit: true,
-    preEnter: true,
-  });
-  useEffect(() => {
-    const disposer = autorun(() => {
-      toggle(model.isShowInputMenu);
-    });
-    return () => disposer();
-  }, [toggle]);
-
   return (
     <div className="relative flex min-h-[36px] flex-1 items-center">
-      {model.isShowInputMenu && (
-        <ChatInputMenu
-          className={cn('transition-opacity', {
-            'opacity-0': status === 'preEnter' || status === 'unmounted',
-            'opacity-100': status === 'entering' || status === 'entered',
-          })}
-        />
-      )}
-      <ChatInputText
-        className={cn('absolute pl-[32px] transition-transform', {
-          '-translate-x-[32px]': status === 'exiting' || status === 'unmounted',
-        })}
-      />
+      {model.isShowInputMenu && <ChatInputMenu />}
+      <ChatInputText />
     </div>
   );
 });
@@ -138,15 +102,9 @@ export function ChatInputAudio() {
 
 export function ChatInputSend() {
   return (
-    <motion.div
-      className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.1 }}
-    >
+    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light">
       <Send />
-    </motion.div>
+    </div>
   );
 }
 
