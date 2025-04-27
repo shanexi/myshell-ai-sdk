@@ -18,6 +18,8 @@ export const ChatInput = observer<{ placeholder?: string }>(
   },
 );
 
+// slot 在 hono ssr 会卡死 先别使用
+// 本身也不好用
 export const BgClz: React.FC<PropsWithChildren> = ({ children }) => (
   <Slot.Root className="border-border-default-light bg-surface-container-special-subtle-light">
     <Slot.Slottable>{children}</Slot.Slottable>

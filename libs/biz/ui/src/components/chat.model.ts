@@ -25,16 +25,23 @@ export class ChatModel {
   @observable inputText = '';
   @observable isInputFocus = false;
   @observable isShowUploadArea = false;
-  @observable layers: Record<string, { sort: number; height: number }> = {
-    upload: {
-      sort: 1,
-      height: 0,
-    },
-    textarea: {
-      sort: 2,
-      height: 0,
-    },
-  };
+
+  /**
+   * @deprecated 相关 UI 代码已经 archive
+   */
+  @computed get layers(): Record<string, { sort: number; height: number }> {
+    console.warn('layers is deprecated, will throw error in next version');
+    return {
+      upload: {
+        sort: 1,
+        height: 0,
+      },
+      textarea: {
+        sort: 2,
+        height: 0,
+      },
+    };
+  }
   @computed get isNotInputFocus() {
     return !this.isInputFocus;
   }

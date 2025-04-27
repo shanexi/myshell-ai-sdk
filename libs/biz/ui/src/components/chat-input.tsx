@@ -12,6 +12,9 @@ import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
+import TextareaAutosize from 'react-textarea-autosize';
+import { useEffect, useState } from 'react';
+import { X } from 'lucide-react';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -42,40 +45,87 @@ export const ChatInputMenu = (props: { className?: string }) => {
   );
 };
 
-export function ChatInputRoot(props: { children?: React.ReactNode }) {
-  const { children } = props;
+export const ChatTextarea = observer(() => {
+  const model = useInjection(ChatModel);
+  // TextareaAutosize 有 bug，SSR 传 value 会报错（其实是 warning 但是 react 通过 error 抛出了）
+  // Use the `defaultValue` or `value` props instead of setting children on <textarea>.
+  // 先通过 two-pass rendering 规避
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
-    <div className="mx-[8px] my-spacing-md">
-      <div className="input w-full rounded-4xl border-border-default-light bg-surface-container-special-subtle-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
-        {children}
+    <TextareaAutosize
+      className={cn(
+        'text-sm-regular w-full rounded-t-4xl px-[16px] pt-spacing-md',
+        'resize-none outline-none',
+        'border-border-default-light bg-surface-container-special-subtle-light',
+      )}
+      maxRows={8}
+      placeholder="Write a message"
+      {...(isClient
+        ? {
+            value: model.inputText,
+            onChange: (e) => model.setInputText(e.target.value),
+          }
+        : {})}
+    />
+  );
+});
+
+export const ChatUploadArea = observer(() => {
+  return (
+    <div
+      className={cn(
+        'flex px-spacing-lg py-spacing-sm',
+        'bg-surface-container-special-subtle-light',
+      )}
+    >
+      <Image />
+    </div>
+  );
+});
+
+export const Image = () => {
+  return (
+    <div className="relative">
+      <img
+        className={cn('h-[64px] w-[64px] rounded-xl')}
+        alt=""
+        src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      />
+      <div
+        className={cn(
+          'absolute top-[-6px] right-[-6px]',
+          'h-[20px] w-[20px] rounded-full',
+          'bg-text-subtler-light',
+          'flex items-center justify-center',
+        )}
+      >
+        <X color="#fff" size={16} />
       </div>
     </div>
   );
-}
+};
 
 export const ChatInput = observer(() => {
   const model = useInjection(ChatModel);
   return (
-    <ChatInputRoot>
-      <AnimatedChatInputMenu />
-      {model.notHaveInputText ? (
-        <>
-          <ChatInputAudio />
+    <div className="mx-[8px] my-spacing-md flex flex-col">
+      <ChatTextarea />
+      <ChatUploadArea />
+      <div
+        className={cn(
+          'flex items-center rounded-b-4xl px-spacing-lg pb-spacing-md',
+          'border-border-default-light bg-surface-container-special-subtle-light',
+        )}
+      >
+        <div className="relative flex min-h-[36px] flex-1 items-center">
+          <ChatInputMenu />
           <ChatInputFile />
-        </>
-      ) : (
-        <ChatInputSend />
-      )}
-    </ChatInputRoot>
-  );
-});
-
-export const AnimatedChatInputMenu = observer(() => {
-  const model = useInjection(ChatModel);
-  return (
-    <div className="relative flex min-h-[36px] flex-1 items-center">
-      {model.isShowInputMenu && <ChatInputMenu />}
-      <ChatInputText />
+        </div>
+        {model.notHaveInputText ? <ChatInputAudio /> : <ChatInputSend />}
+      </div>
     </div>
   );
 });
@@ -107,29 +157,3 @@ export function ChatInputSend() {
     </div>
   );
 }
-
-export const ChatInputText = observer((props: { className?: string }) => {
-  const { className } = props;
-  const model = useInjection(ChatModel);
-  return (
-    <input
-      onFocus={(e) => {
-        model.setInputFocus(true);
-      }}
-      onBlur={(e) => {
-        model.setInputFocus(false);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          model.sendText();
-        }
-      }}
-      type="search"
-      className={cn('[&::-webkit-search-cancel-button]:hidden', className)}
-      placeholder="Write a message"
-      value={model.inputText}
-      onChange={(e) => model.setInputText(e.target.value)}
-    />
-  );
-});

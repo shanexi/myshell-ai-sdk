@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ChatInputRoot, ChatInputMenu, ChatInput } from './archive/chat-input';
-import { Container } from 'inversify';
 import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { uiBizModule } from '../ui-biz.module';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Container } from 'inversify';
+import { uiBizModule } from '../ui-biz.module';
+import { ChatInput } from './chat-input';
 
 const container = new Container();
 container.load(messageItemPluginsModule);
