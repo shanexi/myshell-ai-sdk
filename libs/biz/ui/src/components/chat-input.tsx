@@ -4,17 +4,18 @@ import {
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
 import { cn, useInjection } from '@myshell-run/ui-primitives';
-import { AlignJustify, CirclePlus } from 'lucide-react';
+import type { Uppy } from '@uppy/core';
+import toArray from '@uppy/utils/lib/toArray';
+import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
+import { useEffect, useRef, useState } from 'react';
 import { MenuTrigger } from 'react-aria-components';
+import TextareaAutosize from 'react-textarea-autosize';
 import { ReactComponent as Audio } from './audio.svg';
 import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
-import TextareaAutosize from 'react-textarea-autosize';
-import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
 
 export const ChatInputMenu = (props: { className?: string }) => {
   const { className } = props;
@@ -110,8 +111,17 @@ export const Image = () => {
 
 export const ChatInput = observer(() => {
   const model = useInjection(ChatModel);
+  const dropTargetRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (dropTargetRef.current) {
+      model.setupUppy(dropTargetRef.current);
+    }
+    return () => {
+      model.uppy?.destroy();
+    };
+  }, []);
   return (
-    <div className="mx-[8px] my-spacing-md flex flex-col">
+    <div ref={dropTargetRef} className="mx-[8px] my-spacing-md flex flex-col">
       <ChatTextarea />
       <ChatUploadArea />
       <div
@@ -130,9 +140,50 @@ export const ChatInput = observer(() => {
   );
 });
 
-export function ChatInputFile() {
+export const ChatInputFile = () => {
+  const model = useInjection(ChatModel);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const hiddenInputStyle = {
+    width: '0.1px',
+    height: '0.1px',
+    opacity: 0,
+    overflow: 'hidden',
+    position: 'absolute',
+    zIndex: -1,
+  } satisfies React.CSSProperties;
+
+  const { restrictions } = model.uppy?.opts ?? {};
+
   return (
-    <div className="flex h-[24px] w-[24px] flex-none items-center justify-center">
+    <div
+      className="flex h-[24px] w-[24px] flex-none items-center justify-center"
+      onClick={() => inputRef.current?.click()}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        name="files[]"
+        multiple={restrictions?.maxNumberOfFiles !== 1}
+        accept={restrictions?.allowedFileTypes?.join(', ')}
+        onChange={(e) => {
+          model.uppy?.log('[FileInput] Something selected through input...');
+          const files = toArray(e.target.files || []);
+
+          const descriptors = files.map((file) => ({
+            source: 'FileInput',
+            name: file.name,
+            type: file.type,
+            data: file,
+          }));
+
+          try {
+            model.uppy?.addFiles(descriptors);
+          } catch (err) {
+            model.uppy?.log(err);
+          }
+        }}
+        style={hiddenInputStyle}
+      />
       <CirclePlus
         strokeWidth={1.5}
         className="text-text-brand-light"
@@ -140,7 +191,7 @@ export function ChatInputFile() {
       />
     </div>
   );
-}
+};
 
 export function ChatInputAudio() {
   return (

@@ -5,6 +5,10 @@ import {
 import { DbBot } from '@myshell-run/biz-def';
 import { Message, MessageListContext } from '@myshell-run/def';
 import { createId } from '@paralleldrive/cuid2';
+import Uppy from '@uppy/core';
+import DropTarget from '@uppy/drop-target';
+import ThumbnailGenerator from '@uppy/thumbnail-generator';
+import XHR from '@uppy/xhr-upload';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { injectable } from 'inversify';
 import {
@@ -15,6 +19,7 @@ import {
   runInAction,
 } from 'mobx';
 import { RefObject } from 'react';
+const UPLOAD_ENDPOINT = 'http://localhost:3333/api/upload';
 
 @injectable()
 export class ChatModel {
@@ -25,7 +30,7 @@ export class ChatModel {
   @observable inputText = '';
   @observable isInputFocus = false;
   @observable isShowUploadArea = false;
-
+  uppy?: Uppy;
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
@@ -54,6 +59,36 @@ export class ChatModel {
   constructor() {
     // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
     makeObservable(this);
+  }
+
+  setupUppy(dropTarget: HTMLDivElement) {
+    this.uppy = new Uppy({
+      autoProceed: true,
+      debug: true,
+    })
+      .use(ThumbnailGenerator)
+      .use(XHR, {
+        endpoint: UPLOAD_ENDPOINT,
+      });
+    // uppy.use(FileInput, {
+    //   target: fileInput,
+    //   pretty: true,
+    // });
+    this.uppy.on('thumbnail:generated', (file, preview) =>
+      console.log('thumbnail:generated', file, preview),
+    );
+    this.uppy.use(DropTarget, {
+      target: dropTarget,
+      onDragOver: (event) => {
+        console.log('onDragOver', event);
+      },
+      onDragLeave: (event) => {
+        console.log('onDragLeave', event);
+      },
+      onDrop: (event) => {
+        console.log('onDrop', event);
+      },
+    });
   }
 
   @action.bound
