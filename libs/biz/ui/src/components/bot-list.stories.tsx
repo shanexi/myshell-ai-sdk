@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BotListItem } from './bot-list';
 
 const meta: Meta<typeof BotListItem> = {
-  // @ts-expect-error 暂不处理 props 复杂的类型
   component: BotListItem,
 };
 export default meta;
@@ -19,6 +18,7 @@ export const Primary: StoryObj<typeof BotListItem> = {
       id: 1,
       name: 'Bot 1',
       description: 'Bot 1 description',
+      isOfficial: true,
     },
   },
 };

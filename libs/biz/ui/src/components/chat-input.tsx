@@ -1,29 +1,35 @@
-import { AlignJustify, CirclePlus } from 'lucide-react';
-import { ReactComponent as Audio } from './audio.svg';
-import { ReactComponent as Send } from './send.svg';
-import { ReactComponent as Clear } from './clear.svg';
-import { ReactComponent as Trash } from './trash.svg';
-import { MenuTrigger } from 'react-aria-components';
 import {
   Button,
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { useInjection } from '@myshell-run/ui-primitives';
-import { ChatModel } from './chat.model';
+import { cn, useInjection } from '@myshell-run/ui-primitives';
+import toArray from '@uppy/utils/lib/toArray';
+import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { MenuTrigger } from 'react-aria-components';
+import TextareaAutosize from 'react-textarea-autosize';
+import { ReactComponent as Audio } from './audio.svg';
+import { ChatModel, FileState } from './chat.model';
+import { ReactComponent as Clear } from './clear.svg';
+import { ReactComponent as Send } from './send.svg';
+import { ReactComponent as Trash } from './trash.svg';
 
-export const ChatInputMenu = () => {
+export const ChatInputMenu = (props: { className?: string }) => {
+  const { className } = props;
   return (
     <MenuTrigger>
       <Button
         variant="icon"
-        className="x-custom-react-aria-Button data-hovered:bg-transparent"
+        className={cn(
+          'x-custom-react-aria-Button z-10 data-hovered:bg-transparent',
+          className,
+        )}
         // 指定 id 否则 hydrate 会报错
         id={'chat-input-menu-btn'}
       >
-        <AlignJustify className="text-text-brand-light" />
+        <AlignJustify strokeWidth={1.5} className="text-text-brand-light" />
       </Button>
       <Menu>
         <MenuItem id="clear">
@@ -39,42 +45,162 @@ export const ChatInputMenu = () => {
   );
 };
 
-export function ChatInputRoot(props: { children?: React.ReactNode }) {
-  const { children } = props;
-  return (
-    <div className="mx-[8px] my-spacing-md">
-      <div className="input w-full rounded-4xl border-border-default-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-export const ChatInput = observer(() => {
+export const ChatTextarea = observer(() => {
   const model = useInjection(ChatModel);
+  // TextareaAutosize 有 bug，SSR 传 value 会报错（其实是 warning 但是 react 通过 error 抛出了）
+  // Use the `defaultValue` or `value` props instead of setting children on <textarea>.
+  // 先通过 two-pass rendering 规避
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
-    <ChatInputRoot>
-      {model.isShowInputMenu && <ChatInputMenu />}
-      <ChatInputText />
-      {model.notHaveInputText ? (
-        <>
-          <ChatInputAudio />
-          <ChatInputFile />
-        </>
-      ) : (
-        <ChatInputSend />
+    <TextareaAutosize
+      className={cn(
+        'text-sm-regular w-full rounded-t-4xl px-[16px] pt-spacing-md',
+        'resize-none outline-none',
+        'border-border-default-light bg-surface-container-special-subtle-light',
       )}
-    </ChatInputRoot>
+      maxRows={8}
+      placeholder="Write a message"
+      {...(isClient
+        ? {
+            value: model.inputText,
+            onChange: (e) => model.setInputText(e.target.value),
+          }
+        : {})}
+    />
   );
 });
 
-export function ChatInputFile() {
+export const ChatUploadArea = observer(() => {
+  const model = useInjection(ChatModel);
   return (
-    <div className="flex h-[24px] w-[24px] flex-none items-center justify-center">
-      <CirclePlus className="text-text-brand-light" size={24} />
+    <div
+      className={cn(
+        'flex flex-nowrap gap-spacing-md overflow-x-auto px-spacing-lg py-spacing-sm',
+        'bg-surface-container-special-subtle-light',
+      )}
+    >
+      {Array.from(model.uppyStateMap).map(([id, file]) =>
+        file.preview ? <Image key={id} fileState={file} id={id} /> : null,
+      )}
     </div>
   );
-}
+});
+
+export const Image: React.FC<{ fileState: FileState; id: string }> = ({
+  fileState,
+  id,
+}) => {
+  const model = useInjection(ChatModel);
+  return (
+    <div className="relative flex-none">
+      <img
+        className={cn('h-[64px] w-[64px] rounded-xl')}
+        alt=""
+        src={fileState.preview}
+      />
+      <div
+        onClick={() => model.removeFile(id)}
+        className={cn(
+          'absolute top-[-6px] right-[-6px]',
+          'h-[20px] w-[20px] rounded-full',
+          'bg-text-subtler-light',
+          'flex items-center justify-center',
+        )}
+      >
+        {fileState.uploadComplete ? (
+          <X color="#fff" size={16} />
+        ) : (
+          <span className="loading loading-xs text-white loading-spinner"></span>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export const ChatInput = observer(() => {
+  const model = useInjection(ChatModel);
+  const dropTargetRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (dropTargetRef.current) {
+      model.setupUppy(dropTargetRef.current);
+    }
+    return () => {
+      model.uppy.destroy();
+    };
+  }, []);
+  return (
+    <div ref={dropTargetRef} className="mx-[8px] my-spacing-md flex flex-col">
+      <ChatTextarea />
+      <ChatUploadArea />
+      <div
+        className={cn(
+          'flex items-center rounded-b-4xl pb-spacing-md',
+          'border-border-default-light bg-surface-container-special-subtle-light',
+        )}
+      >
+        <div className="relative flex min-h-[36px] flex-1 items-center">
+          <ChatInputMenu />
+          <ChatInputFile />
+        </div>
+        {model.notHaveInputText ? <ChatInputAudio /> : <ChatInputSend />}
+      </div>
+    </div>
+  );
+});
+
+export const ChatInputFile = () => {
+  const model = useInjection(ChatModel);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const hiddenInputStyle = {
+    width: '0.1px',
+    height: '0.1px',
+    opacity: 0,
+    overflow: 'hidden',
+    position: 'absolute',
+    zIndex: -1,
+  } satisfies React.CSSProperties;
+
+  return (
+    <div
+      className="flex h-[24px] w-[24px] flex-none items-center justify-center"
+      onClick={() => inputRef.current?.click()}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        name="files[]"
+        multiple={model.maxNumberOfFiles}
+        accept={model.accept}
+        onChange={(e) => {
+          model.uppy.log('[FileInput] Something selected through input...');
+          const files = toArray(e.target.files || []);
+
+          const descriptors = files.map((file) => ({
+            source: 'FileInput',
+            name: file.name,
+            type: file.type,
+            data: file,
+          }));
+
+          try {
+            model.uppy.addFiles(descriptors);
+          } catch (err) {
+            model.uppy.log(err);
+          }
+        }}
+        style={hiddenInputStyle}
+      />
+      <CirclePlus
+        strokeWidth={1.5}
+        className="text-text-brand-light"
+        size={24}
+      />
+    </div>
+  );
+};
 
 export function ChatInputAudio() {
   return (
@@ -91,28 +217,3 @@ export function ChatInputSend() {
     </div>
   );
 }
-
-export const ChatInputText = observer(() => {
-  const model = useInjection(ChatModel);
-  return (
-    <input
-      onFocus={(e) => {
-        model.setInputFocus(true);
-      }}
-      onBlur={(e) => {
-        model.setInputFocus(false);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          model.sendText();
-        }
-      }}
-      type="search"
-      className="grow [&::-webkit-search-cancel-button]:hidden"
-      placeholder="Write a message"
-      value={model.inputText}
-      onChange={(e) => model.setInputText(e.target.value)}
-    />
-  );
-});

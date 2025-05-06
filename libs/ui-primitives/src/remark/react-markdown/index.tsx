@@ -310,8 +310,8 @@ export function post(tree: Nodes, options: Readonly<Options>): ReactElement {
       let remove = allowedElements
         ? !allowedElements.includes(node.tagName)
         : disallowedElements
-        ? disallowedElements.includes(node.tagName)
-        : false;
+          ? disallowedElements.includes(node.tagName)
+          : false;
 
       if (!remove && allowElement && typeof index === 'number') {
         remove = !allowElement(node, index, parent);

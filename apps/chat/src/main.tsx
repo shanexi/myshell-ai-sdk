@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom/client';
 import {
   BotInfo,
   ChatFoot,
-  ChatInputRoot,
+  ChatInput,
   ChatMessageList,
   ChatRoot,
   ChatTopMenu,
@@ -24,7 +24,7 @@ root.render(
       </ChatTopRoot>
       <ChatMessageList className="flex flex-grow flex-col overflow-auto px-[8px]" />
       <ChatFoot>
-        <ChatInputRoot />
+        <ChatInput />
         <BotInfo
           bot={{
             id: 1,

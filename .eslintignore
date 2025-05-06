@@ -2,7 +2,9 @@ node_modules
 
 **/*.typegen.ts
 **/.wrangler/**/*
-/libs/archive/automata/src/lib
+libs/archive/automata/src/lib
 
-/libs/biz/ui/src/components/message-list/
+libs/biz/ui/src/components/message-list/
 libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/
+
+apps/about-chat/*.md

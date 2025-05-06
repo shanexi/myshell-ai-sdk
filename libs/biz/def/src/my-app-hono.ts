@@ -23,5 +23,6 @@ declare module 'hono' {
     resolve<T>(identifier: interfaces.ServiceIdentifier<T>): T;
     traceID: string;
     spanID: string;
+    span: unknown;
   }
 }

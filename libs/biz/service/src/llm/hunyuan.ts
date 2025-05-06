@@ -5,6 +5,7 @@ import { hunyuan } from 'tencentcloud-sdk-nodejs-hunyuan';
 import { UploadSvc } from '../lib/upload.svc';
 import { LLM, LLMMessage } from './llm';
 import { AsyncLocalStorage } from 'async_hooks';
+import { Tracing } from '../simple-tracer';
 const Client = hunyuan.v20230901.Client;
 
 // https://github.com/TencentCloud/tencentcloud-sdk-nodejs/blob/master/examples/hunyuan/v20230901/chat_completions.ts
@@ -40,10 +41,15 @@ export class Hunyuan implements LLM {
       },
     });
 
-    const res = await client.TextToImageLite({
-      Prompt: prompt,
-      Style: '201',
-      Resolution: '512:512',
+    const res = await Tracing.startSpan('hunyuan_TextToImageLite', (span) => {
+      span.setAttributes({
+        prompt: prompt,
+      });
+      return client.TextToImageLite({
+        Prompt: prompt,
+        Style: '201',
+        Resolution: '512:512',
+      });
     });
 
     if (res.ResultImage) {

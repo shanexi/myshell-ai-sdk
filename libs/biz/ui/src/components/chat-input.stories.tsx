@@ -1,8 +1,23 @@
+import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
+import { InversifyProvider } from '@myshell-run/ui-primitives';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChatInputRoot, ChatInputMenu } from './chat-input';
+import { Container } from 'inversify';
+import { uiBizModule } from '../ui-biz.module';
+import { ChatInput } from './chat-input';
 
-const meta: Meta<typeof ChatInputRoot> = {
-  component: ChatInputRoot,
+const container = new Container();
+container.load(messageItemPluginsModule);
+container.load(uiBizModule);
+
+const meta: Meta<typeof ChatInput> = {
+  component: ChatInput,
+  decorators: [
+    (Story) => (
+      <InversifyProvider container={container}>
+        <Story />
+      </InversifyProvider>
+    ),
+  ],
   parameters: {
     design: {
       type: 'figma',
@@ -12,8 +27,6 @@ const meta: Meta<typeof ChatInputRoot> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof ChatInputRoot> = {
-  args: {
-    children: <ChatInputMenu />,
-  },
+export const Primary: StoryObj<typeof ChatInput> = {
+  args: {},
 };

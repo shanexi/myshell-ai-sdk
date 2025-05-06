@@ -1,44 +1,5 @@
-import { AsyncLocalStorage } from 'node:async_hooks';
-import crypto from 'node:crypto';
-
-class Tracing {
-  static asyncLocalStorage = new AsyncLocalStorage();
-
-  static globalAttributes = new Map();
-
-  static tname = '';
-
-  static exporter = (span) => {
-    //
-  };
-
-  static getCurrentSpan = () => Tracing.asyncLocalStorage.getStore().span;
-
-  static getContext = () => Tracing.asyncLocalStorage.getStore();
-
-  static async setContext(ctx, cb, ...args) {
-    await Tracing.asyncLocalStorage.run(ctx, cb, ...args);
-  }
-
-  static async startSpan(name, lambda) {
-    const ctx = Tracing.asyncLocalStorage.getStore();
-    const span = new Span(
-      name,
-      ctx,
-      new Map([['service.name', Tracing.tname]]),
-    );
-    await Tracing.setContext(span.getContext(), lambda, span);
-    span.end();
-    try {
-      Tracing.exporter(span);
-    } catch (e) {
-      //
-    }
-  }
-}
-
-const EMPTY_CONTEXT = {};
-Tracing.asyncLocalStorage.enterWith(EMPTY_CONTEXT);
+import crypto from 'crypto';
+import { Tracing, EMPTY_CONTEXT } from '../simple-tracer';
 
 class Span {
   constructor(name, context = {}, attributes = new Map()) {
@@ -56,7 +17,7 @@ class Span {
   }
 
   setAttributes(keyValues) {
-    for (const [key, value] of Object.entries(keyValues)) {
+    for (let [key, value] of Object.entries(keyValues)) {
       this.attributes.set(key, value);
     }
   }
@@ -66,9 +27,9 @@ class Span {
   }
 }
 
-const getTraceParent = (ctx) => `00-${ctx.traceID}-${ctx.spanID}-01`;
+let getTraceParent = (ctx) => `00-${ctx.traceID}-${ctx.spanID}-01`;
 
-const parseTraceParent = (header) => ({
+let parseTraceParent = (header) => ({
   traceID: header.split('-')[1],
   spanID: header.split('-')[2],
 });
@@ -95,30 +56,30 @@ async function honoMiddleware(c, next) {
   });
 }
 
-function patchFetch(originalFetch) {
-  return async function patchedFetch(resource, options = {}) {
-    const ctx = Tracing.getContext();
+// function patchFetch(originalFetch) {
+//   return async function patchedFetch(resource, options = {}) {
+//     let ctx = Tracing.getContext();
 
-    if (!options.headers) {
-      options.headers = {};
-    }
-    options.headers['traceparent'] = getTraceParent(ctx);
+//     if (!options.headers) {
+//       options.headers = {};
+//     }
+//     options.headers["traceparent"] = getTraceParent(ctx);
 
-    let resp;
-    await Tracing.startSpan('fetch', async (span) => {
-      span.setAttributes({ 'http.url': resource });
-      resp = await originalFetch(resource, options);
-      span.setAttributes({ 'http.response.status_code': resp.status });
-    });
-    return resp;
-  };
-}
+//     let resp;
+//     await Tracing.startSpan("fetch", async (span) => {
+//       span.setAttributes({ "http.url": resource });
+//       resp = await originalFetch(resource, options);
+//       span.setAttributes({ "http.response.status_code": resp.status });
+//     });
+//     return resp;
+//   };
+// }
 
 function toAnyValue(val) {
-  if (val instanceof Uint8Array) return { bytesValue: value };
+  if (val instanceof Uint8Array) return { bytesValue: val };
   if (Array.isArray(val))
     return { arrayValue: { values: val.map(toAnyValue) } };
-  const t = typeof val;
+  let t = typeof val;
   if (t === 'string') return { stringValue: val };
   if (t === 'number') return { doubleValue: val };
   if (t === 'boolean') return { boolValue: val };
@@ -139,14 +100,12 @@ function toAttributes(attributes) {
   return Object.keys(attributes).map((key) => toKeyValue(key, attributes[key]));
 }
 
-function spanToOTLP(span) {
+function spanToOTLP(span, globalAttributes) {
   return {
     resourceSpans: [
       {
         resource: {
-          attributes: toAttributes(
-            Object.fromEntries(Tracing.globalAttributes),
-          ),
+          attributes: toAttributes(Object.fromEntries(globalAttributes)),
         },
         scopeSpans: [
           {
@@ -175,7 +134,7 @@ function spanToOTLP(span) {
   };
 }
 
-function otlpExporter(url, headers) {
+function otlpExporter(url, headers, globalAttributes) {
   return function (span) {
     fetch(url, {
       method: 'POST',
@@ -183,17 +142,9 @@ function otlpExporter(url, headers) {
         ...headers,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(spanToOTLP(span)),
+      body: JSON.stringify(spanToOTLP(span, globalAttributes)),
     });
   };
 }
 
-export {
-  Tracing,
-  Span,
-  honoMiddleware,
-  patchFetch,
-  otlpExporter,
-  getTraceParent,
-  parseTraceParent,
-};
+export { getTraceParent, honoMiddleware, otlpExporter, Span };

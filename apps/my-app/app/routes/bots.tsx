@@ -1,29 +1,20 @@
-import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
 import { DbBot } from '@myshell-run/biz-def';
+import { Tracing } from '@myshell-run/biz-service';
+import { BotListHeader, BotListRoot } from '@myshell-run/biz-ui';
 import { createRoute } from '../create-route';
 import { BotListIsland, BotListSearchIsland } from '../islands/bot-list';
 import { requireAuth } from '../middlewares/require-auth';
-import { Tracing } from '@myshell-run/biz-service';
 
 export default createRoute(requireAuth, async (c) => {
   const db = c.get('db');
 
-  // TODO: 后续优化下 type infer 先验证 otel
-  let dbBots: {
-    id: number;
-    name: string;
-    description: string | undefined;
-    avatar: string | undefined;
-    isOfficial: boolean;
-  }[] = [];
-
-  await Tracing.startSpan('db_bot_select', async () => {
-    dbBots = await db
+  const dbBots = await Tracing.startSpan('db_bot_select', () =>
+    db
       .selectFrom('bot')
       .select(['id', 'avatar', 'name', 'isOfficial', 'description'])
       .limit(30)
-      .execute();
-  });
+      .execute(),
+  );
 
   const bots: DbBot[] = dbBots.map((bot: DbBot) => ({
     ...bot,
@@ -36,15 +27,12 @@ export default createRoute(requireAuth, async (c) => {
     throw new Error('Unauthorized');
   }
   const key = `AVATAR_${auth.userId}`;
-  let avatar: string | null = null;
-  await Tracing.startSpan('kv_get_avatar', async () => {
-    avatar = await c.env.MY_APP.get(key);
-  });
+  const avatar = await Tracing.startSpan('kv_get_avatar', () =>
+    c.env.MY_APP.get(key),
+  );
 
-  let res;
-
-  await Tracing.startSpan('ssr_render', async () => {
-    res = c.render(
+  return Tracing.startSpan('ssr_render', async () =>
+    c.render(
       <BotListRoot>
         <div className="flex-none">
           <BotListHeader avatar={avatar} />
@@ -56,8 +44,6 @@ export default createRoute(requireAuth, async (c) => {
           className="flex-grow overflow-auto"
         />
       </BotListRoot>,
-    );
-  });
-
-  return res;
+    ),
+  );
 });

@@ -66,14 +66,14 @@ export function ListBoxItem(props: ListBoxItemProps) {
 }
 
 export const dropdownItemStyles = tv({
-  base: 'group flex items-center gap-4 cursor-default select-none py-2 pl-3 pr-1 rounded-lg outline outline-0 text-sm forced-color-adjust-none',
+  base: 'group flex items-center gap-4 cursor-default select-none py-2 pl-3 pr-1 rounded-lg outline outline-0 text-sm forced-color-adjust-none transition-colors duration-300',
   variants: {
     isDisabled: {
       false: 'text-gray-900 dark:text-zinc-100',
       true: 'text-gray-300 dark:text-zinc-600 forced-colors:text-[GrayText]',
     },
     isFocused: {
-      true: 'bg-blue-600 text-white forced-colors:bg-[Highlight] forced-colors:text-[HighlightText]',
+      true: 'bg-blue-600 text-white forced-colors:bg-[Highlight] forced-colors:text-[HighlightText] svg-fill-white',
     },
   },
   compoundVariants: [

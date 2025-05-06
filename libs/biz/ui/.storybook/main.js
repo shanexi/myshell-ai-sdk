@@ -76,6 +76,8 @@ function makeConfig(useRspack = true) {
         ],
       });
 
+      // https://github.com/inversify/InversifyJS/issues/1408#issuecomment-1030090826
+      config.ignoreWarnings = [/Failed to parse source map/];
       return config;
     },
   };

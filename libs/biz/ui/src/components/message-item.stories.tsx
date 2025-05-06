@@ -10,7 +10,6 @@ container.load(messageItemPluginsModule);
 container.load(uiBizModule);
 
 const meta: Meta<typeof MessageItem> = {
-  // @ts-expect-error 暂不处理 props 复杂的类型
   component: MessageItem,
   decorators: [
     (Story) => (

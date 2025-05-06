@@ -5,7 +5,7 @@ import { Container } from 'inversify';
 import { uiBizModule } from '../ui-biz.module';
 import { BotInfo } from './bot-info';
 import { ChatFoot, ChatRoot } from './chat';
-import { ChatInputRoot } from './chat-input';
+import { ChatInputRoot } from './archive/chat-input';
 import { ChatMessageList } from './chat-message-list';
 import { ChatTopMenu, ChatTopRoot } from './chat-top';
 
