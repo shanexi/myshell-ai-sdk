@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myshell-run/agent-ui": ["libs/agent/ui/src/index.ts"],
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
       "@myshell-run/archive-chat": ["libs/archive/chat/src/index.ts"],
       "@myshell-run/biz-ac": ["libs/biz/ac/src/index.ts"],
