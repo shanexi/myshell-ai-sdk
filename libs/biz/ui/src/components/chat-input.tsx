@@ -4,7 +4,6 @@ import {
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
 import { cn, useInjection } from '@myshell-run/ui-primitives';
-import type { Uppy } from '@uppy/core';
 import toArray from '@uppy/utils/lib/toArray';
 import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
@@ -12,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { MenuTrigger } from 'react-aria-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import { ReactComponent as Audio } from './audio.svg';
-import { ChatModel } from './chat.model';
+import { ChatModel, FileState } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
@@ -75,25 +74,28 @@ export const ChatTextarea = observer(() => {
 });
 
 export const ChatUploadArea = observer(() => {
+  const model = useInjection(ChatModel);
   return (
     <div
       className={cn(
-        'flex px-spacing-lg py-spacing-sm',
+        'flex flex-nowrap overflow-x-auto gap-spacing-md px-spacing-lg py-spacing-sm',
         'bg-surface-container-special-subtle-light',
       )}
     >
-      <Image />
+      {Array.from(model.uppyStateMap).map(([id, file]) =>
+        file.preview ? <Image key={id} fileState={file} /> : null,
+      )}
     </div>
   );
 });
 
-export const Image = () => {
+export const Image: React.FC<{ fileState: FileState }> = ({ fileState }) => {
   return (
-    <div className="relative">
+    <div className="relative flex-none">
       <img
         className={cn('h-[64px] w-[64px] rounded-xl')}
         alt=""
-        src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+        src={fileState.preview}
       />
       <div
         className={cn(
@@ -103,7 +105,11 @@ export const Image = () => {
           'flex items-center justify-center',
         )}
       >
-        <X color="#fff" size={16} />
+        {fileState.uploadComplete ? (
+          <X color="#fff" size={16} />
+        ) : (
+          <span className="loading loading-xs text-white loading-spinner"></span>
+        )}
       </div>
     </div>
   );
@@ -117,7 +123,7 @@ export const ChatInput = observer(() => {
       model.setupUppy(dropTargetRef.current);
     }
     return () => {
-      model.uppy?.destroy();
+      model.uppy.destroy();
     };
   }, []);
   return (
@@ -126,7 +132,7 @@ export const ChatInput = observer(() => {
       <ChatUploadArea />
       <div
         className={cn(
-          'flex items-center rounded-b-4xl px-spacing-lg pb-spacing-md',
+          'flex items-center rounded-b-4xl pb-spacing-md',
           'border-border-default-light bg-surface-container-special-subtle-light',
         )}
       >
@@ -152,8 +158,6 @@ export const ChatInputFile = () => {
     zIndex: -1,
   } satisfies React.CSSProperties;
 
-  const { restrictions } = model.uppy?.opts ?? {};
-
   return (
     <div
       className="flex h-[24px] w-[24px] flex-none items-center justify-center"
@@ -163,10 +167,10 @@ export const ChatInputFile = () => {
         ref={inputRef}
         type="file"
         name="files[]"
-        multiple={restrictions?.maxNumberOfFiles !== 1}
-        accept={restrictions?.allowedFileTypes?.join(', ')}
+        multiple={model.maxNumberOfFiles}
+        accept={model.accept}
         onChange={(e) => {
-          model.uppy?.log('[FileInput] Something selected through input...');
+          model.uppy.log('[FileInput] Something selected through input...');
           const files = toArray(e.target.files || []);
 
           const descriptors = files.map((file) => ({
@@ -177,9 +181,9 @@ export const ChatInputFile = () => {
           }));
 
           try {
-            model.uppy?.addFiles(descriptors);
+            model.uppy.addFiles(descriptors);
           } catch (err) {
-            model.uppy?.log(err);
+            model.uppy.log(err);
           }
         }}
         style={hiddenInputStyle}

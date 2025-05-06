@@ -19,7 +19,13 @@ import {
   runInAction,
 } from 'mobx';
 import { RefObject } from 'react';
+
 const UPLOAD_ENDPOINT = 'http://localhost:3333/api/upload';
+
+export type FileState = {
+  preview: string;
+  uploadComplete: boolean;
+};
 
 @injectable()
 export class ChatModel {
@@ -30,7 +36,23 @@ export class ChatModel {
   @observable inputText = '';
   @observable isInputFocus = false;
   @observable isShowUploadArea = false;
-  uppy?: Uppy;
+  #uppy?: Uppy;
+  @observable uppyStateMap = new Map<string, FileState>();
+  get uppy() {
+    if (!this.#uppy) {
+      throw new Error('uppy is not initialized, check setupUppy is called');
+    }
+    return this.#uppy;
+  }
+
+  get maxNumberOfFiles() {
+    return this.#uppy?.opts.restrictions?.maxNumberOfFiles !== 1;
+  }
+
+  get accept() {
+    return this.#uppy?.opts.restrictions?.allowedFileTypes?.join(', ');
+  }
+
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
@@ -62,7 +84,7 @@ export class ChatModel {
   }
 
   setupUppy(dropTarget: HTMLDivElement) {
-    this.uppy = new Uppy({
+    this.#uppy = new Uppy({
       autoProceed: true,
       debug: true,
     })
@@ -70,14 +92,33 @@ export class ChatModel {
       .use(XHR, {
         endpoint: UPLOAD_ENDPOINT,
       });
+    // TODO: UI Plugin extends PReact 会报错 先不用 plugin 方式，先裸写
     // uppy.use(FileInput, {
     //   target: fileInput,
     //   pretty: true,
     // });
-    this.uppy.on('thumbnail:generated', (file, preview) =>
-      console.log('thumbnail:generated', file, preview),
-    );
-    this.uppy.use(DropTarget, {
+    this.#uppy.on('thumbnail:generated', (file, preview) => {
+      // console.log('thumbnail:generated', file, preview);
+      this.uppyStateMap.set(file.id, {
+        preview,
+        uploadComplete: false,
+      });
+    });
+    this.#uppy.on('progress', (progress) => {
+      // console.log('progress', progress);
+      Object.keys(this.#uppy?.getState().files || {}).forEach((fileId) => {
+        const file = this.#uppy?.getState().files[fileId];
+        const prev = this.uppyStateMap.get(fileId) || {
+          preview: file?.preview || '',
+          uploadComplete: false,
+        };
+        this.uppyStateMap.set(fileId, {
+          ...prev,
+          uploadComplete: file?.progress.uploadComplete || false,
+        });
+      });
+    });
+    this.#uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
         console.log('onDragOver', event);
