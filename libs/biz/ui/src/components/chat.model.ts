@@ -38,6 +38,7 @@ export class ChatModel {
   @observable isShowUploadArea = false;
   #uppy?: Uppy;
   @observable uppyStateMap = new Map<string, FileState>();
+  @observable isDragging = false;
   get uppy() {
     if (!this.#uppy) {
       throw new Error('uppy is not initialized, check setupUppy is called');
@@ -121,13 +122,15 @@ export class ChatModel {
     this.#uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
-        console.log('onDragOver', event);
+        // TODO 做样式
+        this.isDragging = true;
       },
       onDragLeave: (event) => {
-        console.log('onDragLeave', event);
+        this.isDragging = false;
       },
       onDrop: (event) => {
-        console.log('onDrop', event);
+        // console.log('onDrop', event);
+        this.isDragging = false;
       },
     });
   }
