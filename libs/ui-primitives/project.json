@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ui-primitives/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:design-system-v1"],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
