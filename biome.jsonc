@@ -12,7 +12,8 @@
       "libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*",
       "apps/simple-server/public/static/style.css",
       "apps/my-app/app/style.css",
-      "apps/my-app/dist"
+      "apps/my-app/dist",
+      "libs/agent/ui/src/styles.css"
     ]
   },
   "javascript": {

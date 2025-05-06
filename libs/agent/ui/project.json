@@ -47,6 +47,13 @@
         "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
       }
     },
+    "build-css": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/agent/ui",
+        "command": "../../../node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/styles.css -o output.css"
+      }
+    },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputDir}"],

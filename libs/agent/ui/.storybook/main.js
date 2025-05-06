@@ -13,7 +13,7 @@ const cssCfg = {
           config: path.resolve(
             __dirname,
             // '../../../tailwind-cfg/postcss.config.js',
-            './postcss.config.js',
+            '../postcss.config.js',
           ),
         },
       },

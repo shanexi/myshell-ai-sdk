@@ -1,4 +1,4 @@
-import './styles.css';
+import '../src/styles.css';
 import './preview.css';
 
 import { configure } from 'mobx';

@@ -1,0 +1,6 @@
+@import 'tailwindcss' source(none);
+@source './components';
+@theme {
+  --color-surface-primary-default-light: var(--blue-30);
+  --blue-30: #3e5cfa;
+}
