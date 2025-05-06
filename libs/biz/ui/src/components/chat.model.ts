@@ -132,6 +132,11 @@ export class ChatModel {
     });
   }
 
+  removeFile(id: string) {
+    this.uppy?.removeFile(id);
+    this.uppyStateMap.delete(id);
+  }
+
   @action.bound
   setInputFocus(focus: boolean) {
     this.isInputFocus = focus;

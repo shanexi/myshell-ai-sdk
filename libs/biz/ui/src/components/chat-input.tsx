@@ -78,18 +78,22 @@ export const ChatUploadArea = observer(() => {
   return (
     <div
       className={cn(
-        'flex flex-nowrap overflow-x-auto gap-spacing-md px-spacing-lg py-spacing-sm',
+        'flex flex-nowrap gap-spacing-md overflow-x-auto px-spacing-lg py-spacing-sm',
         'bg-surface-container-special-subtle-light',
       )}
     >
       {Array.from(model.uppyStateMap).map(([id, file]) =>
-        file.preview ? <Image key={id} fileState={file} /> : null,
+        file.preview ? <Image key={id} fileState={file} id={id} /> : null,
       )}
     </div>
   );
 });
 
-export const Image: React.FC<{ fileState: FileState }> = ({ fileState }) => {
+export const Image: React.FC<{ fileState: FileState; id: string }> = ({
+  fileState,
+  id,
+}) => {
+  const model = useInjection(ChatModel);
   return (
     <div className="relative flex-none">
       <img
@@ -98,6 +102,7 @@ export const Image: React.FC<{ fileState: FileState }> = ({ fileState }) => {
         src={fileState.preview}
       />
       <div
+        onClick={() => model.removeFile(id)}
         className={cn(
           'absolute top-[-6px] right-[-6px]',
           'h-[20px] w-[20px] rounded-full',
