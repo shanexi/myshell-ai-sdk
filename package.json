@@ -91,8 +91,8 @@
     "@svgr/webpack": "^6.1.2",
     "@swc/core": "^1.2.173",
     "@swc/jest": "0.2.20",
-    "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/cli": "^4.1.5",
+    "@tailwindcss/postcss": "^4.1.5",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.5",
     "@testing-library/react": "14.0.0",
@@ -294,5 +294,8 @@
       "honox@0.1.38": "patches/honox@0.1.38.patch",
       "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
     }
+  },
+  "devDependencies": {
+    "glob": "^11.0.2"
   }
 }
