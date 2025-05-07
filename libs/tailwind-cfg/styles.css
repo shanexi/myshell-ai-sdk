@@ -161,4 +161,4 @@
     var(--color-shadows-surface-default-light, rgba(0, 0, 0, 0.05));
 }
 
-@import './design-system-v1.css';
+@import "./design-system-v1.css";

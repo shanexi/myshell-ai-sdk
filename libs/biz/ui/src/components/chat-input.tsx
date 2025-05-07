@@ -29,7 +29,7 @@ export const ChatInputMenu = (props: { className?: string }) => {
         // 指定 id 否则 hydrate 会报错
         id={'chat-input-menu-btn'}
       >
-        <AlignJustify strokeWidth={1.5} className="text-text-brand-light" />
+        <AlignJustify strokeWidth={1.5} className="text-text-brand-light-v1" />
       </Button>
       <Menu>
         <MenuItem id="clear">
@@ -57,9 +57,9 @@ export const ChatTextarea = observer(() => {
   return (
     <TextareaAutosize
       className={cn(
-        'text-sm-regular w-full rounded-t-4xl px-[16px] pt-spacing-md',
+        'text-sm-regular w-full rounded-t-4xl-v1 px-[16px] pt-spacing-md-v1',
         'resize-none outline-none',
-        'border-border-default-light bg-surface-container-special-subtle-light',
+        'border-border-default-light-v1 bg-surface-container-special-subtle-light-v1',
       )}
       maxRows={8}
       placeholder="Write a message"
@@ -78,8 +78,8 @@ export const ChatUploadArea = observer(() => {
   return (
     <div
       className={cn(
-        'flex flex-nowrap gap-spacing-md overflow-x-auto px-spacing-lg py-spacing-sm',
-        'bg-surface-container-special-subtle-light',
+        'flex flex-nowrap gap-spacing-md-v1 overflow-x-auto px-spacing-lg-v1 py-spacing-sm-v1',
+        'bg-surface-container-special-subtle-light-v1',
       )}
     >
       {Array.from(model.uppyStateMap).map(([id, file]) =>
@@ -97,7 +97,7 @@ export const Image: React.FC<{ fileState: FileState; id: string }> = ({
   return (
     <div className="relative flex-none">
       <img
-        className={cn('h-[64px] w-[64px] rounded-xl')}
+        className={cn('h-[64px] w-[64px] rounded-xl-v1')}
         alt=""
         src={fileState.preview}
       />
@@ -105,8 +105,8 @@ export const Image: React.FC<{ fileState: FileState; id: string }> = ({
         onClick={() => model.removeFile(id)}
         className={cn(
           'absolute top-[-6px] right-[-6px]',
-          'h-[20px] w-[20px] rounded-full',
-          'bg-text-subtler-light',
+          'h-[20px] w-[20px] rounded-full-v1',
+          'bg-text-subtler-light-v1',
           'flex items-center justify-center',
         )}
       >
@@ -132,13 +132,16 @@ export const ChatInput = observer(() => {
     };
   }, []);
   return (
-    <div ref={dropTargetRef} className="mx-[8px] my-spacing-md flex flex-col">
+    <div
+      ref={dropTargetRef}
+      className="mx-[8px] my-spacing-md-v1 flex flex-col"
+    >
       <ChatTextarea />
       <ChatUploadArea />
       <div
         className={cn(
-          'flex items-center rounded-b-4xl pb-spacing-md',
-          'border-border-default-light bg-surface-container-special-subtle-light',
+          'flex items-center rounded-b-4xl-v1 pb-spacing-md-v1',
+          'border-border-default-light-v1 bg-surface-container-special-subtle-light-v1',
         )}
       >
         <div className="relative flex min-h-[36px] flex-1 items-center">
@@ -195,7 +198,7 @@ export const ChatInputFile = () => {
       />
       <CirclePlus
         strokeWidth={1.5}
-        className="text-text-brand-light"
+        className="text-text-brand-light-v1"
         size={24}
       />
     </div>
@@ -212,7 +215,7 @@ export function ChatInputAudio() {
 
 export function ChatInputSend() {
   return (
-    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light">
+    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full-v1 bg-icon-brand-light-v1">
       <Send />
     </div>
   );

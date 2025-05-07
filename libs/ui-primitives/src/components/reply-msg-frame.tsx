@@ -8,7 +8,7 @@ export const ReplyMsgFrame = (props: {
     <div className="flex pb-8 pl-[8px]">
       {avatar}
       <div className="w-[80%]">
-        <div className="rounded-tl-[2px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[16px] bg-surface-container-default-light p-4 text-text-default-light">
+        <div className="rounded-tl-[2px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[16px] bg-surface-container-default-light-v1 p-4 text-text-default-light-v1">
           {children}
         </div>
         {button && <div className="mt-[8px]">{button}</div>}

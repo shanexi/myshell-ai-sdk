@@ -55,7 +55,7 @@ export const ChatTextArea = observer(() => {
           {/* <ChatInputHandlebar /> */}
           <BgClz>
             <TextareaAutosize
-              className="text-sm-regular w-full resize-none px-spacing-lg outline-none"
+              className="text-sm-regular w-full resize-none px-spacing-lg-v1 outline-none"
               ref={textareaRef}
               maxRows={8}
               value={model.inputText}
@@ -78,13 +78,13 @@ export const ChatInputHandlebar: React.FC<{
     <BgClz>
       <div
         className={cn(
-          'flex justify-center rounded-tl-4xl rounded-tr-4xl pt-spacing-md pb-spacing-lg',
+          'flex justify-center rounded-tl-4xl-v1 rounded-tr-4xl-v1 pt-spacing-md-v1 pb-spacing-lg-v1',
           'absolute top-0 -translate-y-full', // 永远在上方 像个屋顶
           'right-0 left-0 mx-2', // 针对 absolute 的元素，比 w-full 更好，w-full 会需要配合 box-border 总是搞不出来
           className,
         )}
       >
-        <div className="w-[44px] rounded-full border-2 border-border-hovered-light"></div>
+        <div className="w-[44px] rounded-full-v1 border-2 border-border-hovered-light-v1"></div>
       </div>
     </BgClz>
   );

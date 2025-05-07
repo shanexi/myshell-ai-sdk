@@ -10,8 +10,8 @@ import {
 export const ChatTopMenu = () => {
   return (
     <MenuTrigger>
-      <Button variant="icon" className="rounded-full p-spacing-xs">
-        <Ellipsis className="text-text-brand-light" />
+      <Button variant="icon" className="rounded-full-v1 p-spacing-xs-v1">
+        <Ellipsis className="text-text-brand-light-v1" />
       </Button>
       <Menu>
         <MenuItem id="new">
@@ -30,9 +30,9 @@ export const ChatTopMenu = () => {
 export function ChatTopRoot(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    <div className="flex items-center justify-between px-spacing-md py-[10px]">
+    <div className="flex items-center justify-between px-spacing-md-v1 py-[10px]">
       <a href="/bots">
-        <ArrowLeft className="text-text-brand-light" />
+        <ArrowLeft className="text-text-brand-light-v1" />
       </a>
       <ChatTopTab />
       {children}

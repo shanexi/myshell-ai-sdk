@@ -4,7 +4,7 @@ export function ChatTopTab() {
   return (
     <div
       role="tablist"
-      className="tabs w-fit tabs-box rounded-full border border-border-default-light bg-surface-container-default-light"
+      className="tabs w-fit tabs-box rounded-full-v1 border border-border-default-light-v1 bg-surface-container-default-light-v1"
     >
       <Tab label="Chats" active />
       <Tab label="Gallery" active={false} />
@@ -20,7 +20,7 @@ export function Tab(props: { label: string; active: boolean }) {
       className={cn(
         'text-text-subtler tab !rounded-full px-[12px] py-[10px]',
         active &&
-          'tab-active text-surface-primary-default-light !shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]',
+          'tab-active text-surface-primary-default-light-v1 !shadow-[0px_1px_2px_0px_rgba(0,0,0,0.10)]',
       )}
     >
       <div className="text-sm-medium w-[74px]">{label}</div>

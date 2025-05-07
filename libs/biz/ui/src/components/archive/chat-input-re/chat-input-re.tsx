@@ -21,7 +21,7 @@ export const ChatInput = observer<{ placeholder?: string }>(
 // slot 在 hono ssr 会卡死 先别使用
 // 本身也不好用
 export const BgClz: React.FC<PropsWithChildren> = ({ children }) => (
-  <Slot.Root className="border-border-default-light bg-surface-container-special-subtle-light">
+  <Slot.Root className="border-border-default-light-v1 bg-surface-container-special-subtle-light-v1">
     <Slot.Slottable>{children}</Slot.Slottable>
   </Slot.Root>
 );
@@ -45,12 +45,12 @@ export const ChatInputRoot = observer<PropsWithChildren>(({ children }) => {
             'relative z-10 mx-[8px]',
             'transition-border-radius duration-400 ease-in-out',
             {
-              'rounded-4xl': !model.isInputFocus,
-              'rounded-br-4xl rounded-bl-4xl': model.isInputFocus,
+              'rounded-4xl-v1': !model.isInputFocus,
+              'rounded-br-4xl-v1 rounded-bl-4xl-v1': model.isInputFocus,
             },
           )}
         >
-          <div className="p-spacing-lg">{children}</div>
+          <div className="p-spacing-lg-v1">{children}</div>
         </div>
       </BgClz>
       <ChatUploadArea />

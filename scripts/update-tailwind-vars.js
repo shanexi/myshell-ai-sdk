@@ -46,7 +46,19 @@ const CSS_VAR_CLASS_MAPPINGS = {
   '--radius-': 'rounded',
 
   // 颜色相关
-  '--color-': ['bg', 'text', 'border', 'fill', 'stroke', 'accent', 'caret', 'outline', 'ring', 'shadow', 'decoration'],
+  '--color-': [
+    'bg',
+    'text',
+    'border',
+    'fill',
+    'stroke',
+    'accent',
+    'caret',
+    'outline',
+    'ring',
+    'shadow',
+    'decoration',
+  ],
 
   // 字体相关
   '--font-': 'font',
@@ -56,15 +68,42 @@ const CSS_VAR_CLASS_MAPPINGS = {
   '--leading-': 'leading', // 行高
 
   // 间距与尺寸 - 细分为独立的边距映射更容易精确处理
-  '--spacing-': ['gap', 'space', 'w', 'h', 'min-w', 'min-h', 'max-w', 'max-h',
+  '--spacing-': [
+    'gap',
+    'space',
+    'w',
+    'h',
+    'min-w',
+    'min-h',
+    'max-w',
+    'max-h',
     // 边距相关
-    'm', 'mt', 'mr', 'mb', 'ml', 'mx', 'my',
+    'm',
+    'mt',
+    'mr',
+    'mb',
+    'ml',
+    'mx',
+    'my',
     // 内边距相关
-    'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py',
+    'p',
+    'pt',
+    'pr',
+    'pb',
+    'pl',
+    'px',
+    'py',
     // 定位相关
-    'top', 'right', 'bottom', 'left', 'inset', 'inset-x', 'inset-y',
+    'top',
+    'right',
+    'bottom',
+    'left',
+    'inset',
+    'inset-x',
+    'inset-y',
     // 间隙相关
-    'gap-x', 'gap-y'
+    'gap-x',
+    'gap-y',
   ],
 
   // 阴影相关
@@ -79,7 +118,7 @@ const CSS_VAR_CLASS_MAPPINGS = {
   // 其他
   '--aspect-': 'aspect',
   '--animate-': 'animate',
-  '--ease-': 'ease'
+  '--ease-': 'ease',
 };
 
 // Default configuration
@@ -88,13 +127,13 @@ let CONFIG = {
   suffix: '-v1',
   skipBackup: true,
   cssFilePath: path.resolve(__dirname, '../libs/tailwind-cfg/styles.css'),
-  verbose: false
+  verbose: false,
 };
 
 // Variables to track statistics
 let STATS = {
   updatedDefinitions: 0,
-  updatedReferences: 0
+  updatedReferences: 0,
 };
 
 // Function to add suffix to CSS variables in Tailwind theme config
@@ -105,25 +144,27 @@ function updateCssVars(filePath) {
   // Extract all CSS variable names before we modify them
   const allVarsRegex = /(--[a-zA-Z0-9-]+)(?=\s*:)/g;
   const allMatches = [...content.matchAll(allVarsRegex)];
-  const allVarNames = allMatches.map(match => match[0]);
+  const allVarNames = allMatches.map((match) => match[0]);
 
   // Create a map of original var names to suffixed var names
   const varMap = {};
-  allVarNames.forEach(name => {
+  allVarNames.forEach((name) => {
     varMap[name] = `${name}${CONFIG.suffix}`;
   });
 
   // Extract original radius variables for the class name updates
   const radiusVarRegex = /--radius-([a-zA-Z0-9-]+)(?=\s*:)/g;
   const radiusMatches = [...content.matchAll(radiusVarRegex)];
-  const radiusNames = radiusMatches.map(match => match[1]);
+  const radiusNames = radiusMatches.map((match) => match[1]);
 
-  console.log(`Found ${allVarNames.length} CSS variables (${radiusNames.length} radius variables)`);
+  console.log(
+    `Found ${allVarNames.length} CSS variables (${radiusNames.length} radius variables)`,
+  );
 
   if (CONFIG.verbose) {
     console.log('First 10 variables that will be updated:');
     const sampleVars = allVarNames.slice(0, 10);
-    sampleVars.forEach(v => console.log(`  ${v} -> ${varMap[v]}`));
+    sampleVars.forEach((v) => console.log(`  ${v} -> ${varMap[v]}`));
     if (allVarNames.length > 10) {
       console.log(`  ... and ${allVarNames.length - 10} more`);
     }
@@ -173,7 +214,9 @@ function updateCssVars(filePath) {
   STATS.updatedDefinitions = varDefsUpdated;
   STATS.updatedReferences = valueRefsUpdated;
 
-  console.log(`Updated ${varDefsUpdated} CSS variable definitions and ${valueRefsUpdated} variable references`);
+  console.log(
+    `Updated ${varDefsUpdated} CSS variable definitions and ${valueRefsUpdated} variable references`,
+  );
 
   if (!CONFIG.dryRun) {
     fs.writeFileSync(filePath, updatedContent, 'utf8');
@@ -187,12 +230,17 @@ function updateCssVars(filePath) {
     if (CONFIG.verbose) {
       console.log('Sample of changes:');
       const sampleChanges = changedLines.slice(0, 5);
-      sampleChanges.forEach(line => console.log(`  ${line}`));
+      sampleChanges.forEach((line) => console.log(`  ${line}`));
       if (changedLines.length > 5) {
         console.log(`  ... and ${changedLines.length - 5} more lines`);
       }
     } else {
-      console.log('Changes:', changedLines.length > 5 ? `${changedLines.length} lines would change` : changedLines.join('\n'));
+      console.log(
+        'Changes:',
+        changedLines.length > 5
+          ? `${changedLines.length} lines would change`
+          : changedLines.join('\n'),
+      );
     }
   }
 
@@ -234,46 +282,70 @@ function processFile(file, updatePatterns) {
     if (!varNames) continue;
 
     // 基本类名匹配，如 bg-red-500, m-4
-    const classRegex = new RegExp(`(\\s|"|'|{|\\()${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\)|-)`, 'g');
+    const classRegex = new RegExp(
+      `(\\s|"|'|{|\\()${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\)|-)`,
+      'g',
+    );
 
-    updatedContent = updatedContent.replace(classRegex, (match, prefix, suffix) => {
-      // 检查是否已经有后缀，避免重复添加
-      if (suffix.endsWith(CONFIG.suffix)) return match;
-      fileClassesModified++;
-      return `${prefix}${classPrefix}-${suffix}${CONFIG.suffix}`;
-    });
+    updatedContent = updatedContent.replace(
+      classRegex,
+      (match, prefix, suffix) => {
+        // 检查是否已经有后缀，避免重复添加
+        if (suffix.endsWith(CONFIG.suffix)) return match;
+        fileClassesModified++;
+        return `${prefix}${classPrefix}-${suffix}${CONFIG.suffix}`;
+      },
+    );
 
     // 处理带有方向/变种的类，例如 rounded-t-xl, p-x-4
     // 支持如下模式: rounded-t-lg, p-x-4, m-y-2
-    const directionRegex = new RegExp(`(\\s|"|'|{|\\()${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`, 'g');
+    const directionRegex = new RegExp(
+      `(\\s|"|'|{|\\()${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      'g',
+    );
 
-    updatedContent = updatedContent.replace(directionRegex, (match, prefix, direction, suffix) => {
-      // 检查是否已经有后缀，避免重复添加
-      if (suffix.endsWith(CONFIG.suffix)) return match;
-      fileClassesModified++;
-      return `${prefix}${classPrefix}-${direction}-${suffix}${CONFIG.suffix}`;
-    });
+    updatedContent = updatedContent.replace(
+      directionRegex,
+      (match, prefix, direction, suffix) => {
+        // 检查是否已经有后缀，避免重复添加
+        if (suffix.endsWith(CONFIG.suffix)) return match;
+        fileClassesModified++;
+        return `${prefix}${classPrefix}-${direction}-${suffix}${CONFIG.suffix}`;
+      },
+    );
 
     // 处理紧跟在类名后面的伪类和响应式修饰符，如 hover:bg-red-500, sm:p-4
     // 这种情况需要特殊处理，因为它们有更复杂的模式
-    const modifierRegex = new RegExp(`(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\))`, 'g');
+    const modifierRegex = new RegExp(
+      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      'g',
+    );
 
-    updatedContent = updatedContent.replace(modifierRegex, (match, prefix, modifier, suffix) => {
-      // 检查是否已经有后缀，避免重复添加
-      if (suffix.endsWith(CONFIG.suffix)) return match;
-      fileClassesModified++;
-      return `${prefix}${modifier}${classPrefix}-${suffix}${CONFIG.suffix}`;
-    });
+    updatedContent = updatedContent.replace(
+      modifierRegex,
+      (match, prefix, modifier, suffix) => {
+        // 检查是否已经有后缀，避免重复添加
+        if (suffix.endsWith(CONFIG.suffix)) return match;
+        fileClassesModified++;
+        return `${prefix}${modifier}${classPrefix}-${suffix}${CONFIG.suffix}`;
+      },
+    );
 
     // 处理带有方向和修饰符的组合，如 hover:p-x-4, sm:m-y-2
-    const modifierDirectionRegex = new RegExp(`(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`, 'g');
+    const modifierDirectionRegex = new RegExp(
+      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      'g',
+    );
 
-    updatedContent = updatedContent.replace(modifierDirectionRegex, (match, prefix, modifier, direction, suffix) => {
-      // 检查是否已经有后缀，避免重复添加
-      if (suffix.endsWith(CONFIG.suffix)) return match;
-      fileClassesModified++;
-      return `${prefix}${modifier}${classPrefix}-${direction}-${suffix}${CONFIG.suffix}`;
-    });
+    updatedContent = updatedContent.replace(
+      modifierDirectionRegex,
+      (match, prefix, modifier, direction, suffix) => {
+        // 检查是否已经有后缀，避免重复添加
+        if (suffix.endsWith(CONFIG.suffix)) return match;
+        fileClassesModified++;
+        return `${prefix}${modifier}${classPrefix}-${direction}-${suffix}${CONFIG.suffix}`;
+      },
+    );
   }
 
   // 特殊处理 rounded 圆角类，这里用的是直接函数调用
@@ -285,7 +357,7 @@ function processFile(file, updatePatterns) {
     content: updatedContent,
     fileClassesModified,
     wasModified: content !== updatedContent,
-    originalContent: content
+    originalContent: content,
   };
 }
 
@@ -294,11 +366,13 @@ function processFile(file, updatePatterns) {
  * 根据 CSS 变量映射更新相应的类名
  */
 function updateTsxFiles(directories, variableNames) {
-  console.log(`Preparing to update CSS classes in ${directories.length} directories/files`);
+  console.log(
+    `Preparing to update CSS classes in ${directories.length} directories/files`,
+  );
 
   // 创建变量名映射
   const varMap = {};
-  variableNames.forEach(name => {
+  variableNames.forEach((name) => {
     varMap[name] = `${name}${CONFIG.suffix}`;
   });
 
@@ -310,11 +384,13 @@ function updateTsxFiles(directories, variableNames) {
   const updatePatterns = [];
 
   // 处理单个前缀的映射，如 --radius- -> rounded
-  for (const [varPrefix, classPrefix] of Object.entries(CSS_VAR_CLASS_MAPPINGS)) {
+  for (const [varPrefix, classPrefix] of Object.entries(
+    CSS_VAR_CLASS_MAPPINGS,
+  )) {
     // 找出匹配此前缀的变量，例如 --radius-xl 应该找出 xl
     const matchingVars = [];
 
-    variableNames.forEach(varName => {
+    variableNames.forEach((varName) => {
       if (varName.startsWith(varPrefix)) {
         // 从变量名中提取部分，例如 --radius-xl -> xl
         const extracted = varName.replace(varPrefix, '');
@@ -330,15 +406,15 @@ function updateTsxFiles(directories, variableNames) {
         updatePatterns.push({
           varPrefix,
           classPrefix,
-          matchingVars
+          matchingVars,
         });
       } else if (Array.isArray(classPrefix)) {
         // 多个类前缀如 [bg, text, border]
-        classPrefix.forEach(prefix => {
+        classPrefix.forEach((prefix) => {
           updatePatterns.push({
             varPrefix,
             classPrefix: prefix,
-            matchingVars
+            matchingVars,
           });
         });
       }
@@ -348,9 +424,11 @@ function updateTsxFiles(directories, variableNames) {
   if (CONFIG.verbose) {
     console.log('Generated update patterns:');
     updatePatterns.forEach((pattern, i) => {
-      console.log(`${i+1}. ${pattern.varPrefix} -> ${pattern.classPrefix}`);
+      console.log(`${i + 1}. ${pattern.varPrefix} -> ${pattern.classPrefix}`);
       if (pattern.matchingVars.length > 5) {
-        console.log(`   Matching vars: ${pattern.matchingVars.slice(0, 5).join(', ')}... (${pattern.matchingVars.length - 5} more)`);
+        console.log(
+          `   Matching vars: ${pattern.matchingVars.slice(0, 5).join(', ')}... (${pattern.matchingVars.length - 5} more)`,
+        );
       } else {
         console.log(`   Matching vars: ${pattern.matchingVars.join(', ')}`);
       }
@@ -358,7 +436,7 @@ function updateTsxFiles(directories, variableNames) {
   }
 
   // 处理每个目录或文件
-  directories.forEach(dirOrFile => {
+  directories.forEach((dirOrFile) => {
     // 检查是目录还是文件
     const stats = fs.statSync(dirOrFile);
     let tsxFiles = [];
@@ -370,7 +448,9 @@ function updateTsxFiles(directories, variableNames) {
       tsxFiles = [dirOrFile];
       console.log(`\nProcessing file: ${dirOrFile}`);
     } else {
-      console.log(`\nSkipping ${dirOrFile} - not a directory or supported file type`);
+      console.log(
+        `\nSkipping ${dirOrFile} - not a directory or supported file type`,
+      );
       return;
     }
 
@@ -383,12 +463,17 @@ function updateTsxFiles(directories, variableNames) {
     let processedCount = 0;
     const progressInterval = Math.max(1, Math.floor(tsxFiles.length / 20)); // 最多显示20次进度
 
-    tsxFiles.forEach(file => {
+    tsxFiles.forEach((file) => {
       // 更新进度
       processedCount++;
-      if (processedCount % progressInterval === 0 || processedCount === tsxFiles.length) {
+      if (
+        processedCount % progressInterval === 0 ||
+        processedCount === tsxFiles.length
+      ) {
         const percent = Math.floor((processedCount / tsxFiles.length) * 100);
-        process.stdout.write(`\rProcessing files: ${percent}% complete (${processedCount}/${tsxFiles.length})${' '.repeat(20)}`);
+        process.stdout.write(
+          `\rProcessing files: ${percent}% complete (${processedCount}/${tsxFiles.length})${' '.repeat(20)}`,
+        );
       }
 
       const result = processFile(file, updatePatterns);
@@ -396,9 +481,13 @@ function updateTsxFiles(directories, variableNames) {
       if (result.wasModified) {
         if (!CONFIG.dryRun) {
           fs.writeFileSync(file, result.content, 'utf8');
-          console.log(`\rUpdated ${result.fileClassesModified} class names in ${file}${' '.repeat(20)}`);
+          console.log(
+            `\rUpdated ${result.fileClassesModified} class names in ${file}${' '.repeat(20)}`,
+          );
         } else {
-          console.log(`\rDRY RUN: Would update ${result.fileClassesModified} class names in ${file}${' '.repeat(20)}`);
+          console.log(
+            `\rDRY RUN: Would update ${result.fileClassesModified} class names in ${file}${' '.repeat(20)}`,
+          );
           if (CONFIG.verbose) {
             showDiff(result.originalContent, result.content, file);
           }
@@ -408,59 +497,71 @@ function updateTsxFiles(directories, variableNames) {
       }
     });
 
-    console.log(`\nModified ${filesModified.length} files in ${dirOrFile} with ${directoryClassCount} class name changes`);
+    console.log(
+      `\nModified ${filesModified.length} files in ${dirOrFile} with ${directoryClassCount} class name changes`,
+    );
     totalFilesModified += filesModified.length;
     totalClassesModified += directoryClassCount;
   });
 
-  console.log(`\nTotal: Modified ${totalClassesModified} class names in ${totalFilesModified} files (scanned ${totalFilesScanned} files)`);
+  console.log(
+    `\nTotal: Modified ${totalClassesModified} class names in ${totalFilesModified} files (scanned ${totalFilesScanned} files)`,
+  );
   return { totalFilesModified, totalClassesModified, totalFilesScanned };
 }
 
 // 特殊处理 rounded 圆角类
 function handleRoundedClasses(content) {
   let counter = 0;
-  const roundedBaseRegex = /(\s|"|'|{|\()rounded(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
-  let updatedContent = content.replace(roundedBaseRegex, (match, prefix, suffix, sizeName) => {
-    // 如果没有后缀或者大小不在我们的列表中，保持不变
-    if (!suffix) return match;
+  const roundedBaseRegex =
+    /(\s|"|'|{|\()rounded(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
+  let updatedContent = content.replace(
+    roundedBaseRegex,
+    (match, prefix, suffix, sizeName) => {
+      // 如果没有后缀或者大小不在我们的列表中，保持不变
+      if (!suffix) return match;
 
-    // 检查是否已经有后缀，避免重复添加
-    if (suffix.endsWith(CONFIG.suffix)) return match;
+      // 检查是否已经有后缀，避免重复添加
+      if (suffix.endsWith(CONFIG.suffix)) return match;
 
-    // 特殊处理 'none' 和 'full'
-    if (sizeName === 'none' || sizeName === 'full') {
+      // 特殊处理 'none' 和 'full'
+      if (sizeName === 'none' || sizeName === 'full') {
+        counter++;
+        return `${prefix}rounded-${sizeName}${CONFIG.suffix}`;
+      }
+
       counter++;
-      return `${prefix}rounded-${sizeName}${CONFIG.suffix}`;
-    }
-
-    counter++;
-    return `${prefix}rounded${suffix}${CONFIG.suffix}`;
-  });
+      return `${prefix}rounded${suffix}${CONFIG.suffix}`;
+    },
+  );
 
   // 处理特定角落的 rounded 类 (top, bottom, left, right, tl, tr, bl, br)
   // 匹配如 rounded-t-xl, rounded-l-md, rounded-tr, rounded-bl-lg 等
-  const cornerRoundedRegex = /(\s|"|'|{|\()rounded-(t|b|l|r|tl|tr|bl|br)(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
-  updatedContent = updatedContent.replace(cornerRoundedRegex, (match, prefix, corner, suffix, sizeName) => {
-    // 如果没有大小后缀，保持角落指示器不变
-    if (!suffix) return match;
+  const cornerRoundedRegex =
+    /(\s|"|'|{|\()rounded-(t|b|l|r|tl|tr|bl|br)(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
+  updatedContent = updatedContent.replace(
+    cornerRoundedRegex,
+    (match, prefix, corner, suffix, sizeName) => {
+      // 如果没有大小后缀，保持角落指示器不变
+      if (!suffix) return match;
 
-    // 检查是否已经有后缀，避免重复添加
-    if (suffix.endsWith(CONFIG.suffix)) return match;
+      // 检查是否已经有后缀，避免重复添加
+      if (suffix.endsWith(CONFIG.suffix)) return match;
 
-    // 特殊处理 'none' 和 'full'
-    if (sizeName === 'none' || sizeName === 'full') {
+      // 特殊处理 'none' 和 'full'
+      if (sizeName === 'none' || sizeName === 'full') {
+        counter++;
+        return `${prefix}rounded-${corner}-${sizeName}${CONFIG.suffix}`;
+      }
+
       counter++;
-      return `${prefix}rounded-${corner}-${sizeName}${CONFIG.suffix}`;
-    }
-
-    counter++;
-    return `${prefix}rounded-${corner}${suffix}${CONFIG.suffix}`;
-  });
+      return `${prefix}rounded-${corner}${suffix}${CONFIG.suffix}`;
+    },
+  );
 
   return {
     content: updatedContent,
-    count: counter
+    count: counter,
   };
 }
 
@@ -507,7 +608,7 @@ function parseArgs() {
     suffix: '-v1',
     skipBackup: true,
     directories: [],
-    verbose: false
+    verbose: false,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -543,7 +644,11 @@ function showDiff(original, updated, filePath) {
 
   // Find differing lines with line numbers
   const diffLines = [];
-  for (let i = 0; i < Math.max(originalLines.length, updatedLines.length); i++) {
+  for (
+    let i = 0;
+    i < Math.max(originalLines.length, updatedLines.length);
+    i++
+  ) {
     const origLine = originalLines[i] || '';
     const updLine = updatedLines[i] || '';
 
@@ -551,14 +656,14 @@ function showDiff(original, updated, filePath) {
       diffLines.push({
         lineNum: i + 1,
         original: origLine,
-        updated: updLine
+        updated: updLine,
       });
     }
   }
 
   // Display diff
   console.log(`\nDifferences in ${filePath}:`);
-  diffLines.forEach(diff => {
+  diffLines.forEach((diff) => {
     console.log(`Line ${diff.lineNum}:`);
     console.log(`  - ${diff.original}`);
     console.log(`  + ${diff.updated}`);
@@ -574,7 +679,9 @@ function main() {
 
   if (CONFIG.directories.length === 0) {
     console.error('Error: No directories specified.');
-    console.error('Usage: node update-tailwind-vars.js [options] <directory1> <directory2> ...');
+    console.error(
+      'Usage: node update-tailwind-vars.js [options] <directory1> <directory2> ...',
+    );
     console.error('Run with --help for more information.');
     process.exit(1);
   }
@@ -590,13 +697,17 @@ function main() {
     CONFIG.cssFilePath = path.resolve(process.cwd(), CONFIG.cssFilePath);
   }
 
-  console.log(`Running in ${CONFIG.dryRun ? 'DRY RUN' : 'LIVE'} mode with suffix "${CONFIG.suffix}"`);
+  console.log(
+    `Running in ${CONFIG.dryRun ? 'DRY RUN' : 'LIVE'} mode with suffix "${CONFIG.suffix}"`,
+  );
   console.log(`Using CSS file: ${CONFIG.cssFilePath}`);
 
   // Check if CSS file exists
   if (!fs.existsSync(CONFIG.cssFilePath)) {
     console.error(`Error: CSS file not found: ${CONFIG.cssFilePath}`);
-    console.error('You can specify a different CSS file with the --css-file option.');
+    console.error(
+      'You can specify a different CSS file with the --css-file option.',
+    );
     process.exit(1);
   }
 
@@ -621,12 +732,16 @@ function main() {
 
   try {
     // Update CSS variables in the Tailwind theme file
-    const { allVarNames, radiusNames, namespacedVars } = updateCssVars(CONFIG.cssFilePath);
+    const { allVarNames, radiusNames, namespacedVars } = updateCssVars(
+      CONFIG.cssFilePath,
+    );
 
     // Update TSX files in the specified directories
     const results = updateTsxFiles(CONFIG.directories, allVarNames);
 
-    console.log(`All updates ${CONFIG.dryRun ? 'would be' : 'were'} completed successfully!`);
+    console.log(
+      `All updates ${CONFIG.dryRun ? 'would be' : 'were'} completed successfully!`,
+    );
 
     if (!CONFIG.dryRun) {
       console.log(`\nSummary:

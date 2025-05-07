@@ -25,8 +25,8 @@ const rows = [
 export const ListDirectoryMsg = () => {
   return (
     <div className="w-full">
-      <div className="p-4 text-text-default-light">
-        <Disclosure className="bg-surface-default-light">
+      <div className="p-4 text-text-default-light-v1">
+        <Disclosure className="bg-surface-default-light-v1">
           <DisclosureHeader>Files</DisclosureHeader>
           <DisclosurePanel>
             <Table aria-label="Files">

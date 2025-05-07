@@ -21,7 +21,7 @@ export const XLoading = (props: { children?: string } = {}) => {
     <div className="flex items-center">
       <Loading className="me-2 animate-spin" />
       {children && (
-        <span className="text-sm-regular text-text-subtle-light">
+        <span className="text-sm-regular text-text-subtle-light-v1">
           {children}
         </span>
       )}
@@ -45,11 +45,11 @@ export const Timer = observer((props: { id?: string; timeLeft?: string }) => {
     return () => clearInterval(timer);
   }, []);
   return (
-    <span className="text-sm-regular text-text-subtler-light">
+    <span className="text-sm-regular text-text-subtler-light-v1">
       {model.timeLeft > 0 && (
         <>
           It will take about{' '}
-          <span className="text-sm-medium text-text-brand-light">
+          <span className="text-sm-medium text-text-brand-light-v1">
             {model.displayTime}
           </span>
           .

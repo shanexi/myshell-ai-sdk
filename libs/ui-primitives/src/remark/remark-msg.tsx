@@ -85,7 +85,7 @@ export const RemarkMsg = (props: Message) => {
     <ReplyMsgFrame
       avatar={
         <img
-          className="mr-[8px] h-[32px] w-[32px] rounded-lg"
+          className="mr-[8px] h-[32px] w-[32px] rounded-lg-v1"
           src={avatar}
           alt={`${user} avatar`}
         />

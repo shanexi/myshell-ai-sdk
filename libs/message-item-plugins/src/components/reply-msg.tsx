@@ -9,7 +9,7 @@ export const ReplyMsg = (props: Message) => {
     <ReplyMsgFrame
       avatar={
         <img
-          className="mr-[8px] h-[32px] w-[32px] rounded-lg"
+          className="mr-[8px] h-[32px] w-[32px] rounded-lg-v1"
           src={avatar}
           alt={`${user} avatar`}
         />
@@ -46,7 +46,7 @@ export const ReplyMsg = (props: Message) => {
 export const LuiButton = (props: { children: React.ReactNode }) => {
   const { children } = props;
   return (
-    <button className="text-sm-medium mx-spacing-xs flex h-components-button-lg-height flex-auto items-center justify-center rounded-lg border border-border-default-light bg-surface-default-light p-spacing-lg">
+    <button className="text-sm-medium mx-spacing-xs-v1 flex h-components-button-lg-height-v1 flex-auto items-center justify-center rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 p-spacing-lg-v1">
       {children}
     </button>
   );

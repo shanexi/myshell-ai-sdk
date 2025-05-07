@@ -35,11 +35,11 @@ export const MotionDemo = () => {
   const isAnyItemVisible = visibleItems.some((item) => item);
 
   return (
-    <div className="relative flex h-[600px] w-full flex-col items-center rounded-md border p-4">
+    <div className="relative flex h-[600px] w-full flex-col items-center rounded-md-v1 border p-4">
       <div className="mb-4 flex gap-2">
         <button
           onClick={toggleBottomSheet}
-          className="rounded-md bg-blue-500 px-4 py-2 text-white"
+          className="rounded-md-v1 bg-blue-500 px-4 py-2 text-white"
         >
           {isOpen ? 'Close Bottom Sheet' : 'Open Bottom Sheet'}
         </button>
@@ -50,7 +50,7 @@ export const MotionDemo = () => {
           <button
             key={`height-${index}`}
             onClick={() => toggleHeight(index)}
-            className="rounded-md bg-green-500 px-4 py-2 text-white"
+            className="rounded-md-v1 bg-green-500 px-4 py-2 text-white"
           >
             {expandedItems[index]
               ? `Shrink ${index + 1}`
@@ -64,7 +64,7 @@ export const MotionDemo = () => {
           <button
             key={`visibility-${index}`}
             onClick={() => toggleVisibility(index)}
-            className="rounded-md bg-red-500 px-4 py-2 text-white"
+            className="rounded-md-v1 bg-red-500 px-4 py-2 text-white"
           >
             {visibleItems[index] ? `Hide ${index + 1}` : `Show ${index + 1}`}
           </button>
@@ -74,7 +74,7 @@ export const MotionDemo = () => {
       <AnimatePresence>
         {isOpen && isAnyItemVisible && (
           <motion.div
-            className="absolute right-0 bottom-0 left-0 overflow-hidden rounded-t-xl bg-white shadow-lg"
+            className="absolute right-0 bottom-0 left-0 overflow-hidden rounded-t-xl-v1 bg-white shadow-lg"
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}

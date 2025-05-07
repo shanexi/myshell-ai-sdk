@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "build-storybook": "./node_modules/.bin/storybook build",
+    "storybook": "./node_modules/.bin/storybook dev"
   },
   "private": true,
   "dependencies": {

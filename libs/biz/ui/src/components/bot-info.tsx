@@ -10,22 +10,27 @@ export function BotInfo(props: { bot: DbBot }) {
   return (
     <div className="x-bot-info flex items-center justify-between px-[8px] py-[4px]">
       <div className="flex items-center">
-        <img className="mr-[8px] h-[36px] w-[36px] rounded-lg" src={avatar} />
+        <img
+          className="mr-[8px] h-[36px] w-[36px] rounded-lg-v1"
+          src={avatar}
+        />
         <div>
           <div className="flex items-center">
-            <label className="heading-h4 text-text-default-light">{name}</label>
-            {isOfficial && <CheckBadge className="ml-spacing-xs" />}
-            {/* <Company className="ml-spacing-xs" /> */}
+            <label className="heading-h4 text-text-default-light-v1">
+              {name}
+            </label>
+            {isOfficial && <CheckBadge className="ml-spacing-xs-v1" />}
+            {/* <Company className="ml-spacing-xs-v1" /> */}
           </div>
-          {/* <div className="text-sm-medium text-text-brand-light">@Sam</div> */}
+          {/* <div className="text-sm-medium text-text-brand-light-v1">@Sam</div> */}
         </div>
       </div>
       <div className="flex">
-        <div className="mr-spacing-xs p-[7px]">
-          <ChevronsUp className="text-text-brand-light" />
+        <div className="mr-spacing-xs-v1 p-[7px]">
+          <ChevronsUp className="text-text-brand-light-v1" />
         </div>
         <div className="p-[7px]">
-          <Share className="text-text-brand-light" />
+          <Share className="text-text-brand-light-v1" />
         </div>
       </div>
     </div>
