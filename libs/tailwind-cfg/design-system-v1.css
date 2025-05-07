@@ -1,5 +1,3 @@
-@import 'tailwindcss' source(none);
-@source './components';
 /* BEGIN */
 @theme {
   /* BASE */
@@ -147,7 +145,7 @@
   --spacing-containers-container-padding-mobile-chat: var(--primitives-1-5-6px);
 
   /* DESIGN TOKEN */
-  --color-surface-primary-default-light: var(--blue-30);
+  --color-v1-surface-primary-default-light: var(--blue-30);
   --color-surface-primary-default-dark: var(--blue-40);
   --color-surface-primary-hovered-light: var(--blue-20);
   --color-surface-primary-hovered-dark: var(--blue-20);
@@ -684,13 +682,9 @@
   --color-surface-container-special-subtle-light: var(--neutral-variant-99);
   --color-surface-container-special-subtle-dark: var(--dark-neutral-special-5);
   --color-surface-container-special-default-light: var(--neutral-variant-85);
-  --color-surface-container-special-default-dark: var(
-    --dark-neutral-special-20
-  );
+  --color-surface-container-special-default-dark: var(--dark-neutral-special-20);
   --color-surface-container-special-hovered-light: var(--neutral-variant-80);
-  --color-surface-container-special-hovered-dark: var(
-    --dark-neutral-special-30
-  );
+  --color-surface-container-special-hovered-dark: var(--dark-neutral-special-30);
 
   /* _GRADIENT PALETTE */
   --neutral-0: #1a1c1d;
