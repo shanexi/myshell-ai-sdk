@@ -131,6 +131,7 @@
     "axios": "^1.0.0",
     "babel-jest": "^29.4.1",
     "cheerio": "^1.0.0",
+    "chromatic": "^11.28.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "comma-separated-tokens": "^2.0.0",
@@ -155,6 +156,7 @@
     "express": "^4.18.1",
     "filepond": "^4.32.7",
     "fs-extra": "^11.2.0",
+    "glob": "^11.0.2",
     "hast-util-to-jsx-runtime": "^2.3.0",
     "hast-util-whitespace": "^3.0.0",
     "hastscript": "^9.0.1",
@@ -294,8 +296,5 @@
       "honox@0.1.38": "patches/honox@0.1.38.patch",
       "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
     }
-  },
-  "devDependencies": {
-    "glob": "^11.0.2"
   }
 }
