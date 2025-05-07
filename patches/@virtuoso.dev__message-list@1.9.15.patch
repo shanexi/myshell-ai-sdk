@@ -1,5 +1,5 @@
 diff --git a/dist/index.js b/dist/index.js
-index 621b8d6c588f7219b7badbe185cad745d65a7106..c0806f565e4efa8aa401be8c854a280d08e604bc 100644
+index 621b8d6c588f7219b7badbe185cad745d65a7106..d19c8412bdbe35032a06ada688b035e65f7969a4 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -681,6 +681,13 @@ const De = u(null), Do = u(!1), nt = u(!0), Mt = x((e) => {
@@ -43,7 +43,17 @@ index 621b8d6c588f7219b7badbe185cad745d65a7106..c0806f565e4efa8aa401be8c854a280d
          width: "100%",
          top: e.offset
        },
-@@ -2035,6 +2042,11 @@ const gi = ({ style: e, ...t }) => {
+@@ -1620,7 +1627,8 @@ const Fn = h.createContext(Xo), ui = ({
+ }) => {
+   const n = li({
+     licenseKey: e,
+-    hostname: typeof window < "u" ? window.location.hostname : "localhost",
++    // hostname: typeof window < "u" ? window.location.hostname : "localhost",
++    hostname: "localhost",
+     now: /* @__PURE__ */ new Date(),
+     packageTimestamp: 1740169352098
+   });
+@@ -2035,6 +2043,11 @@ const gi = ({ style: e, ...t }) => {
    }, [n]);
    h.useLayoutEffect(() => n.sub(On, Ze), [Ze, n]);
    const no = C(H), oo = C(st), io = C(q), so = C(at), ro = C(gt), lo = C(An), he = C(Pe), uo = C(eo), co = C(ke), ao = C(Ae);
@@ -55,7 +65,7 @@ index 621b8d6c588f7219b7badbe185cad745d65a7106..c0806f565e4efa8aa401be8c854a280d
    return h.useLayoutEffect(() => {
      ee.length === 0 && n.pub(Nn);
    }, [ee, n]), /* @__PURE__ */ E(fo, { children: /* @__PURE__ */ en(
-@@ -2059,7 +2071,7 @@ const gi = ({ style: e, ...t }) => {
+@@ -2059,7 +2072,7 @@ const gi = ({ style: e, ...t }) => {
              "data-testid": "virtuoso-list",
              style: {
                boxSizing: "content-box",
@@ -64,7 +74,7 @@ index 621b8d6c588f7219b7badbe185cad745d65a7106..c0806f565e4efa8aa401be8c854a280d
                paddingBottom: ro,
                overflowAnchor: "none",
                marginTop: so,
-@@ -2073,7 +2085,8 @@ const gi = ({ style: e, ...t }) => {
+@@ -2073,7 +2086,8 @@ const gi = ({ style: e, ...t }) => {
                  mount: D,
                  unmount: Ge,
                  item: f,
