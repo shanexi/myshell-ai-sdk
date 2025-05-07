@@ -184,6 +184,9 @@
       max-width: 96rem;
     }
   }
+  .flex {
+    display: flex;
+  }
   .bg-surface-primary-default-light {
     background-color: var(--color-surface-primary-default-light);
   }

@@ -14,13 +14,13 @@
       "apps/my-app/app/style.css",
       "apps/my-app/dist",
       "libs/agent/ui/src/styles.css",
-      "libs/agent/ui/output.css",
-    ],
+      "libs/agent/ui/output.css"
+    ]
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
+      "quoteStyle": "single"
     },
-    "parser": { "unsafeParameterDecoratorsEnabled": true },
-  },
+    "parser": { "unsafeParameterDecoratorsEnabled": true }
+  }
 }

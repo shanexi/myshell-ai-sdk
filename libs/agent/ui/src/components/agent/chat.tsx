@@ -5,6 +5,7 @@ export const Chat = () => {
     <div className={cn('px-2')}>
       <div
         className={cn(
+          'flex',
           'bg-surface-primary-default-light dark:bg-surface-primary-default-dark',
           'text-text-default-light dark:text-text-default-dark',
         )}
