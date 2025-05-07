@@ -237,6 +237,7 @@
     "rollup-plugin-visualizer": "^5.14.0",
     "rxjs": "^6.6.3",
     "space-separated-tokens": "^2.0.0",
+    "storybook": "^8.6.12",
     "storybook-react-rspack": "7.0.0-rc.25",
     "style-to-js": "^1.0.0",
     "tailwind-merge": "^3.0.2",
