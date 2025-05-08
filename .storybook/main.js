@@ -36,14 +36,19 @@ function makeConfig() {
         titlePrefix: 'biz-ui',
       },
       {
+        directory: '../libs/biz/message-item-plugins/src',
+        files: '**/*.stories.@(js|jsx|ts|tsx)',
+        titlePrefix: 'biz-message-item-plugins',
+      },
+      {
         directory: '../libs/agent/ui/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
         titlePrefix: 'agent-ui',
       },
       {
-        directory: '../libs/message-item-plugins/src',
+        directory: '../libs/agent/message-item-plugins/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
-        titlePrefix: 'message-item-plugins',
+        titlePrefix: 'agent-message-item-plugins',
       },
     ],
     addons: [
