@@ -8,6 +8,7 @@ import { ChatFoot, ChatRoot } from './chat';
 import { ChatInputRoot } from './archive/chat-input';
 import { ChatMessageList } from './chat-message-list';
 import { ChatTopMenu, ChatTopRoot } from './chat-top';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 const container = new Container();
 container.load(messageItemPluginsModule);
@@ -27,7 +28,7 @@ function Chat() {
           bot={{
             id: 1,
             name: 'MyShell',
-            avatar: 'https://picsum.photos/200/300',
+            avatar: DEFAULT_AVATAR,
             isOfficial: true,
           }}
         />

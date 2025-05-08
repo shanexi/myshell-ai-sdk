@@ -2,8 +2,9 @@
 @plugin 'tailwindcss-animate';
 @plugin "tailwindcss-react-aria-components";
 
+@plugin "daisyui";
 /* 先注释 根据 prefers-color-scheme 控制 */
-/* 
+/*
 @plugin "daisyui" {
   themes:
     light --default,

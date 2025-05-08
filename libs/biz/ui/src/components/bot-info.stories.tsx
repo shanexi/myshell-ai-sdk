@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BotInfo } from './bot-info';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 const meta: Meta<typeof BotInfo> = {
   component: BotInfo,
@@ -11,7 +12,7 @@ export const Primary: StoryObj<typeof BotInfo> = {
     bot: {
       id: 1,
       name: 'MyShell',
-      avatar: 'https://picsum.photos/200/300',
+      avatar: DEFAULT_AVATAR,
       isOfficial: true,
     },
   },
