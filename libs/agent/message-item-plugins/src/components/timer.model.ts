@@ -4,7 +4,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { Remarkable } from '@myshell-run/common-def';
 
 @injectable()
-export class ExecutingMsgModel implements Remarkable {
+export class TimerModel implements Remarkable {
   @observable timeLeft = 0;
 
   onUpdate(props: Properties) {
