@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RemarkMsg } from '@myshell-run/ui-primitives';
+import { RemarkMsg } from '@myshell-run/common-ui';
 import imageStory from './image-story.md';
 import counterStory from './counter-story.md';
 

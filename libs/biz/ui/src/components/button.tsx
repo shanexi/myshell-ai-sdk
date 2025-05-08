@@ -1,4 +1,4 @@
-import { cn } from '@myshell-run/ui-primitives';
+import { cn } from '@myshell-run/common-ui';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(

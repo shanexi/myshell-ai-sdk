@@ -1,4 +1,4 @@
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';

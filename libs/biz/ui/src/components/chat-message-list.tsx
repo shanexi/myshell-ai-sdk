@@ -1,5 +1,5 @@
 import { Message, MessageListContext } from '@myshell-run/def';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import {

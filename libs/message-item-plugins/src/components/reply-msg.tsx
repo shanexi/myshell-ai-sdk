@@ -1,5 +1,5 @@
 import { DEFAULT_AVATAR, Message } from '@myshell-run/def';
-import { ReplyMsgFrame } from '@myshell-run/ui-primitives';
+import { ReplyMsgFrame } from '@myshell-run/common-ui';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 

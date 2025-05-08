@@ -9,23 +9,23 @@
  * @import {Child, Create, Field, JsxElement, State, Style} from './types.js'
  */
 
-import {stringify as commas} from 'comma-separated-tokens'
-import {ok as assert} from 'devlop'
-import {name as isIdentifierName} from 'estree-util-is-identifier-name'
-import {whitespace} from 'hast-util-whitespace'
-import {find, hastToReact, html, svg} from 'property-information'
-import {stringify as spaces} from 'space-separated-tokens'
-import styleToJs from 'style-to-js'
-import {pointStart} from 'unist-util-position'
-import {VFileMessage} from 'vfile-message'
+import { stringify as commas } from 'comma-separated-tokens';
+import { ok as assert } from 'devlop';
+import { name as isIdentifierName } from 'estree-util-is-identifier-name';
+import { whitespace } from 'hast-util-whitespace';
+import { find, hastToReact, html, svg } from 'property-information';
+import { stringify as spaces } from 'space-separated-tokens';
+import styleToJs from 'style-to-js';
+import { pointStart } from 'unist-util-position';
+import { VFileMessage } from 'vfile-message';
 
 // To do: next major: `Object.hasOwn`.
-const own = {}.hasOwnProperty
+const own = {}.hasOwnProperty;
 
 /** @type {Map<string, number>} */
-const emptyMap = new Map()
+const emptyMap = new Map();
 
-const cap = /[A-Z]/g
+const cap = /[A-Z]/g;
 
 // `react-dom` triggers a warning for *any* white space in tables.
 // To follow GFM, `mdast-util-to-hast` injects line endings between elements.
@@ -38,11 +38,11 @@ const cap = /[A-Z]/g
 // See: <https://github.com/rehypejs/rehype-react/pull/29>.
 // See: <https://github.com/rehypejs/rehype-react/pull/32>.
 // See: <https://github.com/rehypejs/rehype-react/pull/45>.
-const tableElements = new Set(['table', 'tbody', 'thead', 'tfoot', 'tr'])
+const tableElements = new Set(['table', 'tbody', 'thead', 'tfoot', 'tr']);
 
-const tableCellElement = new Set(['td', 'th'])
+const tableCellElement = new Set(['td', 'th']);
 
-const docs = 'https://github.com/syntax-tree/hast-util-to-jsx-runtime'
+const docs = 'https://github.com/syntax-tree/hast-util-to-jsx-runtime';
 
 /**
  * Transform a hast tree to preact, react, solid, svelte, vue, etc.,
@@ -58,31 +58,31 @@ const docs = 'https://github.com/syntax-tree/hast-util-to-jsx-runtime'
 
 export function toJsxRuntime(tree, options) {
   if (!options || options.Fragment === undefined) {
-    throw new TypeError('Expected `Fragment` in options')
+    throw new TypeError('Expected `Fragment` in options');
   }
 
-  const filePath = options.filePath || undefined
+  const filePath = options.filePath || undefined;
   /** @type {Create} */
-  let create
+  let create;
 
   if (options.development) {
     if (typeof options.jsxDEV !== 'function') {
       throw new TypeError(
-        'Expected `jsxDEV` in options when `development: true`'
-      )
+        'Expected `jsxDEV` in options when `development: true`',
+      );
     }
 
-    create = developmentCreate(filePath, options.jsxDEV)
+    create = developmentCreate(filePath, options.jsxDEV);
   } else {
     if (typeof options.jsx !== 'function') {
-      throw new TypeError('Expected `jsx` in production options')
+      throw new TypeError('Expected `jsx` in production options');
     }
 
     if (typeof options.jsxs !== 'function') {
-      throw new TypeError('Expected `jsxs` in production options')
+      throw new TypeError('Expected `jsxs` in production options');
     }
 
-    create = productionCreate(filePath, options.jsx, options.jsxs)
+    create = productionCreate(filePath, options.jsx, options.jsxs);
   }
 
   /** @type {State} */
@@ -99,23 +99,23 @@ export function toJsxRuntime(tree, options) {
     passNode: options.passNode || false,
     schema: options.space === 'svg' ? svg : html,
     stylePropertyNameCase: options.stylePropertyNameCase || 'dom',
-    tableCellAlignToStyle: options.tableCellAlignToStyle !== false
-  }
+    tableCellAlignToStyle: options.tableCellAlignToStyle !== false,
+  };
 
-  const result = one(state, tree, undefined)
+  const result = one(state, tree, undefined);
 
   // JSX element.
   if (result && typeof result !== 'string') {
-    return result
+    return result;
   }
 
   // Text node or something that turned into nothing.
   return state.create(
     tree,
     state.Fragment,
-    {children: result || undefined},
-    undefined
-  )
+    { children: result || undefined },
+    undefined,
+  );
 }
 
 /**
@@ -132,27 +132,27 @@ export function toJsxRuntime(tree, options) {
  */
 function one(state, node, key) {
   if (node.type === 'element') {
-    return element(state, node, key)
+    return element(state, node, key);
   }
 
   if (node.type === 'mdxFlowExpression' || node.type === 'mdxTextExpression') {
-    return mdxExpression(state, node)
+    return mdxExpression(state, node);
   }
 
   if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
-    return mdxJsxElement(state, node, key)
+    return mdxJsxElement(state, node, key);
   }
 
   if (node.type === 'mdxjsEsm') {
-    return mdxEsm(state, node)
+    return mdxEsm(state, node);
   }
 
   if (node.type === 'root') {
-    return root(state, node, key)
+    return root(state, node, key);
   }
 
   if (node.type === 'text') {
-    return text(state, node)
+    return text(state, node);
   }
 }
 
@@ -169,34 +169,34 @@ function one(state, node, key) {
  *   Child, optional.
  */
 function element(state, node, key) {
-  const parentSchema = state.schema
-  let schema = parentSchema
+  const parentSchema = state.schema;
+  let schema = parentSchema;
 
   if (node.tagName.toLowerCase() === 'svg' && parentSchema.space === 'html') {
-    schema = svg
-    state.schema = schema
+    schema = svg;
+    state.schema = schema;
   }
 
-  state.ancestors.push(node)
+  state.ancestors.push(node);
 
-  const type = findComponentFromName(state, node.tagName, false)
-  const props = createElementProps(state, node)
-  let children = createChildren(state, node)
+  const type = findComponentFromName(state, node.tagName, false);
+  const props = createElementProps(state, node);
+  let children = createChildren(state, node);
 
   if (tableElements.has(node.tagName)) {
     children = children.filter(function (child) {
-      return typeof child === 'string' ? !whitespace(child) : true
-    })
+      return typeof child === 'string' ? !whitespace(child) : true;
+    });
   }
 
-  addNode(state, props, type, node)
-  addChildren(props, children)
+  addNode(state, props, type, node);
+  addChildren(props, children);
 
   // Restore.
-  state.ancestors.pop()
-  state.schema = parentSchema
+  state.ancestors.pop();
+  state.schema = parentSchema;
 
-  return state.create(node, type, props, key)
+  return state.create(node, type, props, key);
 }
 
 /**
@@ -211,17 +211,17 @@ function element(state, node, key) {
  */
 function mdxExpression(state, node) {
   if (node.data && node.data.estree && state.evaluater) {
-    const program = node.data.estree
-    const expression = program.body[0]
-    assert(expression.type === 'ExpressionStatement')
+    const program = node.data.estree;
+    const expression = program.body[0];
+    assert(expression.type === 'ExpressionStatement');
 
     // Assume result is a child.
     return /** @type {Child | undefined} */ (
       state.evaluater.evaluateExpression(expression.expression)
-    )
+    );
   }
 
-  crashEstree(state, node.position)
+  crashEstree(state, node.position);
 }
 
 /**
@@ -239,10 +239,10 @@ function mdxEsm(state, node) {
     // Assume result is a child.
     return /** @type {Child | undefined} */ (
       state.evaluater.evaluateProgram(node.data.estree)
-    )
+    );
   }
 
-  crashEstree(state, node.position)
+  crashEstree(state, node.position);
 }
 
 /**
@@ -258,31 +258,31 @@ function mdxEsm(state, node) {
  *   Child, optional.
  */
 function mdxJsxElement(state, node, key) {
-  const parentSchema = state.schema
-  let schema = parentSchema
+  const parentSchema = state.schema;
+  let schema = parentSchema;
 
   if (node.name === 'svg' && parentSchema.space === 'html') {
-    schema = svg
-    state.schema = schema
+    schema = svg;
+    state.schema = schema;
   }
 
-  state.ancestors.push(node)
+  state.ancestors.push(node);
 
   const type =
     node.name === null
       ? state.Fragment
-      : findComponentFromName(state, node.name, true)
-  const props = createJsxElementProps(state, node)
-  const children = createChildren(state, node)
+      : findComponentFromName(state, node.name, true);
+  const props = createJsxElementProps(state, node);
+  const children = createChildren(state, node);
 
-  addNode(state, props, type, node)
-  addChildren(props, children)
+  addNode(state, props, type, node);
+  addChildren(props, children);
 
   // Restore.
-  state.ancestors.pop()
-  state.schema = parentSchema
+  state.ancestors.pop();
+  state.schema = parentSchema;
 
-  return state.create(node, type, props, key)
+  return state.create(node, type, props, key);
 }
 
 /**
@@ -299,11 +299,11 @@ function mdxJsxElement(state, node, key) {
  */
 function root(state, node, key) {
   /** @type {Props} */
-  const props = {}
+  const props = {};
 
-  addChildren(props, createChildren(state, node))
+  addChildren(props, createChildren(state, node));
 
-  return state.create(node, state.Fragment, props, key)
+  return state.create(node, state.Fragment, props, key);
 }
 
 /**
@@ -317,7 +317,7 @@ function root(state, node, key) {
  *   Child, optional.
  */
 function text(_, node) {
-  return node.value
+  return node.value;
 }
 
 /**
@@ -337,7 +337,7 @@ function text(_, node) {
 function addNode(state, props, type, node) {
   // If this is swapped out for a component:
   if (typeof type !== 'string' && type !== state.Fragment && state.passNode) {
-    props.node = node
+    props.node = node;
   }
 }
 
@@ -353,10 +353,10 @@ function addNode(state, props, type, node) {
  */
 function addChildren(props, children) {
   if (children.length > 0) {
-    const value = children.length > 1 ? children : children[0]
+    const value = children.length > 1 ? children : children[0];
 
     if (value) {
-      props.children = value
+      props.children = value;
     }
   }
 }
@@ -372,13 +372,13 @@ function addChildren(props, children) {
  *   Create a production element.
  */
 function productionCreate(_, jsx, jsxs) {
-  return create
+  return create;
   /** @type {Create} */
   function create(_, type, props, key) {
     // Only an array when there are 2 or more children.
-    const isStaticChildren = Array.isArray(props.children)
-    const fn = isStaticChildren ? jsxs : jsx
-    return key ? fn(type, props, key) : fn(type, props)
+    const isStaticChildren = Array.isArray(props.children);
+    const fn = isStaticChildren ? jsxs : jsx;
+    return key ? fn(type, props, key) : fn(type, props);
   }
 }
 
@@ -391,12 +391,12 @@ function productionCreate(_, jsx, jsxs) {
  *   Create a development element.
  */
 function developmentCreate(filePath, jsxDEV) {
-  return create
+  return create;
   /** @type {Create} */
   function create(node, type, props, key) {
     // Only an array when there are 2 or more children.
-    const isStaticChildren = Array.isArray(props.children)
-    const point = pointStart(node)
+    const isStaticChildren = Array.isArray(props.children);
+    const point = pointStart(node);
     return jsxDEV(
       type,
       props,
@@ -405,10 +405,10 @@ function developmentCreate(filePath, jsxDEV) {
       {
         columnNumber: point ? point.column - 1 : undefined,
         fileName: filePath,
-        lineNumber: point ? point.line : undefined
+        lineNumber: point ? point.line : undefined,
       },
-      undefined
-    )
+      undefined,
+    );
   }
 }
 
@@ -424,18 +424,18 @@ function developmentCreate(filePath, jsxDEV) {
  */
 function createElementProps(state, node) {
   /** @type {Props} */
-  const props = {}
+  const props = {};
   /** @type {string | undefined} */
-  let alignValue
+  let alignValue;
   /** @type {string} */
-  let prop
+  let prop;
 
   for (prop in node.properties) {
     if (prop !== 'children' && own.call(node.properties, prop)) {
-      const result = createProperty(state, prop, node.properties[prop])
+      const result = createProperty(state, prop, node.properties[prop]);
 
       if (result) {
-        const [key, value] = result
+        const [key, value] = result;
 
         if (
           state.tableCellAlignToStyle &&
@@ -443,9 +443,9 @@ function createElementProps(state, node) {
           typeof value === 'string' &&
           tableCellElement.has(node.tagName)
         ) {
-          alignValue = value
+          alignValue = value;
         } else {
-          props[key] = value
+          props[key] = value;
         }
       }
     }
@@ -453,12 +453,12 @@ function createElementProps(state, node) {
 
   if (alignValue) {
     // Assume style is an object.
-    const style = /** @type {Style} */ (props.style || (props.style = {}))
+    const style = /** @type {Style} */ (props.style || (props.style = {}));
     style[state.stylePropertyNameCase === 'css' ? 'text-align' : 'textAlign'] =
-      alignValue
+      alignValue;
   }
 
-  return props
+  return props;
 }
 
 /**
@@ -473,31 +473,31 @@ function createElementProps(state, node) {
  */
 function createJsxElementProps(state, node) {
   /** @type {Props} */
-  const props = {}
+  const props = {};
 
   for (const attribute of node.attributes) {
     if (attribute.type === 'mdxJsxExpressionAttribute') {
       if (attribute.data && attribute.data.estree && state.evaluater) {
-        const program = attribute.data.estree
-        const expression = program.body[0]
-        assert(expression.type === 'ExpressionStatement')
-        const objectExpression = expression.expression
-        assert(objectExpression.type === 'ObjectExpression')
-        const property = objectExpression.properties[0]
-        assert(property.type === 'SpreadElement')
+        const program = attribute.data.estree;
+        const expression = program.body[0];
+        assert(expression.type === 'ExpressionStatement');
+        const objectExpression = expression.expression;
+        assert(objectExpression.type === 'ObjectExpression');
+        const property = objectExpression.properties[0];
+        assert(property.type === 'SpreadElement');
 
         Object.assign(
           props,
-          state.evaluater.evaluateExpression(property.argument)
-        )
+          state.evaluater.evaluateExpression(property.argument),
+        );
       } else {
-        crashEstree(state, node.position)
+        crashEstree(state, node.position);
       }
     } else {
       // For JSX, the author is responsible of passing in the correct values.
-      const name = attribute.name
+      const name = attribute.name;
       /** @type {unknown} */
-      let value
+      let value;
 
       if (attribute.value && typeof attribute.value === 'object') {
         if (
@@ -505,23 +505,23 @@ function createJsxElementProps(state, node) {
           attribute.value.data.estree &&
           state.evaluater
         ) {
-          const program = attribute.value.data.estree
-          const expression = program.body[0]
-          assert(expression.type === 'ExpressionStatement')
-          value = state.evaluater.evaluateExpression(expression.expression)
+          const program = attribute.value.data.estree;
+          const expression = program.body[0];
+          assert(expression.type === 'ExpressionStatement');
+          value = state.evaluater.evaluateExpression(expression.expression);
         } else {
-          crashEstree(state, node.position)
+          crashEstree(state, node.position);
         }
       } else {
-        value = attribute.value === null ? true : attribute.value
+        value = attribute.value === null ? true : attribute.value;
       }
 
       // Assume a prop.
-      props[name] = /** @type {Props[keyof Props]} */ (value)
+      props[name] = /** @type {Props[keyof Props]} */ (value);
     }
   }
 
-  return props
+  return props;
 }
 
 /**
@@ -536,17 +536,17 @@ function createJsxElementProps(state, node) {
  */
 function createChildren(state, node) {
   /** @type {Array<Child>} */
-  const children = []
-  let index = -1
+  const children = [];
+  let index = -1;
   /** @type {Map<string, number>} */
   // Note: test this when Solid doesn’t want to merge my upcoming PR.
   /* c8 ignore next */
-  const countsByName = state.passKeys ? new Map() : emptyMap
+  const countsByName = state.passKeys ? new Map() : emptyMap;
 
   while (++index < node.children.length) {
-    const child = node.children[index]
+    const child = node.children[index];
     /** @type {string | undefined} */
-    let key
+    let key;
 
     if (state.passKeys) {
       const name =
@@ -555,20 +555,20 @@ function createChildren(state, node) {
           : child.type === 'mdxJsxFlowElement' ||
               child.type === 'mdxJsxTextElement'
             ? child.name
-            : undefined
+            : undefined;
 
       if (name) {
-        const count = countsByName.get(name) || 0
-        key = name + '-' + count
-        countsByName.set(name, count + 1)
+        const count = countsByName.get(name) || 0;
+        key = name + '-' + count;
+        countsByName.set(name, count + 1);
       }
     }
 
-    const result = one(state, child, key)
-    if (result !== undefined) children.push(result)
+    const result = one(state, child, key);
+    if (result !== undefined) children.push(result);
   }
 
-  return children
+  return children;
 }
 
 /**
@@ -584,7 +584,7 @@ function createChildren(state, node) {
  *   Field for runtime, optional.
  */
 function createProperty(state, prop, value) {
-  const info = find(state.schema, prop)
+  const info = find(state.schema, prop);
 
   // Ignore nullish and `NaN` values.
   if (
@@ -592,33 +592,33 @@ function createProperty(state, prop, value) {
     value === undefined ||
     (typeof value === 'number' && Number.isNaN(value))
   ) {
-    return
+    return;
   }
 
   if (Array.isArray(value)) {
     // Accept `array`.
     // Most props are space-separated.
-    value = info.commaSeparated ? commas(value) : spaces(value)
+    value = info.commaSeparated ? commas(value) : spaces(value);
   }
 
   // React only accepts `style` as object.
   if (info.property === 'style') {
     let styleObject =
-      typeof value === 'object' ? value : parseStyle(state, String(value))
+      typeof value === 'object' ? value : parseStyle(state, String(value));
 
     if (state.stylePropertyNameCase === 'css') {
-      styleObject = transformStylesToCssCasing(styleObject)
+      styleObject = transformStylesToCssCasing(styleObject);
     }
 
-    return ['style', styleObject]
+    return ['style', styleObject];
   }
 
   return [
     state.elementAttributeNameCase === 'react' && info.space
       ? hastToReact[info.property] || info.property
       : info.attribute,
-    value
-  ]
+    value,
+  ];
 }
 
 /**
@@ -635,23 +635,23 @@ function createProperty(state, prop, value) {
  */
 function parseStyle(state, value) {
   try {
-    return styleToJs(value, {reactCompat: true})
+    return styleToJs(value, { reactCompat: true });
   } catch (error) {
     if (state.ignoreInvalidStyle) {
-      return {}
+      return {};
     }
 
-    const cause = /** @type {Error} */ (error)
+    const cause = /** @type {Error} */ (error);
     const message = new VFileMessage('Cannot parse `style` attribute', {
       ancestors: state.ancestors,
       cause,
       ruleId: 'style',
-      source: 'hast-util-to-jsx-runtime'
-    })
-    message.file = state.filePath || undefined
-    message.url = docs + '#cannot-parse-style-attribute'
+      source: 'hast-util-to-jsx-runtime',
+    });
+    message.file = state.filePath || undefined;
+    message.url = docs + '#cannot-parse-style-attribute';
 
-    throw message
+    throw message;
   }
 }
 
@@ -669,54 +669,54 @@ function parseStyle(state, value) {
  */
 function findComponentFromName(state, name, allowExpression) {
   /** @type {Identifier | Literal | MemberExpression} */
-  let result
+  let result;
 
   if (!allowExpression) {
-    result = {type: 'Literal', value: name}
+    result = { type: 'Literal', value: name };
   } else if (name.includes('.')) {
-    const identifiers = name.split('.')
-    let index = -1
+    const identifiers = name.split('.');
+    let index = -1;
     /** @type {Identifier | Literal | MemberExpression | undefined} */
-    let node
+    let node;
 
     while (++index < identifiers.length) {
       /** @type {Identifier | Literal} */
       const prop = isIdentifierName(identifiers[index])
-        ? {type: 'Identifier', name: identifiers[index]}
-        : {type: 'Literal', value: identifiers[index]}
+        ? { type: 'Identifier', name: identifiers[index] }
+        : { type: 'Literal', value: identifiers[index] };
       node = node
         ? {
             type: 'MemberExpression',
             object: node,
             property: prop,
             computed: Boolean(index && prop.type === 'Literal'),
-            optional: false
+            optional: false,
           }
-        : prop
+        : prop;
     }
 
-    assert(node, 'always a result')
-    result = node
+    assert(node, 'always a result');
+    result = node;
   } else {
     result =
       isIdentifierName(name) && !/^[a-z]/.test(name)
-        ? {type: 'Identifier', name}
-        : {type: 'Literal', value: name}
+        ? { type: 'Identifier', name }
+        : { type: 'Literal', value: name };
   }
 
   // Only literals can be passed in `components` currently.
   // No identifiers / member expressions.
   if (result.type === 'Literal') {
-    const name = /** @type {string | number} */ (result.value)
-    return own.call(state.components, name) ? state.components[name] : name
+    const name = /** @type {string | number} */ (result.value);
+    return own.call(state.components, name) ? state.components[name] : name;
   }
 
   // Assume component.
   if (state.evaluater) {
-    return state.evaluater.evaluateExpression(result)
+    return state.evaluater.evaluateExpression(result);
   }
 
-  crashEstree(state)
+  crashEstree(state);
 }
 
 /**
@@ -731,13 +731,13 @@ function crashEstree(state, place) {
       ancestors: state.ancestors,
       place,
       ruleId: 'mdx-estree',
-      source: 'hast-util-to-jsx-runtime'
-    }
-  )
-  message.file = state.filePath || undefined
-  message.url = docs + '#cannot-handle-mdx-estrees-without-createevaluater'
+      source: 'hast-util-to-jsx-runtime',
+    },
+  );
+  message.file = state.filePath || undefined;
+  message.url = docs + '#cannot-handle-mdx-estrees-without-createevaluater';
 
-  throw message
+  throw message;
 }
 
 /**
@@ -748,17 +748,17 @@ function crashEstree(state, place) {
  */
 function transformStylesToCssCasing(domCasing) {
   /** @type {Style} */
-  const cssCasing = {}
+  const cssCasing = {};
   /** @type {string} */
-  let from
+  let from;
 
   for (from in domCasing) {
     if (own.call(domCasing, from)) {
-      cssCasing[transformStyleToCssCasing(from)] = domCasing[from]
+      cssCasing[transformStyleToCssCasing(from)] = domCasing[from];
     }
   }
 
-  return cssCasing
+  return cssCasing;
 }
 
 /**
@@ -768,10 +768,10 @@ function transformStylesToCssCasing(domCasing) {
  * @returns {string}
  */
 function transformStyleToCssCasing(from) {
-  let to = from.replace(cap, toDash)
+  let to = from.replace(cap, toDash);
   // Handle `ms-xxx` -> `-ms-xxx`.
-  if (to.slice(0, 3) === 'ms-') to = '-' + to
-  return to
+  if (to.slice(0, 3) === 'ms-') to = '-' + to;
+  return to;
 }
 
 /**
@@ -783,5 +783,5 @@ function transformStyleToCssCasing(from) {
  *   Dash and lower letter.
  */
 function toDash($0) {
-  return '-' + $0.toLowerCase()
+  return '-' + $0.toLowerCase();
 }

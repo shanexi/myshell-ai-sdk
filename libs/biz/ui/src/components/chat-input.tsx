@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import toArray from '@uppy/utils/lib/toArray';
 import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';

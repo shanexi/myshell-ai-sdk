@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { MenuTrigger } from 'react-aria-components';

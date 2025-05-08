@@ -6,7 +6,7 @@ import {
 } from '@virtuoso.dev/message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { DbBot } from '@myshell-run/biz-def';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
 import { observer } from 'mobx-react-lite';

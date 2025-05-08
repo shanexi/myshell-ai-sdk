@@ -1,5 +1,5 @@
 import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { InversifyProvider, useInjection } from '@myshell-run/ui-primitives';
+import { InversifyProvider, useInjection } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { ChatModel } from '../chat.model';

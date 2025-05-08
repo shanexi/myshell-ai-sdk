@@ -1,4 +1,4 @@
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import * as Slot from '@radix-ui/react-slot';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';

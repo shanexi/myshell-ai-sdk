@@ -22,6 +22,7 @@
       "@myshell-run/biz-def": ["libs/biz/def/src/index.ts"],
       "@myshell-run/biz-service": ["libs/biz/service/src/index.ts"],
       "@myshell-run/biz-ui": ["libs/biz/ui/src/index.ts"],
+      "@myshell-run/common-ui": ["libs/common/ui/src/index.ts"],
       "@myshell-run/def": ["libs/def/src/index.ts"],
       "@myshell-run/effect-demo": ["libs/effect-demo/src/index.ts"],
       "@myshell-run/message-item-plugins": [
@@ -33,8 +34,7 @@
       "@myshell-run/tailwind-cfg/styles-with-no-source.css": [
         "libs/tailwind-cfg/styles-with-no-source.css"
       ],
-      "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"],
-      "@myshell-run/ui-primitives": ["libs/ui-primitives/src/index.ts"]
+      "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"

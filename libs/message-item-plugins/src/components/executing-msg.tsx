@@ -1,4 +1,4 @@
-import { ReplyMsgFrame, useRemarkable } from '@myshell-run/ui-primitives';
+import { ReplyMsgFrame, useRemarkable } from '@myshell-run/common-ui';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { ExecutingMsgModel } from './executing-msg.model';

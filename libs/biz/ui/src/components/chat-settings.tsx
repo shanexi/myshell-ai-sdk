@@ -5,7 +5,7 @@ import {
   TabList,
   Tabs,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn } from '@myshell-run/ui-primitives';
+import { cn } from '@myshell-run/common-ui';
 import { FormHeader } from './lui-form';
 
 export const ChatSettings = () => {

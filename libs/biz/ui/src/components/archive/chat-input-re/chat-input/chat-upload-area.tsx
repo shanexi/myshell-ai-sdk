@@ -1,4 +1,4 @@
-import { useInjection } from '@myshell-run/ui-primitives';
+import { useInjection } from '@myshell-run/common-ui';
 import * as Slot from '@radix-ui/react-slot';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';

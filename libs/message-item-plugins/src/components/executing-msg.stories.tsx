@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ExecutingMsg } from './executing-msg';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { InversifyProvider } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
 import { messageItemPluginsModule } from '../message-item-plugins.module';
 

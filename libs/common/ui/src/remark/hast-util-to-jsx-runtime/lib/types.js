@@ -1,2 +1,2 @@
 // TypeScript only.
-export {}
+export {};

@@ -1,4 +1,4 @@
-import { useInjection } from '@myshell-run/ui-primitives';
+import { useInjection } from '@myshell-run/common-ui';
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';

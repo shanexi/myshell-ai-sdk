@@ -1,7 +1,7 @@
 {
-  "name": "ui-primitives",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ui-primitives/src",
+  "name": "common-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/common/ui/src",
   "projectType": "library",
   "tags": ["scope:design-system-v1"],
   "targets": {
@@ -9,14 +9,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/ui-primitives/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/common/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4400,
-        "configDir": "libs/ui-primitives/.storybook",
+        "configDir": "libs/common/ui/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -28,8 +28,8 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "./libs/ui-primitives",
-        "command": "../../node_modules/.bin/test-storybook --url http://localhost:4400"
+        "cwd": "./libs/common/ui",
+        "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
       }
     },
     "build-storybook": {
@@ -37,7 +37,7 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/ui-primitives",
-        "configDir": "libs/ui-primitives/.storybook",
+        "configDir": "libs/common/ui/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -49,12 +49,12 @@
     "static-storybook": {
       "executor": "@nrwl/web:file-server",
       "options": {
-        "buildTarget": "ui-primitives:build-storybook",
+        "buildTarget": "common-ui:build-storybook",
         "staticFilePath": "dist/storybook/ui-primitives"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "ui-primitives:build-storybook:ci"
+          "buildTarget": "common-ui:build-storybook:ci"
         }
       }
     }

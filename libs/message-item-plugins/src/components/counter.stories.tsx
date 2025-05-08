@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Timer } from './executing-msg';
 import { messageItemPluginsModule } from '../message-item-plugins.module';
 import { Container } from 'inversify';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { InversifyProvider } from '@myshell-run/common-ui';
 
 const container = new Container();
 container.load(messageItemPluginsModule);

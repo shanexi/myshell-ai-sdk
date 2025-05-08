@@ -1,5 +1,5 @@
 import { Message, MessageItem } from '@myshell-run/def';
-import { RemarkMsg, setup } from '@myshell-run/ui-primitives';
+import { RemarkMsg, setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';

@@ -1,4 +1,4 @@
-import { cn } from '@myshell-run/ui-primitives';
+import { cn } from '@myshell-run/common-ui';
 import TextareaAutosize from 'react-textarea-autosize';
 import { AtSign, CirclePlus, Mic } from 'lucide-react';
 
