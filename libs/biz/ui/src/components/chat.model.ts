@@ -6,10 +6,6 @@ import { DbBot } from '@myshell-run/biz-def';
 import { Message, MessageListContext } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
-import Uppy from '@uppy/core';
-import DropTarget from '@uppy/drop-target';
-import ThumbnailGenerator from '@uppy/thumbnail-generator';
-import XHR from '@uppy/xhr-upload';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import { inject, injectable } from 'inversify';
 import {
@@ -122,22 +118,11 @@ export class ChatModel {
   }
 
   appendMsg(message: Message) {
-    this.virtuosoRef?.current?.data.append(
-      [message],
-      ({ scrollInProgress, atBottom }) => {
-        return {
-          index: 'LAST',
-          align: 'end',
-          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
-        };
-      },
-    );
+    this.chatCommon.appendMsg(message);
   }
 
   isMsgNoExists(key: string) {
-    return (
-      this.virtuosoRef?.current?.data.find((m) => m.key === key) === undefined
-    );
+    return this.chatCommon.isMsgNoExists(key);
   }
 
   @action.bound
