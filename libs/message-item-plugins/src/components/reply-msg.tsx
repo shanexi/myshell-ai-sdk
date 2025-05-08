@@ -1,4 +1,4 @@
-import { DEFAULT_AVATAR, Message } from '@myshell-run/def';
+import { DEFAULT_AVATAR, Message } from '@myshell-run/common-def';
 import { ReplyMsgFrame } from '@myshell-run/common-ui';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';

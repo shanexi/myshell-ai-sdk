@@ -15,7 +15,7 @@ import {
   Message,
   RegisterMap,
   RemarkableFactory,
-} from '@myshell-run/def';
+} from '@myshell-run/common-def';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';

@@ -1,4 +1,4 @@
-import { Message, MessageItem } from '@myshell-run/def';
+import { Message, MessageItem } from '@myshell-run/common-def';
 import { RemarkMsg, setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';

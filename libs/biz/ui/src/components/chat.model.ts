@@ -3,7 +3,7 @@ import {
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
 import { DbBot } from '@myshell-run/biz-def';
-import { Message, MessageListContext } from '@myshell-run/def';
+import { Message, MessageListContext } from '@myshell-run/common-def';
 import { createId } from '@paralleldrive/cuid2';
 import Uppy from '@uppy/core';
 import DropTarget from '@uppy/drop-target';

@@ -1,4 +1,4 @@
-import { Remarkable } from '@myshell-run/def';
+import { Remarkable } from '@myshell-run/common-def';
 import { injectable } from 'inversify';
 
 @injectable()

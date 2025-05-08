@@ -1,4 +1,8 @@
-import { RegisterMap, Remarkable, RemarkableFactory } from '@myshell-run/def';
+import {
+  RegisterMap,
+  Remarkable,
+  RemarkableFactory,
+} from '@myshell-run/common-def';
 import { interfaces } from 'inversify';
 import { RemarkableManager } from './remark/remark-manager';
 
