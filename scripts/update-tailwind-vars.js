@@ -142,18 +142,24 @@ function updateCssVars(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
 
   // Extract all CSS variable names before we modify them
-  const allVarsRegex = /(--[a-zA-Z0-9-]+)(?=\s*:)/g;
+  const allVarsRegex = /(--[a-zA-Z0-9-_]+)(?=\s*:)/g;
   const allMatches = [...content.matchAll(allVarsRegex)];
   const allVarNames = allMatches.map((match) => match[0]);
 
   // Create a map of original var names to suffixed var names
   const varMap = {};
   allVarNames.forEach((name) => {
-    varMap[name] = `${name}${CONFIG.suffix}`;
+    // Only add suffix if the variable doesn't already have it
+    if (!name.endsWith(CONFIG.suffix)) {
+      varMap[name] = `${name}${CONFIG.suffix}`;
+    } else {
+      // If it already has the suffix, keep it as is
+      varMap[name] = name;
+    }
   });
 
   // Extract original radius variables for the class name updates
-  const radiusVarRegex = /--radius-([a-zA-Z0-9-]+)(?=\s*:)/g;
+  const radiusVarRegex = /--radius-([a-zA-Z0-9-_]+)(?=\s*:)/g;
   const radiusMatches = [...content.matchAll(radiusVarRegex)];
   const radiusNames = radiusMatches.map((match) => match[1]);
 
@@ -183,8 +189,15 @@ function updateCssVars(filePath) {
   // First, handle direct var() references
   // Replace all variable references in values (var(--name) pattern)
   for (const varName of sortedVarNames) {
+    // Skip variables that already have the suffix
+    if (varName.endsWith(CONFIG.suffix)) {
+      continue;
+    }
+
     // This pattern matches var(--name) including with whitespace
-    const regex = new RegExp(`var\\(\\s*${varName}\\s*\\)`, 'g');
+    // Escape varName to handle special characters properly
+    const escapedVarName = varName.replace(/[-_]/g, '\\$&');
+    const regex = new RegExp(`var\\(\\s*${escapedVarName}\\s*\\)`, 'g');
     const matches = updatedContent.match(regex) || [];
     valueRefsUpdated += matches.length;
     updatedContent = updatedContent.replace(regex, `var(${varMap[varName]})`);
@@ -193,7 +206,14 @@ function updateCssVars(filePath) {
   // Also handle more complex var() references with fallbacks
   // Like: var(--name, fallback)
   for (const varName of sortedVarNames) {
-    const regex = new RegExp(`var\\(\\s*${varName}\\s*,`, 'g');
+    // Skip variables that already have the suffix
+    if (varName.endsWith(CONFIG.suffix)) {
+      continue;
+    }
+
+    // Escape varName to handle special characters properly
+    const escapedVarName = varName.replace(/[-_]/g, '\\$&');
+    const regex = new RegExp(`var\\(\\s*${escapedVarName}\\s*,`, 'g');
     const matches = updatedContent.match(regex) || [];
     valueRefsUpdated += matches.length;
     updatedContent = updatedContent.replace(regex, `var(${varMap[varName]},`);
@@ -204,7 +224,14 @@ function updateCssVars(filePath) {
   let varDefsUpdated = 0;
 
   for (const varName of sortedVarNames) {
-    const regex = new RegExp(`${varName}(?=\\s*:)`, 'g');
+    // Skip variables that already have the suffix
+    if (varName.endsWith(CONFIG.suffix)) {
+      continue;
+    }
+
+    // Escape varName to handle special characters properly
+    const escapedVarName = varName.replace(/[-_]/g, '\\$&');
+    const regex = new RegExp(`${escapedVarName}(?=\\s*:)`, 'g');
     const matches = updatedContent.match(regex) || [];
     varDefsUpdated += matches.length;
     updatedContent = updatedContent.replace(regex, varMap[varName]);
@@ -249,6 +276,11 @@ function updateCssVars(filePath) {
   const namespacedVars = {};
 
   for (const varName of allVarNames) {
+    // Skip variables that already have the suffix to prevent double suffixing in class names
+    if (varName.endsWith(CONFIG.suffix)) {
+      continue;
+    }
+
     for (const [cssPrefix] of Object.entries(CSS_VAR_CLASS_MAPPINGS)) {
       if (varName.startsWith(cssPrefix)) {
         const key = cssPrefix;
@@ -278,12 +310,15 @@ function processFile(file, updatePatterns) {
 
     // 创建匹配所有可能类名的正则表达式
     // 例如: rounded-xl, bg-red-500, etc.
-    const varNames = matchingVars.join('|');
-    if (!varNames) continue;
+    // Properly escape special regex characters in variable names
+    const escapedVarNames = matchingVars
+      .map((v) => v.replace(/[-_]/g, '\\$&'))
+      .join('|');
+    if (!escapedVarNames) continue;
 
     // 基本类名匹配，如 bg-red-500, m-4
     const classRegex = new RegExp(
-      `(\\s|"|'|{|\\()${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\)|-)`,
+      `(\\s|"|'|{|\\()${classPrefix}-((?:${escapedVarNames}))(?=\\s|"|'|}|\\)|-)`,
       'g',
     );
 
@@ -300,7 +335,7 @@ function processFile(file, updatePatterns) {
     // 处理带有方向/变种的类，例如 rounded-t-xl, p-x-4
     // 支持如下模式: rounded-t-lg, p-x-4, m-y-2
     const directionRegex = new RegExp(
-      `(\\s|"|'|{|\\()${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      `(\\s|"|'|{|\\()${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${escapedVarNames}))(?=\\s|"|'|}|\\))`,
       'g',
     );
 
@@ -317,7 +352,7 @@ function processFile(file, updatePatterns) {
     // 处理紧跟在类名后面的伪类和响应式修饰符，如 hover:bg-red-500, sm:p-4
     // 这种情况需要特殊处理，因为它们有更复杂的模式
     const modifierRegex = new RegExp(
-      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-((?:${escapedVarNames}))(?=\\s|"|'|}|\\))`,
       'g',
     );
 
@@ -333,7 +368,7 @@ function processFile(file, updatePatterns) {
 
     // 处理带有方向和修饰符的组合，如 hover:p-x-4, sm:m-y-2
     const modifierDirectionRegex = new RegExp(
-      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${varNames}))(?=\\s|"|'|}|\\))`,
+      `(\\s|"|'|{|\\()([a-z0-9\\-]+:)${classPrefix}-(t|b|l|r|x|y|tl|tr|bl|br)-((?:${escapedVarNames}))(?=\\s|"|'|}|\\))`,
       'g',
     );
 
@@ -373,7 +408,13 @@ function updateTsxFiles(directories, variableNames) {
   // 创建变量名映射
   const varMap = {};
   variableNames.forEach((name) => {
-    varMap[name] = `${name}${CONFIG.suffix}`;
+    // Only add suffix if the variable doesn't already have it
+    if (!name.endsWith(CONFIG.suffix)) {
+      varMap[name] = `${name}${CONFIG.suffix}`;
+    } else {
+      // If it already has the suffix, keep it as is
+      varMap[name] = name;
+    }
   });
 
   let totalFilesModified = 0;
@@ -514,7 +555,7 @@ function updateTsxFiles(directories, variableNames) {
 function handleRoundedClasses(content) {
   let counter = 0;
   const roundedBaseRegex =
-    /(\s|"|'|{|\()rounded(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
+    /(\s|"|'|{|\()rounded(-([a-zA-Z0-9-_]+))?(?=\s|"|'|}|\))/g;
   let updatedContent = content.replace(
     roundedBaseRegex,
     (match, prefix, suffix, sizeName) => {
@@ -538,7 +579,7 @@ function handleRoundedClasses(content) {
   // 处理特定角落的 rounded 类 (top, bottom, left, right, tl, tr, bl, br)
   // 匹配如 rounded-t-xl, rounded-l-md, rounded-tr, rounded-bl-lg 等
   const cornerRoundedRegex =
-    /(\s|"|'|{|\()rounded-(t|b|l|r|tl|tr|bl|br)(-([a-zA-Z0-9-]+))?(?=\s|"|'|}|\))/g;
+    /(\s|"|'|{|\()rounded-(t|b|l|r|tl|tr|bl|br)(-([a-zA-Z0-9-_]+))?(?=\s|"|'|}|\))/g;
   updatedContent = updatedContent.replace(
     cornerRoundedRegex,
     (match, prefix, corner, suffix, sizeName) => {

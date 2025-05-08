@@ -153,8 +153,8 @@
   --radius-components-dropdown-radius-v2: var(--radius-md-v2);
   --spacing-components-dropdown-padding-v2: var(--radius-md-v2);
   --radius-components-checkbox-radius-v2: var(--radius-default-v2);
-  --spacing-components-input-height_sm: var(--primitives-8-32px-v2);
-  --spacing-components-input-padding_sm: var(--primitives-2-8px-v2);
+  --spacing-components-input-height_sm-v2: var(--primitives-8-32px-v2);
+  --spacing-components-input-padding_sm-v2: var(--primitives-2-8px-v2);
   --radius-components-model-radius-v2: var(--radius-lg-v2);
   --radius-components-bubble-radius-v2: var(--radius-lg-v2);
   --spacing-components-bubble-padding-v2: var(--radius-xl-v2);
@@ -480,106 +480,132 @@
   --color-colors-background-neutral-primary-active-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-brand-fg_default-light: var(--pure-mauve-5-v2);
-  --color-component-colors-button-brand-fg_default-dark: var(--pure-mauve-99-v2);
-  --color-component-colors-button-brand-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-brand-fg_alt-dark: var(
+  --color-component-colors-button-brand-fg_default-light-v2: var(
+    --pure-mauve-5-v2
+  );
+  --color-component-colors-button-brand-fg_default-dark-v2: var(
+    --pure-mauve-99-v2
+  );
+  --color-component-colors-button-brand-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-button-brand-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-brand-bg_default-light: var(
+  --color-component-colors-button-brand-bg_default-light-v2: var(
     --pure-mauve-95-v2
   );
-  --color-component-colors-button-brand-bg_default-dark: var(--pure-mauve-50-v2);
-  --color-component-colors-button-brand-bg_hover-light: var(--pure-mauve-80-v2);
-  --color-component-colors-button-brand-bg_hover-dark: var(--pure-mauve-30-v2);
-  --color-component-colors-button-brand-bg_active-light: var(--pure-mauve-70-v2);
-  --color-component-colors-button-brand-bg_active-dark: var(--pure-mauve-20-v2);
-  --color-component-colors-button-brand-bg_disabled-light: var(--neutral-95-v2);
-  --color-component-colors-button-brand-bg_disabled-dark: var(
+  --color-component-colors-button-brand-bg_default-dark-v2: var(
+    --pure-mauve-50-v2
+  );
+  --color-component-colors-button-brand-bg_hover-light-v2: var(
+    --pure-mauve-80-v2
+  );
+  --color-component-colors-button-brand-bg_hover-dark-v2: var(
+    --pure-mauve-30-v2
+  );
+  --color-component-colors-button-brand-bg_active-light-v2: var(
+    --pure-mauve-70-v2
+  );
+  --color-component-colors-button-brand-bg_active-dark-v2: var(
+    --pure-mauve-20-v2
+  );
+  --color-component-colors-button-brand-bg_disabled-light-v2: var(
+    --neutral-95-v2
+  );
+  --color-component-colors-button-brand-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-secondary-border_default-light: var(
+  --color-component-colors-button-secondary-border_default-light-v2: var(
     --neutral-5-v2
   );
-  --color-component-colors-button-secondary-border_default-dark: var(
+  --color-component-colors-button-secondary-border_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-primary-bg_default-light: var(--neutral-5-v2);
-  --color-component-colors-button-primary-bg_default-dark: var(
+  --color-component-colors-button-primary-bg_default-light-v2: var(
+    --neutral-5-v2
+  );
+  --color-component-colors-button-primary-bg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-primary-bg_hover-light: var(--neutral-20-v2);
-  --color-component-colors-button-primary-bg_hover-dark: var(
+  --color-component-colors-button-primary-bg_hover-light-v2: var(
+    --neutral-20-v2
+  );
+  --color-component-colors-button-primary-bg_hover-dark-v2: var(
     --neutral-variant-90-v2
   );
-  --color-component-colors-button-primary-fg_default-light: var(
+  --color-component-colors-button-primary-fg_default-light-v2: var(
     --neutral-100-v2
   );
-  --color-component-colors-button-primary-fg_default-dark: var(
+  --color-component-colors-button-primary-fg_default-dark-v2: var(
     --neutral-variant-5-v2
   );
-  --color-component-colors-button-primary-fg_alt-light: var(
+  --color-component-colors-button-primary-fg_alt-light-v2: var(
     --opacity-white-90-v2
   );
-  --color-component-colors-button-primary-fg_alt-dark: var(
+  --color-component-colors-button-primary-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-primary-bg_active-light: var(--neutral-40-v2);
-  --color-component-colors-button-primary-bg_active-dark: var(
+  --color-component-colors-button-primary-bg_active-light-v2: var(
+    --neutral-40-v2
+  );
+  --color-component-colors-button-primary-bg_active-dark-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-button-primary-bg_disabled-light: var(
+  --color-component-colors-button-primary-bg_disabled-light-v2: var(
     --opacity-black-30-v2
   );
-  --color-component-colors-button-primary-bg_disabled-dark: var(
+  --color-component-colors-button-primary-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-secondary-bg_default-light: var(
+  --color-component-colors-button-secondary-bg_default-light-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-button-secondary-bg_default-dark: var(
+  --color-component-colors-button-secondary-bg_default-dark-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-button-secondary-border_disabled-light: var(
+  --color-component-colors-button-secondary-border_disabled-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-secondary-border_disabled-dark: var(
+  --color-component-colors-button-secondary-border_disabled-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-secondary-fg_default-light: var(
+  --color-component-colors-button-secondary-fg_default-light-v2: var(
     --neutral-5-v2
   );
-  --color-component-colors-button-secondary-fg_default-dark: var(
+  --color-component-colors-button-secondary-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-secondary-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-secondary-fg_alt-dark: var(
+  --color-component-colors-button-secondary-fg_alt-light-v2: var(
+    --neutral-70-v2
+  );
+  --color-component-colors-button-secondary-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-secondary-bg_hover-light: var(
+  --color-component-colors-button-secondary-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-button-secondary-bg_hover-dark: var(
+  --color-component-colors-button-secondary-bg_hover-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-secondary-bg_active-light: var(
+  --color-component-colors-button-secondary-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-secondary-bg_active-dark: var(
+  --color-component-colors-button-secondary-bg_active-dark-v2: var(
     --opacity-white-20-v2
   );
-  --color-component-colors-button-tertiary-bg_default-light: var(
+  --color-component-colors-button-tertiary-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-button-tertiary-bg_default-dark: var(
+  --color-component-colors-button-tertiary-bg_default-dark-v2: var(
     --opacity-white-8-v2
   );
-  --color-component-colors-button-tertiary-fg_default-light: var(--neutral-5-v2);
-  --color-component-colors-button-tertiary-fg_default-dark: var(
+  --color-component-colors-button-tertiary-fg_default-light-v2: var(
+    --neutral-5-v2
+  );
+  --color-component-colors-button-tertiary-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-tertiary-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-tertiary-fg_alt-dark: var(
+  --color-component-colors-button-tertiary-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-button-tertiary-fg_alt-dark-v2: var(
     --opacity-white-30-v2
   );
   --color-component-colors-button-tertiary-border-light-v2: var(
@@ -588,264 +614,276 @@
   --color-component-colors-button-tertiary-border-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-tertiary-border_alt-light: var(
+  --color-component-colors-button-tertiary-border_alt-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-tertiary-border_alt-dark: var(
+  --color-component-colors-button-tertiary-border_alt-dark-v2: var(
     --opacity-white-30-v2
   );
-  --color-component-colors-button-tertiary-bg_hover-light: var(
+  --color-component-colors-button-tertiary-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-button-tertiary-bg_hover-dark: var(
+  --color-component-colors-button-tertiary-bg_hover-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-tertiary-bg_active-light: var(
+  --color-component-colors-button-tertiary-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-tertiary-bg_active-dark: var(
+  --color-component-colors-button-tertiary-bg_active-dark-v2: var(
     --opacity-white-20-v2
   );
-  --color-component-colors-button-plain-fg_default-light: var(--neutral-5-v2);
-  --color-component-colors-button-plain-fg_default-dark: var(
+  --color-component-colors-button-plain-fg_default-light-v2: var(--neutral-5-v2);
+  --color-component-colors-button-plain-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-plain-bg_default-light: var(--basic-none-v2);
-  --color-component-colors-button-plain-bg_default-dark: var(--basic-none-v2);
-  --color-component-colors-button-plain-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-plain-fg_alt-dark: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-plain-bg_hover-light: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-button-plain-bg_hover-dark: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-plain-bg_active-light: var(
-    --opacity-on-surface-30-v2
-  );
-  --color-component-colors-button-plain-bg_active-dark: var(
-    --opacity-white-20-v2
-  );
-  --color-component-colors-button-plain-brand-fg_default-light: var(
-    --pure-mauve-50-v2
-  );
-  --color-component-colors-button-plain-brand-fg_default-dark: var(
-    --pure-mauve-70-v2
-  );
-  --color-component-colors-button-plain-brand-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-plain-brand-fg_alt-dark: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-plain-brand-bg_default-light: var(
+  --color-component-colors-button-plain-bg_default-light-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-button-plain-brand-bg_default-dark: var(
-    --basic-none-v2
+  --color-component-colors-button-plain-bg_default-dark-v2: var(--basic-none-v2);
+  --color-component-colors-button-plain-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-button-plain-fg_alt-dark-v2: var(
+    --neutral-variant-40-v2
   );
-  --color-component-colors-button-plain-brand-bg_hover-light: var(
+  --color-component-colors-button-plain-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-button-plain-brand-bg_hover-dark: var(
+  --color-component-colors-button-plain-bg_hover-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-plain-brand-bg_active-light: var(
+  --color-component-colors-button-plain-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-plain-brand-bg_active-dark: var(
+  --color-component-colors-button-plain-bg_active-dark-v2: var(
     --opacity-white-20-v2
   );
-  --color-component-colors-link-button-primary-fg_default-light: var(
+  --color-component-colors-button-plain-brand-fg_default-light-v2: var(
     --pure-mauve-50-v2
   );
-  --color-component-colors-link-button-primary-fg_default-dark: var(
+  --color-component-colors-button-plain-brand-fg_default-dark-v2: var(
     --pure-mauve-70-v2
   );
-  --color-component-colors-link-button-primary-fg_hover-light: var(
+  --color-component-colors-button-plain-brand-fg_alt-light-v2: var(
+    --neutral-70-v2
+  );
+  --color-component-colors-button-plain-brand-fg_alt-dark-v2: var(
+    --neutral-variant-40-v2
+  );
+  --color-component-colors-button-plain-brand-bg_default-light-v2: var(
+    --basic-none-v2
+  );
+  --color-component-colors-button-plain-brand-bg_default-dark-v2: var(
+    --basic-none-v2
+  );
+  --color-component-colors-button-plain-brand-bg_hover-light-v2: var(
+    --opacity-on-surface-20-v2
+  );
+  --color-component-colors-button-plain-brand-bg_hover-dark-v2: var(
+    --opacity-white-16-v2
+  );
+  --color-component-colors-button-plain-brand-bg_active-light-v2: var(
+    --opacity-on-surface-30-v2
+  );
+  --color-component-colors-button-plain-brand-bg_active-dark-v2: var(
+    --opacity-white-20-v2
+  );
+  --color-component-colors-link-button-primary-fg_default-light-v2: var(
+    --pure-mauve-50-v2
+  );
+  --color-component-colors-link-button-primary-fg_default-dark-v2: var(
+    --pure-mauve-70-v2
+  );
+  --color-component-colors-link-button-primary-fg_hover-light-v2: var(
     --pure-mauve-40-v2
   );
-  --color-component-colors-link-button-primary-fg_hover-dark: var(
+  --color-component-colors-link-button-primary-fg_hover-dark-v2: var(
     --pure-mauve-80-v2
   );
-  --color-component-colors-link-button-primary-bg_default-light: var(
+  --color-component-colors-link-button-primary-bg_default-light-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-link-button-primary-bg_default-dark: var(
+  --color-component-colors-link-button-primary-bg_default-dark-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-link-button-primary-fg_active-light: var(
+  --color-component-colors-link-button-primary-fg_active-light-v2: var(
     --pure-mauve-30-v2
   );
-  --color-component-colors-link-button-primary-fg_active-dark: var(
+  --color-component-colors-link-button-primary-fg_active-dark-v2: var(
     --pure-mauve-80-v2
   );
-  --color-component-colors-link-button-primary-fg_disabled-light: var(
+  --color-component-colors-link-button-primary-fg_disabled-light-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-primary-fg_disabled-dark: var(
+  --color-component-colors-link-button-primary-fg_disabled-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-link-button-secondary-fg_default-light: var(
+  --color-component-colors-link-button-secondary-fg_default-light-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-link-button-secondary-fg_default-dark: var(
+  --color-component-colors-link-button-secondary-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-link-button-secondary-fg_hover-light: var(
+  --color-component-colors-link-button-secondary-fg_hover-light-v2: var(
     --neutral-variant-50-v2
   );
-  --color-component-colors-link-button-secondary-fg_hover-dark: var(
+  --color-component-colors-link-button-secondary-fg_hover-dark-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-secondary-fg_active-light: var(
+  --color-component-colors-link-button-secondary-fg_active-light-v2: var(
     --neutral-variant-70-v2
   );
-  --color-component-colors-link-button-secondary-fg_active-dark: var(
+  --color-component-colors-link-button-secondary-fg_active-dark-v2: var(
     --neutral-variant-60-v2
   );
-  --color-component-colors-link-button-secondary-fg_disabled-light: var(
+  --color-component-colors-link-button-secondary-fg_disabled-light-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-secondary-fg_disabled-dark: var(
+  --color-component-colors-link-button-secondary-fg_disabled-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-link-button-secondary-bg_default-light: var(
+  --color-component-colors-link-button-secondary-bg_default-light-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-link-button-secondary-bg_default-dark: var(
+  --color-component-colors-link-button-secondary-bg_default-dark-v2: var(
     --basic-none-v2
   );
-  --color-component-colors-button-error-primary-fg_default-light: var(
+  --color-component-colors-button-error-primary-fg_default-light-v2: var(
     --terracotta-100-v2
   );
-  --color-component-colors-button-error-primary-fg_default-dark: var(
+  --color-component-colors-button-error-primary-fg_default-dark-v2: var(
     --terracotta-95-v2
   );
-  --color-component-colors-button-error-primary-fg_alt-light: var(
+  --color-component-colors-button-error-primary-fg_alt-light-v2: var(
     --neutral-70-v2
   );
-  --color-component-colors-button-error-primary-fg_alt-dark: var(
+  --color-component-colors-button-error-primary-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-error-primary-bg_default-light: var(
+  --color-component-colors-button-error-primary-bg_default-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-button-error-primary-bg_default-dark: var(
+  --color-component-colors-button-error-primary-bg_default-dark-v2: var(
     --terracotta-40-v2
   );
-  --color-component-colors-button-error-primary-bg_hover-light: var(
+  --color-component-colors-button-error-primary-bg_hover-light-v2: var(
     --terracotta-40-v2
   );
-  --color-component-colors-button-error-primary-bg_hover-dark: var(
+  --color-component-colors-button-error-primary-bg_hover-dark-v2: var(
     --terracotta-30-v2
   );
-  --color-component-colors-button-error-primary-bg_active-light: var(
+  --color-component-colors-button-error-primary-bg_active-light-v2: var(
     --terracotta-30-v2
   );
-  --color-component-colors-button-error-primary-bg_active-dark: var(
+  --color-component-colors-button-error-primary-bg_active-dark-v2: var(
     --terracotta-20-v2
   );
-  --color-component-colors-button-error-primary-bg_disabled-light: var(
+  --color-component-colors-button-error-primary-bg_disabled-light-v2: var(
     --neutral-95-v2
   );
-  --color-component-colors-button-error-primary-bg_disabled-dark: var(
+  --color-component-colors-button-error-primary-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-error-secondary-fg_default-light: var(
+  --color-component-colors-button-error-secondary-fg_default-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-button-error-secondary-fg_default-dark: var(
+  --color-component-colors-button-error-secondary-fg_default-dark-v2: var(
     --terracotta-95-v2
   );
-  --color-component-colors-button-error-secondary-fg_alt-light: var(
+  --color-component-colors-button-error-secondary-fg_alt-light-v2: var(
     --neutral-70-v2
   );
-  --color-component-colors-button-error-secondary-fg_alt-dark: var(
+  --color-component-colors-button-error-secondary-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-error-secondary-bg_default-light: var(
+  --color-component-colors-button-error-secondary-bg_default-light-v2: var(
     --terracotta-98-v2
   );
-  --color-component-colors-button-error-secondary-bg_default-dark: var(
+  --color-component-colors-button-error-secondary-bg_default-dark-v2: var(
     --terracotta-5-v2
   );
-  --color-component-colors-button-error-secondary-bg_hover-light: var(
+  --color-component-colors-button-error-secondary-bg_hover-light-v2: var(
     --terracotta-90-v2
   );
-  --color-component-colors-button-error-secondary-bg_hover-dark: var(
+  --color-component-colors-button-error-secondary-bg_hover-dark-v2: var(
     --terracotta-20-v2
   );
-  --color-component-colors-button-error-secondary-bg_active-light: var(
+  --color-component-colors-button-error-secondary-bg_active-light-v2: var(
     --terracotta-80-v2
   );
-  --color-component-colors-button-error-secondary-bg_active-dark: var(
+  --color-component-colors-button-error-secondary-bg_active-dark-v2: var(
     --terracotta-30-v2
   );
-  --color-component-colors-button-error-secondary-border_default-light: var(
+  --color-component-colors-button-error-secondary-border_default-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-button-error-secondary-border_default-dark: var(
+  --color-component-colors-button-error-secondary-border_default-dark-v2: var(
     --terracotta-40-v2
   );
-  --color-component-colors-button-error-secondary-border_disabled-light: var(
+  --color-component-colors-button-error-secondary-border_disabled-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-error-secondary-border_disabled-dark: var(
+  --color-component-colors-button-error-secondary-border_disabled-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-error-primary-bg_loading-light: var(
+  --color-component-colors-button-error-primary-bg_loading-light-v2: var(
     --terracotta-90-v2
   );
-  --color-component-colors-button-error-primary-bg_loading-dark: var(
+  --color-component-colors-button-error-primary-bg_loading-dark-v2: var(
     --terracotta-40-v2
   );
-  --color-component-colors-icon-button-brand-fg_default-light: var(
+  --color-component-colors-icon-button-brand-fg_default-light-v2: var(
     --pure-mauve-5-v2
   );
-  --color-component-colors-icon-button-brand-fg_default-dark: var(
+  --color-component-colors-icon-button-brand-fg_default-dark-v2: var(
     --pure-mauve-99-v2
   );
-  --color-component-colors-icon-button-brand-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-icon-button-brand-fg_alt-dark: var(
+  --color-component-colors-icon-button-brand-fg_alt-light-v2: var(
+    --neutral-70-v2
+  );
+  --color-component-colors-icon-button-brand-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-icon-button-brand-bg_default-light: var(
+  --color-component-colors-icon-button-brand-bg_default-light-v2: var(
     --pure-mauve-95-v2
   );
-  --color-component-colors-icon-button-brand-bg_default-dark: var(
+  --color-component-colors-icon-button-brand-bg_default-dark-v2: var(
     --pure-mauve-50-v2
   );
-  --color-component-colors-icon-button-brand-bg_hover-light: var(
+  --color-component-colors-icon-button-brand-bg_hover-light-v2: var(
     --pure-mauve-80-v2
   );
-  --color-component-colors-icon-button-brand-bg_hover-dark: var(
+  --color-component-colors-icon-button-brand-bg_hover-dark-v2: var(
     --pure-mauve-30-v2
   );
-  --color-component-colors-icon-button-brand-bg_active-light: var(
+  --color-component-colors-icon-button-brand-bg_active-light-v2: var(
     --pure-mauve-70-v2
   );
-  --color-component-colors-icon-button-brand-bg_active-dark: var(
+  --color-component-colors-icon-button-brand-bg_active-dark-v2: var(
     --pure-mauve-20-v2
   );
-  --color-component-colors-icon-button-brand-bg_disabled-light: var(
+  --color-component-colors-icon-button-brand-bg_disabled-light-v2: var(
     --neutral-95-v2
   );
-  --color-component-colors-icon-button-brand-bg_disabled-dark: var(
+  --color-component-colors-icon-button-brand-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-tooltip-fg_default-light: var(
+  --color-component-colors-tooltip-fg_default-light-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-tooltip-fg_default-dark: var(
+  --color-component-colors-tooltip-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-tooltip-bg_default-light: var(
+  --color-component-colors-tooltip-bg_default-light-v2: var(
     --neutral-variant-10-v2
   );
-  --color-component-colors-tooltip-bg_default-dark: var(--neutral-variant-10-v2);
-  --color-component-colors-tooltip-fg_subtle-light: var(--neutral-variant-80-v2);
-  --color-component-colors-tooltip-fg_subtle-dark: var(--neutral-variant-80-v2);
+  --color-component-colors-tooltip-bg_default-dark-v2: var(
+    --neutral-variant-10-v2
+  );
+  --color-component-colors-tooltip-fg_subtle-light-v2: var(
+    --neutral-variant-80-v2
+  );
+  --color-component-colors-tooltip-fg_subtle-dark-v2: var(
+    --neutral-variant-80-v2
+  );
   --color-component-colors-tooltip-border-light-v2: var(--basic-none-v2);
   --color-component-colors-tooltip-border-dark-v2: var(--neutral-variant-20-v2);
   --color-colors-background-neutral-on-surface-default-light-v2: var(
@@ -870,10 +908,10 @@
   --color-colors-background-normal-tertiary-active-dark-v2: var(
     --neutral-variant-50-v2
   );
-  --color-component-colors-button-error-secondary-bg_disabled-light: var(
+  --color-component-colors-button-error-secondary-bg_disabled-light-v2: var(
     --terracotta-100-v2
   );
-  --color-component-colors-button-error-secondary-bg_disabled-dark: var(
+  --color-component-colors-button-error-secondary-bg_disabled-dark-v2: var(
     --basic-none-v2
   );
   --color-colors-utility-gray-5-light-v2: var(--neutral-variant-98-v2);
@@ -1068,64 +1106,80 @@
   --color-colors-foreground-bolder-dark-v2: var(--neutral-variant-5-v2);
   --color-colors-border-bolder-light-v2: var(--neutral-5-v2);
   --color-colors-border-bolder-dark-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-tabbar-bg_select-light: var(--neutral-100-v2);
-  --color-component-colors-tabbar-bg_select-dark: var(--neutral-variant-30-v2);
-  --color-component-colors-tabbar-bg_default-light: var(--neutral-98-v2);
-  --color-component-colors-tabbar-bg_default-dark: var(--neutral-variant-20-v2);
-  --color-component-colors-tabbar-fg_default-light: var(--neutral-60-v2);
-  --color-component-colors-tabbar-fg_default-dark: var(--neutral-variant-70-v2);
-  --color-component-colors-tabbar-fg_bolder-light: var(--neutral-5-v2);
-  --color-component-colors-tabbar-fg_bolder-dark: var(--neutral-variant-100-v2);
-  --color-component-colors-tabbar-fg_disabled-light: var(--neutral-90-v2);
-  --color-component-colors-tabbar-fg_disabled-dark: var(--neutral-variant-30-v2);
-  --color-component-colors-tabbar-border-light-v2: var(--neutral-5-v2);
-  --color-component-colors-tabbar-border-dark-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-tabbar-border_disabled-light: var(--neutral-95-v2);
-  --color-component-colors-tabbar-border_disabled-dark: var(
+  --color-component-colors-tabbar-bg_select-light-v2: var(--neutral-100-v2);
+  --color-component-colors-tabbar-bg_select-dark-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-component-colors-tabbar-bg_default-light-v2: var(--neutral-98-v2);
+  --color-component-colors-tabbar-bg_default-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-tabbar-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-tabbar-fg_alt-dark: var(--neutral-variant-50-v2);
-  --color-component-colors-energy-fg_default-light: var(--khaki-40-v2);
-  --color-component-colors-energy-fg_default-dark: var(--khaki-90-v2);
-  --color-component-colors-energy-bg_default-light: var(--khaki-99-v2);
-  --color-component-colors-energy-bg_default-dark: var(--khaki-10-v2);
+  --color-component-colors-tabbar-fg_default-light-v2: var(--neutral-60-v2);
+  --color-component-colors-tabbar-fg_default-dark-v2: var(
+    --neutral-variant-70-v2
+  );
+  --color-component-colors-tabbar-fg_bolder-light-v2: var(--neutral-5-v2);
+  --color-component-colors-tabbar-fg_bolder-dark-v2: var(
+    --neutral-variant-100-v2
+  );
+  --color-component-colors-tabbar-fg_disabled-light-v2: var(--neutral-90-v2);
+  --color-component-colors-tabbar-fg_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-component-colors-tabbar-border-light-v2: var(--neutral-5-v2);
+  --color-component-colors-tabbar-border-dark-v2: var(--neutral-variant-100-v2);
+  --color-component-colors-tabbar-border_disabled-light-v2: var(--neutral-95-v2);
+  --color-component-colors-tabbar-border_disabled-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-component-colors-tabbar-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-tabbar-fg_alt-dark-v2: var(--neutral-variant-50-v2);
+  --color-component-colors-energy-fg_default-light-v2: var(--khaki-40-v2);
+  --color-component-colors-energy-fg_default-dark-v2: var(--khaki-90-v2);
+  --color-component-colors-energy-bg_default-light-v2: var(--khaki-99-v2);
+  --color-component-colors-energy-bg_default-dark-v2: var(--khaki-10-v2);
   --color-component-colors-energy-border-light-v2: var(--khaki-80-v2);
   --color-component-colors-energy-border-dark-v2: var(--khaki-60-v2);
-  --color-component-colors-energy-bg_alt-light: var(--khaki-95-v2);
-  --color-component-colors-energy-bg_alt-dark: var(--khaki-20-v2);
-  --color-component-colors-energy-bg_on-light: var(--khaki-90-v2);
-  --color-component-colors-energy-bg_on-dark: var(--khaki-60-v2);
-  --color-component-colors-icon-featured-icon-fg_info-light: var(
+  --color-component-colors-energy-bg_alt-light-v2: var(--khaki-95-v2);
+  --color-component-colors-energy-bg_alt-dark-v2: var(--khaki-20-v2);
+  --color-component-colors-energy-bg_on-light-v2: var(--khaki-90-v2);
+  --color-component-colors-energy-bg_on-dark-v2: var(--khaki-60-v2);
+  --color-component-colors-icon-featured-icon-fg_info-light-v2: var(
     --lake-blue-50-v2
   );
-  --color-component-colors-icon-featured-icon-fg_info-dark: var(
+  --color-component-colors-icon-featured-icon-fg_info-dark-v2: var(
     --lake-blue-70-v2
   );
-  --color-component-colors-icon-featured-icon-fg_success-light: var(
+  --color-component-colors-icon-featured-icon-fg_success-light-v2: var(
     --teal-50-v2
   );
-  --color-component-colors-icon-featured-icon-fg_success-dark: var(--teal-70-v2);
-  --color-component-colors-icon-featured-icon-fg_warning-light: var(
+  --color-component-colors-icon-featured-icon-fg_success-dark-v2: var(
+    --teal-70-v2
+  );
+  --color-component-colors-icon-featured-icon-fg_warning-light-v2: var(
     --khaki-60-v2
   );
-  --color-component-colors-icon-featured-icon-fg_warning-dark: var(
+  --color-component-colors-icon-featured-icon-fg_warning-dark-v2: var(
     --khaki-70-v2
   );
-  --color-component-colors-icon-featured-icon-fg_error-light: var(
+  --color-component-colors-icon-featured-icon-fg_error-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-icon-featured-icon-fg_error-dark: var(
+  --color-component-colors-icon-featured-icon-fg_error-dark-v2: var(
     --terracotta-70-v2
   );
-  --color-component-colors-search-bar-bg_default-light: var(
+  --color-component-colors-search-bar-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-search-bar-bg_default-dark: var(--opacity-white-5-v2);
-  --color-component-colors-search-bar-bg_hover-light: var(
+  --color-component-colors-search-bar-bg_default-dark-v2: var(
+    --opacity-white-5-v2
+  );
+  --color-component-colors-search-bar-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-search-bar-bg_hover-dark: var(--opacity-white-12-v2);
+  --color-component-colors-search-bar-bg_hover-dark-v2: var(
+    --opacity-white-12-v2
+  );
   --color-component-colors-search-bar-border-light-v2: var(
     --opacity-on-surface-40-v2
   );
@@ -1146,24 +1200,36 @@
   --color-colors-utility-purple-60-dark-v2: var(--pure-mauve-80-v2);
   --color-colors-utility-purple-70-light-v2: var(--pure-mauve-50-v2);
   --color-colors-utility-purple-70-dark-v2: var(--pure-mauve-95-v2);
-  --color-colors-border-brand_alt-light: var(--pure-mauve-80-v2);
-  --color-colors-border-brand_alt-dark: var(--pure-mauve-40-v2);
-  --color-component-colors-switch-fg_default-light: var(
+  --color-colors-border-brand_alt-light-v2: var(--pure-mauve-80-v2);
+  --color-colors-border-brand_alt-dark-v2: var(--pure-mauve-40-v2);
+  --color-component-colors-switch-fg_default-light-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-switch-fg_default-dark: var(--neutral-variant-100-v2);
-  --color-component-colors-switch-bg_default-light: var(--neutral-variant-90-v2);
-  --color-component-colors-switch-bg_default-dark: var(--neutral-variant-20-v2);
-  --color-component-colors-switch-bg_on-light: var(--neutral-variant-5-v2);
-  --color-component-colors-switch-bg_on-dark: var(--pure-mauve-60-v2);
-  --color-component-colors-switch-bg_disabled-light: var(
+  --color-component-colors-switch-fg_default-dark-v2: var(
+    --neutral-variant-100-v2
+  );
+  --color-component-colors-switch-bg_default-light-v2: var(
+    --neutral-variant-90-v2
+  );
+  --color-component-colors-switch-bg_default-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-component-colors-switch-bg_on-light-v2: var(--neutral-variant-5-v2);
+  --color-component-colors-switch-bg_on-dark-v2: var(--pure-mauve-60-v2);
+  --color-component-colors-switch-bg_disabled-light-v2: var(
     --neutral-variant-95-v2
   );
-  --color-component-colors-switch-bg_disabled-dark: var(--neutral-variant-20-v2);
-  --color-component-colors-switch-fg_on-light: var(--neutral-variant-100-v2);
-  --color-component-colors-switch-fg_on-dark: var(--neutral-variant-100-v2);
-  --color-component-colors-switch-fg_disabled-light: var(--opacity-white-60-v2);
-  --color-component-colors-switch-fg_disabled-dark: var(--opacity-white-30-v2);
+  --color-component-colors-switch-bg_disabled-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-component-colors-switch-fg_on-light-v2: var(--neutral-variant-100-v2);
+  --color-component-colors-switch-fg_on-dark-v2: var(--neutral-variant-100-v2);
+  --color-component-colors-switch-fg_disabled-light-v2: var(
+    --opacity-white-60-v2
+  );
+  --color-component-colors-switch-fg_disabled-dark-v2: var(
+    --opacity-white-30-v2
+  );
   --color-colors-utility-gray-80-light-v2: var(--neutral-variant-30-v2);
   --color-colors-utility-gray-80-dark-v2: var(--neutral-variant-90-v2);
   --color-colors-utility-olive-80-light-v2: var(--olive-30-v2);
@@ -1194,52 +1260,66 @@
   --color-colors-background-success-alt-dark-v2: var(--teal-50-v2);
   --color-colors-background-info-alt-light-v2: var(--lake-blue-95-v2);
   --color-colors-background-info-alt-dark-v2: var(--lake-blue-50-v2);
-  --color-component-colors-chat-tips-bg_info-light: var(--pure-mauve-99-v2);
-  --color-component-colors-chat-tips-bg_info-dark: var(--pure-mauve-10-v2);
-  --color-component-colors-chat-tips-border_info-light: var(--pure-mauve-80-v2);
-  --color-component-colors-chat-tips-border_info-dark: var(--pure-mauve-40-v2);
-  --color-component-colors-chat-tips-fg_info-light: var(--pure-mauve-50-v2);
-  --color-component-colors-chat-tips-fg_info-dark: var(--pure-mauve-70-v2);
-  --color-component-colors-check-box-fg_default-light: var(--neutral-100-v2);
-  --color-component-colors-check-box-fg_default-dark: var(
+  --color-component-colors-chat-tips-bg_info-light-v2: var(--pure-mauve-99-v2);
+  --color-component-colors-chat-tips-bg_info-dark-v2: var(--pure-mauve-10-v2);
+  --color-component-colors-chat-tips-border_info-light-v2: var(
+    --pure-mauve-80-v2
+  );
+  --color-component-colors-chat-tips-border_info-dark-v2: var(
+    --pure-mauve-40-v2
+  );
+  --color-component-colors-chat-tips-fg_info-light-v2: var(--pure-mauve-50-v2);
+  --color-component-colors-chat-tips-fg_info-dark-v2: var(--pure-mauve-70-v2);
+  --color-component-colors-check-box-fg_default-light-v2: var(--neutral-100-v2);
+  --color-component-colors-check-box-fg_default-dark-v2: var(
     --neutral-variant-5-v2
   );
-  --color-component-colors-check-box-fg_alt-light: var(--neutral-80-v2);
-  --color-component-colors-check-box-fg_alt-dark: var(--neutral-variant-50-v2);
+  --color-component-colors-check-box-fg_alt-light-v2: var(--neutral-80-v2);
+  --color-component-colors-check-box-fg_alt-dark-v2: var(
+    --neutral-variant-50-v2
+  );
   --color-component-colors-check-box-border-light-v2: var(--neutral-90-v2);
   --color-component-colors-check-box-border-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-check-box-border_hover-light: var(--neutral-80-v2);
-  --color-component-colors-check-box-border_hover-dark: var(
+  --color-component-colors-check-box-border_hover-light-v2: var(--neutral-80-v2);
+  --color-component-colors-check-box-border_hover-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-check-box-border_disabled-light: var(--neutral-95-v2);
-  --color-component-colors-check-box-border_disabled-dark: var(
+  --color-component-colors-check-box-border_disabled-light-v2: var(
+    --neutral-95-v2
+  );
+  --color-component-colors-check-box-border_disabled-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-check-box-bg_default-light: var(--neutral-5-v2);
-  --color-component-colors-check-box-bg_default-dark: var(
+  --color-component-colors-check-box-bg_default-light-v2: var(--neutral-5-v2);
+  --color-component-colors-check-box-bg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-check-box-bg_hover-light: var(--neutral-30-v2);
-  --color-component-colors-check-box-bg_hover-dark: var(--neutral-variant-90-v2);
-  --color-component-colors-check-box-bg_disabled-light: var(--neutral-99-v2);
-  --color-component-colors-check-box-bg_disabled-dark: var(
+  --color-component-colors-check-box-bg_hover-light-v2: var(--neutral-30-v2);
+  --color-component-colors-check-box-bg_hover-dark-v2: var(
+    --neutral-variant-90-v2
+  );
+  --color-component-colors-check-box-bg_disabled-light-v2: var(--neutral-99-v2);
+  --color-component-colors-check-box-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-chat-tips-fg_alert-light: var(--khaki-70-v2);
-  --color-component-colors-chat-tips-fg_alert-dark: var(--khaki-70-v2);
-  --color-component-colors-chat-tips-bg_alert-light: var(--khaki-98-v2);
-  --color-component-colors-chat-tips-bg_alert-dark: var(--khaki-10-v2);
-  --color-component-colors-chat-tips-border_alert-light: var(--khaki-80-v2);
-  --color-component-colors-chat-tips-border_alert-dark: var(--khaki-40-v2);
-  --color-component-colors-chat-tips-fg_error-light: var(--terracotta-50-v2);
-  --color-component-colors-chat-tips-fg_error-dark: var(--terracotta-70-v2);
-  --color-component-colors-chat-tips-bg_error-light: var(--terracotta-98-v2);
-  --color-component-colors-chat-tips-bg_error-dark: var(--terracotta-10-v2);
-  --color-component-colors-chat-tips-border_error-light: var(--terracotta-80-v2);
-  --color-component-colors-chat-tips-border_error-dark: var(--terracotta-30-v2);
+  --color-component-colors-chat-tips-fg_alert-light-v2: var(--khaki-70-v2);
+  --color-component-colors-chat-tips-fg_alert-dark-v2: var(--khaki-70-v2);
+  --color-component-colors-chat-tips-bg_alert-light-v2: var(--khaki-98-v2);
+  --color-component-colors-chat-tips-bg_alert-dark-v2: var(--khaki-10-v2);
+  --color-component-colors-chat-tips-border_alert-light-v2: var(--khaki-80-v2);
+  --color-component-colors-chat-tips-border_alert-dark-v2: var(--khaki-40-v2);
+  --color-component-colors-chat-tips-fg_error-light-v2: var(--terracotta-50-v2);
+  --color-component-colors-chat-tips-fg_error-dark-v2: var(--terracotta-70-v2);
+  --color-component-colors-chat-tips-bg_error-light-v2: var(--terracotta-98-v2);
+  --color-component-colors-chat-tips-bg_error-dark-v2: var(--terracotta-10-v2);
+  --color-component-colors-chat-tips-border_error-light-v2: var(
+    --terracotta-80-v2
+  );
+  --color-component-colors-chat-tips-border_error-dark-v2: var(
+    --terracotta-30-v2
+  );
   --color-colors-background-neutral-on-surface-hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
@@ -1258,20 +1338,22 @@
   --color-colors-background-neutral-on-surface-active-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-input-bg_default-light: var(
+  --color-component-colors-input-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-input-bg_default-dark: var(--opacity-white-5-v2);
-  --color-component-colors-input-bg_hover-light: var(--opacity-on-surface-20-v2);
-  --color-component-colors-input-bg_hover-dark: var(--opacity-white-12-v2);
+  --color-component-colors-input-bg_default-dark-v2: var(--opacity-white-5-v2);
+  --color-component-colors-input-bg_hover-light-v2: var(
+    --opacity-on-surface-20-v2
+  );
+  --color-component-colors-input-bg_hover-dark-v2: var(--opacity-white-12-v2);
   --color-component-colors-input-border-light-v2: var(
     --opacity-on-surface-40-v2
   );
   --color-component-colors-input-border-dark-v2: var(--opacity-white-12-v2);
-  --color-component-colors-input-bg_disabled-light: var(
+  --color-component-colors-input-bg_disabled-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-input-bg_disabled-dark: var(--opacity-white-8-v2);
+  --color-component-colors-input-bg_disabled-dark-v2: var(--opacity-white-8-v2);
   --color-colors-background-neutral-on-surface-disabled-light-v2: var(
     --opacity-on-surface-10-v2
   );
@@ -1332,8 +1414,8 @@
   --color-colors-background-normal-secondary-active-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-chat-tips-button_alert-light: var(--khaki-90-v2);
-  --color-component-colors-chat-tips-button_alert-dark: var(--khaki-40-v2);
+  --color-component-colors-chat-tips-button_alert-light-v2: var(--khaki-90-v2);
+  --color-component-colors-chat-tips-button_alert-dark-v2: var(--khaki-40-v2);
   --color-colors-utility-plum-purple-5-light-v2: var(--plum-purple-98-v2);
   --color-colors-utility-plum-purple-5-dark-v2: var(--plum-purple-10-v2);
   --color-colors-utility-plum-purple-10-light-v2: var(--plum-purple-95-v2);
@@ -1352,24 +1434,30 @@
   --color-colors-utility-plum-purple-70-dark-v2: var(--plum-purple-80-v2);
   --color-colors-utility-plum-purple-80-light-v2: var(--plum-purple-30-v2);
   --color-colors-utility-plum-purple-80-dark-v2: var(--plum-purple-90-v2);
-  --color-component-colors-button-static-fg_default-light: var(--neutral-5-v2);
-  --color-component-colors-button-static-fg_default-dark: var(
+  --color-component-colors-button-static-fg_default-light-v2: var(
+    --neutral-5-v2
+  );
+  --color-component-colors-button-static-fg_default-dark-v2: var(
     --neutral-variant-5-v2
   );
-  --color-component-colors-button-static-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-static-fg_alt-dark: var(
+  --color-component-colors-button-static-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-button-static-fg_alt-dark-v2: var(
     --neutral-variant-70-v2
   );
-  --color-component-colors-button-static-bg_default-light: var(--neutral-99-v2);
-  --color-component-colors-button-static-bg_default-dark: var(
+  --color-component-colors-button-static-bg_default-light-v2: var(
+    --neutral-99-v2
+  );
+  --color-component-colors-button-static-bg_default-dark-v2: var(
     --neutral-variant-99-v2
   );
-  --color-component-colors-button-static-bg_hover-light: var(--neutral-95-v2);
-  --color-component-colors-button-static-bg_hover-dark: var(
+  --color-component-colors-button-static-bg_hover-light-v2: var(--neutral-95-v2);
+  --color-component-colors-button-static-bg_hover-dark-v2: var(
     --neutral-variant-95-v2
   );
-  --color-component-colors-button-static-bg_active-light: var(--neutral-90-v2);
-  --color-component-colors-button-static-bg_active-dark: var(
+  --color-component-colors-button-static-bg_active-light-v2: var(
+    --neutral-90-v2
+  );
+  --color-component-colors-button-static-bg_active-dark-v2: var(
     --neutral-variant-90-v2
   );
   --color-component-colors-button-static-border-light-v2: var(
@@ -1378,28 +1466,28 @@
   --color-component-colors-button-static-border-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-static-border_alt-light: var(
+  --color-component-colors-button-static-border_alt-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-static-border_alt-dark: var(
+  --color-component-colors-button-static-border_alt-dark-v2: var(
     --opacity-white-30-v2
   );
-  --color-component-colors-chips-primary-bg_default-light: var(
+  --color-component-colors-chips-primary-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-chips-primary-bg_default-dark: var(
+  --color-component-colors-chips-primary-bg_default-dark-v2: var(
     --opacity-white-5-v2
   );
-  --color-component-colors-chips-primary-bg_hover-light: var(
+  --color-component-colors-chips-primary-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-chips-primary-bg_hover-dark: var(
+  --color-component-colors-chips-primary-bg_hover-dark-v2: var(
     --opacity-white-12-v2
   );
-  --color-component-colors-chips-primary-bg_disabled-light: var(
+  --color-component-colors-chips-primary-bg_disabled-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-chips-primary-bg_disabled-dark: var(
+  --color-component-colors-chips-primary-bg_disabled-dark-v2: var(
     --opacity-white-8-v2
   );
   --color-component-colors-chips-primary-border-light-v2: var(
@@ -1408,40 +1496,42 @@
   --color-component-colors-chips-primary-border-dark-v2: var(
     --opacity-white-12-v2
   );
-  --color-component-colors-chips-primary-bg_select_disabled-light: var(
+  --color-component-colors-chips-primary-bg_select_disabled-light-v2: var(
     --neutral-90-v2
   );
-  --color-component-colors-chips-primary-bg_select_disabled-dark: var(
+  --color-component-colors-chips-primary-bg_select_disabled-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-chips-primary-bg_select-light: var(--neutral-5-v2);
-  --color-component-colors-chips-primary-bg_select-dark: var(
+  --color-component-colors-chips-primary-bg_select-light-v2: var(--neutral-5-v2);
+  --color-component-colors-chips-primary-bg_select-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-primary-bg_default-2-light: var(
+  --color-component-colors-button-primary-bg_default-2-light-v2: var(
     --neutral-5-v2
   );
-  --color-component-colors-button-primary-bg_default-2-dark: var(
+  --color-component-colors-button-primary-bg_default-2-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-solid-fg_default-light: var(--neutral-5-v2);
-  --color-component-colors-button-solid-fg_default-dark: var(
+  --color-component-colors-button-solid-fg_default-light-v2: var(--neutral-5-v2);
+  --color-component-colors-button-solid-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-solid-fg_alt-light: var(--neutral-70-v2);
-  --color-component-colors-button-solid-fg_alt-dark: var(
+  --color-component-colors-button-solid-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-component-colors-button-solid-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-solid-bg_default-light: var(--neutral-100-v2);
-  --color-component-colors-button-solid-bg_default-dark: var(
+  --color-component-colors-button-solid-bg_default-light-v2: var(
+    --neutral-100-v2
+  );
+  --color-component-colors-button-solid-bg_default-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-component-colors-button-solid-bg_hover-light: var(--neutral-98-v2);
-  --color-component-colors-button-solid-bg_hover-dark: var(
+  --color-component-colors-button-solid-bg_hover-light-v2: var(--neutral-98-v2);
+  --color-component-colors-button-solid-bg_hover-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-solid-bg_active-light: var(--neutral-95-v2);
-  --color-component-colors-button-solid-bg_active-dark: var(
+  --color-component-colors-button-solid-bg_active-light-v2: var(--neutral-95-v2);
+  --color-component-colors-button-solid-bg_active-dark-v2: var(
     --neutral-variant-30-v2
   );
   --color-component-colors-button-solid-border-light-v2: var(
@@ -1450,28 +1540,30 @@
   --color-component-colors-button-solid-border-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-solid-border_alt-light: var(
+  --color-component-colors-button-solid-border_alt-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-solid-border_alt-dark: var(
+  --color-component-colors-button-solid-border_alt-dark-v2: var(
     --opacity-white-30-v2
   );
-  --color-component-colors-tag-bg_default-light: var(--opacity-on-surface-20-v2);
-  --color-component-colors-tag-bg_default-dark: var(--opacity-white-12-v2);
+  --color-component-colors-tag-bg_default-light-v2: var(
+    --opacity-on-surface-20-v2
+  );
+  --color-component-colors-tag-bg_default-dark-v2: var(--opacity-white-12-v2);
   --color-colors-background-normal-secondary-alt-light-v2: var(--neutral-100-v2);
   --color-colors-background-normal-secondary-alt-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-component-colors-icon-button-plain-fg_default-light: var(
+  --color-component-colors-icon-button-plain-fg_default-light-v2: var(
     --neutral-5-v2
   );
-  --color-component-colors-icon-button-plain-fg_default-dark: var(
+  --color-component-colors-icon-button-plain-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-icon-button-plain-gray-fg_default-light: var(
+  --color-component-colors-icon-button-plain-gray-fg_default-light-v2: var(
     --neutral-40-v2
   );
-  --color-component-colors-icon-button-plain-gray-fg_default-dark: var(
+  --color-component-colors-icon-button-plain-gray-fg_default-dark-v2: var(
     --neutral-variant-80-v2
   );
 
