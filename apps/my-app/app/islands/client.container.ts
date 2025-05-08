@@ -4,6 +4,7 @@ import { Container } from 'inversify';
 import { httpBatchLink, createTRPCClient, type TRPCClient } from '@trpc/client';
 import { AppRouter } from '@myshell-run/biz-service';
 import { MyAppTrpcClient } from '@myshell-run/biz-def';
+import { commonUIModule } from '@myshell-run/common-ui';
 
 const trpc = createTRPCClient<AppRouter>({
   links: [
@@ -19,6 +20,7 @@ const trpc = createTRPCClient<AppRouter>({
 export const clientContainer = new Container();
 clientContainer.load(messageItemPluginsModule);
 clientContainer.load(uiBizModule);
+clientContainer.load(commonUIModule);
 
 clientContainer
   .bind<TRPCClient<AppRouter>>(MyAppTrpcClient)

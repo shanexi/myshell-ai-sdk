@@ -67,6 +67,12 @@ export const ChatTextarea = observer(() => {
         ? {
             value: model.inputText,
             onChange: (e) => model.setInputText(e.target.value),
+            onKeyDown: (e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                model.sendText();
+              }
+            },
           }
         : {})}
     />
