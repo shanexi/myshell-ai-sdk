@@ -10,9 +10,7 @@ import { observer } from 'mobx-react-lite';
 import { AgentChatModel } from './agent-chat.model';
 import { MOCK_IMG } from '@myshell-run/common-def';
 
-export const ChatInput = observer(() => {
-  const model = useInjection(AgentChatModel);
-
+export const ChatInput = () => {
   return (
     <div className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}>
       <div
@@ -22,58 +20,77 @@ export const ChatInput = observer(() => {
           'p-spacing-xs-v2',
         )}
       >
-        <div
-          className={cn(
-            'flex flex-nowrap gap-spacing-md-v2 overflow-x-auto',
-            'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
-          )}
-        >
-          <Image
-            id="1"
-            fileState={{
-              type: 'image',
-              preview: MOCK_IMG,
-              uploadComplete: true,
-            }}
-          />
-          <FilePreview
-            id="2"
-            fileState={{
-              type: 'file',
-              name: 'Untitled.rtf',
-              desc: 'Rich Text File',
-              uploadComplete: true,
-            }}
-          />
-        </div>
-        <TextareaAutosize
-          className={cn(
-            'my-spacing-xs-v2 w-full resize-none px-spacing-sm-v2 outline-none',
-          )}
-          maxRows={8}
-          placeholder="Write a message"
-          value={model.chatCommon.inputText}
-          onChange={(e) => {
-            model.chatCommon.setInputText(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              model.sendText();
-            }
-          }}
-        />
-        <div className="my-spacing-xs-v2 flex items-center justify-between">
-          <div className="flex items-center gap-[2px]">
-            <AtSign strokeWidth={1.5} size={36} className="p-[7px]" />
-            <CirclePlus strokeWidth={1.5} size={36} className="p-[7px]" />
-          </div>
-          <Mic strokeWidth={1.5} size={36} className="p-[7px]" />
-        </div>
+        <UploadLayer />
+        <ChatTextareaLayer />
+        <ChatActionsLayer />
       </div>
     </div>
   );
+};
+
+const ChatTextareaLayer = observer(() => {
+  const model = useInjection(AgentChatModel);
+  return (
+    <TextareaAutosize
+      className={cn(
+        'my-spacing-xs-v2 w-full resize-none px-spacing-sm-v2 outline-none',
+      )}
+      maxRows={8}
+      placeholder="Write a message"
+      value={model.chatCommon.inputText}
+      onChange={(e) => {
+        model.chatCommon.setInputText(e.target.value);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          model.sendText();
+        }
+      }}
+    />
+  );
 });
+
+const UploadLayer = () => {
+  return (
+    <div
+      className={cn(
+        'flex flex-nowrap gap-spacing-md-v2 overflow-x-auto',
+        'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
+      )}
+    >
+      <Image
+        id="1"
+        fileState={{
+          type: 'image',
+          preview: MOCK_IMG,
+          uploadComplete: true,
+        }}
+      />
+      <FilePreview
+        id="2"
+        fileState={{
+          type: 'file',
+          name: 'Untitled.rtf',
+          desc: 'Rich Text File',
+          uploadComplete: true,
+        }}
+      />
+    </div>
+  );
+};
+
+const ChatActionsLayer = () => {
+  return (
+    <div className="my-spacing-xs-v2 flex items-center justify-between">
+      <div className="flex items-center gap-[2px]">
+        <AtSign strokeWidth={1.5} size={36} className="p-[7px]" />
+        <CirclePlus strokeWidth={1.5} size={36} className="p-[7px]" />
+      </div>
+      <Mic strokeWidth={1.5} size={36} className="p-[7px]" />
+    </div>
+  );
+};
 
 export const FilePreview: React.FC<{
   fileState: FilePreviewState;
