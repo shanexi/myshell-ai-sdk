@@ -5,10 +5,28 @@ import {
   useInjection,
 } from '@myshell-run/common-ui';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AtSign, CirclePlus, Mic, X, File } from 'lucide-react';
+import {
+  AtSign,
+  CirclePlus,
+  Mic,
+  X,
+  File,
+  FileText,
+  FileJson2,
+  ListCheck,
+  MessagesSquare,
+} from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { AgentChatModel } from './agent-chat.model';
 import { MOCK_IMG } from '@myshell-run/common-def';
+
+const IconMap = {
+  file: File,
+  fileText: FileText,
+  fileJson: FileJson2,
+  listCheck: ListCheck,
+  messagesSquare: MessagesSquare,
+};
 
 export const ChatInput = () => {
   return (
@@ -20,10 +38,45 @@ export const ChatInput = () => {
           'p-spacing-xs-v2',
         )}
       >
+        <ReferenceLayer />
         <UploadLayer />
         <ChatTextareaLayer />
         <ChatActionsLayer />
       </div>
+    </div>
+  );
+};
+
+const ReferenceLayer = () => {
+  return (
+    <div className={cn('flex flex-col gap-spacing-md-v2', 'p-spacing-xs-v2')}>
+      <ReferenceItem icon="file" title="requirement.feature1" />
+      <ReferenceItem icon="fileJson" title="canvas.state1.inputs.variable1" />
+      <ReferenceItem icon="listCheck" title="test.test_suite1" />
+      <ReferenceItem icon="messagesSquare" title="preview.message1" />
+    </div>
+  );
+};
+
+const ReferenceItem: React.FC<{
+  title: string;
+  icon: keyof typeof IconMap;
+}> = ({ title, icon }) => {
+  const Icon = IconMap[icon];
+  return (
+    <div
+      className={cn(
+        'flex items-center gap-[6px]',
+        'bg-colors-background-normal-secondary-alt-light-v2',
+        'border border-colors-border-default-light-v2',
+        'rounded-md-v2',
+        'p-spacing-md-v2',
+        'w-fit',
+      )}
+    >
+      <Icon size={16} className="text-colors-foreground-subtle-light-v2" />
+      <div className="text-sm-medium">{title}</div>
+      <X size={16} className="text-colors-foreground-subtle-light-v2" />
     </div>
   );
 };
