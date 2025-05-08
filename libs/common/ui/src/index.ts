@@ -6,3 +6,4 @@ export * from './remark/remark-manager';
 export * from './setup';
 export * from './components/chat-common.model';
 export * from './common-ui.module';
+export * from './components/message-item.svc';
