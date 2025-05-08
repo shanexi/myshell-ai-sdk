@@ -1,4 +1,4 @@
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
@@ -7,7 +7,7 @@ import { ChatInput } from './chat-input-re';
 import { ChatModel } from '../../chat.model';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
 container.load(commonUIModule);
 const model = container.get(ChatModel);

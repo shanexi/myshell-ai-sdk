@@ -1,4 +1,4 @@
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import {
   commonUIModule,
   InversifyProvider,
@@ -12,7 +12,7 @@ import { ChatTextarea } from './chat-textarea';
 import { uiBizModule } from '../../ui-biz.module';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
 container.load(commonUIModule);
 const model = container.get(ChatModel);

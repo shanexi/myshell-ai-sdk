@@ -1,4 +1,4 @@
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { uiBizModule } from '@myshell-run/biz-ui';
 import { Container } from 'inversify';
 import { httpBatchLink, createTRPCClient, type TRPCClient } from '@trpc/client';
@@ -18,7 +18,7 @@ const trpc = createTRPCClient<AppRouter>({
 });
 
 export const clientContainer = new Container();
-clientContainer.load(messageItemPluginsModule);
+clientContainer.load(bizMsgItemPluginsModule);
 clientContainer.load(uiBizModule);
 clientContainer.load(commonUIModule);
 

@@ -2,14 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 import { BotListSearch } from './bot-list-search';
 import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import { uiBizModule } from '../ui-biz.module';
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { Container } from 'inversify';
 import { MyAppTrpcClient } from '@myshell-run/biz-def';
 import { TRPCClient } from '@trpc/client';
 import { AppRouter } from '@myshell-run/biz-service';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
 container.load(commonUIModule);
 container
