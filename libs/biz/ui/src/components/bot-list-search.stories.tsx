@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { BotListSearch } from './bot-list-search';
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import { uiBizModule } from '../ui-biz.module';
 import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { Container } from 'inversify';
@@ -11,6 +11,7 @@ import { AppRouter } from '@myshell-run/biz-service';
 const container = new Container();
 container.load(messageItemPluginsModule);
 container.load(uiBizModule);
+container.load(commonUIModule);
 container
   .bind<TRPCClient<AppRouter>>(MyAppTrpcClient)
   .toConstantValue({} as TRPCClient<AppRouter>);

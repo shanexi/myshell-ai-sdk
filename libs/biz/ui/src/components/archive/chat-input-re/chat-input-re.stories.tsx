@@ -1,5 +1,5 @@
 import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../../../ui-biz.module';
@@ -9,6 +9,7 @@ import { ChatModel } from '../../chat.model';
 const container = new Container();
 container.load(messageItemPluginsModule);
 container.load(uiBizModule);
+container.load(commonUIModule);
 const model = container.get(ChatModel);
 
 model.setInputText(

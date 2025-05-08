@@ -1,5 +1,5 @@
 import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../ui-biz.module';
@@ -12,6 +12,7 @@ import { ChatTopMenu, ChatTopRoot } from './chat-top';
 const container = new Container();
 container.load(messageItemPluginsModule);
 container.load(uiBizModule);
+container.load(commonUIModule);
 
 function Chat() {
   return (

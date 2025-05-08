@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn, useInjection } from '@myshell-run/common-ui';
+import { cn, FileState, useInjection } from '@myshell-run/common-ui';
 import toArray from '@uppy/utils/lib/toArray';
 import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { MenuTrigger } from 'react-aria-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import { ReactComponent as Audio } from './audio.svg';
-import { ChatModel, FileState } from './chat.model';
+import { ChatModel } from './chat.model';
 import { ReactComponent as Clear } from './clear.svg';
 import { ReactComponent as Send } from './send.svg';
 import { ReactComponent as Trash } from './trash.svg';
@@ -113,7 +113,7 @@ export const Image: React.FC<{ fileState: FileState; id: string }> = ({
         {fileState.uploadComplete ? (
           <X color="#fff" size={16} />
         ) : (
-          <span className="loading loading-xs text-white loading-spinner"></span>
+          <span className="loading loading-xs loading-spinner text-white"></span>
         )}
       </div>
     </div>

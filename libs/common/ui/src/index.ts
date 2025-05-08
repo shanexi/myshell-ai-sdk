@@ -3,4 +3,6 @@ export * from './inversify-context';
 export * from './components/reply-msg-frame';
 export * from './remark/remark-msg';
 export * from './remark/remark-manager';
-export * from './setup-ui-primitives';
+export * from './setup';
+export * from './components/chat-common.model';
+export * from './common-ui.module';
