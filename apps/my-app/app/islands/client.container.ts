@@ -1,4 +1,4 @@
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
+import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { uiBizModule } from '@myshell-run/biz-ui';
 import { Container } from 'inversify';
 import { httpBatchLink, createTRPCClient, type TRPCClient } from '@trpc/client';

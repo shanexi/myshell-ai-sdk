@@ -1,7 +1,7 @@
 {
-  "name": "message-item-plugins",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/message-item-plugins/src",
+  "name": "biz-message-item-plugins",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/biz/message-item-plugins/src",
   "projectType": "library",
   "tags": ["scope:design-system-v1"],
   "targets": {
@@ -9,14 +9,16 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/message-item-plugins/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "libs/biz/message-item-plugins/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4410,
-        "configDir": "libs/message-item-plugins/.storybook",
+        "configDir": "libs/biz/message-item-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -28,8 +30,8 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "./libs/message-item-plugins",
-        "command": "../../node_modules/.bin/test-storybook --url http://localhost:4400"
+        "cwd": "./libs/biz/message-item-plugins",
+        "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
       }
     },
     "build-storybook": {
@@ -37,7 +39,7 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/message-item-plugins",
-        "configDir": "libs/message-item-plugins/.storybook",
+        "configDir": "libs/biz/message-item-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -49,12 +51,12 @@
     "static-storybook": {
       "executor": "@nrwl/web:file-server",
       "options": {
-        "buildTarget": "message-item-plugins:build-storybook",
+        "buildTarget": "biz-message-item-plugins:build-storybook",
         "staticFilePath": "dist/storybook/message-item-plugins"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "message-item-plugins:build-storybook:ci"
+          "buildTarget": "biz-message-item-plugins:build-storybook:ci"
         }
       }
     }

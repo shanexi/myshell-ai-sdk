@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { BotListSearch } from './bot-list-search';
 import { InversifyProvider } from '@myshell-run/common-ui';
 import { uiBizModule } from '../ui-biz.module';
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
+import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { Container } from 'inversify';
 import { MyAppTrpcClient } from '@myshell-run/biz-def';
 import { TRPCClient } from '@trpc/client';

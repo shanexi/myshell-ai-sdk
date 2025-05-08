@@ -1,4 +1,4 @@
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
+import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { InversifyProvider, useInjection } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
