@@ -1,5 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
-import { Circle, ChevronUp, ChevronDown, Check, Loader2 } from 'lucide-react';
+import { Check, ChevronUp, Circle } from 'lucide-react';
 
 export const CheckList = () => {
   return (
