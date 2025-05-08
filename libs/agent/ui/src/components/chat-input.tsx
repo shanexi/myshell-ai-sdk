@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { AgentChatModel } from './agent-chat.model';
-import { MOCK_IMG } from '@myshell-run/common-def';
+import { MOCK_IMG } from '@myshell-run/common-ui';
 
 const IconMap = {
   file: File,
