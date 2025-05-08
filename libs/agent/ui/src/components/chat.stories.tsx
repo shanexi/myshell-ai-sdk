@@ -2,15 +2,15 @@ import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
 import { InversifyProvider } from '@myshell-run/ui-primitives';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { agentUIModule } from '../../agent-ui.module';
-import { Button } from './button';
+import { agentUIModule } from '../agent-ui.module';
+import { Chat } from './chat';
 
 const container = new Container();
 container.load(messageItemPluginsModule);
 container.load(agentUIModule);
 
-const meta: Meta<typeof Button> = {
-  component: Button,
+const meta: Meta<typeof Chat> = {
+  component: Chat,
   decorators: [
     (Story) => (
       <InversifyProvider container={container}>
@@ -27,6 +27,6 @@ const meta: Meta<typeof Button> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof Button> = {
+export const Primary: StoryObj<typeof Chat> = {
   args: {},
 };
