@@ -96,6 +96,16 @@
     line-height: 16px;
   }
 
+  .description-lg-medium {
+    /* Description/lg/Regular */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
   .special-20 {
     /* 20px/Special */
     /* font-family: 'PP Telegraf'; */

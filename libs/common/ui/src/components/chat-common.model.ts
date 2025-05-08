@@ -8,11 +8,31 @@ import { inject, injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 import { UploadEndpoint } from '@myshell-run/common-def';
+import { z } from 'zod';
 
-export type FileState = {
-  preview: string;
-  uploadComplete: boolean;
-};
+export const imageStateSchema = z.object({
+  type: z.literal('image'),
+  preview: z.string(),
+  uploadComplete: z.boolean(),
+});
+
+export type ImageState = z.infer<typeof imageStateSchema>;
+
+export const filePreviewStateSchema = z.object({
+  type: z.literal('file'),
+  name: z.string(),
+  desc: z.string(),
+  uploadComplete: z.boolean(),
+});
+
+export type FilePreviewState = z.infer<typeof filePreviewStateSchema>;
+
+export const fileStateSchema = z.discriminatedUnion('type', [
+  imageStateSchema,
+  filePreviewStateSchema,
+]);
+
+export type FileState = z.infer<typeof fileStateSchema>;
 
 @injectable()
 export class ChatCommonModel {
@@ -73,7 +93,9 @@ export class ChatCommonModel {
     // });
     this.#uppy.on('thumbnail:generated', (file, preview) => {
       // console.log('thumbnail:generated', file, preview);
+      // TODO: 这里需要区分是图片还是文件
       this.uppyStateMap.set(file.id, {
+        type: 'image',
         preview,
         uploadComplete: false,
       });
@@ -83,6 +105,7 @@ export class ChatCommonModel {
       Object.keys(this.#uppy?.getState().files || {}).forEach((fileId) => {
         const file = this.#uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
+          type: 'image',
           preview: file?.preview || '',
           uploadComplete: false,
         };

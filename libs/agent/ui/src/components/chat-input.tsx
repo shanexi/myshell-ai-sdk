@@ -1,6 +1,11 @@
-import { cn, FileState, useInjection } from '@myshell-run/common-ui';
+import {
+  cn,
+  FilePreviewState,
+  ImageState,
+  useInjection,
+} from '@myshell-run/common-ui';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AtSign, CirclePlus, Mic, X } from 'lucide-react';
+import { AtSign, CirclePlus, Mic, X, File } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { AgentChatModel } from './agent-chat.model';
 import { MOCK_IMG } from '@myshell-run/common-def';
@@ -20,13 +25,23 @@ export const ChatInput = observer(() => {
         <div
           className={cn(
             'flex flex-nowrap gap-spacing-md-v2 overflow-x-auto',
-            'px-spacing-md-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
+            'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
           )}
         >
           <Image
             id="1"
             fileState={{
+              type: 'image',
               preview: MOCK_IMG,
+              uploadComplete: true,
+            }}
+          />
+          <FilePreview
+            id="2"
+            fileState={{
+              type: 'file',
+              name: 'Untitled.rtf',
+              desc: 'Rich Text File',
               uploadComplete: true,
             }}
           />
@@ -60,7 +75,44 @@ export const ChatInput = observer(() => {
   );
 });
 
-export const Image: React.FC<{ fileState: FileState; id: string }> = ({
+export const FilePreview: React.FC<{
+  fileState: FilePreviewState;
+  id: string;
+}> = ({ fileState, id }) => {
+  return (
+    <div
+      className={cn(
+        'h-[56px] w-[156px] px-spacing-lg-v2',
+        'border border-colors-border-default-light-v2',
+        'bg-colors-background-normal-primary-default-light-v2',
+        'rounded-lg-v2',
+        'py-spacing-lg-v2',
+        'flex items-center',
+      )}
+    >
+      <div
+        className={cn(
+          'rounded-components-button-sm-radius-v2 bg-colors-utility-lake-blue-50-light-v2',
+          'h-[32px] w-[32px]',
+          'flex items-center justify-center',
+          'mr-spacing-lg-v2',
+        )}
+      >
+        <File color="#fff" />
+      </div>
+      <div>
+        <div className="description-lg-medium text-colors-text-default-light-v2">
+          {fileState.name}
+        </div>
+        <div className="description-lg-regular text-colors-text-subtler-light-v2">
+          {fileState.desc}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Image: React.FC<{ fileState: ImageState; id: string }> = ({
   fileState,
   id,
 }) => {
@@ -83,7 +135,7 @@ export const Image: React.FC<{ fileState: FileState; id: string }> = ({
         )}
       >
         {fileState.uploadComplete ? (
-          <X size={16} />
+          <X size={12} />
         ) : (
           <span className="loading loading-xs loading-spinner text-white"></span>
         )}
