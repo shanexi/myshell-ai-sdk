@@ -2,9 +2,6 @@ import { InversifyProvider, randomMessage } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ChatMessageList } from './chat-message-list';
 import { container } from './stories.utils';
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-
-container.load(messageItemPluginsModule);
 
 const meta: Meta<typeof ChatMessageList> = {
   component: ChatMessageList,

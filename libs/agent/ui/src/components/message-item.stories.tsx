@@ -1,14 +1,7 @@
+import { InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MessageItem } from './message-item';
-import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
-import { Container } from 'inversify';
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { agentUIModule } from '../agent-ui.module';
-
-const container = new Container();
-container.load(messageItemPluginsModule);
-container.load(agentUIModule);
-container.load(commonUIModule);
+import { container } from './stories.utils';
 
 const meta: Meta<typeof MessageItem> = {
   component: MessageItem,

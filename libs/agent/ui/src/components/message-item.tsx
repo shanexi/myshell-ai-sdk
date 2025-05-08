@@ -1,7 +1,7 @@
 import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/biz-message-item-plugins';
+} from '@myshell-run/agent-message-item-plugins';
 import { Message, MessageListContext } from '@myshell-run/common-def';
 import { MessageItemSvc, useInjection } from '@myshell-run/common-ui';
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';

@@ -31,7 +31,7 @@ function legacy(bind: interfaces.Bind) {
   // addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
 }
 
-export const messageItemPluginsModule = new ContainerModule(
+export const agentMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
     legacy(bind);
     const register = setup(bind);

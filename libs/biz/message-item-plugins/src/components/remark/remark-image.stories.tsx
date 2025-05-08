@@ -1,11 +1,11 @@
 import { InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { messageItemPluginsModule } from '../../message-item-plugins.module';
+import { bizMsgItemPluginsModule } from '../../biz-msg-item-plugins.module';
 import { ImageStory } from './remark-msg';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 
 const meta: Meta<typeof ImageStory> = {
   component: ImageStory,

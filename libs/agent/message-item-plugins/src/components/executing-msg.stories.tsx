@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ExecutingMsg } from './executing-msg';
 import { InversifyProvider } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
-import { bizMsgItemPluginsModule } from '../biz-msg-item-plugins.module';
+import { agentMsgItemPluginsModule } from '../agent-msg-item-plugins.module';
 
 const container = new Container();
-container.load(bizMsgItemPluginsModule);
+container.load(agentMsgItemPluginsModule);
 
 const meta: Meta<typeof ExecutingMsg> = {
   component: ExecutingMsg,

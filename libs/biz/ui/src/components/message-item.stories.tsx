@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MessageItem } from './message-item';
 import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
-import { messageItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { uiBizModule } from '../ui-biz.module';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
 container.load(commonUIModule);
 

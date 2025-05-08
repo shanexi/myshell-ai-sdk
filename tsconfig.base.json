@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myshell-run/agent-message-item-plugins": [
+        "libs/agent/message-item-plugins/src/index.ts"
+      ],
       "@myshell-run/agent-ui": ["libs/agent/ui/src/index.ts"],
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
       "@myshell-run/archive-chat": ["libs/archive/chat/src/index.ts"],

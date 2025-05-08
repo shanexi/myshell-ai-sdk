@@ -1,11 +1,11 @@
 import { InversifyProvider, RemarkMsg } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { bizMsgItemPluginsModule } from '../../biz-msg-item-plugins.module';
+import { agentMsgItemPluginsModule } from '../../agent-msg-item-plugins.module';
 import remarkMsgStory from './remark-msg-story.md';
 
 const container = new Container();
-container.load(bizMsgItemPluginsModule);
+container.load(agentMsgItemPluginsModule);
 
 const meta: Meta<typeof RemarkMsg> = {
   component: RemarkMsg,
