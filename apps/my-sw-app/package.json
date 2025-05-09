@@ -1,0 +1,8 @@
+{
+  "name": "my-sw-app",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev"
+  },
+  "type": "module"
+}
