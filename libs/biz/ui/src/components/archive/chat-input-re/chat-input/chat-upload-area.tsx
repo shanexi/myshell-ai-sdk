@@ -1,4 +1,4 @@
-import { useInjection } from '@myshell-run/ui-primitives';
+import { useInjection } from '@myshell-run/common-ui';
 import * as Slot from '@radix-ui/react-slot';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
@@ -41,7 +41,7 @@ export const ChatUploadArea = observer(() => {
           to={`-translate-y-[calc(100%+${model.layers.textarea.height}px)]`}
         >
           <BgClz>
-            <div className="text-sm-regular h-[40px] px-spacing-lg">
+            <div className="text-sm-regular h-[40px] px-spacing-lg-v1">
               ChatUploadArea
             </div>
           </BgClz>

@@ -7,7 +7,7 @@ import {
   ChatTopMenu,
   ChatTopRoot,
 } from '@myshell-run/biz-ui';
-import { Message } from '@myshell-run/def';
+import { Message } from '@myshell-run/common-def';
 import { createRoute } from '../create-route';
 import { ChatInputIsland, ChatMessageListIsland } from '../islands/chat';
 import { requireAuth } from '../middlewares/require-auth';

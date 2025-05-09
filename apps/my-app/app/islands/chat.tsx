@@ -1,4 +1,4 @@
-import { Message } from '@myshell-run/def';
+import { Message } from '@myshell-run/common-def';
 import {
   ChatInput,
   ChatInputMenu,

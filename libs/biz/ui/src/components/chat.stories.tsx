@@ -1,5 +1,5 @@
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../ui-biz.module';
@@ -8,10 +8,12 @@ import { ChatFoot, ChatRoot } from './chat';
 import { ChatInputRoot } from './archive/chat-input';
 import { ChatMessageList } from './chat-message-list';
 import { ChatTopMenu, ChatTopRoot } from './chat-top';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
+container.load(commonUIModule);
 
 function Chat() {
   return (
@@ -26,7 +28,7 @@ function Chat() {
           bot={{
             id: 1,
             name: 'MyShell',
-            avatar: 'https://picsum.photos/200/300',
+            avatar: DEFAULT_AVATAR,
             isOfficial: true,
           }}
         />

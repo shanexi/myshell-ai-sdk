@@ -13,8 +13,15 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:design-system-v1",
+                "onlyDependOnLibsWithTags": [
+                  "scope:design-system-v1",
+                  "scope:uncategorized"
+                ]
+              },
+              {
+                "sourceTag": "scope:uncategorized",
+                "onlyDependOnLibsWithTags": ["/^scope.*/"]
               }
             ]
           }

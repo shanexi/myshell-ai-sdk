@@ -1,1 +1,0 @@
-import '../../tailwind-cfg/styles.css';

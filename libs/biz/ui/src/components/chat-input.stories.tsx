@@ -1,13 +1,14 @@
-import { messageItemPluginsModule } from '@myshell-run/message-item-plugins';
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
+import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../ui-biz.module';
 import { ChatInput } from './chat-input';
 
 const container = new Container();
-container.load(messageItemPluginsModule);
+container.load(bizMsgItemPluginsModule);
 container.load(uiBizModule);
+container.load(commonUIModule);
 
 const meta: Meta<typeof ChatInput> = {
   component: ChatInput,

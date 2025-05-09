@@ -2,7 +2,7 @@ import Masonry from 'react-masonry-css';
 
 export const ImageChoice = () => {
   return (
-    <div className="max-h-[300px] overflow-y-scroll rounded-lg border border-border-default-light bg-surface-default-light px-spacing-lg py-spacing-md">
+    <div className="max-h-[300px] overflow-y-scroll rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 px-spacing-lg-v1 py-spacing-md-v1">
       <Masonry
         breakpointCols={{
           default: 5,
@@ -15,8 +15,12 @@ export const ImageChoice = () => {
       >
         {items.map((item) => (
           <div key={item.alt} className="relative bg-transparent">
-            <img alt={item.alt} src={item.img} className="w-full rounded-lg" />
-            <div className="absolute right-0 bottom-0 left-0 flex justify-center rounded-br-lg rounded-bl-lg bg-gradient-to-b from-transparent to-black px-[12px] pt-[20px] pb-[12px] text-text-static-white-light">
+            <img
+              alt={item.alt}
+              src={item.img}
+              className="w-full rounded-lg-v1"
+            />
+            <div className="absolute right-0 bottom-0 left-0 flex justify-center rounded-br-lg-v1 rounded-bl-lg-v1 bg-gradient-to-b from-transparent to-black px-[12px] pt-[20px] pb-[12px] text-text-static-white-light-v1">
               {item.alt}
             </div>
           </div>

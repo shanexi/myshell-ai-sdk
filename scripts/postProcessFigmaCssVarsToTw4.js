@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 // 读取 styles.css 文件
-const stylesPath = path.join(__dirname, '../libs/tailwind-cfg/styles.css');
+const stylesPath = path.join(
+  __dirname,
+  '../libs/tailwind-cfg/design-system-v2.css',
+);
 const content = fs.readFileSync(stylesPath, 'utf8');
 
 // 找到相关的区域

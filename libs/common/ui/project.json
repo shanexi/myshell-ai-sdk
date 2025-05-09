@@ -1,0 +1,62 @@
+{
+  "name": "common-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/common/ui/src",
+  "projectType": "library",
+  "tags": ["scope:design-system-v1"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/common/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/common/ui/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/common/ui",
+        "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ui-primitives",
+        "configDir": "libs/common/ui/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "common-ui:build-storybook",
+        "staticFilePath": "dist/storybook/ui-primitives"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "common-ui:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

@@ -6,12 +6,12 @@ import {
 } from '@virtuoso.dev/message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { DbBot } from '@myshell-run/biz-def';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { ReactComponent as CheckBadge } from './check-badge.svg';
 import { Energy } from './energy';
 import { observer } from 'mobx-react-lite';
 import { BotListModel } from './bot-list.model';
-import { DEFAULT_AVATAR } from '@myshell-run/def';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 import { ReactComponent as Avatar } from './avatar.svg';
 
 export type BotListContext = {
@@ -61,23 +61,23 @@ export const BotListItem: VirtuosoMessageListProps<
   const { name, description, avatar = DEFAULT_AVATAR, isOfficial } = data;
   return (
     <a
-      className="flex px-spacing-xl py-spacing-lg"
+      className="flex px-spacing-xl-v1 py-spacing-lg-v1"
       href={`/chat?botId=${data.id}`}
     >
       <img
-        className="mr-spacing-md h-[56px] w-[56px] rounded-xl"
+        className="mr-spacing-md-v1 h-[56px] w-[56px] rounded-xl-v1"
         src={avatar}
         alt={name}
       />
       {/* 在右侧容器添加了 min-w-0 类 - 这是一个关键修改，它允许 flex 子项在必要时缩小到比其内容更小的尺寸 */}
       <div className="flex min-w-0 flex-1 flex-col justify-center">
         <div className="flex items-center">
-          <div className="text-lg-regular truncate text-text-default-light">
+          <div className="text-lg-regular truncate text-text-default-light-v1">
             {name}
           </div>
-          {isOfficial && <CheckBadge className="ml-spacing-xs" />}
+          {isOfficial && <CheckBadge className="ml-spacing-xs-v1" />}
         </div>
-        <div className="text-sm-regular truncate text-text-subtler-light">
+        <div className="text-sm-regular truncate text-text-subtler-light-v1">
           {description}
         </div>
       </div>
@@ -93,16 +93,16 @@ export function BotListRoot(props: { children?: React.ReactNode }) {
 export function BotListHeader(props: { avatar?: string | null }) {
   const { avatar } = props;
   return (
-    <div className="mx-spacing-xl mt-spacing-lg mb-spacing-xs flex items-center justify-between">
+    <div className="mx-spacing-xl-v1 mt-spacing-lg-v1 mb-spacing-xs-v1 flex items-center justify-between">
       <div className="flex items-center">
-        <div className="broder mr-[12px] h-[32px] w-[32px] rounded-lg border-border-default-light bg-[#F6F6F7]">
+        <div className="broder mr-[12px] h-[32px] w-[32px] rounded-lg-v1 border-border-default-light-v1 bg-[#F6F6F7]">
           {avatar ? (
-            <img className="rounded-lg" src={avatar} alt="avatar" />
+            <img className="rounded-lg-v1" src={avatar} alt="avatar" />
           ) : (
             <Avatar />
           )}
         </div>
-        <div className="display-md-emphasized text-text-default-light">
+        <div className="display-md-emphasized text-text-default-light-v1">
           Chat
         </div>
       </div>

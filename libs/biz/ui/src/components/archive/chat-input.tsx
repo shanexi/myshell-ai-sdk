@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn, useInjection } from '@myshell-run/ui-primitives';
+import { cn, useInjection } from '@myshell-run/common-ui';
 import { AlignJustify, CirclePlus } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { MenuTrigger } from 'react-aria-components';
@@ -26,7 +26,7 @@ export const ChatInputMenu = (props: { className?: string }) => {
         // 指定 id 否则 hydrate 会报错
         id={'chat-input-menu-btn'}
       >
-        <AlignJustify strokeWidth={1.5} className="text-text-brand-light" />
+        <AlignJustify strokeWidth={1.5} className="text-text-brand-light-v1" />
       </Button>
       <Menu>
         <MenuItem id="clear">
@@ -45,8 +45,8 @@ export const ChatInputMenu = (props: { className?: string }) => {
 export function ChatInputRoot(props: { children?: React.ReactNode }) {
   const { children } = props;
   return (
-    <div className="mx-[8px] my-spacing-md">
-      <div className="input w-full rounded-4xl border-border-default-light bg-surface-container-special-subtle-light focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
+    <div className="mx-[8px] my-spacing-md-v1">
+      <div className="input w-full rounded-4xl-v1 border-border-default-light-v1 bg-surface-container-special-subtle-light-v1 focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none">
         {children}
       </div>
     </div>
@@ -85,7 +85,7 @@ export function ChatInputFile() {
     <div className="flex h-[24px] w-[24px] flex-none items-center justify-center">
       <CirclePlus
         strokeWidth={1.5}
-        className="text-text-brand-light"
+        className="text-text-brand-light-v1"
         size={24}
       />
     </div>
@@ -102,7 +102,7 @@ export function ChatInputAudio() {
 
 export function ChatInputSend() {
   return (
-    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full bg-icon-brand-light">
+    <div className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-full-v1 bg-icon-brand-light-v1">
       <Send />
     </div>
   );

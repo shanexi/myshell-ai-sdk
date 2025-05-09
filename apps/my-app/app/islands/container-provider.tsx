@@ -1,4 +1,4 @@
-import { InversifyProvider } from '@myshell-run/ui-primitives';
+import { InversifyProvider } from '@myshell-run/common-ui';
 import { clientContainer } from './client.container';
 
 export const ContainerProvider = (props: { children: React.ReactNode }) => {

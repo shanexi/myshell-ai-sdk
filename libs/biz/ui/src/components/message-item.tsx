@@ -1,11 +1,10 @@
 import {
-  OwnMessage,
+  OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/message-item-plugins';
+} from '@myshell-run/biz-message-item-plugins';
+import { Message, MessageListContext } from '@myshell-run/common-def';
+import { MessageItemSvc, useInjection } from '@myshell-run/common-ui';
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';
-import { useInjection } from '@myshell-run/ui-primitives';
-import { MessageItemSvc } from './message-item.svc';
-import { Message, MessageListContext } from '@myshell-run/def';
 
 export const MessageItem: VirtuosoMessageListProps<
   Message,
@@ -14,8 +13,8 @@ export const MessageItem: VirtuosoMessageListProps<
   const svc = useInjection(MessageItemSvc);
   const { data } = props;
   const ownMessage = data.user === 'me';
-  const { key, ...rest } = data;
-  if (ownMessage) return <OwnMessage key={data.key} {...rest} />;
-  const item = svc.getItem(data.type ?? REPLY_MESSAGE_TYPE);
+  const item = svc.getItem(
+    ownMessage ? OWN_MESSAGE_TYPE : (data.type ?? REPLY_MESSAGE_TYPE),
+  );
   return item.render(data);
 };
