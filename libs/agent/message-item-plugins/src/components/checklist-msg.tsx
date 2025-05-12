@@ -1,10 +1,10 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, useRemarkable } from '@myshell-run/common-ui';
 import { Check, ChevronUp, Circle } from 'lucide-react';
+import { ChecklistItemModel, type Status } from './checklist-msg.model';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
-export const CheckList: React.FC<{
-  title: string;
-  children?: React.ReactNode;
-}> = ({ title, children }) => {
+export const CheckList: React.FC<{ title: string }> = ({ title }) => {
   return (
     <div>
       <div
@@ -33,10 +33,17 @@ export const CheckList: React.FC<{
   );
 };
 
-export const CheckListItem: React.FC<{
-  status: 'checked' | 'unchecked' | 'pending';
+export const CheckListItem = observer<{
+  id?: string;
+  status: Status;
   title: string;
-}> = ({ status, title }) => {
+}>(({ id, status, title }) => {
+  const model = useRemarkable(ChecklistItemModel, id);
+
+  useEffect(() => {
+    model.setStatus(status);
+  }, []);
+
   return (
     <div
       className={cn(
@@ -45,9 +52,9 @@ export const CheckListItem: React.FC<{
         'ml-[10px] pl-[10px]',
       )}
     >
-      {status === 'checked' ? (
+      {model.status === 'checked' ? (
         <Check size={20} strokeWidth={1.5} />
-      ) : status === 'pending' ? (
+      ) : model.status === 'pending' ? (
         <div className="loader"></div>
       ) : (
         <Circle
@@ -59,4 +66,4 @@ export const CheckListItem: React.FC<{
       {title}
     </div>
   );
-};
+});
