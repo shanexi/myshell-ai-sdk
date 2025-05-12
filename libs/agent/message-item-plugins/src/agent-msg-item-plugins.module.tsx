@@ -5,6 +5,7 @@ import { Timer, XLoading } from './components/remark-directives';
 import { TimerModel } from './components/timer.model';
 import { OwnMessage } from './components/own-msg';
 import Counter from './components/remark/counter';
+import { CheckList, CheckListItem } from './components/checklist-msg';
 
 export const OWN_MESSAGE_TYPE = 'own';
 export const REPLY_MESSAGE_TYPE = 'reply';
@@ -37,5 +38,7 @@ export const agentMsgItemPluginsModule = new ContainerModule(
     register('x-timer', Timer, TimerModel);
     register('interactive-component', Counter);
     register('x-loading', XLoading);
+    register('x-checklist', CheckList);
+    register('x-checklist-item', CheckListItem);
   },
 );

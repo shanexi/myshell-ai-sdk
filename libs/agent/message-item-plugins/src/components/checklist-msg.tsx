@@ -1,7 +1,10 @@
 import { cn } from '@myshell-run/common-ui';
 import { Check, ChevronUp, Circle } from 'lucide-react';
 
-export const CheckList = () => {
+export const CheckList: React.FC<{
+  title: string;
+  children?: React.ReactNode;
+}> = ({ title, children }) => {
   return (
     <div>
       <div
@@ -16,21 +19,21 @@ export const CheckList = () => {
           strokeWidth={1.5}
           className="text-colors-foreground-disabled-light-v2"
         />
-        Design interactive landing pages.
+        {title}
         <ChevronUp
           strokeWidth={1.5}
           className="text-colors-foreground-subtle-light-v2"
           size={20}
         />
       </div>
-      <CheckListItem status="checked" title="Create initial files" />
+      {/* <CheckListItem status="checked" title="Create initial files" />
       <CheckListItem status="pending" title="Install dependencies" />
-      <CheckListItem status="unchecked" title="Update `app/page.tsx`" />
+      <CheckListItem status="unchecked" title="Update `app/page.tsx`" /> */}
     </div>
   );
 };
 
-const CheckListItem: React.FC<{
+export const CheckListItem: React.FC<{
   status: 'checked' | 'unchecked' | 'pending';
   title: string;
 }> = ({ status, title }) => {

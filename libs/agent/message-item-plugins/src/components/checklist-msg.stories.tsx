@@ -8,8 +8,6 @@ export default meta;
 
 export const Primary: StoryObj<typeof CheckList> = {
   args: {
-    key: '1',
-    text: 'Hello, how are you?',
-    user: 'me',
+    title: 'Design interactive landing pages.',
   },
 };
