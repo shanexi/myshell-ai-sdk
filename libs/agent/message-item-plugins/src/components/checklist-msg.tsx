@@ -2,9 +2,12 @@ import { cn, useRemarkable } from '@myshell-run/common-ui';
 import { Check, ChevronUp, Circle } from 'lucide-react';
 import { ChecklistItemModel, type Status } from './checklist-msg.model';
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 
-export const CheckList: React.FC<{ title: string }> = ({ title }) => {
+export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
+  title,
+  children,
+}) => {
   return (
     <div>
       <div
@@ -26,6 +29,7 @@ export const CheckList: React.FC<{ title: string }> = ({ title }) => {
           size={20}
         />
       </div>
+      {children}
       {/* <CheckListItem status="checked" title="Create initial files" />
       <CheckListItem status="pending" title="Install dependencies" />
       <CheckListItem status="unchecked" title="Update `app/page.tsx`" /> */}
@@ -44,6 +48,13 @@ export const CheckListItem = observer<{
     model.setStatus(status);
   }, []);
 
+  return <ChecklistItemUI status={model.status} title={title} />;
+});
+
+export const ChecklistItemUI: React.FC<{ status: Status; title: string }> = ({
+  status,
+  title,
+}) => {
   return (
     <div
       className={cn(
@@ -52,9 +63,9 @@ export const CheckListItem = observer<{
         'ml-[10px] pl-[10px]',
       )}
     >
-      {model.status === 'checked' ? (
+      {status === 'checked' ? (
         <Check size={20} strokeWidth={1.5} />
-      ) : model.status === 'pending' ? (
+      ) : status === 'pending' ? (
         <div className="loader"></div>
       ) : (
         <Circle
@@ -66,4 +77,4 @@ export const CheckListItem = observer<{
       {title}
     </div>
   );
-});
+};

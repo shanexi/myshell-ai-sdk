@@ -19,7 +19,7 @@ export const ChecklistStory = () => {
       } else {
         clearInterval(timer);
       }
-    }, 3000);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
