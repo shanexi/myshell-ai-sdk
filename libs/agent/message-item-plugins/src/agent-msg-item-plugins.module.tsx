@@ -1,9 +1,10 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
-import { RemarkMsg, setup } from '@myshell-run/common-ui';
+import { setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
-import { OwnMessage } from './components/own-msg';
 import { CheckList, CheckListItem } from './components/checklist-msg';
 import { ChecklistItemModel } from './components/checklist-msg.model';
+import { OwnMessage } from './components/own-msg';
+import { ReplyMsg } from './components/reply-msg';
 
 export const OWN_MESSAGE_TYPE = 'own';
 export const REPLY_MESSAGE_TYPE = 'reply';
@@ -25,7 +26,7 @@ function legacy(bind: interfaces.Bind) {
   }
 
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
-  addMessagePlugin(REPLY_MESSAGE_TYPE, RemarkMsg);
+  addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 }
 
 export const agentMsgItemPluginsModule = new ContainerModule(

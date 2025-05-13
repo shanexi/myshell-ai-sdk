@@ -1,10 +1,11 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
-import { RemarkMsg, setup } from '@myshell-run/common-ui';
+import { setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';
-import Counter from './components/remark/counter';
 import { OwnMessage } from './components/own-msg';
+import Counter from './components/remark/counter';
+import { ReplyMsg } from './components/reply-msg';
 
 export const OWN_MESSAGE_TYPE = 'own';
 export const REPLY_MESSAGE_TYPE = 'reply';
@@ -26,7 +27,7 @@ function legacy(bind: interfaces.Bind) {
   }
 
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
-  addMessagePlugin(REPLY_MESSAGE_TYPE, RemarkMsg);
+  addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
   addMessagePlugin(REPLY_MESSAGE_EXECUTING_TYPE, ExecutingMsg);
   // addMessagePlugin(AGENT_MESSAGE_LIST_DIRECTORY_TYPE, ListDirectoryMsg);
 }

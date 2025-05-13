@@ -1,17 +1,27 @@
-import { ReplyMsgFrame, useRemarkable } from '@myshell-run/common-ui';
+import { useRemarkable } from '@myshell-run/common-ui';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { ExecutingMsgModel } from './executing-msg.model';
 import { ReactComponent as Loading } from './loading.svg';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 // todo 增加一些动效 当从后端收到真实倒计时的时候（重置）做一个闪烁的效果 然后再更新值
 export const ExecutingMsg = () => {
   // mobx 管理 估计需要注意下 map 管理（by message key）
   return (
-    <ReplyMsgFrame>
-      <XLoading>AI is generating.</XLoading>
-      <Timer />
-    </ReplyMsgFrame>
+    <div className="flex pb-8 pl-[8px]">
+      <img
+        className="mr-[8px] h-[32px] w-[32px] rounded-lg-v1"
+        src={DEFAULT_AVATAR}
+        alt={`other avatar`}
+      />
+      <div className="w-[80%]">
+        <div className="rounded-tl-[2px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[16px] bg-surface-container-default-light-v1 p-4 text-text-default-light-v1">
+          <XLoading>AI is generating.</XLoading>
+          <Timer />
+        </div>
+      </div>
+    </div>
   );
 };
 

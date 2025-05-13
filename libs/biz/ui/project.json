@@ -30,7 +30,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4410,
+        "port": 4600,
         "configDir": "libs/biz/ui/.storybook",
         "uiFramework": "@storybook/react"
       },

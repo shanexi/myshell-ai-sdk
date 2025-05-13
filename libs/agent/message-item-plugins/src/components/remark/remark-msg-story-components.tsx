@@ -1,5 +1,5 @@
-import { RemarkMsg } from '@myshell-run/common-ui';
 import { useEffect, useState } from 'react';
+import { ReplyMsg } from '../reply-msg';
 import checklistStory from './checklist-story.md';
 
 export const ChecklistStory = () => {
@@ -22,5 +22,5 @@ export const ChecklistStory = () => {
     return () => clearInterval(timer);
   }, []);
   console.log(text);
-  return <RemarkMsg key="abc" user="other" text={text} />;
+  return <ReplyMsg key="abc" user="other" text={text} />;
 };

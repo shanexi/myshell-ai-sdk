@@ -17,7 +17,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4420,
+        "port": 4510,
         "configDir": "libs/agent/message-item-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
