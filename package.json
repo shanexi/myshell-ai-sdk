@@ -141,6 +141,7 @@
     "clsx": "^2.1.1",
     "comma-separated-tokens": "^2.0.0",
     "concurrently": "^8.2.2",
+    "consola": "^3.4.2",
     "core-js": "^3.38.1",
     "cors": "^2.8.5",
     "cross-fetch": "^4.1.0",
