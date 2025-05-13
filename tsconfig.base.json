@@ -31,6 +31,7 @@
       "@myshell-run/common-def": ["libs/common/def/src/index.ts"],
       "@myshell-run/common-ui": ["libs/common/ui/src/index.ts"],
       "@myshell-run/effect-demo": ["libs/effect-demo/src/index.ts"],
+      "@myshell-run/nx-plugin": ["libs/nx-plugin/src/index.ts"],
       "@myshell-run/react-aria-tailwind-starter": [
         "libs/react-aria-tailwind-starter/src/index.ts"
       ],
