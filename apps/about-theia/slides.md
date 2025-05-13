@@ -25,11 +25,12 @@ mdc: true
 - 复用哪些
 - 还需要建设哪些
 - 上手需要哪些前置
+- next
 
 
 ---
 
-## 复用哪些
+# 复用哪些
 
 基于 browser-only-minimal 
 
@@ -186,7 +187,7 @@ toolbar/src/browser
 ├── application-shell-with-toolbar-override.ts # 深度定制界面（一般不会用到）
 ├── my-toolbar.tsx # 定制 UI（普通的 react 组件）
 ├── style # 样式定制（这块可以完全去掉，替换成 tailwind）
-├── toolbar-command-contribution.ts（command 扩展点），注册 command menu shortcut 和 jsonschema preference） 
+├── toolbar-command-contribution.ts（command 扩展点），注册 command menu shortcut 和 jsonschema（可选） 
 ├── toolbar-controller.ts # 可替换成 mobx
 ├── toolbar-frontend-module.ts # 入口
 ├── toolbar-preference-contribution.ts # preference 扩展
@@ -267,6 +268,8 @@ registry.registerMenuAction(MyToolbarMenus.SAVE_VERSION, {
 
 如何写一个 extension 以 toolbar 为例
 
+菜单的 click target
+
 ```ts
 this.contextMenuRenderer.render({
     menuPath: MyToolbarMenus.SAVE_MENU, // 重要 联动 registerMenuAction 实现层级
@@ -285,4 +288,52 @@ this.contextMenuRenderer.render({
 - quick input 支持单个表单项的编辑（e.g. rename）
 - quick input 多步，可相似简单表单（2-3个表单项）
 - quick input + 定制 dialog 可进一步实现复杂表单项
+
+
+---
+
+# next
+
+- 整体样式贴近视觉稿
+- 统一功能探索
+- 登陆
+
+---
+
+# 整体样式贴近视觉稿
+
+next
+
+- 去掉 menus，分割线
+- toolbar 
+  - 功能补全（rename 回退 save version 表单）
+- 左侧区域
+  - agent chat（app 列表不支持，未来应该支持）
+- 中间区域 
+  - 增加 app 列表（全局唯一）
+  - 增加 app 详情（暂时不多实例 即 scheme，也就是不支持 editor manager tabs）
+
+
+---
+
+# 统一交互探索
+
+next
+
+- notification 统一通知交互 + 通知中心
+- problems 问题中心，点击跳转
+- 多实例 app 详情（tabs）
+- 运行日志（output）
+
+---
+
+# 更多必要功能
+
+next
+
+- 登陆 authentication provider
+- preference 保存
+- 接后端
+
+etc.
 
