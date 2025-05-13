@@ -10,23 +10,16 @@ import type { Plugin } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 import { createId } from '@paralleldrive/cuid2';
 
-import {
-  DEFAULT_AVATAR,
-  Message,
-  RegisterMap,
-  RemarkableFactory,
-} from '@myshell-run/common-def';
+import { RegisterMap, RemarkableFactory } from '@myshell-run/common-def';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
-import { ReplyMsgFrame } from '../components/reply-msg-frame';
 import { useInjection } from '../inversify-context';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
 
-export const RemarkMsg = (props: Message) => {
-  const { avatar = DEFAULT_AVATAR, user, text } = props;
+export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
   const factory = useInjection<RemarkableFactory>(RemarkableFactory);
   const registerMap = useInjection<RegisterMap>('RegisterMap');
   const registerComponents = Array.from(registerMap).reduce(
@@ -81,19 +74,7 @@ export const RemarkMsg = (props: Message) => {
     },
   });
   // console.timeEnd('remark');
-  return (
-    <ReplyMsgFrame
-      avatar={
-        <img
-          className="mr-[8px] h-[32px] w-[32px] rounded-lg-v1"
-          src={avatar}
-          alt={`${user} avatar`}
-        />
-      }
-    >
-      <article className="prose dark:prose-invert">{result}</article>
-    </ReplyMsgFrame>
-  );
+  return result;
 };
 
 /*

@@ -1,3 +1,7 @@
 @import 'tailwindcss' source(none);
+
 @source './components';
+/* FIXME 需要手动指定依赖目录 */
+@source '../../message-item-plugins/src/components/';
+
 @import '../../../tailwind-cfg/styles-without-source.css';

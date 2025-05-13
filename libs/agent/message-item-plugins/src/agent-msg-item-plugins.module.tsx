@@ -1,10 +1,10 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
-import { RemarkMsg, setup } from '@myshell-run/common-ui';
+import { setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
-import { Timer, XLoading } from './components/remark-directives';
-import { TimerModel } from './components/timer.model';
+import { CheckList, CheckListItem } from './components/checklist-msg';
+import { ChecklistItemModel } from './components/checklist-msg.model';
 import { OwnMessage } from './components/own-msg';
-import Counter from './components/remark/counter';
+import { ReplyMsg } from './components/reply-msg';
 
 export const OWN_MESSAGE_TYPE = 'own';
 export const REPLY_MESSAGE_TYPE = 'reply';
@@ -26,7 +26,7 @@ function legacy(bind: interfaces.Bind) {
   }
 
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
-  addMessagePlugin(REPLY_MESSAGE_TYPE, RemarkMsg);
+  addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 }
 
 export const agentMsgItemPluginsModule = new ContainerModule(
@@ -34,8 +34,7 @@ export const agentMsgItemPluginsModule = new ContainerModule(
     legacy(bind);
     const register = setup(bind);
     // 涉及到了 JSX，可能会影响 unit test perf
-    register('x-timer', Timer, TimerModel);
-    register('interactive-component', Counter);
-    register('x-loading', XLoading);
+    register('x-checklist', CheckList);
+    register('x-checklist-item', CheckListItem, ChecklistItemModel);
   },
 );

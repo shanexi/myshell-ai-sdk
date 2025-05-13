@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/biz/message-item-plugins/src",
   "projectType": "library",
-  "tags": ["scope:design-system-v1"],
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -17,7 +17,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4410,
+        "port": 4610,
         "configDir": "libs/biz/message-item-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },

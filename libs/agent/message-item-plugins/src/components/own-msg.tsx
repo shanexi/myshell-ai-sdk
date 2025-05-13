@@ -1,7 +1,7 @@
 import { Message } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
 
-export const OwnMessage = (props: Message) => {
+export const OwnMessage: React.FC<Message> = ({ text }) => {
   return (
     <div className="flex px-spacing-xl-v2 py-spacing-lg-v2">
       <div
@@ -12,7 +12,7 @@ export const OwnMessage = (props: Message) => {
           'text-lg-regular',
         )}
       >
-        {props.text}
+        {text}
       </div>
     </div>
   );

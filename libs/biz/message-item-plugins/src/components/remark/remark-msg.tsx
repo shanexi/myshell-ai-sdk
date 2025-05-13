@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { RemarkMsg } from '@myshell-run/common-ui';
-import imageStory from './image-story.md';
+import { ReplyMsg } from '../reply-msg';
 import counterStory from './counter-story.md';
+import imageStory from './image-story.md';
 
 export const CounterStory = () => {
   const lines = counterStory.split('\n').map((line: string) => '\n' + line);
@@ -23,7 +23,7 @@ export const CounterStory = () => {
     return () => clearInterval(timer);
   }, []);
   console.log(text);
-  return <RemarkMsg key="abc" user="me" text={text} />;
+  return <ReplyMsg key="abc" user="me" text={text} />;
 };
 
 export const ImageStory = () => {
@@ -46,5 +46,5 @@ export const ImageStory = () => {
     return () => clearInterval(timer);
   }, []);
   console.log(text);
-  return <RemarkMsg key="abc" user="me" text={text} />;
+  return <ReplyMsg key="abc" user="me" text={text} />;
 };

@@ -5,7 +5,7 @@ import {
   VirtuosoMessageListLicense,
   VirtuosoMessageList,
 } from '@virtuoso.dev/message-list';
-import { randomMessage } from '@myshell-run/common-ui';
+import { randomMessage, randPhrase } from '@myshell-run/common-ui';
 interface Message {
   key: string;
   text: string;

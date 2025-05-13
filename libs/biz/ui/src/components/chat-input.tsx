@@ -3,7 +3,12 @@ import {
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import { cn, FileState, useInjection } from '@myshell-run/common-ui';
+import {
+  cn,
+  FileState,
+  ImageState,
+  useInjection,
+} from '@myshell-run/common-ui';
 import toArray from '@uppy/utils/lib/toArray';
 import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
@@ -88,14 +93,16 @@ export const ChatUploadArea = observer(() => {
         'bg-surface-container-special-subtle-light-v1',
       )}
     >
-      {Array.from(model.uppyStateMap).map(([id, file]) =>
-        file.preview ? <Image key={id} fileState={file} id={id} /> : null,
+      {/* TODO 去掉 type cast 开发 file 类型上传支持 */}
+      {Array.from(model.uppyStateMap as Map<string, ImageState>).map(
+        ([id, file]) =>
+          file.preview ? <Image key={id} fileState={file} id={id} /> : null,
       )}
     </div>
   );
 });
 
-export const Image: React.FC<{ fileState: FileState; id: string }> = ({
+export const Image: React.FC<{ fileState: ImageState; id: string }> = ({
   fileState,
   id,
 }) => {

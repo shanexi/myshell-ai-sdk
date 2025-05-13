@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/react-aria-tailwind-starter/src",
   "projectType": "library",
-  "tags": ["scope:uncategorized"],
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -17,7 +17,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4500,
+        "port": 4400,
         "configDir": "libs/react-aria-tailwind-starter/.storybook",
         "uiFramework": "@storybook/react"
       },

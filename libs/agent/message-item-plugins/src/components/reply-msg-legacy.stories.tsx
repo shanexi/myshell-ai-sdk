@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ReplyMsg } from './reply-msg';
+import { ReplyMsgLegacy } from './reply-msg-legacy';
 
-const meta: Meta<typeof ReplyMsg> = {
-  component: ReplyMsg,
+const meta: Meta<typeof ReplyMsgLegacy> = {
+  component: ReplyMsgLegacy,
 };
 export default meta;
 
-export const Reply: StoryObj<typeof ReplyMsg> = {
+export const Reply: StoryObj<typeof ReplyMsgLegacy> = {
   parameters: {
     design: {
       type: 'figma',

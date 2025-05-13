@@ -2,5 +2,5 @@
   "name": "tailwind-cfg",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "tags": ["scope:design-system-v1"]
+  "tags": []
 }

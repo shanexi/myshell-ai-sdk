@@ -1,7 +1,13 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, useRemarkable } from '@myshell-run/common-ui';
 import { Check, ChevronUp, Circle } from 'lucide-react';
+import { ChecklistItemModel, type Status } from './checklist-msg.model';
+import { observer } from 'mobx-react-lite';
+import { PropsWithChildren, useEffect } from 'react';
 
-export const CheckList = () => {
+export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
+  title,
+  children,
+}) => {
   return (
     <div>
       <div
@@ -16,24 +22,39 @@ export const CheckList = () => {
           strokeWidth={1.5}
           className="text-colors-foreground-disabled-light-v2"
         />
-        Design interactive landing pages.
+        {title}
         <ChevronUp
           strokeWidth={1.5}
           className="text-colors-foreground-subtle-light-v2"
           size={20}
         />
       </div>
-      <CheckListItem status="checked" title="Create initial files" />
+      {children}
+      {/* <CheckListItem status="checked" title="Create initial files" />
       <CheckListItem status="pending" title="Install dependencies" />
-      <CheckListItem status="unchecked" title="Update `app/page.tsx`" />
+      <CheckListItem status="unchecked" title="Update `app/page.tsx`" /> */}
     </div>
   );
 };
 
-const CheckListItem: React.FC<{
-  status: 'checked' | 'unchecked' | 'pending';
+export const CheckListItem = observer<{
+  id?: string;
+  status: Status;
   title: string;
-}> = ({ status, title }) => {
+}>(({ id, status, title }) => {
+  const model = useRemarkable(ChecklistItemModel, id);
+
+  useEffect(() => {
+    model.setStatus(status);
+  }, []);
+
+  return <ChecklistItemUI status={model.status} title={title} />;
+});
+
+export const ChecklistItemUI: React.FC<{ status: Status; title: string }> = ({
+  status,
+  title,
+}) => {
   return (
     <div
       className={cn(

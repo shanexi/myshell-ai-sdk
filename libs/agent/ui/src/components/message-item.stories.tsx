@@ -15,7 +15,7 @@ const meta: Meta<typeof MessageItem> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof MessageItem> = {
+export const Own: StoryObj<typeof MessageItem> = {
   args: {
     data: {
       key: '1',

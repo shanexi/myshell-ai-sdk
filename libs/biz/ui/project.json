@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/biz/ui/src",
   "projectType": "library",
-  "tags": ["scope:design-system-v1"],
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -30,7 +30,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4410,
+        "port": 4600,
         "configDir": "libs/biz/ui/.storybook",
         "uiFramework": "@storybook/react"
       },
