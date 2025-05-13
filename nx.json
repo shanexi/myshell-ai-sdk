@@ -21,6 +21,13 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
+    "local-publish": {
+      "dependsOn": ["^local-publish"],
+      "inputs": ["production", "^production"],
+      "options": {
+        "bundleSuppressWarnCodes": ["UNRESOLVED_IMPORT"]
+      }
+    },
     "lint": {
       "inputs": [
         "default",

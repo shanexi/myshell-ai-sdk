@@ -14,6 +14,8 @@ import { visit, BuildVisitor } from 'unist-util-visit';
 import { toJsxRuntime } from '../hast-util-to-jsx-runtime';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { urlAttributes } from 'html-url-attributes';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore 先不处理
 import { unreachable } from 'devlop';
 
 // Import types from hast, mdast and remark-rehype

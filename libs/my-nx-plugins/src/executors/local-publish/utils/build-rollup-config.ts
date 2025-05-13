@@ -30,21 +30,13 @@ export function buildRollupConfig(
         }),
       ],
     },
-  ] as rollup.RollupOptions[];
-
-  if (input.bundleJs) {
-    cfgs.push({
+    {
       onwarn: (warning, next) => {
         if (input.bundleSuppressWarnCodes.indexOf(warning.code) > -1) return;
         next(warning);
       },
       input: input.bundleInput,
       output: [
-        {
-          file: input.bundleFileCjs,
-          format: 'cjs',
-          interop: 'auto',
-        },
         {
           file: input.bundleFile,
           format: 'es',
@@ -64,8 +56,8 @@ export function buildRollupConfig(
         }),
         nodeResolve(),
       ],
-    });
-  }
+    },
+  ] as rollup.RollupOptions[];
 
   return cfgs;
 }

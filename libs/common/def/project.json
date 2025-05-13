@@ -4,12 +4,12 @@
   "sourceRoot": "libs/common/def/src",
   "projectType": "library",
   "targets": {
-    "typecheck": {
-      "executor": "nx:run-commands",
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "commands": ["tsc -p tsconfig.json --noEmit"],
-        "cwd": "libs/common/def",
-        "forwardAllArgs": false
+        "outputPath": "dist/libs/common/def",
+        "tsConfig": "libs/common/def/tsconfig.lib.json"
       }
     },
     "build": {

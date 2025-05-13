@@ -282,7 +282,11 @@
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
-    "zustand-signal": "^0.6.0"
+    "zustand-signal": "^0.6.0",
+    "@nrwl/devkit": "15.9.7",
+    "@nrwl/jest": "15.9.7",
+    "@swc-node/register": "^1.4.2",
+    "@swc/cli": "~0.1.55"
   },
   "engines": {
     "node": ">= 16 < 20",
@@ -307,10 +311,5 @@
       "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
     }
   },
-  "devDependencies": {
-    "@nrwl/devkit": "15.9.7",
-    "@nrwl/jest": "15.9.7",
-    "@swc-node/register": "^1.4.2",
-    "@swc/cli": "~0.1.55"
-  }
+  "devDependencies": {}
 }
