@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/agent/message-item-plugins/src",
   "projectType": "library",
-  "tags": ["scope:design-system-v1"],
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
