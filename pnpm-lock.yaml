@@ -78,6 +78,7 @@ specifiers:
   '@nrwl/linter': 15.9.7
   '@nrwl/next': 15.9.7
   '@nrwl/node': 15.9.7
+  '@nrwl/nx-plugin': 15.9.7
   '@nrwl/react': 15.9.7
   '@nrwl/storybook': 15.9.7
   '@nrwl/web': 15.9.7
@@ -352,6 +353,7 @@ dependencies:
   '@nrwl/linter': 15.9.7_7luuqnfyxtu2gahatpja742pnu
   '@nrwl/next': 15.9.7_cg4bunu7g5n73b46wndyersyvi
   '@nrwl/node': 15.9.7_vkqp2vasi3ki2yf2mitjtyn5ve
+  '@nrwl/nx-plugin': 15.9.7_gcegmortd7c5h6otzbxdef54j4
   '@nrwl/react': 15.9.7_3ezrjx7rjdpmgpuu3mnel7w6sm
   '@nrwl/storybook': 15.9.7_4mbvnajp2rt6iiss7dsjoq5t5u
   '@nrwl/web': 15.9.7_3xcf2vodo57p2j66yemgxfrsam
@@ -5633,6 +5635,32 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@nrwl/nx-plugin/15.9.7_gcegmortd7c5h6otzbxdef54j4:
+    resolution: {integrity: sha512-g9zO8O6oATglRGq5rvbg1nORvOC/xIW1R/9L7oBkhd2tn8GeNsPAt2/lhLemCwunpiPU0yEiU05oKSZS/ut3HA==}
+    dependencies:
+      '@nrwl/devkit': 15.9.7_6ee44cgqbn5okyq6iuxtn7xr6i_nx@15.9.7
+      '@nrwl/jest': 15.9.7_v4urwjumlbeusb4642snnqj5ya
+      '@nrwl/js': 15.9.7_eyayby3n6wet3qpzy64koqpavi_3xcf2vodo57p2j66yemgxfrsam
+      '@nrwl/linter': 15.9.7_7luuqnfyxtu2gahatpja742pnu
+      '@phenomnomnominal/tsquery': 4.1.1_typescript@5.8.2
+      dotenv: 10.0.0
+      fs-extra: 11.2.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@types/node'
+      - babel-plugin-macros
+      - debug
+      - eslint
+      - node-notifier
+      - nx
+      - supports-color
+      - ts-node
+      - typescript
+    dev: false
 
   /@nrwl/nx-win32-arm64-msvc/15.9.7:
     resolution: {integrity: sha512-GSQ54hJ5AAnKZb4KP4cmBnJ1oC4ILxnrG1mekxeM65c1RtWg9NpBwZ8E0gU3xNrTv8ZNsBeKi/9UhXBxhsIh8A==}
@@ -16334,7 +16362,6 @@ packages:
     resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
     dev: false
-    optional: true
 
   /drauu/0.4.3:
     resolution: {integrity: sha512-3pk6ZdfgElrEW+L4C03Xtrr7VVdSmcWlBb8cUj+WUWree2hEN8IE9fxRBL9HYG5gr8hAEXFNB0X263Um1WlYwA==}
@@ -21014,7 +21041,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       app-root-dir: 1.0.2
-      dotenv: 16.4.5
+      dotenv: 16.5.0
       dotenv-expand: 10.0.0
     dev: false
 
