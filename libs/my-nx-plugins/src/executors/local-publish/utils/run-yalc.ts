@@ -12,12 +12,7 @@ export const runYalc = (
 ) => {
   consola.start(`yalc publish ${context.projectName} ...`);
 
-  fs.writeFileSync(
-    path.join(options.outputPath, '.yalcignore'),
-    `src/**/*
-    testing/**/*
-    `,
-  );
+  fs.writeFileSync(path.join(options.outputPath, '.yalcignore'), `src/**/*`);
   if (options.watch) {
     execSync(`yalc publish --push --changed`, {
       cwd: options.outputPath,

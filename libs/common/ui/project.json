@@ -11,7 +11,6 @@
       "options": {
         "outputPath": "dist/libs/common/ui",
         "tsConfig": "libs/common/ui/tsconfig.lib.json",
-        "externals": ["react/jsx-runtime"],
         "assets": [
           {
             "input": "./libs/common/ui/src/remark/hast-util-to-jsx-runtime",

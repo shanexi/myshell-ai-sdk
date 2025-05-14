@@ -15,7 +15,7 @@ export default async function* runExecutor(
 ) {
   const options = localPublishExecutorSchema.parse(_options);
   consola.info('Executor ran for `Local Publish`');
-  console.log(options);
+  // console.log(options);
 
   const tscGenerator = tscExecutor(
     {

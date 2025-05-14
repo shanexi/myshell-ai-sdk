@@ -25,7 +25,8 @@
       "dependsOn": ["^local-publish"],
       "inputs": ["production", "^production"],
       "options": {
-        "bundleSuppressWarnCodes": ["UNRESOLVED_IMPORT"]
+        "bundleSuppressWarnCodes": ["UNRESOLVED_IMPORT"],
+        "externals": ["react/jsx-runtime"]
       }
     },
     "lint": {

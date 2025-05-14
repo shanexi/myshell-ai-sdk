@@ -17,6 +17,7 @@ export const runUpdatePackageJson = (
   packageJson.types = './src/index.d.ts';
 
   packageJson.exports = {
+    ...packageJson.exports,
     '.': {
       types: './index.bundle.d.ts',
       default: './index.bundle.js',
