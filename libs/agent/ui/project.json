@@ -5,6 +5,24 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/agent/ui",
+        "tsConfig": "libs/agent/ui/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/agent/ui",
+        "main": "libs/agent/ui/src/index.ts",
+        "tsConfig": "libs/agent/ui/tsconfig.lib.json",
+        "assets": []
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
