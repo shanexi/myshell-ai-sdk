@@ -62,31 +62,17 @@ export const CheckListItem = observer<{
   }, []);
 
   return (
-    <ChecklistItemUI
-      status={model.status}
-      title={model.title}
-      hidden={model.hidden}
-    />
-  );
-});
-
-export const ChecklistItemUI: React.FC<{
-  status: Status;
-  title: string;
-  hidden: boolean;
-}> = ({ status, title, hidden }) => {
-  return (
     <div
       className={cn(
         'flex items-center gap-spacing-md-v2',
         'border-l-1 border-colors-border-default-light-v2',
         'ml-[10px] pl-[10px]',
-        hidden && 'hidden',
+        model.hidden && 'hidden',
       )}
     >
-      {status === 'checked' ? (
+      {model.status === 'checked' ? (
         <Check size={20} strokeWidth={1.5} />
-      ) : status === 'pending' ? (
+      ) : model.status === 'pending' ? (
         <div className="loader"></div>
       ) : (
         <Circle
@@ -95,7 +81,7 @@ export const ChecklistItemUI: React.FC<{
           className="text-colors-foreground-disabled-light-v2"
         />
       )}
-      {title}
+      {model.title}
     </div>
   );
-};
+});

@@ -13,7 +13,6 @@ export class ChecklistItemModel implements Remarkable {
 
   onUpdate(props: Properties) {
     runInAction(() => {
-      this.hidden = false;
       this.setStatus(props.status as Status);
       this.setTitle(props.title as string);
     });
@@ -26,12 +25,14 @@ export class ChecklistItemModel implements Remarkable {
   @action.bound
   setStatus(status: Status) {
     if (status == null) return;
+    this.hidden = false;
     this.status = status;
   }
 
   @action.bound
   setTitle(title: string) {
     if (title == null) return;
+    this.hidden = false;
     this.title = title;
   }
 }
