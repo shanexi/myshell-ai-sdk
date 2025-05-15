@@ -1,7 +1,7 @@
 import { Remarkable } from '@myshell-run/common-def';
 import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
 export type Status = 'checked' | 'unchecked' | 'pending';
 
@@ -9,10 +9,14 @@ export type Status = 'checked' | 'unchecked' | 'pending';
 export class ChecklistItemModel implements Remarkable {
   @observable status: Status = 'unchecked';
   @observable title = '';
+  @observable hidden = true;
 
   onUpdate(props: Properties) {
-    this.setStatus(props.status as Status);
-    this.setTitle(props.title as string);
+    runInAction(() => {
+      this.hidden = false;
+      this.setStatus(props.status as Status);
+      this.setTitle(props.title as string);
+    });
   }
 
   constructor() {

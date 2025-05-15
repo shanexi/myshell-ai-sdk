@@ -61,19 +61,27 @@ export const CheckListItem = observer<{
     return disposer;
   }, []);
 
-  return <ChecklistItemUI status={model.status} title={model.title} />;
+  return (
+    <ChecklistItemUI
+      status={model.status}
+      title={model.title}
+      hidden={model.hidden}
+    />
+  );
 });
 
-export const ChecklistItemUI: React.FC<{ status: Status; title: string }> = ({
-  status,
-  title,
-}) => {
+export const ChecklistItemUI: React.FC<{
+  status: Status;
+  title: string;
+  hidden: boolean;
+}> = ({ status, title, hidden }) => {
   return (
     <div
       className={cn(
         'flex items-center gap-spacing-md-v2',
         'border-l-1 border-colors-border-default-light-v2',
         'ml-[10px] pl-[10px]',
+        hidden && 'hidden',
       )}
     >
       {status === 'checked' ? (
