@@ -1,14 +1,15 @@
 import { cn, useRemarkable } from '@myshell-run/common-ui';
-import { Check, ChevronUp, Circle } from 'lucide-react';
+import { Check, ChevronUp, ChevronDown, Circle } from 'lucide-react';
 import { ChecklistItemModel, type Status } from './checklist-msg.model';
 import { observer } from 'mobx-react-lite';
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { autorun } from 'mobx';
 
 export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
   title,
   children,
 }) => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <div>
       <div
@@ -24,13 +25,23 @@ export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
           className="text-colors-foreground-disabled-light-v2"
         />
         {title}
-        <ChevronUp
-          strokeWidth={1.5}
-          className="text-colors-foreground-subtle-light-v2"
-          size={20}
-        />
+        {isOpen ? (
+          <ChevronUp
+            onClick={() => setIsOpen(!isOpen)}
+            strokeWidth={1.5}
+            className="text-colors-foreground-subtle-light-v2"
+            size={20}
+          />
+        ) : (
+          <ChevronDown
+            onClick={() => setIsOpen(!isOpen)}
+            strokeWidth={1.5}
+            className="text-colors-foreground-subtle-light-v2"
+            size={20}
+          />
+        )}
       </div>
-      {children}
+      {isOpen && children}
     </div>
   );
 };

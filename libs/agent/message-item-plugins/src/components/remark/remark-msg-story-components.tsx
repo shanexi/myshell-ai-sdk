@@ -3,8 +3,8 @@ import { ReplyMsg } from '../reply-msg';
 import checklistStory from './checklist-story.md';
 
 export const ChecklistStory = () => {
-  // const split = [5, 6, 7, 8, 9];
-  const split = [5];
+  const split = [5, 6, 7, 8, 9];
+  // const split = [5];
 
   const lines = checklistStory.split('\n').map((line: string) => '\n' + line);
   const [text, setText] = useState(lines.slice(0, split[0] - 1).join(''));
