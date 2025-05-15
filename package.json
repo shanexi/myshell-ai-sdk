@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "husky",
     "build-storybook": "./node_modules/.bin/storybook build",
-    "storybook": "./node_modules/.bin/storybook dev"
+    "storybook": "./node_modules/.bin/storybook dev",
+    "local-publish:watch": "nx watch --all -- nx run \\$NX_PROJECT_NAME:local-publish"
   },
   "private": true,
   "dependencies": {
