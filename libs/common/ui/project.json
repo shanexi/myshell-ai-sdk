@@ -5,6 +5,38 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/common/ui",
+        "tsConfig": "libs/common/ui/tsconfig.lib.json",
+        "assets": [
+          {
+            "input": "./libs/common/ui/src/remark/hast-util-to-jsx-runtime",
+            "glob": "**/*",
+            "output": "./src/remark/hast-util-to-jsx-runtime"
+          }
+        ]
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/common/ui",
+        "main": "libs/common/ui/src/index.ts",
+        "tsConfig": "libs/common/ui/tsconfig.lib.json",
+        "assets": [
+          "libs/common/ui/*.md",
+          {
+            "input": "./libs/common/ui/src/remark/hast-util-to-jsx-runtime",
+            "glob": "**/*",
+            "output": "./src/remark/hast-util-to-jsx-runtime"
+          }
+        ]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
