@@ -3,6 +3,7 @@ import { Check, ChevronUp, Circle } from 'lucide-react';
 import { ChecklistItemModel, type Status } from './checklist-msg.model';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren, useEffect } from 'react';
+import { autorun } from 'mobx';
 
 export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -30,9 +31,6 @@ export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
         />
       </div>
       {children}
-      {/* <CheckListItem status="checked" title="Create initial files" />
-      <CheckListItem status="pending" title="Install dependencies" />
-      <CheckListItem status="unchecked" title="Update `app/page.tsx`" /> */}
     </div>
   );
 };
@@ -45,10 +43,14 @@ export const CheckListItem = observer<{
   const model = useRemarkable(ChecklistItemModel, id);
 
   useEffect(() => {
-    model.setStatus(status);
+    const disposer = autorun(() => {
+      model.setStatus(status);
+      model.setTitle(title);
+    });
+    return disposer;
   }, []);
 
-  return <ChecklistItemUI status={model.status} title={title} />;
+  return <ChecklistItemUI status={model.status} title={model.title} />;
 });
 
 export const ChecklistItemUI: React.FC<{ status: Status; title: string }> = ({
