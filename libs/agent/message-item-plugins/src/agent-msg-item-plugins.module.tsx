@@ -1,7 +1,11 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
 import { setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
-import { CheckList, CheckListItem } from './components/checklist-msg';
+import {
+  CheckList as Checklist,
+  ChecklistCode,
+  CheckListItem as ChecklistItem,
+} from './components/checklist-msg';
 import { ChecklistItemModel } from './components/checklist-msg.model';
 import { OwnMessage } from './components/own-msg';
 import { ReplyMsg } from './components/reply-msg';
@@ -34,7 +38,8 @@ export const agentMsgItemPluginsModule = new ContainerModule(
     legacy(bind);
     const register = setup(bind);
     // 涉及到了 JSX，可能会影响 unit test perf
-    register('x-checklist', CheckList);
-    register('x-checklist-item', CheckListItem, ChecklistItemModel);
+    register('x-checklist', Checklist);
+    register('x-checklist-item', ChecklistItem, ChecklistItemModel);
+    register('x-checklist-code', ChecklistCode);
   },
 );

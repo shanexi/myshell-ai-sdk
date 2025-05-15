@@ -24,20 +24,12 @@ export const Primary: StoryObj<typeof CheckList> = {
     title: 'Design interactive landing pages.',
     children: (
       <>
-        <CheckListItem
-          id="abc1"
-          status="checked"
-          title="Create initial files"
-        />
-        <CheckListItem
-          id="abc2"
-          status="pending"
-          title="Install dependencies"
-        />
+        <CheckListItem id="abc1" status="checked" text="Create initial files" />
+        <CheckListItem id="abc2" status="pending" text="Install dependencies" />
         <CheckListItem
           id="abc3"
           status="unchecked"
-          title="Update `app/page.tsx`"
+          text={`Update :x-checklist-code[app/page.tsx]{scheme="file://app/page.tsx"}`}
         />
       </>
     ),

@@ -1,4 +1,4 @@
-import { cn, useRemarkable } from '@myshell-run/common-ui';
+import { cn, RemarkMsg, useRemarkable } from '@myshell-run/common-ui';
 import { Check, ChevronUp, ChevronDown, Circle } from 'lucide-react';
 import { ChecklistItemModel, type Status } from './checklist-msg.model';
 import { observer } from 'mobx-react-lite';
@@ -46,17 +46,19 @@ export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
   );
 };
 
-export const CheckListItem = observer<{
-  id?: string;
-  status: Status;
-  title: string;
-}>(({ id, status, title }) => {
+export const CheckListItem = observer<
+  PropsWithChildren<{
+    id?: string;
+    status: Status;
+    text: string;
+  }>
+>(({ id, status, text, children }) => {
   const model = useRemarkable(ChecklistItemModel, id);
 
   useEffect(() => {
     const disposer = autorun(() => {
       model.setStatus(status);
-      model.setTitle(title);
+      model.setText(text);
     });
     return disposer;
   }, []);
@@ -81,7 +83,24 @@ export const CheckListItem = observer<{
           className="text-colors-foreground-disabled-light-v2"
         />
       )}
-      {model.title}
+      <RemarkMsg text={model.text} />
     </div>
   );
 });
+
+export const ChecklistCode: React.FC<
+  PropsWithChildren<{
+    scheme: string;
+  }>
+> = ({ scheme, children }) => {
+  return (
+    <code
+      className="rounded-default-v2 border border-colors-border-default-light-v2 bg-colors-background-normal-secondary-default-light-v2 px-[6px] pt-[1px] pb-[3px]"
+      onClick={() => {
+        console.log('clicked', scheme);
+      }}
+    >
+      {children}
+    </code>
+  );
+};

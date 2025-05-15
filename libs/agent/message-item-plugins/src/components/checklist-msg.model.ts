@@ -1,21 +1,19 @@
 import { Remarkable } from '@myshell-run/common-def';
 import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export type Status = 'checked' | 'unchecked' | 'pending';
 
 @injectable()
 export class ChecklistItemModel implements Remarkable {
   @observable status: Status = 'unchecked';
-  @observable title = '';
+  @observable text = '';
   @observable hidden = true;
 
   onUpdate(props: Properties) {
-    runInAction(() => {
-      this.setStatus(props.status as Status);
-      this.setTitle(props.title as string);
-    });
+    this.setStatus(props.status as Status);
+    this.setText(props.text as string);
   }
 
   constructor() {
@@ -30,9 +28,9 @@ export class ChecklistItemModel implements Remarkable {
   }
 
   @action.bound
-  setTitle(title: string) {
-    if (title == null) return;
+  setText(text?: string) {
+    if (text == null) return;
     this.hidden = false;
-    this.title = title;
+    this.text = text;
   }
 }
