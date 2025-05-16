@@ -21,6 +21,7 @@ import { AgentChatModel } from './agent-chat.model';
 import { MOCK_IMG } from '@myshell-run/common-ui';
 
 const IconMap = {
+  atSign: AtSign,
   file: File,
   fileText: FileText,
   fileJson: FileJson2,
@@ -49,7 +50,8 @@ export const ChatInput = () => {
 
 const ReferenceLayer = () => {
   return (
-    <div className={cn('flex flex-col gap-spacing-md-v2', 'p-spacing-xs-v2')}>
+    <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
+      <ReferenceItem icon="atSign" title="Add context" />
       <ReferenceItem icon="file" title="requirement.feature1" />
       <ReferenceItem icon="fileJson" title="canvas.state1.inputs.variable1" />
       <ReferenceItem icon="listCheck" title="test.test_suite1" />
@@ -74,9 +76,13 @@ const ReferenceItem: React.FC<{
         'w-fit',
       )}
     >
-      <Icon size={16} className="text-Cr-Fg-subtle-light-v2" />
+      <Icon
+        strokeWidth={1.5}
+        size={16}
+        className="text-Cr-Fg-subtle-light-v2"
+      />
       <div className="text-sm-medium">{title}</div>
-      <X size={16} className="text-Cr-Fg-subtle-light-v2" />
+      <X strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-light-v2" />
     </div>
   );
 };
@@ -136,10 +142,7 @@ const UploadLayer = () => {
 const ChatActionsLayer = () => {
   return (
     <div className="my-spacing-xs-v2 flex items-center justify-between">
-      <div className="flex items-center gap-[2px]">
-        <AtSign strokeWidth={1.5} size={36} className="p-[7px]" />
-        <CirclePlus strokeWidth={1.5} size={36} className="p-[7px]" />
-      </div>
+      <CirclePlus strokeWidth={1.5} size={36} className="p-[7px]" />
       <Mic strokeWidth={1.5} size={36} className="p-[7px]" />
     </div>
   );
