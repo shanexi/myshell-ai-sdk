@@ -156,13 +156,7 @@ plugin
 toolbar
 ├── package.json
 toolbar/src/browser
-├── application-shell-with-toolbar-override.ts
-├── my-toolbar.tsx
-├── style
-├── toolbar-command-contribution.ts
-├── toolbar-controller.ts
 ├── toolbar-frontend-module.ts
-├── toolbar-preference-contribution.ts
 ```
 
 `package.json` - 入口是 `*-frontend-module`
@@ -190,7 +184,7 @@ toolbar/src/browser
 ├── toolbar-command-contribution.ts（command 扩展点），注册 command menu shortcut 和 jsonschema（可选） 
 ├── toolbar-controller.ts # 可替换成 mobx
 ├── toolbar-frontend-module.ts # 入口
-├── toolbar-preference-contribution.ts # preference 扩展
+├── toolbar-preference-contribution.ts # （可选）preference 扩展 todo 重写 provider 或者 replicache 对接
 ```
 
 > theia 的深度定制能力很强，从 layout 到 sidebar + editor，定制 layout 场景很少，一般是挂在一个区域到某个 sidebar 或者中间的 editor（通过 scheme 多实例）
@@ -304,36 +298,5 @@ this.contextMenuRenderer.render({
 
 next
 
-- 去掉 menus，分割线
-- toolbar 
-  - 功能补全（rename 回退 save version 表单）
-- 左侧区域
-  - agent chat（app 列表不支持，未来应该支持）
-- 中间区域 
-  - 增加 app 列表（全局唯一）
-  - 增加 app 详情（暂时不多实例 即 scheme，也就是不支持 editor manager tabs）
-
-
----
-
-# 统一交互探索
-
-next
-
-- notification 统一通知交互 + 通知中心
-- problems 问题中心，点击跳转
-- 多实例 app 详情（tabs）
-- 运行日志（output）
-
----
-
-# 更多必要功能
-
-next
-
-- 登陆 authentication provider
-- preference 保存
-- 接后端
-
-etc.
+https://github.com/shanexi/theia-myshell-run/issues/3
 
