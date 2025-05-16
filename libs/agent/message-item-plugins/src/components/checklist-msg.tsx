@@ -97,6 +97,7 @@ export const ChecklistCode: React.FC<
     <code
       className="rounded-default-v2 border border-Cr-border-default-light-v2 bg-Cr-Bg-normal-secondary-default-light-v2 px-[6px] pt-[1px] pb-[3px]"
       onClick={() => {
+        // 打开一个新的面板（Canvas）
         console.log('clicked', scheme);
       }}
     >

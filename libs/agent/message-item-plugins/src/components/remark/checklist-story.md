@@ -1,3 +1,7 @@
+::x-line-chart
+<!-- next -->
+::x-bar-chart
+<!-- next -->
 :::x-checklist{#abc title="Design interactive landing pages."}
 ::x-checklist-item{#abc1}
 ::x-checklist-item{#abc2}
