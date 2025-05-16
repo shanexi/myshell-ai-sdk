@@ -2,23 +2,11 @@ import {
   cn,
   FilePreviewState,
   ImageState,
+  MOCK_IMG,
   useInjection,
 } from '@myshell-run/common-ui';
-import TextareaAutosize from 'react-textarea-autosize';
-import {
-  AtSign,
-  CirclePlus,
-  Mic,
-  X,
-  File,
-  FileText,
-  FileJson2,
-  ListCheck,
-  MessagesSquare,
-} from 'lucide-react';
-import { observer } from 'mobx-react-lite';
+import { File, X } from 'lucide-react';
 import { AgentChatModel } from '../agent-chat.model';
-import { MOCK_IMG } from '@myshell-run/common-ui';
 
 export const ChatInputUploadPlugin = () => {
   return (

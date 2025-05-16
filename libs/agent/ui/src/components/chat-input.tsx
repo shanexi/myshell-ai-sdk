@@ -1,5 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
-import { ChatInputReferencePlugin } from './chat-input/chat-input-reference-plugin';
+import { ChatInputContextPlugin } from './chat-input/chat-input-context-plugin';
 import { ChatInputUploadPlugin } from './chat-input/chat-input-upload-plugin';
 import { ChatInputTextareaPlugin } from './chat-input/chat-input-textarea-plugin';
 import { ChatInputActionPlugin } from './chat-input/chat-input-action-plugin';
@@ -14,7 +14,7 @@ export const ChatInput = () => {
           'p-spacing-xs-v2',
         )}
       >
-        <ChatInputReferencePlugin />
+        <ChatInputContextPlugin />
         <ChatInputUploadPlugin />
         <ChatInputTextareaPlugin />
         <ChatInputActionPlugin />
