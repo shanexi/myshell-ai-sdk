@@ -5,8 +5,8 @@ export const Checkpoint = () => {
   return (
     <div
       className={cn(
-        'border-Cr-border-default-light-v2 border',
-        'bg-Cr-background-normal-secondary-alt-light-v2',
+        'border border-Cr-border-default-light-v2',
+        'bg-Cr-Bg-normal-secondary-alt-light-v2',
         'px-spacing-lg-v2 py-spacing-md-v2',
         'rounded-md-v2',
         'flex gap-spacing-xs-v2',
@@ -17,7 +17,7 @@ export const Checkpoint = () => {
         <History
           strokeWidth={1.5}
           size={16}
-          className="text-Cr-foreground-subtle-light-v2"
+          className="text-Cr-Fg-subtle-light-v2"
         />
       </div>
       <div>

@@ -8,7 +8,7 @@ export const OwnMessage: React.FC<Message> = ({ text }) => {
         className={cn(
           'rounded-tl-C-bubble-radius-v2 rounded-tr-sm-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2',
           'ml-auto max-w-[80%] p-spacing-lg-v2',
-          'bg-Cr-background-normal-secondary-default-light-v2 text-Cr-text-default-light-v2',
+          'bg-Cr-Bg-normal-secondary-default-light-v2 text-Cr-text-default-light-v2',
           'text-lg-regular',
         )}
       >

@@ -67,16 +67,16 @@ const ReferenceItem: React.FC<{
     <div
       className={cn(
         'flex items-center gap-[6px]',
-        'bg-Cr-background-normal-secondary-alt-light-v2',
-        'border-Cr-border-default-light-v2 border',
+        'bg-Cr-Bg-normal-secondary-alt-light-v2',
+        'border border-Cr-border-default-light-v2',
         'rounded-md-v2',
         'p-spacing-md-v2',
         'w-fit',
       )}
     >
-      <Icon size={16} className="text-Cr-foreground-subtle-light-v2" />
+      <Icon size={16} className="text-Cr-Fg-subtle-light-v2" />
       <div className="text-sm-medium">{title}</div>
-      <X size={16} className="text-Cr-foreground-subtle-light-v2" />
+      <X size={16} className="text-Cr-Fg-subtle-light-v2" />
     </div>
   );
 };
@@ -153,8 +153,8 @@ export const FilePreview: React.FC<{
     <div
       className={cn(
         'h-[56px] w-[156px] px-spacing-lg-v2',
-        'border-Cr-border-default-light-v2 border',
-        'bg-Cr-background-normal-primary-default-light-v2',
+        'border border-Cr-border-default-light-v2',
+        'bg-Cr-Bg-normal-primary-default-light-v2',
         'rounded-lg-v2',
         'py-spacing-lg-v2',
         'flex items-center',
@@ -162,7 +162,7 @@ export const FilePreview: React.FC<{
     >
       <div
         className={cn(
-          'bg-Cr-utility-lake-blue-50-light-v2 rounded-C-button-sm-radius-v2',
+          'rounded-C-button-sm-radius-v2 bg-Cr-utility-lake-blue-50-light-v2',
           'h-[32px] w-[32px]',
           'flex items-center justify-center',
           'mr-spacing-lg-v2',
