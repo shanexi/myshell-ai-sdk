@@ -111,58 +111,58 @@
   --spacing-containers-container-max-width-desktop-v2: var(
     --primitives-320-1-280px-v2
   );
-  --spacing-components-button-lg-height-v2: var(--primitives-11-44px-v2);
-  --spacing-components-button-lg-min-width-v2: var(--primitives-11-44px-v2);
+  --spacing-C-button-lg-height-v2: var(--primitives-11-44px-v2);
+  --spacing-C-button-lg-min-width-v2: var(--primitives-11-44px-v2);
   --primitives-11-44px-v2: 44px;
   --primitives-11-44px-rem-v2: 2.75rem;
-  --spacing-components-button-lg-spacing-v2: var(--primitives-1-5-6px-v2);
-  --radius-components-button-lg-radius-v2: var(--radius-md-v2);
-  --spacing-components-button-lg-padding-v2: var(--primitives-6-24px-v2);
-  --radius-components-button-md-radius-v2: var(--radius-md-v2);
-  --spacing-components-button-md-spacing-v2: var(--primitives-1-5-6px-v2);
-  --spacing-components-button-md-padding-v2: var(--primitives-4-16px-v2);
-  --spacing-components-button-md-height-v2: var(--primitives-9-36px-v2);
-  --spacing-components-button-md-min-width-v2: var(--primitives-9-36px-v2);
+  --spacing-C-button-lg-spacing-v2: var(--primitives-1-5-6px-v2);
+  --radius-C-button-lg-radius-v2: var(--radius-md-v2);
+  --spacing-C-button-lg-padding-v2: var(--primitives-6-24px-v2);
+  --radius-C-button-md-radius-v2: var(--radius-md-v2);
+  --spacing-C-button-md-spacing-v2: var(--primitives-1-5-6px-v2);
+  --spacing-C-button-md-padding-v2: var(--primitives-4-16px-v2);
+  --spacing-C-button-md-height-v2: var(--primitives-9-36px-v2);
+  --spacing-C-button-md-min-width-v2: var(--primitives-9-36px-v2);
   --primitives-9-36px-v2: 36px;
   --primitives-9-36px-rem-v2: 2.25rem;
-  --radius-components-button-sm-radius-v2: var(--radius-md-v2);
-  --spacing-components-button-sm-spacing-v2: var(--primitives-1-5-6px-v2);
-  --spacing-components-button-sm-padding-v2: var(--primitives-3-12px-v2);
-  --spacing-components-button-sm-height-v2: var(--primitives-7-28px-v2);
-  --spacing-components-button-sm-min-width-v2: var(--primitives-7-28px-v2);
+  --radius-C-button-sm-radius-v2: var(--radius-md-v2);
+  --spacing-C-button-sm-spacing-v2: var(--primitives-1-5-6px-v2);
+  --spacing-C-button-sm-padding-v2: var(--primitives-3-12px-v2);
+  --spacing-C-button-sm-height-v2: var(--primitives-7-28px-v2);
+  --spacing-C-button-sm-min-width-v2: var(--primitives-7-28px-v2);
   --primitives-7-28px-v2: 28px;
   --primitives-7-28px-rem-v2: 1.75rem;
-  --spacing-components-chips-sm-height-v2: var(--primitives-7-28px-v2);
-  --radius-components-chips-sm-radius-v2: var(--radius-md-v2);
-  --spacing-components-chips-sm-spacing-v2: var(--primitives-1-4px-v2);
-  --spacing-components-chips-sm-padding-v2: var(--primitives-2-8px-v2);
+  --spacing-C-chips-sm-height-v2: var(--primitives-7-28px-v2);
+  --radius-C-chips-sm-radius-v2: var(--radius-md-v2);
+  --spacing-C-chips-sm-spacing-v2: var(--primitives-1-4px-v2);
+  --spacing-C-chips-sm-padding-v2: var(--primitives-2-8px-v2);
   --radius-5xl-v2: var(--primitives-7-28px-v2);
-  --spacing-components-button-xs-height-v2: var(--primitives-5-20px-v2);
-  --radius-components-button-xs-radius-v2: var(--radius-default-v2);
-  --spacing-components-button-xs-spacing-v2: var(--primitives-1-5-6px-v2);
-  --spacing-components-button-xs-min-width-v2: var(--primitives-5-20px-v2);
+  --spacing-C-button-xs-height-v2: var(--primitives-5-20px-v2);
+  --radius-C-button-xs-radius-v2: var(--radius-default-v2);
+  --spacing-C-button-xs-spacing-v2: var(--primitives-1-5-6px-v2);
+  --spacing-C-button-xs-min-width-v2: var(--primitives-5-20px-v2);
   --spacing-containers-container-padding-mobile-chat-v2: var(
     --primitives-1-5-6px-v2
   );
-  --radius-components-button-plain-radius-v2: var(--radius-md-v2);
-  --spacing-components-button-plain-spacing-v2: var(--radius-default-v2);
-  --radius-components-input-radius-v2: var(--radius-md-v2);
-  --spacing-components-input-padding-v2: var(--radius-xl-v2);
-  --spacing-components-input-spacing-v2: var(--primitives-1-5-6px-v2);
-  --spacing-components-input-height-v2: var(--primitives-10-40px-v2);
-  --radius-components-dropdown-radius-v2: var(--radius-md-v2);
-  --spacing-components-dropdown-padding-v2: var(--radius-md-v2);
-  --radius-components-checkbox-radius-v2: var(--radius-default-v2);
-  --spacing-components-input-height_sm-v2: var(--primitives-8-32px-v2);
-  --spacing-components-input-padding_sm-v2: var(--primitives-2-8px-v2);
-  --radius-components-model-radius-v2: var(--radius-lg-v2);
-  --radius-components-bubble-radius-v2: var(--radius-lg-v2);
-  --spacing-components-bubble-padding-v2: var(--radius-xl-v2);
-  --spacing-components-bubble-spacing-v2: var(--radius-xl-v2);
-  --radius-components-chips-lg-radius-v2: var(--radius-md-v2);
-  --spacing-components-chips-lg-spacing-v2: var(--primitives-1-4px-v2);
-  --spacing-components-chips-lg-padding-v2: var(--primitives-3-12px-v2);
-  --spacing-components-chips-lg-height-v2: var(--primitives-9-36px-v2);
+  --radius-C-button-plain-radius-v2: var(--radius-md-v2);
+  --spacing-C-button-plain-spacing-v2: var(--radius-default-v2);
+  --radius-C-input-radius-v2: var(--radius-md-v2);
+  --spacing-C-input-padding-v2: var(--radius-xl-v2);
+  --spacing-C-input-spacing-v2: var(--primitives-1-5-6px-v2);
+  --spacing-C-input-height-v2: var(--primitives-10-40px-v2);
+  --radius-C-dropdown-radius-v2: var(--radius-md-v2);
+  --spacing-C-dropdown-padding-v2: var(--radius-md-v2);
+  --radius-C-checkbox-radius-v2: var(--radius-default-v2);
+  --spacing-C-input-height_sm-v2: var(--primitives-8-32px-v2);
+  --spacing-C-input-padding_sm-v2: var(--primitives-2-8px-v2);
+  --radius-C-model-radius-v2: var(--radius-lg-v2);
+  --radius-C-bubble-radius-v2: var(--radius-lg-v2);
+  --spacing-C-bubble-padding-v2: var(--radius-xl-v2);
+  --spacing-C-bubble-spacing-v2: var(--radius-xl-v2);
+  --radius-C-chips-lg-radius-v2: var(--radius-md-v2);
+  --spacing-C-chips-lg-spacing-v2: var(--primitives-1-4px-v2);
+  --spacing-C-chips-lg-padding-v2: var(--primitives-3-12px-v2);
+  --spacing-C-chips-lg-height-v2: var(--primitives-9-36px-v2);
   --blur-4xl-v2: var(--primitives-24-96px-v2);
   --blur-3xl-v2: var(--primitives-16-64px-v2);
   --blur-2xl-v2: var(--primitives-10-40px-v2);
@@ -174,1396 +174,978 @@
   --blur-none-v2: var(--primitives-0-0px-v2);
 
   /* DESIGN TOKEN */
-  --color-colors-background-brand-default-light-v2: var(--pure-mauve-95-v2);
-  --color-colors-background-brand-default-dark-v2: var(--pure-mauve-20-v2);
-  --color-colors-background-brand-hover-light-v2: var(--pure-mauve-90-v2);
-  --color-colors-background-brand-hover-dark-v2: var(--pure-mauve-30-v2);
-  --color-colors-background-brand-active-light-v2: var(--pure-mauve-80-v2);
-  --color-colors-background-brand-active-dark-v2: var(--pure-mauve-40-v2);
-  --color-colors-text-default-light-v2: var(--neutral-5-v2);
-  --color-colors-text-default-dark-v2: var(--neutral-variant-100-v2);
-  --color-colors-text-subtler-light-v2: var(--neutral-40-v2);
-  --color-colors-text-subtler-dark-v2: var(--neutral-variant-70-v2);
-  --color-colors-text-disabled-light-v2: var(--neutral-80-v2);
-  --color-colors-text-disabled-dark-v2: var(--neutral-variant-30-v2);
-  --color-colors-background-neutral-primary-default-light-v2: var(
-    --neutral-98-v2
-  );
-  --color-colors-background-neutral-primary-default-dark-v2: var(
+  --color-Cr-background-brand-default-light-v2: var(--pure-mauve-95-v2);
+  --color-Cr-background-brand-default-dark-v2: var(--pure-mauve-20-v2);
+  --color-Cr-background-brand-hover-light-v2: var(--pure-mauve-90-v2);
+  --color-Cr-background-brand-hover-dark-v2: var(--pure-mauve-30-v2);
+  --color-Cr-background-brand-active-light-v2: var(--pure-mauve-80-v2);
+  --color-Cr-background-brand-active-dark-v2: var(--pure-mauve-40-v2);
+  --color-Cr-text-default-light-v2: var(--neutral-5-v2);
+  --color-Cr-text-default-dark-v2: var(--neutral-variant-100-v2);
+  --color-Cr-text-subtler-light-v2: var(--neutral-40-v2);
+  --color-Cr-text-subtler-dark-v2: var(--neutral-variant-70-v2);
+  --color-Cr-text-disabled-light-v2: var(--neutral-80-v2);
+  --color-Cr-text-disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-background-neutral-primary-default-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-neutral-primary-default-dark-v2: var(
     --neutral-variant-5-v2
   );
-  --color-colors-background-normal-primary-default-light-v2: var(
-    --neutral-99-v2
-  );
-  --color-colors-background-normal-primary-default-dark-v2: var(
+  --color-Cr-background-normal-primary-default-light-v2: var(--neutral-99-v2);
+  --color-Cr-background-normal-primary-default-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-colors-border-default-light-v2: var(--neutral-95-v2);
-  --color-colors-border-default-dark-v2: var(--neutral-variant-20-v2);
-  --color-colors-background-critical-bolder-light-v2: var(--terracotta-30-v2);
-  --color-colors-background-critical-bolder-dark-v2: var(--terracotta-80-v2);
-  --color-colors-border-critical-light-v2: var(--terracotta-50-v2);
-  --color-colors-border-critical-dark-v2: var(--terracotta-60-v2);
-  --color-colors-text-warning-default-light-v2: var(--khaki-60-v2);
-  --color-colors-text-warning-default-dark-v2: var(--khaki-70-v2);
-  --color-colors-border-hover-light-v2: var(--neutral-90-v2);
-  --color-colors-border-hover-dark-v2: var(--neutral-variant-30-v2);
-  --color-colors-background-neutral-primary-hover-light-v2: var(--neutral-95-v2);
-  --color-colors-background-neutral-primary-hover-dark-v2: var(
+  --color-Cr-border-default-light-v2: var(--neutral-95-v2);
+  --color-Cr-border-default-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-background-critical-bolder-light-v2: var(--terracotta-30-v2);
+  --color-Cr-background-critical-bolder-dark-v2: var(--terracotta-80-v2);
+  --color-Cr-border-critical-light-v2: var(--terracotta-50-v2);
+  --color-Cr-border-critical-dark-v2: var(--terracotta-60-v2);
+  --color-Cr-text-warning-default-light-v2: var(--khaki-60-v2);
+  --color-Cr-text-warning-default-dark-v2: var(--khaki-70-v2);
+  --color-Cr-border-hover-light-v2: var(--neutral-90-v2);
+  --color-Cr-border-hover-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-background-neutral-primary-hover-light-v2: var(--neutral-95-v2);
+  --color-Cr-background-neutral-primary-hover-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-colors-border-active-light-v2: var(--neutral-80-v2);
-  --color-colors-border-active-dark-v2: var(--neutral-variant-40-v2);
-  --color-colors-text-subtlest-light-v2: var(--neutral-50-v2);
-  --color-colors-text-subtlest-dark-v2: var(--neutral-variant-50-v2);
-  --color-colors-background-critical-hover-light-v2: var(--terracotta-90-v2);
-  --color-colors-background-critical-hover-dark-v2: var(--terracotta-30-v2);
-  --color-colors-background-critical-active-light-v2: var(--terracotta-80-v2);
-  --color-colors-background-critical-active-dark-v2: var(--terracotta-40-v2);
-  --color-colors-background-brand-bolder-light-v2: var(--pure-mauve-30-v2);
-  --color-colors-background-brand-bolder-dark-v2: var(--pure-mauve-80-v2);
-  --color-colors-background-info-bolder-light-v2: var(--lake-blue-30-v2);
-  --color-colors-background-info-bolder-dark-v2: var(--lake-blue-80-v2);
-  --color-colors-background-info-default-light-v2: var(--lake-blue-95-v2);
-  --color-colors-background-info-default-dark-v2: var(--lake-blue-20-v2);
-  --color-colors-background-normal-primary-hover-light-v2: var(--neutral-98-v2);
-  --color-colors-background-normal-primary-hover-dark-v2: var(
+  --color-Cr-border-active-light-v2: var(--neutral-80-v2);
+  --color-Cr-border-active-dark-v2: var(--neutral-variant-40-v2);
+  --color-Cr-text-subtlest-light-v2: var(--neutral-50-v2);
+  --color-Cr-text-subtlest-dark-v2: var(--neutral-variant-50-v2);
+  --color-Cr-background-critical-hover-light-v2: var(--terracotta-90-v2);
+  --color-Cr-background-critical-hover-dark-v2: var(--terracotta-30-v2);
+  --color-Cr-background-critical-active-light-v2: var(--terracotta-80-v2);
+  --color-Cr-background-critical-active-dark-v2: var(--terracotta-40-v2);
+  --color-Cr-background-brand-bolder-light-v2: var(--pure-mauve-30-v2);
+  --color-Cr-background-brand-bolder-dark-v2: var(--pure-mauve-80-v2);
+  --color-Cr-background-info-bolder-light-v2: var(--lake-blue-30-v2);
+  --color-Cr-background-info-bolder-dark-v2: var(--lake-blue-80-v2);
+  --color-Cr-background-info-default-light-v2: var(--lake-blue-95-v2);
+  --color-Cr-background-info-default-dark-v2: var(--lake-blue-20-v2);
+  --color-Cr-background-normal-primary-hover-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-normal-primary-hover-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-colors-text-subtle-light-v2: var(--neutral-30-v2);
-  --color-colors-text-subtle-dark-v2: var(--neutral-variant-90-v2);
-  --color-colors-text-critical-default-light-v2: var(--terracotta-50-v2);
-  --color-colors-text-critical-default-dark-v2: var(--terracotta-70-v2);
-  --color-colors-text-success-default-light-v2: var(--teal-50-v2);
-  --color-colors-text-success-default-dark-v2: var(--teal-70-v2);
-  --color-colors-foreground-default-light-v2: var(--neutral-5-v2);
-  --color-colors-foreground-default-dark-v2: var(--neutral-variant-100-v2);
-  --color-colors-foreground-subtle-light-v2: var(--neutral-30-v2);
-  --color-colors-foreground-subtle-dark-v2: var(--neutral-variant-90-v2);
-  --color-colors-foreground-subtlest-light-v2: var(--neutral-50-v2);
-  --color-colors-foreground-subtlest-dark-v2: var(--neutral-variant-50-v2);
-  --color-colors-foreground-disabled-light-v2: var(--neutral-80-v2);
-  --color-colors-foreground-disabled-dark-v2: var(--neutral-variant-30-v2);
-  --color-colors-foreground-critical-default-light-v2: var(--terracotta-50-v2);
-  --color-colors-foreground-critical-default-dark-v2: var(--terracotta-60-v2);
-  --color-colors-foreground-warning-default-light-v2: var(--khaki-60-v2);
-  --color-colors-foreground-warning-default-dark-v2: var(--khaki-70-v2);
-  --color-colors-foreground-success-default-light-v2: var(--teal-50-v2);
-  --color-colors-foreground-success-default-dark-v2: var(--teal-70-v2);
-  --color-colors-background-normal-primary-active-light-v2: var(--neutral-90-v2);
-  --color-colors-background-normal-primary-active-dark-v2: var(
+  --color-Cr-text-subtle-light-v2: var(--neutral-30-v2);
+  --color-Cr-text-subtle-dark-v2: var(--neutral-variant-90-v2);
+  --color-Cr-text-critical-default-light-v2: var(--terracotta-50-v2);
+  --color-Cr-text-critical-default-dark-v2: var(--terracotta-70-v2);
+  --color-Cr-text-success-default-light-v2: var(--teal-50-v2);
+  --color-Cr-text-success-default-dark-v2: var(--teal-70-v2);
+  --color-Cr-foreground-default-light-v2: var(--neutral-5-v2);
+  --color-Cr-foreground-default-dark-v2: var(--neutral-variant-100-v2);
+  --color-Cr-foreground-subtle-light-v2: var(--neutral-30-v2);
+  --color-Cr-foreground-subtle-dark-v2: var(--neutral-variant-90-v2);
+  --color-Cr-foreground-subtlest-light-v2: var(--neutral-50-v2);
+  --color-Cr-foreground-subtlest-dark-v2: var(--neutral-variant-50-v2);
+  --color-Cr-foreground-disabled-light-v2: var(--neutral-80-v2);
+  --color-Cr-foreground-disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-foreground-critical-default-light-v2: var(--terracotta-50-v2);
+  --color-Cr-foreground-critical-default-dark-v2: var(--terracotta-60-v2);
+  --color-Cr-foreground-warning-default-light-v2: var(--khaki-60-v2);
+  --color-Cr-foreground-warning-default-dark-v2: var(--khaki-70-v2);
+  --color-Cr-foreground-success-default-light-v2: var(--teal-50-v2);
+  --color-Cr-foreground-success-default-dark-v2: var(--teal-70-v2);
+  --color-Cr-background-normal-primary-active-light-v2: var(--neutral-90-v2);
+  --color-Cr-background-normal-primary-active-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-colors-background-critical-default-light-v2: var(--terracotta-95-v2);
-  --color-colors-background-critical-default-dark-v2: var(--terracotta-20-v2);
-  --color-colors-border-warning-light-v2: var(--khaki-50-v2);
-  --color-colors-border-warning-dark-v2: var(--khaki-60-v2);
-  --color-colors-border-success-light-v2: var(--teal-50-v2);
-  --color-colors-border-success-dark-v2: var(--teal-60-v2);
-  --color-colors-background-info-hover-light-v2: var(--lake-blue-90-v2);
-  --color-colors-background-info-hover-dark-v2: var(--lake-blue-30-v2);
-  --color-colors-background-info-active-light-v2: var(--lake-blue-80-v2);
-  --color-colors-background-info-active-dark-v2: var(--lake-blue-40-v2);
-  --color-colors-text-success-bolder-light-v2: var(--teal-30-v2);
-  --color-colors-text-success-bolder-dark-v2: var(--teal-90-v2);
-  --color-colors-text-warning-bolder-light-v2: var(--khaki-30-v2);
-  --color-colors-text-warning-bolder-dark-v2: var(--khaki-90-v2);
-  --color-colors-text-critical-bolder-light-v2: var(--terracotta-30-v2);
-  --color-colors-text-critical-bolder-dark-v2: var(--terracotta-90-v2);
-  --color-colors-text-brand-default-light-v2: var(--pure-mauve-50-v2);
-  --color-colors-text-brand-default-dark-v2: var(--pure-mauve-70-v2);
-  --color-colors-foreground-brand-default-light-v2: var(--pure-mauve-50-v2);
-  --color-colors-foreground-brand-default-dark-v2: var(--pure-mauve-70-v2);
-  --color-colors-border-brand-light-v2: var(--pure-mauve-50-v2);
-  --color-colors-border-brand-dark-v2: var(--pure-mauve-60-v2);
-  --color-colors-background-utilities-overlay-light-v2: var(
-    --opacity-black-70-v2
-  );
-  --color-colors-background-utilities-overlay-dark-v2: var(
-    --opacity-black-70-v2
-  );
-  --color-colors-text-static-white-light-v2: var(--neutral-100-v2);
-  --color-colors-text-static-white-dark-v2: var(--neutral-variant-100-v2);
-  --color-colors-background-utilities-static-white-light-v2: var(
-    --neutral-99-v2
-  );
-  --color-colors-background-utilities-static-white-dark-v2: var(
+  --color-Cr-background-critical-default-light-v2: var(--terracotta-95-v2);
+  --color-Cr-background-critical-default-dark-v2: var(--terracotta-20-v2);
+  --color-Cr-border-warning-light-v2: var(--khaki-50-v2);
+  --color-Cr-border-warning-dark-v2: var(--khaki-60-v2);
+  --color-Cr-border-success-light-v2: var(--teal-50-v2);
+  --color-Cr-border-success-dark-v2: var(--teal-60-v2);
+  --color-Cr-background-info-hover-light-v2: var(--lake-blue-90-v2);
+  --color-Cr-background-info-hover-dark-v2: var(--lake-blue-30-v2);
+  --color-Cr-background-info-active-light-v2: var(--lake-blue-80-v2);
+  --color-Cr-background-info-active-dark-v2: var(--lake-blue-40-v2);
+  --color-Cr-text-success-bolder-light-v2: var(--teal-30-v2);
+  --color-Cr-text-success-bolder-dark-v2: var(--teal-90-v2);
+  --color-Cr-text-warning-bolder-light-v2: var(--khaki-30-v2);
+  --color-Cr-text-warning-bolder-dark-v2: var(--khaki-90-v2);
+  --color-Cr-text-critical-bolder-light-v2: var(--terracotta-30-v2);
+  --color-Cr-text-critical-bolder-dark-v2: var(--terracotta-90-v2);
+  --color-Cr-text-brand-default-light-v2: var(--pure-mauve-50-v2);
+  --color-Cr-text-brand-default-dark-v2: var(--pure-mauve-70-v2);
+  --color-Cr-foreground-brand-default-light-v2: var(--pure-mauve-50-v2);
+  --color-Cr-foreground-brand-default-dark-v2: var(--pure-mauve-70-v2);
+  --color-Cr-border-brand-light-v2: var(--pure-mauve-50-v2);
+  --color-Cr-border-brand-dark-v2: var(--pure-mauve-60-v2);
+  --color-Cr-background-utilities-overlay-light-v2: var(--opacity-black-70-v2);
+  --color-Cr-background-utilities-overlay-dark-v2: var(--opacity-black-70-v2);
+  --color-Cr-text-static-white-light-v2: var(--neutral-100-v2);
+  --color-Cr-text-static-white-dark-v2: var(--neutral-variant-100-v2);
+  --color-Cr-background-utilities-static-white-light-v2: var(--neutral-99-v2);
+  --color-Cr-background-utilities-static-white-dark-v2: var(
     --neutral-variant-99-v2
   );
-  --color-colors-foreground-static-white-light-v2: var(--neutral-100-v2);
-  --color-colors-foreground-static-white-dark-v2: var(--neutral-variant-100-v2);
-  --color-colors-border-alt-light-v2: var(--neutral-95-v2);
-  --color-colors-border-alt-dark-v2: var(--neutral-variant-30-v2);
-  --color-colors-border-opaque-light-v2: var(--opacity-white-1-v2);
-  --color-colors-border-opaque-dark-v2: var(--opacity-white-8-v2);
-  --color-component-colors-shadows-surface-default-light-v2: var(
-    --opacity-black-12-v2
-  );
-  --color-component-colors-shadows-surface-default-dark-v2: var(
-    --opacity-white-5-v2
-  );
-  --color-component-colors-shadows-surface-bolder-light-v2: var(
-    --opacity-black-3-v2
-  );
-  --color-component-colors-shadows-surface-bolder-dark-v2: var(
-    --opacity-white-3-v2
-  );
-  --color-component-colors-shadows-modal-default-bolder-light-v2: var(
-    --opacity-black-12-v2
-  );
-  --color-component-colors-shadows-modal-default-bolder-dark-v2: var(
-    --opacity-black-40-v2
-  );
-  --color-component-colors-focus-rings-brand-light-v2: var(--neutral-90-v2);
-  --color-component-colors-focus-rings-brand-dark-v2: var(--opacity-white-40-v2);
-  --color-component-colors-focus-rings-error-light-v2: var(--terracotta-50-v2);
-  --color-component-colors-focus-rings-error-dark-v2: var(--terracotta-60-v2);
-  --color-colors-background-utilities-none-light-v2: var(--basic-none-v2);
-  --color-colors-background-utilities-none-dark-v2: var(--basic-none-v2);
-  --color-colors-text-static-black-light-v2: var(--neutral-5-v2);
-  --color-colors-text-static-black-dark-v2: var(--neutral-variant-5-v2);
-  --color-colors-foreground-static-black-light-v2: var(--neutral-5-v2);
-  --color-colors-foreground-static-black-dark-v2: var(--neutral-variant-5-v2);
-  --color-colors-background-utilities-static-black-light-v2: var(--neutral-5-v2);
-  --color-colors-background-utilities-static-black-dark-v2: var(
+  --color-Cr-foreground-static-white-light-v2: var(--neutral-100-v2);
+  --color-Cr-foreground-static-white-dark-v2: var(--neutral-variant-100-v2);
+  --color-Cr-border-alt-light-v2: var(--neutral-95-v2);
+  --color-Cr-border-alt-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-border-opaque-light-v2: var(--opacity-white-1-v2);
+  --color-Cr-border-opaque-dark-v2: var(--opacity-white-8-v2);
+  --color-CCr-shadows-surface-default-light-v2: var(--opacity-black-12-v2);
+  --color-CCr-shadows-surface-default-dark-v2: var(--opacity-white-5-v2);
+  --color-CCr-shadows-surface-bolder-light-v2: var(--opacity-black-3-v2);
+  --color-CCr-shadows-surface-bolder-dark-v2: var(--opacity-white-3-v2);
+  --color-CCr-shadows-modal-default-bolder-light-v2: var(--opacity-black-12-v2);
+  --color-CCr-shadows-modal-default-bolder-dark-v2: var(--opacity-black-40-v2);
+  --color-CCr-focus-rings-brand-light-v2: var(--neutral-90-v2);
+  --color-CCr-focus-rings-brand-dark-v2: var(--opacity-white-40-v2);
+  --color-CCr-focus-rings-error-light-v2: var(--terracotta-50-v2);
+  --color-CCr-focus-rings-error-dark-v2: var(--terracotta-60-v2);
+  --color-Cr-background-utilities-none-light-v2: var(--basic-none-v2);
+  --color-Cr-background-utilities-none-dark-v2: var(--basic-none-v2);
+  --color-Cr-text-static-black-light-v2: var(--neutral-5-v2);
+  --color-Cr-text-static-black-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-foreground-static-black-light-v2: var(--neutral-5-v2);
+  --color-Cr-foreground-static-black-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-background-utilities-static-black-light-v2: var(--neutral-5-v2);
+  --color-Cr-background-utilities-static-black-dark-v2: var(
     --neutral-variant-5-v2
   );
-  --color-colors-alpha-white-12-light-v2: var(--opacity-white-12-v2);
-  --color-colors-alpha-white-12-dark-v2: var(--opacity-black-12-v2);
-  --color-colors-alpha-white-5-light-v2: var(--opacity-white-5-v2);
-  --color-colors-alpha-white-5-dark-v2: var(--opacity-black-5-v2);
-  --color-colors-alpha-white-20-light-v2: var(--opacity-white-20-v2);
-  --color-colors-alpha-white-20-dark-v2: var(--opacity-black-20-v2);
-  --color-colors-alpha-white-30-light-v2: var(--opacity-white-30-v2);
-  --color-colors-alpha-white-30-dark-v2: var(--opacity-black-30-v2);
-  --color-colors-alpha-white-40-light-v2: var(--opacity-white-40-v2);
-  --color-colors-alpha-white-40-dark-v2: var(--opacity-black-40-v2);
-  --color-colors-alpha-white-50-light-v2: var(--opacity-white-50-v2);
-  --color-colors-alpha-white-50-dark-v2: var(--opacity-black-50-v2);
-  --color-colors-alpha-white-60-light-v2: var(--opacity-white-60-v2);
-  --color-colors-alpha-white-60-dark-v2: var(--opacity-black-60-v2);
-  --color-colors-alpha-white-70-light-v2: var(--opacity-white-70-v2);
-  --color-colors-alpha-white-70-dark-v2: var(--opacity-black-70-v2);
-  --color-colors-alpha-white-80-light-v2: var(--opacity-white-80-v2);
-  --color-colors-alpha-white-80-dark-v2: var(--opacity-black-80-v2);
-  --color-colors-alpha-white-90-light-v2: var(--opacity-white-90-v2);
-  --color-colors-alpha-white-90-dark-v2: var(--opacity-black-90-v2);
-  --color-colors-alpha-white-100-light-v2: var(--opacity-white-100-v2);
-  --color-colors-alpha-white-100-dark-v2: var(--opacity-black-100-v2);
-  --color-colors-alpha-white-1-light-v2: var(--opacity-white-1-v2);
-  --color-colors-alpha-white-1-dark-v2: var(--opacity-black-1-v2);
-  --color-colors-alpha-white-3-light-v2: var(--opacity-white-3-v2);
-  --color-colors-alpha-white-3-dark-v2: var(--opacity-black-3-v2);
-  --color-colors-alpha-white-8-light-v2: var(--opacity-white-8-v2);
-  --color-colors-alpha-white-8-dark-v2: var(--opacity-black-8-v2);
-  --color-colors-alpha-black-1-light-v2: var(--opacity-black-1-v2);
-  --color-colors-alpha-black-1-dark-v2: var(--opacity-white-1-v2);
-  --color-colors-alpha-black-3-light-v2: var(--opacity-black-3-v2);
-  --color-colors-alpha-black-3-dark-v2: var(--opacity-white-3-v2);
-  --color-colors-alpha-black-5-light-v2: var(--opacity-black-5-v2);
-  --color-colors-alpha-black-5-dark-v2: var(--opacity-white-5-v2);
-  --color-colors-alpha-black-8-light-v2: var(--opacity-black-8-v2);
-  --color-colors-alpha-black-8-dark-v2: var(--opacity-white-8-v2);
-  --color-colors-alpha-black-12-light-v2: var(--opacity-black-12-v2);
-  --color-colors-alpha-black-12-dark-v2: var(--opacity-white-12-v2);
-  --color-colors-alpha-black-20-light-v2: var(--opacity-black-20-v2);
-  --color-colors-alpha-black-20-dark-v2: var(--opacity-white-20-v2);
-  --color-colors-alpha-black-30-light-v2: var(--opacity-black-30-v2);
-  --color-colors-alpha-black-30-dark-v2: var(--opacity-white-30-v2);
-  --color-colors-alpha-black-40-light-v2: var(--opacity-black-40-v2);
-  --color-colors-alpha-black-40-dark-v2: var(--opacity-white-40-v2);
-  --color-colors-alpha-black-50-light-v2: var(--opacity-black-50-v2);
-  --color-colors-alpha-black-50-dark-v2: var(--opacity-white-50-v2);
-  --color-colors-alpha-black-60-light-v2: var(--opacity-black-60-v2);
-  --color-colors-alpha-black-60-dark-v2: var(--opacity-white-60-v2);
-  --color-colors-alpha-black-70-light-v2: var(--opacity-black-70-v2);
-  --color-colors-alpha-black-70-dark-v2: var(--opacity-white-70-v2);
-  --color-colors-alpha-black-80-light-v2: var(--opacity-black-80-v2);
-  --color-colors-alpha-black-80-dark-v2: var(--opacity-white-80-v2);
-  --color-colors-alpha-black-90-light-v2: var(--opacity-black-90-v2);
-  --color-colors-alpha-black-90-dark-v2: var(--opacity-white-90-v2);
-  --color-colors-alpha-black-100-light-v2: var(--opacity-black-100-v2);
-  --color-colors-alpha-black-100-dark-v2: var(--opacity-white-100-v2);
-  --color-colors-border-static-light-v2: var(--neutral-95-v2);
-  --color-colors-border-static-dark-v2: var(--neutral-variant-95-v2);
-  --color-colors-beta-white-1-light-v2: var(--opacity-white-1-v2);
-  --color-colors-beta-white-1-dark-v2: var(--opacity-white-1-v2);
-  --color-colors-beta-white-3-light-v2: var(--opacity-white-3-v2);
-  --color-colors-beta-white-3-dark-v2: var(--opacity-white-3-v2);
-  --color-colors-beta-white-5-light-v2: var(--opacity-white-5-v2);
-  --color-colors-beta-white-5-dark-v2: var(--opacity-white-5-v2);
-  --color-colors-beta-white-8-light-v2: var(--opacity-white-8-v2);
-  --color-colors-beta-white-8-dark-v2: var(--opacity-white-8-v2);
-  --color-colors-beta-white-12-light-v2: var(--opacity-white-12-v2);
-  --color-colors-beta-white-12-dark-v2: var(--opacity-white-12-v2);
-  --color-colors-beta-white-20-light-v2: var(--opacity-white-20-v2);
-  --color-colors-beta-white-20-dark-v2: var(--opacity-white-20-v2);
-  --color-colors-beta-white-30-light-v2: var(--opacity-white-30-v2);
-  --color-colors-beta-white-30-dark-v2: var(--opacity-white-30-v2);
-  --color-colors-beta-white-40-light-v2: var(--opacity-white-40-v2);
-  --color-colors-beta-white-40-dark-v2: var(--opacity-white-40-v2);
-  --color-colors-beta-white-50-light-v2: var(--opacity-white-50-v2);
-  --color-colors-beta-white-50-dark-v2: var(--opacity-white-50-v2);
-  --color-colors-beta-white-60-light-v2: var(--opacity-white-60-v2);
-  --color-colors-beta-white-60-dark-v2: var(--opacity-white-60-v2);
-  --color-colors-beta-white-70-light-v2: var(--opacity-white-70-v2);
-  --color-colors-beta-white-70-dark-v2: var(--opacity-white-70-v2);
-  --color-colors-beta-white-80-light-v2: var(--opacity-white-80-v2);
-  --color-colors-beta-white-80-dark-v2: var(--opacity-white-80-v2);
-  --color-colors-beta-white-90-light-v2: var(--opacity-white-90-v2);
-  --color-colors-beta-white-90-dark-v2: var(--opacity-white-90-v2);
-  --color-colors-beta-white-100-light-v2: var(--opacity-white-100-v2);
-  --color-colors-beta-white-100-dark-v2: var(--opacity-white-100-v2);
-  --color-colors-beta-black-1-light-v2: var(--opacity-black-1-v2);
-  --color-colors-beta-black-1-dark-v2: var(--opacity-black-1-v2);
-  --color-colors-beta-black-3-light-v2: var(--opacity-black-3-v2);
-  --color-colors-beta-black-3-dark-v2: var(--opacity-black-3-v2);
-  --color-colors-beta-black-5-light-v2: var(--opacity-black-5-v2);
-  --color-colors-beta-black-5-dark-v2: var(--opacity-black-5-v2);
-  --color-colors-beta-black-8-light-v2: var(--opacity-black-8-v2);
-  --color-colors-beta-black-8-dark-v2: var(--opacity-black-8-v2);
-  --color-colors-beta-black-12-light-v2: var(--opacity-black-12-v2);
-  --color-colors-beta-black-12-dark-v2: var(--opacity-black-12-v2);
-  --color-colors-beta-black-20-light-v2: var(--opacity-black-20-v2);
-  --color-colors-beta-black-20-dark-v2: var(--opacity-black-20-v2);
-  --color-colors-beta-black-30-light-v2: var(--opacity-black-30-v2);
-  --color-colors-beta-black-30-dark-v2: var(--opacity-black-30-v2);
-  --color-colors-beta-black-40-light-v2: var(--opacity-black-40-v2);
-  --color-colors-beta-black-40-dark-v2: var(--opacity-black-40-v2);
-  --color-colors-beta-black-50-light-v2: var(--opacity-black-50-v2);
-  --color-colors-beta-black-50-dark-v2: var(--opacity-black-50-v2);
-  --color-colors-beta-black-60-light-v2: var(--opacity-black-60-v2);
-  --color-colors-beta-black-60-dark-v2: var(--opacity-black-60-v2);
-  --color-colors-beta-black-70-light-v2: var(--opacity-black-70-v2);
-  --color-colors-beta-black-70-dark-v2: var(--opacity-black-70-v2);
-  --color-colors-beta-black-80-light-v2: var(--opacity-black-80-v2);
-  --color-colors-beta-black-80-dark-v2: var(--opacity-black-80-v2);
-  --color-colors-beta-black-90-light-v2: var(--opacity-black-90-v2);
-  --color-colors-beta-black-90-dark-v2: var(--opacity-black-90-v2);
-  --color-colors-beta-black-100-light-v2: var(--opacity-black-100-v2);
-  --color-colors-beta-black-100-dark-v2: var(--opacity-black-100-v2);
-  --color-colors-text-brand-bolder-light-v2: var(--pure-mauve-30-v2);
-  --color-colors-text-brand-bolder-dark-v2: var(--pure-mauve-90-v2);
-  --color-colors-text-brand-subtle-light-v2: var(--pure-mauve-70-v2);
-  --color-colors-text-brand-subtle-dark-v2: var(--pure-mauve-30-v2);
-  --color-colors-text-critical-subtle-light-v2: var(--terracotta-70-v2);
-  --color-colors-text-critical-subtle-dark-v2: var(--terracotta-30-v2);
-  --color-colors-text-warning-subtle-light-v2: var(--khaki-80-v2);
-  --color-colors-text-warning-subtle-dark-v2: var(--khaki-30-v2);
-  --color-colors-text-success-subtle-light-v2: var(--teal-70-v2);
-  --color-colors-text-success-subtle-dark-v2: var(--teal-30-v2);
-  --color-colors-foreground-subtler-light-v2: var(--neutral-40-v2);
-  --color-colors-foreground-subtler-dark-v2: var(--neutral-variant-70-v2);
-  --color-colors-foreground-brand-subtle-light-v2: var(--pure-mauve-70-v2);
-  --color-colors-foreground-brand-subtle-dark-v2: var(--pure-mauve-30-v2);
-  --color-colors-foreground-brand-bolder-light-v2: var(--pure-mauve-30-v2);
-  --color-colors-foreground-brand-bolder-dark-v2: var(--pure-mauve-90-v2);
-  --color-colors-foreground-critical-subtle-light-v2: var(--terracotta-70-v2);
-  --color-colors-foreground-critical-subtle-dark-v2: var(--terracotta-30-v2);
-  --color-colors-foreground-warning-subtle-light-v2: var(--khaki-80-v2);
-  --color-colors-foreground-warning-subtle-dark-v2: var(--khaki-30-v2);
-  --color-colors-foreground-success-subtle-light-v2: var(--teal-70-v2);
-  --color-colors-foreground-success-subtle-dark-v2: var(--teal-30-v2);
-  --color-colors-foreground-critical-bolder-light-v2: var(--terracotta-30-v2);
-  --color-colors-foreground-critical-bolder-dark-v2: var(--terracotta-90-v2);
-  --color-colors-foreground-warning-bolder-light-v2: var(--khaki-30-v2);
-  --color-colors-foreground-warning-bolder-dark-v2: var(--khaki-90-v2);
-  --color-colors-foreground-success-bolder-light-v2: var(--teal-30-v2);
-  --color-colors-foreground-success-bolder-dark-v2: var(--teal-90-v2);
-  --color-colors-background-utilities-bolder-light-v2: var(--neutral-5-v2);
-  --color-colors-background-utilities-bolder-dark-v2: var(
-    --neutral-variant-99-v2
-  );
-  --color-colors-background-neutral-primary-active-light-v2: var(
-    --neutral-90-v2
-  );
-  --color-colors-background-neutral-primary-active-dark-v2: var(
+  --color-Cr-alpha-white-12-light-v2: var(--opacity-white-12-v2);
+  --color-Cr-alpha-white-12-dark-v2: var(--opacity-black-12-v2);
+  --color-Cr-alpha-white-5-light-v2: var(--opacity-white-5-v2);
+  --color-Cr-alpha-white-5-dark-v2: var(--opacity-black-5-v2);
+  --color-Cr-alpha-white-20-light-v2: var(--opacity-white-20-v2);
+  --color-Cr-alpha-white-20-dark-v2: var(--opacity-black-20-v2);
+  --color-Cr-alpha-white-30-light-v2: var(--opacity-white-30-v2);
+  --color-Cr-alpha-white-30-dark-v2: var(--opacity-black-30-v2);
+  --color-Cr-alpha-white-40-light-v2: var(--opacity-white-40-v2);
+  --color-Cr-alpha-white-40-dark-v2: var(--opacity-black-40-v2);
+  --color-Cr-alpha-white-50-light-v2: var(--opacity-white-50-v2);
+  --color-Cr-alpha-white-50-dark-v2: var(--opacity-black-50-v2);
+  --color-Cr-alpha-white-60-light-v2: var(--opacity-white-60-v2);
+  --color-Cr-alpha-white-60-dark-v2: var(--opacity-black-60-v2);
+  --color-Cr-alpha-white-70-light-v2: var(--opacity-white-70-v2);
+  --color-Cr-alpha-white-70-dark-v2: var(--opacity-black-70-v2);
+  --color-Cr-alpha-white-80-light-v2: var(--opacity-white-80-v2);
+  --color-Cr-alpha-white-80-dark-v2: var(--opacity-black-80-v2);
+  --color-Cr-alpha-white-90-light-v2: var(--opacity-white-90-v2);
+  --color-Cr-alpha-white-90-dark-v2: var(--opacity-black-90-v2);
+  --color-Cr-alpha-white-100-light-v2: var(--opacity-white-100-v2);
+  --color-Cr-alpha-white-100-dark-v2: var(--opacity-black-100-v2);
+  --color-Cr-alpha-white-1-light-v2: var(--opacity-white-1-v2);
+  --color-Cr-alpha-white-1-dark-v2: var(--opacity-black-1-v2);
+  --color-Cr-alpha-white-3-light-v2: var(--opacity-white-3-v2);
+  --color-Cr-alpha-white-3-dark-v2: var(--opacity-black-3-v2);
+  --color-Cr-alpha-white-8-light-v2: var(--opacity-white-8-v2);
+  --color-Cr-alpha-white-8-dark-v2: var(--opacity-black-8-v2);
+  --color-Cr-alpha-black-1-light-v2: var(--opacity-black-1-v2);
+  --color-Cr-alpha-black-1-dark-v2: var(--opacity-white-1-v2);
+  --color-Cr-alpha-black-3-light-v2: var(--opacity-black-3-v2);
+  --color-Cr-alpha-black-3-dark-v2: var(--opacity-white-3-v2);
+  --color-Cr-alpha-black-5-light-v2: var(--opacity-black-5-v2);
+  --color-Cr-alpha-black-5-dark-v2: var(--opacity-white-5-v2);
+  --color-Cr-alpha-black-8-light-v2: var(--opacity-black-8-v2);
+  --color-Cr-alpha-black-8-dark-v2: var(--opacity-white-8-v2);
+  --color-Cr-alpha-black-12-light-v2: var(--opacity-black-12-v2);
+  --color-Cr-alpha-black-12-dark-v2: var(--opacity-white-12-v2);
+  --color-Cr-alpha-black-20-light-v2: var(--opacity-black-20-v2);
+  --color-Cr-alpha-black-20-dark-v2: var(--opacity-white-20-v2);
+  --color-Cr-alpha-black-30-light-v2: var(--opacity-black-30-v2);
+  --color-Cr-alpha-black-30-dark-v2: var(--opacity-white-30-v2);
+  --color-Cr-alpha-black-40-light-v2: var(--opacity-black-40-v2);
+  --color-Cr-alpha-black-40-dark-v2: var(--opacity-white-40-v2);
+  --color-Cr-alpha-black-50-light-v2: var(--opacity-black-50-v2);
+  --color-Cr-alpha-black-50-dark-v2: var(--opacity-white-50-v2);
+  --color-Cr-alpha-black-60-light-v2: var(--opacity-black-60-v2);
+  --color-Cr-alpha-black-60-dark-v2: var(--opacity-white-60-v2);
+  --color-Cr-alpha-black-70-light-v2: var(--opacity-black-70-v2);
+  --color-Cr-alpha-black-70-dark-v2: var(--opacity-white-70-v2);
+  --color-Cr-alpha-black-80-light-v2: var(--opacity-black-80-v2);
+  --color-Cr-alpha-black-80-dark-v2: var(--opacity-white-80-v2);
+  --color-Cr-alpha-black-90-light-v2: var(--opacity-black-90-v2);
+  --color-Cr-alpha-black-90-dark-v2: var(--opacity-white-90-v2);
+  --color-Cr-alpha-black-100-light-v2: var(--opacity-black-100-v2);
+  --color-Cr-alpha-black-100-dark-v2: var(--opacity-white-100-v2);
+  --color-Cr-border-static-light-v2: var(--neutral-95-v2);
+  --color-Cr-border-static-dark-v2: var(--neutral-variant-95-v2);
+  --color-Cr-beta-white-1-light-v2: var(--opacity-white-1-v2);
+  --color-Cr-beta-white-1-dark-v2: var(--opacity-white-1-v2);
+  --color-Cr-beta-white-3-light-v2: var(--opacity-white-3-v2);
+  --color-Cr-beta-white-3-dark-v2: var(--opacity-white-3-v2);
+  --color-Cr-beta-white-5-light-v2: var(--opacity-white-5-v2);
+  --color-Cr-beta-white-5-dark-v2: var(--opacity-white-5-v2);
+  --color-Cr-beta-white-8-light-v2: var(--opacity-white-8-v2);
+  --color-Cr-beta-white-8-dark-v2: var(--opacity-white-8-v2);
+  --color-Cr-beta-white-12-light-v2: var(--opacity-white-12-v2);
+  --color-Cr-beta-white-12-dark-v2: var(--opacity-white-12-v2);
+  --color-Cr-beta-white-20-light-v2: var(--opacity-white-20-v2);
+  --color-Cr-beta-white-20-dark-v2: var(--opacity-white-20-v2);
+  --color-Cr-beta-white-30-light-v2: var(--opacity-white-30-v2);
+  --color-Cr-beta-white-30-dark-v2: var(--opacity-white-30-v2);
+  --color-Cr-beta-white-40-light-v2: var(--opacity-white-40-v2);
+  --color-Cr-beta-white-40-dark-v2: var(--opacity-white-40-v2);
+  --color-Cr-beta-white-50-light-v2: var(--opacity-white-50-v2);
+  --color-Cr-beta-white-50-dark-v2: var(--opacity-white-50-v2);
+  --color-Cr-beta-white-60-light-v2: var(--opacity-white-60-v2);
+  --color-Cr-beta-white-60-dark-v2: var(--opacity-white-60-v2);
+  --color-Cr-beta-white-70-light-v2: var(--opacity-white-70-v2);
+  --color-Cr-beta-white-70-dark-v2: var(--opacity-white-70-v2);
+  --color-Cr-beta-white-80-light-v2: var(--opacity-white-80-v2);
+  --color-Cr-beta-white-80-dark-v2: var(--opacity-white-80-v2);
+  --color-Cr-beta-white-90-light-v2: var(--opacity-white-90-v2);
+  --color-Cr-beta-white-90-dark-v2: var(--opacity-white-90-v2);
+  --color-Cr-beta-white-100-light-v2: var(--opacity-white-100-v2);
+  --color-Cr-beta-white-100-dark-v2: var(--opacity-white-100-v2);
+  --color-Cr-beta-black-1-light-v2: var(--opacity-black-1-v2);
+  --color-Cr-beta-black-1-dark-v2: var(--opacity-black-1-v2);
+  --color-Cr-beta-black-3-light-v2: var(--opacity-black-3-v2);
+  --color-Cr-beta-black-3-dark-v2: var(--opacity-black-3-v2);
+  --color-Cr-beta-black-5-light-v2: var(--opacity-black-5-v2);
+  --color-Cr-beta-black-5-dark-v2: var(--opacity-black-5-v2);
+  --color-Cr-beta-black-8-light-v2: var(--opacity-black-8-v2);
+  --color-Cr-beta-black-8-dark-v2: var(--opacity-black-8-v2);
+  --color-Cr-beta-black-12-light-v2: var(--opacity-black-12-v2);
+  --color-Cr-beta-black-12-dark-v2: var(--opacity-black-12-v2);
+  --color-Cr-beta-black-20-light-v2: var(--opacity-black-20-v2);
+  --color-Cr-beta-black-20-dark-v2: var(--opacity-black-20-v2);
+  --color-Cr-beta-black-30-light-v2: var(--opacity-black-30-v2);
+  --color-Cr-beta-black-30-dark-v2: var(--opacity-black-30-v2);
+  --color-Cr-beta-black-40-light-v2: var(--opacity-black-40-v2);
+  --color-Cr-beta-black-40-dark-v2: var(--opacity-black-40-v2);
+  --color-Cr-beta-black-50-light-v2: var(--opacity-black-50-v2);
+  --color-Cr-beta-black-50-dark-v2: var(--opacity-black-50-v2);
+  --color-Cr-beta-black-60-light-v2: var(--opacity-black-60-v2);
+  --color-Cr-beta-black-60-dark-v2: var(--opacity-black-60-v2);
+  --color-Cr-beta-black-70-light-v2: var(--opacity-black-70-v2);
+  --color-Cr-beta-black-70-dark-v2: var(--opacity-black-70-v2);
+  --color-Cr-beta-black-80-light-v2: var(--opacity-black-80-v2);
+  --color-Cr-beta-black-80-dark-v2: var(--opacity-black-80-v2);
+  --color-Cr-beta-black-90-light-v2: var(--opacity-black-90-v2);
+  --color-Cr-beta-black-90-dark-v2: var(--opacity-black-90-v2);
+  --color-Cr-beta-black-100-light-v2: var(--opacity-black-100-v2);
+  --color-Cr-beta-black-100-dark-v2: var(--opacity-black-100-v2);
+  --color-Cr-text-brand-bolder-light-v2: var(--pure-mauve-30-v2);
+  --color-Cr-text-brand-bolder-dark-v2: var(--pure-mauve-90-v2);
+  --color-Cr-text-brand-subtle-light-v2: var(--pure-mauve-70-v2);
+  --color-Cr-text-brand-subtle-dark-v2: var(--pure-mauve-30-v2);
+  --color-Cr-text-critical-subtle-light-v2: var(--terracotta-70-v2);
+  --color-Cr-text-critical-subtle-dark-v2: var(--terracotta-30-v2);
+  --color-Cr-text-warning-subtle-light-v2: var(--khaki-80-v2);
+  --color-Cr-text-warning-subtle-dark-v2: var(--khaki-30-v2);
+  --color-Cr-text-success-subtle-light-v2: var(--teal-70-v2);
+  --color-Cr-text-success-subtle-dark-v2: var(--teal-30-v2);
+  --color-Cr-foreground-subtler-light-v2: var(--neutral-40-v2);
+  --color-Cr-foreground-subtler-dark-v2: var(--neutral-variant-70-v2);
+  --color-Cr-foreground-brand-subtle-light-v2: var(--pure-mauve-70-v2);
+  --color-Cr-foreground-brand-subtle-dark-v2: var(--pure-mauve-30-v2);
+  --color-Cr-foreground-brand-bolder-light-v2: var(--pure-mauve-30-v2);
+  --color-Cr-foreground-brand-bolder-dark-v2: var(--pure-mauve-90-v2);
+  --color-Cr-foreground-critical-subtle-light-v2: var(--terracotta-70-v2);
+  --color-Cr-foreground-critical-subtle-dark-v2: var(--terracotta-30-v2);
+  --color-Cr-foreground-warning-subtle-light-v2: var(--khaki-80-v2);
+  --color-Cr-foreground-warning-subtle-dark-v2: var(--khaki-30-v2);
+  --color-Cr-foreground-success-subtle-light-v2: var(--teal-70-v2);
+  --color-Cr-foreground-success-subtle-dark-v2: var(--teal-30-v2);
+  --color-Cr-foreground-critical-bolder-light-v2: var(--terracotta-30-v2);
+  --color-Cr-foreground-critical-bolder-dark-v2: var(--terracotta-90-v2);
+  --color-Cr-foreground-warning-bolder-light-v2: var(--khaki-30-v2);
+  --color-Cr-foreground-warning-bolder-dark-v2: var(--khaki-90-v2);
+  --color-Cr-foreground-success-bolder-light-v2: var(--teal-30-v2);
+  --color-Cr-foreground-success-bolder-dark-v2: var(--teal-90-v2);
+  --color-Cr-background-utilities-bolder-light-v2: var(--neutral-5-v2);
+  --color-Cr-background-utilities-bolder-dark-v2: var(--neutral-variant-99-v2);
+  --color-Cr-background-neutral-primary-active-light-v2: var(--neutral-90-v2);
+  --color-Cr-background-neutral-primary-active-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-brand-fg_default-light-v2: var(
-    --pure-mauve-5-v2
-  );
-  --color-component-colors-button-brand-fg_default-dark-v2: var(
-    --pure-mauve-99-v2
-  );
-  --color-component-colors-button-brand-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-button-brand-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-brand-bg_default-light-v2: var(
-    --pure-mauve-95-v2
-  );
-  --color-component-colors-button-brand-bg_default-dark-v2: var(
-    --pure-mauve-50-v2
-  );
-  --color-component-colors-button-brand-bg_hover-light-v2: var(
-    --pure-mauve-80-v2
-  );
-  --color-component-colors-button-brand-bg_hover-dark-v2: var(
-    --pure-mauve-30-v2
-  );
-  --color-component-colors-button-brand-bg_active-light-v2: var(
-    --pure-mauve-70-v2
-  );
-  --color-component-colors-button-brand-bg_active-dark-v2: var(
-    --pure-mauve-20-v2
-  );
-  --color-component-colors-button-brand-bg_disabled-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-component-colors-button-brand-bg_disabled-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-button-secondary-border_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-secondary-border_default-dark-v2: var(
+  --color-CCr-button-brand-fg_default-light-v2: var(--pure-mauve-5-v2);
+  --color-CCr-button-brand-fg_default-dark-v2: var(--pure-mauve-99-v2);
+  --color-CCr-button-brand-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-brand-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-brand-bg_default-light-v2: var(--pure-mauve-95-v2);
+  --color-CCr-button-brand-bg_default-dark-v2: var(--pure-mauve-50-v2);
+  --color-CCr-button-brand-bg_hover-light-v2: var(--pure-mauve-80-v2);
+  --color-CCr-button-brand-bg_hover-dark-v2: var(--pure-mauve-30-v2);
+  --color-CCr-button-brand-bg_active-light-v2: var(--pure-mauve-70-v2);
+  --color-CCr-button-brand-bg_active-dark-v2: var(--pure-mauve-20-v2);
+  --color-CCr-button-brand-bg_disabled-light-v2: var(--neutral-95-v2);
+  --color-CCr-button-brand-bg_disabled-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-button-secondary-border_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-secondary-border_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-button-primary-bg_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-primary-bg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-primary-bg_hover-light-v2: var(
-    --neutral-20-v2
-  );
-  --color-component-colors-button-primary-bg_hover-dark-v2: var(
-    --neutral-variant-90-v2
-  );
-  --color-component-colors-button-primary-fg_default-light-v2: var(
-    --neutral-100-v2
-  );
-  --color-component-colors-button-primary-fg_default-dark-v2: var(
-    --neutral-variant-5-v2
-  );
-  --color-component-colors-button-primary-fg_alt-light-v2: var(
-    --opacity-white-90-v2
-  );
-  --color-component-colors-button-primary-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-primary-bg_active-light-v2: var(
-    --neutral-40-v2
-  );
-  --color-component-colors-button-primary-bg_active-dark-v2: var(
-    --neutral-variant-80-v2
-  );
-  --color-component-colors-button-primary-bg_disabled-light-v2: var(
-    --opacity-black-30-v2
-  );
-  --color-component-colors-button-primary-bg_disabled-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-button-secondary-bg_default-light-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-secondary-bg_default-dark-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-secondary-border_disabled-light-v2: var(
+  --color-CCr-button-primary-bg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-primary-bg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-primary-bg_hover-light-v2: var(--neutral-20-v2);
+  --color-CCr-button-primary-bg_hover-dark-v2: var(--neutral-variant-90-v2);
+  --color-CCr-button-primary-fg_default-light-v2: var(--neutral-100-v2);
+  --color-CCr-button-primary-fg_default-dark-v2: var(--neutral-variant-5-v2);
+  --color-CCr-button-primary-fg_alt-light-v2: var(--opacity-white-90-v2);
+  --color-CCr-button-primary-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-primary-bg_active-light-v2: var(--neutral-40-v2);
+  --color-CCr-button-primary-bg_active-dark-v2: var(--neutral-variant-80-v2);
+  --color-CCr-button-primary-bg_disabled-light-v2: var(--opacity-black-30-v2);
+  --color-CCr-button-primary-bg_disabled-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-button-secondary-bg_default-light-v2: var(--basic-none-v2);
+  --color-CCr-button-secondary-bg_default-dark-v2: var(--basic-none-v2);
+  --color-CCr-button-secondary-border_disabled-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-secondary-border_disabled-dark-v2: var(
+  --color-CCr-button-secondary-border_disabled-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-secondary-fg_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-secondary-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-secondary-fg_alt-light-v2: var(
-    --neutral-70-v2
-  );
-  --color-component-colors-button-secondary-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-secondary-bg_hover-light-v2: var(
+  --color-CCr-button-secondary-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-secondary-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-secondary-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-secondary-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-secondary-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-button-secondary-bg_hover-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-secondary-bg_active-light-v2: var(
+  --color-CCr-button-secondary-bg_hover-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-secondary-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-secondary-bg_active-dark-v2: var(
-    --opacity-white-20-v2
-  );
-  --color-component-colors-button-tertiary-bg_default-light-v2: var(
+  --color-CCr-button-secondary-bg_active-dark-v2: var(--opacity-white-20-v2);
+  --color-CCr-button-tertiary-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-button-tertiary-bg_default-dark-v2: var(
-    --opacity-white-8-v2
-  );
-  --color-component-colors-button-tertiary-fg_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-tertiary-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-tertiary-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-button-tertiary-fg_alt-dark-v2: var(
-    --opacity-white-30-v2
-  );
-  --color-component-colors-button-tertiary-border-light-v2: var(
+  --color-CCr-button-tertiary-bg_default-dark-v2: var(--opacity-white-8-v2);
+  --color-CCr-button-tertiary-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-tertiary-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-tertiary-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-tertiary-fg_alt-dark-v2: var(--opacity-white-30-v2);
+  --color-CCr-button-tertiary-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-button-tertiary-border-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-tertiary-border_alt-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-tertiary-border-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-tertiary-border_alt-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-button-tertiary-border_alt-dark-v2: var(
-    --opacity-white-30-v2
-  );
-  --color-component-colors-button-tertiary-bg_hover-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-button-tertiary-bg_hover-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-tertiary-bg_active-light-v2: var(
+  --color-CCr-button-tertiary-border_alt-dark-v2: var(--opacity-white-30-v2);
+  --color-CCr-button-tertiary-bg_hover-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-button-tertiary-bg_hover-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-tertiary-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-tertiary-bg_active-dark-v2: var(
-    --opacity-white-20-v2
-  );
-  --color-component-colors-button-plain-fg_default-light-v2: var(--neutral-5-v2);
-  --color-component-colors-button-plain-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-plain-bg_default-light-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-plain-bg_default-dark-v2: var(--basic-none-v2);
-  --color-component-colors-button-plain-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-button-plain-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-plain-bg_hover-light-v2: var(
+  --color-CCr-button-tertiary-bg_active-dark-v2: var(--opacity-white-20-v2);
+  --color-CCr-button-plain-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-plain-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-plain-bg_default-light-v2: var(--basic-none-v2);
+  --color-CCr-button-plain-bg_default-dark-v2: var(--basic-none-v2);
+  --color-CCr-button-plain-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-plain-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-plain-bg_hover-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-button-plain-bg_hover-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-plain-bg_active-light-v2: var(--opacity-on-surface-30-v2);
+  --color-CCr-button-plain-bg_active-dark-v2: var(--opacity-white-20-v2);
+  --color-CCr-button-plain-brand-fg_default-light-v2: var(--pure-mauve-50-v2);
+  --color-CCr-button-plain-brand-fg_default-dark-v2: var(--pure-mauve-70-v2);
+  --color-CCr-button-plain-brand-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-plain-brand-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-plain-brand-bg_default-light-v2: var(--basic-none-v2);
+  --color-CCr-button-plain-brand-bg_default-dark-v2: var(--basic-none-v2);
+  --color-CCr-button-plain-brand-bg_hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-button-plain-bg_hover-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-plain-bg_active-light-v2: var(
+  --color-CCr-button-plain-brand-bg_hover-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-plain-brand-bg_active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-component-colors-button-plain-bg_active-dark-v2: var(
-    --opacity-white-20-v2
-  );
-  --color-component-colors-button-plain-brand-fg_default-light-v2: var(
-    --pure-mauve-50-v2
-  );
-  --color-component-colors-button-plain-brand-fg_default-dark-v2: var(
-    --pure-mauve-70-v2
-  );
-  --color-component-colors-button-plain-brand-fg_alt-light-v2: var(
-    --neutral-70-v2
-  );
-  --color-component-colors-button-plain-brand-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-plain-brand-bg_default-light-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-plain-brand-bg_default-dark-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-plain-brand-bg_hover-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-button-plain-brand-bg_hover-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-plain-brand-bg_active-light-v2: var(
-    --opacity-on-surface-30-v2
-  );
-  --color-component-colors-button-plain-brand-bg_active-dark-v2: var(
-    --opacity-white-20-v2
-  );
-  --color-component-colors-link-button-primary-fg_default-light-v2: var(
-    --pure-mauve-50-v2
-  );
-  --color-component-colors-link-button-primary-fg_default-dark-v2: var(
-    --pure-mauve-70-v2
-  );
-  --color-component-colors-link-button-primary-fg_hover-light-v2: var(
-    --pure-mauve-40-v2
-  );
-  --color-component-colors-link-button-primary-fg_hover-dark-v2: var(
-    --pure-mauve-80-v2
-  );
-  --color-component-colors-link-button-primary-bg_default-light-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-link-button-primary-bg_default-dark-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-link-button-primary-fg_active-light-v2: var(
-    --pure-mauve-30-v2
-  );
-  --color-component-colors-link-button-primary-fg_active-dark-v2: var(
-    --pure-mauve-80-v2
-  );
-  --color-component-colors-link-button-primary-fg_disabled-light-v2: var(
+  --color-CCr-button-plain-brand-bg_active-dark-v2: var(--opacity-white-20-v2);
+  --color-CCr-link-button-primary-fg_default-light-v2: var(--pure-mauve-50-v2);
+  --color-CCr-link-button-primary-fg_default-dark-v2: var(--pure-mauve-70-v2);
+  --color-CCr-link-button-primary-fg_hover-light-v2: var(--pure-mauve-40-v2);
+  --color-CCr-link-button-primary-fg_hover-dark-v2: var(--pure-mauve-80-v2);
+  --color-CCr-link-button-primary-bg_default-light-v2: var(--basic-none-v2);
+  --color-CCr-link-button-primary-bg_default-dark-v2: var(--basic-none-v2);
+  --color-CCr-link-button-primary-fg_active-light-v2: var(--pure-mauve-30-v2);
+  --color-CCr-link-button-primary-fg_active-dark-v2: var(--pure-mauve-80-v2);
+  --color-CCr-link-button-primary-fg_disabled-light-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-primary-fg_disabled-dark-v2: var(
+  --color-CCr-link-button-primary-fg_disabled-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-link-button-secondary-fg_default-light-v2: var(
+  --color-CCr-link-button-secondary-fg_default-light-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-link-button-secondary-fg_default-dark-v2: var(
+  --color-CCr-link-button-secondary-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-link-button-secondary-fg_hover-light-v2: var(
+  --color-CCr-link-button-secondary-fg_hover-light-v2: var(
     --neutral-variant-50-v2
   );
-  --color-component-colors-link-button-secondary-fg_hover-dark-v2: var(
+  --color-CCr-link-button-secondary-fg_hover-dark-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-secondary-fg_active-light-v2: var(
+  --color-CCr-link-button-secondary-fg_active-light-v2: var(
     --neutral-variant-70-v2
   );
-  --color-component-colors-link-button-secondary-fg_active-dark-v2: var(
+  --color-CCr-link-button-secondary-fg_active-dark-v2: var(
     --neutral-variant-60-v2
   );
-  --color-component-colors-link-button-secondary-fg_disabled-light-v2: var(
+  --color-CCr-link-button-secondary-fg_disabled-light-v2: var(
     --neutral-variant-80-v2
   );
-  --color-component-colors-link-button-secondary-fg_disabled-dark-v2: var(
+  --color-CCr-link-button-secondary-fg_disabled-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-link-button-secondary-bg_default-light-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-link-button-secondary-bg_default-dark-v2: var(
-    --basic-none-v2
-  );
-  --color-component-colors-button-error-primary-fg_default-light-v2: var(
-    --terracotta-100-v2
-  );
-  --color-component-colors-button-error-primary-fg_default-dark-v2: var(
-    --terracotta-95-v2
-  );
-  --color-component-colors-button-error-primary-fg_alt-light-v2: var(
-    --neutral-70-v2
-  );
-  --color-component-colors-button-error-primary-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-error-primary-bg_default-light-v2: var(
-    --terracotta-50-v2
-  );
-  --color-component-colors-button-error-primary-bg_default-dark-v2: var(
-    --terracotta-40-v2
-  );
-  --color-component-colors-button-error-primary-bg_hover-light-v2: var(
-    --terracotta-40-v2
-  );
-  --color-component-colors-button-error-primary-bg_hover-dark-v2: var(
-    --terracotta-30-v2
-  );
-  --color-component-colors-button-error-primary-bg_active-light-v2: var(
-    --terracotta-30-v2
-  );
-  --color-component-colors-button-error-primary-bg_active-dark-v2: var(
-    --terracotta-20-v2
-  );
-  --color-component-colors-button-error-primary-bg_disabled-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-component-colors-button-error-primary-bg_disabled-dark-v2: var(
+  --color-CCr-link-button-secondary-bg_default-light-v2: var(--basic-none-v2);
+  --color-CCr-link-button-secondary-bg_default-dark-v2: var(--basic-none-v2);
+  --color-CCr-button-error-primary-fg_default-light-v2: var(--terracotta-100-v2);
+  --color-CCr-button-error-primary-fg_default-dark-v2: var(--terracotta-95-v2);
+  --color-CCr-button-error-primary-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-error-primary-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-error-primary-bg_default-light-v2: var(--terracotta-50-v2);
+  --color-CCr-button-error-primary-bg_default-dark-v2: var(--terracotta-40-v2);
+  --color-CCr-button-error-primary-bg_hover-light-v2: var(--terracotta-40-v2);
+  --color-CCr-button-error-primary-bg_hover-dark-v2: var(--terracotta-30-v2);
+  --color-CCr-button-error-primary-bg_active-light-v2: var(--terracotta-30-v2);
+  --color-CCr-button-error-primary-bg_active-dark-v2: var(--terracotta-20-v2);
+  --color-CCr-button-error-primary-bg_disabled-light-v2: var(--neutral-95-v2);
+  --color-CCr-button-error-primary-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-button-error-secondary-fg_default-light-v2: var(
+  --color-CCr-button-error-secondary-fg_default-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-button-error-secondary-fg_default-dark-v2: var(
-    --terracotta-95-v2
-  );
-  --color-component-colors-button-error-secondary-fg_alt-light-v2: var(
-    --neutral-70-v2
-  );
-  --color-component-colors-button-error-secondary-fg_alt-dark-v2: var(
+  --color-CCr-button-error-secondary-fg_default-dark-v2: var(--terracotta-95-v2);
+  --color-CCr-button-error-secondary-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-error-secondary-fg_alt-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-button-error-secondary-bg_default-light-v2: var(
+  --color-CCr-button-error-secondary-bg_default-light-v2: var(
     --terracotta-98-v2
   );
-  --color-component-colors-button-error-secondary-bg_default-dark-v2: var(
-    --terracotta-5-v2
-  );
-  --color-component-colors-button-error-secondary-bg_hover-light-v2: var(
-    --terracotta-90-v2
-  );
-  --color-component-colors-button-error-secondary-bg_hover-dark-v2: var(
-    --terracotta-20-v2
-  );
-  --color-component-colors-button-error-secondary-bg_active-light-v2: var(
-    --terracotta-80-v2
-  );
-  --color-component-colors-button-error-secondary-bg_active-dark-v2: var(
-    --terracotta-30-v2
-  );
-  --color-component-colors-button-error-secondary-border_default-light-v2: var(
+  --color-CCr-button-error-secondary-bg_default-dark-v2: var(--terracotta-5-v2);
+  --color-CCr-button-error-secondary-bg_hover-light-v2: var(--terracotta-90-v2);
+  --color-CCr-button-error-secondary-bg_hover-dark-v2: var(--terracotta-20-v2);
+  --color-CCr-button-error-secondary-bg_active-light-v2: var(--terracotta-80-v2);
+  --color-CCr-button-error-secondary-bg_active-dark-v2: var(--terracotta-30-v2);
+  --color-CCr-button-error-secondary-border_default-light-v2: var(
     --terracotta-50-v2
   );
-  --color-component-colors-button-error-secondary-border_default-dark-v2: var(
+  --color-CCr-button-error-secondary-border_default-dark-v2: var(
     --terracotta-40-v2
   );
-  --color-component-colors-button-error-secondary-border_disabled-light-v2: var(
+  --color-CCr-button-error-secondary-border_disabled-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-button-error-secondary-border_disabled-dark-v2: var(
+  --color-CCr-button-error-secondary-border_disabled-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-button-error-primary-bg_loading-light-v2: var(
-    --terracotta-90-v2
-  );
-  --color-component-colors-button-error-primary-bg_loading-dark-v2: var(
-    --terracotta-40-v2
-  );
-  --color-component-colors-icon-button-brand-fg_default-light-v2: var(
-    --pure-mauve-5-v2
-  );
-  --color-component-colors-icon-button-brand-fg_default-dark-v2: var(
-    --pure-mauve-99-v2
-  );
-  --color-component-colors-icon-button-brand-fg_alt-light-v2: var(
-    --neutral-70-v2
-  );
-  --color-component-colors-icon-button-brand-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-icon-button-brand-bg_default-light-v2: var(
-    --pure-mauve-95-v2
-  );
-  --color-component-colors-icon-button-brand-bg_default-dark-v2: var(
-    --pure-mauve-50-v2
-  );
-  --color-component-colors-icon-button-brand-bg_hover-light-v2: var(
-    --pure-mauve-80-v2
-  );
-  --color-component-colors-icon-button-brand-bg_hover-dark-v2: var(
-    --pure-mauve-30-v2
-  );
-  --color-component-colors-icon-button-brand-bg_active-light-v2: var(
-    --pure-mauve-70-v2
-  );
-  --color-component-colors-icon-button-brand-bg_active-dark-v2: var(
-    --pure-mauve-20-v2
-  );
-  --color-component-colors-icon-button-brand-bg_disabled-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-component-colors-icon-button-brand-bg_disabled-dark-v2: var(
+  --color-CCr-button-error-primary-bg_loading-light-v2: var(--terracotta-90-v2);
+  --color-CCr-button-error-primary-bg_loading-dark-v2: var(--terracotta-40-v2);
+  --color-CCr-icon-button-brand-fg_default-light-v2: var(--pure-mauve-5-v2);
+  --color-CCr-icon-button-brand-fg_default-dark-v2: var(--pure-mauve-99-v2);
+  --color-CCr-icon-button-brand-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-icon-button-brand-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-icon-button-brand-bg_default-light-v2: var(--pure-mauve-95-v2);
+  --color-CCr-icon-button-brand-bg_default-dark-v2: var(--pure-mauve-50-v2);
+  --color-CCr-icon-button-brand-bg_hover-light-v2: var(--pure-mauve-80-v2);
+  --color-CCr-icon-button-brand-bg_hover-dark-v2: var(--pure-mauve-30-v2);
+  --color-CCr-icon-button-brand-bg_active-light-v2: var(--pure-mauve-70-v2);
+  --color-CCr-icon-button-brand-bg_active-dark-v2: var(--pure-mauve-20-v2);
+  --color-CCr-icon-button-brand-bg_disabled-light-v2: var(--neutral-95-v2);
+  --color-CCr-icon-button-brand-bg_disabled-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-component-colors-tooltip-fg_default-light-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-tooltip-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-tooltip-bg_default-light-v2: var(
-    --neutral-variant-10-v2
-  );
-  --color-component-colors-tooltip-bg_default-dark-v2: var(
-    --neutral-variant-10-v2
-  );
-  --color-component-colors-tooltip-fg_subtle-light-v2: var(
-    --neutral-variant-80-v2
-  );
-  --color-component-colors-tooltip-fg_subtle-dark-v2: var(
-    --neutral-variant-80-v2
-  );
-  --color-component-colors-tooltip-border-light-v2: var(--basic-none-v2);
-  --color-component-colors-tooltip-border-dark-v2: var(--neutral-variant-20-v2);
-  --color-colors-background-neutral-on-surface-default-light-v2: var(
+  --color-CCr-tooltip-fg_default-light-v2: var(--neutral-variant-100-v2);
+  --color-CCr-tooltip-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-tooltip-bg_default-light-v2: var(--neutral-variant-10-v2);
+  --color-CCr-tooltip-bg_default-dark-v2: var(--neutral-variant-10-v2);
+  --color-CCr-tooltip-fg_subtle-light-v2: var(--neutral-variant-80-v2);
+  --color-CCr-tooltip-fg_subtle-dark-v2: var(--neutral-variant-80-v2);
+  --color-CCr-tooltip-border-light-v2: var(--basic-none-v2);
+  --color-CCr-tooltip-border-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-background-neutral-on-surface-default-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-colors-background-neutral-on-surface-default-dark-v2: var(
+  --color-Cr-background-neutral-on-surface-default-dark-v2: var(
     --opacity-white-5-v2
   );
-  --color-colors-background-normal-tertiary-default-light-v2: var(
-    --neutral-100-v2
-  );
-  --color-colors-background-normal-tertiary-default-dark-v2: var(
+  --color-Cr-background-normal-tertiary-default-light-v2: var(--neutral-100-v2);
+  --color-Cr-background-normal-tertiary-default-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-colors-background-normal-tertiary-hover-light-v2: var(--neutral-98-v2);
-  --color-colors-background-normal-tertiary-hover-dark-v2: var(
+  --color-Cr-background-normal-tertiary-hover-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-normal-tertiary-hover-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-colors-background-normal-tertiary-active-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-colors-background-normal-tertiary-active-dark-v2: var(
+  --color-Cr-background-normal-tertiary-active-light-v2: var(--neutral-95-v2);
+  --color-Cr-background-normal-tertiary-active-dark-v2: var(
     --neutral-variant-50-v2
   );
-  --color-component-colors-button-error-secondary-bg_disabled-light-v2: var(
+  --color-CCr-button-error-secondary-bg_disabled-light-v2: var(
     --terracotta-100-v2
   );
-  --color-component-colors-button-error-secondary-bg_disabled-dark-v2: var(
-    --basic-none-v2
-  );
-  --color-colors-utility-gray-5-light-v2: var(--neutral-variant-98-v2);
-  --color-colors-utility-gray-5-dark-v2: var(--neutral-variant-10-v2);
-  --color-colors-utility-gray-10-light-v2: var(--neutral-variant-95-v2);
-  --color-colors-utility-gray-10-dark-v2: var(--neutral-variant-20-v2);
-  --color-colors-utility-gray-20-light-v2: var(--neutral-variant-90-v2);
-  --color-colors-utility-gray-20-dark-v2: var(--neutral-variant-30-v2);
-  --color-colors-utility-gray-30-light-v2: var(--neutral-variant-80-v2);
-  --color-colors-utility-gray-30-dark-v2: var(--neutral-variant-40-v2);
-  --color-colors-utility-gray-40-light-v2: var(--neutral-variant-70-v2);
-  --color-colors-utility-gray-40-dark-v2: var(--neutral-variant-50-v2);
-  --color-colors-utility-gray-50-light-v2: var(--neutral-variant-60-v2);
-  --color-colors-utility-gray-50-dark-v2: var(--neutral-variant-60-v2);
-  --color-colors-utility-gray-60-light-v2: var(--neutral-variant-50-v2);
-  --color-colors-utility-gray-60-dark-v2: var(--neutral-variant-70-v2);
-  --color-colors-utility-gray-70-light-v2: var(--neutral-variant-40-v2);
-  --color-colors-utility-gray-70-dark-v2: var(--neutral-variant-80-v2);
-  --color-colors-utility-olive-5-light-v2: var(--olive-98-v2);
-  --color-colors-utility-olive-5-dark-v2: var(--olive-10-v2);
-  --color-colors-utility-olive-10-light-v2: var(--olive-95-v2);
-  --color-colors-utility-olive-10-dark-v2: var(--olive-20-v2);
-  --color-colors-utility-olive-20-light-v2: var(--olive-90-v2);
-  --color-colors-utility-olive-20-dark-v2: var(--olive-30-v2);
-  --color-colors-utility-olive-30-light-v2: var(--olive-80-v2);
-  --color-colors-utility-olive-30-dark-v2: var(--olive-40-v2);
-  --color-colors-utility-olive-40-light-v2: var(--olive-70-v2);
-  --color-colors-utility-olive-40-dark-v2: var(--olive-50-v2);
-  --color-colors-utility-olive-50-light-v2: var(--olive-60-v2);
-  --color-colors-utility-olive-50-dark-v2: var(--olive-60-v2);
-  --color-colors-utility-olive-60-light-v2: var(--olive-50-v2);
-  --color-colors-utility-olive-60-dark-v2: var(--olive-70-v2);
-  --color-colors-utility-olive-70-light-v2: var(--olive-40-v2);
-  --color-colors-utility-olive-70-dark-v2: var(--olive-80-v2);
-  --color-colors-utility-teal-5-light-v2: var(--teal-98-v2);
-  --color-colors-utility-teal-5-dark-v2: var(--teal-10-v2);
-  --color-colors-utility-teal-10-light-v2: var(--teal-95-v2);
-  --color-colors-utility-teal-10-dark-v2: var(--teal-20-v2);
-  --color-colors-utility-teal-20-light-v2: var(--teal-90-v2);
-  --color-colors-utility-teal-20-dark-v2: var(--teal-30-v2);
-  --color-colors-utility-teal-30-light-v2: var(--teal-80-v2);
-  --color-colors-utility-teal-30-dark-v2: var(--teal-40-v2);
-  --color-colors-utility-teal-40-light-v2: var(--teal-70-v2);
-  --color-colors-utility-teal-40-dark-v2: var(--teal-50-v2);
-  --color-colors-utility-teal-50-light-v2: var(--teal-60-v2);
-  --color-colors-utility-teal-50-dark-v2: var(--teal-60-v2);
-  --color-colors-utility-teal-60-light-v2: var(--teal-50-v2);
-  --color-colors-utility-teal-60-dark-v2: var(--teal-70-v2);
-  --color-colors-utility-teal-70-light-v2: var(--teal-40-v2);
-  --color-colors-utility-teal-70-dark-v2: var(--teal-80-v2);
-  --color-colors-utility-lake-blue-5-light-v2: var(--lake-blue-98-v2);
-  --color-colors-utility-lake-blue-5-dark-v2: var(--lake-blue-10-v2);
-  --color-colors-utility-lake-blue-10-light-v2: var(--lake-blue-95-v2);
-  --color-colors-utility-lake-blue-10-dark-v2: var(--lake-blue-20-v2);
-  --color-colors-utility-lake-blue-20-light-v2: var(--lake-blue-90-v2);
-  --color-colors-utility-lake-blue-20-dark-v2: var(--lake-blue-30-v2);
-  --color-colors-utility-lake-blue-30-light-v2: var(--lake-blue-80-v2);
-  --color-colors-utility-lake-blue-30-dark-v2: var(--lake-blue-40-v2);
-  --color-colors-utility-lake-blue-40-light-v2: var(--lake-blue-70-v2);
-  --color-colors-utility-lake-blue-40-dark-v2: var(--lake-blue-50-v2);
-  --color-colors-utility-lake-blue-50-light-v2: var(--lake-blue-60-v2);
-  --color-colors-utility-lake-blue-50-dark-v2: var(--lake-blue-60-v2);
-  --color-colors-utility-lake-blue-60-light-v2: var(--lake-blue-50-v2);
-  --color-colors-utility-lake-blue-60-dark-v2: var(--lake-blue-70-v2);
-  --color-colors-utility-lake-blue-70-light-v2: var(--lake-blue-40-v2);
-  --color-colors-utility-lake-blue-70-dark-v2: var(--lake-blue-80-v2);
-  --color-colors-utility-cobalt-5-light-v2: var(--cobalt-98-v2);
-  --color-colors-utility-cobalt-5-dark-v2: var(--cobalt-10-v2);
-  --color-colors-utility-cobalt-10-light-v2: var(--cobalt-95-v2);
-  --color-colors-utility-cobalt-10-dark-v2: var(--cobalt-20-v2);
-  --color-colors-utility-cobalt-20-light-v2: var(--cobalt-90-v2);
-  --color-colors-utility-cobalt-20-dark-v2: var(--cobalt-30-v2);
-  --color-colors-utility-cobalt-30-light-v2: var(--cobalt-80-v2);
-  --color-colors-utility-cobalt-30-dark-v2: var(--cobalt-40-v2);
-  --color-colors-utility-cobalt-40-light-v2: var(--cobalt-70-v2);
-  --color-colors-utility-cobalt-40-dark-v2: var(--cobalt-50-v2);
-  --color-colors-utility-cobalt-50-light-v2: var(--cobalt-60-v2);
-  --color-colors-utility-cobalt-50-dark-v2: var(--cobalt-60-v2);
-  --color-colors-utility-cobalt-60-light-v2: var(--cobalt-50-v2);
-  --color-colors-utility-cobalt-60-dark-v2: var(--cobalt-70-v2);
-  --color-colors-utility-cobalt-70-light-v2: var(--cobalt-40-v2);
-  --color-colors-utility-cobalt-70-dark-v2: var(--cobalt-80-v2);
-  --color-colors-utility-berry-pink-5-light-v2: var(--berry-pink-98-v2);
-  --color-colors-utility-berry-pink-5-dark-v2: var(--berry-pink-10-v2);
-  --color-colors-utility-berry-pink-10-light-v2: var(--berry-pink-95-v2);
-  --color-colors-utility-berry-pink-10-dark-v2: var(--berry-pink-20-v2);
-  --color-colors-utility-berry-pink-20-light-v2: var(--berry-pink-90-v2);
-  --color-colors-utility-berry-pink-20-dark-v2: var(--berry-pink-30-v2);
-  --color-colors-utility-berry-pink-30-light-v2: var(--berry-pink-80-v2);
-  --color-colors-utility-berry-pink-30-dark-v2: var(--berry-pink-40-v2);
-  --color-colors-utility-berry-pink-40-light-v2: var(--berry-pink-70-v2);
-  --color-colors-utility-berry-pink-40-dark-v2: var(--berry-pink-50-v2);
-  --color-colors-utility-berry-pink-50-light-v2: var(--berry-pink-60-v2);
-  --color-colors-utility-berry-pink-50-dark-v2: var(--berry-pink-60-v2);
-  --color-colors-utility-berry-pink-60-light-v2: var(--berry-pink-50-v2);
-  --color-colors-utility-berry-pink-60-dark-v2: var(--berry-pink-70-v2);
-  --color-colors-utility-berry-pink-70-light-v2: var(--berry-pink-40-v2);
-  --color-colors-utility-berry-pink-70-dark-v2: var(--berry-pink-80-v2);
-  --color-colors-utility-terracotta-5-light-v2: var(--terracotta-98-v2);
-  --color-colors-utility-terracotta-5-dark-v2: var(--terracotta-10-v2);
-  --color-colors-utility-terracotta-10-light-v2: var(--terracotta-95-v2);
-  --color-colors-utility-terracotta-10-dark-v2: var(--terracotta-20-v2);
-  --color-colors-utility-terracotta-20-light-v2: var(--terracotta-90-v2);
-  --color-colors-utility-terracotta-20-dark-v2: var(--terracotta-30-v2);
-  --color-colors-utility-terracotta-30-light-v2: var(--terracotta-80-v2);
-  --color-colors-utility-terracotta-30-dark-v2: var(--terracotta-40-v2);
-  --color-colors-utility-terracotta-40-light-v2: var(--terracotta-70-v2);
-  --color-colors-utility-terracotta-40-dark-v2: var(--terracotta-50-v2);
-  --color-colors-utility-terracotta-50-light-v2: var(--terracotta-60-v2);
-  --color-colors-utility-terracotta-50-dark-v2: var(--terracotta-60-v2);
-  --color-colors-utility-terracotta-60-light-v2: var(--terracotta-50-v2);
-  --color-colors-utility-terracotta-60-dark-v2: var(--terracotta-70-v2);
-  --color-colors-utility-terracotta-70-light-v2: var(--terracotta-40-v2);
-  --color-colors-utility-terracotta-70-dark-v2: var(--terracotta-80-v2);
-  --color-colors-utility-ember-5-light-v2: var(--ember-98-v2);
-  --color-colors-utility-ember-5-dark-v2: var(--ember-10-v2);
-  --color-colors-utility-ember-10-light-v2: var(--ember-95-v2);
-  --color-colors-utility-ember-10-dark-v2: var(--ember-20-v2);
-  --color-colors-utility-ember-20-light-v2: var(--ember-90-v2);
-  --color-colors-utility-ember-20-dark-v2: var(--ember-30-v2);
-  --color-colors-utility-ember-30-light-v2: var(--ember-80-v2);
-  --color-colors-utility-ember-30-dark-v2: var(--ember-40-v2);
-  --color-colors-utility-ember-40-light-v2: var(--ember-70-v2);
-  --color-colors-utility-ember-40-dark-v2: var(--ember-50-v2);
-  --color-colors-utility-ember-50-light-v2: var(--ember-60-v2);
-  --color-colors-utility-ember-50-dark-v2: var(--ember-60-v2);
-  --color-colors-utility-ember-60-light-v2: var(--ember-50-v2);
-  --color-colors-utility-ember-60-dark-v2: var(--ember-70-v2);
-  --color-colors-utility-ember-70-light-v2: var(--ember-40-v2);
-  --color-colors-utility-ember-70-dark-v2: var(--ember-80-v2);
-  --color-colors-utility-khaki-5-light-v2: var(--khaki-98-v2);
-  --color-colors-utility-khaki-5-dark-v2: var(--khaki-10-v2);
-  --color-colors-utility-khaki-10-light-v2: var(--khaki-95-v2);
-  --color-colors-utility-khaki-10-dark-v2: var(--khaki-20-v2);
-  --color-colors-utility-khaki-20-light-v2: var(--khaki-90-v2);
-  --color-colors-utility-khaki-20-dark-v2: var(--khaki-30-v2);
-  --color-colors-utility-khaki-30-light-v2: var(--khaki-80-v2);
-  --color-colors-utility-khaki-30-dark-v2: var(--khaki-40-v2);
-  --color-colors-utility-khaki-40-light-v2: var(--khaki-70-v2);
-  --color-colors-utility-khaki-40-dark-v2: var(--khaki-50-v2);
-  --color-colors-utility-khaki-50-light-v2: var(--khaki-60-v2);
-  --color-colors-utility-khaki-50-dark-v2: var(--khaki-60-v2);
-  --color-colors-utility-khaki-60-light-v2: var(--khaki-50-v2);
-  --color-colors-utility-khaki-60-dark-v2: var(--khaki-70-v2);
-  --color-colors-utility-khaki-70-light-v2: var(--khaki-40-v2);
-  --color-colors-utility-khaki-70-dark-v2: var(--khaki-80-v2);
-  --color-colors-background-brand-subtle-light-v2: var(--pure-mauve-98-v2);
-  --color-colors-background-brand-subtle-dark-v2: var(--pure-mauve-10-v2);
-  --color-colors-background-critical-subtle-light-v2: var(--terracotta-98-v2);
-  --color-colors-background-critical-subtle-dark-v2: var(--terracotta-10-v2);
-  --color-colors-background-warning-subtle-light-v2: var(--khaki-98-v2);
-  --color-colors-background-warning-subtle-dark-v2: var(--khaki-10-v2);
-  --color-colors-background-warning-default-light-v2: var(--khaki-95-v2);
-  --color-colors-background-warning-default-dark-v2: var(--khaki-20-v2);
-  --color-colors-background-warning-hover-light-v2: var(--khaki-90-v2);
-  --color-colors-background-warning-hover-dark-v2: var(--khaki-30-v2);
-  --color-colors-background-warning-active-light-v2: var(--khaki-80-v2);
-  --color-colors-background-warning-active-dark-v2: var(--khaki-40-v2);
-  --color-colors-background-warning-bolder-light-v2: var(--khaki-30-v2);
-  --color-colors-background-warning-bolder-dark-v2: var(--khaki-80-v2);
-  --color-colors-background-success-subtle-light-v2: var(--teal-99-v2);
-  --color-colors-background-success-subtle-dark-v2: var(--teal-10-v2);
-  --color-colors-background-success-default-light-v2: var(--teal-98-v2);
-  --color-colors-background-success-default-dark-v2: var(--teal-20-v2);
-  --color-colors-background-success-hover-light-v2: var(--teal-90-v2);
-  --color-colors-background-success-hover-dark-v2: var(--teal-30-v2);
-  --color-colors-background-success-active-light-v2: var(--teal-80-v2);
-  --color-colors-background-success-active-dark-v2: var(--teal-40-v2);
-  --color-colors-background-success-bolder-light-v2: var(--teal-30-v2);
-  --color-colors-background-success-bolder-dark-v2: var(--teal-80-v2);
-  --color-colors-background-info-subtle-light-v2: var(--lake-blue-98-v2);
-  --color-colors-background-info-subtle-dark-v2: var(--lake-blue-10-v2);
-  --color-colors-alpha-white-16-light-v2: var(--opacity-white-16-v2);
-  --color-colors-alpha-white-16-dark-v2: var(--opacity-black-16-v2);
-  --color-colors-alpha-white-95-light-v2: var(--opacity-white-95-v2);
-  --color-colors-alpha-white-95-dark-v2: var(--opacity-black-95-v2);
-  --color-colors-alpha-black-16-light-v2: var(--opacity-black-16-v2);
-  --color-colors-alpha-black-16-dark-v2: var(--opacity-white-16-v2);
-  --color-colors-alpha-black-95-light-v2: var(--opacity-black-95-v2);
-  --color-colors-alpha-black-95-dark-v2: var(--opacity-white-95-v2);
-  --color-colors-beta-white-16-light-v2: var(--opacity-white-16-v2);
-  --color-colors-beta-white-16-dark-v2: var(--opacity-white-16-v2);
-  --color-colors-beta-white-95-light-v2: var(--opacity-white-95-v2);
-  --color-colors-beta-white-95-dark-v2: var(--opacity-white-95-v2);
-  --color-colors-beta-black-16-light-v2: var(--opacity-black-16-v2);
-  --color-colors-beta-black-16-dark-v2: var(--opacity-black-16-v2);
-  --color-colors-beta-black-95-light-v2: var(--opacity-black-95-v2);
-  --color-colors-beta-black-95-dark-v2: var(--opacity-black-95-v2);
-  --color-colors-text-bolder-light-v2: var(--neutral-100-v2);
-  --color-colors-text-bolder-dark-v2: var(--neutral-variant-5-v2);
-  --color-colors-foreground-bolder-light-v2: var(--neutral-100-v2);
-  --color-colors-foreground-bolder-dark-v2: var(--neutral-variant-5-v2);
-  --color-colors-border-bolder-light-v2: var(--neutral-5-v2);
-  --color-colors-border-bolder-dark-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-tabbar-bg_select-light-v2: var(--neutral-100-v2);
-  --color-component-colors-tabbar-bg_select-dark-v2: var(
-    --neutral-variant-30-v2
-  );
-  --color-component-colors-tabbar-bg_default-light-v2: var(--neutral-98-v2);
-  --color-component-colors-tabbar-bg_default-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-tabbar-fg_default-light-v2: var(--neutral-60-v2);
-  --color-component-colors-tabbar-fg_default-dark-v2: var(
-    --neutral-variant-70-v2
-  );
-  --color-component-colors-tabbar-fg_bolder-light-v2: var(--neutral-5-v2);
-  --color-component-colors-tabbar-fg_bolder-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-tabbar-fg_disabled-light-v2: var(--neutral-90-v2);
-  --color-component-colors-tabbar-fg_disabled-dark-v2: var(
-    --neutral-variant-30-v2
-  );
-  --color-component-colors-tabbar-border-light-v2: var(--neutral-5-v2);
-  --color-component-colors-tabbar-border-dark-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-tabbar-border_disabled-light-v2: var(--neutral-95-v2);
-  --color-component-colors-tabbar-border_disabled-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-tabbar-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-tabbar-fg_alt-dark-v2: var(--neutral-variant-50-v2);
-  --color-component-colors-energy-fg_default-light-v2: var(--khaki-40-v2);
-  --color-component-colors-energy-fg_default-dark-v2: var(--khaki-90-v2);
-  --color-component-colors-energy-bg_default-light-v2: var(--khaki-99-v2);
-  --color-component-colors-energy-bg_default-dark-v2: var(--khaki-10-v2);
-  --color-component-colors-energy-border-light-v2: var(--khaki-80-v2);
-  --color-component-colors-energy-border-dark-v2: var(--khaki-60-v2);
-  --color-component-colors-energy-bg_alt-light-v2: var(--khaki-95-v2);
-  --color-component-colors-energy-bg_alt-dark-v2: var(--khaki-20-v2);
-  --color-component-colors-energy-bg_on-light-v2: var(--khaki-90-v2);
-  --color-component-colors-energy-bg_on-dark-v2: var(--khaki-60-v2);
-  --color-component-colors-icon-featured-icon-fg_info-light-v2: var(
-    --lake-blue-50-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_info-dark-v2: var(
-    --lake-blue-70-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_success-light-v2: var(
-    --teal-50-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_success-dark-v2: var(
-    --teal-70-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_warning-light-v2: var(
-    --khaki-60-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_warning-dark-v2: var(
-    --khaki-70-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_error-light-v2: var(
-    --terracotta-50-v2
-  );
-  --color-component-colors-icon-featured-icon-fg_error-dark-v2: var(
-    --terracotta-70-v2
-  );
-  --color-component-colors-search-bar-bg_default-light-v2: var(
-    --opacity-on-surface-10-v2
-  );
-  --color-component-colors-search-bar-bg_default-dark-v2: var(
-    --opacity-white-5-v2
-  );
-  --color-component-colors-search-bar-bg_hover-light-v2: var(
+  --color-CCr-button-error-secondary-bg_disabled-dark-v2: var(--basic-none-v2);
+  --color-Cr-utility-gray-5-light-v2: var(--neutral-variant-98-v2);
+  --color-Cr-utility-gray-5-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-utility-gray-10-light-v2: var(--neutral-variant-95-v2);
+  --color-Cr-utility-gray-10-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-utility-gray-20-light-v2: var(--neutral-variant-90-v2);
+  --color-Cr-utility-gray-20-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-utility-gray-30-light-v2: var(--neutral-variant-80-v2);
+  --color-Cr-utility-gray-30-dark-v2: var(--neutral-variant-40-v2);
+  --color-Cr-utility-gray-40-light-v2: var(--neutral-variant-70-v2);
+  --color-Cr-utility-gray-40-dark-v2: var(--neutral-variant-50-v2);
+  --color-Cr-utility-gray-50-light-v2: var(--neutral-variant-60-v2);
+  --color-Cr-utility-gray-50-dark-v2: var(--neutral-variant-60-v2);
+  --color-Cr-utility-gray-60-light-v2: var(--neutral-variant-50-v2);
+  --color-Cr-utility-gray-60-dark-v2: var(--neutral-variant-70-v2);
+  --color-Cr-utility-gray-70-light-v2: var(--neutral-variant-40-v2);
+  --color-Cr-utility-gray-70-dark-v2: var(--neutral-variant-80-v2);
+  --color-Cr-utility-olive-5-light-v2: var(--olive-98-v2);
+  --color-Cr-utility-olive-5-dark-v2: var(--olive-10-v2);
+  --color-Cr-utility-olive-10-light-v2: var(--olive-95-v2);
+  --color-Cr-utility-olive-10-dark-v2: var(--olive-20-v2);
+  --color-Cr-utility-olive-20-light-v2: var(--olive-90-v2);
+  --color-Cr-utility-olive-20-dark-v2: var(--olive-30-v2);
+  --color-Cr-utility-olive-30-light-v2: var(--olive-80-v2);
+  --color-Cr-utility-olive-30-dark-v2: var(--olive-40-v2);
+  --color-Cr-utility-olive-40-light-v2: var(--olive-70-v2);
+  --color-Cr-utility-olive-40-dark-v2: var(--olive-50-v2);
+  --color-Cr-utility-olive-50-light-v2: var(--olive-60-v2);
+  --color-Cr-utility-olive-50-dark-v2: var(--olive-60-v2);
+  --color-Cr-utility-olive-60-light-v2: var(--olive-50-v2);
+  --color-Cr-utility-olive-60-dark-v2: var(--olive-70-v2);
+  --color-Cr-utility-olive-70-light-v2: var(--olive-40-v2);
+  --color-Cr-utility-olive-70-dark-v2: var(--olive-80-v2);
+  --color-Cr-utility-teal-5-light-v2: var(--teal-98-v2);
+  --color-Cr-utility-teal-5-dark-v2: var(--teal-10-v2);
+  --color-Cr-utility-teal-10-light-v2: var(--teal-95-v2);
+  --color-Cr-utility-teal-10-dark-v2: var(--teal-20-v2);
+  --color-Cr-utility-teal-20-light-v2: var(--teal-90-v2);
+  --color-Cr-utility-teal-20-dark-v2: var(--teal-30-v2);
+  --color-Cr-utility-teal-30-light-v2: var(--teal-80-v2);
+  --color-Cr-utility-teal-30-dark-v2: var(--teal-40-v2);
+  --color-Cr-utility-teal-40-light-v2: var(--teal-70-v2);
+  --color-Cr-utility-teal-40-dark-v2: var(--teal-50-v2);
+  --color-Cr-utility-teal-50-light-v2: var(--teal-60-v2);
+  --color-Cr-utility-teal-50-dark-v2: var(--teal-60-v2);
+  --color-Cr-utility-teal-60-light-v2: var(--teal-50-v2);
+  --color-Cr-utility-teal-60-dark-v2: var(--teal-70-v2);
+  --color-Cr-utility-teal-70-light-v2: var(--teal-40-v2);
+  --color-Cr-utility-teal-70-dark-v2: var(--teal-80-v2);
+  --color-Cr-utility-lake-blue-5-light-v2: var(--lake-blue-98-v2);
+  --color-Cr-utility-lake-blue-5-dark-v2: var(--lake-blue-10-v2);
+  --color-Cr-utility-lake-blue-10-light-v2: var(--lake-blue-95-v2);
+  --color-Cr-utility-lake-blue-10-dark-v2: var(--lake-blue-20-v2);
+  --color-Cr-utility-lake-blue-20-light-v2: var(--lake-blue-90-v2);
+  --color-Cr-utility-lake-blue-20-dark-v2: var(--lake-blue-30-v2);
+  --color-Cr-utility-lake-blue-30-light-v2: var(--lake-blue-80-v2);
+  --color-Cr-utility-lake-blue-30-dark-v2: var(--lake-blue-40-v2);
+  --color-Cr-utility-lake-blue-40-light-v2: var(--lake-blue-70-v2);
+  --color-Cr-utility-lake-blue-40-dark-v2: var(--lake-blue-50-v2);
+  --color-Cr-utility-lake-blue-50-light-v2: var(--lake-blue-60-v2);
+  --color-Cr-utility-lake-blue-50-dark-v2: var(--lake-blue-60-v2);
+  --color-Cr-utility-lake-blue-60-light-v2: var(--lake-blue-50-v2);
+  --color-Cr-utility-lake-blue-60-dark-v2: var(--lake-blue-70-v2);
+  --color-Cr-utility-lake-blue-70-light-v2: var(--lake-blue-40-v2);
+  --color-Cr-utility-lake-blue-70-dark-v2: var(--lake-blue-80-v2);
+  --color-Cr-utility-cobalt-5-light-v2: var(--cobalt-98-v2);
+  --color-Cr-utility-cobalt-5-dark-v2: var(--cobalt-10-v2);
+  --color-Cr-utility-cobalt-10-light-v2: var(--cobalt-95-v2);
+  --color-Cr-utility-cobalt-10-dark-v2: var(--cobalt-20-v2);
+  --color-Cr-utility-cobalt-20-light-v2: var(--cobalt-90-v2);
+  --color-Cr-utility-cobalt-20-dark-v2: var(--cobalt-30-v2);
+  --color-Cr-utility-cobalt-30-light-v2: var(--cobalt-80-v2);
+  --color-Cr-utility-cobalt-30-dark-v2: var(--cobalt-40-v2);
+  --color-Cr-utility-cobalt-40-light-v2: var(--cobalt-70-v2);
+  --color-Cr-utility-cobalt-40-dark-v2: var(--cobalt-50-v2);
+  --color-Cr-utility-cobalt-50-light-v2: var(--cobalt-60-v2);
+  --color-Cr-utility-cobalt-50-dark-v2: var(--cobalt-60-v2);
+  --color-Cr-utility-cobalt-60-light-v2: var(--cobalt-50-v2);
+  --color-Cr-utility-cobalt-60-dark-v2: var(--cobalt-70-v2);
+  --color-Cr-utility-cobalt-70-light-v2: var(--cobalt-40-v2);
+  --color-Cr-utility-cobalt-70-dark-v2: var(--cobalt-80-v2);
+  --color-Cr-utility-berry-pink-5-light-v2: var(--berry-pink-98-v2);
+  --color-Cr-utility-berry-pink-5-dark-v2: var(--berry-pink-10-v2);
+  --color-Cr-utility-berry-pink-10-light-v2: var(--berry-pink-95-v2);
+  --color-Cr-utility-berry-pink-10-dark-v2: var(--berry-pink-20-v2);
+  --color-Cr-utility-berry-pink-20-light-v2: var(--berry-pink-90-v2);
+  --color-Cr-utility-berry-pink-20-dark-v2: var(--berry-pink-30-v2);
+  --color-Cr-utility-berry-pink-30-light-v2: var(--berry-pink-80-v2);
+  --color-Cr-utility-berry-pink-30-dark-v2: var(--berry-pink-40-v2);
+  --color-Cr-utility-berry-pink-40-light-v2: var(--berry-pink-70-v2);
+  --color-Cr-utility-berry-pink-40-dark-v2: var(--berry-pink-50-v2);
+  --color-Cr-utility-berry-pink-50-light-v2: var(--berry-pink-60-v2);
+  --color-Cr-utility-berry-pink-50-dark-v2: var(--berry-pink-60-v2);
+  --color-Cr-utility-berry-pink-60-light-v2: var(--berry-pink-50-v2);
+  --color-Cr-utility-berry-pink-60-dark-v2: var(--berry-pink-70-v2);
+  --color-Cr-utility-berry-pink-70-light-v2: var(--berry-pink-40-v2);
+  --color-Cr-utility-berry-pink-70-dark-v2: var(--berry-pink-80-v2);
+  --color-Cr-utility-terracotta-5-light-v2: var(--terracotta-98-v2);
+  --color-Cr-utility-terracotta-5-dark-v2: var(--terracotta-10-v2);
+  --color-Cr-utility-terracotta-10-light-v2: var(--terracotta-95-v2);
+  --color-Cr-utility-terracotta-10-dark-v2: var(--terracotta-20-v2);
+  --color-Cr-utility-terracotta-20-light-v2: var(--terracotta-90-v2);
+  --color-Cr-utility-terracotta-20-dark-v2: var(--terracotta-30-v2);
+  --color-Cr-utility-terracotta-30-light-v2: var(--terracotta-80-v2);
+  --color-Cr-utility-terracotta-30-dark-v2: var(--terracotta-40-v2);
+  --color-Cr-utility-terracotta-40-light-v2: var(--terracotta-70-v2);
+  --color-Cr-utility-terracotta-40-dark-v2: var(--terracotta-50-v2);
+  --color-Cr-utility-terracotta-50-light-v2: var(--terracotta-60-v2);
+  --color-Cr-utility-terracotta-50-dark-v2: var(--terracotta-60-v2);
+  --color-Cr-utility-terracotta-60-light-v2: var(--terracotta-50-v2);
+  --color-Cr-utility-terracotta-60-dark-v2: var(--terracotta-70-v2);
+  --color-Cr-utility-terracotta-70-light-v2: var(--terracotta-40-v2);
+  --color-Cr-utility-terracotta-70-dark-v2: var(--terracotta-80-v2);
+  --color-Cr-utility-ember-5-light-v2: var(--ember-98-v2);
+  --color-Cr-utility-ember-5-dark-v2: var(--ember-10-v2);
+  --color-Cr-utility-ember-10-light-v2: var(--ember-95-v2);
+  --color-Cr-utility-ember-10-dark-v2: var(--ember-20-v2);
+  --color-Cr-utility-ember-20-light-v2: var(--ember-90-v2);
+  --color-Cr-utility-ember-20-dark-v2: var(--ember-30-v2);
+  --color-Cr-utility-ember-30-light-v2: var(--ember-80-v2);
+  --color-Cr-utility-ember-30-dark-v2: var(--ember-40-v2);
+  --color-Cr-utility-ember-40-light-v2: var(--ember-70-v2);
+  --color-Cr-utility-ember-40-dark-v2: var(--ember-50-v2);
+  --color-Cr-utility-ember-50-light-v2: var(--ember-60-v2);
+  --color-Cr-utility-ember-50-dark-v2: var(--ember-60-v2);
+  --color-Cr-utility-ember-60-light-v2: var(--ember-50-v2);
+  --color-Cr-utility-ember-60-dark-v2: var(--ember-70-v2);
+  --color-Cr-utility-ember-70-light-v2: var(--ember-40-v2);
+  --color-Cr-utility-ember-70-dark-v2: var(--ember-80-v2);
+  --color-Cr-utility-khaki-5-light-v2: var(--khaki-98-v2);
+  --color-Cr-utility-khaki-5-dark-v2: var(--khaki-10-v2);
+  --color-Cr-utility-khaki-10-light-v2: var(--khaki-95-v2);
+  --color-Cr-utility-khaki-10-dark-v2: var(--khaki-20-v2);
+  --color-Cr-utility-khaki-20-light-v2: var(--khaki-90-v2);
+  --color-Cr-utility-khaki-20-dark-v2: var(--khaki-30-v2);
+  --color-Cr-utility-khaki-30-light-v2: var(--khaki-80-v2);
+  --color-Cr-utility-khaki-30-dark-v2: var(--khaki-40-v2);
+  --color-Cr-utility-khaki-40-light-v2: var(--khaki-70-v2);
+  --color-Cr-utility-khaki-40-dark-v2: var(--khaki-50-v2);
+  --color-Cr-utility-khaki-50-light-v2: var(--khaki-60-v2);
+  --color-Cr-utility-khaki-50-dark-v2: var(--khaki-60-v2);
+  --color-Cr-utility-khaki-60-light-v2: var(--khaki-50-v2);
+  --color-Cr-utility-khaki-60-dark-v2: var(--khaki-70-v2);
+  --color-Cr-utility-khaki-70-light-v2: var(--khaki-40-v2);
+  --color-Cr-utility-khaki-70-dark-v2: var(--khaki-80-v2);
+  --color-Cr-background-brand-subtle-light-v2: var(--pure-mauve-98-v2);
+  --color-Cr-background-brand-subtle-dark-v2: var(--pure-mauve-10-v2);
+  --color-Cr-background-critical-subtle-light-v2: var(--terracotta-98-v2);
+  --color-Cr-background-critical-subtle-dark-v2: var(--terracotta-10-v2);
+  --color-Cr-background-warning-subtle-light-v2: var(--khaki-98-v2);
+  --color-Cr-background-warning-subtle-dark-v2: var(--khaki-10-v2);
+  --color-Cr-background-warning-default-light-v2: var(--khaki-95-v2);
+  --color-Cr-background-warning-default-dark-v2: var(--khaki-20-v2);
+  --color-Cr-background-warning-hover-light-v2: var(--khaki-90-v2);
+  --color-Cr-background-warning-hover-dark-v2: var(--khaki-30-v2);
+  --color-Cr-background-warning-active-light-v2: var(--khaki-80-v2);
+  --color-Cr-background-warning-active-dark-v2: var(--khaki-40-v2);
+  --color-Cr-background-warning-bolder-light-v2: var(--khaki-30-v2);
+  --color-Cr-background-warning-bolder-dark-v2: var(--khaki-80-v2);
+  --color-Cr-background-success-subtle-light-v2: var(--teal-99-v2);
+  --color-Cr-background-success-subtle-dark-v2: var(--teal-10-v2);
+  --color-Cr-background-success-default-light-v2: var(--teal-98-v2);
+  --color-Cr-background-success-default-dark-v2: var(--teal-20-v2);
+  --color-Cr-background-success-hover-light-v2: var(--teal-90-v2);
+  --color-Cr-background-success-hover-dark-v2: var(--teal-30-v2);
+  --color-Cr-background-success-active-light-v2: var(--teal-80-v2);
+  --color-Cr-background-success-active-dark-v2: var(--teal-40-v2);
+  --color-Cr-background-success-bolder-light-v2: var(--teal-30-v2);
+  --color-Cr-background-success-bolder-dark-v2: var(--teal-80-v2);
+  --color-Cr-background-info-subtle-light-v2: var(--lake-blue-98-v2);
+  --color-Cr-background-info-subtle-dark-v2: var(--lake-blue-10-v2);
+  --color-Cr-alpha-white-16-light-v2: var(--opacity-white-16-v2);
+  --color-Cr-alpha-white-16-dark-v2: var(--opacity-black-16-v2);
+  --color-Cr-alpha-white-95-light-v2: var(--opacity-white-95-v2);
+  --color-Cr-alpha-white-95-dark-v2: var(--opacity-black-95-v2);
+  --color-Cr-alpha-black-16-light-v2: var(--opacity-black-16-v2);
+  --color-Cr-alpha-black-16-dark-v2: var(--opacity-white-16-v2);
+  --color-Cr-alpha-black-95-light-v2: var(--opacity-black-95-v2);
+  --color-Cr-alpha-black-95-dark-v2: var(--opacity-white-95-v2);
+  --color-Cr-beta-white-16-light-v2: var(--opacity-white-16-v2);
+  --color-Cr-beta-white-16-dark-v2: var(--opacity-white-16-v2);
+  --color-Cr-beta-white-95-light-v2: var(--opacity-white-95-v2);
+  --color-Cr-beta-white-95-dark-v2: var(--opacity-white-95-v2);
+  --color-Cr-beta-black-16-light-v2: var(--opacity-black-16-v2);
+  --color-Cr-beta-black-16-dark-v2: var(--opacity-black-16-v2);
+  --color-Cr-beta-black-95-light-v2: var(--opacity-black-95-v2);
+  --color-Cr-beta-black-95-dark-v2: var(--opacity-black-95-v2);
+  --color-Cr-text-bolder-light-v2: var(--neutral-100-v2);
+  --color-Cr-text-bolder-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-foreground-bolder-light-v2: var(--neutral-100-v2);
+  --color-Cr-foreground-bolder-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-border-bolder-light-v2: var(--neutral-5-v2);
+  --color-Cr-border-bolder-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-tabbar-bg_select-light-v2: var(--neutral-100-v2);
+  --color-CCr-tabbar-bg_select-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-tabbar-bg_default-light-v2: var(--neutral-98-v2);
+  --color-CCr-tabbar-bg_default-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-tabbar-fg_default-light-v2: var(--neutral-60-v2);
+  --color-CCr-tabbar-fg_default-dark-v2: var(--neutral-variant-70-v2);
+  --color-CCr-tabbar-fg_bolder-light-v2: var(--neutral-5-v2);
+  --color-CCr-tabbar-fg_bolder-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-tabbar-fg_disabled-light-v2: var(--neutral-90-v2);
+  --color-CCr-tabbar-fg_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-tabbar-border-light-v2: var(--neutral-5-v2);
+  --color-CCr-tabbar-border-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-tabbar-border_disabled-light-v2: var(--neutral-95-v2);
+  --color-CCr-tabbar-border_disabled-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-tabbar-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-tabbar-fg_alt-dark-v2: var(--neutral-variant-50-v2);
+  --color-CCr-energy-fg_default-light-v2: var(--khaki-40-v2);
+  --color-CCr-energy-fg_default-dark-v2: var(--khaki-90-v2);
+  --color-CCr-energy-bg_default-light-v2: var(--khaki-99-v2);
+  --color-CCr-energy-bg_default-dark-v2: var(--khaki-10-v2);
+  --color-CCr-energy-border-light-v2: var(--khaki-80-v2);
+  --color-CCr-energy-border-dark-v2: var(--khaki-60-v2);
+  --color-CCr-energy-bg_alt-light-v2: var(--khaki-95-v2);
+  --color-CCr-energy-bg_alt-dark-v2: var(--khaki-20-v2);
+  --color-CCr-energy-bg_on-light-v2: var(--khaki-90-v2);
+  --color-CCr-energy-bg_on-dark-v2: var(--khaki-60-v2);
+  --color-CCr-icon-featured-icon-fg_info-light-v2: var(--lake-blue-50-v2);
+  --color-CCr-icon-featured-icon-fg_info-dark-v2: var(--lake-blue-70-v2);
+  --color-CCr-icon-featured-icon-fg_success-light-v2: var(--teal-50-v2);
+  --color-CCr-icon-featured-icon-fg_success-dark-v2: var(--teal-70-v2);
+  --color-CCr-icon-featured-icon-fg_warning-light-v2: var(--khaki-60-v2);
+  --color-CCr-icon-featured-icon-fg_warning-dark-v2: var(--khaki-70-v2);
+  --color-CCr-icon-featured-icon-fg_error-light-v2: var(--terracotta-50-v2);
+  --color-CCr-icon-featured-icon-fg_error-dark-v2: var(--terracotta-70-v2);
+  --color-CCr-search-bar-bg_default-light-v2: var(--opacity-on-surface-10-v2);
+  --color-CCr-search-bar-bg_default-dark-v2: var(--opacity-white-5-v2);
+  --color-CCr-search-bar-bg_hover-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-search-bar-bg_hover-dark-v2: var(--opacity-white-12-v2);
+  --color-CCr-search-bar-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-search-bar-border-dark-v2: var(--opacity-white-12-v2);
+  --color-Cr-utility-purple-5-light-v2: var(--pure-mauve-99-v2);
+  --color-Cr-utility-purple-5-dark-v2: var(--pure-mauve-10-v2);
+  --color-Cr-utility-purple-10-light-v2: var(--pure-mauve-98-v2);
+  --color-Cr-utility-purple-10-dark-v2: var(--pure-mauve-20-v2);
+  --color-Cr-utility-purple-20-light-v2: var(--pure-mauve-95-v2);
+  --color-Cr-utility-purple-20-dark-v2: var(--pure-mauve-30-v2);
+  --color-Cr-utility-purple-30-light-v2: var(--pure-mauve-90-v2);
+  --color-Cr-utility-purple-30-dark-v2: var(--pure-mauve-40-v2);
+  --color-Cr-utility-purple-40-light-v2: var(--pure-mauve-80-v2);
+  --color-Cr-utility-purple-40-dark-v2: var(--pure-mauve-60-v2);
+  --color-Cr-utility-purple-50-light-v2: var(--pure-mauve-70-v2);
+  --color-Cr-utility-purple-50-dark-v2: var(--pure-mauve-70-v2);
+  --color-Cr-utility-purple-60-light-v2: var(--pure-mauve-60-v2);
+  --color-Cr-utility-purple-60-dark-v2: var(--pure-mauve-80-v2);
+  --color-Cr-utility-purple-70-light-v2: var(--pure-mauve-50-v2);
+  --color-Cr-utility-purple-70-dark-v2: var(--pure-mauve-95-v2);
+  --color-Cr-border-brand_alt-light-v2: var(--pure-mauve-80-v2);
+  --color-Cr-border-brand_alt-dark-v2: var(--pure-mauve-40-v2);
+  --color-CCr-switch-fg_default-light-v2: var(--neutral-variant-100-v2);
+  --color-CCr-switch-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-switch-bg_default-light-v2: var(--neutral-variant-90-v2);
+  --color-CCr-switch-bg_default-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-switch-bg_on-light-v2: var(--neutral-variant-5-v2);
+  --color-CCr-switch-bg_on-dark-v2: var(--pure-mauve-60-v2);
+  --color-CCr-switch-bg_disabled-light-v2: var(--neutral-variant-95-v2);
+  --color-CCr-switch-bg_disabled-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-switch-fg_on-light-v2: var(--neutral-variant-100-v2);
+  --color-CCr-switch-fg_on-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-switch-fg_disabled-light-v2: var(--opacity-white-60-v2);
+  --color-CCr-switch-fg_disabled-dark-v2: var(--opacity-white-30-v2);
+  --color-Cr-utility-gray-80-light-v2: var(--neutral-variant-30-v2);
+  --color-Cr-utility-gray-80-dark-v2: var(--neutral-variant-90-v2);
+  --color-Cr-utility-olive-80-light-v2: var(--olive-30-v2);
+  --color-Cr-utility-olive-80-dark-v2: var(--olive-90-v2);
+  --color-Cr-utility-teal-80-light-v2: var(--teal-30-v2);
+  --color-Cr-utility-teal-80-dark-v2: var(--teal-90-v2);
+  --color-Cr-utility-lake-blue-80-light-v2: var(--lake-blue-30-v2);
+  --color-Cr-utility-lake-blue-80-dark-v2: var(--lake-blue-90-v2);
+  --color-Cr-utility-cobalt-80-light-v2: var(--cobalt-30-v2);
+  --color-Cr-utility-cobalt-80-dark-v2: var(--cobalt-90-v2);
+  --color-Cr-utility-berry-pink-80-light-v2: var(--berry-pink-30-v2);
+  --color-Cr-utility-berry-pink-80-dark-v2: var(--berry-pink-90-v2);
+  --color-Cr-utility-terracotta-80-light-v2: var(--terracotta-30-v2);
+  --color-Cr-utility-terracotta-80-dark-v2: var(--terracotta-90-v2);
+  --color-Cr-utility-ember-80-light-v2: var(--ember-30-v2);
+  --color-Cr-utility-ember-80-dark-v2: var(--ember-90-v2);
+  --color-Cr-utility-khaki-80-light-v2: var(--khaki-30-v2);
+  --color-Cr-utility-khaki-80-dark-v2: var(--khaki-90-v2);
+  --color-Cr-utility-purple-80-light-v2: var(--pure-mauve-40-v2);
+  --color-Cr-utility-purple-80-dark-v2: var(--pure-mauve-98-v2);
+  --color-Cr-background-warning-alt-light-v2: var(--khaki-95-v2);
+  --color-Cr-background-warning-alt-dark-v2: var(--khaki-50-v2);
+  --color-Cr-background-brand-alt-light-v2: var(--pure-mauve-95-v2);
+  --color-Cr-background-brand-alt-dark-v2: var(--pure-mauve-50-v2);
+  --color-Cr-background-critical-alt-light-v2: var(--terracotta-95-v2);
+  --color-Cr-background-critical-alt-dark-v2: var(--terracotta-50-v2);
+  --color-Cr-background-success-alt-light-v2: var(--teal-98-v2);
+  --color-Cr-background-success-alt-dark-v2: var(--teal-50-v2);
+  --color-Cr-background-info-alt-light-v2: var(--lake-blue-95-v2);
+  --color-Cr-background-info-alt-dark-v2: var(--lake-blue-50-v2);
+  --color-CCr-chat-tips-bg_info-light-v2: var(--pure-mauve-99-v2);
+  --color-CCr-chat-tips-bg_info-dark-v2: var(--pure-mauve-10-v2);
+  --color-CCr-chat-tips-border_info-light-v2: var(--pure-mauve-80-v2);
+  --color-CCr-chat-tips-border_info-dark-v2: var(--pure-mauve-40-v2);
+  --color-CCr-chat-tips-fg_info-light-v2: var(--pure-mauve-50-v2);
+  --color-CCr-chat-tips-fg_info-dark-v2: var(--pure-mauve-70-v2);
+  --color-CCr-check-box-fg_default-light-v2: var(--neutral-100-v2);
+  --color-CCr-check-box-fg_default-dark-v2: var(--neutral-variant-5-v2);
+  --color-CCr-check-box-fg_alt-light-v2: var(--neutral-80-v2);
+  --color-CCr-check-box-fg_alt-dark-v2: var(--neutral-variant-50-v2);
+  --color-CCr-check-box-border-light-v2: var(--neutral-90-v2);
+  --color-CCr-check-box-border-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-check-box-border_hover-light-v2: var(--neutral-80-v2);
+  --color-CCr-check-box-border_hover-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-check-box-border_disabled-light-v2: var(--neutral-95-v2);
+  --color-CCr-check-box-border_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-check-box-bg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-check-box-bg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-check-box-bg_hover-light-v2: var(--neutral-30-v2);
+  --color-CCr-check-box-bg_hover-dark-v2: var(--neutral-variant-90-v2);
+  --color-CCr-check-box-bg_disabled-light-v2: var(--neutral-99-v2);
+  --color-CCr-check-box-bg_disabled-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-chat-tips-fg_alert-light-v2: var(--khaki-70-v2);
+  --color-CCr-chat-tips-fg_alert-dark-v2: var(--khaki-70-v2);
+  --color-CCr-chat-tips-bg_alert-light-v2: var(--khaki-98-v2);
+  --color-CCr-chat-tips-bg_alert-dark-v2: var(--khaki-10-v2);
+  --color-CCr-chat-tips-border_alert-light-v2: var(--khaki-80-v2);
+  --color-CCr-chat-tips-border_alert-dark-v2: var(--khaki-40-v2);
+  --color-CCr-chat-tips-fg_error-light-v2: var(--terracotta-50-v2);
+  --color-CCr-chat-tips-fg_error-dark-v2: var(--terracotta-70-v2);
+  --color-CCr-chat-tips-bg_error-light-v2: var(--terracotta-98-v2);
+  --color-CCr-chat-tips-bg_error-dark-v2: var(--terracotta-10-v2);
+  --color-CCr-chat-tips-border_error-light-v2: var(--terracotta-80-v2);
+  --color-CCr-chat-tips-border_error-dark-v2: var(--terracotta-30-v2);
+  --color-Cr-background-neutral-on-surface-hover-light-v2: var(
     --opacity-on-surface-20-v2
   );
-  --color-component-colors-search-bar-bg_hover-dark-v2: var(
+  --color-Cr-background-neutral-on-surface-hover-dark-v2: var(
     --opacity-white-12-v2
   );
-  --color-component-colors-search-bar-border-light-v2: var(
+  --color-Cr-background-neutral-on-surface-alt-light-v2: var(
     --opacity-on-surface-40-v2
   );
-  --color-component-colors-search-bar-border-dark-v2: var(--opacity-white-12-v2);
-  --color-colors-utility-purple-5-light-v2: var(--pure-mauve-99-v2);
-  --color-colors-utility-purple-5-dark-v2: var(--pure-mauve-10-v2);
-  --color-colors-utility-purple-10-light-v2: var(--pure-mauve-98-v2);
-  --color-colors-utility-purple-10-dark-v2: var(--pure-mauve-20-v2);
-  --color-colors-utility-purple-20-light-v2: var(--pure-mauve-95-v2);
-  --color-colors-utility-purple-20-dark-v2: var(--pure-mauve-30-v2);
-  --color-colors-utility-purple-30-light-v2: var(--pure-mauve-90-v2);
-  --color-colors-utility-purple-30-dark-v2: var(--pure-mauve-40-v2);
-  --color-colors-utility-purple-40-light-v2: var(--pure-mauve-80-v2);
-  --color-colors-utility-purple-40-dark-v2: var(--pure-mauve-60-v2);
-  --color-colors-utility-purple-50-light-v2: var(--pure-mauve-70-v2);
-  --color-colors-utility-purple-50-dark-v2: var(--pure-mauve-70-v2);
-  --color-colors-utility-purple-60-light-v2: var(--pure-mauve-60-v2);
-  --color-colors-utility-purple-60-dark-v2: var(--pure-mauve-80-v2);
-  --color-colors-utility-purple-70-light-v2: var(--pure-mauve-50-v2);
-  --color-colors-utility-purple-70-dark-v2: var(--pure-mauve-95-v2);
-  --color-colors-border-brand_alt-light-v2: var(--pure-mauve-80-v2);
-  --color-colors-border-brand_alt-dark-v2: var(--pure-mauve-40-v2);
-  --color-component-colors-switch-fg_default-light-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-switch-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-switch-bg_default-light-v2: var(
-    --neutral-variant-90-v2
-  );
-  --color-component-colors-switch-bg_default-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-switch-bg_on-light-v2: var(--neutral-variant-5-v2);
-  --color-component-colors-switch-bg_on-dark-v2: var(--pure-mauve-60-v2);
-  --color-component-colors-switch-bg_disabled-light-v2: var(
-    --neutral-variant-95-v2
-  );
-  --color-component-colors-switch-bg_disabled-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-switch-fg_on-light-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-switch-fg_on-dark-v2: var(--neutral-variant-100-v2);
-  --color-component-colors-switch-fg_disabled-light-v2: var(
-    --opacity-white-60-v2
-  );
-  --color-component-colors-switch-fg_disabled-dark-v2: var(
-    --opacity-white-30-v2
-  );
-  --color-colors-utility-gray-80-light-v2: var(--neutral-variant-30-v2);
-  --color-colors-utility-gray-80-dark-v2: var(--neutral-variant-90-v2);
-  --color-colors-utility-olive-80-light-v2: var(--olive-30-v2);
-  --color-colors-utility-olive-80-dark-v2: var(--olive-90-v2);
-  --color-colors-utility-teal-80-light-v2: var(--teal-30-v2);
-  --color-colors-utility-teal-80-dark-v2: var(--teal-90-v2);
-  --color-colors-utility-lake-blue-80-light-v2: var(--lake-blue-30-v2);
-  --color-colors-utility-lake-blue-80-dark-v2: var(--lake-blue-90-v2);
-  --color-colors-utility-cobalt-80-light-v2: var(--cobalt-30-v2);
-  --color-colors-utility-cobalt-80-dark-v2: var(--cobalt-90-v2);
-  --color-colors-utility-berry-pink-80-light-v2: var(--berry-pink-30-v2);
-  --color-colors-utility-berry-pink-80-dark-v2: var(--berry-pink-90-v2);
-  --color-colors-utility-terracotta-80-light-v2: var(--terracotta-30-v2);
-  --color-colors-utility-terracotta-80-dark-v2: var(--terracotta-90-v2);
-  --color-colors-utility-ember-80-light-v2: var(--ember-30-v2);
-  --color-colors-utility-ember-80-dark-v2: var(--ember-90-v2);
-  --color-colors-utility-khaki-80-light-v2: var(--khaki-30-v2);
-  --color-colors-utility-khaki-80-dark-v2: var(--khaki-90-v2);
-  --color-colors-utility-purple-80-light-v2: var(--pure-mauve-40-v2);
-  --color-colors-utility-purple-80-dark-v2: var(--pure-mauve-98-v2);
-  --color-colors-background-warning-alt-light-v2: var(--khaki-95-v2);
-  --color-colors-background-warning-alt-dark-v2: var(--khaki-50-v2);
-  --color-colors-background-brand-alt-light-v2: var(--pure-mauve-95-v2);
-  --color-colors-background-brand-alt-dark-v2: var(--pure-mauve-50-v2);
-  --color-colors-background-critical-alt-light-v2: var(--terracotta-95-v2);
-  --color-colors-background-critical-alt-dark-v2: var(--terracotta-50-v2);
-  --color-colors-background-success-alt-light-v2: var(--teal-98-v2);
-  --color-colors-background-success-alt-dark-v2: var(--teal-50-v2);
-  --color-colors-background-info-alt-light-v2: var(--lake-blue-95-v2);
-  --color-colors-background-info-alt-dark-v2: var(--lake-blue-50-v2);
-  --color-component-colors-chat-tips-bg_info-light-v2: var(--pure-mauve-99-v2);
-  --color-component-colors-chat-tips-bg_info-dark-v2: var(--pure-mauve-10-v2);
-  --color-component-colors-chat-tips-border_info-light-v2: var(
-    --pure-mauve-80-v2
-  );
-  --color-component-colors-chat-tips-border_info-dark-v2: var(
-    --pure-mauve-40-v2
-  );
-  --color-component-colors-chat-tips-fg_info-light-v2: var(--pure-mauve-50-v2);
-  --color-component-colors-chat-tips-fg_info-dark-v2: var(--pure-mauve-70-v2);
-  --color-component-colors-check-box-fg_default-light-v2: var(--neutral-100-v2);
-  --color-component-colors-check-box-fg_default-dark-v2: var(
-    --neutral-variant-5-v2
-  );
-  --color-component-colors-check-box-fg_alt-light-v2: var(--neutral-80-v2);
-  --color-component-colors-check-box-fg_alt-dark-v2: var(
-    --neutral-variant-50-v2
-  );
-  --color-component-colors-check-box-border-light-v2: var(--neutral-90-v2);
-  --color-component-colors-check-box-border-dark-v2: var(
-    --neutral-variant-30-v2
-  );
-  --color-component-colors-check-box-border_hover-light-v2: var(--neutral-80-v2);
-  --color-component-colors-check-box-border_hover-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-check-box-border_disabled-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-component-colors-check-box-border_disabled-dark-v2: var(
-    --neutral-variant-30-v2
-  );
-  --color-component-colors-check-box-bg_default-light-v2: var(--neutral-5-v2);
-  --color-component-colors-check-box-bg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-check-box-bg_hover-light-v2: var(--neutral-30-v2);
-  --color-component-colors-check-box-bg_hover-dark-v2: var(
-    --neutral-variant-90-v2
-  );
-  --color-component-colors-check-box-bg_disabled-light-v2: var(--neutral-99-v2);
-  --color-component-colors-check-box-bg_disabled-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-chat-tips-fg_alert-light-v2: var(--khaki-70-v2);
-  --color-component-colors-chat-tips-fg_alert-dark-v2: var(--khaki-70-v2);
-  --color-component-colors-chat-tips-bg_alert-light-v2: var(--khaki-98-v2);
-  --color-component-colors-chat-tips-bg_alert-dark-v2: var(--khaki-10-v2);
-  --color-component-colors-chat-tips-border_alert-light-v2: var(--khaki-80-v2);
-  --color-component-colors-chat-tips-border_alert-dark-v2: var(--khaki-40-v2);
-  --color-component-colors-chat-tips-fg_error-light-v2: var(--terracotta-50-v2);
-  --color-component-colors-chat-tips-fg_error-dark-v2: var(--terracotta-70-v2);
-  --color-component-colors-chat-tips-bg_error-light-v2: var(--terracotta-98-v2);
-  --color-component-colors-chat-tips-bg_error-dark-v2: var(--terracotta-10-v2);
-  --color-component-colors-chat-tips-border_error-light-v2: var(
-    --terracotta-80-v2
-  );
-  --color-component-colors-chat-tips-border_error-dark-v2: var(
-    --terracotta-30-v2
-  );
-  --color-colors-background-neutral-on-surface-hover-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-colors-background-neutral-on-surface-hover-dark-v2: var(
+  --color-Cr-background-neutral-on-surface-alt-dark-v2: var(
     --opacity-white-12-v2
   );
-  --color-colors-background-neutral-on-surface-alt-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-colors-background-neutral-on-surface-alt-dark-v2: var(
-    --opacity-white-12-v2
-  );
-  --color-colors-background-neutral-on-surface-active-light-v2: var(
+  --color-Cr-background-neutral-on-surface-active-light-v2: var(
     --opacity-on-surface-30-v2
   );
-  --color-colors-background-neutral-on-surface-active-dark-v2: var(
+  --color-Cr-background-neutral-on-surface-active-dark-v2: var(
     --opacity-white-16-v2
   );
-  --color-component-colors-input-bg_default-light-v2: var(
+  --color-CCr-input-bg_default-light-v2: var(--opacity-on-surface-10-v2);
+  --color-CCr-input-bg_default-dark-v2: var(--opacity-white-5-v2);
+  --color-CCr-input-bg_hover-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-input-bg_hover-dark-v2: var(--opacity-white-12-v2);
+  --color-CCr-input-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-input-border-dark-v2: var(--opacity-white-12-v2);
+  --color-CCr-input-bg_disabled-light-v2: var(--opacity-on-surface-10-v2);
+  --color-CCr-input-bg_disabled-dark-v2: var(--opacity-white-8-v2);
+  --color-Cr-background-neutral-on-surface-disabled-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-input-bg_default-dark-v2: var(--opacity-white-5-v2);
-  --color-component-colors-input-bg_hover-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-input-bg_hover-dark-v2: var(--opacity-white-12-v2);
-  --color-component-colors-input-border-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-input-border-dark-v2: var(--opacity-white-12-v2);
-  --color-component-colors-input-bg_disabled-light-v2: var(
-    --opacity-on-surface-10-v2
-  );
-  --color-component-colors-input-bg_disabled-dark-v2: var(--opacity-white-8-v2);
-  --color-colors-background-neutral-on-surface-disabled-light-v2: var(
-    --opacity-on-surface-10-v2
-  );
-  --color-colors-background-neutral-on-surface-disabled-dark-v2: var(
+  --color-Cr-background-neutral-on-surface-disabled-dark-v2: var(
     --opacity-white-12-v2
   );
-  --color-colors-background-neutral-secondary-default-light-v2: var(
-    --neutral-99-v2
-  );
-  --color-colors-background-neutral-secondary-default-dark-v2: var(
+  --color-Cr-background-neutral-secondary-default-light-v2: var(--neutral-99-v2);
+  --color-Cr-background-neutral-secondary-default-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-colors-background-neutral-secondary-hover-light-v2: var(
-    --neutral-98-v2
-  );
-  --color-colors-background-neutral-secondary-hover-dark-v2: var(
+  --color-Cr-background-neutral-secondary-hover-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-neutral-secondary-hover-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-colors-background-neutral-secondary-active-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-colors-background-neutral-secondary-active-dark-v2: var(
+  --color-Cr-background-neutral-secondary-active-light-v2: var(--neutral-95-v2);
+  --color-Cr-background-neutral-secondary-active-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-colors-background-neutral-tertiary-default-light-v2: var(
-    --neutral-98-v2
-  );
-  --color-colors-background-neutral-tertiary-default-dark-v2: var(
+  --color-Cr-background-neutral-tertiary-default-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-neutral-tertiary-default-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-colors-background-neutral-tertiary-hover-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-colors-background-neutral-tertiary-hover-dark-v2: var(
+  --color-Cr-background-neutral-tertiary-hover-light-v2: var(--neutral-95-v2);
+  --color-Cr-background-neutral-tertiary-hover-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-colors-background-neutral-tertiary-active-light-v2: var(
-    --neutral-90-v2
-  );
-  --color-colors-background-neutral-tertiary-active-dark-v2: var(
+  --color-Cr-background-neutral-tertiary-active-light-v2: var(--neutral-90-v2);
+  --color-Cr-background-neutral-tertiary-active-dark-v2: var(
     --neutral-variant-50-v2
   );
-  --color-colors-background-normal-secondary-default-light-v2: var(
-    --neutral-98-v2
-  );
-  --color-colors-background-normal-secondary-default-dark-v2: var(
+  --color-Cr-background-normal-secondary-default-light-v2: var(--neutral-98-v2);
+  --color-Cr-background-normal-secondary-default-dark-v2: var(
     --neutral-variant-20-v2
   );
-  --color-colors-background-normal-secondary-hover-light-v2: var(
-    --neutral-95-v2
-  );
-  --color-colors-background-normal-secondary-hover-dark-v2: var(
+  --color-Cr-background-normal-secondary-hover-light-v2: var(--neutral-95-v2);
+  --color-Cr-background-normal-secondary-hover-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-colors-background-normal-secondary-active-light-v2: var(
-    --neutral-90-v2
-  );
-  --color-colors-background-normal-secondary-active-dark-v2: var(
+  --color-Cr-background-normal-secondary-active-light-v2: var(--neutral-90-v2);
+  --color-Cr-background-normal-secondary-active-dark-v2: var(
     --neutral-variant-40-v2
   );
-  --color-component-colors-chat-tips-button_alert-light-v2: var(--khaki-90-v2);
-  --color-component-colors-chat-tips-button_alert-dark-v2: var(--khaki-40-v2);
-  --color-colors-utility-plum-purple-5-light-v2: var(--plum-purple-98-v2);
-  --color-colors-utility-plum-purple-5-dark-v2: var(--plum-purple-10-v2);
-  --color-colors-utility-plum-purple-10-light-v2: var(--plum-purple-95-v2);
-  --color-colors-utility-plum-purple-10-dark-v2: var(--plum-purple-20-v2);
-  --color-colors-utility-plum-purple-20-light-v2: var(--plum-purple-90-v2);
-  --color-colors-utility-plum-purple-20-dark-v2: var(--plum-purple-30-v2);
-  --color-colors-utility-plum-purple-30-light-v2: var(--plum-purple-80-v2);
-  --color-colors-utility-plum-purple-30-dark-v2: var(--plum-purple-40-v2);
-  --color-colors-utility-plum-purple-40-light-v2: var(--plum-purple-70-v2);
-  --color-colors-utility-plum-purple-40-dark-v2: var(--plum-purple-50-v2);
-  --color-colors-utility-plum-purple-50-light-v2: var(--plum-purple-60-v2);
-  --color-colors-utility-plum-purple-50-dark-v2: var(--plum-purple-60-v2);
-  --color-colors-utility-plum-purple-60-light-v2: var(--plum-purple-50-v2);
-  --color-colors-utility-plum-purple-60-dark-v2: var(--plum-purple-70-v2);
-  --color-colors-utility-plum-purple-70-light-v2: var(--plum-purple-40-v2);
-  --color-colors-utility-plum-purple-70-dark-v2: var(--plum-purple-80-v2);
-  --color-colors-utility-plum-purple-80-light-v2: var(--plum-purple-30-v2);
-  --color-colors-utility-plum-purple-80-dark-v2: var(--plum-purple-90-v2);
-  --color-component-colors-button-static-fg_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-static-fg_default-dark-v2: var(
-    --neutral-variant-5-v2
-  );
-  --color-component-colors-button-static-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-button-static-fg_alt-dark-v2: var(
-    --neutral-variant-70-v2
-  );
-  --color-component-colors-button-static-bg_default-light-v2: var(
-    --neutral-99-v2
-  );
-  --color-component-colors-button-static-bg_default-dark-v2: var(
-    --neutral-variant-99-v2
-  );
-  --color-component-colors-button-static-bg_hover-light-v2: var(--neutral-95-v2);
-  --color-component-colors-button-static-bg_hover-dark-v2: var(
-    --neutral-variant-95-v2
-  );
-  --color-component-colors-button-static-bg_active-light-v2: var(
-    --neutral-90-v2
-  );
-  --color-component-colors-button-static-bg_active-dark-v2: var(
-    --neutral-variant-90-v2
-  );
-  --color-component-colors-button-static-border-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-button-static-border-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-static-border_alt-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-button-static-border_alt-dark-v2: var(
-    --opacity-white-30-v2
-  );
-  --color-component-colors-chips-primary-bg_default-light-v2: var(
+  --color-CCr-chat-tips-button_alert-light-v2: var(--khaki-90-v2);
+  --color-CCr-chat-tips-button_alert-dark-v2: var(--khaki-40-v2);
+  --color-Cr-utility-plum-purple-5-light-v2: var(--plum-purple-98-v2);
+  --color-Cr-utility-plum-purple-5-dark-v2: var(--plum-purple-10-v2);
+  --color-Cr-utility-plum-purple-10-light-v2: var(--plum-purple-95-v2);
+  --color-Cr-utility-plum-purple-10-dark-v2: var(--plum-purple-20-v2);
+  --color-Cr-utility-plum-purple-20-light-v2: var(--plum-purple-90-v2);
+  --color-Cr-utility-plum-purple-20-dark-v2: var(--plum-purple-30-v2);
+  --color-Cr-utility-plum-purple-30-light-v2: var(--plum-purple-80-v2);
+  --color-Cr-utility-plum-purple-30-dark-v2: var(--plum-purple-40-v2);
+  --color-Cr-utility-plum-purple-40-light-v2: var(--plum-purple-70-v2);
+  --color-Cr-utility-plum-purple-40-dark-v2: var(--plum-purple-50-v2);
+  --color-Cr-utility-plum-purple-50-light-v2: var(--plum-purple-60-v2);
+  --color-Cr-utility-plum-purple-50-dark-v2: var(--plum-purple-60-v2);
+  --color-Cr-utility-plum-purple-60-light-v2: var(--plum-purple-50-v2);
+  --color-Cr-utility-plum-purple-60-dark-v2: var(--plum-purple-70-v2);
+  --color-Cr-utility-plum-purple-70-light-v2: var(--plum-purple-40-v2);
+  --color-Cr-utility-plum-purple-70-dark-v2: var(--plum-purple-80-v2);
+  --color-Cr-utility-plum-purple-80-light-v2: var(--plum-purple-30-v2);
+  --color-Cr-utility-plum-purple-80-dark-v2: var(--plum-purple-90-v2);
+  --color-CCr-button-static-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-static-fg_default-dark-v2: var(--neutral-variant-5-v2);
+  --color-CCr-button-static-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-static-fg_alt-dark-v2: var(--neutral-variant-70-v2);
+  --color-CCr-button-static-bg_default-light-v2: var(--neutral-99-v2);
+  --color-CCr-button-static-bg_default-dark-v2: var(--neutral-variant-99-v2);
+  --color-CCr-button-static-bg_hover-light-v2: var(--neutral-95-v2);
+  --color-CCr-button-static-bg_hover-dark-v2: var(--neutral-variant-95-v2);
+  --color-CCr-button-static-bg_active-light-v2: var(--neutral-90-v2);
+  --color-CCr-button-static-bg_active-dark-v2: var(--neutral-variant-90-v2);
+  --color-CCr-button-static-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-button-static-border-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-static-border_alt-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-button-static-border_alt-dark-v2: var(--opacity-white-30-v2);
+  --color-CCr-chips-primary-bg_default-light-v2: var(--opacity-on-surface-10-v2);
+  --color-CCr-chips-primary-bg_default-dark-v2: var(--opacity-white-5-v2);
+  --color-CCr-chips-primary-bg_hover-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-chips-primary-bg_hover-dark-v2: var(--opacity-white-12-v2);
+  --color-CCr-chips-primary-bg_disabled-light-v2: var(
     --opacity-on-surface-10-v2
   );
-  --color-component-colors-chips-primary-bg_default-dark-v2: var(
-    --opacity-white-5-v2
-  );
-  --color-component-colors-chips-primary-bg_hover-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-chips-primary-bg_hover-dark-v2: var(
-    --opacity-white-12-v2
-  );
-  --color-component-colors-chips-primary-bg_disabled-light-v2: var(
-    --opacity-on-surface-10-v2
-  );
-  --color-component-colors-chips-primary-bg_disabled-dark-v2: var(
-    --opacity-white-8-v2
-  );
-  --color-component-colors-chips-primary-border-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-chips-primary-border-dark-v2: var(
-    --opacity-white-12-v2
-  );
-  --color-component-colors-chips-primary-bg_select_disabled-light-v2: var(
-    --neutral-90-v2
-  );
-  --color-component-colors-chips-primary-bg_select_disabled-dark-v2: var(
+  --color-CCr-chips-primary-bg_disabled-dark-v2: var(--opacity-white-8-v2);
+  --color-CCr-chips-primary-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-chips-primary-border-dark-v2: var(--opacity-white-12-v2);
+  --color-CCr-chips-primary-bg_select_disabled-light-v2: var(--neutral-90-v2);
+  --color-CCr-chips-primary-bg_select_disabled-dark-v2: var(
     --neutral-variant-30-v2
   );
-  --color-component-colors-chips-primary-bg_select-light-v2: var(--neutral-5-v2);
-  --color-component-colors-chips-primary-bg_select-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-primary-bg_default-2-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-button-primary-bg_default-2-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-solid-fg_default-light-v2: var(--neutral-5-v2);
-  --color-component-colors-button-solid-fg_default-dark-v2: var(
-    --neutral-variant-100-v2
-  );
-  --color-component-colors-button-solid-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-component-colors-button-solid-fg_alt-dark-v2: var(
-    --neutral-variant-40-v2
-  );
-  --color-component-colors-button-solid-bg_default-light-v2: var(
-    --neutral-100-v2
-  );
-  --color-component-colors-button-solid-bg_default-dark-v2: var(
+  --color-CCr-chips-primary-bg_select-light-v2: var(--neutral-5-v2);
+  --color-CCr-chips-primary-bg_select-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-primary-bg_default-2-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-primary-bg_default-2-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-solid-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-button-solid-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-solid-fg_alt-light-v2: var(--neutral-70-v2);
+  --color-CCr-button-solid-fg_alt-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-button-solid-bg_default-light-v2: var(--neutral-100-v2);
+  --color-CCr-button-solid-bg_default-dark-v2: var(--neutral-variant-10-v2);
+  --color-CCr-button-solid-bg_hover-light-v2: var(--neutral-98-v2);
+  --color-CCr-button-solid-bg_hover-dark-v2: var(--neutral-variant-20-v2);
+  --color-CCr-button-solid-bg_active-light-v2: var(--neutral-95-v2);
+  --color-CCr-button-solid-bg_active-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-button-solid-border-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-button-solid-border-dark-v2: var(--opacity-white-16-v2);
+  --color-CCr-button-solid-border_alt-light-v2: var(--opacity-on-surface-40-v2);
+  --color-CCr-button-solid-border_alt-dark-v2: var(--opacity-white-30-v2);
+  --color-CCr-tag-bg_default-light-v2: var(--opacity-on-surface-20-v2);
+  --color-CCr-tag-bg_default-dark-v2: var(--opacity-white-12-v2);
+  --color-Cr-background-normal-secondary-alt-light-v2: var(--neutral-100-v2);
+  --color-Cr-background-normal-secondary-alt-dark-v2: var(
     --neutral-variant-10-v2
   );
-  --color-component-colors-button-solid-bg_hover-light-v2: var(--neutral-98-v2);
-  --color-component-colors-button-solid-bg_hover-dark-v2: var(
-    --neutral-variant-20-v2
-  );
-  --color-component-colors-button-solid-bg_active-light-v2: var(--neutral-95-v2);
-  --color-component-colors-button-solid-bg_active-dark-v2: var(
-    --neutral-variant-30-v2
-  );
-  --color-component-colors-button-solid-border-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-button-solid-border-dark-v2: var(
-    --opacity-white-16-v2
-  );
-  --color-component-colors-button-solid-border_alt-light-v2: var(
-    --opacity-on-surface-40-v2
-  );
-  --color-component-colors-button-solid-border_alt-dark-v2: var(
-    --opacity-white-30-v2
-  );
-  --color-component-colors-tag-bg_default-light-v2: var(
-    --opacity-on-surface-20-v2
-  );
-  --color-component-colors-tag-bg_default-dark-v2: var(--opacity-white-12-v2);
-  --color-colors-background-normal-secondary-alt-light-v2: var(--neutral-100-v2);
-  --color-colors-background-normal-secondary-alt-dark-v2: var(
-    --neutral-variant-10-v2
-  );
-  --color-component-colors-icon-button-plain-fg_default-light-v2: var(
-    --neutral-5-v2
-  );
-  --color-component-colors-icon-button-plain-fg_default-dark-v2: var(
+  --color-CCr-icon-button-plain-fg_default-light-v2: var(--neutral-5-v2);
+  --color-CCr-icon-button-plain-fg_default-dark-v2: var(
     --neutral-variant-100-v2
   );
-  --color-component-colors-icon-button-plain-gray-fg_default-light-v2: var(
-    --neutral-40-v2
-  );
-  --color-component-colors-icon-button-plain-gray-fg_default-dark-v2: var(
+  --color-CCr-icon-button-plain-gray-fg_default-light-v2: var(--neutral-40-v2);
+  --color-CCr-icon-button-plain-gray-fg_default-dark-v2: var(
     --neutral-variant-80-v2
   );
 

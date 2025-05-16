@@ -33,8 +33,8 @@ export const ChatInput = () => {
     <div className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}>
       <div
         className={cn(
-          'rounded-lg-v2 border border-component-colors-input-border-light-v2',
-          'bg-component-colors-input-bg_default-light-v2',
+          'rounded-lg-v2 border border-CCr-input-border-light-v2',
+          'bg-CCr-input-bg_default-light-v2',
           'p-spacing-xs-v2',
         )}
       >
@@ -67,16 +67,16 @@ const ReferenceItem: React.FC<{
     <div
       className={cn(
         'flex items-center gap-[6px]',
-        'bg-colors-background-normal-secondary-alt-light-v2',
-        'border border-colors-border-default-light-v2',
+        'bg-Cr-background-normal-secondary-alt-light-v2',
+        'border-Cr-border-default-light-v2 border',
         'rounded-md-v2',
         'p-spacing-md-v2',
         'w-fit',
       )}
     >
-      <Icon size={16} className="text-colors-foreground-subtle-light-v2" />
+      <Icon size={16} className="text-Cr-foreground-subtle-light-v2" />
       <div className="text-sm-medium">{title}</div>
-      <X size={16} className="text-colors-foreground-subtle-light-v2" />
+      <X size={16} className="text-Cr-foreground-subtle-light-v2" />
     </div>
   );
 };
@@ -153,8 +153,8 @@ export const FilePreview: React.FC<{
     <div
       className={cn(
         'h-[56px] w-[156px] px-spacing-lg-v2',
-        'border border-colors-border-default-light-v2',
-        'bg-colors-background-normal-primary-default-light-v2',
+        'border-Cr-border-default-light-v2 border',
+        'bg-Cr-background-normal-primary-default-light-v2',
         'rounded-lg-v2',
         'py-spacing-lg-v2',
         'flex items-center',
@@ -162,7 +162,7 @@ export const FilePreview: React.FC<{
     >
       <div
         className={cn(
-          'rounded-components-button-sm-radius-v2 bg-colors-utility-lake-blue-50-light-v2',
+          'bg-Cr-utility-lake-blue-50-light-v2 rounded-C-button-sm-radius-v2',
           'h-[32px] w-[32px]',
           'flex items-center justify-center',
           'mr-spacing-lg-v2',
@@ -171,10 +171,10 @@ export const FilePreview: React.FC<{
         <File color="#fff" />
       </div>
       <div>
-        <div className="description-lg-medium text-colors-text-default-light-v2">
+        <div className="description-lg-medium text-Cr-text-default-light-v2">
           {fileState.name}
         </div>
-        <div className="description-lg-regular text-colors-text-subtler-light-v2">
+        <div className="description-lg-regular text-Cr-text-subtler-light-v2">
           {fileState.desc}
         </div>
       </div>
@@ -199,8 +199,8 @@ export const Image: React.FC<{ fileState: ImageState; id: string }> = ({
         className={cn(
           'absolute top-[-6px] right-[-6px]',
           'h-[20px] w-[20px] rounded-full-v2',
-          'bg-component-colors-button-solid-bg_default-light-v2',
-          'border border-component-colors-button-solid-border-light-v2',
+          'bg-CCr-button-solid-bg_default-light-v2',
+          'border border-CCr-button-solid-border-light-v2',
           'flex items-center justify-center',
         )}
       >

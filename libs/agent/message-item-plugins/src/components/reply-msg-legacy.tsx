@@ -11,9 +11,7 @@ export const ReplyMsgLegacy: React.FC<Message> = ({ text, user }) => {
   return (
     <div className="flex px-spacing-xl-v2 py-spacing-lg-v2">
       <div className="w-[80%]">
-        <div
-          className={cn('text-lg-regular', 'text-colors-text-default-light-v2')}
-        >
+        <div className={cn('text-lg-regular', 'text-Cr-text-default-light-v2')}>
           <article className="prose dark:prose-invert">
             <Markdown
               children={text}
@@ -50,10 +48,10 @@ export const LuiButton = (props: { children: React.ReactNode }) => {
       className={cn(
         'text-sm-medium',
         'h-[36px]',
-        'border border-component-colors-button-tertiary-border-light-v2',
-        'bg-component-colors-button-tertiary-bg_default-light-v2',
-        'rounded-components-button-md-radius-v2',
-        'px-components-button-md-padding-v2',
+        'border border-CCr-button-tertiary-border-light-v2',
+        'bg-CCr-button-tertiary-bg_default-light-v2',
+        'rounded-C-button-md-radius-v2',
+        'px-C-button-md-padding-v2',
       )}
     >
       {children}
