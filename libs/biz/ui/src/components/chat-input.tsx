@@ -1,14 +1,9 @@
+import { cn, ImageState, useInjection } from '@myshell-run/common-ui';
 import {
   Button,
   Menu,
   MenuItem,
 } from '@myshell-run/react-aria-tailwind-starter';
-import {
-  cn,
-  FileState,
-  ImageState,
-  useInjection,
-} from '@myshell-run/common-ui';
 import toArray from '@uppy/utils/lib/toArray';
 import { AlignJustify, CirclePlus, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
