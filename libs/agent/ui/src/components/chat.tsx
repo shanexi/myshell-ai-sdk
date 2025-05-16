@@ -1,17 +1,21 @@
-import { cn } from '@myshell-run/common-ui';
+import { randomMessage } from '@myshell-run/common-ui';
+import { ChatInput } from './chat-input';
+import { ChatMessageList } from './chat-message-list';
 
 export const Chat = () => {
   return (
-    <div className={cn('px-2')}>
-      <div
-        className={cn(
-          'flex',
-          'bg-surface-primary-default-light-v1 dark:bg-surface-primary-default-dark-v1',
-          'text-text-default-light-v1 dark:text-text-default-dark-v1',
-        )}
-      >
-        Chat
-      </div>
+    <div className="flex h-full flex-col">
+      <ChatMessageList
+        className="flex flex-grow flex-col overflow-auto px-[8px]"
+        initialMessages={[
+          randomMessage('me'),
+          randomMessage('me'),
+          randomMessage('me'),
+          randomMessage('me'),
+          randomMessage('me'),
+        ]}
+      />
+      <ChatInput />
     </div>
   );
 };

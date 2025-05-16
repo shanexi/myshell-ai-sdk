@@ -13,6 +13,7 @@ const meta: Meta<typeof Chat> = {
     ),
   ],
   parameters: {
+    layout: 'fullscreen',
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/YHfVjepmkzvSL4Yf1nD9KS/Shell-Agent?node-id=1408-77922&m=dev',
