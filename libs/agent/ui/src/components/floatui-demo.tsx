@@ -11,8 +11,22 @@ import {
   useHover,
   useInteractions,
   useRole,
+  FloatingDelayGroup,
+  useDelayGroup,
 } from '@floating-ui/react';
+
 export const FloatUIDemo = () => {
+  return (
+    <FloatingDelayGroup delay={{ open: 1000, close: 200 }}>
+      <div className="flex gap-2">
+        <TooltipDemo />
+        <TooltipDemo />
+      </div>
+    </FloatingDelayGroup>
+  );
+};
+
+export const TooltipDemo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
@@ -28,7 +42,9 @@ export const FloatUIDemo = () => {
     ],
   });
 
-  const hover = useHover(context, { move: false });
+  const { delay } = useDelayGroup(context);
+
+  const hover = useHover(context, { move: false, delay });
   const focus = useFocus(context);
   const dismiss = useDismiss(context);
 
