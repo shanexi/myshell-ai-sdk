@@ -50,6 +50,7 @@ specifiers:
   '@clerk/clerk-react': ^5.25.4
   '@cloudflare/workers-types': ^4.20250214.0
   '@effect/opentelemetry': ^0.45.5
+  '@floating-ui/react': ^0.27.8
   '@headlessui/react': ^2.2.0
   '@hono/clerk-auth': ^2.0.0
   '@hono/otel': ^0.1.0
@@ -322,6 +323,7 @@ dependencies:
   '@clerk/clerk-react': 5.25.4_upmzqgzhjrquwzo2dphtigtdgi
   '@cloudflare/workers-types': 4.20250313.0
   '@effect/opentelemetry': 0.45.5_pnr2wzqrnk6ndg6tuzgwnridke
+  '@floating-ui/react': 0.27.8_upmzqgzhjrquwzo2dphtigtdgi
   '@headlessui/react': 2.2.0_upmzqgzhjrquwzo2dphtigtdgi
   '@hono/clerk-auth': 2.0.0_rymmfltnjdlfb3wtwbpdpra76i
   '@hono/otel': 0.1.0_hono@4.7.4
@@ -3846,6 +3848,19 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/react-dom': 2.1.2_upmzqgzhjrquwzo2dphtigtdgi
+      '@floating-ui/utils': 0.2.9
+      react: 19.0.0
+      react-dom: 19.0.0_react@19.0.0
+      tabbable: 6.2.0
+    dev: false
+
+  /@floating-ui/react/0.27.8_upmzqgzhjrquwzo2dphtigtdgi:
+    resolution: {integrity: sha512-EQJ4Th328y2wyHR3KzOUOoTW2UKjFk53fmyahfwExnFQ8vnsMYqKc+fFPOkeYtj5tcp1DUMiNJ7BFhed7e9ONw==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
     dependencies:
       '@floating-ui/react-dom': 2.1.2_upmzqgzhjrquwzo2dphtigtdgi
       '@floating-ui/utils': 0.2.9
