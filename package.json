@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "husky",
     "build-storybook": "./node_modules/.bin/storybook build",
-    "storybook": "./node_modules/.bin/storybook dev"
+    "storybook": "./node_modules/.bin/storybook dev",
+    "local-publish:watch": "nx watch --all -- nx run \\$NX_PROJECT_NAME:local-publish"
   },
   "private": true,
   "dependencies": {
@@ -47,11 +48,11 @@
     "@nrwl/cypress": "15.9.7",
     "@nrwl/eslint-plugin-nx": "15.9.7",
     "@nrwl/express": "15.9.7",
-    "@nrwl/jest": "15.9.7",
     "@nrwl/js": "15.9.7",
     "@nrwl/linter": "15.9.7",
     "@nrwl/next": "15.9.7",
     "@nrwl/node": "15.9.7",
+    "@nrwl/nx-plugin": "15.9.7",
     "@nrwl/react": "15.9.7",
     "@nrwl/storybook": "15.9.7",
     "@nrwl/web": "15.9.7",
@@ -95,6 +96,7 @@
     "@storybook/test-runner": "^0.22.0",
     "@svgr/webpack": "^6.1.2",
     "@swc/core": "^1.2.173",
+    "@swc/helpers": "~0.4.11",
     "@swc/jest": "0.2.20",
     "@tailwindcss/cli": "^4.1.5",
     "@tailwindcss/postcss": "^4.1.5",
@@ -141,6 +143,7 @@
     "clsx": "^2.1.1",
     "comma-separated-tokens": "^2.0.0",
     "concurrently": "^8.2.2",
+    "consola": "^3.4.2",
     "core-js": "^3.38.1",
     "cors": "^2.8.5",
     "cross-fetch": "^4.1.0",
@@ -178,6 +181,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "jsdom": "^26.0.0",
+    "jsonc-eslint-parser": "^2.4.0",
     "kysely": "^0.27.6",
     "langchain": "^0.3.19",
     "lint-staged": "^15.2.10",
@@ -240,6 +244,8 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.0.0",
     "resize-observer-polyfill": "^1.5.1",
+    "rollup": "^4.40.2",
+    "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-visualizer": "^5.14.0",
     "rxjs": "^6.6.3",
     "space-separated-tokens": "^2.0.0",
@@ -279,7 +285,11 @@
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
-    "zustand-signal": "^0.6.0"
+    "zustand-signal": "^0.6.0",
+    "@nrwl/devkit": "15.9.7",
+    "@nrwl/jest": "15.9.7",
+    "@swc-node/register": "^1.4.2",
+    "@swc/cli": "~0.1.55"
   },
   "engines": {
     "node": ">= 16 < 20",
@@ -303,5 +313,6 @@
       "honox@0.1.38": "patches/honox@0.1.38.patch",
       "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
     }
-  }
+  },
+  "devDependencies": {}
 }

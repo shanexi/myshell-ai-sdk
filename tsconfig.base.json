@@ -3,8 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "bundler",
+    "declaration": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -31,6 +31,7 @@
       "@myshell-run/common-def": ["libs/common/def/src/index.ts"],
       "@myshell-run/common-ui": ["libs/common/ui/src/index.ts"],
       "@myshell-run/effect-demo": ["libs/effect-demo/src/index.ts"],
+      "@myshell-run/my-nx-plugins": ["libs/my-nx-plugins/src/index.ts"],
       "@myshell-run/react-aria-tailwind-starter": [
         "libs/react-aria-tailwind-starter/src/index.ts"
       ],

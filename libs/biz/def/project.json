@@ -4,12 +4,12 @@
   "sourceRoot": "libs/biz/def/src",
   "projectType": "library",
   "targets": {
-    "typecheck": {
-      "executor": "nx:run-commands",
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "commands": ["tsc -p tsconfig.json --noEmit"],
-        "cwd": "libs/biz/def",
-        "forwardAllArgs": false
+        "outputPath": "dist/libs/biz/def",
+        "tsConfig": "libs/biz/def/tsconfig.lib.json"
       }
     },
     "build": {

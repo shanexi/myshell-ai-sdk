@@ -4,14 +4,6 @@
   "sourceRoot": "libs/biz/ac/src",
   "projectType": "library",
   "targets": {
-    "typecheck": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["tsc -p tsconfig.json --noEmit"],
-        "cwd": "libs/biz/ac",
-        "forwardAllArgs": false
-      }
-    },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],

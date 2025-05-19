@@ -5,6 +5,33 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build-css"],
+      "options": {
+        "outputPath": "dist/libs/agent/ui",
+        "tsConfig": "libs/agent/ui/tsconfig.lib.json",
+        "assets": ["libs/agent/ui/output.css"]
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/agent/ui",
+        "main": "libs/agent/ui/src/index.ts",
+        "tsConfig": "libs/agent/ui/tsconfig.lib.json",
+        "assets": ["libs/agent/ui/output.css"]
+      }
+    },
+    "build-css": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/agent/ui",
+        "command": "../../../node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/styles.css -o output.css"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
@@ -45,13 +72,6 @@
       "options": {
         "cwd": "./libs/agent/ui",
         "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
-      }
-    },
-    "build-css": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "./libs/agent/ui",
-        "command": "../../../node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/styles.css -o output.css"
       }
     },
     "build-storybook": {
