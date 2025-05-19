@@ -36,13 +36,17 @@ function legacy(bind: interfaces.Bind) {
 
 export const agentMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
-    legacy(bind);
-    const register = setup(bind);
-    // 涉及到了 JSX，可能会影响 unit test perf
-    register('x-checklist', Checklist);
-    register('x-checklist-item', ChecklistItem, ChecklistItemModel);
-    register('x-checklist-code', ChecklistCode);
-    register('x-line-chart', LineChartDemo);
-    register('x-bar-chart', BarChartDemo);
+    bindAgentMsgItemPlugins(bind);
   },
 );
+
+export function bindAgentMsgItemPlugins(bind: interfaces.Bind) {
+  legacy(bind);
+  const register = setup(bind);
+  // 涉及到了 JSX，可能会影响 unit test perf
+  register('x-checklist', Checklist);
+  register('x-checklist-item', ChecklistItem, ChecklistItemModel);
+  register('x-checklist-code', ChecklistCode);
+  register('x-line-chart', LineChartDemo);
+  register('x-bar-chart', BarChartDemo);
+}
