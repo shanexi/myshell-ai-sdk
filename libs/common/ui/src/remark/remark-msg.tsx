@@ -1,3 +1,4 @@
+import React from 'react';
 import { h, Properties } from 'hastscript';
 import type { Root } from 'mdast';
 import type {
@@ -60,14 +61,6 @@ export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
           <code {...rest} className={className}>
             {children}
           </code>
-        );
-      },
-      button: (props) => {
-        const { children, ...rest } = props;
-        return (
-          <button {...rest} className="btn-blue btn">
-            {children}
-          </button>
         );
       },
       ...registerComponents,

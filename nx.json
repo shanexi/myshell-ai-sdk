@@ -26,7 +26,7 @@
       "inputs": ["production", "^production"],
       "options": {
         "bundleSuppressWarnCodes": ["UNRESOLVED_IMPORT"],
-        "externals": ["react/jsx-runtime"]
+        "externals": ["react/jsx-runtime", "react", "react-dom"]
       }
     },
     "lint": {

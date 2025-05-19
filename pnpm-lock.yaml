@@ -215,7 +215,7 @@ specifiers:
   kysely: ^0.27.6
   langchain: ^0.3.19
   lint-staged: ^15.2.10
-  lucide-react: ^0.479.0
+  lucide-react: ^0.509.0
   mdast: ^3.0.0
   mdast-util-directive: ^3.1.0
   mdast-util-hidden: ^2.0.0
@@ -496,7 +496,7 @@ dependencies:
   kysely: 0.27.6
   langchain: 0.3.19_hmlwznnl6y5y6ru3fb2yk4txwu
   lint-staged: 15.2.10
-  lucide-react: 0.479.0_react@19.0.0
+  lucide-react: 0.509.0_react@19.0.0
   mdast: 3.0.0
   mdast-util-directive: 3.1.0
   mdast-util-hidden: 2.0.0
@@ -524,11 +524,9 @@ dependencies:
   prisma-kysely: 1.8.0
   property-information: 7.0.0
   radash: 12.1.0
-  react: 19.0.0
   react-aria: 3.38.1_upmzqgzhjrquwzo2dphtigtdgi
   react-aria-components: 1.7.1_upmzqgzhjrquwzo2dphtigtdgi
   react-detect-click-outside: 1.1.7_upmzqgzhjrquwzo2dphtigtdgi
-  react-dom: 19.0.0_react@19.0.0
   react-dropzone: 14.3.8_react@19.0.0
   react-filepond: 7.1.3_y7bny2fc3hxhj7rcp6d52qywym
   react-markdown: 10.1.0_r56bmpqxsoyifhzf5ewu54nmsy
@@ -600,6 +598,8 @@ dependencies:
 
 devDependencies:
   '@storybook/react': 8.6.12_t5fjsxzjutzqaqus7ufwvrfmre
+  react: 19.0.0
+  react-dom: 19.0.0_react@19.0.0
 
 packages:
 
@@ -21907,8 +21907,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /lucide-react/0.479.0_react@19.0.0:
-    resolution: {integrity: sha512-aBhNnveRhorBOK7uA4gDjgaf+YlHMdMhQ/3cupk6exM10hWlEU+2QtWYOfhXhjAsmdb6LeKR+NZnow4UxRRiTQ==}
+  /lucide-react/0.509.0_react@19.0.0:
+    resolution: {integrity: sha512-xCJHn6Uh5qF6PGml25vveCTrHJZcqS1G1MVzWZK54ZQsOiCVJk4fwY3oyo5EXS2S+aqvTpWYIfJN+PesJ0quxg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
     dependencies:
