@@ -1,4 +1,4 @@
-import { ChatInput2 } from './chat-input-2';
+import { ChatInput } from './chat-input';
 import { ChatMessageList } from './chat-message-list';
 
 export const Chat = () => {
@@ -8,7 +8,7 @@ export const Chat = () => {
         className="flex flex-grow flex-col overflow-auto px-[8px]"
         initialMessages={[]}
       />
-      <ChatInput2 />
+      <ChatInput />
     </div>
   );
 };

@@ -1,10 +1,9 @@
+import { ChatInputPlugin } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
-import { ChatInputContextPlugin } from './chat-input/chat-input-context-plugin';
-import { ChatInputUploadPlugin } from './chat-input/chat-input-upload-plugin';
-import { ChatInputTextareaPlugin } from './chat-input/chat-input-textarea-plugin';
-import { ChatInputActionPlugin } from './chat-input/chat-input-action-plugin';
+import { useInjection } from 'inversify-react';
 
 export const ChatInput = () => {
+  const plugins = useInjection<ChatInputPlugin[]>(ChatInputPlugin);
   return (
     <div className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}>
       <div
@@ -14,10 +13,9 @@ export const ChatInput = () => {
           'p-spacing-xs-v2',
         )}
       >
-        <ChatInputContextPlugin />
-        <ChatInputUploadPlugin />
-        <ChatInputTextareaPlugin />
-        <ChatInputActionPlugin />
+        {plugins.map((Plugin, index) => {
+          return <Plugin key={index} />;
+        })}
       </div>
     </div>
   );
