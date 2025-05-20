@@ -15,6 +15,7 @@
       "apps/my-app/dist",
       "libs/agent/ui/src/styles.css",
       "libs/agent/ui/output.css",
+      "libs/agent/ui/output-prefixed.css",
       "./storybook-static"
     ]
   },

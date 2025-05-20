@@ -1,7 +1,7 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
 import { setup } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
-import { BarChartDemo, LineChartDemo } from './components/chart-demo';
+// import { BarChartDemo, LineChartDemo } from './components/chart-demo';
 import {
   CheckList as Checklist,
   ChecklistCode,
@@ -47,6 +47,6 @@ export function bindAgentMsgItemPlugins(bind: interfaces.Bind) {
   register('x-checklist', Checklist);
   register('x-checklist-item', ChecklistItem, ChecklistItemModel);
   register('x-checklist-code', ChecklistCode);
-  register('x-line-chart', LineChartDemo);
-  register('x-bar-chart', BarChartDemo);
+  // register('x-line-chart', LineChartDemo);
+  // register('x-bar-chart', BarChartDemo);
 }

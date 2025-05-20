@@ -12,7 +12,10 @@
       "options": {
         "outputPath": "dist/libs/agent/ui",
         "tsConfig": "libs/agent/ui/tsconfig.lib.json",
-        "assets": ["libs/agent/ui/output.css"]
+        "assets": [
+          "libs/agent/ui/output.css",
+          "libs/agent/ui/output-prefixed.css"
+        ]
       }
     },
     "build": {
@@ -22,14 +25,17 @@
         "outputPath": "dist/libs/agent/ui",
         "main": "libs/agent/ui/src/index.ts",
         "tsConfig": "libs/agent/ui/tsconfig.lib.json",
-        "assets": ["libs/agent/ui/output.css"]
+        "assets": [
+          "libs/agent/ui/output.css",
+          "libs/agent/ui/output-prefixed.css"
+        ]
       }
     },
     "build-css": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "./libs/agent/ui",
-        "command": "../../../node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/styles.css -o output.css"
+        "command": "./scripts/build-css.sh"
       }
     },
     "lint": {

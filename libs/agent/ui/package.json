@@ -5,6 +5,9 @@
   "exports": {
     "./output.css": {
       "default": "./output.css"
+    },
+    "./output-prefixed.css": {
+      "default": "./output-prefixed.css"
     }
   }
 }
