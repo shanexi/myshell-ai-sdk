@@ -3,7 +3,8 @@ import {
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/biz-message-item-plugins';
 import { Message, MessageListContext } from '@myshell-run/common-def';
-import { MessageItemSvc, useInjection } from '@myshell-run/common-ui';
+import { MessageItemSvc } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { type VirtuosoMessageListProps } from '@virtuoso.dev/message-list';
 
 export const MessageItem: VirtuosoMessageListProps<

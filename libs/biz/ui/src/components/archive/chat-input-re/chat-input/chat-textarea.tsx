@@ -1,4 +1,5 @@
-import { cn, useInjection } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';

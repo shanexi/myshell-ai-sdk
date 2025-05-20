@@ -13,6 +13,8 @@ export type RemarkableFactory = (
   id?: string,
 ) => Remarkable;
 
+export const RegisterMap = Symbol('RegisterMap');
+
 export type RegisterMap = Map<
   string,
   [React.ComponentType<unknown>, interfaces.Newable<Remarkable> | undefined]

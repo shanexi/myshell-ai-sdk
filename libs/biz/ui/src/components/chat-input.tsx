@@ -1,4 +1,5 @@
-import { cn, ImageState, useInjection } from '@myshell-run/common-ui';
+import { cn, ImageState } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import {
   Button,
   Menu,

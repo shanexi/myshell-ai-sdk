@@ -1,10 +1,11 @@
 import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../../../../ui-biz.module';
 import { ChatModel } from '../../../chat.model';
 import { ChatInputActions } from './chat-input-actions';
+import { Provider as InversifyProvider } from 'inversify-react';
 
 const container = new Container();
 container.load(bizMsgItemPluginsModule);

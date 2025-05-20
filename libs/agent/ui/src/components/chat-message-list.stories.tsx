@@ -1,4 +1,5 @@
-import { InversifyProvider, randomMessage } from '@myshell-run/common-ui';
+import { randomMessage } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ChatMessageList } from './chat-message-list';
 import { container } from './stories.utils';

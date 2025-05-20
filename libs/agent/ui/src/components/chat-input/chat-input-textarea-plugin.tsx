@@ -1,4 +1,5 @@
-import { cn, useInjection } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import TextareaAutosize from 'react-textarea-autosize';
 import { AgentChatModel } from '../agent-chat.model';

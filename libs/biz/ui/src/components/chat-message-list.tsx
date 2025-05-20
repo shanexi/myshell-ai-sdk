@@ -1,5 +1,6 @@
 import { Message, MessageListContext } from '@myshell-run/common-def';
-import { cn, useInjection } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { MessageItem } from './message-item';
 import {

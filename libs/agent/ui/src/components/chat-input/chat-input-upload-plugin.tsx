@@ -3,8 +3,8 @@ import {
   FilePreviewState,
   ImageState,
   MOCK_IMG,
-  useInjection,
 } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { AgentChatModel } from '../agent-chat.model';
 

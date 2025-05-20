@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import { BotListModel } from './bot-list.model';
-import { useInjection } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 
 export const BotListSearch = observer(() => {

@@ -3,7 +3,8 @@ import { ChatInputRoot, ChatInputMenu, ChatInput } from './chat-input';
 import { Container } from 'inversify';
 import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { uiBizModule } from '../../ui-biz.module';
-import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 
 const container = new Container();
 container.load(bizMsgItemPluginsModule);

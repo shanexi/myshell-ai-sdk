@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CheckList, CheckListItem } from './checklist-msg';
 import { Container } from 'inversify';
 import { agentMsgItemPluginsModule } from '../agent-msg-item-plugins.module';
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 
 const container = new Container();
 container.load(agentMsgItemPluginsModule);

@@ -16,13 +16,13 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
-import { useInjection } from '../inversify-context';
+import { useInjection } from 'inversify-react';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
 
 export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
   const factory = useInjection<RemarkableFactory>(RemarkableFactory);
-  const registerMap = useInjection<RegisterMap>('RegisterMap');
+  const registerMap = useInjection<RegisterMap>(RegisterMap);
   const registerComponents = Array.from(registerMap).reduce(
     (acc, [key, [Component]]) => {
       acc[key] = Component;
