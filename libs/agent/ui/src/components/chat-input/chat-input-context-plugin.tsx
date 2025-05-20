@@ -5,32 +5,46 @@ import {
   FileJson2,
   FileText,
   ListCheck,
+  type LucideProps,
   MessagesSquare,
   X,
 } from 'lucide-react';
 import { PropsWithChildren } from 'react';
+import {
+  ChatInputContextPluginModel,
+  ContextType,
+} from './chat-input-context-plugin.model';
+import { observer } from 'mobx-react-lite';
+import { useInjection } from 'inversify-react';
 
-const IconMap = {
+const IconMap: Record<
+  ContextType,
+  React.ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+  >
+> = {
   file: File,
-  fileText: FileText,
-  fileJson: FileJson2,
-  listCheck: ListCheck,
-  messagesSquare: MessagesSquare,
+  text: FileText,
+  json: FileJson2,
+  todo: ListCheck,
+  message: MessagesSquare,
 };
 
-export const ChatInputContextPlugin = () => {
+export const ChatInputContextPlugin = observer(() => {
+  const model = useInjection(ChatInputContextPluginModel);
+
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
       <AddContext />
-      <ContextItem icon="file" title="requirement.feature1" />
-      <ContextItem icon="fileJson" title="canvas.state1.inputs.variable1" />
-      <ContextItem icon="listCheck" title="test.test_suite1" />
-      <ContextItem icon="messagesSquare" title="preview.message1" />
+      {model.contextItems.map((item) => (
+        <ContextItem key={item.name} title={item.name} icon={item.type} />
+      ))}
     </div>
   );
-};
+});
 
-const AddContext = () => {
+const AddContext = observer(() => {
+  const model = useInjection(ChatInputContextPluginModel);
   return (
     <ContextWrapper>
       <AtSign
@@ -38,21 +52,23 @@ const AddContext = () => {
         size={16}
         className="text-Cr-Fg-subtle-light-v2"
       />
-      <div className="text-sm-medium">Add context</div>
+      {model.isEmpty && <div className="text-sm-medium">Add context</div>}
     </ContextWrapper>
   );
-};
+});
 
 const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
       className={cn(
+        'group',
         'flex items-center gap-[6px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',
+        'hover:bg-Cr-Bg-normal-tertiary-active-light-v2',
         'border border-Cr-border-default-light-v2',
         'rounded-md-v2',
         'p-spacing-md-v2',
-        'w-fit',
+        'h-C-button-sm-height-v2 w-fit min-w-C-button-sm-height-v2',
       )}
     >
       {children}
@@ -62,7 +78,7 @@ const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
 const ContextItem: React.FC<{
   title: string;
-  icon: keyof typeof IconMap;
+  icon: ContextType;
 }> = ({ title, icon }) => {
   const Icon = IconMap[icon];
   return (
@@ -73,7 +89,15 @@ const ContextItem: React.FC<{
         className="text-Cr-Fg-subtle-light-v2"
       />
       <div className="text-sm-medium">{title}</div>
-      <X strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-light-v2" />
+      <X
+        strokeWidth={1.5}
+        size={16}
+        className={cn(
+          'text-Cr-Fg-subtle-light-v2',
+          'cursor-pointer',
+          'invisible group-hover:visible',
+        )}
+      />
     </ContextWrapper>
   );
 };

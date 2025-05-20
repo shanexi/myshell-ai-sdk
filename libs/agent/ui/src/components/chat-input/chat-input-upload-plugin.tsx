@@ -1,14 +1,13 @@
-import {
-  cn,
-  FilePreviewState,
-  ImageState,
-  MOCK_IMG,
-} from '@myshell-run/common-ui';
+import { cn, FilePreviewState, ImageState } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
+import { observer } from 'mobx-react-lite';
 import { AgentChatModel } from '../agent-chat.model';
+import { ChatInputUploadPluginModel } from './chat-input-upload-plugin.model';
+import { PropsWithChildren } from 'react';
 
-export const ChatInputUploadPlugin = () => {
+export const ChatInputUploadPlugin = observer(() => {
+  const model = useInjection(ChatInputUploadPluginModel);
   return (
     <div
       className={cn(
@@ -16,26 +15,39 @@ export const ChatInputUploadPlugin = () => {
         'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
       )}
     >
-      <ImagePreview
-        id="1"
-        fileState={{
-          type: 'image',
-          preview: MOCK_IMG,
-          uploadComplete: true,
-        }}
-      />
-      <FilePreview
-        id="2"
-        fileState={{
-          type: 'file',
-          name: 'Untitled.rtf',
-          desc: 'Rich Text File',
-          uploadComplete: true,
-        }}
-      />
+      {model.previewItems.map((item) => {
+        if (item.previewType === 'image') {
+          return (
+            <ImagePreview
+              key={item.name}
+              id={item.name}
+              fileState={{
+                type: item.previewType,
+                preview: item.previewUrl,
+                uploadComplete: true,
+              }}
+            />
+          );
+        }
+        if (item.previewType === 'file') {
+          return (
+            <FilePreview
+              key={item.name}
+              id={item.name}
+              fileState={{
+                type: item.previewType,
+                name: item.name,
+                desc: item.desc || '',
+                uploadComplete: true,
+              }}
+            />
+          );
+        }
+        return null;
+      })}
     </div>
   );
-};
+});
 
 const FilePreview: React.FC<{
   fileState: FilePreviewState;
@@ -50,6 +62,8 @@ const FilePreview: React.FC<{
         'rounded-lg-v2',
         'py-spacing-lg-v2',
         'flex items-center',
+        'relative',
+        'group',
       )}
     >
       <div
@@ -70,6 +84,12 @@ const FilePreview: React.FC<{
           {fileState.desc}
         </div>
       </div>
+      <Remove
+        onRemove={() => {
+          //
+        }}
+        uploadComplete={fileState.uploadComplete}
+      />
     </div>
   );
 };
@@ -80,28 +100,43 @@ const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
 }) => {
   const model = useInjection(AgentChatModel);
   return (
-    <div className="relative flex-none">
+    <div className="group relative flex-none">
       <img
         className={cn('h-[56px] w-[56px] rounded-xl-v2')}
         alt=""
         src={fileState.preview}
       />
-      <div
-        onClick={() => model.chatCommon.removeFile(id)}
-        className={cn(
-          'absolute top-[-6px] right-[-6px]',
-          'h-[20px] w-[20px] rounded-full-v2',
-          'bg-CCr-button-solid-bg_default-light-v2',
-          'border border-CCr-button-solid-border-light-v2',
-          'flex items-center justify-center',
-        )}
-      >
-        {fileState.uploadComplete ? (
-          <X size={12} />
-        ) : (
-          <span className="loading loading-xs loading-spinner text-white"></span>
-        )}
-      </div>
+      <Remove
+        onRemove={() => model.chatCommon.removeFile(id)}
+        uploadComplete={fileState.uploadComplete}
+      />
+    </div>
+  );
+};
+
+export const Remove: React.FC<{
+  onRemove: () => void;
+  uploadComplete: boolean;
+}> = ({ onRemove, uploadComplete }) => {
+  return (
+    <div
+      onClick={onRemove}
+      className={cn(
+        'absolute top-[-6px] right-[-6px]',
+        'h-[20px] w-[20px] rounded-full-v2',
+        'bg-CCr-button-solid-bg_default-light-v2',
+        'border border-CCr-button-solid-border-light-v2',
+        'flex items-center justify-center',
+        // 'visible',
+        'invisible group-hover:visible',
+        'cursor-pointer',
+      )}
+    >
+      {uploadComplete ? (
+        <X size={12} />
+      ) : (
+        <span className="loading loading-xs loading-spinner text-white"></span>
+      )}
     </div>
   );
 };

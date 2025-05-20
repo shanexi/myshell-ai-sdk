@@ -5,6 +5,9 @@ import { ChatInputContextPlugin } from './components/chat-input/chat-input-conte
 import { ChatInputUploadPlugin } from './components/chat-input/chat-input-upload-plugin';
 import { ChatInputActionPlugin } from './components/chat-input/chat-input-action-plugin';
 import { ChatInputTextareaPlugin } from './components/chat-input/chat-input-textarea-plugin';
+import { ChatInputActionPluginModel } from './components/chat-input/chat-input-action-plugin.model';
+import { ChatInputContextPluginModel } from './components/chat-input/chat-input-context-plugin.model';
+import { ChatInputUploadPluginModel } from './components/chat-input/chat-input-upload-plugin.model';
 
 export const agentUIModule = new ContainerModule((bind) => {
   bindAgentUI(bind);
@@ -14,6 +17,9 @@ export function bindAgentUI(bind: interfaces.Bind) {
   bind(AgentChatModel).toSelf().inSingletonScope();
   bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
 
+  bind(ChatInputActionPluginModel).toSelf().inSingletonScope();
+  bind(ChatInputContextPluginModel).toSelf().inSingletonScope();
+  bind(ChatInputUploadPluginModel).toSelf().inSingletonScope();
   bind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
     ChatInputContextPlugin,
     ChatInputUploadPlugin,
