@@ -309,7 +309,8 @@
       "tailwindcss@3.4.17": "patches/tailwindcss@3.4.17.patch",
       "@nodelib/fs.scandir@2.1.5": "patches/@nodelib__fs.scandir@2.1.5.patch",
       "honox@0.1.38": "patches/honox@0.1.38.patch",
-      "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch"
+      "@virtuoso.dev/message-list@1.9.15": "patches/@virtuoso.dev__message-list@1.9.15.patch",
+      "@uppy/drop-target@3.1.1": "patches/@uppy__drop-target@3.1.1.patch"
     }
   },
   "devDependencies": {
