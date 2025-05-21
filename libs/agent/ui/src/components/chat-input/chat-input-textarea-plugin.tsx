@@ -2,10 +2,10 @@ import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import TextareaAutosize from 'react-textarea-autosize';
-import { AgentChatModel } from '../agent-chat.model';
+import { ChatInputTextareaPluginModel } from './chat-input-textarea-plugin.model';
 
 export const ChatInputTextareaPlugin = observer(() => {
-  const model = useInjection(AgentChatModel);
+  const model = useInjection(ChatInputTextareaPluginModel);
   return (
     <TextareaAutosize
       className={cn(
@@ -13,9 +13,9 @@ export const ChatInputTextareaPlugin = observer(() => {
       )}
       maxRows={8}
       placeholder="Write a message"
-      value={model.chatCommon.inputText}
+      value={model.inputText}
       onChange={(e) => {
-        model.chatCommon.setInputText(e.target.value);
+        model.setInputText(e.target.value);
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {

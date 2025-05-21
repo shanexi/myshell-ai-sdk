@@ -2,9 +2,7 @@ import { cn, FilePreviewState, ImageState } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { AgentChatModel } from '../agent-chat.model';
 import { ChatInputUploadPluginModel } from './chat-input-upload-plugin.model';
-import { PropsWithChildren } from 'react';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputUploadPluginModel);
@@ -98,7 +96,7 @@ const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
   fileState,
   id,
 }) => {
-  const model = useInjection(AgentChatModel);
+  const model = useInjection(ChatInputUploadPluginModel);
   return (
     <div className="group relative flex-none">
       <img
@@ -107,7 +105,7 @@ const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
         src={fileState.preview}
       />
       <Remove
-        onRemove={() => model.chatCommon.removeFile(id)}
+        onRemove={() => model.removeImagePreview(id)}
         uploadComplete={fileState.uploadComplete}
       />
     </div>

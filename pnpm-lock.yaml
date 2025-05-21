@@ -223,6 +223,7 @@ specifiers:
   mdast-util-mdx-jsx: ^3.0.0
   mdast-util-mdxjs-esm: ^2.0.0
   mdast-util-to-hast: ^13.0.0
+  mitt: ^3.0.1
   mobx: ^6.13.6
   mobx-react-lite: ^4.1.0
   mobx-utils: ^6.1.0
@@ -504,6 +505,7 @@ dependencies:
   mdast-util-mdx-jsx: 3.2.0
   mdast-util-mdxjs-esm: 2.0.1
   mdast-util-to-hast: 13.2.0
+  mitt: 3.0.1
   mobx: 6.13.6
   mobx-react-lite: 4.1.0_hcgmw4y7rbeihaxjgs6ft2jpc4
   mobx-utils: 6.1.0_mobx@6.13.6
@@ -22983,6 +22985,10 @@ packages:
     dependencies:
       minipass: 3.3.6
       yallist: 4.0.0
+    dev: false
+
+  /mitt/3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
     dev: false
 
   /mkdirp/0.5.6:

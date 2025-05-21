@@ -1,5 +1,5 @@
 import { MOCK_IMG } from '@myshell-run/common-ui';
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 
@@ -17,6 +17,14 @@ export const previewTypeSchema = z.discriminatedUnion('previewType', [
     subType: z.union([z.literal('rtf'), z.literal('json')]),
   }),
 ]);
+
+export const ChatInputUploadPluginHandler = Symbol.for(
+  'ChatInputUploadPluginHandler',
+);
+
+export interface ChatInputUploadPluginHandler {
+  removeImagePreview(id: string): Generator;
+}
 
 @injectable()
 export class ChatInputUploadPluginModel {
@@ -37,7 +45,16 @@ export class ChatInputUploadPluginModel {
     },
   ]);
 
-  constructor() {
+  constructor(
+    @inject(ChatInputUploadPluginHandler)
+    private handler: ChatInputUploadPluginHandler,
+  ) {
     makeObservable(this);
+  }
+
+  removeImagePreview(id: string) {
+    for (const _ of this.handler.removeImagePreview(id)) {
+      // 其他操作
+    }
   }
 }
