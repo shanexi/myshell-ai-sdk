@@ -171,6 +171,7 @@
   /* https://css-loaders.com/spinner/ #3 */
   /* HTML: <div class="loader"></div> */
   .loader {
+    display: inline-block;
     width: 18px;
     padding: 1.5px;
     aspect-ratio: 1;

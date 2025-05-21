@@ -33,44 +33,7 @@ export class AgentChatModel
       text: inputText,
       user: 'me',
     });
-    // TODO replicache 确保不会漏消息
 
-    // const abortController = new AbortController();
-    // fetchEventSource('/api/chat', {
-    //   method: 'POST',
-    //   headers: {
-    //     method: 'POST',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     msgId,
-    //     replyMsgId,
-    //     prompt: inputText,
-    //   }),
-    //   signal: abortController.signal,
-    //   openWhenHidden: true,
-    //   onerror: (err) => {
-    //     //
-    //   },
-    //   onmessage: (ev: EventSourceMessage) => {
-    //     if (this.chatCommon.isMsgNoExists(replyMsgId)) {
-    //       this.chatCommon.appendMsg({
-    //         key: replyMsgId,
-    //         text: ev.data,
-    //         user: 'other',
-    //       });
-    //     } else {
-    //       this.virtuosoRef?.current?.data.map((message) => {
-    //         return message.key === replyMsgId
-    //           ? { ...message, text: message.text + ev.data }
-    //           : message;
-    //       }, 'smooth');
-    //     }
-    //   },
-    //   onopen: async () => {
-    //     //
-    //   },
-    // });
     yield;
   }
 }

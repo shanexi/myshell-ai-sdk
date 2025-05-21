@@ -153,6 +153,12 @@ export class ChatCommonModel {
     );
   }
 
+  updateMsg(newMsg: Message) {
+    this.virtuosoRef?.current?.data.map((message: Message) => {
+      return message.key === newMsg.key ? newMsg : message;
+    }, 'smooth');
+  }
+
   isMsgNoExists(key: string) {
     return (
       this.virtuosoRef?.current?.data.find((m) => m.key === key) === undefined

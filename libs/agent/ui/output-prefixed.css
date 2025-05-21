@@ -48,6 +48,7 @@
     --color-Cr-border-default-light-v2: var(--neutral-95-v2);
     --color-Cr-Fg-subtle-light-v2: var(--neutral-30-v2);
     --color-Cr-Fg-disabled-light-v2: var(--neutral-80-v2);
+    --color-Cr-text-brand-default-light-v2: var(--pure-mauve-50-v2);
     --color-CCr-button-tertiary-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
@@ -63,6 +64,7 @@
     --color-CCr-button-solid-bg_default-light-v2: var(--neutral-100-v2);
     --color-CCr-button-solid-border-light-v2: var(--opacity-on-surface-40-v2);
     --color-Cr-Bg-normal-secondary-alt-light-v2: var(--neutral-100-v2);
+    --pure-mauve-50-v2: #7860a1;
     --neutral-variant-20-v2: #313131;
     --neutral-variant-100-v2: #ffffff;
     --lake-blue-60-v2: #5f95cc;
@@ -1401,6 +1403,9 @@
   .text-Cr-Fg-subtle-light-v2 {
     color: var(--color-Cr-Fg-subtle-light-v2);
   }
+  .text-Cr-text-brand-default-light-v2 {
+    color: var(--color-Cr-text-brand-default-light-v2);
+  }
   .text-Cr-text-default-light-v2 {
     color: var(--color-Cr-text-default-light-v2);
   }
@@ -1634,6 +1639,7 @@
 }
 @layer v4-components {
   .loader {
+    display: inline-block;
     width: 18px;
     padding: 1.5px;
     aspect-ratio: 1;

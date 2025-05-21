@@ -10,6 +10,8 @@ import {
 import { ChecklistItemModel } from './components/checklist-msg.model';
 import { OwnMessage } from './components/own-msg';
 import { ReplyMsg } from './components/reply-msg';
+import { PollingMsg } from './components/polling-msg';
+import { PollingMsgModel } from './components/polling-msg.model';
 // import { LineChartDemo } from './components/chart-demo';
 
 export const OWN_MESSAGE_TYPE = 'own';
@@ -48,6 +50,7 @@ export function bindAgentMsgItemPlugins(bind: interfaces.Bind) {
   register('x-checklist', Checklist);
   register('x-checklist-item', ChecklistItem, ChecklistItemModel);
   register('x-checklist-code', ChecklistCode);
+  register('x-polling', PollingMsg, PollingMsgModel);
   // register('x-line-chart', LineChartDemo);
   // register('x-bar-chart', BarChartDemo);
 }
