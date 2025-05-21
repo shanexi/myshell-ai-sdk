@@ -6,7 +6,7 @@ export const ChatInputTextareaPluginHandler = Symbol.for(
 );
 
 export interface ChatInputTextareaPluginHandler {
-  sendText(text: string): Generator;
+  sendText(text: string): AsyncGenerator;
 }
 
 @injectable()
@@ -24,8 +24,8 @@ export class ChatInputTextareaPluginModel {
     this.inputText = text;
   }
 
-  sendText() {
-    for (const _ of this.handler.sendText(this.inputText)) {
+  async sendText() {
+    for await (const _ of this.handler.sendText(this.inputText)) {
       this.setInputText('');
     }
   }

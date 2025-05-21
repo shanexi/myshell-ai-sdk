@@ -24,7 +24,7 @@ export class AgentChatModel
     yield;
   }
 
-  *sendText(inputText: string) {
+  async *sendText(inputText: string) {
     const msgId = createId();
     const replyMsgId = createId();
 
