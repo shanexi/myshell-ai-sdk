@@ -3,8 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ChatInput } from './chat-input';
 import { container } from './stories.utils';
 import { ChatInputPlugin } from '@myshell-run/common-def';
-import { ChatInputTextareaPlugin } from './chat-input/chat-input-textarea-plugin';
-import { ChatInputActionPlugin } from './chat-input/chat-input-action-plugin';
+import {
+  ChatInputTextareaPlugin,
+  ChatInputActionPlugin,
+} from '@myshell-run/agent-chat-input-plugins';
 import { useEffect } from 'react';
 
 const meta: Meta<typeof ChatInput> = {

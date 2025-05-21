@@ -2,8 +2,10 @@ import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
-import { ChatInputTextareaPluginHandler } from './chat-input/chat-input-textarea-plugin.model';
-import { ChatInputUploadPluginHandler } from './chat-input/chat-input-upload-plugin.model';
+import {
+  ChatInputTextareaPluginHandler,
+  ChatInputUploadPluginHandler,
+} from '@myshell-run/agent-chat-input-plugins';
 
 @injectable()
 export class AgentChatModel

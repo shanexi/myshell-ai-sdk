@@ -124,7 +124,6 @@ export class ChatCommonModel {
     this.#uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
-        // TODO 做样式
         this.isDragging = true;
       },
       onDragLeave: (event) => {

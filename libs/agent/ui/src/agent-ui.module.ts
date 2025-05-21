@@ -1,20 +1,10 @@
+import { UploadEndpoint } from '@myshell-run/common-def';
 import { ContainerModule, interfaces } from 'inversify';
 import { AgentChatModel } from './components/agent-chat.model';
-import { ChatInputPlugin, UploadEndpoint } from '@myshell-run/common-def';
-import { ChatInputContextPlugin } from './components/chat-input/chat-input-context-plugin';
-import { ChatInputUploadPlugin } from './components/chat-input/chat-input-upload-plugin';
-import { ChatInputActionPlugin } from './components/chat-input/chat-input-action-plugin';
-import { ChatInputTextareaPlugin } from './components/chat-input/chat-input-textarea-plugin';
-import { ChatInputActionPluginModel } from './components/chat-input/chat-input-action-plugin.model';
-import { ChatInputContextPluginModel } from './components/chat-input/chat-input-context-plugin.model';
-import {
-  ChatInputUploadPluginHandler,
-  ChatInputUploadPluginModel,
-} from './components/chat-input/chat-input-upload-plugin.model';
 import {
   ChatInputTextareaPluginHandler,
-  ChatInputTextareaPluginModel,
-} from './components/chat-input/chat-input-textarea-plugin.model';
+  ChatInputUploadPluginHandler,
+} from '@myshell-run/agent-chat-input-plugins';
 
 export const agentUIModule = new ContainerModule((bind) => {
   bindAgentUI(bind);
@@ -29,15 +19,4 @@ export function bindAgentUI(bind: interfaces.Bind) {
     ctx.container.get(AgentChatModel),
   );
   bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
-
-  bind(ChatInputActionPluginModel).toSelf().inSingletonScope();
-  bind(ChatInputContextPluginModel).toSelf().inSingletonScope();
-  bind(ChatInputUploadPluginModel).toSelf().inSingletonScope();
-  bind(ChatInputTextareaPluginModel).toSelf().inSingletonScope();
-  bind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
-    ChatInputContextPlugin,
-    ChatInputUploadPlugin,
-    ChatInputTextareaPlugin,
-    ChatInputActionPlugin,
-  ]);
 }
