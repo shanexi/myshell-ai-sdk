@@ -9,7 +9,7 @@ export const ChatInputTextareaPlugin = observer(() => {
   return (
     <TextareaAutosize
       className={cn(
-        'my-spacing-xs-v2 w-full resize-none px-spacing-sm-v2 outline-none',
+        'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
       )}
       maxRows={8}
       placeholder="Write a message"

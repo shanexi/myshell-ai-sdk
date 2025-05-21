@@ -1327,6 +1327,9 @@
   .p-spacing-xs-v2 {
     padding: var(--spacing-spacing-xs-v2);
   }
+  .\!px-spacing-sm-v2 {
+    padding-inline: var(--spacing-spacing-sm-v2) !important;
+  }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
   }
@@ -1344,9 +1347,6 @@
   }
   .px-spacing-lg-v2 {
     padding-inline: var(--spacing-spacing-lg-v2);
-  }
-  .px-spacing-sm-v2 {
-    padding-inline: var(--spacing-spacing-sm-v2);
   }
   .px-spacing-xl-v2 {
     padding-inline: var(--spacing-spacing-xl-v2);
