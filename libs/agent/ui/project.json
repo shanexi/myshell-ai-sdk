@@ -8,26 +8,29 @@
     "local-publish": {
       "executor": "@myshell-run/my-nx-plugins:local-publish",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["^build-css", "^local-publish"],
+      "dependsOn": ["build-css", "^local-publish"],
       "options": {
         "outputPath": "dist/libs/agent/ui",
         "tsConfig": "libs/agent/ui/tsconfig.lib.json",
         "assets": [
           "libs/agent/ui/output.css",
-          "libs/agent/ui/output-prefixed.css"
+          "libs/agent/ui/output-prefixed.css",
+          "libs/agent/ui/**/*.svg"
         ]
       }
     },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["build-css", "^build"],
       "options": {
         "outputPath": "dist/libs/agent/ui",
         "main": "libs/agent/ui/src/index.ts",
         "tsConfig": "libs/agent/ui/tsconfig.lib.json",
         "assets": [
           "libs/agent/ui/output.css",
-          "libs/agent/ui/output-prefixed.css"
+          "libs/agent/ui/output-prefixed.css",
+          "libs/agent/ui/**/*.svg"
         ]
       }
     },

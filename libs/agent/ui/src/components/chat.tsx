@@ -5,7 +5,7 @@ import { useInjection } from 'inversify-react';
 import { AgentChatModel } from './agent-chat.model';
 import { observer } from 'mobx-react-lite';
 import { cn } from '@myshell-run/common-ui';
-import { ReactComponent as Draging } from './draging.svg';
+import { ReactComponent as Dragging } from './dragging.svg';
 
 export const Chat = observer(() => {
   const model = useInjection(AgentChatModel);
@@ -36,7 +36,7 @@ const Mask = () => {
         'flex flex-col items-center justify-center',
       )}
     >
-      <Draging />
+      <Dragging />
       <div className="display-md-emphasized mt-[12px] text-center text-Cr-text-default-light-v2">
         Add any content
       </div>
