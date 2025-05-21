@@ -86,18 +86,18 @@ const ContextItem: React.FC<{
       <Icon
         strokeWidth={1.5}
         size={16}
-        className="text-Cr-Fg-subtle-light-v2"
+        className={cn('text-Cr-Fg-subtle-light-v2', 'block group-hover:hidden')}
       />
-      <div className="text-sm-medium">{title}</div>
       <X
         strokeWidth={1.5}
         size={16}
         className={cn(
           'text-Cr-Fg-subtle-light-v2',
           'cursor-pointer',
-          'invisible group-hover:visible',
+          'hidden group-hover:block',
         )}
       />
+      <div className="text-sm-medium">{title}</div>
     </ContextWrapper>
   );
 };
