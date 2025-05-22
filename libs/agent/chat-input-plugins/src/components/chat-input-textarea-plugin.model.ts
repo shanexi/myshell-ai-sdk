@@ -1,6 +1,6 @@
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
-import { makeObservable, observable } from 'mobx';
+import { makeObservable } from 'mobx';
 import { isEmpty } from 'radash';
 
 export const ChatInputTextareaPluginHandler = Symbol.for(

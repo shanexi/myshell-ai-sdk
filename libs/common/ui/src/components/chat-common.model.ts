@@ -39,9 +39,6 @@ export class ChatCommonModel {
   virtuosoRef?: RefObject<
     VirtuosoMessageListMethods<Message, MessageListContext>
   >;
-  /**
-   * @deprecated 放到了 chat input plugin
-   */
   @observable inputText = '';
 
   #uppy?: Uppy;
@@ -75,9 +72,6 @@ export class ChatCommonModel {
     this.virtuosoRef = ref;
   };
 
-  /**
-   * @deprecated 放到了 chat input plugin
-   */
   @action.bound
   setInputText(text: string) {
     this.inputText = text;
