@@ -6,9 +6,11 @@ import { Remarkable } from '@myshell-run/common-def';
 @injectable()
 export class PollingMsgModel implements Remarkable {
   @observable timeLeft = 0;
+  private timer: NodeJS.Timer | null = null;
 
   onUpdate(props: Properties) {
     this.setTimeLeft(Number(props.timeLeft || 0));
+    this.startPolling();
   }
 
   @computed
@@ -30,5 +32,22 @@ export class PollingMsgModel implements Remarkable {
   @action.bound
   decreaseTimeLeft() {
     this.timeLeft = this.timeLeft - 1;
+  }
+
+  startPolling() {
+    this.timer = setInterval(() => {
+      if (this.timeLeft <= 0 && this.timer) {
+        clearInterval(this.timer);
+      } else {
+        this.decreaseTimeLeft();
+      }
+    }, 1000);
+  }
+
+  clearPolling() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
   }
 }

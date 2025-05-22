@@ -19,13 +19,25 @@ export class ShellAgentChatModel implements ChatInputTextareaPluginHandler {
       user: 'me',
     });
 
-    const sec = 10;
+    const sec = 3;
 
+    const msg = `::x-polling{#${replyMsgId} timeLeft=${sec}}`;
     this.chatCommon.appendMsg({
       key: replyMsgId,
-      text: `::x-polling{#${replyMsgId} timeLeft=${sec}}`,
+      text: msg,
       user: 'other',
     });
+
+    setTimeout(
+      () => {
+        this.chatCommon.updateMsg({
+          key: replyMsgId,
+          text: msg + '\n' + `::x-polling{#${replyMsgId} timeLeft=${sec}}`,
+          user: 'other',
+        });
+      },
+      (sec + 2) * 1000,
+    );
 
     yield;
   }

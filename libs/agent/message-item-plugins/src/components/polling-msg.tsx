@@ -10,14 +10,10 @@ export const PollingMsg = observer(
       console.log('only run once');
       const timeLeftNum = Number(props.timeLeft);
       model.setTimeLeft(timeLeftNum);
-      const timer = setInterval(() => {
-        if (model.timeLeft <= 0) {
-          clearInterval(timer);
-        } else {
-          model.decreaseTimeLeft();
-        }
-      }, 1000);
-      return () => clearInterval(timer);
+      model.startPolling();
+      return () => {
+        model.clearPolling();
+      };
     }, []);
     return (
       <span
