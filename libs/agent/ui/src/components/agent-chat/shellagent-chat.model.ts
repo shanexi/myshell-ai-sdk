@@ -11,12 +11,36 @@ import { ChatCommonModel } from '@myshell-run/common-ui';
 export class ShellAgentChatModel
   implements ChatInputTextareaPluginHandler, ChatInputActionPluginHandler
 {
+  private timer: NodeJS.Timer | null = null;
+  private readonly seconds = 3;
+  private replyMsg = 'Polling...';
+
   constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
     makeObservable(this);
   }
   async *clear(): AsyncGenerator {
     console.log('clear');
     yield;
+  }
+
+  startPolling(replyMsgId: string) {
+    this.timer = setInterval(async () => {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+      await new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+      this.startPolling(replyMsgId);
+      this.chatCommon.updateMsg({
+        key: replyMsgId,
+        text:
+          this.replyMsg +
+          '\n' +
+          `::x-polling{#${replyMsgId} timeLeft=${this.seconds}}`,
+        user: 'other',
+      });
+    }, this.seconds * 1000);
   }
 
   async *sendText(text: string) {
@@ -29,25 +53,13 @@ export class ShellAgentChatModel
       user: 'me',
     });
 
-    const sec = 3;
-
-    const msg = `::x-polling{#${replyMsgId} timeLeft=${sec}}`;
+    this.replyMsg = `::x-polling{#${replyMsgId} timeLeft=${this.seconds}}`;
     this.chatCommon.appendMsg({
       key: replyMsgId,
-      text: msg,
+      text: this.replyMsg,
       user: 'other',
     });
-
-    setTimeout(
-      () => {
-        this.chatCommon.updateMsg({
-          key: replyMsgId,
-          text: msg + '\n' + `::x-polling{#${replyMsgId} timeLeft=${sec}}`,
-          user: 'other',
-        });
-      },
-      (sec + 2) * 1000,
-    );
+    this.startPolling(replyMsgId);
 
     yield;
   }
