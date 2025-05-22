@@ -1,14 +1,24 @@
-import { ChatInputTextareaPluginHandler } from '@myshell-run/agent-chat-input-plugins';
+import {
+  ChatInputTextareaPluginHandler,
+  ChatInputActionPluginHandler,
+} from '@myshell-run/agent-chat-input-plugins';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 
 @injectable()
-export class ShellAgentChatModel implements ChatInputTextareaPluginHandler {
+export class ShellAgentChatModel
+  implements ChatInputTextareaPluginHandler, ChatInputActionPluginHandler
+{
   constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
     makeObservable(this);
   }
+  async *clear(): AsyncGenerator {
+    console.log('clear');
+    yield;
+  }
+
   async *sendText(text: string) {
     const msgId = createId();
     const replyMsgId = createId();

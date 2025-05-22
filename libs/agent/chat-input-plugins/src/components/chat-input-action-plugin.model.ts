@@ -4,11 +4,21 @@ import { makeObservable } from 'mobx';
 import { isEmpty } from 'radash';
 import { ChatInputTextareaPluginHandler } from './chat-input-textarea-plugin.model';
 
+export const ChatInputActionPluginHandler = Symbol.for(
+  'ChatInputActionPluginHandler',
+);
+
+export interface ChatInputActionPluginHandler {
+  clear(): AsyncGenerator;
+}
+
 @injectable()
 export class ChatInputActionPluginModel {
   constructor(
     @inject(ChatInputTextareaPluginHandler)
-    private handler: ChatInputTextareaPluginHandler,
+    private textareaHandler: ChatInputTextareaPluginHandler,
+    @inject(ChatInputActionPluginHandler)
+    private handler: ChatInputActionPluginHandler,
     @inject(ChatCommonModel) public chatCommon: ChatCommonModel,
   ) {
     makeObservable(this);
@@ -24,8 +34,16 @@ export class ChatInputActionPluginModel {
       return;
     }
 
-    for await (const _ of this.handler.sendText(this.chatCommon.inputText)) {
+    for await (const _ of this.textareaHandler.sendText(
+      this.chatCommon.inputText,
+    )) {
       this.chatCommon.setInputText('');
+    }
+  }
+
+  async clear() {
+    for await (const _ of this.handler.clear()) {
+      //
     }
   }
 }
