@@ -2,18 +2,18 @@ import { ChatInputTextareaPluginHandler } from '@myshell-run/agent-chat-input-pl
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
-import { AgentChatModel } from '../agent-chat.model';
+import { ChatCommonModel } from '@myshell-run/common-ui';
 
 @injectable()
 export class ShellAgentChatModel implements ChatInputTextareaPluginHandler {
-  constructor(@inject(AgentChatModel) private agentChat: AgentChatModel) {
+  constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
     makeObservable(this);
   }
   async *sendText(text: string) {
     const msgId = createId();
     const replyMsgId = createId();
 
-    this.agentChat.chatCommon.appendMsg({
+    this.chatCommon.appendMsg({
       key: msgId,
       text: text,
       user: 'me',
@@ -21,7 +21,7 @@ export class ShellAgentChatModel implements ChatInputTextareaPluginHandler {
 
     const sec = 10;
 
-    this.agentChat.chatCommon.appendMsg({
+    this.chatCommon.appendMsg({
       key: replyMsgId,
       text: `::x-polling{#${replyMsgId} timeLeft=${sec}}`,
       user: 'other',

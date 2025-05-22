@@ -13,9 +13,9 @@ export const ChatInputTextareaPlugin = observer(() => {
       )}
       maxRows={8}
       placeholder="Write a message"
-      value={model.inputText}
+      value={model.chatCommon.inputText}
       onChange={(e) => {
-        model.setInputText(e.target.value);
+        model.chatCommon.setInputText(e.target.value);
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {

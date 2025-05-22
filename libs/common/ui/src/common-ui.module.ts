@@ -7,6 +7,8 @@ export const commonUIModule = new ContainerModule((bind) => {
 });
 
 export function bindCommonUI(bind: interfaces.Bind) {
-  bind(ChatCommonModel).toSelf().inTransientScope();
+  // TODO: 先把功能实现，多实例的事情想了其他方法, 功能实现后改造
+  // bind(ChatCommonModel).toSelf().inTransientScope();
+  bind(ChatCommonModel).toSelf().inSingletonScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
 }
