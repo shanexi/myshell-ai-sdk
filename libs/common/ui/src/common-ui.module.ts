@@ -15,6 +15,9 @@ export function bindCommonUI(bind: interfaces.Bind) {
   bind(ChatCommonModelFactory).toFactory<ChatCommonModel, [symbol]>(
     (ctx) => (id) => {
       const child = ctx.container.createChild();
+      // 这里使用 inSingletonScope/inTransientScope 都没有差异
+      // 因为 ChatCommonModel 只在这几行代码能被调用
+      // 默认使用 inSingletonScope，因为 child 是一个新的 container 也会存在多实例
       child.bind(ChatCommonModel).toSelf().inSingletonScope();
       if (chatCommonMap.has(id)) {
         return chatCommonMap.get(id) as ChatCommonModel;
