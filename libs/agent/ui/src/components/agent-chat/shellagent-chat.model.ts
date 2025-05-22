@@ -1,21 +1,29 @@
-import { ChatInputHandler } from '@myshell-run/agent-chat-input-plugins';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
+import { ChatCommonManager, ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
 
 @injectable()
-export class ShellAgentChatModel implements ChatInputHandler {
+export class ShellAgentChatModel implements ChatInputHandlers {
   private timer: NodeJS.Timer | null = null;
   private readonly seconds = 3;
   private replyMsg = '';
 
-  constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
+  constructor(
+    @inject(ChatCommonModelFactory)
+    public factory: (id: symbol) => ChatCommonModel,
+  ) {
     makeObservable(this);
   }
 
   *removeImagePreview(id: string): Generator {
     yield;
+  }
+
+  get chatCommon() {
+    return this.factory(AGENT_CHAT);
   }
 
   async *clear(): AsyncGenerator {

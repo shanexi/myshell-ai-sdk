@@ -1,7 +1,7 @@
 import {
   agentChatInputPluginsModule,
   ChatInputActionPlugin,
-  ChatInputHandler,
+  ChatInputHandlers,
   ChatInputTextareaPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
@@ -22,7 +22,7 @@ const storyModule = new ContainerModule(
     rebind: interfaces.Rebind,
   ) => {
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
-    rebind(ChatInputHandler).to(ShellAgentChatModel).inSingletonScope();
+    rebind(ChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
     rebind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
       ChatInputTextareaPlugin,
       ChatInputActionPlugin,

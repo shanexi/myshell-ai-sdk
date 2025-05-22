@@ -1,10 +1,11 @@
+import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
 
-export const ChatInputHandler = Symbol.for('ChatInputHandler');
+export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
@@ -47,10 +48,15 @@ export class ChatInputModel {
   ]);
 
   constructor(
-    @inject(ChatInputHandler) private handlers: ChatInputHandlers,
-    @inject(ChatCommonModel) public chatCommon: ChatCommonModel,
+    @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
+    @inject(ChatCommonModelFactory)
+    public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
+  }
+
+  get chatCommon() {
+    return this.factory(AGENT_CHAT);
   }
 
   get showSendButton() {

@@ -1,14 +1,23 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
+import { ChatCommonManager, ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
 
 @injectable()
 export class AgentChatModel implements ChatInputHandlers {
-  constructor(@inject(ChatCommonModel) public chatCommon: ChatCommonModel) {
+  constructor(
+    @inject(ChatCommonModelFactory)
+    public factory: (id: symbol) => ChatCommonModel,
+  ) {
     makeObservable(this);
   }
+
+  get chatCommon() {
+    return this.factory(AGENT_CHAT);
+  }
+
   async *clear(): AsyncGenerator {
     yield;
   }
