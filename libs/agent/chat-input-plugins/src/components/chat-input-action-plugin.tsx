@@ -1,11 +1,11 @@
 import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ArrowUp, CirclePlus, Mic, BrushCleaning } from 'lucide-react';
+import { ArrowUp, BrushCleaning, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { ChatInputActionPluginModel } from './chat-input-action-plugin.model';
+import { ChatInputModel } from './chat-input.model';
 
 export const ChatInputActionPlugin = observer(() => {
-  const model = useInjection(ChatInputActionPluginModel);
+  const model = useInjection(ChatInputModel);
   return (
     <div
       className={cn(

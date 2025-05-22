@@ -1,23 +1,22 @@
-import {
-  ChatInputTextareaPluginHandler,
-  ChatInputActionPluginHandler,
-} from '@myshell-run/agent-chat-input-plugins';
+import { ChatInputHandler } from '@myshell-run/agent-chat-input-plugins';
+import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
-import { ChatCommonModel } from '@myshell-run/common-ui';
 
 @injectable()
-export class ShellAgentChatModel
-  implements ChatInputTextareaPluginHandler, ChatInputActionPluginHandler
-{
+export class ShellAgentChatModel implements ChatInputHandler {
   private timer: NodeJS.Timer | null = null;
   private readonly seconds = 3;
-  private replyMsg = 'Polling...';
+  private replyMsg = '';
 
   constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
     makeObservable(this);
   }
+  *removeImagePreview(id: string): Generator {
+    yield;
+  }
+
   async *clear(): AsyncGenerator {
     console.log('clear');
     yield;

@@ -1,7 +1,16 @@
-import { MOCK_IMG } from '@myshell-run/common-ui';
+import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
+import { isEmpty } from 'radash';
 import { z } from 'zod';
+
+export const ChatInputHandler = Symbol.for('ChatInputHandler');
+
+export interface ChatInputHandler {
+  clear(): AsyncGenerator;
+  sendText(text: string): AsyncGenerator;
+  removeImagePreview(id: string): Generator;
+}
 
 export const previewTypeSchema = z.discriminatedUnion('previewType', [
   z.object({
@@ -18,16 +27,8 @@ export const previewTypeSchema = z.discriminatedUnion('previewType', [
   }),
 ]);
 
-export const ChatInputUploadPluginHandler = Symbol.for(
-  'ChatInputUploadPluginHandler',
-);
-
-export interface ChatInputUploadPluginHandler {
-  removeImagePreview(id: string): Generator;
-}
-
 @injectable()
-export class ChatInputUploadPluginModel {
+export class ChatInputModel {
   @observable previewItems = observable.array<
     z.infer<typeof previewTypeSchema>
   >([
@@ -46,10 +47,31 @@ export class ChatInputUploadPluginModel {
   ]);
 
   constructor(
-    @inject(ChatInputUploadPluginHandler)
-    private handler: ChatInputUploadPluginHandler,
+    @inject(ChatInputHandler) private handler: ChatInputHandler,
+    @inject(ChatCommonModel) public chatCommon: ChatCommonModel,
   ) {
     makeObservable(this);
+  }
+
+  get showSendButton() {
+    return !isEmpty(this.chatCommon.inputText);
+  }
+
+  // todo: 重复代码
+  async sendText() {
+    if (isEmpty(this.chatCommon.inputText)) {
+      return;
+    }
+
+    for await (const _ of this.handler.sendText(this.chatCommon.inputText)) {
+      this.chatCommon.setInputText('');
+    }
+  }
+
+  async clear() {
+    for await (const _ of this.handler.clear()) {
+      //
+    }
   }
 
   removeImagePreview(id: string) {

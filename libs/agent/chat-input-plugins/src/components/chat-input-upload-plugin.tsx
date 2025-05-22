@@ -2,10 +2,10 @@ import { cn, FilePreviewState, ImageState } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { ChatInputUploadPluginModel } from './chat-input-upload-plugin.model';
+import { ChatInputModel } from './chat-input.model';
 
 export const ChatInputUploadPlugin = observer(() => {
-  const model = useInjection(ChatInputUploadPluginModel);
+  const model = useInjection(ChatInputModel);
   return (
     <div
       className={cn(
@@ -96,7 +96,7 @@ const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
   fileState,
   id,
 }) => {
-  const model = useInjection(ChatInputUploadPluginModel);
+  const model = useInjection(ChatInputModel);
   return (
     <div className="group relative flex-none">
       <img

@@ -1,11 +1,11 @@
 import {
   agentChatInputPluginsModule,
   ChatInputActionPlugin,
-  ChatInputActionPluginHandler,
+  ChatInputHandler,
   ChatInputTextareaPlugin,
-  ChatInputTextareaPluginHandler,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
+import { ChatInputPlugin } from '@myshell-run/common-def';
 import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';
@@ -13,7 +13,6 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import { agentUIModule } from '../../agent-ui.module';
 import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
-import { ChatInputPlugin } from '@myshell-run/common-def';
 
 const storyModule = new ContainerModule(
   (
@@ -23,12 +22,7 @@ const storyModule = new ContainerModule(
     rebind: interfaces.Rebind,
   ) => {
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
-    rebind(ChatInputTextareaPluginHandler)
-      .to(ShellAgentChatModel)
-      .inSingletonScope();
-    bind(ChatInputActionPluginHandler)
-      .to(ShellAgentChatModel)
-      .inSingletonScope();
+    rebind(ChatInputHandler).to(ShellAgentChatModel).inSingletonScope();
     rebind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
       ChatInputTextareaPlugin,
       ChatInputActionPlugin,

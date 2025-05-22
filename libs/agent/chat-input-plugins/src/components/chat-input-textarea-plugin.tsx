@@ -2,10 +2,10 @@ import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import TextareaAutosize from 'react-textarea-autosize';
-import { ChatInputTextareaPluginModel } from './chat-input-textarea-plugin.model';
+import { ChatInputModel } from './chat-input.model';
 
 export const ChatInputTextareaPlugin = observer(() => {
-  const model = useInjection(ChatInputTextareaPluginModel);
+  const model = useInjection(ChatInputModel);
   return (
     <TextareaAutosize
       className={cn(

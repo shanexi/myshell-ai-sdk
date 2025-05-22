@@ -49,6 +49,7 @@
     --color-Cr-Fg-subtle-light-v2: var(--neutral-30-v2);
     --color-Cr-Fg-disabled-light-v2: var(--neutral-80-v2);
     --color-Cr-text-brand-default-light-v2: var(--pure-mauve-50-v2);
+    --color-CCr-button-primary-bg_default-light-v2: var(--neutral-5-v2);
     --color-CCr-button-tertiary-bg_default-light-v2: var(
     --opacity-on-surface-10-v2
   );
@@ -56,6 +57,7 @@
     --color-CCr-button-tertiary-border-light-v2: var(--opacity-on-surface-40-v2);
     --color-Cr-Bg-normal-tertiary-active-light-v2: var(--neutral-95-v2);
     --color-Cr-utility-lake-blue-50-light-v2: var(--lake-blue-60-v2);
+    --color-Cr-Fg-bolder-light-v2: var(--neutral-100-v2);
     --color-CCr-input-bg_default-light-v2: var(--opacity-on-surface-10-v2);
     --color-CCr-input-border-light-v2: var(--opacity-on-surface-40-v2);
     --color-Cr-Bg-normal-secondary-default-light-v2: var(--neutral-98-v2);
@@ -1104,6 +1106,9 @@
   .h-\[20px\] {
     height: 20px;
   }
+  .h-\[28px\] {
+    height: 28px;
+  }
   .h-\[32px\] {
     height: 32px;
   }
@@ -1121,6 +1126,9 @@
   }
   .w-\[20px\] {
     width: 20px;
+  }
+  .w-\[28px\] {
+    width: 28px;
   }
   .w-\[32px\] {
     width: 32px;
@@ -1276,6 +1284,9 @@
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
+  .bg-CCr-button-primary-bg_default-light-v2 {
+    background-color: var(--color-CCr-button-primary-bg_default-light-v2);
+  }
   .bg-CCr-button-solid-bg_default-light-v2 {
     background-color: var(--color-CCr-button-solid-bg_default-light-v2);
   }
@@ -1396,6 +1407,9 @@
   }
   .text-CCr-button-tertiary-fg_default-light-v2 {
     color: var(--color-CCr-button-tertiary-fg_default-light-v2);
+  }
+  .text-Cr-Fg-bolder-light-v2 {
+    color: var(--color-Cr-Fg-bolder-light-v2);
   }
   .text-Cr-Fg-disabled-light-v2 {
     color: var(--color-Cr-Fg-disabled-light-v2);
