@@ -63,7 +63,6 @@ export class ChatInputModel {
     return !isEmpty(this.chatCommon.inputText);
   }
 
-  // todo: 重复代码
   async sendText() {
     if (isEmpty(this.chatCommon.inputText)) {
       return;
