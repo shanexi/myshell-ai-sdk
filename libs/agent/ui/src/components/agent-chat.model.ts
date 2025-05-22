@@ -1,18 +1,16 @@
+import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
-import {
-  ChatInputTextareaPluginHandler,
-  ChatInputUploadPluginHandler,
-} from '@myshell-run/agent-chat-input-plugins';
 
 @injectable()
-export class AgentChatModel
-  implements ChatInputTextareaPluginHandler, ChatInputUploadPluginHandler
-{
+export class AgentChatModel implements ChatInputHandlers {
   constructor(@inject(ChatCommonModel) public chatCommon: ChatCommonModel) {
     makeObservable(this);
+  }
+  async *clear(): AsyncGenerator {
+    yield;
   }
 
   get virtuosoRef() {

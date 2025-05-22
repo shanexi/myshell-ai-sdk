@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 export const ChatInputHandler = Symbol.for('ChatInputHandler');
 
-export interface ChatInputHandler {
+export interface ChatInputHandlers {
   clear(): AsyncGenerator;
   sendText(text: string): AsyncGenerator;
   removeImagePreview(id: string): Generator;
@@ -47,7 +47,7 @@ export class ChatInputModel {
   ]);
 
   constructor(
-    @inject(ChatInputHandler) private handler: ChatInputHandler,
+    @inject(ChatInputHandler) private handlers: ChatInputHandlers,
     @inject(ChatCommonModel) public chatCommon: ChatCommonModel,
   ) {
     makeObservable(this);
@@ -63,19 +63,19 @@ export class ChatInputModel {
       return;
     }
 
-    for await (const _ of this.handler.sendText(this.chatCommon.inputText)) {
+    for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
       this.chatCommon.setInputText('');
     }
   }
 
   async clear() {
-    for await (const _ of this.handler.clear()) {
+    for await (const _ of this.handlers.clear()) {
       //
     }
   }
 
   removeImagePreview(id: string) {
-    for (const _ of this.handler.removeImagePreview(id)) {
+    for (const _ of this.handlers.removeImagePreview(id)) {
       // 其他操作
     }
   }

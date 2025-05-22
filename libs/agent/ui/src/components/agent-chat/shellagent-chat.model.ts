@@ -13,6 +13,7 @@ export class ShellAgentChatModel implements ChatInputHandler {
   constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
     makeObservable(this);
   }
+
   *removeImagePreview(id: string): Generator {
     yield;
   }

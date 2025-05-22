@@ -3,9 +3,9 @@ import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { agentChatInputPluginsModule } from '../agent-chat-input-plugins.module';
 import { ChatInputTextareaPlugin } from './chat-input-textarea-plugin';
-import { ChatInputHandler } from './chat-input.model';
+import { ChatInputHandlers } from './chat-input.model';
 
-class SomeChatInputHandler implements ChatInputHandler {
+class SomeChatInputHandler implements ChatInputHandlers {
   *removeImagePreview(id: string) {
     yield;
   }
@@ -20,7 +20,7 @@ class SomeChatInputHandler implements ChatInputHandler {
 }
 
 const container = new Container();
-container.bind<ChatInputHandler>(ChatInputHandler).to(SomeChatInputHandler);
+container.bind<ChatInputHandlers>(ChatInputHandler).to(SomeChatInputHandler);
 container.load(agentChatInputPluginsModule);
 
 const meta: Meta<typeof ChatInputTextareaPlugin> = {
