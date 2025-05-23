@@ -18,7 +18,7 @@ export const ChatInputTextareaPlugin = observer(() => {
         model.chatCommon.setInputText(e.target.value);
       }}
       onKeyDown={(e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
           e.preventDefault();
           model.sendText();
         }
