@@ -6,7 +6,7 @@ export default {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/chatModel',
+  coverageDirectory: '../../../coverage/libs/common/def',
   coverageThreshold: {
     global: {
       branches: 90,

@@ -3,6 +3,10 @@ import { ReplyMsg } from '../reply-msg';
 import checklistStory from './checklist-story.md';
 import pollingMsgStory from './polling-msg-story.md';
 
+export const RemarkStory: React.FC<{ text: string }> = ({ text }) => {
+  return <ReplyMsg key="abc" user="other" text={text} />;
+};
+
 export const ChecklistStory = () => {
   const lines = checklistStory.split('<!-- next -->\n');
   const [text, setText] = useState(lines[0]);
