@@ -1,5 +1,6 @@
 import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { uiBizModule } from '../../../ui-biz.module';

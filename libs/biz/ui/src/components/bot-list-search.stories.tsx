@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { BotListSearch } from './bot-list-search';
-import { commonUIModule, InversifyProvider } from '@myshell-run/common-ui';
+import { commonUIModule } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 import { uiBizModule } from '../ui-biz.module';
 import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
 import { Container } from 'inversify';

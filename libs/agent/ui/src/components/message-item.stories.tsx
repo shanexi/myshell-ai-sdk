@@ -1,4 +1,4 @@
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MessageItem } from './message-item';
 import { container } from './stories.utils';

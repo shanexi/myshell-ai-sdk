@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@myshell-run/agent-chat-input-plugins": [
+        "libs/agent/chat-input-plugins/src/index.ts"
+      ],
       "@myshell-run/agent-message-item-plugins": [
         "libs/agent/message-item-plugins/src/index.ts"
       ],

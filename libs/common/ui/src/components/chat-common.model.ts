@@ -118,7 +118,6 @@ export class ChatCommonModel {
     this.#uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
-        // TODO 做样式
         this.isDragging = true;
       },
       onDragLeave: (event) => {
@@ -146,6 +145,12 @@ export class ChatCommonModel {
         };
       },
     );
+  }
+
+  updateMsg(newMsg: Message) {
+    this.virtuosoRef?.current?.data.map((message: Message) => {
+      return message.key === newMsg.key ? newMsg : message;
+    }, 'smooth');
   }
 
   isMsgNoExists(key: string) {

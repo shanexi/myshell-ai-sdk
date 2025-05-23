@@ -29,7 +29,7 @@ export const setup = (bind: interfaces.Bind) => {
     };
   });
   const registerMap: RegisterMap = new Map();
-  bind('RegisterMap').toConstantValue(registerMap);
+  bind(RegisterMap).toConstantValue(registerMap);
   function register<T>(
     directiveName: string,
     component: React.ComponentType<T>,

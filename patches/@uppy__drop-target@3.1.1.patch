@@ -1,0 +1,13 @@
+diff --git a/lib/index.js b/lib/index.js
+index 0289548b80a190be63b2aa338fb64018c148402b..24a82faee85fd1c2956001bcf3bbe41202f2c1b9 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -108,7 +108,7 @@ export default class DropTarget extends BasePlugin {
+     };
+     this.handleDragLeave = event => {
+       var _event$currentTarget2, _this$opts$onDragLeav, _this$opts3;
+-      if (!isFileTransfer(event)) {
++      if (!isFileTransfer(event) || this.opts.target.contains(event.relatedTarget)) {
+         return;
+       }
+       event.preventDefault();

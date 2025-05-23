@@ -3,6 +3,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import * as fs from 'fs-extra';
 import * as rollup from 'rollup';
 import dts from 'rollup-plugin-dts';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const svgr = require('@svgr/rollup');
 import { z } from 'zod';
 import { buildRollupConfigInputSchema } from '../zod-schema';
 
@@ -55,6 +57,10 @@ export function buildRollupConfig(
           entries: input.bundleAlias,
         }),
         nodeResolve(),
+        svgr({
+          exportType: 'named',
+          jsxRuntime: 'automatic',
+        }),
       ],
     },
   ] as rollup.RollupOptions[];

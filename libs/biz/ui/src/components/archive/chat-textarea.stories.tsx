@@ -1,15 +1,12 @@
 import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import {
-  commonUIModule,
-  InversifyProvider,
-  useInjection,
-} from '@myshell-run/common-ui';
+import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { ChatModel } from '../chat.model';
 import { observer } from 'mobx-react-lite';
-import { ChatTextarea } from './chat-textarea';
 import { uiBizModule } from '../../ui-biz.module';
+import { ChatModel } from '../chat.model';
+import { ChatTextarea } from './chat-textarea';
+import { Provider, useInjection } from 'inversify-react';
 
 const container = new Container();
 container.load(bizMsgItemPluginsModule);
@@ -40,9 +37,9 @@ const meta: Meta<typeof ChatInput> = {
   decorators: [
     (Story) => {
       return (
-        <InversifyProvider container={container}>
+        <Provider container={container}>
           <Story />
-        </InversifyProvider>
+        </Provider>
       );
     },
   ],

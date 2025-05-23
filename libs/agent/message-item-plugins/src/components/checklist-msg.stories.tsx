@@ -1,8 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CheckList, ChecklistItemUI } from './checklist-msg';
+import { CheckList, CheckListItem } from './checklist-msg';
+import { Container } from 'inversify';
+import { agentMsgItemPluginsModule } from '../agent-msg-item-plugins.module';
+import { Provider as InversifyProvider } from 'inversify-react';
+
+const container = new Container();
+container.load(agentMsgItemPluginsModule);
 
 const meta: Meta<typeof CheckList> = {
   component: CheckList,
+  decorators: [
+    (Story) => (
+      <InversifyProvider container={container}>
+        <Story />
+      </InversifyProvider>
+    ),
+  ],
 };
 export default meta;
 
@@ -11,9 +24,13 @@ export const Primary: StoryObj<typeof CheckList> = {
     title: 'Design interactive landing pages.',
     children: (
       <>
-        <ChecklistItemUI status="checked" title="Create initial files" />
-        <ChecklistItemUI status="pending" title="Install dependencies" />
-        <ChecklistItemUI status="unchecked" title="Update `app/page.tsx`" />
+        <CheckListItem id="abc1" status="checked" text="Create initial files" />
+        <CheckListItem id="abc2" status="pending" text="Install dependencies" />
+        <CheckListItem
+          id="abc3"
+          status="unchecked"
+          text={`Update :x-checklist-code[app/page.tsx]{scheme="file://app/page.tsx"}`}
+        />
       </>
     ),
   },

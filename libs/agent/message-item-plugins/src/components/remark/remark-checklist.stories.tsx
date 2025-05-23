@@ -1,4 +1,4 @@
-import { InversifyProvider } from '@myshell-run/common-ui';
+import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { agentMsgItemPluginsModule } from '../../agent-msg-item-plugins.module';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { h, Properties } from 'hastscript';
 import type { Root } from 'mdast';
 import type {
@@ -15,13 +16,13 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
-import { useInjection } from '../inversify-context';
+import { useInjection } from 'inversify-react';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
 
 export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
   const factory = useInjection<RemarkableFactory>(RemarkableFactory);
-  const registerMap = useInjection<RegisterMap>('RegisterMap');
+  const registerMap = useInjection<RegisterMap>(RegisterMap);
   const registerComponents = Array.from(registerMap).reduce(
     (acc, [key, [Component]]) => {
       acc[key] = Component;
@@ -60,14 +61,6 @@ export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
           <code {...rest} className={className}>
             {children}
           </code>
-        );
-      },
-      button: (props) => {
-        const { children, ...rest } = props;
-        return (
-          <button {...rest} className="btn-blue btn">
-            {children}
-          </button>
         );
       },
       ...registerComponents,
