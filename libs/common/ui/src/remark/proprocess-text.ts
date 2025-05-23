@@ -6,12 +6,12 @@ function isHtmlTag(tag: string) {
 
 export function preprocessText(keys: string[], text: string) {
   // First handle double colons that aren't already escaped
-  text = text.replace(/(?<!\\)::(\w+)/g, (match, tag) => {
+  text = text.replace(/(?<!\\)::([^{\s]+)(?:{[^}]*})?/g, (match, tag) => {
     return !isHtmlTag(tag) && keys.indexOf(tag) === -1 ? ':\\:' + tag : match;
   });
 
   // Then handle single colons that aren't already escaped
-  return text.replace(/(?<!\\):([^:\s\\]+)/g, (match, tag) => {
+  return text.replace(/(?<!\\):([^:\s\\{]+)(?:{[^}]*})?/g, (match, tag) => {
     return !isHtmlTag(tag) && keys.indexOf(tag) === -1 ? '\\:' + tag : match;
   });
 }

@@ -24,3 +24,10 @@ it('test4', () => {
   const b = preprocessText(['x-loading'], a);
   expect(b).toEqual(`:x-loading`);
 });
+
+it('test5', () => {
+  const a =
+    '::x-polling{#gmzdqxq9h8ufrcg9wiag43r9 timeLeft=3} ::x-polling{#gmzdqxq9h8ufrcg9wiag43r9 timeLeft=3}';
+  const b = preprocessText(['x-polling'], a);
+  expect(b).toEqual(a);
+});
