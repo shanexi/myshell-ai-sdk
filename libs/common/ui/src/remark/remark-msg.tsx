@@ -19,10 +19,13 @@ import { VFile } from 'vfile';
 import { useInjection } from 'inversify-react';
 import { hide } from './mdast-util-hidden';
 import { post } from './react-markdown';
+import { preprocessText } from './proprocess-text';
 
 export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
   const factory = useInjection<RemarkableFactory>(RemarkableFactory);
   const registerMap = useInjection<RegisterMap>(RegisterMap);
+  text = preprocessText([...registerMap.keys()], text);
+
   const registerComponents = Array.from(registerMap).reduce(
     (acc, [key, [Component]]) => {
       acc[key] = Component;
