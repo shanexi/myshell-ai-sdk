@@ -175,6 +175,7 @@
     "hastscript": "^9.0.1",
     "hono": "^4.7.4",
     "honox": "^0.1.38",
+    "html-tags": "^3.3.1",
     "html-url-attributes": "^3.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^9.1.5",
@@ -317,8 +318,8 @@
   },
   "devDependencies": {
     "@storybook/react": "^8.6.12",
+    "echarts-for-react": "^3.0.2",
     "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "echarts-for-react": "^3.0.2"
+    "react-dom": "19.0.0"
   }
 }
