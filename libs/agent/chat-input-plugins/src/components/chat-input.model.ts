@@ -1,11 +1,12 @@
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
-import { makeObservable, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
 
 export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
+export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
@@ -30,6 +31,16 @@ export const previewTypeSchema = z.discriminatedUnion('previewType', [
 
 @injectable()
 export class ChatInputModel {
+  @observable contextItems = observable.array<{
+    type: ContextType;
+    name: string;
+  }>([
+    { type: 'file', name: 'requirement.feature1' },
+    { type: 'json', name: 'canvas.state1.inputs.variable1' },
+    { type: 'todo', name: 'test.test_suite1' },
+    { type: 'message', name: 'preview.message1' },
+  ]);
+
   @observable previewItems = observable.array<
     z.infer<typeof previewTypeSchema>
   >([
@@ -53,6 +64,10 @@ export class ChatInputModel {
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
+  }
+
+  @computed get isContextItemsEmpty() {
+    return this.contextItems.length === 0;
   }
 
   get chatCommon() {

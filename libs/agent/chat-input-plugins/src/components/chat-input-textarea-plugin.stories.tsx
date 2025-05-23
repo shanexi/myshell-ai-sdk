@@ -20,7 +20,7 @@ class SomeChatInputHandler implements ChatInputHandlers {
 }
 
 const container = new Container();
-container.bind<ChatInputHandlers>(ChatInputHandler).to(SomeChatInputHandler);
+container.bind<ChatInputHandlers>(ChatInputHandlers).to(SomeChatInputHandler);
 container.load(agentChatInputPluginsModule);
 
 const meta: Meta<typeof ChatInputTextareaPlugin> = {

@@ -1,6 +1,6 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonManager, ChatCommonModel } from '@myshell-run/common-ui';
+import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';

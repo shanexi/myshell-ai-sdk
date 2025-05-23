@@ -1,4 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
+import { useInjection } from 'inversify-react';
 import {
   AtSign,
   File,
@@ -9,13 +10,9 @@ import {
   MessagesSquare,
   X,
 } from 'lucide-react';
-import { PropsWithChildren } from 'react';
-import {
-  ChatInputContextPluginModel,
-  ContextType,
-} from './chat-input-context-plugin.model';
 import { observer } from 'mobx-react-lite';
-import { useInjection } from 'inversify-react';
+import { PropsWithChildren } from 'react';
+import { ChatInputModel, ContextType } from './chat-input.model';
 
 const IconMap: Record<
   ContextType,
@@ -31,7 +28,7 @@ const IconMap: Record<
 };
 
 export const ChatInputContextPlugin = observer(() => {
-  const model = useInjection(ChatInputContextPluginModel);
+  const model = useInjection(ChatInputModel);
 
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
@@ -44,7 +41,7 @@ export const ChatInputContextPlugin = observer(() => {
 });
 
 const AddContext = observer(() => {
-  const model = useInjection(ChatInputContextPluginModel);
+  const model = useInjection(ChatInputModel);
   return (
     <ContextWrapper>
       <AtSign
@@ -52,7 +49,9 @@ const AddContext = observer(() => {
         size={16}
         className="text-Cr-Fg-subtle-light-v2"
       />
-      {model.isEmpty && <div className="text-sm-medium">Add context</div>}
+      {model.isContextItemsEmpty && (
+        <div className="text-sm-medium">Add context</div>
+      )}
     </ContextWrapper>
   );
 });
