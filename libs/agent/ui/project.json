@@ -8,7 +8,7 @@
     "local-publish": {
       "executor": "@myshell-run/my-nx-plugins:local-publish",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["build-css", "^local-publish"],
+      "dependsOn": ["^local-publish"],
       "options": {
         "outputPath": "dist/libs/agent/ui",
         "tsConfig": "libs/agent/ui/tsconfig.lib.json",
@@ -22,7 +22,7 @@
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["build-css", "^build"],
+      "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/libs/agent/ui",
         "main": "libs/agent/ui/src/index.ts",
