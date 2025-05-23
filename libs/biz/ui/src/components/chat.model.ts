@@ -3,7 +3,12 @@ import {
   fetchEventSource,
 } from '@microsoft/fetch-event-source';
 import { DbBot } from '@myshell-run/biz-def';
-import { Message, MessageListContext } from '@myshell-run/common-def';
+import {
+  ChatCommonModelFactory,
+  Message,
+  MessageListContext,
+  PREVIEW_CHAT,
+} from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
@@ -89,7 +94,15 @@ export class ChatModel {
   @computed get isShowInputMenu() {
     return this.isNotInputFocus && this.notHaveInputText;
   }
-  constructor(@inject(ChatCommonModel) private chatCommon: ChatCommonModel) {
+
+  get chatCommon() {
+    return this.factory(PREVIEW_CHAT);
+  }
+
+  constructor(
+    @inject(ChatCommonModelFactory)
+    private factory: (id: symbol) => ChatCommonModel,
+  ) {
     // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
     makeObservable(this);
   }

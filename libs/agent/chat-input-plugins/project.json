@@ -35,7 +35,7 @@
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
-        "port": 4510,
+        "port": 4520,
         "configDir": "libs/agent/chat-input-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
