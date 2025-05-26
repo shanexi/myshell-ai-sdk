@@ -1,12 +1,5 @@
 ---
-# You can also start simply with 'default'
 theme: default
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-# 不需要花里胡哨的背景 应该更多的是企业标识
-# background: https://cover.sli.dev
-
-# some information about your slides (markdown enabled)
 title: 新 Chat 的设计考量 - 产品场景、插件化和工程
 info: |
   ## 产品场景
@@ -19,26 +12,17 @@ info: |
 
   ## 插件化和工程
   插件化再内部开发主要应对工程挑战，如果开放生态，插件化对生态极其重要。
-
-# apply unocss classes to the current slide
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
 ---
 
 # 新 Chat 的设计考量
 
 应对复杂的产品场景、多端和工程质量挑战
 
----
 ---
 
 # 业务目标
@@ -55,8 +39,6 @@ mdc: true
 
 
 ---
-transition: slide-up
----
 
 # 为什么不能基于当前 Chat 渐进迭代
 
@@ -65,9 +47,6 @@ transition: slide-up
 
 
 
----
-level: 2
-transition: slide-up
 ---
 
 # 数据流和样式没有解耦且没有模式遵循
@@ -115,13 +94,10 @@ ls -lR| grep "^-" | wc -l
 -->
 
 ---
-level: 2
----
 
 # tailwind 太多
 
 
----
 ---
 
 # 新 Message 协议
@@ -208,11 +184,20 @@ botId: 1729238978
 }
 ```
 ````
-
  
+---
 
+# Chat plugins
 
+背景
 
+插件架构一般两个目的
+1. 多人协作 OC 原则
+2. 生态
 
+当前阶段
+1. 主要是为了可维护性（汲取原 Chat 架构风险，目前）
+2. 进一步提升迭代速率
 
+如果需要生态，会基于 vscode plugin extension arch，至少实现动态加载
 
