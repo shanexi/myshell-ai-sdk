@@ -189,6 +189,10 @@ botId: 1729238978
 
 # Chat plugins
 
+- chat message plguins（2套机制覆盖需求）
+- chat input plugins
+- 通信机制
+
 背景
 
 插件架构一般两个目的
@@ -200,4 +204,147 @@ botId: 1729238978
 2. 进一步提升迭代速率
 
 如果需要生态，会基于 vscode plugin extension arch，至少实现动态加载
+
+---
+
+# Chat Message Item plugins
+
+Chat plugins
+
+1. 机制1 - 基于 MDC
+2. 机制2 - 根据 type 完全接管
+
+---
+
+# 机制1 - 基于 MDC
+
+Chat Message Item plugins
+
+主要目标（按照重要性排序）
+1. 避免 JSON 膨胀
+2. 减少消息 size
+3. 支持 strema 渲染
+
+使用
+```md
+:::x-checklist{#abc title="Design interactive landing pages."}
+::x-checklist-item{#abc1}
+::x-checklist-item{#abc2}
+:::
+<!-- next -->
+::x-checklist-item{#abc1 status="checked" text="Create initial files"}
+```
+研发
+```ts
+register('x-checklist', Checklist);
+register('x-polling', PollingMsg, PollingMsgModel);
+```
+
+---
+
+# 机制2 - 根据 type 完全接管 (1)
+
+Chat Message Item plugins
+
+在最初实现 own/reply 时实现的一套简易插件机制
+
+```ts
+function legacy(bind: interfaces.Bind) {
+  function addMessagePlugin(
+    type: string,
+    Component: React.ComponentType<Message>,
+  ) {
+    bind<MessageItem>(MessageItem).toConstantValue({
+      type,
+      render: (data) => {
+        const { key, ...rest } = data;
+        return <Component key={key} {...rest} />;
+      },
+    });
+  }
+  addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
+  addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
+}
+```
+
+---
+layout: two-cols-header
+---
+
+# 机制2 - 根据 type 完全接管 (2)
+
+Chat Message Item plugins
+
+根据 `Message#type` 判断调用哪一个 plugin 的 `render`。
+
+```ts
+export const MessageItem: VirtuosoMessageListProps<Message, MessageListContext>['ItemContent'] = (props) => {
+  const svc = useInjection(MessageItemSvc);
+  const { data } = props;
+  const item = svc.getItem(data.user === 'me' ? OWN_MESSAGE_TYPE : (data.type ?? REPLY_MESSAGE_TYPE));
+  return item.render(data);
+};
+```
+
+优点：
+1. 直观
+2. 兼容当前版本格式
+
+缺点：
+1. 不支持 stream 渲染
+2. 旧格式需要讨论，如何演进支持长尾功能（更多的定制展示）
+
+---
+
+# Chat input plugins
+
+Chat plugins
+
+目前简单做了个插件系统
+
+> 和 chat message item plugins 机制2 类似，少了 type
+> 后续按需求再增加 rank（排序）等，先不 over design
+
+特别注意，这里 `ChatInputModel` 统一处理 chat input plugins 的数据和通信问题。也是为了不 over design。
+
+```ts
+bind(ChatInputModel).toSelf().inSingletonScope();
+bind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
+  ChatInputContextPlugin,
+  ChatInputUploadPlugin,
+  ChatInputTextareaPlugin,
+  ChatInputActionPlugin,
+]);
+```
+
+---
+
+# Chat input plugins 通信机制
+
+Chat input plugins
+
+1. `ChatInputModel` 统一处理 chat input plugins 的数据和通信问题。
+2. `ChatInputHandlers` 扩展，（也是 composition over inheritance，即避免模板方法）使用 `Generator` or `AsyncGenerator` 
+3. `ChatCommonModelFactory: (id: symbol) => ChatCommonModel` 既共享 ChatCommonModel 也能精确管理 instance。
+
+```ts
+export interface ChatInputHandlers {
+  clear(): AsyncGenerator;
+  sendText(text: string): AsyncGenerator;
+  removeImagePreview(id: string): Generator;
+}
+
+@injectable()
+export class ChatInputModel {
+    constructor(@inject(ChatInputHandlers) private handlers: ChatInputHandlers,
+                @inject(ChatCommonModelFactory)public factory: (id: symbol) => ChatCommonModel,
+```
+
+---
+
+# Chat input plugins 通信机制解释
+
+Chat input plugins 通信机制
+
+解释下当前设计的原因
 
