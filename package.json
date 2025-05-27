@@ -210,6 +210,7 @@
     "next": "13.1.1",
     "nx": "15.9.7",
     "openai": "^4.90.0",
+    "playwright-chromium": "^1.52.0",
     "postcss": "^8.5.3",
     "preact": "^10.26.5",
     "prettier": "^3.5.2",

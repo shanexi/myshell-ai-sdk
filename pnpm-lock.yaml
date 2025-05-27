@@ -241,6 +241,7 @@ specifiers:
   next: 13.1.1
   nx: 15.9.7
   openai: ^4.90.0
+  playwright-chromium: ^1.52.0
   postcss: ^8.5.3
   preact: ^10.26.5
   prettier: ^3.5.2
@@ -400,7 +401,7 @@ dependencies:
   '@rpldy/uploady': 1.9.1_upmzqgzhjrquwzo2dphtigtdgi
   '@sentry/cloudflare': 9.11.0_bpplktul4dg3otdxfcbtvuskli
   '@sentry/opentelemetry': 9.11.0_3g42yzqvhpmug4y2be5r2bqzzq
-  '@slidev/cli': 51.5.0_wh7svspwh77n22rpluw7co6hyi
+  '@slidev/cli': 51.5.0_xq2clmyf2gcozlqvorxut4r6qy
   '@slidev/theme-default': 0.25.0
   '@slidev/theme-seriph': 0.25.0
   '@storybook/addon-designs': 8.2.1_upmzqgzhjrquwzo2dphtigtdgi
@@ -526,6 +527,7 @@ dependencies:
   next: 13.1.1_itiuvzt4u37n7rg6c33anbmq2e
   nx: 15.9.7_lwqsl4l7nhs6igmozion3zmegm_2qcnbzhj4zf4ol673zzz3kotny
   openai: 4.90.0_zod@3.24.1
+  playwright-chromium: 1.52.0
   postcss: 8.5.3
   preact: 10.26.5
   prettier: 3.5.2
@@ -10747,7 +10749,7 @@ packages:
       '@sinonjs/commons': 3.0.1
     dev: false
 
-  /@slidev/cli/51.5.0_wh7svspwh77n22rpluw7co6hyi:
+  /@slidev/cli/51.5.0_xq2clmyf2gcozlqvorxut4r6qy:
     resolution: {integrity: sha512-kyAF53dK9Nu05tM4fdnEtWizoA3t15MsszUt0uMS2CWuGH+0ZgnvDL8F73T1nwKzJ0AS84+JsRLH+L4jw/L8bA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -10799,6 +10801,7 @@ packages:
       pdf-lib: 1.17.1
       picomatch: 4.0.2
       plantuml-encoder: 1.4.0
+      playwright-chromium: 1.52.0
       postcss-nested: 7.0.2_postcss@8.5.3
       pptxgenjs: 3.12.0
       prompts: 2.4.2
@@ -25995,9 +25998,25 @@ packages:
     resolution: {integrity: sha512-sxMwpDw/ySY1WB2CE3+IdMuEcWibJ72DDOsXLkSmEaSzwEUaYBT6DWgOfBiHGCux4q433X6+OEFWjlVqp7gL6g==}
     dev: false
 
+  /playwright-chromium/1.52.0:
+    resolution: {integrity: sha512-ZTpzBzRFFRglyqRnAqdK5mFaw1P41qe8V2zSR+fA0eKPgGEEaH7r91ejXKijs3WhReatRcatHQe3ndMBMN1PLA==}
+    engines: {node: '>=18'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      playwright-core: 1.52.0
+    dev: false
+
   /playwright-core/1.47.0:
     resolution: {integrity: sha512-1DyHT8OqkcfCkYUD9zzUTfg7EfTd+6a8MkD/NWOvjo0u/SCNd5YmY/lJwFvUZOxJbWNds+ei7ic2+R/cRz/PDg==}
     engines: {node: '>=18'}
+    hasBin: true
+    dev: false
+
+  /playwright-core/1.52.0:
+    resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
+    engines: {node: '>=18'}
+    hasBin: true
     dev: false
 
   /playwright/1.47.0:

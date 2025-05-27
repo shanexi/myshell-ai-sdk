@@ -57,22 +57,26 @@ export default async function* runExecutor(
         }
         consola.success(`Bundled`);
       }
+
+      runUpdatePackageJson(options);
+
+      if (options.yalc) {
+        runYalc(options, context);
+      }
+
+      return {
+        success: true,
+      };
     } catch (e) {
       if (e instanceof Error) {
         consola.error(`Bundle error ${e.message}`);
       } else {
-        consola.error(e);
+        console.error(e);
       }
-    }
 
-    runUpdatePackageJson(options);
-
-    if (options.yalc) {
-      runYalc(options, context);
+      return {
+        success: false,
+      };
     }
   }
-
-  return {
-    success: true,
-  };
 }
