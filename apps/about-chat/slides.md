@@ -189,8 +189,8 @@ botId: 1729238978
 
 # Chat plugins
 
-- chat message plguins（2套机制覆盖需求）
-- chat input plugins
+- chat message plugin（2套机制覆盖需求）
+- chat input plugin
 - 通信机制
 
 背景
@@ -200,7 +200,7 @@ botId: 1729238978
 2. 生态
 
 当前阶段
-1. 主要是为了可维护性（汲取原 Chat 架构风险，目前）
+1. 主要是为了可维护性（汲取原 Chat 架构经验）
 2. 进一步提升迭代速率
 
 如果需要生态，会基于 vscode plugin extension arch，至少实现动态加载
@@ -333,11 +333,13 @@ export interface ChatInputHandlers {
   sendText(text: string): AsyncGenerator;
   removeImagePreview(id: string): Generator;
 }
-
 @injectable()
 export class ChatInputModel {
     constructor(@inject(ChatInputHandlers) private handlers: ChatInputHandlers,
                 @inject(ChatCommonModelFactory)public factory: (id: symbol) => ChatCommonModel,
+  get chatCommon() {
+    return this.factory(AGENT_CHAT);
+  }
 ```
 
 ---
@@ -346,5 +348,29 @@ export class ChatInputModel {
 
 Chat input plugins 通信机制
 
-解释下当前设计的原因
+解释下当前设计的原因，原则：**保留 progressive 扩展性可能，开发体验优先**
+
+1. Chat Input plugins 目前没有灵活组织的场景（除 `rebind` 可以按需过滤，也非常轻量），所以为了简单，先合并一个 `ChatInputModel`，方便 input plugins 之间通信。
+2. 如果未来有一些 input plugins 继续下沉（更大的复用性）则大概率可以下沉到 `ChatCommonModel` + pure component，也是常见的重构模式。
+3. 即 `ChatCommonModel` 就是插件化设计的 SDK 层，或者 Headless UI 的逻辑，在上面只要通过不同的模板（JSX）则能支撑灵活的产品设计，这个目前实践的很顺利。
+4. 用 `ChatInputHandlers` 代替 template method（composition over inhertiance）。除了 composition 众所周知的好处之外，在这个具体场景，主要是因为 inheritance 的实例管理不方便。
+5. 使用 Iterator 来代替 event emitter，首先功能足够（支持 async event emitter，e.g. mitt 不支持，tapble 支持），甚至过份强大（actor model），保留未来可能性，当前先选择所需的特性；其又是内置语言特性，方便 IDE（跳转方便）和 debug（devtools callstack）。
+
+
+---
+
+# Chat 整体通信机制
+
+Chat plugins
+
+基于 `ChatInputModel` + `ChatCommonModel` + `ChatInputHandlers`。
+
+message item 如果要通信到 ChatInput（e.g. 选择、引用等操作
+1. 直接 `inject` singleton `ChatInputModel`
+2. 或者实现 `ChatInputHandlers`，如果需要依赖倒置
+
+综上，目前方案
+1. 够用
+2. 保留扩展性
+3. 兼顾以上追求最大的开发体验
 
