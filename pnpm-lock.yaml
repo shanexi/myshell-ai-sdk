@@ -187,6 +187,7 @@ specifiers:
   devlop: ^1.1.0
   dotenv-cli: ^8.0.0
   echarts-for-react: ^3.0.2
+  edix: file:.yalc/edix
   effect: ^3.14.5
   eslint: ~8.15.0
   eslint-config-next: 13.1.1
@@ -473,6 +474,7 @@ dependencies:
   daisyui: 5.0.0
   devlop: 1.1.0
   dotenv-cli: 8.0.0
+  edix: file:.yalc/edix
   effect: 3.14.5
   eslint: 8.15.0
   eslint-config-next: 13.1.1_nf6pucg2mhaj5y3mvj2gp3upte
@@ -32117,4 +32119,10 @@ packages:
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+    dev: false
+
+  file:.yalc/edix:
+    resolution: {directory: .yalc/edix, type: directory}
+    name: edix
+    version: 0.0.21
     dev: false

@@ -1,13 +1,17 @@
-import { Message, MessageListContext } from '@myshell-run/common-def';
+import {
+  Message,
+  MessageListContext,
+  UploadEndpoint,
+} from '@myshell-run/common-def';
 import Uppy from '@uppy/core';
 import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
 import XHR from '@uppy/xhr-upload';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
+import { InferDoc, schema } from 'edix';
 import { inject, injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
-import { UploadEndpoint } from '@myshell-run/common-def';
 import { z } from 'zod';
 
 export const imageStateSchema = z.object({
@@ -34,12 +38,17 @@ export const fileStateSchema = z.discriminatedUnion('type', [
 
 export type FileState = z.infer<typeof fileStateSchema>;
 
+export const basicSchema = schema({ multiline: true });
+
+export type ChatInputDoc = InferDoc<typeof basicSchema>;
 @injectable()
 export class ChatCommonModel {
   virtuosoRef?: RefObject<
     VirtuosoMessageListMethods<Message, MessageListContext>
   >;
   @observable inputText = '';
+
+  @observable chatInputDoc: ChatInputDoc = observable.array([]);
 
   #uppy?: Uppy;
 
@@ -75,6 +84,11 @@ export class ChatCommonModel {
   @action.bound
   setInputText(text: string) {
     this.inputText = text;
+  }
+
+  @action.bound
+  setChatInputDoc(chatInputDoc: ChatInputDoc) {
+    this.chatInputDoc = chatInputDoc;
   }
 
   setupUppy(dropTarget: HTMLDivElement) {

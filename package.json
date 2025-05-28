@@ -156,6 +156,7 @@
     "daisyui": "5.0.0",
     "devlop": "^1.1.0",
     "dotenv-cli": "^8.0.0",
+    "edix": "file:.yalc/edix",
     "effect": "^3.14.5",
     "eslint": "~8.15.0",
     "eslint-config-next": "13.1.1",
