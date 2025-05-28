@@ -6,6 +6,7 @@ import { RemarkStory } from './remark-msg-story-components';
 import case1 from './case1.md';
 import case2 from './case2.md';
 import case20 from './case2-0.md';
+import case3 from './case3.md';
 
 const container = new Container();
 container.load(agentMsgItemPluginsModule);
@@ -41,5 +42,12 @@ export const Case20: StoryObj<typeof RemarkStory> = {
   parameters: {},
   args: {
     text: case20,
+  },
+};
+
+export const Case3: StoryObj<typeof RemarkStory> = {
+  parameters: {},
+  args: {
+    text: case3,
   },
 };
