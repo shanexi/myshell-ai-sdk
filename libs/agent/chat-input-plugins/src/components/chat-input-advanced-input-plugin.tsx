@@ -1,10 +1,10 @@
 import { cn } from '@myshell-run/common-ui';
 import { Delete, editable, EditableHandle, plainSchema } from 'edix';
+import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { ChatInputModel } from './chat-input.model';
-import { useInjection } from 'inversify-react';
 
 export const ChatInputAdvancedInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,8 +29,10 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
       <div
         ref={ref}
         className={cn(
+          'x-chat-input-advanced-input-plugin',
           'text-lg-regular',
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
+          'max-h-[6lh] overflow-y-auto',
         )}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
