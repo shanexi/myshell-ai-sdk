@@ -13,12 +13,12 @@ function registerMesssageItem(bind: interfaces.Bind) {
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 }
 
-export const agentMsgItemPluginsModule = new ContainerModule(
+export const previewChatMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
-    bindAgentMsgItemPlugins(bind);
+    bindPreviewChatMsgItemPlugins(bind);
   },
 );
 
-export function bindAgentMsgItemPlugins(bind: interfaces.Bind) {
+export function bindPreviewChatMsgItemPlugins(bind: interfaces.Bind) {
   registerMesssageItem(bind);
 }
