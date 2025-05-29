@@ -4,6 +4,9 @@ export type MessageListContext = {
   //
 };
 
+/**
+ * @deprecated 使用 StrictMessage
+ */
 export interface Message {
   key: string;
   text: string;
@@ -12,11 +15,17 @@ export interface Message {
   avatar?: string;
 }
 
+export interface StrictMessage {
+  key: string;
+  text: string;
+  type: string;
+}
+
 export const MessageItem = Symbol('MessageItem');
 
 export interface MessageItem {
   type: string;
-  render: (data: Message) => JSX.Element;
+  render: (data: StrictMessage) => JSX.Element;
 }
 
 export const DEFAULT_AVATAR =

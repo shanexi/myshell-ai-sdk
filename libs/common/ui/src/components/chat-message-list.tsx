@@ -1,35 +1,33 @@
-import { Message, MessageListContext } from '@myshell-run/common-def';
-import { cn } from '@myshell-run/common-ui';
-import { useInjection } from 'inversify-react';
-import { CSSProperties, useEffect, useRef } from 'react';
-import { MessageItem } from './message-item';
+import { MessageListContext, StrictMessage } from '@myshell-run/common-def';
 import {
   type VirtuosoMessageListMethods,
   VirtuosoMessageList,
   VirtuosoMessageListLicense,
 } from '@virtuoso.dev/message-list';
-import { AgentChatModel } from './agent-chat.model';
+import { CSSProperties, useEffect, useRef } from 'react';
+import { ChatCommonModel } from './chat-common.model';
+import { cn } from '../utils';
+import { MessageItem } from './message-item';
 
 // TODO 这块代码应该也能 common
-export function ChatMessageList(props: {
+export const ChatMessageList: React.FC<{
+  chatCommonModel: ChatCommonModel;
   className?: string;
   style?: CSSProperties;
   licenseKey?: string;
-  initialMessages?: Message[];
-}) {
-  const model = useInjection(AgentChatModel);
-  const { className, style, licenseKey, initialMessages } = props;
+  initialMessages?: StrictMessage[];
+}> = ({ className, style, licenseKey, initialMessages, chatCommonModel }) => {
   const virtuoso =
-    useRef<VirtuosoMessageListMethods<Message, MessageListContext>>(null);
+    useRef<VirtuosoMessageListMethods<StrictMessage, MessageListContext>>(null);
   useEffect(() => {
-    model.chatCommon.setVirtuosoRef(virtuoso);
+    chatCommonModel.setVirtuosoRef(virtuoso);
   }, []);
 
   return (
     // 必须 flex flex-col 才能让 `virtuoso.current.scrollToItem({ index: 0, align: "end" })` 正常工作，原因未细究，参考 https://virtuoso.dev/virtuoso-message-list/examples/ai-chatbot/
     <div className={cn('flex flex-col', className)} style={style}>
       <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
-        <VirtuosoMessageList<Message, MessageListContext>
+        <VirtuosoMessageList<StrictMessage, MessageListContext>
           id="x-agent-message-list"
           ref={virtuoso}
           context={{}}
@@ -44,4 +42,4 @@ export function ChatMessageList(props: {
       </VirtuosoMessageListLicense>
     </div>
   );
-}
+};

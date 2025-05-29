@@ -1,7 +1,11 @@
 import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MessageItem } from './message-item';
 import { container } from './stories.utils';
+import { MessageItem } from '@myshell-run/common-ui';
+import {
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/agent-message-item-plugins';
 
 const meta: Meta<typeof MessageItem> = {
   component: MessageItem,
@@ -20,7 +24,7 @@ export const Own: StoryObj<typeof MessageItem> = {
     data: {
       key: '1',
       text: 'Hello, how are you?',
-      user: 'me',
+      type: OWN_MESSAGE_TYPE,
     },
   },
 };
@@ -36,7 +40,7 @@ export const Reply: StoryObj<typeof MessageItem> = {
     data: {
       key: '2',
       text: 'I am fine, thank you!',
-      user: 'other',
+      type: REPLY_MESSAGE_TYPE,
     },
   },
 };

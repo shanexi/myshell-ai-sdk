@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ChatInput } from './chat-input';
-import { ChatMessageList } from './chat-message-list';
+import { ChatMessageList } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { AgentChatModel } from './agent-chat.model';
 import { observer } from 'mobx-react-lite';
@@ -18,6 +18,7 @@ export const Chat = observer(() => {
   return (
     <div ref={dropTargetRef} className="flex h-full flex-col">
       <ChatMessageList
+        chatCommonModel={model.chatCommon}
         className="flex flex-grow flex-col overflow-auto px-[8px]"
         initialMessages={[]}
       />

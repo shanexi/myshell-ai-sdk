@@ -1,5 +1,5 @@
 import { Message, MessageItem } from '@myshell-run/common-def';
-import { setup } from '@myshell-run/common-ui';
+import { setupMdc } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { ExecutingMsg, Timer, XLoading } from './components/executing-msg';
 import { ExecutingMsgModel } from './components/executing-msg.model';
@@ -35,7 +35,7 @@ function legacy(bind: interfaces.Bind) {
 export const bizMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
     legacy(bind);
-    const register = setup(bind);
+    const register = setupMdc(bind);
     // 涉及到了 JSX，可能会影响 unit test perf
     register('x-timer', Timer, ExecutingMsgModel);
     register('interactive-component', Counter);

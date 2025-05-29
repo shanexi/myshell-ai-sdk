@@ -7,7 +7,7 @@ import {
   ChatCommonModelFactory,
   Message,
   MessageListContext,
-  PREVIEW_CHAT,
+  LEGACY_PREVIEW_CHAT,
 } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -96,7 +96,7 @@ export class ChatModel {
   }
 
   get chatCommon() {
-    return this.factory(PREVIEW_CHAT);
+    return this.factory(LEGACY_PREVIEW_CHAT);
   }
 
   constructor(

@@ -1,6 +1,6 @@
 import {
-  Message,
   MessageListContext,
+  StrictMessage,
   UploadEndpoint,
 } from '@myshell-run/common-def';
 import Uppy from '@uppy/core';
@@ -44,7 +44,7 @@ export type ChatInputDoc = InferDoc<typeof basicSchema>;
 @injectable()
 export class ChatCommonModel {
   virtuosoRef?: RefObject<
-    VirtuosoMessageListMethods<Message, MessageListContext>
+    VirtuosoMessageListMethods<StrictMessage, MessageListContext>
   >;
   @observable inputText = '';
 
@@ -79,7 +79,9 @@ export class ChatCommonModel {
   }
 
   setVirtuosoRef = (
-    ref: RefObject<VirtuosoMessageListMethods<Message, MessageListContext>>,
+    ref: RefObject<
+      VirtuosoMessageListMethods<StrictMessage, MessageListContext>
+    >,
   ) => {
     this.virtuosoRef = ref;
   };
@@ -154,7 +156,7 @@ export class ChatCommonModel {
     this.uppyStateMap.delete(id);
   }
 
-  appendMsg(message: Message) {
+  appendMsg(message: StrictMessage) {
     this.virtuosoRef?.current?.data.append(
       [message],
       ({ scrollInProgress, atBottom }) => {
@@ -167,8 +169,8 @@ export class ChatCommonModel {
     );
   }
 
-  updateMsg(newMsg: Message) {
-    this.virtuosoRef?.current?.data.map((message: Message) => {
+  updateMsg(newMsg: StrictMessage) {
+    this.virtuosoRef?.current?.data.map((message: StrictMessage) => {
       return message.key === newMsg.key ? newMsg : message;
     }, 'smooth');
   }

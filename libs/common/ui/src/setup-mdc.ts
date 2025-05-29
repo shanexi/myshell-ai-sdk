@@ -6,7 +6,7 @@ import {
 import { interfaces } from 'inversify';
 import { RemarkableManager } from './remark/remark-manager';
 
-export const setup = (bind: interfaces.Bind) => {
+export const setupMdc = (bind: interfaces.Bind) => {
   bind(RemarkableManager).toSelf().inSingletonScope();
   bind<interfaces.Factory<Remarkable>>(RemarkableFactory).toFactory<
     Remarkable,
