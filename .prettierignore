@@ -8,3 +8,4 @@ pnpm-lock.yaml
 /libs/biz/ui/src/components/message-list/**/*
 /libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*
 /apps/about-chat/**/*.md
+/.yalc
