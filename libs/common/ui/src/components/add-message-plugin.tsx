@@ -1,18 +1,17 @@
-import { MessageItem, StrictMessage } from '@myshell-run/common-def';
+import { MessageItem } from '@myshell-run/common-def';
 import { interfaces } from 'inversify';
 
-export function addMessagePluginFactory(bind: interfaces.Bind) {
-  // 校验类型保留
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return function addMessagePlugin<T extends StrictMessage>(
+export function addMessagePluginFactory<T>(bind: interfaces.Bind) {
+  return function addMessagePlugin(
     type: string,
-    Component: React.ComponentType<StrictMessage>,
+    Component: React.ComponentType<T>,
   ) {
     bind<MessageItem>(MessageItem).toConstantValue({
       type,
       render: (data) => {
-        const { key, ...rest } = data;
-        return <Component key={key} {...rest} />;
+        const { key, type, text, ...rest } = data;
+        // @ts-expect-error 暂时先不处理
+        return <Component key={key} type={type} text={text} {...rest} />;
       },
     });
   };
