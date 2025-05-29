@@ -98,7 +98,9 @@ export class ChatInputModel {
     }
 
     for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
-      this.chatCommon.setInputText('');
+      // TODO 不能，全部交给 edix#onChange 管理了
+      // 应该封装下，不让外部操作
+      // this.chatCommon.setInputText('');
     }
   }
 

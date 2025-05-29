@@ -7,6 +7,7 @@ import { ChatInputHandlers } from './chat-input.model';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { userEvent, within } from '@storybook/test';
+import { expect } from '@storybook/test';
 
 class SomeChatInputHandler implements ChatInputHandlers {
   *removeImagePreview(id: string) {
@@ -75,5 +76,9 @@ export const Primary: StoryObj<typeof ChatInputAdvancedInputPlugin> = {
 
     // 5. Command + Z to undo
     await userEvent.keyboard('{Meta>}z{/Meta}');
+    await new Promise((r) => setTimeout(r, 1000));
+
+    // 6. Verify text content
+    expect(input.textContent).toBe('abcdef');
   },
 };
