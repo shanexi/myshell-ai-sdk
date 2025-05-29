@@ -1,21 +1,18 @@
 import { cn } from '@myshell-run/common-ui';
 import { Delete, editable, EditableHandle, plainSchema } from 'edix';
-import { useInjection } from 'inversify-react';
-import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
-import { useEffect, useRef } from 'react';
-import { ChatInputModel } from './chat-input.model';
+import { useEffect, useRef, useState } from 'react';
 
-export const ChatInputAdvancedInputPlugin = observer(() => {
-  const model = useInjection(ChatInputModel);
+export const ChatInputAdvancedInputPlugin = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [value, setValue] = useState('');
 
   const handle = useRef<EditableHandle | null>(null);
   useEffect(() => {
     if (!ref.current) return;
     return (handle.current = editable(ref.current, {
       schema: plainSchema({ multiline: true }),
-      onChange: model.chatCommon.setInputText,
+      onChange: setValue,
     })).dispose;
   }, []);
 
@@ -26,7 +23,6 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
         className={cn(
           'text-lg-regular',
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
-          'max-h-[6lh] overflow-y-auto',
         )}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
@@ -38,7 +34,7 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
             window.getSelection()?.selectAllChildren(ref.current);
             handle.current?.syncSelection();
             setTimeout(() => handle.current?.command(Delete));
-            model.sendText();
+            // model.sendChatInputDoc();
           }
         }}
         // 使用 tailwindcss 代替了
@@ -50,11 +46,9 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
         aria-placeholder="Write a message"
       >
         {!isEmpty(
-          model.chatCommon.inputText,
+          value,
         ) /* value = '' split -> ['']  [contenteditable]:empty 不是 empty */ &&
-          model.chatCommon.inputText
-            .split('\n')
-            .map((r, i) => <div key={i}>{r ? r : <br />}</div>)}
+          value.split('\n').map((r, i) => <div key={i}>{r ? r : <br />}</div>)}
       </div>
       <style>{`
 [contenteditable]:empty:before {
@@ -65,4 +59,4 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
 `}</style>
     </>
   );
-});
+};
