@@ -48,6 +48,9 @@ export class ChatCommonModel {
   >;
   @observable inputText = '';
 
+  /**
+   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
+   */
   @observable chatInputDoc: ChatInputDoc = observable.array([]);
 
   #uppy?: Uppy;
@@ -86,6 +89,9 @@ export class ChatCommonModel {
     this.inputText = text;
   }
 
+  /**
+   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
+   */
   @action.bound
   setChatInputDoc(chatInputDoc: ChatInputDoc) {
     this.chatInputDoc = chatInputDoc;

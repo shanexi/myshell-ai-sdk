@@ -7,7 +7,6 @@ import { z } from 'zod';
 
 export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
-
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
   sendText(text: string): AsyncGenerator;
@@ -58,13 +57,28 @@ export class ChatInputModel {
     },
   ]);
 
+  // private ref?: RefObject<HTMLDivElement>;
+  // private refPromise: Promise<boolean>;
+  // private refResolve?: (value: boolean | PromiseLike<boolean>) => void;
+
   constructor(
     @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
+
+    // this.refPromise = new Promise<boolean>((resolve) => {
+    //   this.refResolve = resolve;
+    // });
   }
+
+  // setRef(ref: RefObject<HTMLDivElement>) {
+  //   this.ref = ref;
+  //   if (this.refResolve) {
+  //     this.refResolve(true);
+  //   }
+  // }
 
   @computed get isContextItemsEmpty() {
     return this.contextItems.length === 0;
@@ -85,6 +99,23 @@ export class ChatInputModel {
 
     for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
       this.chatCommon.setInputText('');
+    }
+  }
+
+  /**
+   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
+   */
+  async sendChatInputDoc() {
+    if (isEmpty(this.chatCommon.chatInputDoc)) {
+      return;
+    }
+    const text = this.chatCommon.chatInputDoc
+      .map((line) => line.map((v) => v.text).join(' '))
+      .join('\n');
+
+    for await (const _ of this.handlers.sendText(text)) {
+      // this.chatCommon.setInputText('');
+      this.chatCommon.setChatInputDoc([]);
     }
   }
 

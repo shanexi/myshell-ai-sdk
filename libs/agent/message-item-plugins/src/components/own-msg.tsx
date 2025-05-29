@@ -10,6 +10,7 @@ export const OwnMessage: React.FC<Message> = ({ text }) => {
           'ml-auto max-w-[80%] p-spacing-lg-v2',
           'bg-Cr-Bg-normal-secondary-default-light-v2 text-Cr-text-default-light-v2',
           'text-lg-regular',
+          'whitespace-pre-wrap',
         )}
       >
         {text}
