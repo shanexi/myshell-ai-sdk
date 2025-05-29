@@ -1,7 +1,7 @@
 {
-  "name": "preview-chat-legacy-ui",
+  "name": "preview-chat-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/preview-chat/legacy-ui/src",
+  "sourceRoot": "libs/preview-chat/ui/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -10,9 +10,9 @@
       "outputs": ["{options.outputPath}"],
       "dependsOn": ["^local-publish"],
       "options": {
-        "outputPath": "dist/libs/preview-chat/legacy-ui",
-        "tsConfig": "libs/preview-chat/legacy-ui/tsconfig.lib.json",
-        "assets": ["libs/preview-chat/legacy-ui/**/*.svg"]
+        "outputPath": "dist/libs/preview-chat/ui",
+        "tsConfig": "libs/preview-chat/ui/tsconfig.lib.json",
+        "assets": ["libs/preview-chat/ui/**/*.svg"]
       }
     },
     "build": {
@@ -20,24 +20,24 @@
       "outputs": ["{options.outputPath}"],
       "dependsOn": ["^build"],
       "options": {
-        "outputPath": "dist/libs/preview-chat/legacy-ui",
-        "main": "libs/preview-chat/legacy-ui/src/index.ts",
-        "tsConfig": "libs/preview-chat/legacy-ui/tsconfig.lib.json",
-        "assets": ["libs/preview-chat/legacy-ui/**/*.svg"]
+        "outputPath": "dist/libs/preview-chat/ui",
+        "main": "libs/preview-chat/ui/src/index.ts",
+        "tsConfig": "libs/preview-chat/ui/tsconfig.lib.json",
+        "assets": ["libs/preview-chat/ui/**/*.svg"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/preview-chat/legacy-ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/preview-chat/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/preview-chat/legacy-ui/jest.config.ts",
+        "jestConfig": "libs/preview-chat/ui/jest.config.ts",
         "passWithNoTests": true,
         "coverageReporters": ["text"]
       },
@@ -52,7 +52,7 @@
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4800,
-        "configDir": "libs/preview-chat/legacy-ui/.storybook",
+        "configDir": "libs/preview-chat/ui/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -64,7 +64,7 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "./libs/preview-chat/legacy-ui",
+        "cwd": "./libs/preview-chat/ui",
         "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4800"
       }
     },
@@ -73,7 +73,7 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/ui",
-        "configDir": "libs/preview-chat/legacy-ui/.storybook",
+        "configDir": "libs/preview-chat/ui/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -85,12 +85,12 @@
     "static-storybook": {
       "executor": "@nrwl/web:file-server",
       "options": {
-        "buildTarget": "preview-chat-legacy-ui:build-storybook",
+        "buildTarget": "preview-chat-ui:build-storybook",
         "staticFilePath": "dist/storybook/ui"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "preview-chat-legacy-ui:build-storybook:ci"
+          "buildTarget": "preview-chat-ui:build-storybook:ci"
         }
       }
     }

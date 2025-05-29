@@ -35,9 +35,7 @@
       "@myshell-run/common-ui": ["libs/common/ui/src/index.ts"],
       "@myshell-run/effect-demo": ["libs/effect-demo/src/index.ts"],
       "@myshell-run/my-nx-plugins": ["libs/my-nx-plugins/src/index.ts"],
-      "@myshell-run/preview-chat-legacy-ui": [
-        "libs/preview-chat/legacy-ui/src/index.ts"
-      ],
+      "@myshell-run/preview-chat-ui": ["libs/preview-chat/ui/src/index.ts"],
       "@myshell-run/react-aria-tailwind-starter": [
         "libs/react-aria-tailwind-starter/src/index.ts"
       ],

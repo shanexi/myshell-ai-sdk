@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'preview-chat-legacy-ui',
+  displayName: 'preview-chat-ui',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
@@ -10,7 +10,7 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/preview-chat/legacy-ui',
+  coverageDirectory: '../../../coverage/libs/preview-chat/ui',
   transformIgnorePatterns: [
     '../../../node_modules/(?!(@virtuoso.dev/message-list)/)',
   ],
