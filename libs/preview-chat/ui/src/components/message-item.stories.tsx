@@ -1,14 +1,17 @@
+import { commonUIModule, MessageItem } from '@myshell-run/common-ui';
+import {
+  OWN_MESSAGE_TYPE,
+  previewChatMsgItemPluginsModule,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/preview-chat-message-item-plugins';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MessageItem } from '@myshell-run/common-ui';
-import { commonUIModule } from '@myshell-run/common-ui';
-import { Provider as InversifyProvider } from 'inversify-react';
 import { Container } from 'inversify';
-import { bizMsgItemPluginsModule } from '@myshell-run/biz-message-item-plugins';
-import { uiBizModule } from '../ui-biz.module';
+import { Provider as InversifyProvider } from 'inversify-react';
+import { previewChatUIModule } from '../preview-chat-ui.module';
 
 const container = new Container();
-container.load(bizMsgItemPluginsModule);
-container.load(uiBizModule);
+container.load(previewChatMsgItemPluginsModule);
+container.load(previewChatUIModule);
 container.load(commonUIModule);
 
 const meta: Meta<typeof MessageItem> = {
@@ -28,7 +31,7 @@ export const Primary: StoryObj<typeof MessageItem> = {
     data: {
       key: '1',
       text: 'Hello, how are you?',
-      user: 'me',
+      type: OWN_MESSAGE_TYPE,
     },
   },
 };
@@ -44,7 +47,7 @@ export const Reply: StoryObj<typeof MessageItem> = {
     data: {
       key: '2',
       text: 'I am fine, thank you!',
-      user: 'other',
+      type: REPLY_MESSAGE_TYPE,
     },
   },
 };
