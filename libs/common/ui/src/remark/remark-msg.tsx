@@ -14,6 +14,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { RegisterMap, RemarkableFactory } from '@myshell-run/common-def';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
 import { VFile } from 'vfile';
 import { useInjection } from 'inversify-react';
@@ -49,6 +50,7 @@ export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
         }, 0);
       }
     })
+    .use(remarkGfm)
     .use(remarkRehype);
 
   const file = new VFile();

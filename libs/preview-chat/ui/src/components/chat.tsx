@@ -28,6 +28,7 @@ export const Chat = observer(() => {
   );
 });
 
+// TODO: 这些暂时先不下沉到 common-ui
 const Mask = () => {
   return (
     <div
