@@ -168,6 +168,7 @@
     "estree-util-is-identifier-name": "^3.0.0",
     "express": "^4.18.1",
     "filepond": "^4.32.7",
+    "formik": "^2.4.6",
     "fs-extra": "^11.2.0",
     "glob": "^11.0.2",
     "hast-util-to-jsx-runtime": "^2.3.0",
@@ -320,8 +321,8 @@
   "devDependencies": {
     "@storybook/react": "^8.6.12",
     "echarts-for-react": "^3.0.2",
+    "edix": "file:.yalc/edix",
     "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "edix": "file:.yalc/edix"
+    "react-dom": "19.0.0"
   }
 }
