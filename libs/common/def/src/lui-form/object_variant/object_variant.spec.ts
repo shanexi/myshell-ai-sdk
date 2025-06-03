@@ -15,8 +15,12 @@ describe('string variant', () => {
       type: 'object',
       title: 'Selfie',
       properties: {
-        url: 'a',
-        title: 'b',
+        url: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
+        },
       },
       examples: [
         {
@@ -33,9 +37,15 @@ describe('string variant', () => {
       type: 'object',
       title: 'Selfie',
       properties: {
-        url: 'a',
-        title: 'B',
-        name: 'b',
+        url: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
+        },
+        name: {
+          type: 'string',
+        },
       },
       examples: [
         {

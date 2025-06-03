@@ -1,5 +1,12 @@
 import { z } from 'zod';
-const type = z.enum(['string', 'number', 'object', 'array', 'boolean', 'null']);
+export const type = z.enum([
+  'string',
+  'number',
+  'object',
+  'array',
+  'boolean',
+  'null',
+]);
 
 export const common_fields = z.object({
   title: z.string(),
