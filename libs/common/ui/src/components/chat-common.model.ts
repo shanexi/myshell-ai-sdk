@@ -83,7 +83,7 @@ export class ChatCommonModel {
   }
 
   setupUppy(dropTarget: HTMLDivElement) {
-    this.uppyModel.setupUppy(dropTarget);
+    return this.uppyModel.setup(dropTarget);
   }
 
   removeFile(id: string) {

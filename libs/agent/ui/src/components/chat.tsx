@@ -10,9 +10,8 @@ export const Chat = observer(() => {
   const model = useInjection(AgentChatModel);
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (dropTargetRef.current) {
-      model.chatCommon.setupUppy(dropTargetRef.current);
-    }
+    if (!dropTargetRef.current) return;
+    return model.chatCommon.setupUppy(dropTargetRef.current);
   }, []);
   return (
     <div ref={dropTargetRef} className="flex h-full flex-col">

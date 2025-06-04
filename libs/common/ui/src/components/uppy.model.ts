@@ -47,7 +47,7 @@ export class UppyModel {
 
   get uppy() {
     if (!this.#uppy) {
-      throw new Error('uppy is not initialized, check setupUppy is called');
+      throw new Error('uppy is not initialized, check if setupUppy is called');
     }
     return this.#uppy;
   }
@@ -61,7 +61,7 @@ export class UppyModel {
     this.uppyStateMap.delete(id);
   }
 
-  setupUppy(dropTarget: HTMLDivElement) {
+  setup(dropTarget: HTMLDivElement) {
     this.#uppy = new Uppy({
       autoProceed: true,
       debug: true,
@@ -111,5 +111,9 @@ export class UppyModel {
         this.isDragging = false;
       },
     });
+
+    return () => {
+      this.#uppy = undefined;
+    };
   }
 }
