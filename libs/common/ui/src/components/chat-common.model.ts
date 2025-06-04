@@ -8,7 +8,14 @@ import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
 import XHR from '@uppy/xhr-upload';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
-import { InferDoc, schema } from 'edix';
+import {
+  Delete,
+  editable,
+  EditableHandle,
+  InferDoc,
+  plainSchema,
+  schema,
+} from 'edix';
 import { inject, injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
@@ -59,6 +66,13 @@ export class ChatCommonModel {
 
   @observable isDragging = false;
 
+  private edixRef?: RefObject<HTMLDivElement>;
+  private edixHandle: EditableHandle | null = null;
+  public edixRefPromise: Promise<boolean>;
+  private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
+
+  @observable edixReadonly = false;
+
   get uppy() {
     if (!this.#uppy) {
       throw new Error('uppy is not initialized, check setupUppy is called');
@@ -76,6 +90,9 @@ export class ChatCommonModel {
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
+    this.edixRefPromise = new Promise<boolean>((resolve) => {
+      this.edixRefResolve = resolve;
+    });
   }
 
   setVirtuosoRef = (
@@ -179,5 +196,56 @@ export class ChatCommonModel {
     return (
       this.virtuosoRef?.current?.data.find((m) => m.key === key) === undefined
     );
+  }
+
+  setEdixRef(ref: RefObject<HTMLDivElement>) {
+    if (!ref.current) return;
+
+    this.edixRef = ref;
+    if (this.edixRefResolve) {
+      this.edixRefResolve(true);
+    }
+
+    const dispose = (this.edixHandle = editable(ref.current, {
+      schema: plainSchema({ multiline: true }),
+      onChange: this.setInputText,
+    })).dispose;
+
+    return () => {
+      this.resetEdixRef();
+      dispose();
+    };
+  }
+
+  resetEdixRef() {
+    this.edixRef = undefined;
+    this.edixHandle = null;
+    this.edixRefPromise = new Promise<boolean>((resolve) => {
+      this.edixRefResolve = resolve;
+    });
+  }
+
+  async setEdixReadonly(readonly: boolean) {
+    this.edixReadonly = readonly;
+    await this.edixRefPromise;
+    this.edixHandle?.readonly(readonly);
+  }
+
+  /**
+   * todo: 这种方式会有选中，而且不会清空 history，如果不满足需求，需要进一步 patch
+   * 核心是不能通过外部 setValue(更新) value，而应该是 edix -> setValue -> value(render) 这样，所有 modification 都必须从 edix
+   */
+  async clearEdix() {
+    await this.edixRefPromise;
+    if (this.edixRef?.current && this.edixHandle) {
+      this.edixRef?.current.focus();
+      window.getSelection()?.selectAllChildren(this.edixRef.current);
+      this.edixHandle.syncSelection();
+      setTimeout(() => {
+        if (this.edixHandle) {
+          this.edixHandle.command(Delete);
+        }
+      });
+    }
   }
 }

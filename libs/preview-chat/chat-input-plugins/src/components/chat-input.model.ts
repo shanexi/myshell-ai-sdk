@@ -1,4 +1,4 @@
-import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
+import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
 import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
@@ -57,35 +57,20 @@ export class ChatInputModel {
     },
   ]);
 
-  // private ref?: RefObject<HTMLDivElement>;
-  // private refPromise: Promise<boolean>;
-  // private refResolve?: (value: boolean | PromiseLike<boolean>) => void;
-
   constructor(
     @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
-
-    // this.refPromise = new Promise<boolean>((resolve) => {
-    //   this.refResolve = resolve;
-    // });
   }
-
-  // setRef(ref: RefObject<HTMLDivElement>) {
-  //   this.ref = ref;
-  //   if (this.refResolve) {
-  //     this.refResolve(true);
-  //   }
-  // }
 
   @computed get isContextItemsEmpty() {
     return this.contextItems.length === 0;
   }
 
   get chatCommon() {
-    return this.factory(AGENT_CHAT);
+    return this.factory(PREVIEW_CHAT);
   }
 
   get showSendButton() {
@@ -101,6 +86,7 @@ export class ChatInputModel {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
+      await this.chatCommon.clearEdix();
     }
   }
 
