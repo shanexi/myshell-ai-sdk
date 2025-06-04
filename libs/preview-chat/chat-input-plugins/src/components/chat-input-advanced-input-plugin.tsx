@@ -32,7 +32,7 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
           'max-h-[6lh] overflow-y-auto',
         )}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
+          if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             if (!ref.current) return;
             model.sendText();

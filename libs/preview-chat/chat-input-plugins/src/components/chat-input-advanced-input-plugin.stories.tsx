@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
-import { agentChatInputPluginsModule } from '../preview-chat-input-plugins.module';
 import { ChatInputAdvancedInputPlugin } from './chat-input-advanced-input-plugin';
 import { ChatInputHandlers } from './chat-input.model';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { userEvent, within } from '@storybook/test';
 import { expect } from '@storybook/test';
+import { previewChatInputPluginsModule } from '../preview-chat-input-plugins.module';
 
 class SomeChatInputHandler implements ChatInputHandlers {
   *removeImagePreview(id: string) {
@@ -30,7 +30,7 @@ container
   .bind(UploadEndpoint)
   .toConstantValue('http://localhost:3333/api/upload');
 container.load(commonUIModule);
-container.load(agentChatInputPluginsModule);
+container.load(previewChatInputPluginsModule);
 
 const meta: Meta<typeof ChatInputAdvancedInputPlugin> = {
   component: ChatInputAdvancedInputPlugin,
