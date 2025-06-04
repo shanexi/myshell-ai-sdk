@@ -3,6 +3,7 @@ import { ContainerModule, interfaces } from 'inversify';
 import { ChatCommonModel } from './components/chat-common.model';
 import { LuiFormItemSvc } from './components/lui-form-item.svc';
 import { MessageItemSvc } from './components/message-item.svc';
+import { UppyModel } from './components/uppy.model';
 
 export const commonUIModule = new ContainerModule((bind) => {
   bindCommonUI(bind);
@@ -29,7 +30,7 @@ export function bindCommonUI(bind: interfaces.Bind) {
       }
     },
   );
-
+  bind(UppyModel).toSelf().inTransientScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
   bind(LuiFormItemSvc).toSelf().inSingletonScope();
 }

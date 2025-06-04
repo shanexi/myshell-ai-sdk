@@ -159,6 +159,7 @@ specifiers:
   '@uppy/drag-drop': ^4.1.2
   '@uppy/drop-target': ^3.1.1
   '@uppy/file-input': ^4.1.2
+  '@uppy/form': ^4.1.1
   '@uppy/react': ^4.2.3
   '@uppy/thumbnail-generator': ^4.1.1
   '@uppy/utils': ^6.1.3
@@ -448,6 +449,7 @@ dependencies:
   '@uppy/drag-drop': 4.1.2_@uppy+core@4.4.4
   '@uppy/drop-target': 3.1.1_jy55tkud5545gqfimzaituq2aa_@uppy+core@4.4.4
   '@uppy/file-input': 4.1.2_@uppy+core@4.4.4
+  '@uppy/form': 4.1.1_@uppy+core@4.4.4
   '@uppy/react': 4.2.3_vl7gby234mkjmz6jfvkkaxhxge
   '@uppy/thumbnail-generator': 4.1.1_@uppy+core@4.4.4
   '@uppy/utils': 6.1.3
@@ -14200,6 +14202,16 @@ packages:
       preact: 10.26.5
     dev: false
 
+  /@uppy/form/4.1.1_@uppy+core@4.4.4:
+    resolution: {integrity: sha512-S4GqnFOp0Q+el8iz6tTYYdcr4vw2HU5AIeZmKT+vJdYj74JnMGWCJuaAn7VN8w5Bm28bgYoK5M37cGviMB0yrw==}
+    peerDependencies:
+      '@uppy/core': ^4.4.1
+    dependencies:
+      '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+      get-form-data: 3.0.0
+    dev: false
+
   /@uppy/react/4.2.3_vl7gby234mkjmz6jfvkkaxhxge:
     resolution: {integrity: sha512-zIG2LzjB+gsiduHsgzfi+wSywTE+DSFPg+FAIlyWP24XF0HEv0ekai0fngewxjBUItZ6HGddWFkvMiRMD6+63g==}
     peerDependencies:
@@ -20166,6 +20178,10 @@ packages:
   /get-east-asian-width/1.2.0:
     resolution: {integrity: sha512-2nk+7SIVb14QrgXFHcm84tD4bKQz0RxPuMT8Ag5KPOq7J5fEmAg0UbXdTOSHqNuHSU28k55qnceesxXRZGzKWA==}
     engines: {node: '>=18'}
+    dev: false
+
+  /get-form-data/3.0.0:
+    resolution: {integrity: sha512-1d53Kn08wlPuLu31/boF1tW2WRYKw3xAWae3mqcjqpDjoqVBtXolbQnudbbEFyFWL7+2SLGRAFdotxNY06V7MA==}
     dev: false
 
   /get-intrinsic/1.2.4:

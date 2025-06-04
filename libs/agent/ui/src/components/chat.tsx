@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { ChatInput } from './chat-input';
-import { ChatMessageList } from '@myshell-run/common-ui';
+import { ChatMessageList, cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { AgentChatModel } from './agent-chat.model';
 import { observer } from 'mobx-react-lite';
-import { cn } from '@myshell-run/common-ui';
 import { ReactComponent as Dragging } from './dragging.svg';
 
 export const Chat = observer(() => {
