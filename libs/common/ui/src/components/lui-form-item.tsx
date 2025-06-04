@@ -1,6 +1,5 @@
-import { LuiFormItemData } from '@myshell-run/common-def';
 import { useInjection } from 'inversify-react';
-import { LuiFormItemSvc } from './lui-form-item.svc';
+import { LuiFormItemData, LuiFormItemSvc } from './lui-form-item.svc';
 
 export const LuiFormItem: React.FC<LuiFormItemData> = (props) => {
   const { variant } = props;

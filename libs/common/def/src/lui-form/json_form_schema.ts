@@ -38,17 +38,3 @@ export type JsonSchema = Prettify<
     >;
   }
 >;
-
-export type LuiFormItemData = z.infer<
-  typeof json_form_schema
->['properties'][string];
-
-export const LuiFormItem = Symbol('LuiFormItem');
-
-export type LuiFormItemVariant =
-  | z.infer<typeof string_variant_type>
-  | z.infer<typeof object_variant_type>;
-export interface LuiFormItem {
-  variant: LuiFormItemVariant;
-  render: (data: LuiFormItemData) => JSX.Element;
-}
