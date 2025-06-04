@@ -1,6 +1,7 @@
 import { ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ContainerModule, interfaces } from 'inversify';
 import { ChatCommonModel } from './components/chat-common.model';
+import { LuiFormItemSvc } from './components/lui-form-item.svc';
 import { MessageItemSvc } from './components/message-item.svc';
 
 export const commonUIModule = new ContainerModule((bind) => {
@@ -30,4 +31,5 @@ export function bindCommonUI(bind: interfaces.Bind) {
   );
 
   bind(MessageItemSvc).toSelf().inSingletonScope();
+  bind(LuiFormItemSvc).toSelf().inSingletonScope();
 }

@@ -1,10 +1,11 @@
-import { ImageChoice } from './image-choice';
+import { JsonFormSchema } from '@myshell-run/common-def';
+import { cn, LuiFormItem } from '@myshell-run/common-ui';
 import { Button } from './button';
-import { Textarea } from './textarea';
-import { Upload } from './upload';
-import { cn } from '@myshell-run/common-ui';
 
-export const LuiForm = () => {
+export const LuiForm: React.FC<{ jsonschema: JsonFormSchema }> = ({
+  jsonschema,
+}) => {
+  // todo: 顺序
   return (
     <div>
       <FormHeader>Image Configuration</FormHeader>
@@ -15,25 +16,24 @@ export const LuiForm = () => {
           'flex flex-col gap-spacing-3xl-v2',
         )}
       >
-        <LuiFormItem label="Title" description="This is a simple description.">
-          <Upload />
-        </LuiFormItem>
-        <LuiFormItem label="Description">
-          <Textarea />
-        </LuiFormItem>
-        <LuiFormItem
-          label="Prompt"
-          description="The prompt to guide QR Code generation."
-        >
-          <ImageChoice />
-        </LuiFormItem>
+        {Object.keys(jsonschema.properties).map((k) => {
+          const item = jsonschema.properties[k];
+          return (
+            <LuiFormItemWrapper
+              label={item.title}
+              description={item.description}
+            >
+              <LuiFormItem {...item} />
+            </LuiFormItemWrapper>
+          );
+        })}
       </div>
       <LuiFormFooter />
     </div>
   );
 };
 
-export const LuiFormItem = (props: {
+export const LuiFormItemWrapper = (props: {
   label: string;
   description?: string;
   children: React.ReactNode;

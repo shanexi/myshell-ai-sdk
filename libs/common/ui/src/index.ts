@@ -11,3 +11,5 @@ export * from './components/message-item';
 export * from './components/chat-message-list';
 export * from './components/add-message-plugin';
 export * from './components/chat-input-plugin-slot';
+export * from './components/add-lui-form-item-plugin';
+export * from './components/lui-form-item';

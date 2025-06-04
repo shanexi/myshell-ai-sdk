@@ -6,3 +6,5 @@ export * from './lib/chat-common';
 
 export * from './agent-chat/agent-chat-consts';
 export * from './preview-chat/preview-chat-consts';
+
+export * from './lui-form/json_form_schema';
