@@ -64,6 +64,8 @@ export class ChatInputModel {
   public edixRefPromise: Promise<boolean>;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
 
+  @observable edixReadonly = false;
+
   constructor(
     @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
     @inject(ChatCommonModelFactory)
@@ -74,6 +76,8 @@ export class ChatInputModel {
     this.edixRefPromise = new Promise<boolean>((resolve) => {
       this.edixRefResolve = resolve;
     });
+
+    this.setEdixReadonly();
   }
 
   setEdixRef(ref: RefObject<HTMLDivElement>) {
@@ -155,6 +159,11 @@ export class ChatInputModel {
     for (const _ of this.handlers.removeImagePreview(id)) {
       // 其他操作
     }
+  }
+
+  async setEdixReadonly() {
+    await this.edixRefPromise;
+    this.edixHandle?.readonly(this.edixReadonly);
   }
 
   async clearEdix() {
