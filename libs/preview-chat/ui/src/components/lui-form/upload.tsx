@@ -3,14 +3,25 @@ import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import { UploadModel } from './upload.model';
+import toArray from '@uppy/utils/lib/toArray';
 
 export const Upload = observer<{
   model: UploadModel;
 }>(({ model }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const hiddenInputStyle = {
+    width: '0.1px',
+    height: '0.1px',
+    opacity: 0,
+    overflow: 'hidden',
+    position: 'absolute',
+    zIndex: -1,
+  } satisfies React.CSSProperties;
+
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.uppy.setup(dropTargetRef.current);
+    return model.uppyModel.setup(dropTargetRef.current);
   }, []);
   return (
     <div
@@ -20,8 +31,9 @@ export const Upload = observer<{
         'p-spacing-lg-v2',
         'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
       )}
+      onClick={() => inputRef.current?.click()}
     >
-      {model.uppy.isDragging ? (
+      {model.uppyModel.isDragging ? (
         <div
           className={cn(
             'text-sm-medium flex items-center justify-center text-Cr-text-default-light-v2',
@@ -49,6 +61,34 @@ export const Upload = observer<{
           </div>
         </div>
       )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        name="files[]"
+        multiple={model.uppyModel.maxNumberOfFiles}
+        accept={model.uppyModel.accept}
+        onChange={(e) => {
+          model.uppyModel.uppy.log(
+            '[FileInput] Something selected through input...',
+          );
+          const files = toArray(e.target.files || []);
+
+          const descriptors = files.map((file) => ({
+            source: 'FileInput',
+            name: file.name,
+            type: file.type,
+            data: file,
+          }));
+
+          try {
+            model.uppyModel.uppy.addFiles(descriptors);
+          } catch (err) {
+            model.uppyModel.uppy.log(err);
+          }
+        }}
+        style={hiddenInputStyle}
+      />
     </div>
   );
 });
