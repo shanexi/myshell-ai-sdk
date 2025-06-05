@@ -1,2 +1,1415 @@
-const t=([t],[e])=>t===e?0:t<e?1:-1,e=(e,n)=>{const o=t(e,n);return 0===o?e[1]===n[1]?0:e[1]<n[1]?1:-1:o},n=(t,n)=>-1===e(t,n)?[n,t]:[t,n],o=t=>1===t.type,r=t=>o(t)?t.text.length:1,s=t=>t.reduce(((t,e)=>t+r(e)),0),i=(...t)=>{const e=[];for(const n of t)if(e.length)for(const t of n){const n=e.length-1,r=e[n];o(t)&&o(r)?e[n]={type:1,text:r.text+t.text}:e.push(t)}else e.push(...n);return e},c=(t,e)=>{for(let n=0;n<t.length;n++){const s=t[n],i=r(s);if(i>e){const r=t.slice(0,n),i=t.slice(n+1);if(o(s)){const t=s.text.slice(0,e),n=s.text.slice(e);t&&r.push({type:1,text:t}),n&&i.unshift({type:1,text:n})}else i.unshift(s);return[r,i]}e-=i}return[t,[]]},a=(e,n,o,r)=>[e[0]+o,e[1]+(0===t(e,n)?r-(0===o?0:n[1]):0)],l=(n,o,r)=>1===e(r,n)?[n[0]+o[0]-r[0],n[1]+(0===t(r,n)?o[1]-r[1]:0)]:o,f=(t,e,n,o)=>{const[r]=n,[s]=o||n,a=c(t[n[0]],n[1]),l=a[0],f=o?c(t[o[0]],o[1])[1]:a[1],u=[...e];u.length?(u[0]=i(l,u[0]),u[u.length-1]=i(u[u.length-1],f)):u.push(i(l,f)),t.splice(r,s-r+1,...u)},u=(t,n,o,r)=>{const[i,c]=n,l=o.length,u=l-1,d=s(o[l-1]);f(t,o,r),1!==e(i,r)&&(n[0]=a(i,r,u,d)),1!==e(c,r)&&(n[1]=a(c,r,u,d))},d=(t,n,o,r)=>{const[s,i]=n;f(t,[],o,r),1!==e(s,o)&&(n[0]=l(s,o,r)),1!==e(i,o)&&(n[1]=l(i,o,r))},p=(t,e)=>t.reduce(((t,n,o)=>(0!==o&&(t+="\n"),t+n.reduce(((t,n)=>t+(1===n.type?n.text:e?e(n):"")),""))),""),x=t=>t.split("\n").map((t=>[{type:1,text:t}])),y=(t,o,[r,s]=o)=>{0!==e(r,s)&&d(t,o,...n(r,s))},g=(t,e,n)=>{y(t,e),u(t,e,n,e[0])},m=(t,e,n,o=n)=>{e[0]=n,e[1]=o},h=(t,e,n=[0,0],o=[t.length-1,s(t[t.length-1])],r)=>{d(t,e,n,o),u(t,e,r,n)};let _,b,S,w,k,v,D=!1,E=!1,M=!1;const N=t=>3===t.nodeType,O=t=>1===t.nodeType,B=t=>8===t.nodeType,H=new Set(["EMBED","IMG","PICTURE","AUDIO","VIDEO","SVG","CANVAS","MATH","IFRAME","OBJECT"]),I=()=>b,R=()=>1===S?b.data.length:2===S?1:0,T=t=>{const e=t.nextSibling;return!!e&&!B(e)},A=()=>{for(;;){if(2===S){const t=b;for(;(b=_.nextNode())&&t.contains(b););}else b=_.nextNode();if(S=null,!b)break;if(w&&E){if(w.contains(b))continue;E=!1}if(k)if(k.contains(b)){if(D=!0,M)break}else if(D)break;if(N(b)){const t=b.data;if(t)return S="\n"===t?T(b)?3:6:1}else if(O(b)){const t=b.tagName;if("BR"===t)return S=T(b)?3:5;if("false"===b.contentEditable||H.has(t))return S=2;if(v(b))return S=4}}},C=(t,e,{t:n,o},r)=>{try{return v=o,_=n.createTreeWalker(e,5),r&&(r.i&&(_.currentNode=w=r.i,_.previousNode()),r.l&&(k=r.l),E=r.u||!1,M=r.p||!1),t(A)}finally{_=b=S=w=k=null,D=E=M=!1}},L=Math.min,P="function"==typeof queueMicrotask?queueMicrotask:t=>{Promise.resolve().then(t)},V=new Set(["DIV","H1","H2","H3","H4","H5","H6","P","PRE","LI","DT","DD","TR"]),j=t=>V.has(t.tagName),F=t=>t.ownerDocument,U=t=>F(t).getSelection(),q=(t,e)=>{if(t.rangeCount){const n=t.getRangeAt(0);if(e.contains(n.commonAncestorContainer))return n}},G=(t,e,n)=>{const o=U(t);o.removeAllRanges(),o.addRange(e),n&&(o.collapseToEnd(),o.extend(e.startContainer,e.startOffset))},W=(t,n,[o,r],s,i)=>{const c=e(o,r),a=0===c,l=-1===c,f=l?r:o,u=l?o:r;if(0===f[0]&&0===f[1]&&a&&!n.hasChildNodes()){const e=t.createRange();return e.setStart(n,0),e.setEnd(n,0),G(n,e),!0}const d=J(n,f,s,i);if(!d)return!1;const p=a?d:J(n,u,s,i);if(!p)return!1;const x=t.createRange(),[y,g]=d,[m,h]=p;return O(y)?g<1?x.setStartBefore(y):x.setStartAfter(y):x.setStart(y,g),O(m)?h<1?x.setEndBefore(m):x.setEndAfter(m):x.setEnd(m,h),G(n,x,l),!0},J=(t,[e,n],o,r)=>C((t=>{for(;t();){const t=R();if(n<=t)return[I(),n];n-=t}}),o||0===t.childElementCount?t:t.children[e],r),K=(t,e,n,o,r,s)=>{let i,c;if(t===e){if(!t.hasChildNodes())return[0,0];const e=L(n,t.childNodes.length-1);return K(t,t.childNodes[e],0,o,r,e!==n)}{const n=((t,e)=>{let n=e;for(;;){const e=n.parentElement;if(e===t)break;n=e}return n})(t,e);o.o(n)?(i=n,c=Array.prototype.indexOf.call(t.children,i)):(i=t,c=0)}return!r&&O(e)&&(e=e.childNodes[n],n=0),C((t=>{let e,o=0;for(;e=t();)3===e?(c++,o=0):o+=R();return[c,o+n]}),i,o,{l:e,p:!s})},X=(t,e)=>t.compareDocumentPosition(e),Y=(t,e)=>{const n=U(t),o=q(n,t);if(!o)return[[0,0],[0,0]];const{startOffset:r,startContainer:s,endOffset:i,endContainer:c}=o,a=K(t,s,r,e),l=s===c&&r===i?a:K(t,c,i,e);return(n.anchorNode===n.focusNode?n.anchorOffset>n.focusOffset:2&X(n.anchorNode,n.focusNode))?[l,a]:[a,l]},Z=(t,e)=>t.map((t=>t.reduce(((t,n)=>{if("string"==typeof n)t.push({type:1,text:n});else{const o=e(n);o&&t.push({type:2,data:o})}return t}),[]))),z=(t,e,n)=>{const o=n&&n.m,r=n&&n.h;return C((t=>{let s,i=null,c="",a=!1;const l=[],f=()=>{c&&(i||(i=[]),i.push(c),c="")},u=()=>{f(),!i&&a&&(i=[]),i&&l.push(i),i=null,a=!1};for(o&&O(n.i)&&e.o(n.i)&&l.push([]);s=t();)4===s?u():(a=!0,1===s?c+=I().data:2===s?(f(),i.push(I())):3===s&&u());return u(),r&&O(n.l)&&e.o(n.l)&&l.push([]),l.length||l.push([]),l}),t,e,n&&{i:n.i,l:n.l,u:o,p:r})},Q=()=>"";exports.Delete=y,exports.InsertText=(t,e,n)=>{g(t,e,x(n))},exports.editable=(o,{schema:{single:s,js:a,void:l,copy:f,paste:u},isBlock:d=j,onChange:p})=>{const{contentEditable:x,role:_,ariaMultiLine:b,ariaReadOnly:S}=o,w=o.style.whiteSpace;o.role="textbox",o.style.whiteSpace="pre-wrap",s||(o.ariaMultiLine="true");let k=!1,v=!1,D=!1,E=[[0,0],[0,0]],M=null,B=!1,H=!1,I=!1;const R=F(o),T={t:R,o:d},A=()=>{o.contentEditable=k?"false":"true",o.ariaReadOnly=k?"true":null};A();const C=(t,e)=>Z(z(t,e),l),L=[],V=(t=>{let e=0,n=0;const o=Date.now,r=[t],s=()=>r[e];return{get:s,set:t=>{r[e]=t},undo:()=>e>0?(e--,s()):void 0,redo:()=>e<r.length-1?(e++,s()):void 0,push:t=>{const s=o();0!==e&&s-n<500&&e--,n=s,r[++e]=t,r.splice(e+1),e>500&&(e--,r.shift())}}})([C(o,T),E]),G=((t,e)=>{let n=!1;const o=[],r=t=>{n&&o.push(...t)},s=new MutationObserver((t=>{r(t),n||e()})),i=()=>{r(s.takeRecords())};return s.observe(t,{characterData:!0,characterDataOldValue:!0,childList:!0,subtree:!0}),{_(t){!n&&t&&i(),n=t},S:()=>(i(),o.splice(0)),k(){o.splice(0),s.disconnect()}}})(o,(()=>{H&&(W(R,o,E,s,T),null!=M&&(clearTimeout(M),M=null))})),J=new Set,Q=t=>{J.has(t)||(J.add(t),P((()=>{J.delete(t),t()})))},$=t=>{E=t,M=setTimeout((()=>{W(R,o,t,s,T)}))},tt=()=>{E=Y(o,T)},et=()=>{const t=G.S();if(G._(!1),t.length){const e=Y(o,T),n=((t,e,n,o)=>{const r=new Set,s=new Set,i=new Set,c=new Set;let a,l,f=!1,u=!1;for(const{type:e,target:o,addedNodes:a,removedNodes:l,previousSibling:d,nextSibling:p}of n)if("childList"===e){for(const t of a)s.add(t);for(const t of l)s.add(t);d?i.add(d):o===t?f=!0:(i.add(o),r.add(o)),p?c.add(p):o===t?u=!0:(c.add(o),r.add(o))}else i.add(o),c.add(o),r.add(o);if(!f)for(const e of i)e!==t&&!s.has(e)&&e.isConnected&&(N(e)||O(e))&&(!a||10&X(a,e))&&(a=e);if(!u)for(const e of c)e!==t&&!s.has(e)&&e.isConnected&&(N(e)||O(e))&&(!l||12&X(l,e))&&(l=e);if(a&&l){const t=X(a,l);8&t?a=l:16&t&&(l=a)}const d=!!a&&![...r].some((t=>t===a||8&X(t,a))),p=!!l&&![...r].some((t=>t===l||8&X(t,l))),x=z(t,e,{i:a,l,m:d,h:p});let y;for(;y=n.pop();)if("childList"===y.type){const{target:t,removedNodes:e,addedNodes:n,nextSibling:o}=y;for(let n=e.length-1;n>=0;n--)t.insertBefore(e[n],o);for(let e=n.length-1;e>=0;e--)t.removeChild(n[e])}else y.target.nodeValue=y.oldValue;return[a&&K(t,a,0,e,!0,d),l&&K(t,l,0,e,!0,!p),Z(x,o)]})(o,T,t,l);G.S(),D=W(R,o,E,s,T),ot(h,...n),ot(m,...e)}},nt=()=>{if(L.length){let t,e=[...E],n=[...V.get()[0]];for(;t=L.pop();)t.v(n,e,...t.D);if(!k){s&&([n,e]=((t,[[e,n],[o,s]])=>{let c=0,a=0;for(let n=0;n<t.length;n++)for(const s of t[n]){const t=r(s);n<e&&(c+=t),n<o&&(a+=t)}return[[i(...t)],[[0,c+n],[0,a+s]]]})(n,e));const t=V.get()[0],o=E;(n.length!==t.length||n.some(((e,n)=>e!==t[n])))&&(V.set([t,o]),V.push([n,e]),p(a(n)))}$(e)}},ot=(t,...e)=>{L.unshift({v:t,D:e}),Q(nt)},rt=t=>{if(!B&&(t.metaKey||t.ctrlKey)&&!t.altKey&&"KeyZ"===t.code&&(t.preventDefault(),G._(!1),!k)){const e=t.shiftKey?V.redo():V.undo();e&&(p(a(e[0])),$(e[1]))}},st=()=>{B||Q(et)},it=t=>{switch(t.inputType){case"historyUndo":case"historyRedo":return void t.preventDefault();case"insertLineBreak":case"insertParagraph":if(s)return void t.preventDefault()}G._(!0)},ct=()=>{B=!0},at=()=>{B=!1,Q(et)},lt=()=>{H=!0,tt()},ft=()=>{H=!1},ut=()=>{D?D=!1:!H||B||I||tt()},dt=r=>{tt(),0!==e(...E)&&f(r,((e,n,o)=>0===t(n,o)?[c(c(e[n[0]],o[1])[0],n[1])[1]]:[c(e[n[0]],n[1])[1],...e.slice(n[0]+1,o[0]),c(e[o[0]],o[1])[0]])(V.get()[0],...n(...E)),(()=>q(U(o),o).cloneContents()))},pt=t=>{ot(g,u(t,(t=>C(t,T))))},xt=t=>{t.preventDefault(),dt(t.clipboardData)},yt=t=>{t.preventDefault(),k||(dt(t.clipboardData),ot(y))},gt=t=>{t.preventDefault(),pt(t.clipboardData)},mt=t=>{t.preventDefault();const e=t.dataTransfer,n=((t,e,{clientX:n,clientY:o},r)=>{if(t.caretPositionFromPoint){const s=t.caretPositionFromPoint(n,o);if(s)return K(e,s.offsetNode,s.offset,r)}else if(t.caretRangeFromPoint){const s=t.caretRangeFromPoint(n,o);if(s)return K(e,s.startContainer,s.startOffset,r)}})(R,o,t,T);e&&n&&(ot(m,n),I?ot(y,E):o.focus(),pt(e))},ht=t=>{I=!0,dt(t.dataTransfer)},_t=()=>{I=!1};return R.addEventListener("selectionchange",ut),o.addEventListener("keydown",rt),o.addEventListener("input",st),o.addEventListener("beforeinput",it),o.addEventListener("compositionstart",ct),o.addEventListener("compositionend",at),o.addEventListener("focus",lt),o.addEventListener("blur",ft),o.addEventListener("copy",xt),o.addEventListener("cut",yt),o.addEventListener("paste",gt),o.addEventListener("drop",mt),o.addEventListener("dragstart",ht),o.addEventListener("dragend",_t),{dispose:()=>{v||(v=!0,o.contentEditable=x,o.role=_,o.ariaMultiLine=b,o.ariaReadOnly=S,o.style.whiteSpace=w,G.k(),R.removeEventListener("selectionchange",ut),o.removeEventListener("keydown",rt),o.removeEventListener("input",st),o.removeEventListener("beforeinput",it),o.removeEventListener("compositionstart",ct),o.removeEventListener("compositionend",at),o.removeEventListener("focus",lt),o.removeEventListener("blur",ft),o.removeEventListener("copy",xt),o.removeEventListener("cut",yt),o.removeEventListener("paste",gt),o.removeEventListener("drop",mt),o.removeEventListener("dragstart",ht),o.removeEventListener("dragend",_t))},command:ot,syncSelection:tt,readonly:t=>{k=t,A()}}},exports.plainSchema=({multiline:t}={})=>({single:!t,js:p,void:()=>{},copy:(t,e)=>{t.setData("text/plain",p(e))},paste:t=>x(t.getData("text/plain"))}),exports.schema=({multiline:t,void:e={}})=>{const n=Object.entries(e),o=new WeakMap,r=new WeakMap,s=t=>t.reduce(((t,e)=>{if(1===e.type){let n=o.get(e);n||o.set(e,n={type:"text",text:e.text}),t.push(n)}else t.push(r.get(e.data));return t}),[]);return{single:!t,js:t?t=>t.map(s):t=>s(t[0]),void:t=>{for(const[e,o]of n)if(o.is(t)){const n=o.data(t);return r.set(n,{type:e,data:{...n}}),n}},copy:(t,n,o)=>{t.setData("text/plain",p(n,(t=>{const n=r.get(t.data);return e[n.type].plain(t.data)})));const s=document.createElement("div");s.appendChild(o()),t.setData("text/html",s.innerHTML)},paste:(t,e)=>{const n=t.getData("text/html");if(n){let t=(new DOMParser).parseFromString(n,"text/html").body,o=!1;for(const e of[...t.childNodes])B(e)?"StartFragment"===e.data?(o=!0,t=new DocumentFragment):"EndFragment"===e.data&&(o=!1):o&&t.appendChild(e);return e(t)}return x(t.getData("text/plain"))}}},exports.voidNode=({is:t,data:e,plain:n=Q})=>({is:t,data:e,plain:n});
+'use strict';
+
+/**
+ * @internal
+ * 0 : same
+ * 1 : A is before B (forward)
+ * -1: A is after B (backward)
+ */
+const compareLine = ([lineA], [lineB]) => {
+    if (lineA === lineB) {
+        return 0;
+    }
+    else {
+        return lineA < lineB ? 1 : -1;
+    }
+};
+/**
+ * @internal
+ * 0 : same
+ * 1 : A is before B (forward)
+ * -1: A is after B (backward)
+ */
+const comparePosition = (posA, posB) => {
+    const line = compareLine(posA, posB);
+    if (line === 0) {
+        return posA[1] === posB[1] ? 0 : posA[1] < posB[1] ? 1 : -1;
+    }
+    else {
+        return line;
+    }
+};
+/**
+ * @internal
+ */
+const edges = (a, b) => {
+    return comparePosition(a, b) === -1 ? [b, a] : [a, b];
+};
+
+const NODE_TEXT = 1;
+const NODE_VOID = 2;
+
+const isTextNode$1 = (node) => node.type === NODE_TEXT;
+const getNodeSize$1 = (node) => isTextNode$1(node) ? node.text.length : 1;
+/**
+ * @internal
+ */
+const getLineSize = (line) => line.reduce((acc, n) => acc + getNodeSize$1(n), 0);
+const merge = (...lines) => {
+    const result = [];
+    for (const line of lines) {
+        if (!result.length) {
+            result.push(...line);
+        }
+        else {
+            for (const node of line) {
+                const index = result.length - 1;
+                const target = result[index];
+                if (isTextNode$1(node) && isTextNode$1(target)) {
+                    result[index] = { type: NODE_TEXT, text: target.text + node.text };
+                }
+                else {
+                    result.push(node);
+                }
+            }
+        }
+    }
+    return result;
+};
+const split = (line, offset) => {
+    for (let i = 0; i < line.length; i++) {
+        const node = line[i];
+        const size = getNodeSize$1(node);
+        if (size > offset) {
+            const before = line.slice(0, i);
+            const after = line.slice(i + 1);
+            if (isTextNode$1(node)) {
+                const beforeText = node.text.slice(0, offset);
+                const afterText = node.text.slice(offset);
+                if (beforeText) {
+                    before.push({ type: NODE_TEXT, text: beforeText });
+                }
+                if (afterText) {
+                    after.unshift({ type: NODE_TEXT, text: afterText });
+                }
+            }
+            else {
+                // node size must be 1
+                after.unshift(node);
+            }
+            return [before, after];
+        }
+        offset -= size;
+    }
+    return [line, []];
+};
+const fixPositionAfterInsert = (selectionPos, pos, lineDiff, lastRowLength) => {
+    return [
+        selectionPos[0] + lineDiff,
+        selectionPos[1] +
+            (compareLine(selectionPos, pos) === 0
+                ? lastRowLength - (lineDiff === 0 ? 0 : pos[1])
+                : 0),
+    ];
+};
+const fixPositionAfterDelete = (selectionPos, start, end) => {
+    return comparePosition(end, selectionPos) === 1
+        ? [
+            selectionPos[0] + start[0] - end[0],
+            selectionPos[1] +
+                (compareLine(end, selectionPos) === 0 ? start[1] - end[1] : 0),
+        ]
+        : start;
+};
+const replaceRange = (doc, fragment, start, end) => {
+    const [startLine] = start;
+    const [endLine] = end || start;
+    const splitByStart = split(doc[start[0]], start[1]);
+    const before = splitByStart[0];
+    const after = end ? split(doc[end[0]], end[1])[1] : splitByStart[1];
+    const lines = [...fragment];
+    if (lines.length) {
+        lines[0] = merge(before, lines[0]);
+        lines[lines.length - 1] = merge(lines[lines.length - 1], after);
+    }
+    else {
+        lines.push(merge(before, after));
+    }
+    doc.splice(startLine, endLine - startLine + 1, ...lines);
+};
+/**
+ * @internal
+ */
+const sliceDoc = (doc, start, end) => {
+    if (compareLine(start, end) === 0) {
+        return [split(split(doc[start[0]], end[1])[0], start[1])[1]];
+    }
+    return [
+        split(doc[start[0]], start[1])[1],
+        ...doc.slice(start[0] + 1, end[0]),
+        split(doc[end[0]], end[1])[0],
+    ];
+};
+/**
+ * @internal
+ */
+const insertEdit = (doc, selection, lines, pos) => {
+    const [anchor, focus] = selection;
+    const lineLength = lines.length;
+    const lineDiff = lineLength - 1;
+    const lastRowLength = getLineSize(lines[lineLength - 1]);
+    replaceRange(doc, lines, pos);
+    if (comparePosition(anchor, pos) !== 1) {
+        selection[0] = fixPositionAfterInsert(anchor, pos, lineDiff, lastRowLength);
+    }
+    if (comparePosition(focus, pos) !== 1) {
+        selection[1] = fixPositionAfterInsert(focus, pos, lineDiff, lastRowLength);
+    }
+};
+/**
+ * @internal
+ */
+const deleteEdit = (doc, selection, start, end) => {
+    const [anchor, focus] = selection;
+    replaceRange(doc, [], start, end);
+    if (comparePosition(anchor, start) !== 1) {
+        selection[0] = fixPositionAfterDelete(anchor, start, end);
+    }
+    if (comparePosition(focus, start) !== 1) {
+        selection[1] = fixPositionAfterDelete(focus, start, end);
+    }
+};
+/**
+ * @internal
+ */
+const flatten = (doc, [[anchorLine, anchorOffset], [focusLine, focusOffset]]) => {
+    let offsetBeforeAnchor = 0;
+    let offsetBeforeFocus = 0;
+    for (let i = 0; i < doc.length; i++) {
+        for (const node of doc[i]) {
+            const size = getNodeSize$1(node);
+            if (i < anchorLine) {
+                offsetBeforeAnchor += size;
+            }
+            if (i < focusLine) {
+                offsetBeforeFocus += size;
+            }
+        }
+    }
+    return [
+        [merge(...doc)],
+        [
+            [0, offsetBeforeAnchor + anchorOffset],
+            [0, offsetBeforeFocus + focusOffset],
+        ],
+    ];
+};
+
+/**
+ * @internal
+ */
+const docToString = (doc, voidToString) => {
+    return doc.reduce((acc, r, i) => {
+        if (i !== 0) {
+            acc += "\n";
+        }
+        return (acc +
+            r.reduce((acc, n) => acc +
+                (n.type === NODE_TEXT ? n.text : voidToString ? voidToString(n) : ""), ""));
+    }, "");
+};
+/**
+ * @internal
+ */
+const stringToDoc = (text) => {
+    return text.split("\n").map((l) => [{ type: NODE_TEXT, text: l }]);
+};
+
+const Delete = (doc, selection, [anchor, focus] = selection) => {
+    if (comparePosition(anchor, focus) !== 0) {
+        deleteEdit(doc, selection, ...edges(anchor, focus));
+    }
+};
+/**
+ * @internal
+ */
+const InsertFragment = (doc, selection, lines) => {
+    Delete(doc, selection);
+    insertEdit(doc, selection, lines, 
+    // selection was collapsed with delete command
+    selection[0]);
+};
+const InsertText = (doc, selection, text) => {
+    InsertFragment(doc, selection, stringToDoc(text));
+};
+/**
+ * @internal
+ */
+const MoveTo = (_doc, selection, anchor, focus = anchor) => {
+    selection[0] = anchor;
+    selection[1] = focus;
+};
+/**
+ * @internal
+ */
+const Input = (doc, selection, start = [0, 0], end = [doc.length - 1, getLineSize(doc[doc.length - 1])], fragment) => {
+    deleteEdit(doc, selection, start, end);
+    insertEdit(doc, selection, fragment, start);
+};
+
+const MAX_HISTORY_LENGTH = 500;
+const BATCH_HISTORY_TIME = 500;
+/**
+ * @internal
+ */
+const createHistory = (initialValue) => {
+    let index = 0;
+    let prevTime = 0;
+    const now = Date.now;
+    const histories = [initialValue];
+    const get = () => histories[index];
+    const set = (history) => {
+        histories[index] = history;
+    };
+    const push = (history) => {
+        const time = now();
+        if (index !== 0 && time - prevTime < BATCH_HISTORY_TIME) {
+            index--;
+        }
+        prevTime = time;
+        histories[++index] = history;
+        histories.splice(index + 1);
+        if (index > MAX_HISTORY_LENGTH) {
+            index--;
+            histories.shift();
+        }
+    };
+    const isUndoable = () => {
+        return index > 0;
+    };
+    const isRedoable = () => {
+        return index < histories.length - 1;
+    };
+    const undo = () => {
+        if (isUndoable()) {
+            index--;
+            return get();
+        }
+        else {
+            return;
+        }
+    };
+    const redo = () => {
+        if (isRedoable()) {
+            index++;
+            return get();
+        }
+        else {
+            return;
+        }
+    };
+    return {
+        get,
+        set,
+        undo,
+        redo,
+        push,
+    };
+};
+
+let walker;
+let node;
+let tokenType;
+let startNode;
+let endNode;
+let isEndNodeVisited = false;
+let shouldExcludeStart = false;
+let shouldExcludeEnd = false;
+let isBlockNode;
+const SHOW_ELEMENT = 0x1;
+const SHOW_TEXT = 0x4;
+/** @internal */
+const TOKEN_TEXT = 1;
+/** @internal */
+const TOKEN_VOID = 2;
+/** @internal */
+const TOKEN_SOFT_BREAK = 3;
+/** @internal */
+const TOKEN_BLOCK = 4;
+const TOKEN_EMPTY_BLOCK_ANCHOR = 5;
+const TOKEN_INVALID_SOFT_BREAK = 6;
+const ELEMENT_NODE = 1;
+const TEXT_NODE = 3;
+const COMMENT_NODE = 8;
+/**
+ * @internal
+ */
+const isTextNode = (node) => {
+    return node.nodeType === TEXT_NODE;
+};
+/**
+ * @internal
+ */
+const isElementNode = (node) => {
+    return node.nodeType === ELEMENT_NODE;
+};
+/**
+ * @internal
+ */
+const isCommentNode = (node) => {
+    return node.nodeType === COMMENT_NODE;
+};
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories
+// https://html.spec.whatwg.org/multipage/dom.html#embedded-content-category
+const EMBEDDED_CONTENT_TAG_NAMES = new Set([
+    "EMBED",
+    "IMG",
+    "PICTURE",
+    "AUDIO",
+    "VIDEO",
+    "SVG",
+    "CANVAS",
+    "MATH",
+    "IFRAME",
+    "OBJECT",
+]);
+/**
+ * @internal
+ */
+const getDomNode = () => {
+    return node;
+};
+/**
+ * @internal
+ */
+const getNodeSize = () => {
+    return tokenType === TOKEN_TEXT
+        ? node.data.length
+        : tokenType === TOKEN_VOID
+            ? 1
+            : 0;
+};
+const isValidSoftBreak = (node) => {
+    const next = node.nextSibling;
+    // This function will return false if there are no nodes after soft break.
+    //
+    // In contenteditable, Shift+Enter will insert soft break. \n in Chrome, <br/> in Firefox. Safari doesn't insert soft break.
+    // And \n or <br/> has a special role that represents empty block in contenteditable.
+    // We have to distinguish real soft breaks from empty blocks.
+    //
+    // There are many possible markups for soft break ([] means text node):
+    // <div>[\n][abc]</div>         Shift+Enter at start of line in Chrome
+    // <div><br/>[abc]</div>        Shift+Enter at start of line in Firefox
+    // <div>[ab][\n][c]</div>       Shift+Enter at mid of line in Chrome
+    // <div>[ab]<br/>[c]</div>      Shift+Enter at mid of line in Firefox
+    // <div>[abc][\n][\n]</div>     Shift+Enter at end of line in Chrome
+    // <div>[abc]<br/><br/></div>   Shift+Enter at end of line in Firefox
+    // <div>[\n]<br/></div>         Shift+Enter at empty line in Chrome
+    // <div><br/><br/></div>        Shift+Enter at empty line in Firefox
+    //
+    // And these do not include soft breaks:
+    // <div><br/></div>             empty line
+    // <div>[a]<br/></div>          type on empty line in Firefox
+    return (!!next &&
+        // svelte/angular may have comment node
+        !isCommentNode(next));
+};
+const readNext = () => {
+    while (true) {
+        if (tokenType === TOKEN_VOID) {
+            const current = node;
+            // don't use TreeWalker.nextSibling() to support case like <body><p><a><img /></a></p><p>hello</p></body>
+            while ((node = walker.nextNode())) {
+                if (!current.contains(node)) {
+                    break;
+                }
+            }
+        }
+        else {
+            node = walker.nextNode();
+        }
+        tokenType = null;
+        if (!node) {
+            break;
+        }
+        if (startNode && shouldExcludeStart) {
+            if (startNode.contains(node)) {
+                continue;
+            }
+            else {
+                shouldExcludeStart = false;
+            }
+        }
+        if (endNode) {
+            if (endNode.contains(node)) {
+                isEndNodeVisited = true;
+                if (shouldExcludeEnd) {
+                    break;
+                }
+            }
+            else {
+                if (isEndNodeVisited) {
+                    break;
+                }
+            }
+        }
+        if (isTextNode(node)) {
+            const text = node.data;
+            // Ignore empty text nodes some frameworks may generate
+            if (text) {
+                // Especially Shift+Enter in Chrome
+                if (text === "\n") {
+                    return (tokenType = isValidSoftBreak(node)
+                        ? TOKEN_SOFT_BREAK
+                        : TOKEN_INVALID_SOFT_BREAK);
+                }
+                else {
+                    return (tokenType = TOKEN_TEXT);
+                }
+            }
+        }
+        else if (isElementNode(node)) {
+            const tagName = node.tagName;
+            if (tagName === "BR") {
+                return (tokenType = isValidSoftBreak(node)
+                    ? // Especially Shift+Enter in Firefox
+                        TOKEN_SOFT_BREAK
+                    : // Returning <div><br/></div> is necessary to anchor selection
+                        TOKEN_EMPTY_BLOCK_ANCHOR);
+            }
+            else if (node.contentEditable === "false" ||
+                EMBEDDED_CONTENT_TAG_NAMES.has(tagName)) {
+                return (tokenType = TOKEN_VOID);
+            }
+            else if (isBlockNode(node)) {
+                return (tokenType = TOKEN_BLOCK);
+            }
+        }
+    }
+};
+/**
+ * @internal
+ */
+const parse = (scopeFn, root, { _document: document, _isBlock: isBlock }, option) => {
+    try {
+        isBlockNode = isBlock;
+        walker = document.createTreeWalker(root, SHOW_TEXT | SHOW_ELEMENT);
+        if (option) {
+            if (option._startNode) {
+                walker.currentNode = startNode = option._startNode;
+                walker.previousNode();
+            }
+            if (option._endNode) {
+                endNode = option._endNode;
+            }
+            shouldExcludeStart = option._excludeStart || false;
+            shouldExcludeEnd = option._excludeEnd || false;
+        }
+        return scopeFn(readNext);
+    }
+    finally {
+        walker = node = tokenType = startNode = endNode = null;
+        isEndNodeVisited = shouldExcludeStart = shouldExcludeEnd = false;
+    }
+};
+
+/**
+ * @internal
+ */
+const min = Math.min;
+/**
+ * @internal
+ */
+const microtask = typeof queueMicrotask === "function"
+    ? queueMicrotask
+    : (fn) => {
+        Promise.resolve().then(fn);
+    };
+
+const SINGLE_LINE_CONTAINER_NAMES = new Set([
+    // https://w3c.github.io/editing/docs/execCommand/#single-line-container
+    // non-list single-line container
+    "DIV",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "P",
+    "PRE",
+    // list single-line container
+    "LI",
+    "DT",
+    "DD",
+    // other elements for HTML paste
+    "TR",
+]);
+/**
+ * @internal
+ */
+const defaultIsBlockNode = (node) => {
+    return SINGLE_LINE_CONTAINER_NAMES.has(node.tagName);
+};
+
+// const DOCUMENT_POSITION_DISCONNECTED = 0x01;
+const DOCUMENT_POSITION_PRECEDING = 0x02;
+const DOCUMENT_POSITION_FOLLOWING = 0x04;
+const DOCUMENT_POSITION_CONTAINS = 0x08;
+const DOCUMENT_POSITION_CONTAINED_BY = 0x10;
+// const DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20;
+/**
+ * @internal
+ */
+const getCurrentDocument = (node) => node.ownerDocument;
+/**
+ * @internal
+ */
+const getDOMSelection = (element) => {
+    // TODO support ShadowRoot
+    return getCurrentDocument(element).getSelection();
+};
+/**
+ * @internal
+ */
+const getSelectionRangeInEditor = (selection, root) => {
+    if (selection.rangeCount) {
+        const range = selection.getRangeAt(0);
+        if (root.contains(range.commonAncestorContainer)) {
+            return range;
+        }
+    }
+};
+const setRangeToSelection = (root, range, backward) => {
+    const selection = getDOMSelection(root);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    if (backward) {
+        selection.collapseToEnd();
+        selection.extend(range.startContainer, range.startOffset);
+    }
+};
+/**
+ * @internal
+ */
+const setSelectionToDOM = (document, root, [anchor, focus], isSingleline, config) => {
+    const posDiff = comparePosition(anchor, focus);
+    const isCollapsed = posDiff === 0;
+    const backward = posDiff === -1;
+    const start = backward ? focus : anchor;
+    const end = backward ? anchor : focus;
+    // special path for empty content with empty selection, necessary for placeholder
+    if (start[0] === 0 &&
+        start[1] === 0 &&
+        isCollapsed &&
+        !root.hasChildNodes()) {
+        const range = document.createRange();
+        range.setStart(root, 0);
+        range.setEnd(root, 0);
+        setRangeToSelection(root, range);
+        return true;
+    }
+    const domStart = findPosition(root, start, isSingleline, config);
+    if (!domStart) {
+        return false;
+    }
+    const domEnd = isCollapsed
+        ? domStart
+        : findPosition(root, end, isSingleline, config);
+    if (!domEnd) {
+        return false;
+    }
+    // https://w3c.github.io/contentEditable/#dfn-legal-caret-positions
+    const range = document.createRange();
+    const [startNode, startOffset] = domStart;
+    const [endNode, endOffset] = domEnd;
+    // embed or br
+    if (isElementNode(startNode)) {
+        if (startOffset < 1) {
+            range.setStartBefore(startNode);
+        }
+        else {
+            range.setStartAfter(startNode);
+        }
+    }
+    else {
+        range.setStart(startNode, startOffset);
+    }
+    // embed or br
+    if (isElementNode(endNode)) {
+        if (endOffset < 1) {
+            range.setEndBefore(endNode);
+        }
+        else {
+            range.setEndAfter(endNode);
+        }
+    }
+    else {
+        range.setEnd(endNode, endOffset);
+    }
+    setRangeToSelection(root, range, backward);
+    return true;
+};
+const findPosition = (root, [line, offset], isSingleline, config) => {
+    return parse((next) => {
+        while (next()) {
+            const length = getNodeSize();
+            if (offset <= length) {
+                return [getDomNode(), offset];
+            }
+            offset -= length;
+        }
+    }, isSingleline || root.childElementCount === 0 ? root : root.children[line], config);
+};
+const findClosestBlockNode = (root, startNode) => {
+    let temp = startNode;
+    while (true) {
+        const parent = temp.parentElement;
+        if (parent === root) {
+            break;
+        }
+        temp = parent;
+    }
+    return temp;
+};
+const serializePosition = (root, node, offsetAtNode, config, isArtifitialPosition, includeEnd) => {
+    let row;
+    let lineIndex;
+    if (root === node) {
+        if (!root.hasChildNodes()) {
+            // for placeholder
+            return [0, 0];
+        }
+        // special case for Ctrl+A in firefox
+        const index = min(offsetAtNode, root.childNodes.length - 1);
+        return serializePosition(root, root.childNodes[index], 0, config, isArtifitialPosition, index !== offsetAtNode);
+    }
+    else {
+        const maybeBlock = findClosestBlockNode(root, node);
+        if (config._isBlock(maybeBlock)) {
+            row = maybeBlock;
+            lineIndex = Array.prototype.indexOf.call(root.children, row);
+        }
+        else {
+            row = root;
+            lineIndex = 0;
+        }
+    }
+    if (!isArtifitialPosition && isElementNode(node)) {
+        // If anchor/focus of selection is not selectable node, it will have offset relative to its parent
+        //      0  1       2               3
+        // <div>aaaa<img /><span>bbbb</span></div>
+        node = node.childNodes[offsetAtNode];
+        offsetAtNode = 0;
+    }
+    return parse((next) => {
+        let type;
+        let offset = 0;
+        while ((type = next())) {
+            if (type === TOKEN_SOFT_BREAK) {
+                lineIndex++;
+                offset = 0;
+            }
+            else {
+                offset += getNodeSize();
+            }
+        }
+        return [lineIndex, offset + offsetAtNode];
+    }, row, config, { _endNode: node, _excludeEnd: !includeEnd });
+};
+/**
+ * @internal
+ */
+const getEmptySelectionSnapshot = () => {
+    return [
+        [0, 0],
+        [0, 0],
+    ];
+};
+const compareDomPosition = (a, b) => a.compareDocumentPosition(b);
+/**
+ * @internal
+ */
+const takeSelectionSnapshot = (root, config) => {
+    const selection = getDOMSelection(root);
+    const range = getSelectionRangeInEditor(selection, root);
+    if (!range) {
+        return getEmptySelectionSnapshot();
+    }
+    const { startOffset, startContainer, endOffset, endContainer } = range;
+    const start = serializePosition(root, startContainer, startOffset, config);
+    const end = startContainer === endContainer && startOffset === endOffset
+        ? start
+        : serializePosition(root, endContainer, endOffset, config);
+    return (
+    // https://stackoverflow.com/questions/9180405/detect-direction-of-user-selection-with-javascript
+    (selection.anchorNode === selection.focusNode
+        ? selection.anchorOffset > selection.focusOffset
+        : (compareDomPosition(selection.anchorNode, selection.focusNode) &
+            DOCUMENT_POSITION_PRECEDING) !==
+            0)
+        ? [end, start]
+        : [start, end]);
+};
+/**
+ * @internal
+ */
+const refToDoc = (nodes, serializeVoid) => {
+    return nodes.map((l) => l.reduce((acc, n) => {
+        if (typeof n === "string") {
+            acc.push({ type: NODE_TEXT, text: n });
+        }
+        else {
+            const data = serializeVoid(n);
+            if (data) {
+                acc.push({ type: NODE_VOID, data });
+            }
+        }
+        return acc;
+    }, []));
+};
+/**
+ * @internal
+ */
+const readDom = (root, config, option) => {
+    const isStartSib = option && option._isStartSibling;
+    const isEndSib = option && option._isEndSibling;
+    return parse((next) => {
+        let type;
+        let row = null;
+        let text = "";
+        let hasContent = false;
+        const rows = [];
+        const completeText = () => {
+            if (text) {
+                if (!row) {
+                    row = [];
+                }
+                row.push(text);
+                text = "";
+            }
+        };
+        const completeRow = () => {
+            completeText();
+            if (!row && hasContent) {
+                row = [];
+            }
+            if (row) {
+                rows.push(row);
+            }
+            row = null;
+            hasContent = false;
+        };
+        if (isStartSib &&
+            isElementNode(option._startNode /* TODO improve type */) &&
+            config._isBlock(option._startNode)) {
+            rows.push([]);
+        }
+        while ((type = next())) {
+            if (type === TOKEN_BLOCK) {
+                completeRow();
+            }
+            else {
+                hasContent = true;
+                if (type === TOKEN_TEXT) {
+                    text += getDomNode().data;
+                }
+                else if (type === TOKEN_VOID) {
+                    completeText();
+                    row.push(getDomNode());
+                }
+                else if (type === TOKEN_SOFT_BREAK) {
+                    completeRow();
+                }
+            }
+        }
+        completeRow();
+        if (isEndSib &&
+            isElementNode(option._endNode /* TODO improve type */) &&
+            config._isBlock(option._endNode)) {
+            rows.push([]);
+        }
+        if (!rows.length) {
+            // delete all
+            rows.push([]);
+        }
+        return rows;
+    }, root, config, option && {
+        _startNode: option._startNode,
+        _endNode: option._endNode,
+        _excludeStart: isStartSib,
+        _excludeEnd: isEndSib,
+    });
+};
+/**
+ * @internal
+ */
+const readEditAndRevert = (root, config, queue, serializeVoid) => {
+    const updates = new Set();
+    const addedOrRemoved = new Set();
+    const prev = new Set();
+    const next = new Set();
+    let start;
+    let end;
+    let isDocStart = false;
+    let isDocEnd = false;
+    for (const { type, target, addedNodes, removedNodes, previousSibling, nextSibling, } of queue) {
+        if (type === "childList") {
+            for (const n of addedNodes) {
+                addedOrRemoved.add(n);
+            }
+            for (const n of removedNodes) {
+                addedOrRemoved.add(n);
+            }
+            if (previousSibling) {
+                prev.add(previousSibling);
+            }
+            else {
+                if (target === root) {
+                    isDocStart = true;
+                }
+                else {
+                    prev.add(target);
+                    updates.add(target);
+                }
+            }
+            if (nextSibling) {
+                next.add(nextSibling);
+            }
+            else {
+                if (target === root) {
+                    isDocEnd = true;
+                }
+                else {
+                    next.add(target);
+                    updates.add(target);
+                }
+            }
+        }
+        else {
+            prev.add(target);
+            next.add(target);
+            updates.add(target);
+        }
+    }
+    if (!isDocStart) {
+        for (const n of prev) {
+            if (n !== root &&
+                !addedOrRemoved.has(n) &&
+                n.isConnected &&
+                (isTextNode(n) || isElementNode(n))) {
+                if (!start ||
+                    compareDomPosition(start, n) &
+                        (DOCUMENT_POSITION_PRECEDING | DOCUMENT_POSITION_CONTAINS)) {
+                    start = n;
+                }
+            }
+        }
+    }
+    if (!isDocEnd) {
+        for (const n of next) {
+            if (n !== root &&
+                !addedOrRemoved.has(n) &&
+                n.isConnected &&
+                (isTextNode(n) || isElementNode(n))) {
+                if (!end ||
+                    compareDomPosition(end, n) &
+                        (DOCUMENT_POSITION_FOLLOWING | DOCUMENT_POSITION_CONTAINS)) {
+                    end = n;
+                }
+            }
+        }
+    }
+    if (start && end) {
+        const compare = compareDomPosition(start, end);
+        if (compare & DOCUMENT_POSITION_CONTAINS) {
+            start = end;
+        }
+        else if (compare & DOCUMENT_POSITION_CONTAINED_BY) {
+            end = start;
+        }
+    }
+    const isStartSibling = !!start &&
+        ![...updates].some((n) => n === start || compareDomPosition(n, start) & DOCUMENT_POSITION_CONTAINS);
+    const isEndSibling = !!end &&
+        ![...updates].some((n) => n === end || compareDomPosition(n, end) & DOCUMENT_POSITION_CONTAINS);
+    const afterSlicedDom = readDom(root, config, {
+        _startNode: start,
+        _endNode: end,
+        _isStartSibling: isStartSibling,
+        _isEndSibling: isEndSibling,
+    });
+    // Revert DOM
+    let m;
+    while ((m = queue.pop())) {
+        if (m.type === "childList") {
+            const { target, removedNodes, addedNodes, nextSibling } = m;
+            for (let i = removedNodes.length - 1; i >= 0; i--) {
+                target.insertBefore(removedNodes[i], nextSibling);
+            }
+            for (let i = addedNodes.length - 1; i >= 0; i--) {
+                target.removeChild(addedNodes[i]);
+            }
+        }
+        else {
+            m.target.nodeValue = m.oldValue;
+        }
+    }
+    return [
+        start && serializePosition(root, start, 0, config, true, isStartSibling),
+        end &&
+            serializePosition(root, end, 0, // TODO unused
+            config, true, !isEndSibling),
+        refToDoc(afterSlicedDom, serializeVoid),
+    ];
+};
+/**
+ * @internal
+ */
+const getPointedCaretPosition = (document, root, { clientX, clientY }, config) => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/caretPositionFromPoint
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/caretRangeFromPoint
+    //          caretPositionFromPoint caretRangeFromPoint
+    // Chrome:  128                    4
+    // Firefox: 20                     -
+    // Safari:  -                      5
+    if (document.caretPositionFromPoint) {
+        const position = document.caretPositionFromPoint(clientX, clientY);
+        if (position) {
+            return serializePosition(root, position.offsetNode, position.offset, config);
+        }
+    }
+    else if (document.caretRangeFromPoint) {
+        const range = document.caretRangeFromPoint(clientX, clientY);
+        if (range) {
+            return serializePosition(root, range.startContainer, range.startOffset, config);
+        }
+    }
+};
+
+/**
+ * @internal
+ */
+const createMutationObserver = (element, onMutationIgnored) => {
+    let isInputing = false;
+    const queue = [];
+    const process = (records) => {
+        if (isInputing) {
+            queue.push(...records);
+        }
+    };
+    // https://dom.spec.whatwg.org/#interface-mutationobserver
+    const mo = new MutationObserver((records) => {
+        process(records);
+        if (!isInputing) {
+            onMutationIgnored();
+        }
+    });
+    const sync = () => {
+        process(mo.takeRecords());
+    };
+    mo.observe(element, {
+        characterData: true,
+        characterDataOldValue: true,
+        childList: true,
+        subtree: true,
+    });
+    return {
+        _accept(enable) {
+            if (!isInputing && enable) {
+                sync();
+            }
+            isInputing = enable;
+        },
+        _flush: () => {
+            sync();
+            return queue.splice(0);
+        },
+        _dispose() {
+            queue.splice(0);
+            mo.disconnect();
+        },
+    };
+};
+
+/**
+ * A function to make DOM editable.
+ */
+const editable = (element, { schema: { single: isSingleline, js: docToJS, void: serializeVoid, copy, paste, }, isBlock = defaultIsBlockNode, onChange, }) => {
+    // https://w3c.github.io/contentEditable/
+    // https://w3c.github.io/editing/docs/execCommand/
+    // https://w3c.github.io/selection-api/
+    const { contentEditable: prevContentEditable, role: prevRole, ariaMultiLine: prevAriaMultiLine, ariaReadOnly: prevAriaReadOnly, } = element;
+    const prevWhiteSpace = element.style.whiteSpace;
+    element.role = "textbox";
+    // https://html.spec.whatwg.org/multipage/interaction.html#best-practices-for-in-page-editors
+    element.style.whiteSpace = "pre-wrap";
+    if (!isSingleline) {
+        element.ariaMultiLine = "true";
+    }
+    let readonly = false;
+    let disposed = false;
+    let selectionReverted = false;
+    let currentSelection = getEmptySelectionSnapshot();
+    let restoreSelectionQueue = null;
+    let isComposing = false;
+    let hasFocus = false;
+    let isDragging = false;
+    const document = getCurrentDocument(element);
+    const parserConfig = {
+        _document: document,
+        _isBlock: isBlock,
+    };
+    const setContentEditable = () => {
+        element.contentEditable = readonly ? "false" : "true";
+        element.ariaReadOnly = readonly ? "true" : null;
+    };
+    setContentEditable();
+    const readDocAll = (root, config) => {
+        return refToDoc(readDom(root, config), serializeVoid);
+    };
+    const commands = [];
+    const history = createHistory([readDocAll(element, parserConfig), currentSelection]);
+    const observer = createMutationObserver(element, () => {
+        if (hasFocus) {
+            // Mutation to selected DOM may change selection, so restore it.
+            setSelectionToDOM(document, element, currentSelection, isSingleline, parserConfig);
+            if (restoreSelectionQueue != null) {
+                clearTimeout(restoreSelectionQueue);
+                restoreSelectionQueue = null;
+            }
+        }
+    });
+    const tasks = new Set();
+    const queueTask = (fn) => {
+        if (!tasks.has(fn)) {
+            tasks.add(fn);
+            microtask(() => {
+                tasks.delete(fn);
+                fn();
+            });
+        }
+    };
+    const restoreSelectionOnTimeout = (nextSelection) => {
+        currentSelection = nextSelection;
+        // We set updated selection after the next rerender, because it will modify DOM and selection again.
+        // However frameworks may not rerender for optimization in some case, for example if selection is updated but document is the same.
+        // So we also schedule restoring on timeout for safe.
+        restoreSelectionQueue = setTimeout(() => {
+            setSelectionToDOM(document, element, nextSelection, isSingleline, parserConfig);
+        });
+    };
+    const syncSelection = () => {
+        currentSelection = takeSelectionSnapshot(element, parserConfig);
+    };
+    const flushInput = () => {
+        const queue = observer._flush();
+        observer._accept(false);
+        if (queue.length) {
+            // Get current document and selection from DOM
+            const selection = takeSelectionSnapshot(element, parserConfig);
+            const result = readEditAndRevert(element, parserConfig, queue, serializeVoid);
+            observer._flush();
+            // Restore previous selection
+            // Updating selection may schedule the next selectionchange event
+            // It should be ignored especially in firefox not to confuse editor state
+            selectionReverted = setSelectionToDOM(document, element, currentSelection, isSingleline, parserConfig);
+            execCommand(Input, ...result);
+            execCommand(MoveTo, ...selection);
+        }
+    };
+    const flushCommand = () => {
+        if (commands.length) {
+            let selection = [...currentSelection];
+            let doc = [...history.get()[0]];
+            let command;
+            while ((command = commands.pop())) {
+                command._fn(doc, selection, ...command._args);
+            }
+            if (!readonly) {
+                if (isSingleline) {
+                    [doc, selection] = flatten(doc, selection);
+                }
+                // TODO improve
+                const prevDoc = history.get()[0];
+                const prevSelection = currentSelection;
+                if (doc.length !== prevDoc.length ||
+                    doc.some((l, i) => l !== prevDoc[i])) {
+                    history.set([prevDoc, prevSelection]);
+                    history.push([doc, selection]);
+                    onChange(docToJS(doc));
+                }
+            }
+            restoreSelectionOnTimeout(selection);
+        }
+    };
+    const execCommand = (fn, ...args) => {
+        commands.unshift({ _fn: fn, _args: args });
+        queueTask(flushCommand);
+    };
+    const onKeyDown = (e) => {
+        if (isComposing)
+            return;
+        if ((e.metaKey || e.ctrlKey) && !e.altKey && e.code === "KeyZ") {
+            e.preventDefault();
+            observer._accept(false);
+            if (!readonly) {
+                const nextHistory = e.shiftKey ? history.redo() : history.undo();
+                if (nextHistory) {
+                    onChange(docToJS(nextHistory[0]));
+                    restoreSelectionOnTimeout(nextHistory[1]);
+                }
+            }
+        }
+    };
+    const onInput = (() => {
+        if (isComposing)
+            return;
+        queueTask(flushInput);
+    });
+    const onBeforeInput = (e) => {
+        switch (e.inputType) {
+            case "historyUndo": {
+                e.preventDefault();
+                return;
+            }
+            case "historyRedo": {
+                e.preventDefault();
+                return;
+            }
+            case "insertLineBreak":
+            case "insertParagraph": {
+                if (isSingleline) {
+                    e.preventDefault();
+                    return;
+                }
+            }
+        }
+        observer._accept(true);
+    };
+    const onCompositionStart = () => {
+        isComposing = true;
+    };
+    const onCompositionEnd = () => {
+        isComposing = false;
+        queueTask(flushInput);
+    };
+    const onFocus = () => {
+        hasFocus = true;
+        syncSelection();
+    };
+    const onBlur = () => {
+        hasFocus = false;
+    };
+    const onSelectionChange = () => {
+        if (selectionReverted) {
+            selectionReverted = false;
+            return;
+        }
+        // Safari may dispatch selectionchange event after dragstart
+        if (hasFocus && !isComposing && !isDragging) {
+            syncSelection();
+        }
+    };
+    const copySelected = (dataTransfer) => {
+        syncSelection();
+        if (comparePosition(...currentSelection) !== 0) {
+            copy(dataTransfer, sliceDoc(history.get()[0], ...edges(...currentSelection)), () => 
+            // DOM range must exist here
+            getSelectionRangeInEditor(getDOMSelection(element), element).cloneContents());
+        }
+    };
+    const insertData = (dataTransfer) => {
+        execCommand(InsertFragment, paste(dataTransfer, (dom) => readDocAll(dom, parserConfig)));
+    };
+    const onCopy = (e) => {
+        e.preventDefault();
+        copySelected(e.clipboardData);
+    };
+    const onCut = (e) => {
+        e.preventDefault();
+        if (!readonly) {
+            copySelected(e.clipboardData);
+            execCommand(Delete);
+        }
+    };
+    const onPaste = (e) => {
+        e.preventDefault();
+        insertData(e.clipboardData);
+    };
+    const onDrop = (e) => {
+        e.preventDefault();
+        const dataTransfer = e.dataTransfer;
+        const droppedPosition = getPointedCaretPosition(document, element, e, parserConfig);
+        if (dataTransfer && droppedPosition) {
+            // move selection first to keep selection after modifications
+            execCommand(MoveTo, droppedPosition);
+            if (isDragging) {
+                execCommand(Delete, currentSelection);
+            }
+            else {
+                element.focus();
+            }
+            insertData(dataTransfer);
+        }
+    };
+    const onDragStart = (e) => {
+        isDragging = true;
+        copySelected(e.dataTransfer);
+    };
+    const onDragEnd = () => {
+        isDragging = false;
+    };
+    document.addEventListener("selectionchange", onSelectionChange);
+    element.addEventListener("keydown", onKeyDown);
+    element.addEventListener("input", onInput);
+    element.addEventListener("beforeinput", onBeforeInput);
+    element.addEventListener("compositionstart", onCompositionStart);
+    element.addEventListener("compositionend", onCompositionEnd);
+    element.addEventListener("focus", onFocus);
+    element.addEventListener("blur", onBlur);
+    element.addEventListener("copy", onCopy);
+    element.addEventListener("cut", onCut);
+    element.addEventListener("paste", onPaste);
+    element.addEventListener("drop", onDrop);
+    element.addEventListener("dragstart", onDragStart);
+    element.addEventListener("dragend", onDragEnd);
+    return {
+        dispose: () => {
+            if (disposed)
+                return;
+            disposed = true;
+            element.contentEditable = prevContentEditable;
+            element.role = prevRole;
+            element.ariaMultiLine = prevAriaMultiLine;
+            element.ariaReadOnly = prevAriaReadOnly;
+            element.style.whiteSpace = prevWhiteSpace;
+            observer._dispose();
+            document.removeEventListener("selectionchange", onSelectionChange);
+            element.removeEventListener("keydown", onKeyDown);
+            element.removeEventListener("input", onInput);
+            element.removeEventListener("beforeinput", onBeforeInput);
+            element.removeEventListener("compositionstart", onCompositionStart);
+            element.removeEventListener("compositionend", onCompositionEnd);
+            element.removeEventListener("focus", onFocus);
+            element.removeEventListener("blur", onBlur);
+            element.removeEventListener("copy", onCopy);
+            element.removeEventListener("cut", onCut);
+            element.removeEventListener("paste", onPaste);
+            element.removeEventListener("drop", onDrop);
+            element.removeEventListener("dragstart", onDragStart);
+            element.removeEventListener("dragend", onDragEnd);
+        },
+        command: execCommand,
+        syncSelection,
+        readonly: (value) => {
+            readonly = value;
+            setContentEditable();
+        },
+    };
+};
+
+/**
+ * Defines plain text schema.
+ */
+const plainSchema = ({ multiline, } = {}) => {
+    return {
+        single: !multiline,
+        js: docToString,
+        void: () => { }, // not supported
+        copy: (dataTransfer, data) => {
+            dataTransfer.setData("text/plain", docToString(data));
+        },
+        paste: (dataTransfer) => {
+            return stringToDoc(dataTransfer.getData("text/plain"));
+        },
+    };
+};
+
+const emptyString = () => "";
+const voidNode = ({ is, data, plain = emptyString, }) => {
+    return {
+        is,
+        data,
+        plain,
+    };
+};
+/**
+ * Defines structured text schema.
+ */
+const schema = ({ multiline, void: voids = {}, }) => {
+    const voidSerializers = Object.entries(voids);
+    const textCache = new WeakMap();
+    // TODO replace VoidNodeData with VoidNode
+    const voidCache = new WeakMap();
+    const serializeRow = (r) => {
+        return r.reduce((acc, t) => {
+            if (t.type === NODE_TEXT) {
+                let text = textCache.get(t);
+                if (!text) {
+                    textCache.set(t, (text = { type: "text", text: t.text }));
+                }
+                acc.push(text);
+            }
+            else {
+                acc.push(voidCache.get(t.data));
+            }
+            return acc;
+        }, []);
+    };
+    return {
+        single: !multiline,
+        js: multiline
+            ? (doc) => {
+                return doc.map(serializeRow);
+            }
+            : (doc) => {
+                return serializeRow(doc[0]); // TODO improve type
+            },
+        void: (element) => {
+            for (const [type, s] of voidSerializers) {
+                if (s.is(element)) {
+                    const data = s.data(element);
+                    // TODO improve
+                    voidCache.set(data, {
+                        type,
+                        data: { ...data },
+                    });
+                    return data;
+                }
+            }
+            return;
+        },
+        copy: (dataTransfer, doc, dom) => {
+            dataTransfer.setData("text/plain", docToString(doc, (node) => {
+                const voidNode = voidCache.get(node.data);
+                return voids[voidNode.type].plain(node.data);
+            }));
+            const wrapper = document.createElement("div");
+            wrapper.appendChild(dom());
+            dataTransfer.setData("text/html", wrapper.innerHTML);
+        },
+        paste: (dataTransfer, read) => {
+            const html = dataTransfer.getData("text/html");
+            if (html) {
+                let dom = new DOMParser().parseFromString(html, "text/html").body;
+                let isWindowsCopy = false;
+                // https://github.com/w3c/clipboard-apis/issues/193
+                for (const n of [...dom.childNodes]) {
+                    if (isCommentNode(n)) {
+                        if (n.data === "StartFragment") {
+                            isWindowsCopy = true;
+                            dom = new DocumentFragment();
+                        }
+                        else if (n.data === "EndFragment") {
+                            isWindowsCopy = false;
+                        }
+                    }
+                    else if (isWindowsCopy) {
+                        dom.appendChild(n);
+                    }
+                }
+                return read(dom);
+            }
+            return stringToDoc(dataTransfer.getData("text/plain"));
+        },
+    };
+};
+
+exports.Delete = Delete;
+exports.InsertText = InsertText;
+exports.editable = editable;
+exports.plainSchema = plainSchema;
+exports.schema = schema;
+exports.voidNode = voidNode;
 //# sourceMappingURL=index.js.map

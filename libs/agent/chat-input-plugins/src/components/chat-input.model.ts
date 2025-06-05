@@ -7,9 +7,12 @@ import { z } from 'zod';
 
 export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
+
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
+
   sendText(text: string): AsyncGenerator;
+
   removeImagePreview(id: string): Generator;
 }
 
@@ -63,8 +66,6 @@ export class ChatInputModel {
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
-
-    this.chatCommon.setEdixReadonly(true);
   }
 
   @computed get isContextItemsEmpty() {
