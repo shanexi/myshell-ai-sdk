@@ -37,6 +37,7 @@ export interface EditableHandle {
      */
     readonly: (value: boolean) => void;
     syncSelection: () => void;
+    resetHistory: () => void;
 }
 /**
  * A function to make DOM editable.

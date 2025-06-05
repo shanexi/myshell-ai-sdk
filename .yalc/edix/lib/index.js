@@ -1059,7 +1059,7 @@ const editable = (element, { schema: { single: isSingleline, js: docToJS, void: 
         return refToDoc(readDom(root, config), serializeVoid);
     };
     const commands = [];
-    const history = createHistory([readDocAll(element, parserConfig), currentSelection]);
+    let history = createHistory([readDocAll(element, parserConfig), currentSelection]);
     const observer = createMutationObserver(element, () => {
         if (hasFocus) {
             // Mutation to selected DOM may change selection, so restore it.
@@ -1291,10 +1291,16 @@ const editable = (element, { schema: { single: isSingleline, js: docToJS, void: 
             element.removeEventListener("dragend", onDragEnd);
         },
         command: execCommand,
-        syncSelection,
         readonly: (value) => {
             readonly = value;
             setContentEditable();
+        },
+        syncSelection,
+        resetHistory: () => {
+            history = createHistory([
+                readDocAll(element, parserConfig),
+                getEmptySelectionSnapshot(),
+            ]);
         },
     };
 };
