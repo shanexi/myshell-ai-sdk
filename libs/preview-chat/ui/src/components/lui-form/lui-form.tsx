@@ -2,6 +2,9 @@ import { cn, LuiFormItem } from '@myshell-run/common-ui';
 import { Button } from './button';
 import { json_schema } from '@myshell-run/common-def';
 import { z } from 'zod';
+import { Drawer } from 'vaul';
+import { useInjection } from 'inversify-react';
+import { PreviewChatModel } from '../preview-chat-model';
 
 export const LuiForm: React.FC<{
   jsonschema: z.infer<typeof json_schema>;
@@ -67,7 +70,7 @@ export const FormHeader = (props: {
 }) => {
   const { children } = props;
   return (
-    <div
+    <Drawer.Title
       className={cn(
         'px-spacing-3xl-v2 py-spacing-md-v2',
         'display-xs',
@@ -78,11 +81,12 @@ export const FormHeader = (props: {
       )}
     >
       {children}
-    </div>
+    </Drawer.Title>
   );
 };
 
 export const LuiFormFooter = () => {
+  const model = useInjection(PreviewChatModel);
   return (
     <div
       className={cn(
@@ -92,7 +96,7 @@ export const LuiFormFooter = () => {
         'px-spacing-xl-v2 pt-spacing-lg-v2 pb-spacing-sm-v2',
       )}
     >
-      <Button>Cancel</Button>
+      <Button onClick={() => model.setLuiFormOpen(false)}>Cancel</Button>
       <Button variant="primary" className="ml-[8px] flex-auto">
         Generate
       </Button>

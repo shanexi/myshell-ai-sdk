@@ -11,6 +11,7 @@ import {
 } from './components/lui-form/image-choice/image-choice';
 import { UploadModel } from './components/lui-form/upload/upload.model';
 import { z } from 'zod';
+import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
 
 export const previewChatUIModule = new ContainerModule((bind) => {
   bindPreviewChatUI(bind);
@@ -18,7 +19,10 @@ export const previewChatUIModule = new ContainerModule((bind) => {
 
 export function bindPreviewChatUI(bind: interfaces.Bind) {
   bind(PreviewChatModel).toSelf().inSingletonScope();
-  bind(ChatInputHandlers).toDynamicValue((ctx) =>
+  bind<ChatInputHandlers>(ChatInputHandlers).toDynamicValue((ctx) =>
+    ctx.container.get(PreviewChatModel),
+  );
+  bind<MessageItemHandlers>(MessageItemHandlers).toDynamicValue((ctx) =>
     ctx.container.get(PreviewChatModel),
   );
   bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');

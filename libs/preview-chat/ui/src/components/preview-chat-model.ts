@@ -1,23 +1,32 @@
-import {
-  ChatCommonModelFactory,
-  json_schema,
-  PREVIEW_CHAT,
-} from '@myshell-run/common-def';
+import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
-import { inject, injectable } from 'inversify';
-import { makeObservable } from 'mobx';
 import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
 import {
+  MessageItemHandlers,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/preview-chat-message-item-plugins';
 import { createId } from '@paralleldrive/cuid2';
-import { z } from 'zod';
+import { inject, injectable } from 'inversify';
+import { makeObservable, observable } from 'mobx';
+import {
+  demo_jsonschema,
+  demo_uischema,
+} from './lui-form/__storybook__/demo_form';
 
 @injectable()
-export class PreviewChatModel implements ChatInputHandlers {
+export class PreviewChatModel
+  implements ChatInputHandlers, MessageItemHandlers
+{
   jsonschema = demo_jsonschema;
   uischema = demo_uischema;
+
+  /*
+点击 button 其实是发送了一个 message
+然后加在 json schema ui schema data 等
+然后展示 bottom sheet
+  */
+  @observable isLuiFormOpen = false;
 
   constructor(
     @inject(ChatCommonModelFactory)
@@ -30,8 +39,18 @@ export class PreviewChatModel implements ChatInputHandlers {
     return this.factory(PREVIEW_CHAT);
   }
 
+  async *click(scheme: string) {
+    // TODO 解析 scheme 做相应的操作
+    this.setLuiFormOpen(true);
+    yield;
+  }
+
   async *clear() {
     yield;
+  }
+
+  setLuiFormOpen(isOpen: boolean) {
+    this.isLuiFormOpen = isOpen;
   }
 
   async *sendText(text: string) {
@@ -54,82 +73,3 @@ export class PreviewChatModel implements ChatInputHandlers {
     yield;
   }
 }
-
-export const demo_uischema = {
-  variants: {
-    description: 'string_textarea',
-    title: 'object_image_upload',
-    style: 'object_image_choice',
-  },
-};
-export const demo_jsonschema = {
-  type: 'object',
-  title: 'Image Configuration',
-  properties: {
-    // selfie: {
-    //   variant: 'object_image_upload',
-    //   type: 'object',
-    //   title: 'Selfie',
-    //   properties: {
-    //     url: {
-    //       type: 'string',
-    //     },
-    //     title: {
-    //       type: 'string',
-    //     },
-    //   },
-    //   examples: [
-    //     {
-    //       url: 'a',
-    //       title: '单人正脸',
-    //     },
-    //   ],
-    // },
-    // team_member: {
-    //   variant: 'string_selector',
-    //   type: 'string',
-    //   title: 'Team member',
-    //   enum: ['MyShell'],
-    // },
-    description: {
-      type: 'string',
-      title: 'Description',
-      // todo: placeholder 用 example？
-    },
-    title: {
-      type: 'object',
-      title: 'Title',
-      description: 'This is a simple description.',
-      properties: {
-        title: {
-          type: 'string',
-        },
-        url: {
-          type: 'string',
-        },
-      },
-    },
-    style: {
-      type: 'object',
-      title: 'Style',
-      properties: {
-        name: {
-          type: 'string',
-        },
-        title: {
-          type: 'string',
-        },
-        url: {
-          type: 'string',
-        },
-      },
-      examples: [
-        {
-          name: 'a',
-          title: 'A',
-          url: 'http://a',
-        },
-      ],
-    },
-  },
-} satisfies z.infer<typeof json_schema>;

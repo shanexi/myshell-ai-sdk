@@ -5,8 +5,9 @@ import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
 
-export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
+
+export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
   sendText(text: string): AsyncGenerator;

@@ -10,9 +10,8 @@ import { LuiForm } from './lui-form/lui-form';
 
 export const LuiFormDrawer = observer(() => {
   const model = useInjection(PreviewChatModel);
-  //
   return (
-    <Drawer.Root defaultOpen={true}>
+    <Drawer.Root open={model.isLuiFormOpen}>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
         <Drawer.Content className="fixed right-0 bottom-0 left-0 mt-24 flex h-[80%] flex-col rounded-t-[10px] bg-gray-100 outline-none lg:h-[320px]">

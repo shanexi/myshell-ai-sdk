@@ -29,12 +29,16 @@ const buttonVariants = cva(
 export type ButtonProps = {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 } & VariantProps<typeof buttonVariants>;
 
 export const Button = (props: ButtonProps) => {
-  const { children, variant, className } = props;
+  const { children, variant, className, onClick } = props;
   return (
-    <button className={cn(buttonVariants({ variant }), className)}>
+    <button
+      className={cn(buttonVariants({ variant }), className)}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

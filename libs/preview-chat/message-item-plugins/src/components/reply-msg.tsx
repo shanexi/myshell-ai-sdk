@@ -1,6 +1,9 @@
 import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 import { RemarkMsg } from '@myshell-run/common-ui';
 import { AgentMessage } from '../types';
+import { MessageItemHandlers } from './message-item-handlers';
+import { useInjection } from 'inversify-react';
+import { MessageItemModel } from './message-item.model';
 
 export const ReplyMsg: React.FC<AgentMessage> = ({
   avatar = DEFAULT_AVATAR,
@@ -27,10 +30,17 @@ export const ReplyMsg: React.FC<AgentMessage> = ({
   );
 };
 
+// legacy v1 先跑通全联路再 refactor
 export const LuiButton = (props: { children: React.ReactNode }) => {
+  const model = useInjection(MessageItemModel);
   const { children } = props;
   return (
-    <button className="text-sm-medium mx-spacing-xs-v1 flex h-components-button-lg-height-v1 flex-auto items-center justify-center rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 p-spacing-lg-v1">
+    <button
+      onClick={() => {
+        model.click('file://id');
+      }}
+      className="text-sm-medium mx-spacing-xs-v1 flex h-components-button-lg-height-v1 flex-auto items-center justify-center rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 p-spacing-lg-v1"
+    >
       {children}
     </button>
   );
