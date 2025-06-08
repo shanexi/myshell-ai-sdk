@@ -6,11 +6,12 @@ import toArray from '@uppy/utils/lib/toArray';
 import { UploadModel } from './upload.model';
 import { z } from 'zod';
 
-export const image_upload = z.object({
+export const upload_schema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
   type: z.literal('array'),
   items: z.object({
     type: z.literal('object'),
-    title: z.string(),
     properties: z.object({
       url: z.object({
         type: z.literal('string'),
@@ -46,7 +47,7 @@ export const image_upload = z.object({
 });
 
 export const Upload = observer<
-  z.infer<typeof image_upload> & { model: UploadModel }
+  z.infer<typeof upload_schema> & { model: UploadModel }
 >(({ model }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
