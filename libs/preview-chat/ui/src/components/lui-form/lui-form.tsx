@@ -11,13 +11,14 @@ export const LuiForm: React.FC<{
 }> = ({ jsonschema, uischema }) => {
   jsonschema = json_schema.parse(jsonschema);
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <FormHeader>Image Configuration</FormHeader>
       <div
         className={cn(
           'bg-white',
           'px-[16px] py-[12px]',
           'flex flex-col gap-spacing-3xl-v2',
+          'flex-1 overflow-auto',
         )}
       >
         {Object.keys(jsonschema.properties).map((k) => {

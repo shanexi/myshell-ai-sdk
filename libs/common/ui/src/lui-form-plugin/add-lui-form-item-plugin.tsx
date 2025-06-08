@@ -21,6 +21,7 @@ export function addLuiFormItemPluginFactory(bind: interfaces.Bind) {
         return model;
       });
     } else {
+      // fallback 保证 caller 逻辑统一
       bind(variant).toConstantValue(() => undefined);
     }
     bind<LuiFormItem<S, M>>(LuiFormItem).toConstantValue({

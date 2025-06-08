@@ -14,11 +14,24 @@ export const ReplyMsg: React.FC<AgentMessage> = ({
         src={avatar}
         alt={`${user} avatar`}
       />
-      <div className="max-w-[321px] min-w-[140px]">
+      <div className="w-[80%]">
         <div className="text-text-default-light-v2 rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2 bg-CCr-button-tertiary-bg_default-light-v2 p-spacing-lg-v2">
           <RemarkMsg text={text} />
         </div>
+        <div className="gap-spacing-xs mt-[8px] flex justify-between">
+          <LuiButton>🪄 Upscale (Subtle)</LuiButton>
+          <LuiButton>💥 Upscale (Creative)</LuiButton>
+        </div>
       </div>
     </div>
+  );
+};
+
+export const LuiButton = (props: { children: React.ReactNode }) => {
+  const { children } = props;
+  return (
+    <button className="text-sm-medium mx-spacing-xs-v1 flex h-components-button-lg-height-v1 flex-auto items-center justify-center rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 p-spacing-lg-v1">
+      {children}
+    </button>
   );
 };

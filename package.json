@@ -280,6 +280,7 @@
     "unist-util-visit": "^5.0.0",
     "url-loader": "^4.1.1",
     "use-sync-external-store": "1.5.0-canary-fbcda19a-20250317",
+    "vaul": "^1.1.2",
     "vfile": "^6.0.1",
     "vfile-message": "^4.0.0",
     "vite": "^6.1.1",

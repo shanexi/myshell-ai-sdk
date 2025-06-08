@@ -24,6 +24,8 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
   bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
 
   const addLuiFormItem = addLuiFormItemPluginFactory(bind);
+  // todo: 这些 variant 不能随便动（但是因为可以 fallback 所有不用特别严格）
+  // 如果要严格校验（比如当作 protocol）则可以写一个 zod schema 提前校验下，同时也在 addLuiFormItemPluginFactory 抢类型
   addLuiFormItem<z.infer<typeof image_upload>, UploadModel>(
     'object_image_upload',
     Upload,
