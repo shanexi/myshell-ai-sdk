@@ -5,7 +5,6 @@ export * from './remark/remark-manager';
 export * from './setup-mdc';
 export * from './components/chat-common.model';
 export * from './components/uppy.model';
-export * from './components/uppy.utils';
 export * from './common-ui.module';
 export * from './message-plugin/message-item.svc';
 export * from './mock-generator';

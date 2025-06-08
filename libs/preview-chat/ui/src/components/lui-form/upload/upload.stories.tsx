@@ -37,13 +37,10 @@ export const Primary: StoryObj<typeof Upload> = {
           title: {
             type: 'string',
           },
-          filetype: {
+          file: {
             type: 'string',
-            pattern: /^(image\/.*|.*\.(jpg|jpeg|png|gif))$/i.toString(),
-          },
-          filesize: {
-            type: 'number',
-            maximum: 1024 * 10,
+            maxLength: 1024 * 10,
+            enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
           },
         },
       },

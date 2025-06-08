@@ -1,4 +1,4 @@
-import { cn, patternToAllowedFileTypes } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
 import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -19,20 +19,13 @@ export const upload_schema = z.object({
       title: z.object({
         type: z.literal('string'),
       }),
-      filesize: z
-        .object({
-          // 大小限制
-          type: z.literal('number'),
-          maximum: z.number(),
-        })
-        .optional(),
-      filetype: z
-        .object({
-          // 类型限制
-          type: z.literal('string'),
-          pattern: z.string(),
-        })
-        .optional(),
+      file: z.object({
+        type: z.literal('string'),
+        // 类型限制
+        enum: z.array(z.string()),
+        // 单个大小限制
+        maxLength: z.number(),
+      }),
     }),
   }),
   maxItems: z.number(), // 上传数量限制
@@ -63,11 +56,9 @@ export const Upload = observer<
   useEffect(() => {
     if (!dropTargetRef.current) return;
     return model.uppyModel.setup(dropTargetRef.current, {
-      maxFileSize: props.items.properties.filesize?.maximum,
+      maxFileSize: props.items.properties.file?.maxLength,
       maxNumberOfFiles: props.maxItems,
-      allowedFileTypes: patternToAllowedFileTypes(
-        props.items.properties.filetype?.pattern,
-      ),
+      allowedFileTypes: props.items.properties.file.enum,
     });
   }, []);
   return (
