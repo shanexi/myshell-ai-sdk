@@ -1,4 +1,29 @@
 import Masonry from 'react-masonry-css';
+import { z } from 'zod';
+
+export const image_choice = z.object({
+  type: z.literal('object'),
+  title: z.string(),
+  variant: z.string(),
+  properties: z.object({
+    url: z.object({
+      type: z.literal('string'),
+    }),
+    title: z.object({
+      type: z.literal('string'),
+    }),
+    name: z.object({
+      type: z.literal('string'),
+    }),
+  }),
+  examples: z.array(
+    z.object({
+      url: z.string(),
+      title: z.string(),
+      name: z.string(),
+    }),
+  ),
+});
 
 export const ImageChoice = () => {
   return (

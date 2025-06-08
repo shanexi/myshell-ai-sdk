@@ -2,12 +2,34 @@ import { cn } from '@myshell-run/common-ui';
 import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
-import { UploadModel } from './upload.model';
 import toArray from '@uppy/utils/lib/toArray';
+import { UploadModel } from './upload.model';
+import { z } from 'zod';
 
-export const Upload = observer<{
-  model: UploadModel;
-}>(({ model }) => {
+export const image_upload = z.object({
+  type: z.literal('object'),
+  title: z.string(),
+  properties: z.object({
+    url: z.object({
+      type: z.literal('string'),
+    }),
+    title: z.object({
+      type: z.literal('string'),
+    }),
+  }),
+  examples: z
+    .array(
+      z.object({
+        url: z.string(),
+        title: z.string(),
+      }),
+    )
+    .optional(),
+});
+
+export const Upload = observer<
+  z.infer<typeof image_upload> & { model: UploadModel }
+>(({ model }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hiddenInputStyle = {

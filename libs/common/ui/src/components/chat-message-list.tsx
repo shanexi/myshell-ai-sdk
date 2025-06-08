@@ -7,7 +7,7 @@ import {
 import { CSSProperties, useEffect, useRef } from 'react';
 import { ChatCommonModel } from './chat-common.model';
 import { cn } from '../utils';
-import { MessageItem } from './message-item';
+import { MessageItem } from '../message-plugin/message-item';
 
 // TODO 这块代码应该也能 common
 export const ChatMessageList: React.FC<{

@@ -30,8 +30,16 @@ export default meta;
 
 export const Primary: StoryObj<typeof LuiForm> = {
   args: {
+    uischema: {
+      variants: {
+        description: 'string_textarea',
+        title: 'object_image_upload',
+        style: 'object_image_choice',
+      },
+    },
     jsonschema: {
       type: 'object',
+      title: 'Image Configuration',
       properties: {
         // selfie: {
         //   variant: 'object_image_upload',
@@ -59,13 +67,11 @@ export const Primary: StoryObj<typeof LuiForm> = {
         //   enum: ['MyShell'],
         // },
         description: {
-          variant: 'string_textarea',
           type: 'string',
           title: 'Description',
           // todo: placeholder 用 example？
         },
         title: {
-          variant: 'object_image_upload',
           type: 'object',
           title: 'Title',
           description: 'This is a simple description.',
@@ -79,7 +85,6 @@ export const Primary: StoryObj<typeof LuiForm> = {
           },
         },
         style: {
-          variant: 'object_image_choice',
           type: 'object',
           title: 'Style',
           properties: {

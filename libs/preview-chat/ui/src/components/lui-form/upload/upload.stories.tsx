@@ -3,7 +3,7 @@ import { Upload } from './upload';
 import { Provider } from 'inversify-react';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
-import { previewChatUIModule } from '../../preview-chat-ui.module';
+import { previewChatUIModule } from '../../../preview-chat-ui.module';
 import { UploadModel } from './upload.model';
 
 const container = new Container();

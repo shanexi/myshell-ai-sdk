@@ -1,0 +1,17 @@
+import { z } from 'zod';
+import { json_schema } from './json_schema';
+
+export const LuiFormVariantModelFactory = Symbol.for(
+  'LuiFormVariantModelFactory',
+);
+
+export type LuiFormItemJsonSchema = z.infer<
+  typeof json_schema
+>['properties'][string];
+
+export const LuiFormItem = Symbol('LuiFormItem');
+
+export interface LuiFormItem<S, M> {
+  variant: string;
+  render: (jsonschema: S, model: M) => JSX.Element;
+}

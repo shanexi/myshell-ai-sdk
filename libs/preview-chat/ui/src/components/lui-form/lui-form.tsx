@@ -1,11 +1,15 @@
-import { JsonFormSchema } from '@myshell-run/common-def';
 import { cn, LuiFormItem } from '@myshell-run/common-ui';
 import { Button } from './button';
+import { json_schema } from '@myshell-run/common-def';
+import { z } from 'zod';
 
-export const LuiForm: React.FC<{ jsonschema: JsonFormSchema }> = ({
-  jsonschema,
-}) => {
-  // todo: 顺序
+export const LuiForm: React.FC<{
+  jsonschema: z.infer<typeof json_schema>;
+  uischema: {
+    variants: Record<string, string>;
+  };
+}> = ({ jsonschema, uischema }) => {
+  jsonschema = json_schema.parse(jsonschema);
   return (
     <div>
       <FormHeader>Image Configuration</FormHeader>
@@ -18,12 +22,14 @@ export const LuiForm: React.FC<{ jsonschema: JsonFormSchema }> = ({
       >
         {Object.keys(jsonschema.properties).map((k) => {
           const item = jsonschema.properties[k];
+          const variant = uischema.variants[k];
           return (
             <LuiFormItemWrapper
+              key={k}
               label={item.title}
               description={item.description}
             >
-              <LuiFormItem {...item} />
+              <LuiFormItem {...item} variant={variant} />
             </LuiFormItemWrapper>
           );
         })}
