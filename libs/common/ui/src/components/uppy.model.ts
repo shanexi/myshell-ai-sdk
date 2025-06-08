@@ -33,27 +33,30 @@ export type FileState = z.infer<typeof fileStateSchema>;
 
 @injectable()
 export class UppyModel {
+  /**
+   * 多文件的状态管理
+   */
   @observable uppyStateMap = new Map<string, FileState>();
   @observable isDragging = false;
-  #uppy?: Uppy;
+  private _uppy?: Uppy;
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
   }
 
   get accept() {
-    return this.#uppy?.opts.restrictions?.allowedFileTypes?.join(', ');
+    return this._uppy?.opts.restrictions?.allowedFileTypes?.join(', ');
   }
 
   get uppy() {
-    if (!this.#uppy) {
+    if (!this._uppy) {
       throw new Error('uppy is not initialized, check if setupUppy is called');
     }
-    return this.#uppy;
+    return this._uppy;
   }
 
   get maxNumberOfFiles() {
-    return this.#uppy?.opts.restrictions?.maxNumberOfFiles !== 1;
+    return this._uppy?.opts.restrictions?.maxNumberOfFiles !== 1;
   }
 
   removeFile(id: string) {
@@ -62,7 +65,7 @@ export class UppyModel {
   }
 
   setup(dropTarget: HTMLDivElement) {
-    this.#uppy = new Uppy({
+    this._uppy = new Uppy({
       autoProceed: true,
       debug: true,
     })
@@ -75,7 +78,7 @@ export class UppyModel {
     //   target: fileInput,
     //   pretty: true,
     // });
-    this.#uppy.on('thumbnail:generated', (file, preview) => {
+    this._uppy.on('thumbnail:generated', (file, preview) => {
       // console.log('thumbnail:generated', file, preview);
       // TODO: 这里需要区分是图片还是文件
       this.uppyStateMap.set(file.id, {
@@ -84,10 +87,10 @@ export class UppyModel {
         uploadComplete: false,
       });
     });
-    this.#uppy.on('progress', (progress) => {
+    this._uppy.on('progress', (progress) => {
       // console.log('progress', progress);
-      Object.keys(this.#uppy?.getState().files || {}).forEach((fileId) => {
-        const file = this.#uppy?.getState().files[fileId];
+      Object.keys(this._uppy?.getState().files || {}).forEach((fileId) => {
+        const file = this._uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
           type: 'image',
           preview: file?.preview || '',
@@ -99,7 +102,7 @@ export class UppyModel {
         });
       });
     });
-    this.#uppy.use(DropTarget, {
+    this._uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
         this.isDragging = true;
@@ -113,7 +116,7 @@ export class UppyModel {
     });
 
     return () => {
-      this.#uppy = undefined;
+      this._uppy = undefined;
     };
   }
 }

@@ -7,16 +7,34 @@ import { UploadModel } from './upload.model';
 import { z } from 'zod';
 
 export const image_upload = z.object({
-  type: z.literal('object'),
-  title: z.string(),
-  properties: z.object({
-    url: z.object({
-      type: z.literal('string'),
-    }),
-    title: z.object({
-      type: z.literal('string'),
+  type: z.literal('array'),
+  items: z.object({
+    type: z.literal('object'),
+    title: z.string(),
+    properties: z.object({
+      url: z.object({
+        type: z.literal('string'),
+      }),
+      title: z.object({
+        type: z.literal('string'),
+      }),
+      filesize: z
+        .object({
+          // 大小限制
+          type: z.literal('number'),
+          maximum: z.number(),
+        })
+        .optional(),
+      filetype: z
+        .object({
+          // 类型限制
+          type: z.literal('string'),
+          pattern: z.string(),
+        })
+        .optional(),
     }),
   }),
+  maxItems: z.number(), // 上传数量限制
   examples: z
     .array(
       z.object({

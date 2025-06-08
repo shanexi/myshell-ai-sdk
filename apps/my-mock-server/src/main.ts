@@ -37,10 +37,15 @@ app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to my-mock-server!' });
 });
 
-app.post('/api/upload', upload.single('file'), (req, res) => {
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+app.post('/api/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send({ message: '没有文件被上传' });
   }
+  await sleep(3000);
 
   res.send({
     message: '文件上传成功',
