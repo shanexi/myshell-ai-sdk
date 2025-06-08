@@ -1,12 +1,12 @@
 import { MessageListContext, StrictMessage } from '@myshell-run/common-def';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import {
+  Delete,
   editable,
   EditableHandle,
   InferDoc,
   plainSchema,
   schema,
-  Delete,
 } from 'edix';
 import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable } from 'mobx';
@@ -53,8 +53,8 @@ export class ChatCommonModel {
     return this.uppyModel.uppy;
   }
 
-  get maxNumberOfFiles() {
-    return this.uppyModel.maxNumberOfFiles;
+  get multiple() {
+    return this.uppyModel.multiple;
   }
 
   get accept() {

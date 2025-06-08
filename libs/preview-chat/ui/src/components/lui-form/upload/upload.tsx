@@ -1,4 +1,4 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, patternToAllowedFileTypes } from '@myshell-run/common-ui';
 import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -48,7 +48,7 @@ export const upload_schema = z.object({
 
 export const Upload = observer<
   z.infer<typeof upload_schema> & { model: UploadModel }
->(({ model }) => {
+>(({ model, ...props }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hiddenInputStyle = {
@@ -62,7 +62,13 @@ export const Upload = observer<
 
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.uppyModel.setup(dropTargetRef.current);
+    return model.uppyModel.setup(dropTargetRef.current, {
+      maxFileSize: props.items.properties.filesize?.maximum,
+      maxNumberOfFiles: props.maxItems,
+      allowedFileTypes: patternToAllowedFileTypes(
+        props.items.properties.filetype?.pattern,
+      ),
+    });
   }, []);
   return (
     <div
@@ -107,7 +113,7 @@ export const Upload = observer<
         ref={inputRef}
         type="file"
         name="files[]"
-        multiple={model.uppyModel.maxNumberOfFiles}
+        multiple={model.uppyModel.multiple}
         accept={model.uppyModel.accept}
         onChange={(e) => {
           model.uppyModel.uppy.log(

@@ -8,7 +8,7 @@ export default {
       { jsc: { transform: { react: { runtime: 'automatic' } } } },
     ],
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../../coverage/libs/common/ui',
   transformIgnorePatterns: ['../../../node_modules/(?!(html-tags)/)'],
 };

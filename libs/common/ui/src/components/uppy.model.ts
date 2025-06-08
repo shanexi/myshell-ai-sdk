@@ -1,10 +1,11 @@
-import { inject, injectable } from 'inversify';
-import Uppy from '@uppy/core';
+import { UploadEndpoint } from '@myshell-run/common-def';
+import { Uppy } from '@uppy/core';
+import { Restrictions } from '@uppy/core/lib/Restricter';
 import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
 import XHR from '@uppy/xhr-upload';
-import { UploadEndpoint } from '@myshell-run/common-def';
-import { makeObservable, observable } from 'mobx';
+import { inject, injectable } from 'inversify';
+import { computed, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 
 export const imageStateSchema = z.object({
@@ -38,14 +39,20 @@ export class UppyModel {
    */
   @observable uppyStateMap = new Map<string, FileState>();
   @observable isDragging = false;
+
+  @observable allowedFileTypes?: string[] | null;
+  @observable maxNumberOfFiles?: number | null;
+  @observable maxFileSize?: number | null;
+
   private _uppy?: Uppy;
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
   }
 
-  get accept() {
-    return this._uppy?.opts.restrictions?.allowedFileTypes?.join(', ');
+  @computed get accept() {
+    const accept = this.allowedFileTypes?.join(', ');
+    return accept;
   }
 
   get uppy() {
@@ -55,8 +62,8 @@ export class UppyModel {
     return this._uppy;
   }
 
-  get maxNumberOfFiles() {
-    return this._uppy?.opts.restrictions?.maxNumberOfFiles !== 1;
+  get multiple() {
+    return this.maxNumberOfFiles !== 1;
   }
 
   removeFile(id: string) {
@@ -64,10 +71,15 @@ export class UppyModel {
     this.uppyStateMap.delete(id);
   }
 
-  setup(dropTarget: HTMLDivElement) {
+  setup(dropTarget: HTMLDivElement, restrictions?: Partial<Restrictions>) {
+    this.allowedFileTypes = restrictions?.allowedFileTypes;
+    this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
+    this.maxFileSize = restrictions?.maxFileSize;
+
     this._uppy = new Uppy({
       autoProceed: true,
       debug: true,
+      restrictions,
     })
       .use(ThumbnailGenerator)
       .use(XHR, {
@@ -79,7 +91,7 @@ export class UppyModel {
     //   pretty: true,
     // });
     this._uppy.on('thumbnail:generated', (file, preview) => {
-      // console.log('thumbnail:generated', file, preview);
+      this.uppy.log(`thumbnail:generated file ${file.name} preview ${preview}`);
       // TODO: 这里需要区分是图片还是文件
       this.uppyStateMap.set(file.id, {
         type: 'image',
@@ -88,7 +100,7 @@ export class UppyModel {
       });
     });
     this._uppy.on('progress', (progress) => {
-      // console.log('progress', progress);
+      this.uppy.log(`progress ${progress}`);
       Object.keys(this._uppy?.getState().files || {}).forEach((fileId) => {
         const file = this._uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
@@ -117,6 +129,11 @@ export class UppyModel {
 
     return () => {
       this._uppy = undefined;
+      this.allowedFileTypes = undefined;
+      this.maxNumberOfFiles = undefined;
+      this.maxFileSize = undefined;
+      this.uppyStateMap = new Map();
+      this.isDragging = false;
     };
   }
 }

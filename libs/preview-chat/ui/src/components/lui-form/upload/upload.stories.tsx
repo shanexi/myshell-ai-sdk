@@ -39,7 +39,7 @@ export const Primary: StoryObj<typeof Upload> = {
           },
           filetype: {
             type: 'string',
-            pattern: '',
+            pattern: /^(image\/.*|.*\.(jpg|jpeg|png|gif))$/i.toString(),
           },
           filesize: {
             type: 'number',
