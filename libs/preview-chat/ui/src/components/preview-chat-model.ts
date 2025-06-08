@@ -40,7 +40,7 @@ export class PreviewChatModel
   }
 
   async *click(scheme: string) {
-    // TODO 解析 scheme 做相应的操作
+    // TODO 解析 scheme 请求 json schema 等
     this.setLuiFormOpen(true);
     yield;
   }
