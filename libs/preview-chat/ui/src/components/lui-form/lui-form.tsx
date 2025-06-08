@@ -70,7 +70,7 @@ export const FormHeader = (props: {
 }) => {
   const { children } = props;
   return (
-    <Drawer.Title
+    <div
       className={cn(
         'px-spacing-3xl-v2 py-spacing-md-v2',
         'display-xs',
@@ -81,7 +81,7 @@ export const FormHeader = (props: {
       )}
     >
       {children}
-    </Drawer.Title>
+    </div>
   );
 };
 

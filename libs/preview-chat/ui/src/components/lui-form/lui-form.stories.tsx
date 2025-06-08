@@ -4,7 +4,7 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import { previewChatUIModule } from '../../preview-chat-ui.module';
 import { LuiForm } from './lui-form';
 import { commonUIModule } from '@myshell-run/common-ui';
-import { demo_jsonschema, demo_uischema } from '../preview-chat-model';
+import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
 
 const container = new Container();
 container.load(previewChatUIModule);
