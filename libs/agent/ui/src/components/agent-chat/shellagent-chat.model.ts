@@ -1,4 +1,8 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import {
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/agent-message-item-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -46,7 +50,7 @@ export class ShellAgentChatModel implements ChatInputHandlers {
           this.replyMsg +
           '\n' +
           `::x-polling{#${replyMsgId} timeLeft=${this.seconds}}`,
-        user: 'other',
+        type: REPLY_MESSAGE_TYPE,
       });
     }, this.seconds * 1000);
   }
@@ -58,14 +62,14 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     this.chatCommon.appendMsg({
       key: msgId,
       text: text,
-      user: 'me',
+      type: OWN_MESSAGE_TYPE,
     });
 
     this.replyMsg = `::x-polling{#${replyMsgId} timeLeft=${this.seconds}}`;
     this.chatCommon.appendMsg({
       key: replyMsgId,
       text: this.replyMsg,
-      user: 'other',
+      type: REPLY_MESSAGE_TYPE,
     });
     this.startPolling(replyMsgId);
 

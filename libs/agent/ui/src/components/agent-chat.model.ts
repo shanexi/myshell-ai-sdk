@@ -1,4 +1,5 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-item-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -38,7 +39,7 @@ export class AgentChatModel implements ChatInputHandlers {
     this.chatCommon.appendMsg({
       key: msgId,
       text: inputText,
-      user: 'me',
+      type: OWN_MESSAGE_TYPE,
     });
 
     yield;

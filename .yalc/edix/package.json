@@ -1,0 +1,64 @@
+{
+  "name": "edix",
+  "version": "0.0.21",
+  "description": "An experimental, framework agnostic, small (~4kB) contenteditable state manager.",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "tsc": "tsc -p . --noEmit",
+    "test": "vitest --run",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "e2e": "npx playwright test",
+    "typedoc": "typedoc",
+    "size": "size-limit",
+    "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inokawa/edix.git"
+  },
+  "keywords": [
+    "contenteditable",
+    "ui",
+    "headless",
+    "textarea",
+    "input",
+    "form",
+    "highlight",
+    "autocomplete",
+    "tagging",
+    "combobox",
+    "richtext",
+    "editor",
+    "wysiwyg",
+    "react",
+    "vue",
+    "svelte",
+    "solid",
+    "angular",
+    "preact",
+    "qwik"
+  ],
+  "author": "inokawa <stratoooo-taster@yahoo.co.jp> (https://github.com/inokawa/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inokawa/edix/issues"
+  },
+  "homepage": "https://github.com/inokawa/edix#readme",
+  "yalcSig": "8dc8f7f0e6ac746ce7a0cef82a508251"
+}

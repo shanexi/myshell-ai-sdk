@@ -16,7 +16,9 @@
       "libs/agent/ui/src/styles.css",
       "libs/agent/ui/output.css",
       "libs/agent/ui/output-prefixed.css",
-      "./storybook-static"
+      "libs/preview-chat/ui/src/styles.css",
+      "./storybook-static",
+      ".yalc"
     ]
   },
   "javascript": {

@@ -9,5 +9,8 @@
     "./output-prefixed.css": {
       "default": "./output-prefixed.css"
     }
+  },
+  "peerDependencies": {
+    "edix": "*"
   }
 }

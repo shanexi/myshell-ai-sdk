@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "edix": {
+      "signature": "8dc8f7f0e6ac746ce7a0cef82a508251",
+      "file": true,
+      "replaced": "^0.0.21"
+    }
+  }
+}

@@ -10,7 +10,9 @@ export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
+
   sendText(text: string): AsyncGenerator;
+
   removeImagePreview(id: string): Generator;
 }
 
@@ -84,7 +86,27 @@ export class ChatInputModel {
     }
 
     for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
-      this.chatCommon.setInputText('');
+      // TODO 不能，全部交给 edix#onChange 管理了
+      // 应该封装下，不让外部操作
+      // this.chatCommon.setInputText('');
+      await this.chatCommon.clearEdix();
+    }
+  }
+
+  /**
+   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
+   */
+  async sendChatInputDoc() {
+    if (isEmpty(this.chatCommon.chatInputDoc)) {
+      return;
+    }
+    const text = this.chatCommon.chatInputDoc
+      .map((line) => line.map((v) => v.text).join(' '))
+      .join('\n');
+
+    for await (const _ of this.handlers.sendText(text)) {
+      // this.chatCommon.setInputText('');
+      this.chatCommon.setChatInputDoc([]);
     }
   }
 

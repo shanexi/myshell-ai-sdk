@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MessageItem } from './message-item';
+import { MessageItem } from '@myshell-run/common-ui';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { Container } from 'inversify';

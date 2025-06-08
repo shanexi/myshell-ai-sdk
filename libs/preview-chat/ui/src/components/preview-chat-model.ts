@@ -1,0 +1,75 @@
+import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
+import { ChatCommonModel } from '@myshell-run/common-ui';
+import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
+import {
+  MessageItemHandlers,
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/preview-chat-message-item-plugins';
+import { createId } from '@paralleldrive/cuid2';
+import { inject, injectable } from 'inversify';
+import { makeObservable, observable } from 'mobx';
+import {
+  demo_jsonschema,
+  demo_uischema,
+} from './lui-form/__storybook__/demo_form';
+
+@injectable()
+export class PreviewChatModel
+  implements ChatInputHandlers, MessageItemHandlers
+{
+  jsonschema = demo_jsonschema;
+  uischema = demo_uischema;
+
+  /*
+点击 button 其实是发送了一个 message
+然后加在 json schema ui schema data 等
+然后展示 bottom sheet
+  */
+  @observable isLuiFormOpen = false;
+
+  constructor(
+    @inject(ChatCommonModelFactory)
+    public factory: (id: symbol) => ChatCommonModel,
+  ) {
+    makeObservable(this);
+  }
+
+  get chatCommon() {
+    return this.factory(PREVIEW_CHAT);
+  }
+
+  async *click(scheme: string) {
+    // TODO 解析 scheme 请求 json schema 等
+    this.setLuiFormOpen(true);
+    yield;
+  }
+
+  async *clear() {
+    yield;
+  }
+
+  setLuiFormOpen(isOpen: boolean) {
+    this.isLuiFormOpen = isOpen;
+  }
+
+  async *sendText(text: string) {
+    const msgId = createId();
+    const replyId = createId();
+    this.chatCommon.appendMsg({
+      key: msgId,
+      text: text,
+      type: OWN_MESSAGE_TYPE,
+    });
+    this.chatCommon.appendMsg({
+      key: replyId,
+      text: text,
+      type: REPLY_MESSAGE_TYPE,
+    });
+    yield;
+  }
+
+  *removeImagePreview(id: string) {
+    yield;
+  }
+}

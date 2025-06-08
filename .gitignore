@@ -43,8 +43,6 @@ Thumbs.db
 
 tsconfig.tsbuildinfo
 
-.yalc/
-
 .wrangler/
 
 # env

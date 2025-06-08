@@ -39,9 +39,6 @@ const meta: Meta<typeof ChatInputTextareaPlugin> = {
       </InversifyProvider>
     ),
   ],
-  parameters: {
-    layout: 'fullscreen',
-  },
 };
 export default meta;
 

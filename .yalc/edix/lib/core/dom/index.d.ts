@@ -1,0 +1,1 @@
+export { defaultIsBlockNode } from "./default";

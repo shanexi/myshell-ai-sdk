@@ -1,0 +1,82 @@
+{
+  "name": "preview-chat-input-plugins",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/preview-chat/chat-input-plugins/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "local-publish": {
+      "executor": "@myshell-run/my-nx-plugins:local-publish",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/preview-chat/chat-input-plugins",
+        "tsConfig": "libs/preview-chat/chat-input-plugins/tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/preview-chat/chat-input-plugins",
+        "main": "libs/preview-chat/chat-input-plugins/src/index.ts",
+        "tsConfig": "libs/preview-chat/chat-input-plugins/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/preview-chat/chat-input-plugins/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "port": 4520,
+        "configDir": "libs/preview-chat/chat-input-plugins/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./libs/preview-chat/chat-input-plugins",
+        "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/chat-input-plugins",
+        "configDir": "libs/preview-chat/chat-input-plugins/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "preview-chat-input-plugins:build-storybook",
+        "staticFilePath": "dist/storybook/chat-input-plugins"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "preview-chat-input-plugins:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

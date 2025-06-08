@@ -1,23 +1,22 @@
 import { useEffect, useRef } from 'react';
 import { ChatInput } from './chat-input';
-import { ChatMessageList } from './chat-message-list';
+import { ChatMessageList, cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { AgentChatModel } from './agent-chat.model';
 import { observer } from 'mobx-react-lite';
-import { cn } from '@myshell-run/common-ui';
 import { ReactComponent as Dragging } from './dragging.svg';
 
 export const Chat = observer(() => {
   const model = useInjection(AgentChatModel);
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (dropTargetRef.current) {
-      model.chatCommon.setupUppy(dropTargetRef.current);
-    }
+    if (!dropTargetRef.current) return;
+    return model.chatCommon.setupUppy(dropTargetRef.current);
   }, []);
   return (
     <div ref={dropTargetRef} className="flex h-full flex-col">
       <ChatMessageList
+        chatCommonModel={model.chatCommon}
         className="flex flex-grow flex-col overflow-auto px-[8px]"
         initialMessages={[]}
       />

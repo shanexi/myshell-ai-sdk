@@ -1,7 +1,12 @@
-import { ChatCommonModelFactory } from '@myshell-run/common-def';
+import {
+  ChatCommonModelFactory,
+  LuiFormVariantModelFactory,
+} from '@myshell-run/common-def';
 import { ContainerModule, interfaces } from 'inversify';
 import { ChatCommonModel } from './components/chat-common.model';
-import { MessageItemSvc } from './components/message-item.svc';
+import { MessageItemSvc } from './message-plugin/message-item.svc';
+import { UppyModel } from './components/uppy.model';
+import { LuiFormItemSvc } from './lui-form-plugin/lui-form-item.svc';
 
 export const commonUIModule = new ContainerModule((bind) => {
   bindCommonUI(bind);
@@ -29,5 +34,13 @@ export function bindCommonUI(bind: interfaces.Bind) {
     },
   );
 
+  bind(LuiFormVariantModelFactory).toFactory<(id: string) => unknown, [string]>(
+    (ctx) => {
+      return (variant) => ctx.container.get(variant);
+    },
+  );
+
+  bind(UppyModel).toSelf().inTransientScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
+  bind(LuiFormItemSvc).toSelf().inSingletonScope();
 }

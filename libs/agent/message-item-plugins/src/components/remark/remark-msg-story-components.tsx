@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
+import {
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '../../agent-msg-item-plugins.module';
 import { ReplyMsg } from '../reply-msg';
 import checklistStory from './checklist-story.md';
 import pollingMsgStory from './polling-msg-story.md';
 
 export const RemarkStory: React.FC<{ text: string }> = ({ text }) => {
-  return <ReplyMsg key="abc" user="other" text={text} />;
+  return (
+    <ReplyMsg key="abc" user="other" type={REPLY_MESSAGE_TYPE} text={text} />
+  );
 };
 
 export const ChecklistStory = () => {
@@ -27,7 +33,9 @@ export const ChecklistStory = () => {
     return () => clearInterval(timer);
   }, []);
   console.log(text);
-  return <ReplyMsg key="abc" user="other" text={text} />;
+  return (
+    <ReplyMsg key="abc" user="other" type={OWN_MESSAGE_TYPE} text={text} />
+  );
 };
 
 export const PollingMsgStory = () => {
@@ -50,5 +58,7 @@ export const PollingMsgStory = () => {
     return () => clearInterval(timer);
   }, []);
   console.log(text);
-  return <ReplyMsg key="abc" user="other" text={text} />;
+  return (
+    <ReplyMsg key="abc" user="other" type={REPLY_MESSAGE_TYPE} text={text} />
+  );
 };

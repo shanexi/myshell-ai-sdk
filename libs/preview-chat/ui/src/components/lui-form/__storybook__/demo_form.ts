@@ -1,0 +1,81 @@
+import { json_schema } from '@myshell-run/common-def';
+import { z } from 'zod';
+
+export const demo_uischema = {
+  variants: {
+    description: 'string_textarea',
+    title: 'object_image_upload',
+    style: 'object_image_choice',
+  },
+};
+export const demo_jsonschema = {
+  type: 'object',
+  title: 'Image Configuration',
+  properties: {
+    // selfie: {
+    //   variant: 'object_image_upload',
+    //   type: 'object',
+    //   title: 'Selfie',
+    //   properties: {
+    //     url: {
+    //       type: 'string',
+    //     },
+    //     title: {
+    //       type: 'string',
+    //     },
+    //   },
+    //   examples: [
+    //     {
+    //       url: 'a',
+    //       title: '单人正脸',
+    //     },
+    //   ],
+    // },
+    // team_member: {
+    //   variant: 'string_selector',
+    //   type: 'string',
+    //   title: 'Team member',
+    //   enum: ['MyShell'],
+    // },
+    description: {
+      type: 'string',
+      title: 'Description',
+      // todo: placeholder 用 example？
+    },
+    title: {
+      type: 'object',
+      title: 'Title',
+      description: 'This is a simple description.',
+      properties: {
+        title: {
+          type: 'string',
+        },
+        url: {
+          type: 'string',
+        },
+      },
+    },
+    style: {
+      type: 'object',
+      title: 'Style',
+      properties: {
+        name: {
+          type: 'string',
+        },
+        title: {
+          type: 'string',
+        },
+        url: {
+          type: 'string',
+        },
+      },
+      examples: [
+        {
+          name: 'a',
+          title: 'A',
+          url: 'http://a',
+        },
+      ],
+    },
+  },
+} satisfies z.infer<typeof json_schema>;
