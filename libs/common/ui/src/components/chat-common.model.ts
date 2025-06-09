@@ -41,22 +41,37 @@ export class ChatCommonModel {
     });
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   @computed get isDragging() {
     return this.uppyModel.isDragging;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   @computed get uppyStateMap() {
     return this.uppyModel.uppyStateMap;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   get uppy() {
     return this.uppyModel.uppy;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   get multiple() {
     return this.uppyModel.multiple;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   get accept() {
     return this.uppyModel.accept;
   }
@@ -82,10 +97,16 @@ export class ChatCommonModel {
     this.chatInputDoc = chatInputDoc;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   setupUppy(dropTarget: HTMLDivElement) {
     return this.uppyModel.setup(dropTarget);
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   removeFile(id: string) {
     this.uppyModel.removeFile(id);
   }

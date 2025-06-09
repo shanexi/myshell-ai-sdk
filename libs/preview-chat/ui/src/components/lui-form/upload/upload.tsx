@@ -83,18 +83,28 @@ export const Upload = observer<
       className={cn(
         'rounded-C-button-lg-radius-v2',
         'p-spacing-lg-v2',
-        'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
+        model.uppyModel.isDraggingError
+          ? 'border border-Cr-border-critical-light-v2'
+          : 'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
       )}
       onClick={() => inputRef.current?.click()}
     >
       {model.uppyModel.isDragging ? (
         <div
           className={cn(
-            'text-sm-medium flex items-center justify-center text-Cr-text-default-light-v2',
+            'text-sm-medium flex items-center justify-center',
             'h-[42px]',
           )}
         >
-          Move you files here
+          {model.uppyModel.isDraggingError ? (
+            <div className="text-Cr-text-critical-default-light-v2">
+              {model.uppyModel.draggingErrorDisplay}
+            </div>
+          ) : (
+            <div className="text-Cr-text-default-light-v2">
+              Move you files here
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex items-center gap-spacing-md-v2">

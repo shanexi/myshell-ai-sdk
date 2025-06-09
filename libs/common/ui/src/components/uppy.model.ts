@@ -7,7 +7,7 @@ import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
-import { getAllowedFileTypesDisplay, formatFileSize } from './uppy.utils';
+import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 
 export const imageStateSchema = z.object({
   type: z.literal('image'),
@@ -40,6 +40,8 @@ export class UppyModel {
    */
   @observable uppyStateMap = new Map<string, FileState>();
   @observable isDragging = false;
+  @observable isDraggingError = false;
+  @observable draggingErrorDisplay: string | null = null;
 
   @observable allowedFileTypes?: string[] | null;
   @observable maxNumberOfFiles?: number | null;
@@ -90,6 +92,12 @@ export class UppyModel {
       autoProceed: true,
       debug: true,
       restrictions,
+      onBeforeFileAdded: (file, files) => {
+        return !Object.hasOwn(files, file.id);
+      },
+      onBeforeUpload: (files) => {
+        return files;
+      },
     })
       .use(ThumbnailGenerator)
       .use(XHR, {
@@ -127,13 +135,29 @@ export class UppyModel {
     this._uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
+        const a = this.uppy.validateSingleFile({
+          // 不一定有效 观察一段时间
+          type: event.dataTransfer?.items[0].type || '',
+          name: '',
+          extension: '',
+          size: 0,
+        });
+        if (a != null) {
+          this.isDraggingError = true;
+          this.draggingErrorDisplay = a;
+        } else {
+          this.isDraggingError = false;
+          this.draggingErrorDisplay = null;
+        }
         this.isDragging = true;
       },
       onDragLeave: (event) => {
         this.isDragging = false;
+        this.isDraggingError = false;
       },
       onDrop: (event) => {
         this.isDragging = false;
+        this.isDraggingError = false;
       },
     });
 
@@ -144,6 +168,7 @@ export class UppyModel {
       this.maxFileSize = undefined;
       this.uppyStateMap = new Map();
       this.isDragging = false;
+      this.isDraggingError = false;
     };
   }
 }

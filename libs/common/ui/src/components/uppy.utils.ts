@@ -1,3 +1,5 @@
+// 这些都是 AI 生成的，由对应的 spec 来保证质量
+// 因为是 AI 生成，所以代码看起来很复杂
 export function getAllowedFileTypesDisplay(
   allowedTypes: string[] | undefined | null,
 ): string {
