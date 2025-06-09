@@ -96,13 +96,11 @@ export const Upload = observer<
     >
       {model.file != null ? (
         <div className="flex items-center gap-spacing-md-v2">
-          <div className="rounded-md-v2">
-            <img
-              className={cn('h-[40px] w-[40px]')}
-              alt={model.file[1].name || ''}
-              src={model.file[1].preview}
-            />
-          </div>
+          <img
+            className={cn('h-[40px] w-[40px]', 'rounded-md-v2')}
+            alt={model.file[1].name || ''}
+            src={model.file[1].preview}
+          />
           <div className="flex flex-col gap-spacing-xxs-v2">
             <div className="text-sm-medium text-Cr-text-default-light-v2">
               {model.file[1].name}

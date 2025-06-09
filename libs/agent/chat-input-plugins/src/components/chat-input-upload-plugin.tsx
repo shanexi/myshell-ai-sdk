@@ -1,8 +1,9 @@
-import { cn, FilePreviewState, ImageState } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ChatInputModel } from './chat-input.model';
+import { Meta, UppyFile, Body } from '@uppy/core';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
@@ -35,7 +36,7 @@ export const ChatInputUploadPlugin = observer(() => {
               fileState={{
                 type: item.previewType,
                 name: item.name,
-                desc: item.desc || '',
+                desc: item || '',
                 uploadComplete: true,
               }}
             />
@@ -48,7 +49,9 @@ export const ChatInputUploadPlugin = observer(() => {
 });
 
 const FilePreview: React.FC<{
-  fileState: FilePreviewState;
+  fileState: Partial<UppyFile<Meta, Body>> & {
+    uploadComplete: boolean;
+  };
   id: string;
 }> = ({ fileState, id }) => {
   return (
@@ -79,7 +82,7 @@ const FilePreview: React.FC<{
           {fileState.name}
         </div>
         <div className="description-lg-regular text-Cr-text-subtler-light-v2">
-          {fileState.desc}
+          {fileState.type}
         </div>
       </div>
       <Remove
@@ -92,10 +95,12 @@ const FilePreview: React.FC<{
   );
 };
 
-const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
-  fileState,
-  id,
-}) => {
+const ImagePreview: React.FC<{
+  fileState: Partial<UppyFile<Meta, Body>> & {
+    uploadComplete: boolean;
+  };
+  id: string;
+}> = ({ fileState, id }) => {
   const model = useInjection(ChatInputModel);
   return (
     <div className="group relative flex-none">

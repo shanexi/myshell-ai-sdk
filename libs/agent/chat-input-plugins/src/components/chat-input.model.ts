@@ -3,7 +3,7 @@ import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
-import { z } from 'zod';
+import { Meta, UppyFile, Body } from '@uppy/core';
 
 export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
@@ -15,21 +15,6 @@ export interface ChatInputHandlers {
 
   removeImagePreview(id: string): Generator;
 }
-
-export const previewTypeSchema = z.discriminatedUnion('previewType', [
-  z.object({
-    previewType: z.literal('image'),
-    name: z.string(),
-    previewUrl: z.string(),
-    subType: z.union([z.literal('png'), z.literal('jpeg')]),
-  }),
-  z.object({
-    previewType: z.literal('file'),
-    name: z.string(),
-    desc: z.string().optional(),
-    subType: z.union([z.literal('rtf'), z.literal('json')]),
-  }),
-]);
 
 @injectable()
 export class ChatInputModel {
@@ -43,20 +28,16 @@ export class ChatInputModel {
     { type: 'message', name: 'preview.message1' },
   ]);
 
-  @observable previewItems = observable.array<
-    z.infer<typeof previewTypeSchema>
-  >([
+  @observable previewItems = observable.array<Partial<UppyFile<Meta, Body>>>([
     {
-      previewType: 'image',
-      subType: 'png',
+      type: 'png',
       name: 'a mock image',
-      previewUrl: MOCK_IMG,
+      uploadURL: MOCK_IMG,
     },
     {
-      previewType: 'file',
-      subType: 'rtf',
+      type: 'rtf',
       name: 'Untitled.rtf',
-      desc: 'Rich Text File',
+      // desc: 'Rich Text File', // 使用 human-filetypes
     },
   ]);
 

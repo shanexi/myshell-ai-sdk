@@ -6,34 +6,8 @@ import ThumbnailGenerator from '@uppy/thumbnail-generator';
 import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
-import { z } from 'zod';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
-/*
-export const imageStateSchema = z.object({
-  type: z.literal('image'),
-  preview: z.string(),
-  uploadComplete: z.boolean(),
-});
-
-export type ImageState = z.infer<typeof imageStateSchema>;
-
-export const filePreviewStateSchema = z.object({
-  type: z.literal('file'),
-  name: z.string(),
-  desc: z.string(),
-  uploadComplete: z.boolean(),
-});
-
-export type FilePreviewState = z.infer<typeof filePreviewStateSchema>;
-
-export const fileStateSchema = z.discriminatedUnion('type', [
-  imageStateSchema,
-  filePreviewStateSchema,
-]);
-
-export type FileState = z.infer<typeof fileStateSchema>;
- */
 
 @injectable()
 export class UppyModel {
