@@ -13,18 +13,31 @@ export const upload_schema = z.object({
   items: z.object({
     type: z.literal('object'),
     properties: z.object({
-      url: z.object({
-        type: z.literal('string'),
-      }),
-      title: z.object({
-        type: z.literal('string'),
-      }),
+      // 参考 UppyFile 结构
       file: z.object({
-        type: z.literal('string'),
-        // 类型限制
-        enum: z.array(z.string()),
-        // 单个大小限制
-        maxLength: z.number(),
+        type: z.literal('object'),
+        properties: z.object({
+          uploadURL: z.object({
+            type: z.literal('string'),
+          }),
+          name: z.object({
+            type: z.literal('string'),
+          }),
+          // 单个大小限制
+          size: z
+            .object({
+              type: z.literal('number'),
+              maxLength: z.number(),
+            })
+            .optional(),
+          // 类型限制
+          type: z
+            .object({
+              type: z.literal('string'),
+              enum: z.array(z.string()),
+            })
+            .optional(),
+        }),
       }),
     }),
   }),
@@ -32,8 +45,10 @@ export const upload_schema = z.object({
   examples: z
     .array(
       z.object({
-        url: z.string(),
-        title: z.string(),
+        file: z.object({
+          uploadURL: z.string(),
+          name: z.string(),
+        }),
       }),
     )
     .optional(),
@@ -56,9 +71,9 @@ export const Upload = observer<
   useEffect(() => {
     if (!dropTargetRef.current) return;
     return model.uppyModel.setup(dropTargetRef.current, {
-      maxFileSize: props.items.properties.file?.maxLength,
+      maxFileSize: props.items.properties.file.properties.size?.maxLength,
       maxNumberOfFiles: props.maxItems,
-      allowedFileTypes: props.items.properties.file.enum,
+      allowedFileTypes: props.items.properties.file.properties.type?.enum,
     });
   }, []);
   return (

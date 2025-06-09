@@ -31,23 +31,33 @@ export const Primary: StoryObj<typeof Upload> = {
       items: {
         type: 'object',
         properties: {
-          url: {
-            type: 'string',
-          },
-          title: {
-            type: 'string',
-          },
           file: {
-            type: 'string',
-            maxLength: 1024 * 10,
-            enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
+            type: 'object',
+            properties: {
+              uploadURL: {
+                type: 'string',
+              },
+              name: {
+                type: 'string',
+              },
+              type: {
+                type: 'string',
+                enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
+              },
+              size: {
+                type: 'number',
+                maxLength: 1024 * 10,
+              },
+            },
           },
         },
       },
       examples: [
         {
-          url: 'a',
-          title: '单人正脸',
+          file: {
+            uploadURL: 'a',
+            name: '单人正脸',
+          },
         },
       ],
     } satisfies z.infer<typeof upload_schema>),
