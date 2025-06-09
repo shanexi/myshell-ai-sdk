@@ -1,4 +1,4 @@
-import { cn, formatFileSize } from '@myshell-run/common-ui';
+import { cn, formatEta, formatFileSize } from '@myshell-run/common-ui';
 import { Upload as UploadIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -116,7 +116,9 @@ export const Upload = observer<
               {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
             </div>
             <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
-              ({formatFileSize(model.file?.size)})
+              {!model.file?.uploadComplete
+                ? formatEta(model.file.eta)
+                : `(${formatFileSize(model.file?.size)})`}
             </div>
           </div>
         </div>

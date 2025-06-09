@@ -1,18 +1,20 @@
 import { UploadEndpoint } from '@myshell-run/common-def';
-import { Meta, Uppy, UppyFile, Body } from '@uppy/core';
+import { Body, Meta, Uppy, UppyFile } from '@uppy/core';
 import { Restrictions } from '@uppy/core/lib/Restricter';
 import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
+import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
-import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 
 export type UppyState = Partial<UppyFile<Meta, Body>> & {
   // 增加的都是为了 observable，因为嵌套无法被 observer 到
   uploadComplete: boolean;
   progressPercentage?: number;
+  eta?: number;
+  startTime?: number;
 };
 
 @injectable()
@@ -121,15 +123,33 @@ export class UppyModel {
     });
     this._uppy.on('progress', (progress) => {
       this.uppy.log(`progress ${progress}`);
+      const now = Date.now();
+
       Object.keys(this._uppy?.getState().files || {}).forEach((fileId) => {
         const file = this._uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
           uploadComplete: false,
         };
+
+        const progressPercentage = file?.progress.percentage || 0;
+        const startTime = prev.startTime || now;
+
+        // 计算 ETA
+        let eta: number | undefined;
+        if (progressPercentage > 0 && progressPercentage < 100) {
+          const elapsedTime = (now - startTime) / 1000; // 转换为秒
+          const remainingProgress = 100 - progressPercentage;
+          eta = Math.round(
+            (elapsedTime / progressPercentage) * remainingProgress,
+          );
+        }
+
         this.uppyStateMap.set(fileId, {
           ...prev,
           uploadComplete: file?.progress.uploadComplete || false,
-          progressPercentage: file?.progress.percentage || 0,
+          progressPercentage,
+          eta,
+          startTime,
         });
       });
     });

@@ -157,3 +157,14 @@ export function formatFileSize(
 
   return `${rounded}${units[i]}`;
 }
+
+export function formatEta(eta?: number): string {
+  if (!eta) return '';
+
+  if (eta < 60) return `${eta}s`;
+  if (eta < 3600) return `${Math.floor(eta / 60)}min ${eta % 60}s`;
+
+  const hours = Math.floor(eta / 3600);
+  const minutes = Math.floor((eta % 3600) / 60);
+  return `${hours}h ${minutes}min`;
+}

@@ -1,4 +1,8 @@
-import { getAllowedFileTypesDisplay, formatFileSize } from './uppy.utils';
+import {
+  getAllowedFileTypesDisplay,
+  formatFileSize,
+  formatEta,
+} from './uppy.utils';
 
 describe('uppy utils', () => {
   describe('getAllowedFileTypesDisplay', () => {
@@ -96,6 +100,40 @@ describe('uppy utils', () => {
       expect(formatFileSize(1024 * 1.234)).toBe('1.2KB');
       expect(formatFileSize(1024 * 1024 * 1.999)).toBe('2MB');
       expect(formatFileSize(1024 * 1024 * 1024 * 1.876)).toBe('1.9GB');
+    });
+  });
+
+  describe('formatEta', () => {
+    it('should return empty string for undefined or 0', () => {
+      expect(formatEta()).toBe('');
+      expect(formatEta(undefined)).toBe('');
+      expect(formatEta(0)).toBe('');
+    });
+
+    it('should format seconds correctly', () => {
+      expect(formatEta(1)).toBe('1s');
+      expect(formatEta(30)).toBe('30s');
+      expect(formatEta(59)).toBe('59s');
+    });
+
+    it('should format minutes and seconds correctly', () => {
+      expect(formatEta(60)).toBe('1min 0s');
+      expect(formatEta(90)).toBe('1min 30s');
+      expect(formatEta(150)).toBe('2min 30s');
+      expect(formatEta(3599)).toBe('59min 59s');
+    });
+
+    it('should format hours and minutes correctly', () => {
+      expect(formatEta(3600)).toBe('1h 0min');
+      expect(formatEta(3900)).toBe('1h 5min');
+      expect(formatEta(7200)).toBe('2h 0min');
+      expect(formatEta(7320)).toBe('2h 2min');
+      expect(formatEta(10800)).toBe('3h 0min');
+    });
+
+    it('should handle large values', () => {
+      expect(formatEta(86400)).toBe('24h 0min');
+      expect(formatEta(90000)).toBe('25h 0min');
     });
   });
 });
