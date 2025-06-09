@@ -8,7 +8,8 @@ export class UploadModel {
     //
   }
 
+  // form upload 现仅支持单文件
   @computed get file() {
-    return this.uppyModel.uppyStateMap.entries().next().value;
+    return this.uppyModel.uppyStateMap.entries().next().value?.[1];
   }
 }

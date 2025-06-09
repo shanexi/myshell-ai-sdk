@@ -99,25 +99,24 @@ export const Upload = observer<
           <div className="relative">
             <img
               className={cn('h-[40px] w-[40px]', 'rounded-md-v2')}
-              alt={model.file[1].name || ''}
-              src={model.file[1].preview}
+              alt={model.file?.name || ''}
+              src={model.file?.preview}
             />
-            {model.file[1].progressPercentage != null &&
-              model.file[1].progressPercentage < 100 && (
-                <div
-                  className="absolute right-0 bottom-0 left-0 bg-white/50 transition-all duration-300"
-                  style={{
-                    height: `${100 - (model.file[1].progressPercentage || 0)}%`,
-                  }}
-                />
-              )}
+            {!model.file?.uploadComplete && (
+              <div
+                className="absolute right-0 bottom-0 left-0 bg-white/50 transition-all duration-300"
+                style={{
+                  height: `${100 - (model.file?.progressPercentage || 0)}%`,
+                }}
+              />
+            )}
           </div>
           <div className="flex flex-col gap-spacing-xxs-v2">
             <div className="text-sm-medium text-Cr-text-default-light-v2">
-              {model.file[1].name}
+              {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
             </div>
             <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
-              ({formatFileSize(model.file[1].size)})
+              ({formatFileSize(model.file?.size)})
             </div>
           </div>
         </div>

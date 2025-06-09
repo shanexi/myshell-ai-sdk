@@ -9,19 +9,18 @@ import { computed, makeObservable, observable } from 'mobx';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 
+export type UppyState = Partial<UppyFile<Meta, Body>> & {
+  // 增加的都是为了 observable，因为嵌套无法被 observer 到
+  uploadComplete: boolean;
+  progressPercentage?: number;
+};
+
 @injectable()
 export class UppyModel {
   /**
    * 多文件的状态管理
    */
-  @observable uppyStateMap = new Map<
-    string,
-    Partial<UppyFile<Meta, Body>> & {
-      // 增加的都是为了 observable
-      uploadComplete: boolean;
-      progressPercentage?: number;
-    }
-  >();
+  @observable uppyStateMap = new Map<string, UppyState>();
   @observable isDragging = false;
   @observable isDraggingError = false;
   @observable draggingErrorDisplay: string | null = null;
@@ -38,7 +37,7 @@ export class UppyModel {
   }
 
   @computed get uppyState() {
-    return Array.from(this.uppyStateMap as Map<string, UppyFile<Meta, Body>>);
+    return Array.from(this.uppyStateMap as Map<string, UppyState>);
   }
 
   @computed get accept() {

@@ -1,4 +1,4 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, UppyState } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
@@ -49,9 +49,7 @@ export const ChatInputUploadPlugin = observer(() => {
 });
 
 const FilePreview: React.FC<{
-  fileState: Partial<UppyFile<Meta, Body>> & {
-    uploadComplete: boolean;
-  };
+  fileState: UppyState;
   id: string;
 }> = ({ fileState, id }) => {
   return (
@@ -96,9 +94,7 @@ const FilePreview: React.FC<{
 };
 
 const ImagePreview: React.FC<{
-  fileState: Partial<UppyFile<Meta, Body>> & {
-    uploadComplete: boolean;
-  };
+  fileState: UppyState;
   id: string;
 }> = ({ fileState, id }) => {
   const model = useInjection(ChatInputModel);
