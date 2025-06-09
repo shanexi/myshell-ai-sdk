@@ -8,6 +8,7 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
+import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 
 export const imageStateSchema = z.object({
   type: z.literal('image'),
@@ -42,6 +43,7 @@ export class UppyModel {
   @observable isDragging = false;
   @observable isDraggingError = false;
   @observable draggingErrorDisplay: string | null = null;
+  @observable errorText: string | null = null;
 
   @observable allowedFileTypes?: string[] | null;
   @observable maxNumberOfFiles?: number | null;
@@ -90,8 +92,24 @@ export class UppyModel {
 
     this._uppy = new Uppy({
       autoProceed: true,
-      debug: true,
       restrictions,
+      // debug: true,
+      logger: {
+        debug: (...args: any[]): void => {
+          console.debug(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+        warn: (...args: any[]): void => {
+          if (args[0].isRestriction > -1) {
+            this.errorText = args[0].message;
+          } else {
+            this.errorText = null;
+          }
+          console.warn(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+        error: (...args: any[]): void => {
+          console.error(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+      },
       onBeforeFileAdded: (file, files) => {
         return !Object.hasOwn(files, file.id);
       },
@@ -163,12 +181,6 @@ export class UppyModel {
 
     return () => {
       this._uppy = undefined;
-      this.allowedFileTypes = undefined;
-      this.maxNumberOfFiles = undefined;
-      this.maxFileSize = undefined;
-      this.uppyStateMap = new Map();
-      this.isDragging = false;
-      this.isDraggingError = false;
     };
   }
 }
