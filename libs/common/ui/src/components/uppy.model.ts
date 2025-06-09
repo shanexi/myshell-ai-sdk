@@ -1,5 +1,5 @@
 import { UploadEndpoint } from '@myshell-run/common-def';
-import { Uppy } from '@uppy/core';
+import { Meta, Uppy, UppyFile, Body } from '@uppy/core';
 import { Restrictions } from '@uppy/core/lib/Restricter';
 import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
@@ -9,7 +9,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
-
+/*
 export const imageStateSchema = z.object({
   type: z.literal('image'),
   preview: z.string(),
@@ -33,13 +33,19 @@ export const fileStateSchema = z.discriminatedUnion('type', [
 ]);
 
 export type FileState = z.infer<typeof fileStateSchema>;
+ */
 
 @injectable()
 export class UppyModel {
   /**
    * 多文件的状态管理
    */
-  @observable uppyStateMap = new Map<string, FileState>();
+  @observable uppyStateMap = new Map<
+    string,
+    Partial<UppyFile<Meta, Body>> & {
+      uploadComplete: boolean;
+    }
+  >();
   @observable isDragging = false;
   @observable isDraggingError = false;
   @observable draggingErrorDisplay: string | null = null;
@@ -53,6 +59,10 @@ export class UppyModel {
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
+  }
+
+  @computed get uppyState() {
+    return Array.from(this.uppyStateMap as Map<string, UppyFile<Meta, Body>>);
   }
 
   @computed get accept() {
@@ -130,8 +140,7 @@ export class UppyModel {
       this.uppy.log(`thumbnail:generated file ${file.name} preview ${preview}`);
       // TODO: 这里需要区分是图片还是文件
       this.uppyStateMap.set(file.id, {
-        type: 'image',
-        preview,
+        ...file,
         uploadComplete: false,
       });
     });
@@ -140,8 +149,6 @@ export class UppyModel {
       Object.keys(this._uppy?.getState().files || {}).forEach((fileId) => {
         const file = this._uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
-          type: 'image',
-          preview: file?.preview || '',
           uploadComplete: false,
         };
         this.uppyStateMap.set(fileId, {
