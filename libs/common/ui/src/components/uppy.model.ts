@@ -17,7 +17,9 @@ export class UppyModel {
   @observable uppyStateMap = new Map<
     string,
     Partial<UppyFile<Meta, Body>> & {
+      // 增加的都是为了 observable
       uploadComplete: boolean;
+      progressPercentage?: number;
     }
   >();
   @observable isDragging = false;
@@ -128,6 +130,7 @@ export class UppyModel {
         this.uppyStateMap.set(fileId, {
           ...prev,
           uploadComplete: file?.progress.uploadComplete || false,
+          progressPercentage: file?.progress.percentage || 0,
         });
       });
     });
