@@ -57,6 +57,7 @@ export const upload_schema = z.object({
 export const Upload = observer<
   z.infer<typeof upload_schema> & { model: UploadModel }
 >(({ model, ...props }) => {
+  const { description = 'Drop a file or click to upload' } = props;
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hiddenInputStyle = {
@@ -106,10 +107,12 @@ export const Upload = observer<
           </div>
           <div className="flex flex-col gap-spacing-xxs-v2">
             <div className="text-sm-medium text-Cr-text-default-light-v2">
-              Drop a file or click to upload
+              {description}
             </div>
             <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
-              PNG, JPG, GIF up to 10MB
+              {model.uppyModel.allowedFileTypesDisplay}{' '}
+              {model.uppyModel.maxFileSizeDisplay &&
+                `up to ${model.uppyModel.maxFileSizeDisplay}`}
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
+import { getAllowedFileTypesDisplay, formatFileSize } from './uppy.utils';
 
 export const imageStateSchema = z.object({
   type: z.literal('image'),
@@ -51,8 +52,17 @@ export class UppyModel {
   }
 
   @computed get accept() {
-    const accept = this.allowedFileTypes?.join(', ');
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#unique_file_type_specifiers
+    const accept = this.allowedFileTypes?.join(',');
     return accept;
+  }
+
+  @computed get allowedFileTypesDisplay() {
+    return getAllowedFileTypesDisplay(this.allowedFileTypes);
+  }
+
+  @computed get maxFileSizeDisplay() {
+    return formatFileSize(this.maxFileSize);
   }
 
   get uppy() {

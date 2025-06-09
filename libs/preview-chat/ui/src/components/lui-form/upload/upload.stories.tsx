@@ -27,6 +27,7 @@ export const Primary: StoryObj<typeof Upload> = {
     ...({
       title: 'Selfie',
       type: 'array',
+      description: 'Drop a file or click to upload',
       maxItems: 1,
       items: {
         type: 'object',
@@ -42,11 +43,12 @@ export const Primary: StoryObj<typeof Upload> = {
               },
               type: {
                 type: 'string',
+                // enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
                 enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
               },
               size: {
                 type: 'number',
-                maxLength: 1024 * 10,
+                maxLength: 1024 * 1024 * 10,
               },
             },
           },
