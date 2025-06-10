@@ -34,7 +34,7 @@ export class ChatCommonModel {
   private edixHandle: EditableHandle | null = null;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
 
-  constructor(@inject(UppyModel) private uppyModel: UppyModel) {
+  constructor(@inject(UppyModel) public uppyModel: UppyModel) {
     makeObservable(this);
     this.edixRefPromise = new Promise<boolean>((resolve) => {
       this.edixRefResolve = resolve;

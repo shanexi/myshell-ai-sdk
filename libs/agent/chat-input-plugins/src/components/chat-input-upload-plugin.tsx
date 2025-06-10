@@ -5,6 +5,7 @@ import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ChatInputModel, PreviewItem } from './chat-input.model';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
@@ -102,7 +103,7 @@ const ImagePreview: React.FC<{
       <img
         className={cn('h-[56px] w-[56px] rounded-xl-v2')}
         alt=""
-        src={previewItem.uploadURL}
+        src={previewItem.preview || previewItem.uploadURL || DEFAULT_AVATAR}
       />
       <Remove
         onRemove={() => model.removeImagePreview(id)}

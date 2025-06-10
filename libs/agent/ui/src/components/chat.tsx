@@ -11,7 +11,7 @@ export const Chat = observer(() => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.chatCommon.setupUppy(dropTargetRef.current);
+    return model.chatCommon.uppyModel.setup(dropTargetRef.current);
   }, []);
   return (
     <div ref={dropTargetRef} className="flex h-full flex-col">
@@ -21,7 +21,7 @@ export const Chat = observer(() => {
         initialMessages={[]}
       />
       <ChatInput />
-      {model.chatCommon.isDragging && <Mask />}
+      {model.chatCommon.uppyModel.isDragging && <Mask />}
     </div>
   );
 });

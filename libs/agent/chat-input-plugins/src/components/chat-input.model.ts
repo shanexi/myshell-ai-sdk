@@ -1,6 +1,5 @@
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel, MOCK_IMG, UppyState } from '@myshell-run/common-ui';
-import { createId } from '@paralleldrive/cuid2';
+import { ChatCommonModel, UppyState } from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
@@ -34,21 +33,6 @@ export class ChatInputModel {
     { type: 'message', name: 'preview.message1' },
   ]);
 
-  @observable uploadedItems = observable.array<UppyState>([
-    {
-      id: createId(),
-      type: 'image/png',
-      name: 'a mock image',
-      uploadURL: MOCK_IMG,
-      uploadComplete: true,
-    },
-    {
-      id: createId(),
-      type: 'application/rtf',
-      name: 'Untitled.rtf',
-    },
-  ]);
-
   constructor(
     @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
     @inject(ChatCommonModelFactory)
@@ -58,11 +42,13 @@ export class ChatInputModel {
   }
 
   @computed get previewItems() {
-    return this.uploadedItems.map<PreviewItem>((item) => ({
-      ...item,
-      previewType: item.type != null ? fromMime(item.type) : FileKind.Unknown,
-      label: item.type && mimeData[item.type]?.label,
-    }));
+    return this.chatCommon.uppyModel.uppyState.map<PreviewItem>(
+      ([id, item]) => ({
+        ...item,
+        previewType: item.type != null ? fromMime(item.type) : FileKind.Unknown,
+        label: item.type && mimeData[item.type]?.label,
+      }),
+    );
   }
 
   @computed get isContextItemsEmpty() {
