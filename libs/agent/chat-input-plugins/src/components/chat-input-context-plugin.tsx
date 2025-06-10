@@ -14,7 +14,7 @@ import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
 import { ChatInputModel, ContextType } from './chat-input.model';
 
-const IconMap: Record<
+export const IconMap: Record<
   ContextType,
   React.ForwardRefExoticComponent<
     Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
@@ -60,6 +60,7 @@ const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
       className={cn(
+        'inline-block',
         'group',
         'flex items-center gap-[6px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',

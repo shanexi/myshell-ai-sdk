@@ -35,7 +35,7 @@ export class EdixModel {
     [
       {
         type: 'text',
-        text: '✅ 我已完成在线学习平台的全面需求分析，并更新了所有相关文档：\\n\\n📋 **',
+        text: '✅ 我已完成在线学习平台的全面需求分析',
       },
       {
         type: 'context',
@@ -43,7 +43,7 @@ export class EdixModel {
           content: 'canvas.state1.inputs.variable1',
         },
       },
-      { type: 'text', text: ' world' },
+      { type: 'text', text: ' ，并更新了所有相关文档：\\n\\n📋 **' },
     ],
     [{ type: 'text', text: 'Type @ to reference context' }],
   ]);
