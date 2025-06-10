@@ -3,12 +3,12 @@ export const demo_default_message_1 = {
   timestamp: '2025-06-07T15:30:00.400Z',
   type: 'chat_default_message',
   args: {
-    behavior: 'append',
+    behavior: 'append' as const,
     content_blocks: [
       {
-        type: 'text',
+        type: 'text' as const,
         content:
-          '✅ 我已完成在线学习平台的全面需求分析，并更新了所有相关文档：\\n\\n📋 **',
+          '✅ 我已完成在线学习平台的全面需求分析，并**更新**了所有相关文档：\\n\\n📋',
       },
     ],
   },
@@ -20,10 +20,11 @@ export const demo_default_message_2 = {
   type: 'chat_default_message',
   args: {
     cause: 203,
-    behavior: 'append',
+    behavior: 'append' as const,
     content_blocks: [
       {
-        type: 'button',
+        id: 'abc',
+        type: 'x-button' as const,
         display_text: 'Confirm',
       },
     ],
@@ -36,10 +37,11 @@ export const demo_default_message_3 = {
   type: 'chat_default_message',
   args: {
     cause: 203,
-    behavior: 'append', // 直接替换 203 的消息
+    behavior: 'append' as const,
     content_blocks: [
       {
-        type: 'button',
+        id: 'abc',
+        type: 'x-button' as const,
         display_text: '✅ Confirm',
       },
     ],
@@ -51,11 +53,12 @@ export const demo_default_message_4 = {
   timestamp: '2025-06-07T15:30:00.400Z',
   type: 'chat_default_message',
   args: {
-    behavior: 'append',
+    behavior: 'append' as const,
     content_blocks: [
       {
-        type: 'button',
-        display_text: 'Confirm',
+        id: 'bcd',
+        type: 'x-button' as const,
+        display_text: 'Reject',
       },
     ],
   },

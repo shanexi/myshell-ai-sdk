@@ -12,6 +12,8 @@ import { ReplyMsg } from './components/reply-msg';
 import { PollingMsg } from './components/polling-msg';
 import { PollingMsgModel } from './components/polling-msg.model';
 import { AgentMessage } from './types';
+import { XButton } from './components/x-button';
+import { XButtonModel } from './components/x-button.model';
 // import { LineChartDemo } from './components/chart-demo';
 
 export const OWN_MESSAGE_TYPE = 'own';
@@ -30,6 +32,7 @@ function registerMdc(bind: interfaces.Bind) {
   register('x-checklist-item', ChecklistItem, ChecklistItemModel);
   register('x-checklist-code', ChecklistCode);
   register('x-polling', PollingMsg, PollingMsgModel);
+  register('x-button', XButton, XButtonModel);
   // register('x-line-chart', LineChartDemo);
   // register('x-bar-chart', BarChartDemo);
 }
