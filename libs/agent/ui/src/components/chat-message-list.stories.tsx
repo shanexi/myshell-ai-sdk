@@ -4,7 +4,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ChatMessageList } from '@myshell-run/common-ui';
 import { container } from './stories.utils';
 import { StrictMessage } from '@myshell-run/common-def';
-import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-item-plugins';
+import {
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/agent-message-item-plugins';
 import { AgentChatModel } from './agent-chat.model';
 
 const meta: Meta<typeof ChatMessageList> = {
@@ -21,12 +24,12 @@ export default meta;
 
 const initialMessages = [
   randomMessage('me'),
-  randomMessage('me'),
-  randomMessage('me'),
+  randomMessage('other'),
+  randomMessage('other'),
 ].map<StrictMessage>((message) => ({
   key: message.key,
   text: message.text,
-  type: OWN_MESSAGE_TYPE,
+  type: message.user === 'me' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
 }));
 
 export const Primary: StoryObj<typeof ChatMessageList> = {
