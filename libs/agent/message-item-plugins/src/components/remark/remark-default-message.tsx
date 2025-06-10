@@ -5,6 +5,7 @@ import {
   demo_default_message_2,
   demo_default_message_3,
   demo_default_message_4,
+  demo_default_message_5,
 } from '../__storybook_data__/demo_default_message';
 import { useEffect, useState } from 'react';
 import { contentBlocksToMDC } from './content-blocks-to-mdc';
@@ -14,7 +15,8 @@ export const RemarkDefaultMessage = () => {
     contentBlocksToMDC(demo_default_message_1),
     contentBlocksToMDC(demo_default_message_2),
     contentBlocksToMDC(demo_default_message_3),
-    contentBlocksToMDC(demo_default_message_4),
+    // contentBlocksToMDC(demo_default_message_4),
+    // contentBlocksToMDC(demo_default_message_5),
   ];
   const [text, setText] = useState(lines[0]);
   useEffect(() => {
@@ -22,7 +24,7 @@ export const RemarkDefaultMessage = () => {
     const timer = setInterval(() => {
       if (currentLine < lines.length) {
         setText((prev: string) => {
-          const txt = prev + ' ' + lines[currentLine];
+          const txt = prev + lines[currentLine];
           currentLine++;
           return txt;
         });

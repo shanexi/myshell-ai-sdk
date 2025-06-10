@@ -30,11 +30,13 @@ const content_blocks_schema = z.object({
 export const contentBlocksToMDC = (
   content_blocks: z.infer<typeof content_blocks_schema>,
 ) => {
-  const block = content_blocks.args.content_blocks[0];
-  if (block.type === 'text') {
-    return block.content;
-  } else {
-    return `:${block.type}{#${block.id} display_text='${block.display_text}'}`;
-  }
-  return '';
+  return content_blocks.args.content_blocks
+    .map((block) => {
+      if (block.type === 'text') {
+        return block.content;
+      } else {
+        return `:${block.type}{#${block.id} display_text='${block.display_text}'}`;
+      }
+    })
+    .join(' ');
 };
