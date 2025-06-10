@@ -2,6 +2,7 @@ import { Message } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { XButton } from './x-button';
 
 /**
  * @deprecated 非 MDC 写法，同时 LUI button 在消息底部
@@ -32,29 +33,11 @@ export const ReplyMsgLegacy: React.FC<Message> = ({ text, user }) => {
         </div>
         <div className="mt-[8px]">
           <div className="flex gap-spacing-xs-v2">
-            <LuiButton>🪄 Upscale (Subtle)</LuiButton>
-            <LuiButton>💥 Upscale (Creative)</LuiButton>
+            <XButton>🪄 Upscale (Subtle)</XButton>
+            <XButton>💥 Upscale (Creative)</XButton>
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-export const LuiButton = (props: { children: React.ReactNode }) => {
-  const { children } = props;
-  return (
-    <button
-      className={cn(
-        'text-sm-medium',
-        'h-[36px]',
-        'border border-CCr-button-tertiary-border-light-v2',
-        'bg-CCr-button-tertiary-bg_default-light-v2',
-        'rounded-C-button-md-radius-v2',
-        'px-C-button-md-padding-v2',
-      )}
-    >
-      {children}
-    </button>
   );
 };

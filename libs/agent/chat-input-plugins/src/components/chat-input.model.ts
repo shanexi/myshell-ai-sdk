@@ -9,7 +9,7 @@ export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export type PreviewItem = UppyState & {
-  previewType: FileKind;
+  fileKind: FileKind;
   label?: string;
 };
 
@@ -45,7 +45,7 @@ export class ChatInputModel {
     return this.chatCommon.uppyModel.uppyState.map<PreviewItem>(
       ([id, item]) => ({
         ...item,
-        previewType: item.type != null ? fromMime(item.type) : FileKind.Unknown,
+        fileKind: item.type != null ? fromMime(item.type) : FileKind.Unknown,
         label: item.type && mimeData[item.type]?.label,
       }),
     );
@@ -100,6 +100,7 @@ export class ChatInputModel {
   }
 
   removeImagePreview(id: string) {
+    // todo: 已经有了 chatCommon 似乎不需要 delegate 给外部 handlers
     for (const _ of this.handlers.removeImagePreview(id)) {
       // 其他操作
     }

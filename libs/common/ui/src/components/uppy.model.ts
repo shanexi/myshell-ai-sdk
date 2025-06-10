@@ -85,9 +85,11 @@ export class UppyModel {
       restrictions,
       // debug: true,
       logger: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         debug: (...args: any[]): void => {
           console.debug(`[Uppy] [${getTimeStamp()}]`, ...args);
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         warn: (...args: any[]): void => {
           if (args[0].isRestriction > -1) {
             this.errorText = args[0].message;
@@ -96,6 +98,7 @@ export class UppyModel {
           }
           console.warn(`[Uppy] [${getTimeStamp()}]`, ...args);
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         error: (...args: any[]): void => {
           console.error(`[Uppy] [${getTimeStamp()}]`, ...args);
         },

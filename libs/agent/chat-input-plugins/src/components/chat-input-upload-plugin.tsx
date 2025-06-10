@@ -17,7 +17,7 @@ export const ChatInputUploadPlugin = observer(() => {
       )}
     >
       {model.previewItems.map((item) => {
-        if (item.previewType === FileKind.Image) {
+        if (item.fileKind === FileKind.Image) {
           return (
             <ImagePreview
               key={item.name}
@@ -26,7 +26,7 @@ export const ChatInputUploadPlugin = observer(() => {
             />
           );
         }
-        if (item.previewType === FileKind.Document) {
+        if (item.fileKind === FileKind.Document) {
           return (
             <FilePreview
               key={item.name}
