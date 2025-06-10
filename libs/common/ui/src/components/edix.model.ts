@@ -5,23 +5,48 @@ import {
   InferDoc,
   plainSchema,
   schema,
+  voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 
-export const basicSchema = schema({ multiline: true });
+export const chatInputDocSchema = schema({
+  multiline: true,
+  void: {
+    context: voidNode({
+      is: (e) => e.contentEditable === 'false',
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      data: (e) => ({ content: e.textContent! }),
+      plain: (d) => d.content,
+    }),
+  },
+});
 
-export type ChatInputDoc = InferDoc<typeof basicSchema>;
+export type ChatInputDoc = InferDoc<typeof chatInputDocSchema>;
 
 @injectable()
 export class EdixModel {
   @observable inputText = '';
-
   /**
-   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
+   * @description 给 structured chat input plugin 暂时不合并
    */
-  @observable chatInputDoc: ChatInputDoc = observable.array([]);
+  @observable chatInputDoc: ChatInputDoc = observable.array([
+    [
+      {
+        type: 'text',
+        text: '✅ 我已完成在线学习平台的全面需求分析，并更新了所有相关文档：\\n\\n📋 **',
+      },
+      {
+        type: 'context',
+        data: {
+          content: 'canvas.state1.inputs.variable1',
+        },
+      },
+      { type: 'text', text: ' world' },
+    ],
+    [{ type: 'text', text: 'Type @ to reference context' }],
+  ]);
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
   private edixRef?: RefObject<HTMLDivElement>;
@@ -40,9 +65,6 @@ export class EdixModel {
     this.inputText = text;
   }
 
-  /**
-   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
-   */
   @action.bound
   setChatInputDoc(chatInputDoc: ChatInputDoc) {
     this.chatInputDoc = chatInputDoc;
@@ -59,6 +81,25 @@ export class EdixModel {
     const dispose = (this.edixHandle = editable(ref.current, {
       schema: plainSchema({ multiline: true }),
       onChange: this.setInputText,
+    })).dispose;
+
+    return () => {
+      this.resetEdixRef();
+      dispose();
+    };
+  }
+
+  setEdixRefStructured(ref: RefObject<HTMLDivElement>) {
+    if (!ref.current) return;
+
+    this.edixRef = ref;
+    if (this.edixRefResolve) {
+      this.edixRefResolve(true);
+    }
+
+    const dispose = (this.edixHandle = editable(ref.current, {
+      schema: chatInputDocSchema,
+      onChange: this.setChatInputDoc,
     })).dispose;
 
     return () => {

@@ -5,16 +5,16 @@ import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { ChatInputModel } from './chat-input.model';
 
-export const ChatInputAdvancedInputPlugin = observer(() => {
+export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
   const model = useInjection(ChatInputModel);
 
   useEffect(() => {
     if (!ref.current) return;
-    return model.chatCommon.edixModel.setEdixRef(ref);
+    return model.chatCommon.edixModel.setEdixRefStructured(ref);
   }, []);
 
-  const value = model.chatCommon.edixModel.inputText;
+  const value = model.chatCommon.edixModel.chatInputDoc;
 
   return (
     <>
@@ -37,12 +37,21 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
         }}
         aria-placeholder="Write a message"
       >
-        {/*
-           why isEmpty?
-           value = '' split - [''] [contenteditable]:empty 不是 empty
-           */}
-        {!isEmpty(value) &&
-          value.split('\n').map((r, i) => <div key={i}>{r ? r : <br />}</div>)}
+        {value.map((line, i) => (
+          <div key={i}>
+            {line.length ? (
+              line.map((t, j) =>
+                t.type === 'context' ? (
+                  <Tag key={j} content={t.data.content} />
+                ) : (
+                  <span key={j}>{t.text}</span>
+                ),
+              )
+            ) : (
+              <br />
+            )}
+          </div>
+        ))}
       </div>
       <style>{`
 [contenteditable]:empty:before {
@@ -54,3 +63,20 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
     </>
   );
 });
+
+const Tag: React.FC<{ content: string }> = ({ content }) => {
+  return (
+    <span
+      contentEditable={false}
+      style={{
+        background: 'slategray',
+        color: 'white',
+        fontSize: 12,
+        padding: 4,
+        borderRadius: 8,
+      }}
+    >
+      {content}
+    </span>
+  );
+};
