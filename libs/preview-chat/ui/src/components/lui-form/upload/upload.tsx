@@ -1,5 +1,5 @@
 import { cn, formatEta, formatFileSize } from '@myshell-run/common-ui';
-import { Upload as UploadIcon } from 'lucide-react';
+import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
@@ -95,32 +95,49 @@ export const Upload = observer<
       }}
     >
       {model.file != null ? (
-        <div className="flex items-center gap-spacing-md-v2">
-          <div className="relative">
-            <img
-              className={cn('h-[40px] w-[40px]', 'rounded-md-v2')}
-              alt={model.file?.name || ''}
-              src={model.file?.preview}
-            />
-            {!model.file?.uploadComplete && (
-              <div
-                className="absolute right-0 bottom-0 left-0 bg-white/50 transition-all duration-300"
-                style={{
-                  height: `${100 - (model.file?.progressPercentage || 0)}%`,
-                }}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-spacing-md-v2">
+            <div className="relative">
+              <img
+                className={cn('h-[40px] w-[40px]', 'rounded-md-v2')}
+                alt={model.file?.name || 'uploaded file'}
+                src={model.file?.preview}
               />
+              {/* 上传遮罩层表示进度 */}
+              {Boolean(model.file?.uploadComplete) === false && (
+                <div
+                  className="absolute right-0 bottom-0 left-0 bg-white/50 transition-all duration-300"
+                  style={{
+                    height: `${100 - (model.file?.progressPercentage || 0)}%`,
+                  }}
+                />
+              )}
+            </div>
+            <div className="flex flex-col gap-spacing-xxs-v2">
+              <div className="text-sm-medium text-Cr-text-default-light-v2">
+                {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
+              </div>
+              <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
+                {model.file?.uploadComplete
+                  ? `(${formatFileSize(model.file?.size)})`
+                  : formatEta(model.file.eta)}
+              </div>
+            </div>
+          </div>
+          <X
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              model.uppyModel.removeFile(model.file?.id);
+            }}
+            size={28}
+            strokeWidth={1.5}
+            className={cn(
+              'text-CCr-icon-button-plain-gray-fg_default-light-v2',
+              'hover:bg-Cr-alpha-black-5-light-v2 hover:text-Cr-text-critical-default-light-v2',
+              'cursor-pointer rounded-md-v2 p-1 transition-colors duration-200',
             )}
-          </div>
-          <div className="flex flex-col gap-spacing-xxs-v2">
-            <div className="text-sm-medium text-Cr-text-default-light-v2">
-              {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
-            </div>
-            <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
-              {!model.file?.uploadComplete
-                ? formatEta(model.file.eta)
-                : `(${formatFileSize(model.file?.size)})`}
-            </div>
-          </div>
+          />
         </div>
       ) : model.uppyModel.isDragging ? (
         <div

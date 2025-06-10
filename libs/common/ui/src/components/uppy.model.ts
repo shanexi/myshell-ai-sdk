@@ -67,7 +67,9 @@ export class UppyModel {
     return this.maxNumberOfFiles !== 1;
   }
 
-  removeFile(id: string) {
+  removeFile(id?: string) {
+    if (id == null) return;
+
     this.uppy?.removeFile(id);
     this.uppyStateMap.delete(id);
   }
