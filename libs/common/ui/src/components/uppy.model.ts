@@ -9,13 +9,14 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 
-export type UppyState = Partial<UppyFile<Meta, Body>> & {
+export type UppyState = Partial<UppyFile<Meta, Body>> &
   // 增加的都是为了 observable，因为嵌套无法被 observer 到
-  uploadComplete: boolean;
-  progressPercentage?: number;
-  eta?: number;
-  startTime?: number;
-};
+  Partial<{
+    uploadComplete: boolean;
+    progressPercentage: number;
+    eta: number;
+    startTime: number;
+  }>;
 
 @injectable()
 export class UppyModel {
@@ -158,6 +159,11 @@ export class UppyModel {
     this._uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
+        /*
+        image/png
+        video/webm
+        也就是 Mime
+        */
         const a = this.uppy.validateSingleFile({
           // 不一定有效 观察一段时间
           type: event.dataTransfer?.items[0].type || '',

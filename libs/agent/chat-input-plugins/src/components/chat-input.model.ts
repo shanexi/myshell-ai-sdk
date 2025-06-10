@@ -1,12 +1,18 @@
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel, MOCK_IMG } from '@myshell-run/common-ui';
+import { ChatCommonModel, MOCK_IMG, UppyState } from '@myshell-run/common-ui';
+import { createId } from '@paralleldrive/cuid2';
+import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
-import { Meta, UppyFile, Body } from '@uppy/core';
 
 export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
+
+export type PreviewItem = UppyState & {
+  previewType: FileKind;
+  label?: string;
+};
 
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
@@ -28,16 +34,18 @@ export class ChatInputModel {
     { type: 'message', name: 'preview.message1' },
   ]);
 
-  @observable previewItems = observable.array<Partial<UppyFile<Meta, Body>>>([
+  @observable uploadedItems = observable.array<UppyState>([
     {
-      type: 'png',
+      id: createId(),
+      type: 'image/png',
       name: 'a mock image',
       uploadURL: MOCK_IMG,
+      uploadComplete: true,
     },
     {
-      type: 'rtf',
+      id: createId(),
+      type: 'application/rtf',
       name: 'Untitled.rtf',
-      // desc: 'Rich Text File', // 使用 human-filetypes
     },
   ]);
 
@@ -47,6 +55,14 @@ export class ChatInputModel {
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
+  }
+
+  @computed get previewItems() {
+    return this.uploadedItems.map<PreviewItem>((item) => ({
+      ...item,
+      previewType: item.type != null ? fromMime(item.type) : FileKind.Unknown,
+      label: item.type && mimeData[item.type]?.label,
+    }));
   }
 
   @computed get isContextItemsEmpty() {
