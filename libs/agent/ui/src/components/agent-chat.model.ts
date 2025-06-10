@@ -28,7 +28,7 @@ export class AgentChatModel implements ChatInputHandlers {
   }
 
   *removeImagePreview(id: string) {
-    this.chatCommon.removeFile(id);
+    this.chatCommon.uppyModel.removeFile(id);
     yield;
   }
 
