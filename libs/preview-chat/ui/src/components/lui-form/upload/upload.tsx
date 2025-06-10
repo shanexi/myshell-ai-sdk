@@ -1,35 +1,62 @@
-import { cn } from '@myshell-run/common-ui';
-import { Upload as UploadIcon } from 'lucide-react';
+import { cn, formatEta, formatFileSize } from '@myshell-run/common-ui';
+import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
 import { UploadModel } from './upload.model';
 import { z } from 'zod';
 
-export const image_upload = z.object({
-  type: z.literal('object'),
+export const upload_schema = z.object({
   title: z.string(),
-  properties: z.object({
-    url: z.object({
-      type: z.literal('string'),
-    }),
-    title: z.object({
-      type: z.literal('string'),
+  description: z.string().optional(),
+  type: z.literal('array'),
+  items: z.object({
+    type: z.literal('object'),
+    properties: z.object({
+      // 参考 UppyFile 结构
+      file: z.object({
+        type: z.literal('object'),
+        properties: z.object({
+          uploadURL: z.object({
+            type: z.literal('string'),
+          }),
+          name: z.object({
+            type: z.literal('string'),
+          }),
+          // 单个大小限制
+          size: z
+            .object({
+              type: z.literal('number'),
+              maxLength: z.number(),
+            })
+            .optional(),
+          // 类型限制
+          type: z
+            .object({
+              type: z.literal('string'),
+              enum: z.array(z.string()),
+            })
+            .optional(),
+        }),
+      }),
     }),
   }),
+  maxItems: z.number(), // 上传数量限制
   examples: z
     .array(
       z.object({
-        url: z.string(),
-        title: z.string(),
+        file: z.object({
+          uploadURL: z.string(),
+          name: z.string(),
+        }),
       }),
     )
     .optional(),
 });
 
 export const Upload = observer<
-  z.infer<typeof image_upload> & { model: UploadModel }
->(({ model }) => {
+  z.infer<typeof upload_schema> & { model: UploadModel }
+>(({ model, ...props }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hiddenInputStyle = {
@@ -43,52 +70,101 @@ export const Upload = observer<
 
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.uppyModel.setup(dropTargetRef.current);
+    return model.uppyModel.setup(dropTargetRef.current, {
+      maxFileSize: props.items.properties.file.properties.size?.maxLength,
+      maxNumberOfFiles: props.maxItems,
+      allowedFileTypes: props.items.properties.file.properties.type?.enum,
+    });
   }, []);
+
   return (
     <div
       ref={dropTargetRef}
       className={cn(
         'rounded-C-button-lg-radius-v2',
         'p-spacing-lg-v2',
-        'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
+        model.uppyModel.isDraggingError
+          ? 'border border-Cr-border-critical-light-v2'
+          : 'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
       )}
-      onClick={() => inputRef.current?.click()}
+      onClick={() => {
+        if (model.uppyModel.uppyState.length > 0) {
+          return;
+        }
+        inputRef.current?.click();
+      }}
     >
-      {model.uppyModel.isDragging ? (
+      {model.file != null ? (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-spacing-md-v2">
+            <div className="relative">
+              <img
+                className={cn('h-[40px] w-[40px]', 'rounded-md-v2')}
+                alt={model.file?.name || 'uploaded file'}
+                src={model.file?.preview}
+              />
+              {/* 上传遮罩层表示进度 */}
+              {Boolean(model.file?.uploadComplete) === false && (
+                <div
+                  className="absolute right-0 bottom-0 left-0 bg-white/50 transition-all duration-300"
+                  style={{
+                    height: `${100 - (model.file?.progressPercentage || 0)}%`,
+                  }}
+                />
+              )}
+            </div>
+            <div className="flex flex-col gap-spacing-xxs-v2">
+              <div className="text-sm-medium text-Cr-text-default-light-v2">
+                {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
+              </div>
+              <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
+                {model.file?.uploadComplete
+                  ? `(${formatFileSize(model.file?.size)})`
+                  : formatEta(model.file.eta)}
+              </div>
+            </div>
+          </div>
+          <X
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              model.uppyModel.removeFile(model.file?.id);
+            }}
+            size={28}
+            strokeWidth={1.5}
+            className={cn(
+              'text-CCr-icon-button-plain-gray-fg_default-light-v2',
+              'hover:bg-Cr-alpha-black-5-light-v2 hover:text-Cr-text-critical-default-light-v2',
+              'cursor-pointer rounded-md-v2 p-1 transition-colors duration-200',
+            )}
+          />
+        </div>
+      ) : model.uppyModel.isDragging ? (
         <div
           className={cn(
-            'text-sm-medium flex items-center justify-center text-Cr-text-default-light-v2',
+            'text-sm-medium flex items-center justify-center',
             'h-[42px]',
           )}
         >
-          Move you files here
+          {model.uppyModel.isDraggingError ? (
+            <div className="text-Cr-text-critical-default-light-v2">
+              {model.uppyModel.draggingErrorDisplay}
+            </div>
+          ) : (
+            <div className="text-Cr-text-default-light-v2">
+              Move you files here
+            </div>
+          )}
         </div>
       ) : (
-        <div className="flex items-center gap-spacing-md-v2">
-          <div className="rounded-md-v2 bg-Cr-alpha-black-5-light-v2 p-[8px]">
-            <UploadIcon
-              className="text-Cr-Fg-subtle-light-v2"
-              size={24}
-              strokeWidth={1.5}
-            />
-          </div>
-          <div className="flex flex-col gap-spacing-xxs-v2">
-            <div className="text-sm-medium text-Cr-text-default-light-v2">
-              Drop a file or click to upload
-            </div>
-            <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
-              PNG, JPG, GIF up to 10MB
-            </div>
-          </div>
-        </div>
+        <EmptyUpload model={model} {...props} />
       )}
 
       <input
         ref={inputRef}
         type="file"
         name="files[]"
-        multiple={model.uppyModel.maxNumberOfFiles}
+        multiple={model.uppyModel.multiple}
         accept={model.uppyModel.accept}
         onChange={(e) => {
           model.uppyModel.uppy.log(
@@ -111,6 +187,33 @@ export const Upload = observer<
         }}
         style={hiddenInputStyle}
       />
+    </div>
+  );
+});
+
+const EmptyUpload = observer<
+  z.infer<typeof upload_schema> & { model: UploadModel }
+>(({ model, ...props }) => {
+  const { description = 'Drop a file or click to upload' } = props;
+  return (
+    <div className="flex items-center gap-spacing-md-v2">
+      <div className="rounded-md-v2 bg-Cr-alpha-black-5-light-v2 p-[8px]">
+        <UploadIcon
+          className="text-Cr-Fg-subtle-light-v2"
+          size={24}
+          strokeWidth={1.5}
+        />
+      </div>
+      <div className="flex flex-col gap-spacing-xxs-v2">
+        <div className="text-sm-medium text-Cr-text-default-light-v2">
+          {description}
+        </div>
+        <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
+          {model.uppyModel.allowedFileTypesDisplay}{' '}
+          {model.uppyModel.maxFileSizeDisplay &&
+            `up to ${model.uppyModel.maxFileSizeDisplay}`}
+        </div>
+      </div>
     </div>
   );
 });

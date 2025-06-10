@@ -212,6 +212,7 @@ specifiers:
   html-tags: ^3.3.1
   html-url-attributes: ^3.0.0
   html-webpack-plugin: ^5.5.0
+  human-filetypes: ^1.1.6
   husky: ^9.1.5
   immer: ^10.1.1
   inversify: ^6.2.1
@@ -501,6 +502,7 @@ dependencies:
   html-tags: 3.3.1
   html-url-attributes: 3.0.1
   html-webpack-plugin: 5.6.0_webpack@5.94.0
+  human-filetypes: 1.1.6
   husky: 9.1.5
   immer: 10.1.1
   inversify: 6.2.2_reflect-metadata@0.2.2
@@ -21546,6 +21548,10 @@ packages:
 
   /https/1.0.0:
     resolution: {integrity: sha512-4EC57ddXrkaF0x83Oj8sM6SLQHAWXw90Skqu2M4AEWENZ3F02dFJE/GARA8igO79tcgYqGrD7ae4f5L3um2lgg==}
+    dev: false
+
+  /human-filetypes/1.1.6:
+    resolution: {integrity: sha512-N5xoyuEAim+kVxxG7mtopUKQbDF1UxhydVUyBrdRIe21Y2kaQ6v+XmZAC36gA0cfnVT9klTGDBQQXT11Ge/HoQ==}
     dev: false
 
   /human-signals/1.1.1:

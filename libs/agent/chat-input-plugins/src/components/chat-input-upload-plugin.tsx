@@ -1,8 +1,11 @@
-import { cn, FilePreviewState, ImageState } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
+import { createId } from '@paralleldrive/cuid2';
+import { FileKind } from 'human-filetypes';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { ChatInputModel } from './chat-input.model';
+import { ChatInputModel, PreviewItem } from './chat-input.model';
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
@@ -14,30 +17,21 @@ export const ChatInputUploadPlugin = observer(() => {
       )}
     >
       {model.previewItems.map((item) => {
-        if (item.previewType === 'image') {
+        if (item.previewType === FileKind.Image) {
           return (
             <ImagePreview
               key={item.name}
-              id={item.name}
-              fileState={{
-                type: item.previewType,
-                preview: item.previewUrl,
-                uploadComplete: true,
-              }}
+              id={item.id || createId()}
+              previewItem={item}
             />
           );
         }
-        if (item.previewType === 'file') {
+        if (item.previewType === FileKind.Document) {
           return (
             <FilePreview
               key={item.name}
-              id={item.name}
-              fileState={{
-                type: item.previewType,
-                name: item.name,
-                desc: item.desc || '',
-                uploadComplete: true,
-              }}
+              id={item.id || createId()}
+              previewItem={item}
             />
           );
         }
@@ -48,65 +42,72 @@ export const ChatInputUploadPlugin = observer(() => {
 });
 
 const FilePreview: React.FC<{
-  fileState: FilePreviewState;
+  previewItem: PreviewItem;
   id: string;
-}> = ({ fileState, id }) => {
+}> = ({ previewItem, id }) => {
   return (
     <div
       className={cn(
-        'h-[56px] w-[156px] px-spacing-lg-v2',
+        'h-[56px] w-[156px]',
         'border border-Cr-border-default-light-v2',
         'bg-Cr-Bg-normal-primary-default-light-v2',
         'rounded-lg-v2',
-        'py-spacing-lg-v2',
-        'flex items-center',
         'relative',
         'group',
       )}
     >
       <div
         className={cn(
-          'rounded-C-button-sm-radius-v2 bg-Cr-utility-lake-blue-50-light-v2',
-          'h-[32px] w-[32px]',
-          'flex items-center justify-center',
-          'mr-spacing-lg-v2',
+          'px-spacing-lg-v2 py-spacing-lg-v2',
+          'flex items-center',
+          'overflow-hidden',
+          'h-full',
         )}
       >
-        <File color="#fff" />
-      </div>
-      <div>
-        <div className="description-lg-medium text-Cr-text-default-light-v2">
-          {fileState.name}
+        <div
+          className={cn(
+            'rounded-C-button-sm-radius-v2 bg-Cr-utility-lake-blue-50-light-v2',
+            'h-[32px] w-[32px]',
+            'flex items-center justify-center',
+            'mr-spacing-lg-v2',
+          )}
+        >
+          <File color="#fff" />
         </div>
-        <div className="description-lg-regular text-Cr-text-subtler-light-v2">
-          {fileState.desc}
+        <div className="overflow-hidden">
+          <div className="description-lg-medium text-Cr-text-default-light-v2">
+            {previewItem.name}
+          </div>
+          <div className="description-lg-regular truncate text-Cr-text-subtler-light-v2">
+            {previewItem.label}
+          </div>
         </div>
       </div>
       <Remove
         onRemove={() => {
           //
         }}
-        uploadComplete={fileState.uploadComplete}
+        uploadComplete={Boolean(previewItem.uploadComplete)}
       />
     </div>
   );
 };
 
-const ImagePreview: React.FC<{ fileState: ImageState; id: string }> = ({
-  fileState,
-  id,
-}) => {
+const ImagePreview: React.FC<{
+  previewItem: PreviewItem;
+  id: string;
+}> = ({ previewItem, id }) => {
   const model = useInjection(ChatInputModel);
   return (
     <div className="group relative flex-none">
       <img
         className={cn('h-[56px] w-[56px] rounded-xl-v2')}
         alt=""
-        src={fileState.preview}
+        src={previewItem.preview || previewItem.uploadURL || DEFAULT_AVATAR}
       />
       <Remove
         onRemove={() => model.removeImagePreview(id)}
-        uploadComplete={fileState.uploadComplete}
+        uploadComplete={Boolean(previewItem.uploadComplete)}
       />
     </div>
   );
@@ -133,7 +134,7 @@ export const Remove: React.FC<{
       {uploadComplete ? (
         <X size={12} />
       ) : (
-        <span className="loading loading-xs loading-spinner text-white"></span>
+        <span className="loading loading-xs loading-spinner text-Cr-Fg-subtle-light-v2"></span>
       )}
     </div>
   );

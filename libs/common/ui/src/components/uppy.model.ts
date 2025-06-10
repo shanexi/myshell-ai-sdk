@@ -1,70 +1,111 @@
-import { inject, injectable } from 'inversify';
-import Uppy from '@uppy/core';
+import { UploadEndpoint } from '@myshell-run/common-def';
+import { Body, Meta, Uppy, UppyFile } from '@uppy/core';
+import { Restrictions } from '@uppy/core/lib/Restricter';
 import DropTarget from '@uppy/drop-target';
 import ThumbnailGenerator from '@uppy/thumbnail-generator';
+import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 import XHR from '@uppy/xhr-upload';
-import { UploadEndpoint } from '@myshell-run/common-def';
-import { makeObservable, observable } from 'mobx';
-import { z } from 'zod';
+import { inject, injectable } from 'inversify';
+import { computed, makeObservable, observable } from 'mobx';
+import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 
-export const imageStateSchema = z.object({
-  type: z.literal('image'),
-  preview: z.string(),
-  uploadComplete: z.boolean(),
-});
-
-export type ImageState = z.infer<typeof imageStateSchema>;
-
-export const filePreviewStateSchema = z.object({
-  type: z.literal('file'),
-  name: z.string(),
-  desc: z.string(),
-  uploadComplete: z.boolean(),
-});
-
-export type FilePreviewState = z.infer<typeof filePreviewStateSchema>;
-
-export const fileStateSchema = z.discriminatedUnion('type', [
-  imageStateSchema,
-  filePreviewStateSchema,
-]);
-
-export type FileState = z.infer<typeof fileStateSchema>;
+export type UppyState = Partial<UppyFile<Meta, Body>> &
+  // 增加的都是为了 observable，因为嵌套无法被 observer 到
+  Partial<{
+    uploadComplete: boolean;
+    progressPercentage: number;
+    eta: number;
+    startTime: number;
+  }>;
 
 @injectable()
 export class UppyModel {
-  @observable uppyStateMap = new Map<string, FileState>();
+  /**
+   * 多文件的状态管理
+   */
+  @observable uppyStateMap = new Map<string, UppyState>();
   @observable isDragging = false;
-  #uppy?: Uppy;
+  @observable isDraggingError = false;
+  @observable draggingErrorDisplay: string | null = null;
+  @observable errorText: string | null = null;
+
+  @observable allowedFileTypes?: string[] | null;
+  @observable maxNumberOfFiles?: number | null;
+  @observable maxFileSize?: number | null;
+
+  private _uppy?: Uppy;
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
   }
 
-  get accept() {
-    return this.#uppy?.opts.restrictions?.allowedFileTypes?.join(', ');
+  @computed get uppyState() {
+    return Array.from(this.uppyStateMap as Map<string, UppyState>);
+  }
+
+  @computed get accept() {
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#unique_file_type_specifiers
+    const accept = this.allowedFileTypes?.join(',');
+    return accept;
+  }
+
+  @computed get allowedFileTypesDisplay() {
+    return getAllowedFileTypesDisplay(this.allowedFileTypes);
+  }
+
+  @computed get maxFileSizeDisplay() {
+    return formatFileSize(this.maxFileSize);
   }
 
   get uppy() {
-    if (!this.#uppy) {
+    if (!this._uppy) {
       throw new Error('uppy is not initialized, check if setupUppy is called');
     }
-    return this.#uppy;
+    return this._uppy;
   }
 
-  get maxNumberOfFiles() {
-    return this.#uppy?.opts.restrictions?.maxNumberOfFiles !== 1;
+  get multiple() {
+    return this.maxNumberOfFiles !== 1;
   }
 
-  removeFile(id: string) {
+  removeFile(id?: string) {
+    if (id == null) return;
+
     this.uppy?.removeFile(id);
     this.uppyStateMap.delete(id);
   }
 
-  setup(dropTarget: HTMLDivElement) {
-    this.#uppy = new Uppy({
+  setup(dropTarget: HTMLDivElement, restrictions?: Partial<Restrictions>) {
+    this.allowedFileTypes = restrictions?.allowedFileTypes;
+    this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
+    this.maxFileSize = restrictions?.maxFileSize;
+
+    this._uppy = new Uppy({
       autoProceed: true,
-      debug: true,
+      restrictions,
+      // debug: true,
+      logger: {
+        debug: (...args: any[]): void => {
+          console.debug(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+        warn: (...args: any[]): void => {
+          if (args[0].isRestriction > -1) {
+            this.errorText = args[0].message;
+          } else {
+            this.errorText = null;
+          }
+          console.warn(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+        error: (...args: any[]): void => {
+          console.error(`[Uppy] [${getTimeStamp()}]`, ...args);
+        },
+      },
+      onBeforeFileAdded: (file, files) => {
+        return !Object.hasOwn(files, file.id);
+      },
+      onBeforeUpload: (files) => {
+        return files;
+      },
     })
       .use(ThumbnailGenerator)
       .use(XHR, {
@@ -75,45 +116,82 @@ export class UppyModel {
     //   target: fileInput,
     //   pretty: true,
     // });
-    this.#uppy.on('thumbnail:generated', (file, preview) => {
-      // console.log('thumbnail:generated', file, preview);
+    this._uppy.on('thumbnail:generated', (file, preview) => {
+      this.uppy.log(`thumbnail:generated file ${file.name} preview ${preview}`);
       // TODO: 这里需要区分是图片还是文件
       this.uppyStateMap.set(file.id, {
-        type: 'image',
-        preview,
+        ...file,
         uploadComplete: false,
       });
     });
-    this.#uppy.on('progress', (progress) => {
-      // console.log('progress', progress);
-      Object.keys(this.#uppy?.getState().files || {}).forEach((fileId) => {
-        const file = this.#uppy?.getState().files[fileId];
+    this._uppy.on('progress', (progress) => {
+      this.uppy.log(`progress ${progress}`);
+      const now = Date.now();
+
+      Object.keys(this._uppy?.getState().files || {}).forEach((fileId) => {
+        const file = this._uppy?.getState().files[fileId];
         const prev = this.uppyStateMap.get(fileId) || {
-          type: 'image',
-          preview: file?.preview || '',
           uploadComplete: false,
         };
+
+        const progressPercentage = file?.progress.percentage || 0;
+        const startTime = prev.startTime || now;
+
+        // 计算 ETA
+        let eta: number | undefined;
+        if (progressPercentage > 0 && progressPercentage < 100) {
+          const elapsedTime = (now - startTime) / 1000; // 转换为秒
+          const remainingProgress = 100 - progressPercentage;
+          eta = Math.round(
+            (elapsedTime / progressPercentage) * remainingProgress,
+          );
+        }
+
         this.uppyStateMap.set(fileId, {
           ...prev,
           uploadComplete: file?.progress.uploadComplete || false,
+          progressPercentage,
+          eta,
+          startTime,
         });
       });
     });
-    this.#uppy.use(DropTarget, {
+    this._uppy.use(DropTarget, {
       target: dropTarget,
       onDragOver: (event) => {
+        /*
+        image/png
+        video/webm
+        也就是 Mime
+        */
+        const a = this.uppy.validateSingleFile({
+          // 不一定有效 观察一段时间
+          type: event.dataTransfer?.items[0].type || '',
+          name: '',
+          extension: '',
+          size: 0,
+        });
+        if (a != null) {
+          this.isDraggingError = true;
+          this.draggingErrorDisplay = a;
+        } else {
+          this.isDraggingError = false;
+          this.draggingErrorDisplay = null;
+        }
         this.isDragging = true;
       },
       onDragLeave: (event) => {
         this.isDragging = false;
+        this.isDraggingError = false;
       },
       onDrop: (event) => {
         this.isDragging = false;
+        this.isDraggingError = false;
       },
     });
 
     return () => {
-      this.#uppy = undefined;
+      this._uppy = undefined;
     };
   }
 }

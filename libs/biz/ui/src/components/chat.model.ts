@@ -53,7 +53,7 @@ export class ChatModel {
   }
 
   get maxNumberOfFiles() {
-    return this.chatCommon.maxNumberOfFiles;
+    return this.chatCommon.multiple;
   }
 
   get accept() {

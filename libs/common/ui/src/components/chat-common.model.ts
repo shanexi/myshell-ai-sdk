@@ -1,12 +1,12 @@
 import { MessageListContext, StrictMessage } from '@myshell-run/common-def';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
 import {
+  Delete,
   editable,
   EditableHandle,
   InferDoc,
   plainSchema,
   schema,
-  Delete,
 } from 'edix';
 import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable } from 'mobx';
@@ -34,29 +34,44 @@ export class ChatCommonModel {
   private edixHandle: EditableHandle | null = null;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
 
-  constructor(@inject(UppyModel) private uppyModel: UppyModel) {
+  constructor(@inject(UppyModel) public uppyModel: UppyModel) {
     makeObservable(this);
     this.edixRefPromise = new Promise<boolean>((resolve) => {
       this.edixRefResolve = resolve;
     });
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   @computed get isDragging() {
     return this.uppyModel.isDragging;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   @computed get uppyStateMap() {
     return this.uppyModel.uppyStateMap;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   get uppy() {
     return this.uppyModel.uppy;
   }
 
-  get maxNumberOfFiles() {
-    return this.uppyModel.maxNumberOfFiles;
+  /**
+   * @deprecated directly use uppyModel;
+   */
+  get multiple() {
+    return this.uppyModel.multiple;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   get accept() {
     return this.uppyModel.accept;
   }
@@ -82,10 +97,16 @@ export class ChatCommonModel {
     this.chatInputDoc = chatInputDoc;
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   setupUppy(dropTarget: HTMLDivElement) {
     return this.uppyModel.setup(dropTarget);
   }
 
+  /**
+   * @deprecated directly use uppyModel;
+   */
   removeFile(id: string) {
     this.uppyModel.removeFile(id);
   }
