@@ -25,6 +25,7 @@
     "@clerk/clerk-react": "^5.25.4",
     "@cloudflare/workers-types": "^4.20250214.0",
     "@effect/opentelemetry": "^0.45.5",
+    "@floating-ui/dom": "^1.7.1",
     "@floating-ui/react": "^0.27.8",
     "@headlessui/react": "^2.2.0",
     "@hono/clerk-auth": "^2.0.0",
@@ -56,7 +57,6 @@
     "@nrwl/next": "15.9.7",
     "@nrwl/node": "15.9.7",
     "@nrwl/nx-plugin": "15.9.7",
-    "@nrwl/react": "15.9.7",
     "@nrwl/storybook": "15.9.7",
     "@nrwl/web": "15.9.7",
     "@nrwl/webpack": "15.9.7",
@@ -322,6 +322,7 @@
     }
   },
   "devDependencies": {
+    "@nrwl/react": "15.9.7",
     "@storybook/react": "^8.6.12",
     "echarts-for-react": "^3.0.2",
     "edix": "file:.yalc/edix",

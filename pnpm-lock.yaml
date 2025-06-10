@@ -54,6 +54,7 @@ specifiers:
   '@clerk/clerk-react': ^5.25.4
   '@cloudflare/workers-types': ^4.20250214.0
   '@effect/opentelemetry': ^0.45.5
+  '@floating-ui/dom': ^1.7.1
   '@floating-ui/react': ^0.27.8
   '@headlessui/react': ^2.2.0
   '@hono/clerk-auth': ^2.0.0
@@ -347,6 +348,7 @@ dependencies:
   '@clerk/clerk-react': 5.25.4_upmzqgzhjrquwzo2dphtigtdgi
   '@cloudflare/workers-types': 4.20250313.0
   '@effect/opentelemetry': 0.45.5_pnr2wzqrnk6ndg6tuzgwnridke
+  '@floating-ui/dom': 1.7.1
   '@floating-ui/react': 0.27.8_upmzqgzhjrquwzo2dphtigtdgi
   '@headlessui/react': 2.2.0_upmzqgzhjrquwzo2dphtigtdgi
   '@hono/clerk-auth': 2.0.0_rymmfltnjdlfb3wtwbpdpra76i
@@ -5290,16 +5292,22 @@ packages:
       '@floating-ui/utils': 0.2.9
     dev: false
 
+  /@floating-ui/core/1.7.1:
+    resolution: {integrity: sha512-azI0DrjMMfIug/ExbBaeDVJXcY0a7EPvPjb2xAJPa4HeimBX+Z18HK8QQR3jb6356SnDDdxx+hinMLcJEDdOjw==}
+    dependencies:
+      '@floating-ui/utils': 0.2.9
+    dev: false
+
   /@floating-ui/dom/1.1.1:
     resolution: {integrity: sha512-TpIO93+DIujg3g7SykEAGZMDtbJRrmnYRCNYSjJlvIbGhBjRSNTLVbNeDQBrzy9qDgUbiWdc7KA0uZHZ2tJmiw==}
     dependencies:
       '@floating-ui/core': 1.6.9
     dev: false
 
-  /@floating-ui/dom/1.6.13:
-    resolution: {integrity: sha512-umqzocjDgNRGTuO7Q8CU32dkHkECqI8ZdMZ5Swb6QAM0t5rnlrN3lGo1hdpscRd3WS8T6DKYK4ephgIH9iRh3w==}
+  /@floating-ui/dom/1.7.1:
+    resolution: {integrity: sha512-cwsmW/zyw5ltYTUeeYJ60CnQuPqmGwuGVhG9w0PRaRKkAyi38BT5CKrpIbb+jtahSwUl04cWzSx9ZOIxeS6RsQ==}
     dependencies:
-      '@floating-ui/core': 1.6.9
+      '@floating-ui/core': 1.7.1
       '@floating-ui/utils': 0.2.9
     dev: false
 
@@ -5309,7 +5317,7 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.6.13
+      '@floating-ui/dom': 1.7.1
       react: 19.0.0
       react-dom: 19.0.0_react@19.0.0
     dev: false

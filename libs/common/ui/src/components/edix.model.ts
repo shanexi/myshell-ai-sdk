@@ -8,7 +8,7 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { action, flow, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 
 export const chatInputDocSchema = schema({
@@ -47,6 +47,10 @@ export class EdixModel {
     ],
     [{ type: 'text', text: 'Type @ to reference context' }],
   ]);
+
+  @observable atRect: DOMRect | null = null;
+  @observable isAtContextMenuShow = false;
+
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
   private edixRef?: RefObject<HTMLDivElement>;
@@ -58,6 +62,16 @@ export class EdixModel {
     this.edixRefPromise = new Promise<boolean>((resolve) => {
       this.edixRefResolve = resolve;
     });
+  }
+
+  @action.bound
+  setAtRect(rect: DOMRect | null) {
+    this.atRect = rect;
+  }
+
+  @action.bound
+  setAtContextMenuShow(isShow: boolean) {
+    this.isAtContextMenuShow = isShow;
   }
 
   @action.bound

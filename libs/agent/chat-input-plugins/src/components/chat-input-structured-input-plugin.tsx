@@ -1,11 +1,12 @@
 import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
+import { X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
-import { PropsWithChildren, useEffect, useRef } from 'react';
-import { ChatInputModel, ContextType } from './chat-input.model';
+import { useEffect, useRef } from 'react';
 import { IconMap } from './chat-input-context-plugin';
-import { X } from 'lucide-react';
+import { ChatInputModel } from './chat-input.model';
+import { MentionDropdown, users } from './at-context-menu';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,7 +14,30 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 
   useEffect(() => {
     if (!ref.current) return;
-    return model.chatCommon.edixModel.setEdixRefStructured(ref);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === '@') {
+        // 延迟获取位置，确保 @ 字符已经插入
+        setTimeout(() => {
+          const selection = window.getSelection();
+          if (selection && selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            model.chatCommon.edixModel.setAtRect(rect);
+            model.chatCommon.edixModel.setAtContextMenuShow(true);
+          }
+        }, 0);
+      }
+    };
+
+    const element = ref.current;
+    element.addEventListener('keydown', handleKeyDown);
+
+    const dispose = model.chatCommon.edixModel.setEdixRefStructured(ref);
+    return () => {
+      element.removeEventListener('keydown', handleKeyDown);
+      dispose?.();
+    };
   }, []);
 
   const value = model.chatCommon.edixModel.chatInputDoc;
@@ -63,6 +87,21 @@ export const ChatInputStructuredInputPlugin = observer(() => {
   color: gray;
 }
 `}</style>
+      {model.chatCommon.edixModel.isAtContextMenuShow &&
+        model.chatCommon.edixModel.atRect && (
+          <MentionDropdown
+            users={users}
+            onSelect={() => {
+              model.chatCommon.edixModel.setAtRect(null);
+              model.chatCommon.edixModel.setAtContextMenuShow(false);
+            }}
+            onClose={() => {
+              model.chatCommon.edixModel.setAtRect(null);
+              model.chatCommon.edixModel.setAtContextMenuShow(false);
+            }}
+            anchorRect={model.chatCommon.edixModel.atRect}
+          />
+        )}
     </>
   );
 });
