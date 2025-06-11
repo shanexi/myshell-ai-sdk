@@ -4,47 +4,63 @@ import { useInjection } from 'inversify-react';
 import { z } from 'zod';
 import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
+import { LuiFormModel } from './lui-form.model';
+import { observer } from 'mobx-react-lite';
+import { Formik } from 'formik';
+import { useEffect } from 'react';
 
-export const LuiForm: React.FC<{
+export const LuiForm = observer<{
+  model: LuiFormModel;
   jsonschema: z.infer<typeof jsonschema>;
-  uischema: Record<
-    string,
-    {
-      variant: string;
-    }
-  >;
-}> = ({ jsonschema: jsonschemaData, uischema }) => {
+  uischema: Record<string, { variant: string }>;
+}>(({ model, jsonschema: jsonschemaData, uischema }) => {
   jsonschemaData = jsonschema.parse(jsonschemaData);
   return (
-    <div className="flex h-full flex-col">
-      <FormHeader>{jsonschemaData.title}</FormHeader>
-      <div
-        className={cn(
-          'bg-white',
-          'px-[16px] py-[12px]',
-          'flex flex-col gap-spacing-3xl-v2',
-          'flex-1 overflow-auto',
-        )}
-      >
-        {Object.keys(jsonschemaData.properties).map((k) => {
-          const item = jsonschemaData.properties[k];
-          const variant = uischema[k].variant;
-          return (
-            <LuiFormItemWrapper
-              key={k}
-              name={k}
-              label={item.title}
-              description={item.description}
+    <Formik
+      enableReinitialize
+      initialValues={{}}
+      validateOnChange={false}
+      onSubmit={(values) => {
+        console.log('submit', values);
+      }}
+    >
+      {(fProp) => {
+        useEffect(() => {
+          return model.setFormikProps(fProp);
+        }, []);
+        return (
+          <div className="flex h-full flex-col">
+            <FormHeader>{jsonschemaData.title}</FormHeader>
+            <div
+              className={cn(
+                'bg-white',
+                'px-[16px] py-[12px]',
+                'flex flex-col gap-spacing-3xl-v2',
+                'flex-1 overflow-auto',
+              )}
             >
-              <LuiFormItem {...item} variant={variant} />
-            </LuiFormItemWrapper>
-          );
-        })}
-      </div>
-      <LuiFormFooter />
-    </div>
+              {Object.keys(jsonschemaData.properties).map((k) => {
+                const item = jsonschemaData.properties[k];
+                const variant = uischema[k].variant;
+                return (
+                  <LuiFormItemWrapper
+                    key={k}
+                    name={k}
+                    label={item.title}
+                    description={item.description}
+                  >
+                    <LuiFormItem {...item} variant={variant} />
+                  </LuiFormItemWrapper>
+                );
+              })}
+            </div>
+            <LuiFormFooter />
+          </div>
+        );
+      }}
+    </Formik>
   );
-};
+});
 
 export const LuiFormItemWrapper = (props: {
   label: string;

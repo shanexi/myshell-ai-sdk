@@ -8,7 +8,7 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, flow, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 
 export const chatInputDocSchema = schema({

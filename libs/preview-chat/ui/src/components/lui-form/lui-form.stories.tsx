@@ -5,10 +5,13 @@ import { previewChatUIModule } from '../../preview-chat-ui.module';
 import { LuiForm } from './lui-form';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
+import { LuiFormModel } from './lui-form.model';
 
 const container = new Container();
 container.load(previewChatUIModule);
 container.load(commonUIModule);
+
+const luiFormModel = container.get<LuiFormModel>(LuiFormModel);
 
 const meta: Meta<typeof LuiForm> = {
   component: LuiForm,
@@ -31,6 +34,7 @@ export default meta;
 
 export const Primary: StoryObj<typeof LuiForm> = {
   args: {
+    model: luiFormModel,
     uischema: demo_uischema,
     jsonschema: demo_jsonschema,
   },
