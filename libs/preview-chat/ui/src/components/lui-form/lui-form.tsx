@@ -7,9 +7,12 @@ import { Button } from './button';
 
 export const LuiForm: React.FC<{
   jsonschema: z.infer<typeof json_schema>;
-  uischema: {
-    variants: Record<string, string>;
-  };
+  uischema: Record<
+    string,
+    {
+      variant: string;
+    }
+  >;
 }> = ({ jsonschema, uischema }) => {
   jsonschema = json_schema.parse(jsonschema);
   return (
@@ -25,10 +28,11 @@ export const LuiForm: React.FC<{
       >
         {Object.keys(jsonschema.properties).map((k) => {
           const item = jsonschema.properties[k];
-          const variant = uischema.variants[k];
+          const variant = uischema[k].variant;
           return (
             <LuiFormItemWrapper
               key={k}
+              name={k}
               label={item.title}
               description={item.description}
             >
@@ -44,13 +48,17 @@ export const LuiForm: React.FC<{
 
 export const LuiFormItemWrapper = (props: {
   label: string;
+  name: string;
   description?: string;
   children: React.ReactNode;
 }) => {
-  const { label, description, children } = props;
+  const { label, description, children, name } = props;
   return (
     <div className="">
-      <label className="text-sm-medium text-Cr-text-default-light-v2">
+      <label
+        htmlFor={name}
+        className="text-sm-medium text-Cr-text-default-light-v2"
+      >
         {label}
       </label>
       {description && (

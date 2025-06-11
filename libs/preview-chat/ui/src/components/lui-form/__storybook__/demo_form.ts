@@ -2,10 +2,14 @@ import { json_schema } from '@myshell-run/common-def';
 import { z } from 'zod';
 
 export const demo_uischema = {
-  variants: {
-    description: 'string_textarea',
-    title: 'object_image_upload',
-    style: 'object_image_choice',
+  description: {
+    variant: 'string_textarea',
+  },
+  title: {
+    variant: 'object_image_upload',
+  },
+  style: {
+    variant: 'object_image_choice',
   },
 };
 export const demo_jsonschema = {
