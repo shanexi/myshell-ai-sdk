@@ -3,13 +3,16 @@ import { PreviewChatModel } from './components/preview-chat-model';
 import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { addLuiFormItemPluginFactory } from '@myshell-run/common-ui';
-import { upload_schema, Upload } from './components/lui-form/upload/upload';
+import { Upload } from './components/lui-form/upload/upload';
 import { Textarea } from './components/lui-form/textarea/textarea';
 import {
   image_choice,
   ImageChoice,
 } from './components/lui-form/image-choice/image-choice';
-import { UploadModel } from './components/lui-form/upload/upload.model';
+import {
+  UploadModel,
+  upload_schema,
+} from './components/lui-form/upload/upload.model';
 import { z } from 'zod';
 import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
 

@@ -5,6 +5,10 @@ import { z } from 'zod';
 export function addLuiFormItemPluginFactory(bind: interfaces.Bind) {
   return function addMessagePlugin<S = z.Schema<unknown>, M = unknown>(
     variant: string,
+    // todo: 添加 vlaue/onChange
+    // 但是如果有其他操作的联动呢？光光 onChange 就不够了
+    // 要不传递个 formik ref?
+    // 反正 name 应该是传递给 form item 的呢
     Component: React.ComponentType<S & { model: M }>,
     schema: z.Schema<S>,
     modelIdentifier?: interfaces.ServiceIdentifier,

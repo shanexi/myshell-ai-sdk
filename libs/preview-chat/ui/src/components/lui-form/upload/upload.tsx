@@ -3,57 +3,12 @@ import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
-import { UploadModel } from './upload.model';
+import { UploadModel, upload_schema } from './upload.model';
 import { z } from 'zod';
 
-export const upload_schema = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  type: z.literal('array'),
-  items: z.object({
-    type: z.literal('object'),
-    properties: z.object({
-      // 参考 UppyFile 结构
-      file: z.object({
-        type: z.literal('object'),
-        properties: z.object({
-          uploadURL: z.object({
-            type: z.literal('string'),
-          }),
-          name: z.object({
-            type: z.literal('string'),
-          }),
-          // 单个大小限制
-          size: z
-            .object({
-              type: z.literal('number'),
-              maxLength: z.number(),
-            })
-            .optional(),
-          // 类型限制
-          type: z
-            .object({
-              type: z.literal('string'),
-              enum: z.array(z.string()),
-            })
-            .optional(),
-        }),
-      }),
-    }),
-  }),
-  maxItems: z.number(), // 上传数量限制
-  examples: z
-    .array(
-      z.object({
-        file: z.object({
-          uploadURL: z.string(),
-          name: z.string(),
-        }),
-      }),
-    )
-    .optional(),
-});
-
+// 和 form 结合，一般是 value/onChange
+// 我可以不传递吗？直接通过 formId? 获取一个 form model。感觉这个方案不好，太依赖 id 了
+// 目前 form item 已经通过 useId() 来管理 form item 对应的 component model 实例了，感觉不能再引入
 export const Upload = observer<
   z.infer<typeof upload_schema> & { model: UploadModel }
 >(({ model, ...props }) => {

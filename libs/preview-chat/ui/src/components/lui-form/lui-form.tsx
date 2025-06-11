@@ -50,9 +50,9 @@ export const LuiFormItemWrapper = (props: {
   const { label, description, children } = props;
   return (
     <div className="">
-      <div className="text-sm-medium text-Cr-text-default-light-v2">
+      <label className="text-sm-medium text-Cr-text-default-light-v2">
         {label}
-      </div>
+      </label>
       {description && (
         <div className="text-sm-regular mt-[4px] text-Cr-text-subtler-light-v2">
           {description}

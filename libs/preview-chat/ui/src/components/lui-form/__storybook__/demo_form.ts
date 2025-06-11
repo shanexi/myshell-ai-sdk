@@ -43,15 +43,23 @@ export const demo_jsonschema = {
       // todo: placeholder 用 example？
     },
     title: {
-      type: 'object',
       title: 'Title',
-      description: 'This is a simple description.',
-      properties: {
-        title: {
-          type: 'string',
-        },
-        url: {
-          type: 'string',
+      type: 'array',
+      maxItems: 1,
+      items: {
+        type: 'object',
+        properties: {
+          file: {
+            type: 'object',
+            properties: {
+              uploadURL: {
+                type: 'string',
+              },
+              name: {
+                type: 'string',
+              },
+            },
+          },
         },
       },
     },
