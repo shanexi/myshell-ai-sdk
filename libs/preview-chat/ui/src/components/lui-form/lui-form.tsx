@@ -1,4 +1,4 @@
-import { json_schema } from '@myshell-run/common-def';
+import { jsonschema } from '@myshell-run/common-def';
 import { cn, LuiFormItem } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { z } from 'zod';
@@ -6,18 +6,18 @@ import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 
 export const LuiForm: React.FC<{
-  jsonschema: z.infer<typeof json_schema>;
+  jsonschema: z.infer<typeof jsonschema>;
   uischema: Record<
     string,
     {
       variant: string;
     }
   >;
-}> = ({ jsonschema, uischema }) => {
-  jsonschema = json_schema.parse(jsonschema);
+}> = ({ jsonschema: jsonschemaData, uischema }) => {
+  jsonschemaData = jsonschema.parse(jsonschemaData);
   return (
     <div className="flex h-full flex-col">
-      <FormHeader>Image Configuration</FormHeader>
+      <FormHeader>{jsonschemaData.title}</FormHeader>
       <div
         className={cn(
           'bg-white',
@@ -26,8 +26,8 @@ export const LuiForm: React.FC<{
           'flex-1 overflow-auto',
         )}
       >
-        {Object.keys(jsonschema.properties).map((k) => {
-          const item = jsonschema.properties[k];
+        {Object.keys(jsonschemaData.properties).map((k) => {
+          const item = jsonschemaData.properties[k];
           const variant = uischema[k].variant;
           return (
             <LuiFormItemWrapper

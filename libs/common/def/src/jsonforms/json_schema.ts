@@ -24,7 +24,7 @@ const array_schema = z.object({
   maxItems: z.number().optional(),
 });
 
-export const json_schema = z.object({
+export const jsonschema = z.object({
   type: z.literal('object'),
   title: z.string(),
   properties: z.record(

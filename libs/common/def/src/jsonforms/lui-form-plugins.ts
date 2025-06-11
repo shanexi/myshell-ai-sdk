@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { json_schema } from './json_schema';
+import { jsonschema } from './json_schema';
 
 export const LuiFormVariantModelFactory = Symbol.for(
   'LuiFormVariantModelFactory',
 );
 
 export type LuiFormItemJsonSchema = z.infer<
-  typeof json_schema
+  typeof jsonschema
 >['properties'][string];
 
 export const LuiFormItem = Symbol('LuiFormItem');

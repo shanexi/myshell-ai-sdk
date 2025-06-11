@@ -1,4 +1,4 @@
-import { json_schema } from '@myshell-run/common-def';
+import { jsonschema } from '@myshell-run/common-def';
 import { z } from 'zod';
 
 export const demo_uischema = {
@@ -90,4 +90,4 @@ export const demo_jsonschema = {
       ],
     },
   },
-} satisfies z.infer<typeof json_schema>;
+} satisfies z.infer<typeof jsonschema>;
