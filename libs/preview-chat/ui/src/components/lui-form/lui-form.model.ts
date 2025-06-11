@@ -15,7 +15,7 @@ export class LuiFormModel {
     });
   }
 
-  setFormikProps(formikProps: FormikProps<T>) {
+  setFormikProps(formikProps: FormikProps<unknown>) {
     this.formikProps = formikProps;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.isFormikReadyPromiseResolve!('');

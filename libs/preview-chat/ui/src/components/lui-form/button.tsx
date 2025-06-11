@@ -1,5 +1,6 @@
 import { cn } from '@myshell-run/common-ui';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { ButtonHTMLAttributes } from 'react';
 
 const buttonVariants = cva(
   cn(
@@ -26,19 +27,13 @@ const buttonVariants = cva(
   },
 );
 
-export type ButtonProps = {
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-} & VariantProps<typeof buttonVariants>;
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
 
 export const Button = (props: ButtonProps) => {
-  const { children, variant, className, onClick } = props;
+  const { children, variant, className, ...rest } = props;
   return (
-    <button
-      className={cn(buttonVariants({ variant }), className)}
-      onClick={onClick}
-    >
+    <button className={cn(buttonVariants({ variant }), className)} {...rest}>
       {children}
     </button>
   );

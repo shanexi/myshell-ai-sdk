@@ -4,7 +4,6 @@ import { z } from 'zod';
 export const image_choice = z.object({
   type: z.literal('object'),
   title: z.string(),
-  variant: z.string(),
   properties: z.object({
     url: z.object({
       type: z.literal('string'),

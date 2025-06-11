@@ -6,7 +6,7 @@ import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
 import { observer } from 'mobx-react-lite';
-import { Formik } from 'formik';
+import { Formik, Form, Field, FieldProps } from 'formik';
 import { useEffect } from 'react';
 
 export const LuiForm = observer<{
@@ -29,33 +29,44 @@ export const LuiForm = observer<{
           return model.setFormikProps(fProp);
         }, []);
         return (
-          <div className="flex h-full flex-col">
-            <FormHeader>{jsonschemaData.title}</FormHeader>
-            <div
-              className={cn(
-                'bg-white',
-                'px-[16px] py-[12px]',
-                'flex flex-col gap-spacing-3xl-v2',
-                'flex-1 overflow-auto',
-              )}
-            >
-              {Object.keys(jsonschemaData.properties).map((k) => {
-                const item = jsonschemaData.properties[k];
-                const variant = uischema[k].variant;
-                return (
-                  <LuiFormItemWrapper
-                    key={k}
-                    name={k}
-                    label={item.title}
-                    description={item.description}
-                  >
-                    <LuiFormItem {...item} variant={variant} />
-                  </LuiFormItemWrapper>
-                );
-              })}
+          // https://formik.org/docs/api/form
+          // is identical to this...
+          //  <form onReset={formikProps.handleReset} onSubmit={formikProps.handleSubmit} {...props} />
+          <Form>
+            <div className="flex h-full flex-col">
+              <FormHeader>{jsonschemaData.title}</FormHeader>
+              <div
+                className={cn(
+                  'bg-white',
+                  'px-[16px] py-[12px]',
+                  'flex flex-col gap-spacing-3xl-v2',
+                  'flex-1 overflow-auto',
+                )}
+              >
+                {Object.keys(jsonschemaData.properties).map((k) => {
+                  const item = jsonschemaData.properties[k];
+                  const variant = uischema[k].variant;
+                  return (
+                    <Field key={k} name={k}>
+                      {(fieldProp: FieldProps) => {
+                        return (
+                          <LuiFormItemWrapper
+                            key={k}
+                            name={k}
+                            label={item.title}
+                            description={item.description}
+                          >
+                            <LuiFormItem {...item} variant={variant} />
+                          </LuiFormItemWrapper>
+                        );
+                      }}
+                    </Field>
+                  );
+                })}
+              </div>
+              <LuiFormFooter />
             </div>
-            <LuiFormFooter />
-          </div>
+          </Form>
         );
       }}
     </Formik>
@@ -119,8 +130,15 @@ export const LuiFormFooter = () => {
         'px-spacing-xl-v2 pt-spacing-lg-v2 pb-spacing-sm-v2',
       )}
     >
-      <Button onClick={() => model.setLuiFormOpen(false)}>Cancel</Button>
-      <Button variant="primary" className="ml-[8px] flex-auto">
+      <Button onClick={() => model.setLuiFormOpen(false)} type="button">
+        Cancel
+      </Button>
+      <Button
+        variant="primary"
+        type="submit"
+        className="ml-[8px] flex-auto"
+        onClick={model.submitLuiForm}
+      >
         Generate
       </Button>
     </div>

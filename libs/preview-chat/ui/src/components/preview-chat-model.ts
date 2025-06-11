@@ -13,6 +13,7 @@ import {
   demo_jsonschema,
   demo_uischema,
 } from './lui-form/__storybook__/demo_form';
+import { LuiFormModel } from './lui-form/lui-form.model';
 
 @injectable()
 export class PreviewChatModel
@@ -29,6 +30,7 @@ export class PreviewChatModel
   @observable isLuiFormOpen = false;
 
   constructor(
+    @inject(LuiFormModel) public luiFormModel: LuiFormModel,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {
@@ -72,4 +74,12 @@ export class PreviewChatModel
   *removeImagePreview(id: string) {
     yield;
   }
+
+  /**
+   * @deprecated 因为 type='submit' 不需要 explicity click submit
+   */
+  submitLuiForm = async () => {
+    await this.luiFormModel.isFormikReadyPromise;
+    // this.luiFormModel.formikProps?.submitForm();
+  };
 }
