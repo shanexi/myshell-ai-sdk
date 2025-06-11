@@ -1,10 +1,7 @@
 import { cn } from '@myshell-run/common-ui';
-import { useState } from 'react';
+import { FieldProps } from 'formik';
 
-export const Textarea = () => {
-  const [value, setValue] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
-  );
+export const Textarea: React.FC<FieldProps> = ({ field }) => {
   const maxLength = 300;
   return (
     <div
@@ -17,8 +14,9 @@ export const Textarea = () => {
       )}
     >
       <textarea
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        name={field.name}
+        value={field.value}
+        onChange={field.onChange}
         className={cn(
           'resize-none',
           'focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none',
@@ -33,7 +31,7 @@ export const Textarea = () => {
           'text-right',
         )}
       >
-        {value.length}/{maxLength}
+        {field.value.length}/{maxLength}
       </div>
     </div>
   );
