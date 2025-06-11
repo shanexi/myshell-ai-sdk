@@ -5,12 +5,10 @@ import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
 import { UploadModel, upload_schema } from './upload.model';
 import { z } from 'zod';
+import { FieldProps } from 'formik';
 
-// 和 form 结合，一般是 value/onChange
-// 我可以不传递吗？直接通过 formId? 获取一个 form model。感觉这个方案不好，太依赖 id 了
-// 目前 form item 已经通过 useId() 来管理 form item 对应的 component model 实例了，感觉不能再引入
 export const Upload = observer<
-  z.infer<typeof upload_schema> & { model: UploadModel }
+  z.infer<typeof upload_schema> & { model: UploadModel } & FieldProps
 >(({ model, ...props }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
