@@ -1,10 +1,9 @@
-import { cn, LuiFormItem } from '@myshell-run/common-ui';
-import { Button } from './button';
 import { json_schema } from '@myshell-run/common-def';
-import { z } from 'zod';
-import { Drawer } from 'vaul';
+import { cn, LuiFormItem } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
+import { z } from 'zod';
 import { PreviewChatModel } from '../preview-chat-model';
+import { Button } from './button';
 
 export const LuiForm: React.FC<{
   jsonschema: z.infer<typeof json_schema>;
