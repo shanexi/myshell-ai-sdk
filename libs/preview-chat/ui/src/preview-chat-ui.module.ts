@@ -1,7 +1,6 @@
 import { ContainerModule, interfaces } from 'inversify';
 import { PreviewChatModel } from './components/preview-chat-model';
 import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
-import { UploadEndpoint } from '@myshell-run/common-def';
 import { addLuiFormItemPluginFactory } from '@myshell-run/common-ui';
 import { Upload } from './components/lui-form/upload/upload';
 import { Textarea } from './components/lui-form/textarea/textarea';
@@ -29,7 +28,7 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
   bind<MessageItemHandlers>(MessageItemHandlers).toDynamicValue((ctx) =>
     ctx.container.get(PreviewChatModel),
   );
-  bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
+  // bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
 
   bind(LuiFormModel).toSelf().inTransientScope();
   const addLuiFormItem = addLuiFormItemPluginFactory(bind);

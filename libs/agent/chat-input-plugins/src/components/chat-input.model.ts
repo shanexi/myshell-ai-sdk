@@ -5,7 +5,7 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 
-export const ChatInputHandlers = Symbol.for('ChatInputHandlers');
+export const ChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export type PreviewItem = UppyState & {

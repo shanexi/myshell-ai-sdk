@@ -3,10 +3,11 @@ import {
   ChatInputActionPlugin,
   ChatInputAdvancedInputPlugin,
   ChatInputHandlers,
+  ChatInputPlugin,
   ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
-import { ChatInputPlugin } from '@myshell-run/common-def';
+// import { ChatInputPlugin } from '@myshell-run/common-def';
 import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';

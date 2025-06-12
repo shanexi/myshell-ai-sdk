@@ -5,3 +5,4 @@ export * from './components/chat-input-upload-plugin';
 export * from './components/chat-input-context-plugin';
 export * from './components/chat-input-textarea-plugin';
 export * from './components/chat-input-advanced-input-plugin';
+export * from './components/chat-input-plugin-slot';

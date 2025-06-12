@@ -1,4 +1,5 @@
-import { ChatInputPluginSlot, cn } from '@myshell-run/common-ui';
+import { cn } from '@myshell-run/common-ui';
+import { ChatInputPluginSlot } from '@myshell-run/agent-chat-input-plugins';
 
 export const ChatInput = () => {
   return (
