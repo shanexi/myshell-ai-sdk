@@ -16,7 +16,11 @@ export const LuiFormDrawer = observer(() => {
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
         <Drawer.Content className="fixed right-0 bottom-0 left-0 mt-24 flex h-[80%] flex-col rounded-t-[10px] bg-gray-100 outline-none lg:h-[320px]">
           <div className="flex-1 overflow-y-auto rounded-t-[10px]">
-            <LuiForm jsonschema={model.jsonschema} uischema={model.uischema} />
+            <LuiForm
+              model={model.luiFormModel}
+              jsonschema={model.jsonschema}
+              uischema={model.uischema}
+            />
           </div>
         </Drawer.Content>
       </Drawer.Portal>

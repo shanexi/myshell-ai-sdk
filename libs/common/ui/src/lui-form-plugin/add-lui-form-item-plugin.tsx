@@ -1,11 +1,16 @@
 import { LuiFormItem } from '@myshell-run/common-def';
+import { FieldProps } from 'formik';
 import { interfaces } from 'inversify';
 import { z } from 'zod';
 
 export function addLuiFormItemPluginFactory(bind: interfaces.Bind) {
   return function addMessagePlugin<S = z.Schema<unknown>, M = unknown>(
     variant: string,
-    Component: React.ComponentType<S & { model: M }>,
+    // todo: 添加 vlaue/onChange
+    // 但是如果有其他操作的联动呢？光光 onChange 就不够了
+    // 要不传递个 formik ref?
+    // 反正 name 应该是传递给 form item 的呢
+    Component: React.ComponentType<S & { fieldProps: FieldProps; model: M }>,
     schema: z.Schema<S>,
     modelIdentifier?: interfaces.ServiceIdentifier,
   ) {
@@ -26,11 +31,13 @@ export function addLuiFormItemPluginFactory(bind: interfaces.Bind) {
     }
     bind<LuiFormItem<S, M>>(LuiFormItem).toConstantValue({
       variant,
-      render: (data, model) => {
+      render: (data, fieldProps, model) => {
         // todo: development 可以这样，但是 production 得 fallback
         const res = schema.safeParse(data);
         if (res.success) {
-          return <Component {...res.data} model={model} />;
+          return (
+            <Component {...res.data} fieldProps={fieldProps} model={model} />
+          );
         } else {
           return (
             <span>

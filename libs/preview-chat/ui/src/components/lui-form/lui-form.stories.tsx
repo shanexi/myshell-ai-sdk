@@ -1,14 +1,17 @@
+import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { previewChatUIModule } from '../../preview-chat-ui.module';
-import { LuiForm } from './lui-form';
-import { commonUIModule } from '@myshell-run/common-ui';
+import { PreviewChatModel } from '../preview-chat-model';
 import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
+import { LuiForm } from './lui-form';
 
 const container = new Container();
 container.load(previewChatUIModule);
 container.load(commonUIModule);
+
+const previewChatModel = container.get(PreviewChatModel);
 
 const meta: Meta<typeof LuiForm> = {
   component: LuiForm,
@@ -31,6 +34,7 @@ export default meta;
 
 export const Primary: StoryObj<typeof LuiForm> = {
   args: {
+    model: previewChatModel.luiFormModel,
     uischema: demo_uischema,
     jsonschema: demo_jsonschema,
   },

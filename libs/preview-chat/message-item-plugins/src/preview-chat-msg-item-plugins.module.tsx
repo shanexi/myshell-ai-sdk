@@ -22,5 +22,5 @@ export function bindPreviewChatMsgItemPlugins(bind: interfaces.Bind) {
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 
   // registy message by mdc directive
-  const register = setupMdc(bind);
+  // const register = setupMdc(bind);
 }

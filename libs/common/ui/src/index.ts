@@ -12,6 +12,6 @@ export * from './mock-generator';
 export * from './message-plugin/message-item';
 export * from './components/chat-message-list';
 export * from './message-plugin/add-message-plugin';
-export * from './chat-input-plugin/chat-input-plugin-slot';
+// export * from './chat-input-plugin/chat-input-plugin-slot';
 export * from './lui-form-plugin/add-lui-form-item-plugin';
 export * from './lui-form-plugin/lui-form-item';

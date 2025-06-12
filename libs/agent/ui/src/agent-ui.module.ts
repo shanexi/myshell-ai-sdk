@@ -1,5 +1,4 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
-import { UploadEndpoint } from '@myshell-run/common-def';
 import { ContainerModule, interfaces } from 'inversify';
 import { AgentChatModel } from './components/agent-chat.model';
 
@@ -12,5 +11,5 @@ export function bindAgentUI(bind: interfaces.Bind) {
   bind(ChatInputHandlers).toDynamicValue((ctx) =>
     ctx.container.get(AgentChatModel),
   );
-  bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
+  // bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
 }

@@ -374,6 +374,80 @@ message item 如果要通信到 ChatInput（e.g. 选择、引用等操作
 2. 保留扩展性
 3. 兼顾以上追求最大的开发体验
 
+--- 
+
+# LUI Form plugins
+
+Chat plugins
+
+- 作为第3屏，这块做成插件的价值并没有 chat message/input 大
+- 主要是探索 json schema 标准化和定制之间的关系
+- 以及更强的管控力
+
+> LUI Form 目前也有2版协议，但是一直难以融合
+
+---
+
+# LUI Form plugins - APIs
+
+LUI Form plugins
+
+注册
+```ts
+const addLuiFormItem = addLuiFormItemPluginFactory(bind);
+// 完整版参数接收 1. variant 2. 组件 3. json_schema（注意对定制字段严格要求） 4. model
+addLuiFormItem<z.infer<typeof upload_schema>, UploadModel>(
+  'object_image_upload',
+  Upload,
+  upload_schema,
+  UploadModel,
+);
+addLuiFormItem('string_textarea', Textarea, z.any());
+addLuiFormItem('object_image_choice', ImageChoice, image_choice);
+```
+
+---
+
+# LUI Form plugins - APIs
+
+LUI Form plugins
+
+generic `S` 和 `M` 都是为了 `Component: React.ComponentType<S & { model: M }>,`
+```ts
+function addMessagePlugin<S = z.Schema<unknown>, M = unknown>(
+    variant: string,
+    Component: React.ComponentType<S & { model: M }>,
+    schema: z.Schema<S>,
+    modelIdentifier?: interfaces.ServiceIdentifier,
+  )
+```
+
+---
+
+# LUI Form plugins - 限制
+
+LUI Form plugins
+
+一些统一（限制）逻辑
+
+- 针对 form item，会对 schema 进行校验
+```ts
+const res = schema.safeParse(data);
+```
+
+- 针对 form 的 json schema，会对 json schema 进行一层过滤（通过 parse）
+> 也就是即使 form item jsonschema 有对字段，如果自定义太多（在顶层 json_schema 没有放行），也会接收不到。
+> 通过这个限制来降低任意自定义 json_schema 的问题。
+> 如果要自定义，放到 uischema 里，保持 jsonschema 的标准性
+> 实际上，uischema 的字段就是不同的前端组件实现所需的额外字段，需要静态管理
+```ts
+export const LuiForm: React.FC<{
+  jsonschema: z.infer<typeof json_schema>;
+  uischema: { variants: Record<string, string> };
+}> = ({ jsonschema, uischema }) => {
+  jsonschema = json_schema.parse(jsonschema);
+```
+
 ---
 
 # 复用主站组件和适配插件
@@ -392,5 +466,3 @@ preview chat
 - 
 
 ---
-
-# 启动主站

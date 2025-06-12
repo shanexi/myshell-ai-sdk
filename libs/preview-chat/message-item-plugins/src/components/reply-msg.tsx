@@ -1,7 +1,6 @@
 import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 import { RemarkMsg } from '@myshell-run/common-ui';
 import { AgentMessage } from '../types';
-import { MessageItemHandlers } from './message-item-handlers';
 import { useInjection } from 'inversify-react';
 import { MessageItemModel } from './message-item.model';
 

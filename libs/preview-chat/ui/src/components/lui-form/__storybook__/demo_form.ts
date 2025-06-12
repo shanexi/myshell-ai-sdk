@@ -1,11 +1,15 @@
-import { json_schema } from '@myshell-run/common-def';
+import { jsonschema } from '@myshell-run/common-def';
 import { z } from 'zod';
 
 export const demo_uischema = {
-  variants: {
-    description: 'string_textarea',
-    title: 'object_image_upload',
-    style: 'object_image_choice',
+  description: {
+    variant: 'string_textarea',
+  },
+  title: {
+    variant: 'object_image_upload',
+  },
+  style: {
+    variant: 'object_image_choice',
   },
 };
 export const demo_jsonschema = {
@@ -43,15 +47,23 @@ export const demo_jsonschema = {
       // todo: placeholder 用 example？
     },
     title: {
-      type: 'object',
       title: 'Title',
-      description: 'This is a simple description.',
-      properties: {
-        title: {
-          type: 'string',
-        },
-        url: {
-          type: 'string',
+      type: 'array',
+      maxItems: 1,
+      items: {
+        type: 'object',
+        properties: {
+          file: {
+            type: 'object',
+            properties: {
+              uploadURL: {
+                type: 'string',
+              },
+              name: {
+                type: 'string',
+              },
+            },
+          },
         },
       },
     },
@@ -78,4 +90,4 @@ export const demo_jsonschema = {
       ],
     },
   },
-} satisfies z.infer<typeof json_schema>;
+} satisfies z.infer<typeof jsonschema>;

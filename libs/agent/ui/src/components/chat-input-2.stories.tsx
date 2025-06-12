@@ -2,7 +2,7 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ChatInput } from './chat-input';
 import { container } from './stories.utils';
-import { ChatInputPlugin } from '@myshell-run/common-def';
+import { ChatInputPlugin } from '@myshell-run/agent-chat-input-plugins';
 import {
   ChatInputTextareaPlugin,
   ChatInputActionPlugin,

@@ -192,7 +192,10 @@ export class UppyModel {
         this.isDraggingError = false;
       },
     });
-
+    this._uppy.on('complete', (result) => {
+      console.log('successful files:', result.successful);
+      console.log('failed files:', result.failed);
+    });
     return () => {
       this._uppy = undefined;
     };

@@ -16,11 +16,19 @@ const object_schema = z.object({
   examples: z.array(z.object({}).passthrough()).optional(),
 });
 
-export const json_schema = z.object({
+const array_schema = z.object({
+  type: z.literal(type.Enum.array),
+  title: z.string(),
+  description: z.string().optional(),
+  items: z.object({}).passthrough(),
+  maxItems: z.number().optional(),
+});
+
+export const jsonschema = z.object({
   type: z.literal('object'),
   title: z.string(),
   properties: z.record(
     z.string(),
-    z.discriminatedUnion('type', [object_schema, string_schema]),
+    z.discriminatedUnion('type', [object_schema, string_schema, array_schema]),
   ),
 });
