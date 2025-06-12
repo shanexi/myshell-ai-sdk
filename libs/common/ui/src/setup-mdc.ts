@@ -6,9 +6,6 @@ import {
 import { interfaces } from 'inversify';
 import { RemarkableManager } from './remark/remark-manager';
 
-// 全局唯一，不管调用多少次  setupMdc
-const registerMap: RegisterMap = new Map();
-
 export const setupMdc = (
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
@@ -40,7 +37,11 @@ export const setupMdc = (
       };
     });
   }
+  // 全局唯一，不管调用多少次  setupMdc
+  // 放这里而不是放在 global 是为了 HMR（虽然有 HMR API，但是这样简单）
+  let registerMap: RegisterMap;
   if (!isBound(RegisterMap)) {
+    registerMap = new Map();
     bind(RegisterMap).toConstantValue(registerMap);
   }
 

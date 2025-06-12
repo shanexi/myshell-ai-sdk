@@ -1,5 +1,9 @@
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel, UppyState } from '@myshell-run/common-ui';
+import {
+  ChatCommonModel,
+  ChatInputDoc,
+  UppyState,
+} from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
@@ -16,7 +20,15 @@ export type PreviewItem = UppyState & {
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
 
+  /**
+   * @description chat input 字符串， eg.g chat-input-textarea-plugin 和 chat-input-advanced-input-plugin
+   */
   sendText(text: string): AsyncGenerator;
+
+  /**
+   * @description chat input 结构化数据， eg.g chat-input-structured-input-plugin
+   */
+  sendChatInputDoc(chatInputDoc: ChatInputDoc): AsyncGenerator;
 
   removeImagePreview(id: string): Generator;
 }
@@ -70,6 +82,21 @@ export class ChatInputModel {
 
     for await (const _ of this.handlers.sendText(
       this.chatCommon.edixModel.inputText,
+    )) {
+      // TODO 不能，全部交给 edix#onChange 管理了
+      // 应该封装下，不让外部操作
+      // this.chatCommon.setInputText('');
+      await this.chatCommon.edixModel.clearEdix();
+    }
+  }
+
+  async sendChatInputDoc() {
+    if (isEmpty(this.chatCommon.edixModel.chatInputDoc)) {
+      return;
+    }
+
+    for await (const _ of this.handlers.sendChatInputDoc(
+      this.chatCommon.edixModel.chatInputDoc,
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作

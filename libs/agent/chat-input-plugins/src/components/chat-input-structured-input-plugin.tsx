@@ -58,7 +58,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
           if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             if (!ref.current) return;
-            model.sendText();
+            model.sendChatInputDoc();
           }
         }}
         aria-placeholder="Write a message"

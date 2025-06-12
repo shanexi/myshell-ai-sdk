@@ -4,7 +4,7 @@ import {
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-item-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
@@ -20,6 +20,44 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     public factory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
+  }
+
+  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
+    const msgId = createId();
+    const replyMsgId = createId();
+
+    // 先简单变成字符串
+    const text = chatInputDoc
+      .map((l) =>
+        l
+          .map((w) => {
+            if (w.type === 'text') {
+              return w.text;
+            }
+            if (w.type === 'context') {
+              return `\`${w.data.content}\``;
+            }
+            return ' ';
+          })
+          .join(''),
+      )
+      .join('\n');
+
+    this.chatCommon.appendMsg({
+      key: msgId,
+      text,
+      type: OWN_MESSAGE_TYPE,
+    });
+
+    this.replyMsg = `::x-polling{#${replyMsgId} timeLeft=${this.seconds}}`;
+    this.chatCommon.appendMsg({
+      key: replyMsgId,
+      text: this.replyMsg,
+      type: REPLY_MESSAGE_TYPE,
+    });
+    this.startPolling(replyMsgId);
+
+    yield;
   }
 
   *removeImagePreview(id: string): Generator {
