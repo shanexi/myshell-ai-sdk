@@ -9,6 +9,8 @@ import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
+  if (model.previewItems.length === 0) return null;
+
   return (
     <div
       className={cn(

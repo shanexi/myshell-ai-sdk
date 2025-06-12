@@ -60,7 +60,8 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     yield;
   }
 
-  *removeImagePreview(id: string): Generator {
+  *removeImagePreview(id: string) {
+    this.chatCommon.uppyModel.removeFile(id);
     yield;
   }
 

@@ -14,7 +14,7 @@ export const Chat = observer(() => {
     return model.chatCommon.uppyModel.setup(dropTargetRef.current);
   }, []);
   return (
-    <div ref={dropTargetRef} className="flex h-full flex-col">
+    <div ref={dropTargetRef} className="relative flex h-full flex-col">
       <ChatMessageList
         chatCommonModel={model.chatCommon}
         className="flex flex-grow flex-col overflow-auto px-[8px]"

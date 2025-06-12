@@ -18,6 +18,9 @@ export type PreviewItem = UppyState & {
 };
 
 export interface ChatInputHandlers {
+  /**
+   * @deprecated agent chat 不再支持 clear
+   */
   clear(): AsyncGenerator;
 
   /**
@@ -72,7 +75,10 @@ export class ChatInputModel {
   }
 
   get showSendButton() {
-    return !isEmpty(this.chatCommon.edixModel.inputText);
+    return (
+      !isEmpty(this.chatCommon.edixModel.inputText) ||
+      !isEmpty(this.chatCommon.edixModel.chatInputDoc)
+    );
   }
 
   async sendText() {
@@ -105,6 +111,9 @@ export class ChatInputModel {
     }
   }
 
+  /**
+   * @deprecated agent chat 不再支持 clear
+   */
   async clear() {
     for await (const _ of this.handlers.clear()) {
       //
