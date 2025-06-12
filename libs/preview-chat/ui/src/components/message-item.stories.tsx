@@ -1,11 +1,11 @@
-import { commonUIModule, MessageItem } from '@myshell-run/common-ui';
+import { commonUIModule, MessageItem, setupMdc } from '@myshell-run/common-ui';
 import {
   OWN_MESSAGE_TYPE,
   previewChatMsgItemPluginsModule,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/preview-chat-message-item-plugins';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Container } from 'inversify';
+import { Container, ContainerModule } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { previewChatUIModule } from '../preview-chat-ui.module';
 
@@ -13,6 +13,10 @@ const container = new Container();
 container.load(previewChatMsgItemPluginsModule);
 container.load(previewChatUIModule);
 container.load(commonUIModule);
+const mod = new ContainerModule((bind) => {
+  const register = setupMdc(bind);
+});
+container.load(mod);
 
 const meta: Meta<typeof MessageItem> = {
   component: MessageItem,
