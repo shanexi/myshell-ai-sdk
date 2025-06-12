@@ -4,7 +4,6 @@ import {
   ChatInputAdvancedInputPlugin,
   ChatInputHandlers,
   ChatInputPlugin,
-  ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
 // import { ChatInputPlugin } from '@myshell-run/common-def';
@@ -16,6 +15,9 @@ import { agentUIModule } from '../../agent-ui.module';
 import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
 import { UploadEndpoint } from '@myshell-run/common-def';
+import { previewChatUIModule } from '@myshell-run/preview-chat-ui';
+import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-item-plugins';
+import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
 
 const storyModule = new ContainerModule(
   (
@@ -40,6 +42,9 @@ container.load(agentUIModule);
 container.load(commonUIModule);
 container.load(agentMsgItemPluginsModule);
 container.load(agentChatInputPluginsModule);
+container.load(previewChatUIModule);
+container.load(previewChatMsgItemPluginsModule);
+container.load(previewChatInputPluginsModule);
 container.load(storyModule);
 
 const meta: Meta<typeof ShellAgentChat> = {

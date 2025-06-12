@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
-export const ChatInputHandlers = Symbol.for('PreviewChatInputHandlers');
+export const ChatInputHandlers = Symbol('ChatInputHandlers');
 
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;

@@ -1,5 +1,16 @@
 import { Chat } from '../chat';
+import { Chat as PreviewChat } from '@myshell-run/preview-chat-ui';
+import { cn } from '@myshell-run/common-ui';
 
 export const ShellAgentChat = () => {
-  return <Chat />;
+  return (
+    <div className={cn('flex h-full w-full')}>
+      <div className={cn('flex-1 border border-gray-400')}>
+        <Chat />
+      </div>
+      <div className={cn('flex-1 border border-gray-400')}>
+        <PreviewChat />
+      </div>
+    </div>
+  );
 };
