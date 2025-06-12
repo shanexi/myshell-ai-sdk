@@ -6,10 +6,14 @@ import { previewChatUIModule } from '../../preview-chat-ui.module';
 import { PreviewChatModel } from '../preview-chat-model';
 import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
 import { LuiForm } from './lui-form';
+import { UploadEndpoint } from '@myshell-run/common-def';
 
 const container = new Container();
 container.load(previewChatUIModule);
 container.load(commonUIModule);
+container
+  .bind(UploadEndpoint)
+  .toConstantValue('http://localhost:3333/api/upload');
 
 const previewChatModel = container.get(PreviewChatModel);
 

@@ -46,15 +46,30 @@ function makeConfig() {
         titlePrefix: 'agent-chat-input-plugins',
       },
       {
-        directory: '../libs/biz/ui/src',
+        directory: '../libs/preview-chat/ui/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
-        titlePrefix: 'biz-ui',
+        titlePrefix: 'preview-chat-ui',
       },
       {
-        directory: '../libs/biz/message-item-plugins/src',
+        directory: '../libs/preview-chat/message-item-plugins/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
-        titlePrefix: 'biz-message-item-plugins',
+        titlePrefix: 'preview-chat-message-item-plugins',
       },
+      {
+        directory: '../libs/preview-chat/chat-input-plugins/src',
+        files: '**/*.stories.@(js|jsx|ts|tsx)',
+        titlePrefix: 'preview-chat-input-plugins',
+      },
+      // {
+      //   directory: '../libs/biz/ui/src',
+      //   files: '**/*.stories.@(js|jsx|ts|tsx)',
+      //   titlePrefix: 'biz-ui',
+      // },
+      // {
+      //   directory: '../libs/biz/message-item-plugins/src',
+      //   files: '**/*.stories.@(js|jsx|ts|tsx)',
+      //   titlePrefix: 'biz-message-item-plugins',
+      // },
     ],
     addons: [
       '@storybook/addon-essentials',

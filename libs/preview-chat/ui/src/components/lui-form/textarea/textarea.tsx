@@ -1,7 +1,10 @@
 import { cn } from '@myshell-run/common-ui';
 import { FieldProps } from 'formik';
 
-export const Textarea: React.FC<FieldProps> = ({ field }) => {
+export const Textarea: React.FC<{
+  fieldProps: FieldProps;
+}> = ({ fieldProps }) => {
+  const { field } = fieldProps;
   const maxLength = 300;
   return (
     <div

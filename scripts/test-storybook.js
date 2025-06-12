@@ -22,10 +22,13 @@ function run(name, port) {
   console.timeEnd(`test-storybook ${name}`);
 }
 
-run('biz-ui', 4600);
-run('biz-message-item-plugins', 4610);
+// run('biz-ui', 4600);
+// run('biz-message-item-plugins', 4610);
 run('agent-ui', 4500);
 run('agent-message-item-plugins', 4510);
 run('agent-chat-input-plugins', 4520);
+run('preview-chat-ui', 4600);
+run('preview-chat-message-item-plugins', 4610);
+run('preview-chat-input-plugins', 4620);
 
 console.log('\x1b[32m%s\x1b[0m', 'done');
