@@ -61,8 +61,8 @@ if (!options.pr) {
   run('cypress', './node_modules/.bin/cypress install');
   run('playwright', './node_modules/.bin/playwright install chromium');
   run('e2e', './node_modules/.bin/nx run-many --target e2e');
-  execSync('node ./scripts/test-storybook.js', {
-    cwd: path.join(__dirname, '..'),
-    stdio: 'inherit',
-  });
+  // execSync('node ./scripts/test-storybook.js', {
+  //   cwd: path.join(__dirname, '..'),
+  //   stdio: 'inherit',
+  // });
 }

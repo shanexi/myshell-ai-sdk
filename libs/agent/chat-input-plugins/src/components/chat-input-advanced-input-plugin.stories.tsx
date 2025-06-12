@@ -46,6 +46,8 @@ export default meta;
 
 export const Primary: StoryObj<typeof ChatInputAdvancedInputPlugin> = {
   args: {},
+  // 似乎 cypress 不能 test 这个
+  // TODO: 后面迁移到 chromatic
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 

@@ -6,10 +6,15 @@ import { Container } from 'inversify';
 import { previewChatUIModule } from '../../../preview-chat-ui.module';
 import { upload_schema, UploadModel } from './upload.model';
 import { z } from 'zod';
+import { UploadEndpoint } from '@myshell-run/common-def';
 
 const container = new Container();
 container.load(commonUIModule);
 container.load(previewChatUIModule);
+container
+  .bind(UploadEndpoint)
+  .toConstantValue('http://localhost:3333/api/upload');
+
 const meta: Meta<typeof Upload> = {
   component: Upload,
   decorators: [

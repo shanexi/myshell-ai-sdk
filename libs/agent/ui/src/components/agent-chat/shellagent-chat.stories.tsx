@@ -15,6 +15,7 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import { agentUIModule } from '../../agent-ui.module';
 import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
+import { UploadEndpoint } from '@myshell-run/common-def';
 
 const storyModule = new ContainerModule(
   (
@@ -23,6 +24,7 @@ const storyModule = new ContainerModule(
     isBound: interfaces.IsBound,
     rebind: interfaces.Rebind,
   ) => {
+    bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
     rebind(ChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
     rebind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([

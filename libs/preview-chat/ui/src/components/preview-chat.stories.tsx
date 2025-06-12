@@ -6,12 +6,16 @@ import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { previewChatUIModule } from '../preview-chat-ui.module';
 import { Chat } from './chat';
+import { UploadEndpoint } from '@myshell-run/common-def';
 
 const container = new Container();
 container.load(commonUIModule);
 container.load(previewChatUIModule);
 container.load(previewChatInputPluginsModule);
 container.load(previewChatMsgItemPluginsModule);
+container
+  .bind(UploadEndpoint)
+  .toConstantValue('http://localhost:3333/api/upload');
 
 const meta: Meta<typeof Chat> = {
   component: Chat,
