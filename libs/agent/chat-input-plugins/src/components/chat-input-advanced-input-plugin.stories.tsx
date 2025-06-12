@@ -4,12 +4,15 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import { agentChatInputPluginsModule } from '../agent-chat-input-plugins.module';
 import { ChatInputAdvancedInputPlugin } from './chat-input-advanced-input-plugin';
 import { ChatInputHandlers } from './chat-input.model';
-import { commonUIModule } from '@myshell-run/common-ui';
+import { ChatInputDoc, commonUIModule } from '@myshell-run/common-ui';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { userEvent, within } from '@storybook/test';
 import { expect } from '@storybook/test';
 
 class SomeChatInputHandler implements ChatInputHandlers {
+  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
+    yield;
+  }
   *removeImagePreview(id: string) {
     yield;
   }
