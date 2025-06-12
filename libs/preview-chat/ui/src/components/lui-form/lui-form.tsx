@@ -53,7 +53,7 @@ export const LuiForm = observer<{
                   const variant = uischema[k].variant;
                   return (
                     <Field key={k} name={k}>
-                      {(fieldProp: FieldProps) => {
+                      {(fieldProps: FieldProps) => {
                         return (
                           <LuiFormItemWrapper
                             key={k}
@@ -63,7 +63,7 @@ export const LuiForm = observer<{
                           >
                             <LuiFormItem
                               {...item}
-                              {...fieldProp}
+                              fieldProps={fieldProps}
                               variant={variant}
                             />
                           </LuiFormItemWrapper>

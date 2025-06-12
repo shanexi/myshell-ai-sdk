@@ -13,8 +13,6 @@ export const previewChatInputPluginsModule = new ContainerModule(
 export function bindPreviewChatInputPlugins(bind: interfaces.Bind) {
   bind(ChatInputModel).toSelf().inSingletonScope();
   bind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
-    // ChatInputContextPlugin,
-    // ChatInputUploadPlugin,
     ChatInputAdvancedInputPlugin,
     ChatInputActionPlugin,
   ]);

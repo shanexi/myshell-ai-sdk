@@ -76,23 +76,6 @@ export class ChatInputModel {
     }
   }
 
-  /**
-   * @deprecated 暂时还没使用 目前用的 plainSchema 会在内部转换成 string（`js`）
-   */
-  async sendChatInputDoc() {
-    if (isEmpty(this.chatCommon.chatInputDoc)) {
-      return;
-    }
-    const text = this.chatCommon.chatInputDoc
-      .map((line) => line.map((v) => v.text).join(' '))
-      .join('\n');
-
-    for await (const _ of this.handlers.sendText(text)) {
-      // this.chatCommon.setInputText('');
-      this.chatCommon.setChatInputDoc([]);
-    }
-  }
-
   async clear() {
     for await (const _ of this.handlers.clear()) {
       //

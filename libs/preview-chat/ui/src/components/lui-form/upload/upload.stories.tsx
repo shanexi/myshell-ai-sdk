@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Upload, upload_schema } from './upload';
+import { Upload } from './upload';
 import { Provider } from 'inversify-react';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
 import { previewChatUIModule } from '../../../preview-chat-ui.module';
-import { UploadModel } from './upload.model';
+import { upload_schema, UploadModel } from './upload.model';
 import { z } from 'zod';
 
 const container = new Container();
@@ -43,7 +43,6 @@ export const Primary: StoryObj<typeof Upload> = {
               },
               type: {
                 type: 'string',
-                // enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
                 enum: ['image/*', '.jpg', '.jpeg', '.png', '.gif'],
               },
               size: {

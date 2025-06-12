@@ -8,8 +8,8 @@ import { z } from 'zod';
 import { FieldProps } from 'formik';
 
 export const Upload = observer<
-  z.infer<typeof upload_schema> & { model: UploadModel } & FieldProps
->(({ model, ...props }) => {
+  z.infer<typeof upload_schema> & { model: UploadModel; fieldProps: FieldProps }
+>(({ model, fieldProps, ...props }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hiddenInputStyle = {
