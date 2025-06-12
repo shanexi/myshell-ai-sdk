@@ -25,8 +25,13 @@ function registerMesssageItem(bind: interfaces.Bind) {
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 }
 
-function registerMdc(bind: interfaces.Bind) {
-  const register = setupMdc(bind);
+function registerMdc(
+  bind: interfaces.Bind,
+  unbind: interfaces.Unbind,
+  isBound: interfaces.IsBound,
+  rebind: interfaces.Rebind,
+) {
+  const register = setupMdc(bind, unbind, isBound, rebind);
   // 涉及到了 JSX，可能会影响 unit test perf
   register('x-checklist', Checklist);
   register('x-checklist-item', ChecklistItem, ChecklistItemModel);
@@ -39,11 +44,16 @@ function registerMdc(bind: interfaces.Bind) {
 
 export const agentMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
-    bindAgentMsgItemPlugins(bind);
+    bindAgentMsgItemPlugins(bind, unbind, isBound, rebind);
   },
 );
 
-export function bindAgentMsgItemPlugins(bind: interfaces.Bind) {
+export function bindAgentMsgItemPlugins(
+  bind: interfaces.Bind,
+  unbind: interfaces.Unbind,
+  isBound: interfaces.IsBound,
+  rebind: interfaces.Rebind,
+) {
   registerMesssageItem(bind);
-  registerMdc(bind);
+  registerMdc(bind, unbind, isBound, rebind);
 }

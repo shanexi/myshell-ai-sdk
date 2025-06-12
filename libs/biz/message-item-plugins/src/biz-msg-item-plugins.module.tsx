@@ -35,7 +35,7 @@ function legacy(bind: interfaces.Bind) {
 export const bizMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
     legacy(bind);
-    const register = setupMdc(bind);
+    const register = setupMdc(bind, unbind, isBound, rebind);
     // 涉及到了 JSX，可能会影响 unit test perf
     register('x-timer', Timer, ExecutingMsgModel);
     register('interactive-component', Counter);

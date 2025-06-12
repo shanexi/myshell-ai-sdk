@@ -13,8 +13,8 @@ const container = new Container();
 container.load(previewChatMsgItemPluginsModule);
 container.load(previewChatUIModule);
 container.load(commonUIModule);
-const mod = new ContainerModule((bind) => {
-  const register = setupMdc(bind);
+const mod = new ContainerModule((bind, unbind, isBound, rebind) => {
+  const register = setupMdc(bind, unbind, isBound, rebind);
 });
 container.load(mod);
 

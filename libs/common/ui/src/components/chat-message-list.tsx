@@ -1,15 +1,14 @@
 import { MessageListContext, StrictMessage } from '@myshell-run/common-def';
 import {
-  type VirtuosoMessageListMethods,
   VirtuosoMessageList,
   VirtuosoMessageListLicense,
+  type VirtuosoMessageListMethods,
 } from '@virtuoso.dev/message-list';
 import { CSSProperties, useEffect, useRef } from 'react';
 import { ChatCommonModel } from './chat-common.model';
 import { cn } from '../utils';
 import { MessageItem } from '../message-plugin/message-item';
 
-// TODO 这块代码应该也能 common
 export const ChatMessageList: React.FC<{
   chatCommonModel: ChatCommonModel;
   className?: string;
