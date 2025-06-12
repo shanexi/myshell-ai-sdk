@@ -1,24 +1,20 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, HiddenInputFile } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ArrowUp, BrushCleaning, Mic } from 'lucide-react';
+import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ChatInputModel } from './chat-input.model';
 
 export const ChatInputActionPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
   return (
-    <div
-      className={cn(
-        'flex items-center justify-between',
-        // 'my-spacing-xs-v2'
-      )}
-    >
-      <BrushCleaning
-        onClick={() => model.clear()}
-        strokeWidth={1.5}
-        size={36}
-        className="cursor-pointer p-[7px]"
-      />
+    <div className={cn('flex items-center justify-between')}>
+      <HiddenInputFile uppyModel={model.chatCommon.uppyModel}>
+        <CirclePlus
+          strokeWidth={1.5}
+          size={22}
+          className="cursor-pointer text-CCr-icon-button-plain-fg_default-light-v2"
+        />
+      </HiddenInputFile>
       {model.showSendButton ? (
         <div
           onClick={() => model.sendText()}
@@ -33,7 +29,11 @@ export const ChatInputActionPlugin = observer(() => {
           <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-light-v2" />
         </div>
       ) : (
-        <Mic strokeWidth={1.5} size={36} className="cursor-pointer p-[7px]" />
+        <Mic
+          strokeWidth={1.5}
+          size={28}
+          className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-light-v2"
+        />
       )}
     </div>
   );

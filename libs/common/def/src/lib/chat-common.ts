@@ -1,1 +1,1 @@
-export const ChatCommonModelFactory = Symbol.for('ChatCommonModelFactory');
+export const ChatCommonModelFactory = Symbol('ChatCommonModelFactory');

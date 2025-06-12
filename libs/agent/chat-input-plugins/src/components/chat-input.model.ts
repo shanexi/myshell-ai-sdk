@@ -1,11 +1,15 @@
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel, UppyState } from '@myshell-run/common-ui';
+import {
+  ChatCommonModel,
+  ChatInputDoc,
+  UppyState,
+} from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 
-export const ChatInputHandlers = Symbol.for('AgentChatInputHandlers');
+export const ChatInputHandlers = Symbol('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export type PreviewItem = UppyState & {
@@ -14,9 +18,20 @@ export type PreviewItem = UppyState & {
 };
 
 export interface ChatInputHandlers {
+  /**
+   * @deprecated agent chat 不再支持 clear
+   */
   clear(): AsyncGenerator;
 
+  /**
+   * @description chat input 字符串， eg.g chat-input-textarea-plugin 和 chat-input-advanced-input-plugin
+   */
   sendText(text: string): AsyncGenerator;
+
+  /**
+   * @description chat input 结构化数据， eg.g chat-input-structured-input-plugin
+   */
+  sendChatInputDoc(chatInputDoc: ChatInputDoc): AsyncGenerator;
 
   removeImagePreview(id: string): Generator;
 }
@@ -60,22 +75,45 @@ export class ChatInputModel {
   }
 
   get showSendButton() {
-    return !isEmpty(this.chatCommon.inputText);
+    return (
+      !isEmpty(this.chatCommon.edixModel.inputText) ||
+      !isEmpty(this.chatCommon.edixModel.chatInputDoc)
+    );
   }
 
   async sendText() {
-    if (isEmpty(this.chatCommon.inputText)) {
+    if (isEmpty(this.chatCommon.edixModel.inputText)) {
       return;
     }
 
-    for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
+    for await (const _ of this.handlers.sendText(
+      this.chatCommon.edixModel.inputText,
+    )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.clearEdix();
+      await this.chatCommon.edixModel.clearEdix();
     }
   }
 
+  async sendChatInputDoc() {
+    if (isEmpty(this.chatCommon.edixModel.chatInputDoc)) {
+      return;
+    }
+
+    for await (const _ of this.handlers.sendChatInputDoc(
+      this.chatCommon.edixModel.chatInputDoc,
+    )) {
+      // TODO 不能，全部交给 edix#onChange 管理了
+      // 应该封装下，不让外部操作
+      // this.chatCommon.setInputText('');
+      await this.chatCommon.edixModel.clearEdix();
+    }
+  }
+
+  /**
+   * @deprecated agent chat 不再支持 clear
+   */
   async clear() {
     for await (const _ of this.handlers.clear()) {
       //

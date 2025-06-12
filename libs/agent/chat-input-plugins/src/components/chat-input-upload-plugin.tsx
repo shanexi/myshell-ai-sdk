@@ -9,6 +9,8 @@ import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
+  if (model.previewItems.length === 0) return <span />;
+
   return (
     <div
       className={cn(
@@ -113,7 +115,7 @@ const ImagePreview: React.FC<{
   );
 };
 
-export const Remove: React.FC<{
+const Remove: React.FC<{
   onRemove: () => void;
   uploadComplete: boolean;
 }> = ({ onRemove, uploadComplete }) => {

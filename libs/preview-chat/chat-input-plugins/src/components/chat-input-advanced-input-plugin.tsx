@@ -11,10 +11,10 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
 
   useEffect(() => {
     if (!ref.current) return;
-    return model.chatCommon.setEdixRef(ref);
+    return model.chatCommon.edixModel.setEdixRef(ref);
   }, []);
 
-  const value = model.chatCommon.inputText;
+  const value = model.chatCommon.edixModel.inputText;
 
   return (
     <>
@@ -25,7 +25,7 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
           'text-lg-regular',
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
           'max-h-[6lh] overflow-y-auto',
-          model.chatCommon.edixReadonly &&
+          model.chatCommon.edixModel.edixReadonly &&
             'cursor-not-allowed text-Cr-text-subtlest-light-v2',
         )}
         onKeyDown={(e) => {

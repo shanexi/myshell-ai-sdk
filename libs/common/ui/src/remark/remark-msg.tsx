@@ -8,6 +8,7 @@ import type {
 } from 'mdast-util-directive';
 import remarkDirective from 'remark-directive';
 import type { Plugin } from 'unified';
+import { unified } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 import { createId } from '@paralleldrive/cuid2';
 
@@ -15,7 +16,6 @@ import { RegisterMap, RemarkableFactory } from '@myshell-run/common-def';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkGfm from 'remark-gfm';
-import { unified } from 'unified';
 import { VFile } from 'vfile';
 import { useInjection } from 'inversify-react';
 import { hide } from './mdast-util-hidden';
@@ -25,6 +25,7 @@ import { escapeNotDirective } from './escape-not-directive';
 export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
   const factory = useInjection<RemarkableFactory>(RemarkableFactory);
   const registerMap = useInjection<RegisterMap>(RegisterMap);
+  // TODO 这个处理并不好，最好的方式应该是在 AST 阶段再操作
   text = escapeNotDirective([...registerMap.keys()], text);
 
   const registerComponents = Array.from(registerMap).reduce(

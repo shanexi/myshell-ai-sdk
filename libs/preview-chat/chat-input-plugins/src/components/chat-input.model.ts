@@ -7,10 +7,13 @@ import { z } from 'zod';
 
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
-export const ChatInputHandlers = Symbol.for('PreviewChatInputHandlers');
+export const ChatInputHandlers = Symbol('ChatInputHandlers');
+
 export interface ChatInputHandlers {
   clear(): AsyncGenerator;
+
   sendText(text: string): AsyncGenerator;
+
   removeImagePreview(id: string): Generator;
 }
 
@@ -44,19 +47,21 @@ export class ChatInputModel {
   }
 
   get showSendButton() {
-    return !isEmpty(this.chatCommon.inputText);
+    return !isEmpty(this.chatCommon.edixModel.inputText);
   }
 
   async sendText() {
-    if (isEmpty(this.chatCommon.inputText)) {
+    if (isEmpty(this.chatCommon.edixModel.inputText)) {
       return;
     }
 
-    for await (const _ of this.handlers.sendText(this.chatCommon.inputText)) {
+    for await (const _ of this.handlers.sendText(
+      this.chatCommon.edixModel.inputText,
+    )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.clearEdix();
+      await this.chatCommon.edixModel.clearEdix();
     }
   }
 

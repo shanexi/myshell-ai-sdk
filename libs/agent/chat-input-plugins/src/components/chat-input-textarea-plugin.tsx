@@ -13,9 +13,9 @@ export const ChatInputTextareaPlugin = observer(() => {
       )}
       maxRows={8}
       placeholder="Write a message"
-      value={model.chatCommon.inputText}
+      value={model.chatCommon.edixModel.inputText}
       onChange={(e) => {
-        model.chatCommon.setInputText(e.target.value);
+        model.chatCommon.edixModel.setInputText(e.target.value);
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter' && !e.nativeEvent.isComposing) {

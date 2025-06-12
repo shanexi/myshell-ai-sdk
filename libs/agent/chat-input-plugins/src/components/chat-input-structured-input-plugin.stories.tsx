@@ -1,5 +1,5 @@
 import { UploadEndpoint } from '@myshell-run/common-def';
-import { commonUIModule } from '@myshell-run/common-ui';
+import { ChatInputDoc, commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
@@ -8,6 +8,9 @@ import { ChatInputStructuredInputPlugin } from './chat-input-structured-input-pl
 import { ChatInputHandlers } from './chat-input.model';
 
 class SomeChatInputHandler implements ChatInputHandlers {
+  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
+    yield;
+  }
   *removeImagePreview(id: string) {
     yield;
   }

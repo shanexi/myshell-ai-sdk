@@ -33,19 +33,19 @@ export const Chat = observer(() => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (dropTargetRef.current) {
-      model.chatCommon.setupUppy(dropTargetRef.current);
+      model.chatCommon.uppyModel.setup(dropTargetRef.current);
     }
   }, []);
   return (
     <div className="h-full">
-      <div ref={dropTargetRef} className="flex h-full flex-col">
+      <div ref={dropTargetRef} className="relative flex h-full flex-col">
         <ChatMessageList
           chatCommonModel={model.chatCommon}
           className="flex flex-grow flex-col overflow-auto px-[8px]"
           initialMessages={[]}
         />
         <ChatInput />
-        {model.chatCommon.isDragging && <Mask />}
+        {model.chatCommon.uppyModel.isDragging && <Mask />}
       </div>
       <LuiFormDrawer />
     </div>

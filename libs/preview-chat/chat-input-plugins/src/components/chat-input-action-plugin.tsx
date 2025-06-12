@@ -1,6 +1,6 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, HiddenInputFile } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ArrowUp, BrushCleaning, Mic } from 'lucide-react';
+import { ArrowUp, BrushCleaning, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ChatInputModel } from './chat-input.model';
 
@@ -13,12 +13,22 @@ export const ChatInputActionPlugin = observer(() => {
         // 'my-spacing-xs-v2'
       )}
     >
-      <BrushCleaning
-        onClick={() => model.clear()}
-        strokeWidth={1.5}
-        size={36}
-        className="cursor-pointer p-[7px]"
-      />
+      <div className="flex items-center">
+        <BrushCleaning
+          onClick={() => model.clear()}
+          strokeWidth={1.5}
+          size={36}
+          className="cursor-pointer p-[7px]"
+        />
+
+        <HiddenInputFile uppyModel={model.chatCommon.uppyModel}>
+          <CirclePlus
+            strokeWidth={1.5}
+            size={22}
+            className="cursor-pointer text-CCr-icon-button-plain-fg_default-light-v2"
+          />
+        </HiddenInputFile>
+      </div>
       {model.showSendButton ? (
         <div
           onClick={() => model.sendText()}
