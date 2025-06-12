@@ -1,4 +1,9 @@
-import { cn, formatEta, formatFileSize } from '@myshell-run/common-ui';
+import {
+  cn,
+  formatEta,
+  formatFileSize,
+  hiddenInputStyle,
+} from '@myshell-run/common-ui';
 import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
@@ -12,14 +17,6 @@ export const Upload = observer<
 >(({ model, fieldProps, ...props }) => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const hiddenInputStyle = {
-    width: '0.1px',
-    height: '0.1px',
-    opacity: 0,
-    overflow: 'hidden',
-    position: 'absolute',
-    zIndex: -1,
-  } satisfies React.CSSProperties;
 
   useEffect(() => {
     if (!dropTargetRef.current) return;

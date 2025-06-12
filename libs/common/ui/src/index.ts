@@ -15,3 +15,4 @@ export * from './components/chat-message-list';
 export * from './message-plugin/add-message-plugin';
 export * from './lui-form-plugin/add-lui-form-item-plugin';
 export * from './lui-form-plugin/lui-form-item';
+export * from './components/hidden-input-file';
