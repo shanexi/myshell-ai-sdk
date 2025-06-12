@@ -1,12 +1,13 @@
 import {
   agentChatInputPluginsModule,
   ChatInputActionPlugin,
-  ChatInputAdvancedInputPlugin,
+  ChatInputContextPlugin,
   ChatInputHandlers,
   ChatInputPlugin,
+  ChatInputStructuredInputPlugin,
+  ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
-// import { ChatInputPlugin } from '@myshell-run/common-def';
 import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';
@@ -30,8 +31,9 @@ const storyModule = new ContainerModule(
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
     rebind(ChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
     rebind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
-      // ChatInputUploadPlugin,
-      ChatInputAdvancedInputPlugin,
+      ChatInputContextPlugin,
+      ChatInputUploadPlugin,
+      ChatInputStructuredInputPlugin,
       ChatInputActionPlugin,
     ]);
   },
