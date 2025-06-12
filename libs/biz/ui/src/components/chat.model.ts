@@ -5,9 +5,9 @@ import {
 import { DbBot } from '@myshell-run/biz-def';
 import {
   ChatCommonModelFactory,
+  LEGACY_PREVIEW_CHAT,
   Message,
   MessageListContext,
-  LEGACY_PREVIEW_CHAT,
 } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -24,14 +24,7 @@ import { RefObject } from 'react';
 
 @injectable()
 export class ChatModel {
-  get virtuosoRef() {
-    return this.chatCommon.virtuosoRef;
-  }
   bot?: DbBot;
-
-  @computed get inputText() {
-    return this.chatCommon.inputText;
-  }
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
@@ -41,23 +34,40 @@ export class ChatModel {
    */
   @observable isShowUploadArea = false;
 
-  @computed get isDragging() {
-    return this.chatCommon.isDragging;
+  constructor(
+    @inject(ChatCommonModelFactory)
+    private factory: (id: symbol) => ChatCommonModel,
+  ) {
+    // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
+    makeObservable(this);
   }
+
+  get virtuosoRef() {
+    return this.chatCommon.virtuosoRef;
+  }
+
+  @computed get inputText() {
+    return this.chatCommon.edixModel.inputText;
+  }
+
+  @computed get isDragging() {
+    return this.chatCommon.uppyModel.isDragging;
+  }
+
   get uppy() {
-    return this.chatCommon.uppy;
+    return this.chatCommon.uppyModel.uppy;
   }
 
   @computed get uppyStateMap() {
-    return this.chatCommon.uppyStateMap;
+    return this.chatCommon.uppyModel.uppyStateMap;
   }
 
   get maxNumberOfFiles() {
-    return this.chatCommon.multiple;
+    return this.chatCommon.uppyModel.multiple;
   }
 
   get accept() {
-    return this.chatCommon.accept;
+    return this.chatCommon.uppyModel.accept;
   }
 
   /**
@@ -76,18 +86,21 @@ export class ChatModel {
       },
     };
   }
+
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
   @computed get isNotInputFocus() {
     return !this.isInputFocus;
   }
+
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
   @computed get notHaveInputText() {
     return this.inputText.length < 1;
   }
+
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
@@ -99,20 +112,12 @@ export class ChatModel {
     return this.factory(LEGACY_PREVIEW_CHAT);
   }
 
-  constructor(
-    @inject(ChatCommonModelFactory)
-    private factory: (id: symbol) => ChatCommonModel,
-  ) {
-    // @inject(MyAppTrpcClient) public trpc: TRPCClient<AppRouter>,
-    makeObservable(this);
-  }
-
   setupUppy(dropTarget: HTMLDivElement) {
-    this.chatCommon.setupUppy(dropTarget);
+    this.chatCommon.uppyModel.setupUppy(dropTarget);
   }
 
   removeFile(id: string) {
-    this.chatCommon.removeFile(id);
+    this.chatCommon.uppyModel.removeFile(id);
   }
 
   /**
@@ -122,6 +127,7 @@ export class ChatModel {
   setInputFocus(focus: boolean) {
     this.isInputFocus = focus;
   }
+
   /**
    * @deprecated 相关 UI 代码已经 archive
    */
@@ -189,15 +195,16 @@ export class ChatModel {
       },
     });
     runInAction(() => {
-      this.chatCommon.setInputText('');
+      this.chatCommon.edixModel.setInputText('');
       this.setInputFocus(false);
     });
   }
 
   @action.bound
   setInputText(text: string) {
-    this.chatCommon.setInputText(text);
+    this.chatCommon.edixModel.setInputText(text);
   }
+
   setVirtuosoRef = (
     ref: RefObject<VirtuosoMessageListMethods<Message, MessageListContext>>,
   ) => {
