@@ -1,7 +1,7 @@
 import { cn } from '@myshell-run/common-ui';
-import { AgentMessage } from '../types';
+import { PreviewMessage } from '../types';
 
-export const OwnMessage: React.FC<AgentMessage> = ({ text }) => {
+export const OwnMessage: React.FC<PreviewMessage> = ({ text }) => {
   return (
     <div className="flex px-spacing-xl-v2 py-spacing-lg-v2">
       <div

@@ -1,10 +1,10 @@
 import { DEFAULT_AVATAR } from '@myshell-run/common-def';
-import { RemarkMsg } from '@myshell-run/common-ui';
-import { AgentMessage } from '../types';
+import { cn, RemarkMsg } from '@myshell-run/common-ui';
+import { PreviewMessage } from '../types';
 import { useInjection } from 'inversify-react';
 import { MessageItemModel } from './message-item.model';
 
-export const ReplyMsg: React.FC<AgentMessage> = ({
+export const ReplyMsg: React.FC<PreviewMessage> = ({
   avatar = DEFAULT_AVATAR,
   text,
   user,
@@ -29,7 +29,6 @@ export const ReplyMsg: React.FC<AgentMessage> = ({
   );
 };
 
-// legacy v1 先跑通全联路再 refactor
 export const LuiButton = (props: { children: React.ReactNode }) => {
   const model = useInjection(MessageItemModel);
   const { children } = props;
@@ -38,7 +37,13 @@ export const LuiButton = (props: { children: React.ReactNode }) => {
       onClick={() => {
         model.click('file://id');
       }}
-      className="text-sm-medium mx-spacing-xs-v1 flex h-components-button-lg-height-v1 flex-auto items-center justify-center rounded-lg-v1 border border-border-default-light-v1 bg-surface-default-light-v1 p-spacing-lg-v1"
+      className={cn(
+        'h-C-button-lg-height-v2 min-w-C-button-md-min-width-v2',
+        'rounded-C-button-md-radius-v2',
+        'p-C-button-plain-spacing-v2',
+        'bg-CCr-button-tertiary-bg_default-light-v2',
+        'border border-CCr-button-tertiary-border-light-v2',
+      )}
     >
       {children}
     </button>

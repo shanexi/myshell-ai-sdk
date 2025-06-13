@@ -16,11 +16,21 @@ import { XButton } from './components/x-button';
 import { XButtonModel } from './components/x-button.model';
 // import { LineChartDemo } from './components/chart-demo';
 
-export const OWN_MESSAGE_TYPE = 'own';
-export const REPLY_MESSAGE_TYPE = 'reply';
+export const OWN_MESSAGE_TYPE = 'agent:own';
+export const REPLY_MESSAGE_TYPE = 'agent:reply';
 
-function registerMesssageItem(bind: interfaces.Bind) {
-  const addMessagePlugin = addMessagePluginFactory<AgentMessage>(bind);
+function registerMesssageItem(
+  bind: interfaces.Bind,
+  unbind: interfaces.Unbind,
+  isBound: interfaces.IsBound,
+  rebind: interfaces.Rebind,
+) {
+  const addMessagePlugin = addMessagePluginFactory<AgentMessage>(
+    bind,
+    unbind,
+    isBound,
+    rebind,
+  );
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 }
@@ -54,6 +64,6 @@ export function bindAgentMsgItemPlugins(
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  registerMesssageItem(bind);
+  registerMesssageItem(bind, unbind, isBound, rebind);
   registerMdc(bind, unbind, isBound, rebind);
 }

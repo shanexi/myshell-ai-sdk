@@ -1,11 +1,30 @@
 import { MessageItem } from '@myshell-run/common-def';
 import { interfaces } from 'inversify';
 
-export function addMessagePluginFactory<T>(bind: interfaces.Bind) {
+export const MessageTypeSet = Symbol('MessageTypeSet');
+
+let messageTypeSet: Set<string>;
+
+export function addMessagePluginFactory<T>(
+  bind: interfaces.Bind,
+  unbind: interfaces.Unbind,
+  isBound: interfaces.IsBound,
+  rebind: interfaces.Rebind,
+) {
+  if (!isBound(MessageTypeSet)) {
+    messageTypeSet = new Set();
+    bind(MessageTypeSet).toConstantValue(messageTypeSet);
+  }
+
   return function addMessagePlugin(
     type: string,
     Component: React.ComponentType<T>,
   ) {
+    if (messageTypeSet.has(type)) {
+      throw new Error(`Message type ${type} already exists`);
+    } else {
+      messageTypeSet.add(type);
+    }
     bind<MessageItem>(MessageItem).toConstantValue({
       type,
       render: (data) => {

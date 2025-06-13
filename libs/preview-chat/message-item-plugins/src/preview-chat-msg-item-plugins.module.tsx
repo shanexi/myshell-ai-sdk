@@ -2,11 +2,11 @@ import { addMessagePluginFactory, setupMdc } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { OwnMessage } from './components/own-msg';
 import { ReplyMsg } from './components/reply-msg';
-import { AgentMessage } from './types';
+import { PreviewMessage } from './types';
 import { MessageItemModel } from './components/message-item.model';
 
-export const OWN_MESSAGE_TYPE = 'own';
-export const REPLY_MESSAGE_TYPE = 'reply';
+export const OWN_MESSAGE_TYPE = 'preview:own';
+export const REPLY_MESSAGE_TYPE = 'preview:reply';
 
 export const previewChatMsgItemPluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
@@ -22,7 +22,12 @@ export function bindPreviewChatMsgItemPlugins(
 ) {
   bind(MessageItemModel).toSelf().inSingletonScope();
   // register message by type
-  const addMessagePlugin = addMessagePluginFactory<AgentMessage>(bind);
+  const addMessagePlugin = addMessagePluginFactory<PreviewMessage>(
+    bind,
+    unbind,
+    isBound,
+    rebind,
+  );
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
 
