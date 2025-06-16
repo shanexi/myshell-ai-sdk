@@ -9,7 +9,18 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 
-export type UppyState = Partial<UppyFile<Meta, Body>> &
+// 后端上传接口返回结构
+export interface UploadResBody extends Body {
+  file: {
+    filename: string;
+    mimetype: string;
+    originalname: string;
+    size: number;
+    url: string;
+  };
+}
+
+export type UppyState = Partial<UppyFile<Meta, UploadResBody>> &
   // 增加的都是为了 observable，因为嵌套无法被 observer 到
   Partial<{
     uploadComplete: boolean;
@@ -33,10 +44,17 @@ export class UppyModel {
   @observable maxNumberOfFiles?: number | null;
   @observable maxFileSize?: number | null;
 
-  private _uppy?: Uppy;
-
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
+  }
+
+  private _uppy?: Uppy<Meta, UploadResBody>;
+
+  get uppy() {
+    if (!this._uppy) {
+      throw new Error('uppy is not initialized, check if setupUppy is called');
+    }
+    return this._uppy;
   }
 
   @computed get uppyState() {
@@ -57,13 +75,6 @@ export class UppyModel {
     return formatFileSize(this.maxFileSize);
   }
 
-  get uppy() {
-    if (!this._uppy) {
-      throw new Error('uppy is not initialized, check if setupUppy is called');
-    }
-    return this._uppy;
-  }
-
   get multiple() {
     return this.maxNumberOfFiles !== 1;
   }
@@ -80,7 +91,7 @@ export class UppyModel {
     this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
     this.maxFileSize = restrictions?.maxFileSize;
 
-    this._uppy = new Uppy({
+    this._uppy = new Uppy<Meta, UploadResBody>({
       autoProceed: true,
       restrictions,
       // debug: true,

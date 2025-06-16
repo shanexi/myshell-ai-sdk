@@ -26,9 +26,9 @@ export const Upload = observer<
       allowedFileTypes: props.items.properties.file.properties.type?.enum,
     });
     model.uppyModel.uppy.on('complete', (result) => {
+      // TODO: 错误处理
       fieldProps.form.setFieldValue(
         fieldProps.field.name,
-        // @ts-expect-error 暂时不处理
         result.successful?.[0].response?.body?.file?.url,
       );
     });
