@@ -8,7 +8,7 @@ import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
-import { UploadModel, upload_schema } from './upload.model';
+import { upload_schema, UploadModel } from './upload.model';
 import { z } from 'zod';
 import { FieldProps } from 'formik';
 
@@ -20,11 +20,21 @@ export const Upload = observer<
 
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.uppyModel.setup(dropTargetRef.current, {
+    const disposeUppy = model.uppyModel.setup(dropTargetRef.current, {
       maxFileSize: props.items.properties.file.properties.size?.maxLength,
       maxNumberOfFiles: props.maxItems,
       allowedFileTypes: props.items.properties.file.properties.type?.enum,
     });
+    model.uppyModel.uppy.on('complete', (result) => {
+      fieldProps.form.setFieldValue(
+        fieldProps.field.name,
+        // @ts-expect-error 暂时不处理
+        result.successful?.[0].response?.body?.file?.url,
+      );
+    });
+    return () => {
+      disposeUppy();
+    };
   }, []);
 
   return (
