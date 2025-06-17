@@ -8,7 +8,7 @@ import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
 import { z } from 'zod';
-import { validate } from './lui-form.utils';
+import { ajvValidate } from './lui-form.utils';
 
 export const LuiForm = observer<{
   model: LuiFormModel;
@@ -26,7 +26,7 @@ export const LuiForm = observer<{
       }
       validateOnChange={false}
       validate={(values) => {
-        validate(jsonschema, values);
+        ajvValidate(jsonschema, values);
         // todo: 转化成 error
         const errors = {};
         return;

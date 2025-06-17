@@ -194,6 +194,7 @@
     "kysely": "^0.27.6",
     "langchain": "^0.3.19",
     "lint-staged": "^15.2.10",
+    "lodash-es": "^4.17.21",
     "lucide-react": "^0.509.0",
     "mdast": "^3.0.0",
     "mdast-util-directive": "^3.1.0",
@@ -293,6 +294,7 @@
     "wait-on": "^8.0.0",
     "wrangler": "^3.109.2",
     "xstate": "4.38.3",
+    "yup": "^1.6.1",
     "zod": "^3.24.1",
     "zustand": "^4.5.5",
     "zustand-computed-state": "^0.1.8",
@@ -325,6 +327,7 @@
   "devDependencies": {
     "@nrwl/react": "15.9.7",
     "@storybook/react": "^8.6.12",
+    "@types/lodash-es": "^4.17.12",
     "echarts-for-react": "^3.0.2",
     "edix": "file:.yalc/edix",
     "react": "19.0.0",
