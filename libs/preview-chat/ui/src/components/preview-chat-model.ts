@@ -76,7 +76,8 @@ export class PreviewChatModel
   }
 
   /**
-   * @deprecated 因为 type='submit' 不需要 explicity click submit
+   * @deprecated 因为 type='submit' 不需要 explicitly click submit
+   * 这里先保留下，因为有可能有场景 explicitly call
    */
   submitLuiForm = async () => {
     await this.luiFormModel.isFormikReadyPromise;

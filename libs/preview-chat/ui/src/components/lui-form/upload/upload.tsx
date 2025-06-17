@@ -8,9 +8,9 @@ import { Upload as UploadIcon, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import toArray from '@uppy/utils/lib/toArray';
-import { upload_schema, UploadModel } from './upload.model';
+import { upload_schema, type UploadModel } from './upload.model';
 import { z } from 'zod';
-import { FieldProps } from 'formik';
+import { type FieldProps } from 'formik';
 
 export const Upload = observer<
   z.infer<typeof upload_schema> & { model: UploadModel; fieldProps: FieldProps }

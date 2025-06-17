@@ -158,6 +158,9 @@ export function formatFileSize(
   return `${rounded}${units[i]}`;
 }
 
+/**
+ * @description AI 生成
+ */
 export function formatEta(eta?: number): string {
   if (!eta) return '';
 

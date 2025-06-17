@@ -2,10 +2,11 @@ import { z } from 'zod';
 
 const type = z.enum(['string', 'number', 'object', 'array', 'boolean', 'null']);
 
-const string_schema = z.object({
+export const string_schema = z.object({
   title: z.string(),
   description: z.string().optional(),
   type: z.literal(type.Enum.string),
+  maximum: z.number().optional(),
 });
 
 const object_schema = z.object({

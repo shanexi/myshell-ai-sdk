@@ -114,9 +114,11 @@ export class UppyModel {
           console.error(`[Uppy] [${getTimeStamp()}]`, ...args);
         },
       },
+      // 这两个都是 uppy 的默认实现，explicitly 拿出来是为了可能做些校验
       onBeforeFileAdded: (file, files) => {
         return !Object.hasOwn(files, file.id);
       },
+      // 这两个都是 uppy 的默认实现
       onBeforeUpload: (files) => {
         return files;
       },

@@ -44,6 +44,7 @@ export const demo_jsonschema = {
     description: {
       type: 'string',
       title: 'Description',
+      maximum: 280,
       // todo: placeholder 用 example？
     },
     title: {

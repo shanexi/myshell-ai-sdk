@@ -1,11 +1,13 @@
+import { string_schema } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
 import { FieldProps } from 'formik';
+import { z } from 'zod';
 
-export const Textarea: React.FC<{
-  fieldProps: FieldProps;
-}> = ({ fieldProps }) => {
+export const Textarea: React.FC<
+  z.infer<typeof string_schema> & { fieldProps: FieldProps }
+> = ({ fieldProps, ...props }) => {
   const { field } = fieldProps;
-  const maxLength = 300;
+  const maxLength = props.maximum;
   return (
     <div
       className={cn(
