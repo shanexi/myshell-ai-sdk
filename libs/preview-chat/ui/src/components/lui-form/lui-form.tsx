@@ -1,20 +1,21 @@
-import { jsonschema } from '@myshell-run/common-def';
+import { json_schema } from '@myshell-run/common-def';
 import { cn, LuiFormItem } from '@myshell-run/common-ui';
+import { Field, FieldProps, Form, Formik } from 'formik';
 import { useInjection } from 'inversify-react';
-import { z } from 'zod';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
-import { observer } from 'mobx-react-lite';
-import { Field, FieldProps, Form, Formik } from 'formik';
-import { useEffect } from 'react';
+import { z } from 'zod';
+import { validate } from './lui-form.utils';
 
 export const LuiForm = observer<{
   model: LuiFormModel;
-  jsonschema: z.infer<typeof jsonschema>;
+  jsonschema: z.infer<typeof json_schema>;
   uischema: Record<string, { variant: string }>;
-}>(({ model, jsonschema: jsonschemaData, uischema }) => {
-  jsonschemaData = jsonschema.parse(jsonschemaData);
+}>(({ model, jsonschema, uischema }) => {
+  jsonschema = json_schema.parse(jsonschema);
   return (
     <Formik
       enableReinitialize
@@ -24,6 +25,12 @@ export const LuiForm = observer<{
         } as Record<string, unknown>
       }
       validateOnChange={false}
+      validate={(values) => {
+        validate(jsonschema, values);
+        // todo: 转化成 error
+        const errors = {};
+        return;
+      }}
       onSubmit={(values) => {
         console.log('submit', values);
       }}
@@ -38,7 +45,7 @@ export const LuiForm = observer<{
           //  <form onReset={formikProps.handleReset} onSubmit={formikProps.handleSubmit} {...props} />
           <Form>
             <div className="flex h-full flex-col">
-              <FormHeader>{jsonschemaData.title}</FormHeader>
+              <FormHeader>{jsonschema.title}</FormHeader>
               <div
                 className={cn(
                   'bg-white',
@@ -47,8 +54,8 @@ export const LuiForm = observer<{
                   'flex-1 overflow-auto',
                 )}
               >
-                {Object.keys(jsonschemaData.properties).map((k) => {
-                  const item = jsonschemaData.properties[k];
+                {Object.keys(jsonschema.properties).map((k) => {
+                  const item = jsonschema.properties[k];
                   const variant = uischema[k].variant;
                   return (
                     <Field key={k} name={k}>

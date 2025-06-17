@@ -1,4 +1,4 @@
-import { jsonschema } from '@myshell-run/common-def';
+import { json_schema } from '@myshell-run/common-def';
 import { z } from 'zod';
 import { JSONSchemaType } from 'ajv';
 

@@ -25,7 +25,8 @@ const array_schema = z.object({
   maxItems: z.number().optional(),
 });
 
-export const jsonschema = z.object({
+// JSONSchemaType } from 'ajv' 能否写的标准点，更 satisfy JSONSchemaType
+export const json_schema = z.object({
   type: z.literal('object'),
   title: z.string(),
   properties: z.record(
