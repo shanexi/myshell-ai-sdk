@@ -169,6 +169,7 @@ specifiers:
   '@virtuoso.dev/message-list': 1.9.15
   '@xstate/react': 3.2.2
   ai: ^4.2.6
+  ajv: ^8.17.1
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: ^2.0.5
   autoprefixer: ^10.4.21
@@ -461,6 +462,7 @@ dependencies:
   '@virtuoso.dev/message-list': 1.9.15_55nczcol5iylyeewru2sqp4xqy_upmzqgzhjrquwzo2dphtigtdgi
   '@xstate/react': 3.2.2_vmh6bs44pyfjsyg52sr6vrdybe
   ai: 4.2.6_react@19.0.0+zod@3.24.1
+  ajv: 8.17.1
   arktype: 2.0.0-rc.30
   auto-zustand-selectors-hook: 2.0.5_zustand@4.5.5
   autoprefixer: 10.4.21_postcss@8.5.3

@@ -1,5 +1,6 @@
 import { jsonschema } from '@myshell-run/common-def';
 import { z } from 'zod';
+import { JSONSchemaType } from 'ajv';
 
 export const demo_uischema = {
   description: {
@@ -12,7 +13,20 @@ export const demo_uischema = {
     variant: 'object_image_choice',
   },
 };
-export const demo_jsonschema = {
+export const demo_jsonschema: JSONSchemaType<{
+  description: string;
+  title: Array<{
+    file: {
+      uploadURL: string;
+      name: string;
+    };
+  }>;
+  style: {
+    name: string;
+    title: string;
+    url: string;
+  };
+}> = {
   type: 'object',
   title: 'Image Configuration',
   properties: {
@@ -64,8 +78,10 @@ export const demo_jsonschema = {
                 type: 'string',
               },
             },
+            required: ['uploadURL', 'name'],
           },
         },
+        required: ['file'],
       },
     },
     style: {
@@ -82,6 +98,7 @@ export const demo_jsonschema = {
           type: 'string',
         },
       },
+      required: ['name', 'title', 'url'],
       examples: [
         {
           name: 'a',
@@ -91,4 +108,5 @@ export const demo_jsonschema = {
       ],
     },
   },
-} satisfies z.infer<typeof jsonschema>;
+  required: ['description', 'title', 'style'],
+};

@@ -138,6 +138,7 @@
     "@virtuoso.dev/message-list": "1.9.15",
     "@xstate/react": "3.2.2",
     "ai": "^4.2.6",
+    "ajv": "^8.17.1",
     "arktype": "2.0.0-rc.30",
     "auto-zustand-selectors-hook": "^2.0.5",
     "autoprefixer": "^10.4.21",
