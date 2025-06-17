@@ -7,7 +7,7 @@ export const Textarea: React.FC<
   z.infer<typeof string_schema> & { fieldProps: FieldProps }
 > = ({ fieldProps, ...props }) => {
   const { field } = fieldProps;
-  const maxLength = props.maximum;
+  const maxLength = props.maxLength;
   return (
     <div
       className={cn(

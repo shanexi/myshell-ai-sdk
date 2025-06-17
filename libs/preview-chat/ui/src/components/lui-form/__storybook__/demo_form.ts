@@ -58,7 +58,8 @@ export const demo_jsonschema: JSONSchemaType<{
     description: {
       type: 'string',
       title: 'Description',
-      maximum: 280,
+      maxLength: 280,
+      minLength: 1,
       // todo: placeholder 用 example？
     },
     title: {

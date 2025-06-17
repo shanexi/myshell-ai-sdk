@@ -1,12 +1,12 @@
 import { json_schema } from '@myshell-run/common-def';
+import { validateYupSchema } from 'Formik';
+import * as yup from 'yup';
+import { z } from 'zod';
 import { demo_jsonschema } from './__storybook__/demo_form';
 import { ajvToFormErrors, ajvValidate } from './lui-form.utils';
-import { z } from 'zod';
-import * as yup from 'yup';
-import { validateYupSchema, yupToFormErrors } from 'Formik';
 
 const data = {
-  // description: 'John Doe',
+  description: '',
   title: [
     {
       file: {
@@ -61,60 +61,66 @@ it('ajv validate', () => {
     data,
   );
   expect(valid).toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "instancePath": "",
-          "keyword": "required",
-          "message": "must have required property 'description'",
-          "params": {
-            "missingProperty": "description",
-          },
-          "schemaPath": "#/required",
+    [
+      {
+        "instancePath": "/description",
+        "keyword": "minLength",
+        "message": "must NOT have fewer than 1 characters",
+        "params": {
+          "limit": 1,
         },
-        {
-          "instancePath": "/title/0/file",
-          "keyword": "required",
-          "message": "must have required property 'uploadURL'",
-          "params": {
-            "missingProperty": "uploadURL",
-          },
-          "schemaPath": "#/properties/title/items/properties/file/required",
+        "schemaPath": "#/properties/description/minLength",
+      },
+      {
+        "instancePath": "/title/0/file",
+        "keyword": "required",
+        "message": "must have required property 'uploadURL'",
+        "params": {
+          "missingProperty": "uploadURL",
         },
-        {
-          "instancePath": "/style",
-          "keyword": "required",
-          "message": "must have required property 'title'",
-          "params": {
-            "missingProperty": "title",
-          },
-          "schemaPath": "#/properties/style/required",
+        "schemaPath": "#/properties/title/items/properties/file/required",
+      },
+      {
+        "instancePath": "/style",
+        "keyword": "required",
+        "message": "must have required property 'title'",
+        "params": {
+          "missingProperty": "title",
         },
-        {
-          "instancePath": "/style",
-          "keyword": "required",
-          "message": "must have required property 'url'",
-          "params": {
-            "missingProperty": "url",
-          },
-          "schemaPath": "#/properties/style/required",
+        "schemaPath": "#/properties/style/required",
+      },
+      {
+        "instancePath": "/style",
+        "keyword": "required",
+        "message": "must have required property 'url'",
+        "params": {
+          "missingProperty": "url",
         },
-      ],
-      "success": false,
-    }
+        "schemaPath": "#/properties/style/required",
+      },
+    ]
   `);
 });
 
 it('ajv errors to formik errors', () => {
   const arr = [
+    // {
+    //   instancePath: '',
+    //   keyword: 'required',
+    //   message: "must have required property 'description'",
+    //   params: {
+    //     missingProperty: 'description',
+    //   },
+    //   schemaPath: '#/required',
+    // },
     {
-      instancePath: '',
-      keyword: 'required',
-      message: "must have required property 'description'",
+      instancePath: '/description',
+      keyword: 'minLength',
+      message: 'must NOT have fewer than 1 characters',
       params: {
-        missingProperty: 'description',
+        limit: 1,
       },
-      schemaPath: '#/required',
+      schemaPath: '#/properties/description/minLength',
     },
     {
       instancePath: '/title/0/file',
@@ -157,7 +163,7 @@ it('ajv errors to formik errors', () => {
   const act = ajvToFormErrors(arr);
   expect(act).toMatchInlineSnapshot(`
     {
-      "description": "must have required property 'description'",
+      "description": "must NOT have fewer than 1 characters",
       "style": {
         "title": "must have required property 'title'",
         "url": "must have required property 'url'",

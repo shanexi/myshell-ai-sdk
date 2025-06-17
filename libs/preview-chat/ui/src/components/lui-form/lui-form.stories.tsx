@@ -6,7 +6,8 @@ import { previewChatUIModule } from '../../preview-chat-ui.module';
 import { PreviewChatModel } from '../preview-chat-model';
 import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
 import { LuiForm } from './lui-form';
-import { UploadEndpoint } from '@myshell-run/common-def';
+import { json_schema, UploadEndpoint } from '@myshell-run/common-def';
+import { z } from 'zod';
 
 const container = new Container();
 container.load(previewChatUIModule);
@@ -40,6 +41,6 @@ export const Primary: StoryObj<typeof LuiForm> = {
   args: {
     model: previewChatModel.luiFormModel,
     uischema: demo_uischema,
-    jsonschema: demo_jsonschema,
+    jsonschema: demo_jsonschema as unknown as z.infer<typeof json_schema>,
   },
 };
