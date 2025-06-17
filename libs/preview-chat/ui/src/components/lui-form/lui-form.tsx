@@ -4,10 +4,10 @@ import { Field, FieldProps, Form, Formik } from 'formik';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
+import { z } from 'zod';
 import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
-import { z } from 'zod';
 import { ajvToFormErrors, ajvValidate } from './lui-form.utils';
 
 export const LuiForm = observer<{
@@ -65,6 +65,11 @@ export const LuiForm = observer<{
                             name={k}
                             label={item.title}
                             description={item.description}
+                            error={
+                              fieldProps.meta.touched && fieldProps.meta.error
+                                ? fieldProps.meta.error
+                                : undefined
+                            }
                           >
                             <LuiFormItem
                               {...item}
@@ -92,8 +97,9 @@ export const LuiFormItemWrapper = (props: {
   name: string;
   description?: string;
   children: React.ReactNode;
+  error?: string;
 }) => {
-  const { label, description, children, name } = props;
+  const { label, description, children, name, error } = props;
   return (
     <div className="">
       <label
@@ -108,6 +114,11 @@ export const LuiFormItemWrapper = (props: {
         </div>
       )}
       <div className="mt-spacing-sm-v2">{children}</div>
+      {error && (
+        <div className="mt-spacing-sm-v2 text-Cr-text-critical-default-light-v2">
+          {error}
+        </div>
+      )}
     </div>
   );
 };
