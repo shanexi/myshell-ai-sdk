@@ -16,7 +16,11 @@ export const LuiFormDrawer = observer(() => {
     <Drawer.Root open={model.isLuiFormOpen}>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="fixed right-0 bottom-0 left-0 mt-24 flex h-[80%] flex-col rounded-t-[10px] bg-gray-100 outline-none lg:h-[320px]">
+        <Drawer.Content className="fixed right-0 bottom-0 left-0 mt-24 flex h-[80%] flex-col rounded-t-[10px] bg-white outline-none lg:h-[320px]">
+          <Drawer.Handle
+            data-testid="handle"
+            className="mt-spacing-lg-v2 mb-spacing-md-v2"
+          />
           <div className="flex-1 overflow-y-auto rounded-t-[10px]">
             <LuiForm
               model={model.luiFormModel}
