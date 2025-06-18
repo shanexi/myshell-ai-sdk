@@ -20,7 +20,7 @@ export const ReplyMsg: React.FC<PreviewMessage> = ({
         <div className="text-text-default-light-v2 rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2 bg-CCr-button-tertiary-bg_default-light-v2 p-spacing-lg-v2">
           <RemarkMsg text={text} />
         </div>
-        <div className="gap-spacing-xs mt-[8px] flex justify-between">
+        <div className="mt-[8px] flex gap-spacing-xs-v2">
           <LuiButton>🪄 Upscale (Subtle)</LuiButton>
           <LuiButton>💥 Upscale (Creative)</LuiButton>
         </div>

@@ -36,7 +36,7 @@ export const Upload = observer<
       ]);
     });
     model.uppyModel.uppy.on('file-removed', (result) => {
-      // TODO: 错误处理
+      // TODO: 等对接后端接口再处理这个，要一个唯一 id 之类的，从 array 里删除
       console.log('file-removed', result);
     });
     return () => {
