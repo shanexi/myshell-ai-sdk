@@ -52,7 +52,6 @@ export const demo_jsonschema: JSONSchemaType<{
     //   ],
     // },
     team_member: {
-      variant: 'string_selector',
       type: 'string',
       title: 'Team member',
       enum: ['MyShell'],
