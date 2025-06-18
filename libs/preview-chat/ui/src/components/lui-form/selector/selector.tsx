@@ -1,4 +1,3 @@
-import { Select, SelectItem } from '@myshell-run/react-aria-tailwind-starter';
 import { FieldProps } from 'formik';
 import { z } from 'zod';
 
@@ -12,17 +11,19 @@ export const Selector: React.FC<
   z.infer<typeof selector_schema> & { fieldProps: FieldProps }
 > = ({ fieldProps, ...props }) => {
   return (
-    <Select
-      selectedKey={fieldProps.field.value}
-      onSelectionChange={(value) => {
-        fieldProps.form.setFieldValue(fieldProps.field.name, value);
+    <select
+      value={fieldProps.field.value}
+      className="select w-full"
+      onChange={(e) => {
+        fieldProps.form.setFieldValue(fieldProps.field.name, e.target.value);
       }}
     >
+      {/* <option disabled={true}>{props.title}</option> */}
       {props.enum.map((item) => (
-        <SelectItem key={item} id={item}>
+        <option key={item} value={item}>
           {item}
-        </SelectItem>
+        </option>
       ))}
-    </Select>
+    </select>
   );
 };

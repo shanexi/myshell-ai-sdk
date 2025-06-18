@@ -45,7 +45,7 @@ export const LuiForm = observer<{
           //  <form onReset={formikProps.handleReset} onSubmit={formikProps.handleSubmit} {...props} />
           <Form>
             <div className="flex h-full flex-col">
-              <FormHeader className="sticky top-0 z-10">
+              <FormHeader className="sticky top-0 z-1">
                 {jsonschema.title}
               </FormHeader>
               <div
@@ -89,7 +89,7 @@ export const LuiForm = observer<{
                   );
                 })}
               </div>
-              <LuiFormFooter className="sticky bottom-0 z-10" />
+              <LuiFormFooter className="sticky bottom-0 z-1" />
             </div>
           </Form>
         );
@@ -158,9 +158,7 @@ export const FormHeader = (props: {
   );
 };
 
-export const LuiFormFooter = (props: {
-  className?: string;
-}) => {
+export const LuiFormFooter = (props: { className?: string }) => {
   const model = useInjection(PreviewChatModel);
   return (
     <div
