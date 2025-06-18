@@ -15,7 +15,10 @@ import {
 import { z } from 'zod';
 import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
 import { LuiFormModel } from './components/lui-form/lui-form.model';
-import { Selector } from './components/lui-form/selector/selector';
+import {
+  Selector,
+  selector_schema,
+} from './components/lui-form/selector/selector';
 
 export const previewChatUIModule = new ContainerModule((bind) => {
   bindPreviewChatUI(bind);
@@ -43,5 +46,5 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
   );
   addLuiFormItem('string_textarea', Textarea, z.any());
   addLuiFormItem('object_image_choice', ImageChoice, image_choice);
-  addLuiFormItem('string_selector', Selector, z.any());
+  addLuiFormItem('string_selector', Selector, selector_schema);
 }

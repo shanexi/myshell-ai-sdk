@@ -54,7 +54,7 @@ export const demo_jsonschema: JSONSchemaType<{
     team_member: {
       type: 'string',
       title: 'Team member',
-      enum: ['MyShell'],
+      enum: ['Backend', 'Frontend', 'Algorithm'],
     },
     description: {
       type: 'string',

@@ -12,6 +12,7 @@ export const string_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.string),
   maxLength: z.number().optional(),
   minLength: z.number().optional(),
+  enum: z.array(z.string()).optional(),
 });
 
 const object_schema = jsonschema_common_field.extend({
