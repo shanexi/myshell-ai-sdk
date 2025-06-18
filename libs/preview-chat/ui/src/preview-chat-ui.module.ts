@@ -15,10 +15,8 @@ import {
 import { z } from 'zod';
 import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
 import { LuiFormModel } from './components/lui-form/lui-form.model';
-import {
-  Selector,
-  selector_schema,
-} from './components/lui-form/selector/selector';
+import { Select, select_schema } from './components/lui-form/select/select';
+import { string_schema } from '@myshell-run/common-def';
 
 export const previewChatUIModule = new ContainerModule((bind) => {
   bindPreviewChatUI(bind);
@@ -33,7 +31,10 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
     ctx.container.get(PreviewChatModel),
   );
   // bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
+  setupLuiForm(bind);
+}
 
+function setupLuiForm(bind: interfaces.Bind) {
   bind(LuiFormModel).toSelf().inTransientScope();
   const addLuiFormItem = addLuiFormItemPluginFactory(bind);
   // todo: 这些 variant 不能随便动（但是因为可以 fallback 所有不用特别严格），也就是 variant 应该是个 protocol，前后端都要感知
@@ -44,7 +45,7 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
     upload_schema,
     UploadModel,
   );
-  addLuiFormItem('string_textarea', Textarea, z.any());
+  addLuiFormItem('string_textarea', Textarea, string_schema);
+  addLuiFormItem('string_select', Select, select_schema);
   addLuiFormItem('object_image_choice', ImageChoice, image_choice);
-  addLuiFormItem('string_selector', Selector, selector_schema);
 }

@@ -26,7 +26,7 @@ export const Textarea: React.FC<
           'resize-none',
           'focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none',
         )}
-        placeholder="Bio"
+        placeholder={props.description}
         maxLength={maxLength}
       ></textarea>
       <div

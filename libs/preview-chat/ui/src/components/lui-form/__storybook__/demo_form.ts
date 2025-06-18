@@ -11,7 +11,7 @@ export const demo_uischema = {
     variant: 'object_image_choice',
   },
   team_member: {
-    variant: 'string_selector',
+    variant: 'string_select',
   },
 };
 
@@ -61,6 +61,7 @@ export const demo_jsonschema: JSONSchemaType<{
       title: 'Description',
       maxLength: 280,
       minLength: 1,
+      description: 'This is a description',
       // todo: placeholder 用 example？
     },
     title: {
@@ -152,7 +153,7 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
     //   ],
     // },
     // team_member: {
-    //   variant: 'string_selector',
+    //   variant: 'string_select',
     //   type: 'string',
     //   title: 'Team member',
     //   enum: ['MyShell'],

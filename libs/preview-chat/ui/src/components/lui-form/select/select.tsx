@@ -1,14 +1,14 @@
 import { FieldProps } from 'formik';
 import { z } from 'zod';
 
-export const selector_schema = z.object({
+export const select_schema = z.object({
   type: z.literal('string'),
   title: z.string(),
   enum: z.array(z.string()),
 });
 
-export const Selector: React.FC<
-  z.infer<typeof selector_schema> & { fieldProps: FieldProps }
+export const Select: React.FC<
+  z.infer<typeof select_schema> & { fieldProps: FieldProps }
 > = ({ fieldProps, ...props }) => {
   return (
     <select
