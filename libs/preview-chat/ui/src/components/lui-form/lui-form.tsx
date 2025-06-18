@@ -45,13 +45,18 @@ export const LuiForm = observer<{
           //  <form onReset={formikProps.handleReset} onSubmit={formikProps.handleSubmit} {...props} />
           <Form>
             <div className="flex h-full flex-col">
-              <FormHeader>{jsonschema.title}</FormHeader>
+              <FormHeader className="sticky top-0 z-10">
+                {jsonschema.title}
+              </FormHeader>
               <div
                 className={cn(
+                  'flex-1',
+                  'overflow-auto',
                   'bg-white',
                   'px-[16px] py-[12px]',
                   'flex flex-col gap-spacing-3xl-v2',
-                  'flex-1 overflow-auto',
+                  // Ensure min-h-0 for flex children to allow scrolling
+                  'min-h-0',
                 )}
               >
                 {Object.keys(jsonschema.properties).map((k) => {
@@ -84,7 +89,7 @@ export const LuiForm = observer<{
                   );
                 })}
               </div>
-              <LuiFormFooter />
+              <LuiFormFooter className="sticky bottom-0 z-10" />
             </div>
           </Form>
         );
@@ -135,7 +140,7 @@ export const FormHeader = (props: {
   children: React.ReactNode;
   className?: string;
 }) => {
-  const { children } = props;
+  const { children, className } = props;
   return (
     <div
       className={cn(
@@ -145,6 +150,7 @@ export const FormHeader = (props: {
         'bg-white',
         'border-b border-b-Cr-border-default-light-v2',
         'text-center',
+        className,
       )}
     >
       {children}
@@ -152,7 +158,9 @@ export const FormHeader = (props: {
   );
 };
 
-export const LuiFormFooter = () => {
+export const LuiFormFooter = (props: {
+  className?: string;
+}) => {
   const model = useInjection(PreviewChatModel);
   return (
     <div
@@ -161,6 +169,7 @@ export const LuiFormFooter = () => {
         'bg-white',
         'flex',
         'px-spacing-xl-v2 pt-spacing-lg-v2 pb-spacing-sm-v2',
+        props.className,
       )}
     >
       <Button onClick={() => model.setLuiFormOpen(false)} type="button">

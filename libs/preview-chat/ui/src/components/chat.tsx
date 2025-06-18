@@ -7,6 +7,8 @@ import { observer } from 'mobx-react-lite';
 import { ReactComponent as Dragging } from './dragging.svg';
 import { Drawer } from 'vaul';
 import { LuiForm } from './lui-form/lui-form';
+import { json_schema } from '@myshell-run/common-def';
+import { z } from 'zod';
 
 export const LuiFormDrawer = observer(() => {
   const model = useInjection(PreviewChatModel);
@@ -18,7 +20,9 @@ export const LuiFormDrawer = observer(() => {
           <div className="flex-1 overflow-y-auto rounded-t-[10px]">
             <LuiForm
               model={model.luiFormModel}
-              jsonschema={model.jsonschema}
+              jsonschema={
+                model.jsonschema as unknown as z.infer<typeof json_schema>
+              }
               uischema={model.uischema}
             />
           </div>
