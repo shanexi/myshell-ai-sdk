@@ -9,6 +9,7 @@ import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
 import { ajvToFormErrors, ajvValidate } from './lui-form.utils';
+import { isArray, isObject, isString } from 'radash';
 
 export const LuiForm = observer<{
   model: LuiFormModel;
@@ -100,6 +101,13 @@ export const LuiFormItemWrapper = (props: {
   error?: string;
 }) => {
   const { label, description, children, name, error } = props;
+  let err: string | undefined;
+  if (isString(error)) {
+    err = error;
+  }
+  if (isObject(error) || isArray(error)) {
+    err = JSON.stringify(error);
+  }
   return (
     <div className="">
       <label
@@ -114,9 +122,9 @@ export const LuiFormItemWrapper = (props: {
         </div>
       )}
       <div className="mt-spacing-sm-v2">{children}</div>
-      {error && (
+      {err && (
         <div className="mt-spacing-sm-v2 text-Cr-text-critical-default-light-v2">
-          {error}
+          {err}
         </div>
       )}
     </div>

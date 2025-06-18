@@ -27,10 +27,17 @@ export const Upload = observer<
     });
     model.uppyModel.uppy.on('complete', (result) => {
       // TODO: 错误处理
-      fieldProps.form.setFieldValue(
-        fieldProps.field.name,
-        result.successful?.[0].response?.body?.file?.url,
-      );
+      const file = result.successful?.[0].response?.body?.file;
+      fieldProps.form.setFieldValue(fieldProps.field.name, [
+        {
+          uploadURL: file?.url,
+          name: file?.originalname,
+        },
+      ]);
+    });
+    model.uppyModel.uppy.on('file-removed', (result) => {
+      // TODO: 错误处理
+      console.log('file-removed', result);
     });
     return () => {
       disposeUppy();
