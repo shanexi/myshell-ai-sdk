@@ -139,6 +139,7 @@
     "@xstate/react": "3.2.2",
     "ai": "^4.2.6",
     "ajv": "^8.17.1",
+    "ajv-errors": "^3.0.0",
     "arktype": "2.0.0-rc.30",
     "auto-zustand-selectors-hook": "^2.0.5",
     "autoprefixer": "^10.4.21",

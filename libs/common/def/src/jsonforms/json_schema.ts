@@ -2,18 +2,20 @@ import { z } from 'zod';
 
 const type = z.enum(['string', 'number', 'object', 'array', 'boolean', 'null']);
 
-export const string_schema = z.object({
+const jsonschema_common_field = z.object({
   title: z.string(),
   description: z.string().optional(),
+  errorMessage: z.record(z.string(), z.string()).optional(),
+});
+
+export const string_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.string),
   maxLength: z.number().optional(),
   minLength: z.number().optional(),
 });
 
-const object_schema = z.object({
+const object_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.object),
-  title: z.string(),
-  description: z.string().optional(),
   properties: z.object({}).passthrough(),
   required: z.array(z.string()).optional(),
   examples: z.array(z.object({}).passthrough()).optional(),
@@ -21,8 +23,6 @@ const object_schema = z.object({
 
 const array_schema = z.object({
   type: z.literal(type.Enum.array),
-  title: z.string(),
-  description: z.string().optional(),
   // todo 可以继续细化 type: object/string/number ...
   items: z.object({}).passthrough(),
   maxItems: z.number().optional(),

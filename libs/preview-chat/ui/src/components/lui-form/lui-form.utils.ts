@@ -3,6 +3,7 @@ import Ajv, { ErrorObject } from 'ajv';
 import { FormikErrors, setIn } from 'formik';
 import { z } from 'zod';
 import { isEmpty } from 'lodash-es';
+import AjvErrors from 'ajv-errors';
 
 export function ajvValidate(
   jsonschema: z.infer<typeof json_schema>,
@@ -11,6 +12,7 @@ export function ajvValidate(
   const ajv = new Ajv({
     allErrors: true,
   });
+  AjvErrors(ajv);
   const validate = ajv.compile(jsonschema);
   validate(data);
   return validate.errors;
