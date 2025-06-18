@@ -243,3 +243,39 @@ export const tool_call_done_3 = {
 // 原则 名字一样，但是实质上不一样
 
 // chat_messaage
+
+// 以下是后端 mock 数据 0619
+
+export const connect_msg = {
+  id: -1,
+  status: 'completed',
+  type: 'agent_state_changed',
+  args: {
+    agent_state: 'running',
+    reason: '',
+  },
+};
+
+export const user_msg1 = {
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '你好',
+        },
+      },
+    ],
+  },
+};
+
+export const user_msg1_reply = {
+  id: -1,
+  status: 'completed',
+  type: 'error_message',
+  args: {
+    id: '1750288857709',
+    content: 'data must be a json',
+  },
+};
