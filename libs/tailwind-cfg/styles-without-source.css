@@ -1,6 +1,7 @@
 @plugin "@tailwindcss/typography";
 @plugin 'tailwindcss-animate';
 @plugin "tailwindcss-react-aria-components";
+@plugin 'tailwindcss-animate';
 
 @plugin "daisyui";
 /* 先注释 根据 prefers-color-scheme 控制 */

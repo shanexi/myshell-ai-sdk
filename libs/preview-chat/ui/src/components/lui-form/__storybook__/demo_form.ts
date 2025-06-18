@@ -10,7 +10,11 @@ export const demo_uischema = {
   style: {
     variant: 'object_image_choice',
   },
+  team_member: {
+    variant: 'string_selector',
+  },
 };
+
 export const demo_jsonschema: JSONSchemaType<{
   description: string;
   title: Array<{
@@ -47,12 +51,12 @@ export const demo_jsonschema: JSONSchemaType<{
     //     },
     //   ],
     // },
-    // team_member: {
-    //   variant: 'string_selector',
-    //   type: 'string',
-    //   title: 'Team member',
-    //   enum: ['MyShell'],
-    // },
+    team_member: {
+      variant: 'string_selector',
+      type: 'string',
+      title: 'Team member',
+      enum: ['MyShell'],
+    },
     description: {
       type: 'string',
       title: 'Description',

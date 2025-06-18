@@ -4,5 +4,6 @@
 /* FIXME 需要手动指定依赖目录 */
 @source '../../message-item-plugins/src/components/';
 @source '../../chat-input-plugins/src/components/';
+@source '../../../react-aria-tailwind-starter/src/';
 
 @import '../../../tailwind-cfg/styles-without-source.css';

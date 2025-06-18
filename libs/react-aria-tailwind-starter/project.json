@@ -5,6 +5,17 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "dist/libs/react-aria-tailwind-starter",
+        "main": "libs/react-aria-tailwind-starter/src/index.ts",
+        "tsConfig": "libs/react-aria-tailwind-starter/tsconfig.lib.json",
+        "assets": ["libs/react-aria-tailwind-starter/**/*.svg"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
