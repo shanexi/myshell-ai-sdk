@@ -21,7 +21,7 @@ const object_schema = jsonschema_common_field.extend({
   examples: z.array(z.object({}).passthrough()).optional(),
 });
 
-const array_schema = z.object({
+const array_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.array),
   // todo 可以继续细化 type: object/string/number ...
   items: z.object({}).passthrough(),

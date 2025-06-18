@@ -29,12 +29,17 @@ export function ajvToFormErrors(
   let errors: FormikErrors<Record<string, unknown>> = {};
 
   for (const err of ajvErrors) {
-    const path = err.instancePath
-      .split('/')
-      .concat([err.params.missingProperty])
-      .filter((i) => !isEmpty(i))
-      .join('.');
-    errors = setIn(errors, path, err.message);
+    let path: string[] = err.instancePath.split('/');
+    if (err.keyword === 'errorMessage') {
+      path = path.concat(err.params.errors[0].params.missingProperty);
+    } else {
+      path = path.concat([err.params.missingProperty]);
+    }
+    errors = setIn(
+      errors,
+      path.filter((i) => !isEmpty(i)).join('.'),
+      err.message,
+    );
   }
   return errors;
 }

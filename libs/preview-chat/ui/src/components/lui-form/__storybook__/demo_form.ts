@@ -1,5 +1,3 @@
-import { json_schema } from '@myshell-run/common-def';
-import { z } from 'zod';
 import { JSONSchemaType } from 'ajv';
 
 export const demo_uischema = {
@@ -128,6 +126,8 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
 }> = {
   type: 'object',
   title: 'Image Configuration',
+  // TODO 增加 additionalProperties
+  // additionalProperties: false,
   properties: {
     // selfie: {
     //   variant: 'object_image_upload',
@@ -159,21 +159,15 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
       title: 'Description',
       maxLength: 280,
       minLength: 1,
-      errorMessage: {
-        minLength: 'Description must be at least 1 character long',
-        maxLength: 'Description cannot exceed 280 characters',
-        required: 'Description is required',
-      },
       // todo: placeholder 用 example？
+      errorMessage: {
+        minLength: 'should not be empty',
+      },
     },
     title: {
       title: 'Title',
       type: 'array',
       maxItems: 1,
-      errorMessage: {
-        required: 'Title image is required',
-        maxItems: 'Only one title image is allowed',
-      },
       items: {
         type: 'object',
         properties: {
@@ -182,27 +176,15 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
             properties: {
               uploadURL: {
                 type: 'string',
-                errorMessage: {
-                  required: 'Upload URL is required',
-                },
               },
               name: {
                 type: 'string',
-                errorMessage: {
-                  required: 'File name is required',
-                },
               },
             },
             required: ['uploadURL', 'name'],
-            errorMessage: {
-              required: 'File information is required',
-            },
           },
         },
         required: ['file'],
-        errorMessage: {
-          required: 'File object is required',
-        },
       },
     },
     style: {
@@ -211,27 +193,15 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
       properties: {
         name: {
           type: 'string',
-          errorMessage: {
-            required: 'Style name is required',
-          },
         },
         title: {
           type: 'string',
-          errorMessage: {
-            required: 'Style title is required',
-          },
         },
         url: {
           type: 'string',
-          errorMessage: {
-            required: 'Style URL is required',
-          },
         },
       },
       required: ['name', 'title', 'url'],
-      errorMessage: {
-        required: 'Style configuration is required',
-      },
       examples: [
         {
           name: 'a',
@@ -239,10 +209,13 @@ export const demo_jsonschema_custom_error_message: JSONSchemaType<{
           url: 'http://a',
         },
       ],
+      errorMessage: {
+        required: {
+          url: 'Must have url',
+          title: 'Must have title',
+        },
+      },
     },
   },
   required: ['description', 'title', 'style'],
-  errorMessage: {
-    required: 'Please fill in all required fields',
-  },
 };
