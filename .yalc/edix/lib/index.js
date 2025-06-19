@@ -1413,6 +1413,7 @@ const schema = ({ multiline, void: voids = {}, }) => {
 };
 
 exports.Delete = Delete;
+exports.InsertFragment = InsertFragment;
 exports.InsertText = InsertText;
 exports.editable = editable;
 exports.plainSchema = plainSchema;

@@ -1410,5 +1410,5 @@ const schema = ({ multiline, void: voids = {}, }) => {
     };
 };
 
-export { Delete, InsertText, editable, plainSchema, schema, voidNode };
+export { Delete, InsertFragment, InsertText, editable, plainSchema, schema, voidNode };
 //# sourceMappingURL=index.mjs.map
