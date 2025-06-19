@@ -13,6 +13,9 @@ export const demo_uischema = {
   team_member: {
     variant: 'string_select',
   },
+  age: {
+    variant: 'number_range',
+  },
 };
 
 export const demo_jsonschema: JSONSchemaType<{
@@ -51,6 +54,13 @@ export const demo_jsonschema: JSONSchemaType<{
     //     },
     //   ],
     // },
+    age: {
+      title: 'Age',
+      type: 'number',
+      multipleOf: 1,
+      minimum: 16,
+      maximum: 70,
+    },
     team_member: {
       type: 'string',
       title: 'Team member',
@@ -147,7 +157,7 @@ export const demo_jsonschema: JSONSchemaType<{
       ],
     },
   },
-  required: ['description', 'title', 'style'],
+  required: ['description', 'age', 'team_member'],
 };
 
 export const demo_jsonschema_custom_error_message: JSONSchemaType<{

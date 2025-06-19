@@ -8,6 +8,15 @@ const jsonschema_common_field = z.object({
   errorMessage: z.record(z.string(), z.string()).optional(),
 });
 
+export const number_schema = jsonschema_common_field.extend({
+  type: z.literal(type.Enum.number),
+  multipleOf: z.number().optional(),
+  maximum: z.number().optional(),
+  exclusiveMaximum: z.number().optional(),
+  minimum: z.number().optional(),
+  exclusiveMinimum: z.number().optional(),
+});
+
 export const string_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.string),
   maxLength: z.number().optional(),
@@ -37,7 +46,12 @@ export const json_schema = z.object({
   title: z.string(),
   properties: z.record(
     z.string(),
-    z.discriminatedUnion('type', [object_schema, string_schema, array_schema]),
+    z.discriminatedUnion('type', [
+      object_schema,
+      string_schema,
+      array_schema,
+      number_schema,
+    ]),
   ),
   required: z.array(z.string()).optional(),
 });
