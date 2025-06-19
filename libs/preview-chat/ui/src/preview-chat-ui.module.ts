@@ -9,8 +9,8 @@ import {
   ImageChoice,
 } from './components/lui-form/image-choice/image-choice';
 import {
-  UploadModel,
   upload_schema,
+  UploadModel,
 } from './components/lui-form/upload/upload.model';
 import { z } from 'zod';
 import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
@@ -37,17 +37,17 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
 
 function setupLuiForm(bind: interfaces.Bind) {
   bind(LuiFormModel).toSelf().inTransientScope();
-  const addLuiFormItem = addFormItemPluginFactory(bind);
+  const addFormItem = addFormItemPluginFactory(bind);
   // todo: 这些 variant 不能随便动（但是因为可以 fallback 所有不用特别严格），也就是 variant 应该是个 protocol，前后端都要感知
   // 如果要严格校验（比如当作 protocol）则可以写一个 zod schema 提前校验下，同时也在 addLuiFormItemPluginFactory 抢类型
-  addLuiFormItem<z.infer<typeof upload_schema>, UploadModel>(
+  addFormItem<z.infer<typeof upload_schema>, UploadModel>(
     'object_image_upload',
     Upload,
     upload_schema,
     UploadModel,
   );
-  addLuiFormItem('string_textarea', Textarea, string_schema);
-  addLuiFormItem('string_select', Select, select_schema);
-  addLuiFormItem('object_image_choice', ImageChoice, image_choice_schema);
-  addLuiFormItem('number_range', Range, number_schema);
+  addFormItem('string_textarea', Textarea, string_schema);
+  addFormItem('string_select', Select, select_schema);
+  addFormItem('object_image_choice', ImageChoice, image_choice_schema);
+  addFormItem('number_range', Range, number_schema);
 }

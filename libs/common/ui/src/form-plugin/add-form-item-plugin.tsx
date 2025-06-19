@@ -1,4 +1,4 @@
-import { LuiFormItem } from '@myshell-run/common-def';
+import { FormItem } from '@myshell-run/common-def';
 import { FieldProps } from 'formik';
 import { interfaces } from 'inversify';
 import { z } from 'zod';
@@ -29,7 +29,7 @@ export function addFormItemPluginFactory(bind: interfaces.Bind) {
       // fallback 保证 caller 逻辑统一
       bind(variant).toConstantValue(() => undefined);
     }
-    bind<LuiFormItem<S, M>>(LuiFormItem).toConstantValue({
+    bind<FormItem<S, M>>(FormItem).toConstantValue({
       variant,
       render: (data, fieldProps, model) => {
         // todo: development 可以这样，但是 production 得 fallback

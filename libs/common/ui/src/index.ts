@@ -16,5 +16,6 @@ export * from './message-plugin/add-message-plugin';
 export * from './form-plugin/add-form-item-plugin';
 export * from './form-plugin/form-item';
 export * from './form-plugin/form.utils';
+export * from './form-plugin/formik.model';
 export * from './form-plugin/__storybook__/demo_form';
 export * from './components/hidden-input-file';

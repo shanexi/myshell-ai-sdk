@@ -1,6 +1,6 @@
 import {
   ChatCommonModelFactory,
-  LuiFormVariantModelFactory,
+  FormVariantModelFactory,
 } from '@myshell-run/common-def';
 import { ContainerModule, interfaces } from 'inversify';
 import { ChatCommonModel } from './components/chat-common.model';
@@ -8,6 +8,7 @@ import { MessageItemSvc } from './message-plugin/message-item.svc';
 import { UppyModel } from './components/uppy.model';
 import { FormItemSvc } from './form-plugin/form-item.svc';
 import { EdixModel } from './components/edix.model';
+import { FormikModel } from './form-plugin/formik.model';
 
 export const commonUIModule = new ContainerModule((bind) => {
   bindCommonUI(bind);
@@ -35,7 +36,7 @@ export function bindCommonUI(bind: interfaces.Bind) {
     },
   );
 
-  bind(LuiFormVariantModelFactory).toFactory<(id: string) => unknown, [string]>(
+  bind(FormVariantModelFactory).toFactory<(id: string) => unknown, [string]>(
     (ctx) => {
       return (variant) => ctx.container.get(variant);
     },
@@ -45,4 +46,5 @@ export function bindCommonUI(bind: interfaces.Bind) {
   bind(EdixModel).toSelf().inTransientScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
   bind(FormItemSvc).toSelf().inSingletonScope();
+  bind(FormikModel).toSelf().inTransientScope();
 }

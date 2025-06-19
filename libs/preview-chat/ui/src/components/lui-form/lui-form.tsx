@@ -32,7 +32,7 @@ export const LuiForm = observer<{
     >
       {(fProp) => {
         useEffect(() => {
-          return model.setFormikProps(fProp);
+          return model.formikModel.setFormikProps(fProp);
         }, []);
         return (
           // https://formik.org/docs/api/form

@@ -1,14 +1,11 @@
-import {
-  LuiFormItem,
-  LuiFormVariantModelFactory,
-} from '@myshell-run/common-def';
+import { FormItem, FormVariantModelFactory } from '@myshell-run/common-def';
 import { inject, injectable, multiInject } from 'inversify';
 
 @injectable()
 export class FormItemSvc {
   constructor(
-    @multiInject(LuiFormItem) private items: LuiFormItem<unknown, unknown>[],
-    @inject(LuiFormVariantModelFactory)
+    @multiInject(FormItem) private items: FormItem<unknown, unknown>[],
+    @inject(FormVariantModelFactory)
     private factory: (variant: string) => (id: string) => unknown,
   ) {
     //
