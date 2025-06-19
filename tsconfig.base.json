@@ -35,6 +35,7 @@
       "@myshell-run/common-ui": ["libs/common/ui/src/index.ts"],
       "@myshell-run/effect-demo": ["libs/effect-demo/src/index.ts"],
       "@myshell-run/my-nx-plugins": ["libs/my-nx-plugins/src/index.ts"],
+      "@myshell-run/preview-chat-ac": ["libs/preview-chat/ac/src/index.ts"],
       "@myshell-run/preview-chat-input-plugins": [
         "libs/preview-chat/chat-input-plugins/src/index.ts"
       ],

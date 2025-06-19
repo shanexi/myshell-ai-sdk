@@ -9,14 +9,11 @@
       "./coverage",
       "**/*.typegen.ts",
       "libs/biz/ui/src/components/message-list/**/*",
-      "libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*",
-      "apps/simple-server/public/static/style.css",
-      "apps/my-app/app/style.css",
       "apps/my-app/dist",
-      "libs/agent/ui/src/styles.css",
+      "apps/**/style.css",
+      "libs/**/styles.css",
       "libs/agent/ui/output.css",
       "libs/agent/ui/output-prefixed.css",
-      "libs/preview-chat/ui/src/styles.css",
       "./storybook-static",
       ".yalc"
     ]
@@ -25,6 +22,8 @@
     "formatter": {
       "quoteStyle": "single"
     },
-    "parser": { "unsafeParameterDecoratorsEnabled": true }
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
   }
 }
