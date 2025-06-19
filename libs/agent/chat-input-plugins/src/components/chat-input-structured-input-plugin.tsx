@@ -114,7 +114,7 @@ const ContextItem: React.FC<{
     <span
       contentEditable={false}
       className={cn(
-        'relative top-[2.5px] mx-[1.5px]',
+        'relative top-[2.5px]',
         'group',
         'inline-flex items-center gap-[6px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',

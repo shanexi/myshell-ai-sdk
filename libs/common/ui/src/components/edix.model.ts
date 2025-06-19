@@ -34,9 +34,11 @@ export class EdixModel {
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([
     [
+      // TODO 应该是个 bug，必须有一个 text（非空） 在最前面 先这样避开
+      // 到时候输入 context 的时候，就额外增加一个 空字符
       {
         type: 'text',
-        text: '✅ 我已完成在线学习平台的全面需求分析',
+        text: ' ',
       },
       {
         type: 'context',
@@ -44,9 +46,11 @@ export class EdixModel {
           content: 'canvas.state1.inputs.variable1',
         },
       },
-      { type: 'text', text: ' ，并更新了所有相关文档：\\n\\n📋 **' },
+      {
+        type: 'text',
+        text: ' ',
+      },
     ],
-    [{ type: 'text', text: 'Type @ to reference context' }],
   ]);
 
   @observable atRect: DOMRect | null = null;
@@ -139,12 +143,11 @@ export class EdixModel {
     this.setAtContextMenuShow(false);
 
     await this.edixRefPromise;
-    this.edixHandle?.command(InsertText, ''); // 猜测作用是 focus，否则下面的 move focus backward 无效
+    this.edixHandle?.command(InsertText, ''); // 插入一个空字符（尝试了几种这种方案 work） 确保 dropdown 小时候，focus 在 contenteditable 否则下面的 move focus backward 无效
     setTimeout(() => {
       document.getSelection()?.modify('extend', 'backward', 'character');
-      this.edixHandle?.syncSelection(); // 必须加上 否则下方的 Delete 无效
-      this.edixHandle?.command(Delete);
-      this.edixHandle?.command(InsertText, text);
+      this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
+      this.edixHandle?.command(InsertText, text + ' ');
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
 
@@ -173,13 +176,14 @@ export class EdixModel {
 
          如果不做 resetHistory，inputText = '' 由于 data flow 乱了（应该是 imperative edix + onChange）
          imperative edix 其实就是 selectAllChildren + syncSelection + Delete
-         在 storybook 可行，但是在 next.js 失效，所以强加了 inputText = ''
+         在 storybook 可行，但是在 next.js 失效，所以强加了 inputText = ''（补充了 chatInputDoc = [] 清空）
 
          增加 resetHistory 由于 history 很干净，currentSelection 也很干净，重复一次 '' 空字符串不会搞乱 history
          */
         this.edixHandle.resetHistory();
         setTimeout(() => {
           this.inputText = '';
+          this.chatInputDoc = [];
         });
       }
     }
