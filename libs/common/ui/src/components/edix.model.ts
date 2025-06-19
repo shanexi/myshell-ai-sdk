@@ -1,8 +1,10 @@
 import {
   Delete,
   editable,
+  EditableCommand,
   EditableHandle,
   InferDoc,
+  InsertFragment,
   InsertText,
   plainSchema,
   schema,
@@ -25,6 +27,19 @@ export const chatInputDocSchema = schema({
 });
 
 export type ChatInputDoc = InferDoc<typeof chatInputDocSchema>;
+
+const InsertContext: EditableCommand<[text: string]> = (
+  doc,
+  selection,
+  text,
+) => {
+  InsertFragment(doc, selection, [
+    [
+      { type: 'context', data: { content: text } },
+      { type: 1 /* NODE_TEXT */, text: ' ' },
+    ],
+  ]);
+};
 
 @injectable()
 export class EdixModel {
@@ -143,7 +158,7 @@ export class EdixModel {
     setTimeout(() => {
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
-      this.edixHandle?.command(InsertText, text + ' ');
+      this.edixHandle?.command(InsertContext, text + ' ');
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
 

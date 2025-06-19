@@ -11,7 +11,7 @@ export const demo_chat_input = {
       {
         type: 'context',
         data: {
-          content: 'canvas.state1.inputs.variable1',
+          content: 'canvas.state1',
         },
       },
     ],

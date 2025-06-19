@@ -43,7 +43,7 @@ export class ChatInputModel {
     name: string;
   }>([
     { type: 'file', name: 'requirement.feature1' },
-    { type: 'json', name: 'canvas.state1.inputs.variable1' },
+    { type: 'json', name: 'canvas.state1.inputs' },
     { type: 'todo', name: 'test.test_suite1' },
     { type: 'message', name: 'preview.message1' },
   ]);

@@ -1346,7 +1346,16 @@ const schema = ({ multiline, void: voids = {}, }) => {
                 acc.push(text);
             }
             else {
-                acc.push(voidCache.get(t.data));
+                let voidCacheItem = voidCache.get(t.data);
+                if (!voidCacheItem) {
+                    const data = t.data;
+                    voidCacheItem = {
+                        type: t.type,
+                        data: { ...data },
+                    };
+                    voidCache.set(data, voidCacheItem);
+                }
+                acc.push(voidCacheItem);
             }
             return acc;
         }, []);

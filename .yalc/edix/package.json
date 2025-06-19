@@ -26,7 +26,7 @@
     "e2e": "npx playwright test",
     "typedoc": "typedoc",
     "size": "size-limit",
-    "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
+    "prepublishOnly": "rimraf lib && npm run build"
   },
   "repository": {
     "type": "git",
@@ -60,5 +60,5 @@
     "url": "https://github.com/inokawa/edix/issues"
   },
   "homepage": "https://github.com/inokawa/edix#readme",
-  "yalcSig": "0604692ee695703233d5583e29f5a026"
+  "yalcSig": "ea076d66079d270fd773c521bd5f28bc"
 }
