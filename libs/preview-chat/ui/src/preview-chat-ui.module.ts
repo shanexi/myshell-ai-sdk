@@ -1,7 +1,7 @@
 import { ContainerModule, interfaces } from 'inversify';
 import { PreviewChatModel } from './components/preview-chat-model';
 import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
-import { addLuiFormItemPluginFactory } from '@myshell-run/common-ui';
+import { addFormItemPluginFactory } from '@myshell-run/common-ui';
 import { Upload } from './components/lui-form/upload/upload';
 import { Textarea } from './components/lui-form/textarea/textarea';
 import {
@@ -37,7 +37,7 @@ export function bindPreviewChatUI(bind: interfaces.Bind) {
 
 function setupLuiForm(bind: interfaces.Bind) {
   bind(LuiFormModel).toSelf().inTransientScope();
-  const addLuiFormItem = addLuiFormItemPluginFactory(bind);
+  const addLuiFormItem = addFormItemPluginFactory(bind);
   // todo: 这些 variant 不能随便动（但是因为可以 fallback 所有不用特别严格），也就是 variant 应该是个 protocol，前后端都要感知
   // 如果要严格校验（比如当作 protocol）则可以写一个 zod schema 提前校验下，同时也在 addLuiFormItemPluginFactory 抢类型
   addLuiFormItem<z.infer<typeof upload_schema>, UploadModel>(

@@ -13,6 +13,6 @@ export * from './mock-generator';
 export * from './message-plugin/message-item';
 export * from './components/chat-message-list';
 export * from './message-plugin/add-message-plugin';
-export * from './lui-form-plugin/add-lui-form-item-plugin';
-export * from './lui-form-plugin/lui-form-item';
+export * from './form-plugin/add-form-item-plugin';
+export * from './form-plugin/form-item';
 export * from './components/hidden-input-file';

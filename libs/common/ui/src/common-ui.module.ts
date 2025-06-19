@@ -6,7 +6,7 @@ import { ContainerModule, interfaces } from 'inversify';
 import { ChatCommonModel } from './components/chat-common.model';
 import { MessageItemSvc } from './message-plugin/message-item.svc';
 import { UppyModel } from './components/uppy.model';
-import { LuiFormItemSvc } from './lui-form-plugin/lui-form-item.svc';
+import { FormItemSvc } from './form-plugin/form-item.svc';
 import { EdixModel } from './components/edix.model';
 
 export const commonUIModule = new ContainerModule((bind) => {
@@ -44,5 +44,5 @@ export function bindCommonUI(bind: interfaces.Bind) {
   bind(UppyModel).toSelf().inTransientScope();
   bind(EdixModel).toSelf().inTransientScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
-  bind(LuiFormItemSvc).toSelf().inSingletonScope();
+  bind(FormItemSvc).toSelf().inSingletonScope();
 }

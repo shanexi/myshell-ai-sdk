@@ -3,7 +3,7 @@ import { FieldProps } from 'formik';
 import { interfaces } from 'inversify';
 import { z } from 'zod';
 
-export function addLuiFormItemPluginFactory(bind: interfaces.Bind) {
+export function addFormItemPluginFactory(bind: interfaces.Bind) {
   return function addMessagePlugin<S = z.Schema<unknown>, M = unknown>(
     variant: string,
     // todo: 添加 vlaue/onChange

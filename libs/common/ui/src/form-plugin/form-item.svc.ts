@@ -5,7 +5,7 @@ import {
 import { inject, injectable, multiInject } from 'inversify';
 
 @injectable()
-export class LuiFormItemSvc {
+export class FormItemSvc {
   constructor(
     @multiInject(LuiFormItem) private items: LuiFormItem<unknown, unknown>[],
     @inject(LuiFormVariantModelFactory)

@@ -1,5 +1,5 @@
 import { json_schema } from '@myshell-run/common-def';
-import { cn, LuiFormItem } from '@myshell-run/common-ui';
+import { cn, FormItem } from '@myshell-run/common-ui';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
@@ -77,7 +77,7 @@ export const LuiForm = observer<{
                                 : undefined
                             }
                           >
-                            <LuiFormItem
+                            <FormItem
                               {...item}
                               fieldProps={fieldProps}
                               variant={variant}
