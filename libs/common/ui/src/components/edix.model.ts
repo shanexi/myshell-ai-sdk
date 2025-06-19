@@ -3,6 +3,7 @@ import {
   editable,
   EditableHandle,
   InferDoc,
+  InsertText,
   plainSchema,
   schema,
   voidNode,
@@ -53,8 +54,8 @@ export class EdixModel {
 
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
+  public edixHandle: EditableHandle | null = null;
   private edixRef?: RefObject<HTMLDivElement>;
-  private edixHandle: EditableHandle | null = null;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
 
   constructor() {
@@ -130,6 +131,23 @@ export class EdixModel {
     });
   }
 
+  // todo 处理 enter
+  // 现在 enter 是发送
+  async insertContext(text: string) {
+    // 隐藏 dropdown
+    this.setAtRect(null);
+    this.setAtContextMenuShow(false);
+
+    await this.edixRefPromise;
+    this.edixHandle?.command(InsertText, ''); // 猜测作用是 focus，否则下面的 move focus backward 无效
+    setTimeout(() => {
+      document.getSelection()?.modify('extend', 'backward', 'character');
+      this.edixHandle?.syncSelection(); // 必须加上 否则下方的 Delete 无效
+      this.edixHandle?.command(Delete);
+      this.edixHandle?.command(InsertText, text);
+    }, 1 /* 必须 1ms 估计是 edix 到 batch */);
+  }
+
   async setEdixReadonly(readonly: boolean) {
     this.edixReadonly = readonly;
     await this.edixRefPromise;
@@ -145,7 +163,7 @@ export class EdixModel {
     if (!this.edixRef?.current || !this.edixHandle) return;
     if (this.edixRef?.current && this.edixHandle) {
       this.edixRef?.current.focus();
-      window.getSelection()?.selectAllChildren(this.edixRef.current);
+      document.getSelection()?.selectAllChildren(this.edixRef.current);
       this.edixHandle.syncSelection();
       if (this.edixHandle) {
         this.edixHandle.command(Delete);
