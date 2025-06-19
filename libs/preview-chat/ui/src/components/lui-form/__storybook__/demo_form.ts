@@ -19,7 +19,9 @@ export const demo_uischema = {
 };
 
 export const demo_jsonschema: JSONSchemaType<{
+  age: number;
   description: string;
+  team_member: string;
   title: Array<{
     file: {
       uploadURL: string;

@@ -67,6 +67,24 @@ describe('ajv valdiate', () => {
     expect(valid).toMatchInlineSnapshot(`
       [
         {
+          "instancePath": "",
+          "keyword": "required",
+          "message": "must have required property 'age'",
+          "params": {
+            "missingProperty": "age",
+          },
+          "schemaPath": "#/required",
+        },
+        {
+          "instancePath": "",
+          "keyword": "required",
+          "message": "must have required property 'team_member'",
+          "params": {
+            "missingProperty": "team_member",
+          },
+          "schemaPath": "#/required",
+        },
+        {
           "instancePath": "/description",
           "keyword": "minLength",
           "message": "must NOT have fewer than 1 characters",
@@ -115,11 +133,13 @@ describe('ajv valdiate', () => {
     const act = ajvToFormErrors(arr);
     expect(act).toMatchInlineSnapshot(`
       {
+        "age": "must have required property 'age'",
         "description": "must NOT have fewer than 1 characters",
         "style": {
           "title": "must have required property 'title'",
           "url": "must have required property 'url'",
         },
+        "team_member": "must have required property 'team_member'",
         "title": [
           {
             "file": {
