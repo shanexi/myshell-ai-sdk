@@ -1,5 +1,5 @@
 import { json_schema } from '@myshell-run/common-def';
-import { cn, FormItem } from '@myshell-run/common-ui';
+import { cn, FormItem, validateJSONSchema } from '@myshell-run/common-ui';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
@@ -8,7 +8,6 @@ import { z } from 'zod';
 import { PreviewChatModel } from '../preview-chat-model';
 import { Button } from './button';
 import { LuiFormModel } from './lui-form.model';
-import { ajvToFormErrors, ajvValidate } from './lui-form.utils';
 import { isArray, isObject, isString } from 'radash';
 
 export const LuiForm = observer<{
@@ -26,11 +25,7 @@ export const LuiForm = observer<{
         } as Record<string, unknown>
       }
       validateOnChange={true}
-      validate={(values) => {
-        const ajvErr = ajvValidate(jsonschema, values);
-        const err = ajvToFormErrors(ajvErr);
-        return err;
-      }}
+      validate={(values) => validateJSONSchema(jsonschema, values)}
       onSubmit={(values) => {
         console.log('submit', values);
       }}

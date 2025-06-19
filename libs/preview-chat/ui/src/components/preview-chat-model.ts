@@ -1,5 +1,9 @@
 import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import {
+  ChatCommonModel,
+  demo_jsonschema,
+  demo_uischema,
+} from '@myshell-run/common-ui';
 import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
 import {
   MessageItemHandlers,
@@ -9,10 +13,6 @@ import {
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
-import {
-  demo_jsonschema,
-  demo_uischema,
-} from './lui-form/__storybook__/demo_form';
 import { LuiFormModel } from './lui-form/lui-form.model';
 
 @injectable()

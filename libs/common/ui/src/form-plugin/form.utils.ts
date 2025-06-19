@@ -43,3 +43,12 @@ export function ajvToFormErrors(
   }
   return errors;
 }
+
+export function validateJSONSchema(
+  jsonschema: z.infer<typeof json_schema>,
+  values: Record<string, unknown>,
+) {
+  const ajvErr = ajvValidate(jsonschema, values);
+  const err = ajvToFormErrors(ajvErr);
+  return err;
+}

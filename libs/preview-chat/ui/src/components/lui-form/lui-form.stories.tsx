@@ -1,10 +1,13 @@
-import { commonUIModule } from '@myshell-run/common-ui';
+import {
+  commonUIModule,
+  demo_jsonschema,
+  demo_uischema,
+} from '@myshell-run/common-ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { previewChatUIModule } from '../../preview-chat-ui.module';
 import { PreviewChatModel } from '../preview-chat-model';
-import { demo_jsonschema, demo_uischema } from './__storybook__/demo_form';
 import { LuiForm } from './lui-form';
 import { json_schema, UploadEndpoint } from '@myshell-run/common-def';
 import { z } from 'zod';

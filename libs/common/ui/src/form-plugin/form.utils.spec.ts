@@ -6,7 +6,7 @@ import {
   demo_jsonschema,
   demo_jsonschema_custom_error_message,
 } from './__storybook__/demo_form';
-import { ajvToFormErrors, ajvValidate } from './lui-form.utils';
+import { ajvToFormErrors, ajvValidate } from './form.utils';
 
 describe('ajv valdiate', () => {
   const data = {
