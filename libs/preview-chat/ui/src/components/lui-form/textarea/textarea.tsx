@@ -1,6 +1,6 @@
 import { string_schema } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
-import { FieldProps } from 'formik';
+import { type FieldProps } from 'formik';
 import { z } from 'zod';
 
 export const Textarea: React.FC<
@@ -19,9 +19,7 @@ export const Textarea: React.FC<
       )}
     >
       <textarea
-        name={field.name}
-        value={field.value}
-        onChange={field.onChange}
+        {...field}
         className={cn(
           'resize-none',
           'focus-within:ring-0 focus-within:outline-none focus:ring-0 focus:outline-none',

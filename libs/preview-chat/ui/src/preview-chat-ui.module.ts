@@ -5,7 +5,7 @@ import { addLuiFormItemPluginFactory } from '@myshell-run/common-ui';
 import { Upload } from './components/lui-form/upload/upload';
 import { Textarea } from './components/lui-form/textarea/textarea';
 import {
-  image_choice,
+  image_choice_schema,
   ImageChoice,
 } from './components/lui-form/image-choice/image-choice';
 import {
@@ -47,5 +47,5 @@ function setupLuiForm(bind: interfaces.Bind) {
   );
   addLuiFormItem('string_textarea', Textarea, string_schema);
   addLuiFormItem('string_select', Select, select_schema);
-  addLuiFormItem('object_image_choice', ImageChoice, image_choice);
+  addLuiFormItem('object_image_choice', ImageChoice, image_choice_schema);
 }

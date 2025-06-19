@@ -25,7 +25,7 @@ export const LuiForm = observer<{
           description: '',
         } as Record<string, unknown>
       }
-      validateOnChange={false}
+      validateOnChange={true}
       validate={(values) => {
         const ajvErr = ajvValidate(jsonschema, values);
         const err = ajvToFormErrors(ajvErr);

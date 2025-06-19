@@ -55,6 +55,7 @@ export const demo_jsonschema: JSONSchemaType<{
       type: 'string',
       title: 'Team member',
       enum: ['Backend', 'Frontend', 'Algorithm'],
+      description: 'Select a team',
     },
     description: {
       type: 'string',
@@ -104,9 +105,44 @@ export const demo_jsonschema: JSONSchemaType<{
       required: ['name', 'title', 'url'],
       examples: [
         {
-          name: 'a',
-          title: 'A',
-          url: 'http://a',
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+          name: '1',
+          title: '1',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+          name: '2',
+          title: '2',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg',
+          name: '3',
+          title: '3',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg',
+          title: '4',
+          name: '4',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg',
+          title: '5',
+          name: '5',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg',
+          title: '6',
+          name: '6',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg',
+          title: '7',
+          name: '7',
+        },
+        {
+          url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg',
+          title: '8',
+          name: '8',
         },
       ],
     },

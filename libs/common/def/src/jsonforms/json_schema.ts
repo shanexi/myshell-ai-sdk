@@ -15,14 +15,14 @@ export const string_schema = jsonschema_common_field.extend({
   enum: z.array(z.string()).optional(),
 });
 
-const object_schema = jsonschema_common_field.extend({
+export const object_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.object),
   properties: z.object({}).passthrough(),
   required: z.array(z.string()).optional(),
   examples: z.array(z.object({}).passthrough()).optional(),
 });
 
-const array_schema = jsonschema_common_field.extend({
+export const array_schema = jsonschema_common_field.extend({
   type: z.literal(type.Enum.array),
   // todo 可以继续细化 type: object/string/number ...
   items: z.object({}).passthrough(),
