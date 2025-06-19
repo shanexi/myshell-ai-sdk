@@ -46,10 +46,6 @@ export class EdixModel {
           content: 'canvas.state1.inputs.variable1',
         },
       },
-      {
-        type: 'text',
-        text: ' ',
-      },
     ],
   ]);
 
@@ -158,7 +154,8 @@ export class EdixModel {
   }
 
   /**
-   * todo: 这种方式会有选中，而且不会清空 history，如果不满足需求，需要进一步 patch
+   * TODO 这种方式会有选中，而且不会清空 history，如果不满足需求，需要进一步 patch
+   * TODO 还有一个 bug，如果 chatInputDoc 默认有值，clearEdix 再 undo，selection 有问题
    * 核心是不能通过外部 setValue(更新) value，而应该是 edix -> setValue -> value(render) 这样，所有 modification 都必须从 edix
    */
   async clearEdix() {
