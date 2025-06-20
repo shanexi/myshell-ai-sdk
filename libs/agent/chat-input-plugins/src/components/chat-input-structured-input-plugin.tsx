@@ -91,8 +91,8 @@ export const ChatInputStructuredInputPlugin = observer(() => {
         model.chatCommon.edixModel.atRect && (
           <MentionDropdown
             users={users}
-            onSelect={() => {
-              model.chatCommon.edixModel.insertContext('hi');
+            onSelect={(user) => {
+              model.chatCommon.edixModel.insertContext(user.name);
             }}
             onClose={() => {
               model.chatCommon.edixModel.setAtRect(null);

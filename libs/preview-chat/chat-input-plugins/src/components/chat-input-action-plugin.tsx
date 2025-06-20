@@ -17,7 +17,7 @@ export const ChatInputActionPlugin = observer(() => {
         <BrushCleaning
           onClick={() => model.clear()}
           strokeWidth={1.5}
-          size={38}
+          size={22}
           className="cursor-pointer p-[7px]"
         />
 
@@ -43,7 +43,7 @@ export const ChatInputActionPlugin = observer(() => {
           <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-light-v2" />
         </div>
       ) : (
-        <Mic strokeWidth={1.5} size={38} className="cursor-pointer p-[7px]" />
+        <Mic strokeWidth={1.5} size={22} className="cursor-pointer p-[7px]" />
       )}
     </div>
   );

@@ -49,8 +49,6 @@ export class EdixModel {
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([
     [
-      // TODO 应该是个 bug，必须有一个 text（非空） 在最前面 先这样避开
-      // 到时候输入 context 的时候，就额外增加一个 空字符
       {
         type: 'text',
         text: ' ',
