@@ -804,6 +804,9 @@ const readDom = (root, config, option) => {
                 }
                 else if (type === TOKEN_VOID) {
                     completeText();
+                    if (!row) {
+                        row = [];
+                    }
                     row.push(getDomNode());
                 }
                 else if (type === TOKEN_SOFT_BREAK) {

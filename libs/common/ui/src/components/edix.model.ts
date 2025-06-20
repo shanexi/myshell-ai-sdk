@@ -41,26 +41,28 @@ const InsertContext: EditableCommand<[text: string]> = (
   ]);
 };
 
+const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
+  [
+    {
+      type: 'text',
+      text: ' ',
+    },
+    {
+      type: 'context',
+      data: {
+        content: 'canvas.state1.inputs.variable1',
+      },
+    },
+  ],
+];
+
 @injectable()
 export class EdixModel {
   @observable inputText = '';
   /**
    * @description 给 structured chat input plugin 暂时不合并
    */
-  @observable chatInputDoc: ChatInputDoc = observable.array([
-    [
-      {
-        type: 'text',
-        text: ' ',
-      },
-      {
-        type: 'context',
-        data: {
-          content: 'canvas.state1.inputs.variable1',
-        },
-      },
-    ],
-  ]);
+  @observable chatInputDoc: ChatInputDoc = observable.array([]);
 
   @observable atRect: DOMRect | null = null;
   @observable isAtContextMenuShow = false;
