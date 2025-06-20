@@ -4,7 +4,8 @@ import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
-import { makeObservable } from 'mobx';
+import { makeObservable, toJS } from 'mobx';
+import { f2b_content_blocks } from './shellagent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements ChatInputHandlers {
@@ -43,6 +44,9 @@ export class ShellAgentChatModel implements ChatInputHandlers {
       text,
       type: OWN_MESSAGE_TYPE,
     });
+
+    // TODO: 对接后端
+    console.log('send', f2b_content_blocks(toJS(chatInputDoc)));
 
     yield;
   }

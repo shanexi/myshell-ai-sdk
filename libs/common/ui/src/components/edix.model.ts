@@ -169,9 +169,9 @@ export class EdixModel {
   }
 
   /**
+   * 核心是不能通过外部 setValue(更新) value，而应该是 edix -> setValue -> value(render) 这样，所有 modification 都必须从 edix
    * TODO 这种方式会有选中，而且不会清空 history，如果不满足需求，需要进一步 patch
    * TODO 还有一个 bug，如果 chatInputDoc 默认有值，clearEdix 再 undo，selection 有问题
-   * 核心是不能通过外部 setValue(更新) value，而应该是 edix -> setValue -> value(render) 这样，所有 modification 都必须从 edix
    */
   async clearEdix() {
     await this.edixRefPromise;
@@ -184,7 +184,7 @@ export class EdixModel {
         this.edixHandle.command(Delete);
         /*
          临时方案
-         主要是因为 next.js 无法清空，增加了 resetHistory + this.inputText = ''(observable 直接操作)
+         主要是因为在 next.js 无法清空（不清楚原因），增加了 resetHistory + this.inputText = ''(observable 直接操作)
 
          如果不做 resetHistory，inputText = '' 由于 data flow 乱了（应该是 imperative edix + onChange）
          imperative edix 其实就是 selectAllChildren + syncSelection + Delete
