@@ -26,6 +26,7 @@ export const XButton = observer<PropsWithChildren<Properties>>(
           'rounded-C-button-md-radius-v2',
           'px-C-button-md-padding-v2',
           'py-1',
+          'cursor-pointer',
         )}
       >
         {(model && model.display_text) ||

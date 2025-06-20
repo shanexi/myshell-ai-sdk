@@ -8,13 +8,13 @@ import {
   demo_default_message_5,
 } from '../__storybook_data__/demo_default_message';
 import { useEffect, useState } from 'react';
-import { contentBlocksToMDC } from './content-blocks-to-mdc';
+import { content_blocks_2_mdc } from './content-blocks-to-mdc';
 
 export const RemarkDefaultMessage = () => {
   const lines = [
-    contentBlocksToMDC(demo_default_message_1),
-    contentBlocksToMDC(demo_default_message_2),
-    contentBlocksToMDC(demo_default_message_3),
+    content_blocks_2_mdc(demo_default_message_1),
+    content_blocks_2_mdc(demo_default_message_2),
+    content_blocks_2_mdc(demo_default_message_3),
     // contentBlocksToMDC(demo_default_message_4),
     // contentBlocksToMDC(demo_default_message_5),
   ];

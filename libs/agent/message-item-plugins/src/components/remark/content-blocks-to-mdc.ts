@@ -1,23 +1,52 @@
 import { z } from 'zod';
 
-const content_blocks_schema = z.object({
+export const chat_message_type = z.enum(['chat_message']);
+
+const text_schema = z.object({
+  type: z.literal('text'),
+  content: z.object({
+    text: z.string(),
+  }),
+});
+
+const button_schema = z.object({
+  type: z.literal('button'),
+  content: z.object({
+    action_type: z.enum(['submit']),
+    display_text: z.string(),
+    target: z.string(),
+    parameters: z.object({
+      action: z.string(),
+    }),
+  }),
+});
+
+const agent_log_schema = z.object({
+  type: z.literal('agent_log'),
+  content: z.object({
+    text: z.string(),
+  }),
+});
+
+export const content_blocks_schema = z.object({
   id: z.number(),
-  timestamp: z.string().datetime(),
-  type: z.string(),
+  message_id: z.number(),
+  // timestamp: z.string().datetime(),
+  timestamp: z.string(),
+  source: z.union([z.literal('agent'), z.literal('user')]),
+  type: chat_message_type,
+  cause: z
+    .literal(1)
+    .optional()
+    .describe(
+      'cause 是一个语义不明确的字段，来自于 openhands，目前的含义是如果有，则替 message_id 内容 ',
+    ),
   args: z.object({
-    cause: z.number().optional(),
-    behavior: z.union([z.literal('append'), z.literal('replace')]),
     content_blocks: z.array(
       z.discriminatedUnion('type', [
-        z.object({
-          type: z.literal('text'),
-          content: z.string(),
-        }),
-        z.object({
-          type: z.literal('x-button'),
-          id: z.string(),
-          display_text: z.string(),
-        }),
+        text_schema,
+        button_schema,
+        agent_log_schema,
       ]),
     ),
   }),
@@ -26,16 +55,22 @@ const content_blocks_schema = z.object({
 /**
  *
  * 考虑到 remark 实现换行有难度，先转成 directive
+ * todo 插件 先 if-else
  */
-export const contentBlocksToMDC = (
+export const content_blocks_to_mdc = (
   content_blocks: z.infer<typeof content_blocks_schema>,
 ) => {
   return content_blocks.args.content_blocks
     .map((block) => {
-      if (block.type === 'text') {
-        return block.content;
-      } else {
-        return `:${block.type}{#${block.id} display_text='${block.display_text}'}`;
+      switch (block.type) {
+        case 'text':
+          return block.content.text;
+        case 'button':
+          return `:x-${block.type}{display_text='${block.content.display_text}'}`;
+        case 'agent_log':
+          return `:x-${block.type}{display_text='${block.content.text}'}`;
+        default:
+          return '';
       }
     })
     .join(' ');
