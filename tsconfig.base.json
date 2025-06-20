@@ -18,8 +18,8 @@
       "@myshell-run/agent-chat-input-plugins": [
         "libs/agent/chat-input-plugins/src/index.ts"
       ],
-      "@myshell-run/agent-message-item-plugins": [
-        "libs/agent/message-item-plugins/src/index.ts"
+      "@myshell-run/agent-message-plugins": [
+        "libs/agent/message-plugins/src/index.ts"
       ],
       "@myshell-run/agent-ui": ["libs/agent/ui/src/index.ts"],
       "@myshell-run/archive-automata": ["libs/archive/automata/src/index.ts"],
@@ -39,8 +39,8 @@
       "@myshell-run/preview-chat-input-plugins": [
         "libs/preview-chat/chat-input-plugins/src/index.ts"
       ],
-      "@myshell-run/preview-chat-message-item-plugins": [
-        "libs/preview-chat/message-item-plugins/src/index.ts"
+      "@myshell-run/preview-chat-message-plugins": [
+        "libs/preview-chat/message-plugins/src/index.ts"
       ],
       "@myshell-run/preview-chat-ui": ["libs/preview-chat/ui/src/index.ts"],
       "@myshell-run/react-aria-tailwind-starter": [

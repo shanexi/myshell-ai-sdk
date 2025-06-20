@@ -36,9 +36,9 @@ function makeConfig() {
         titlePrefix: 'agent-ui',
       },
       {
-        directory: '../libs/agent/message-item-plugins/src',
+        directory: '../libs/agent/message-plugins/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
-        titlePrefix: 'agent-message-item-plugins',
+        titlePrefix: 'agent-message-plugins',
       },
       {
         directory: '../libs/agent/chat-input-plugins/src',
@@ -51,9 +51,9 @@ function makeConfig() {
         titlePrefix: 'preview-chat-ui',
       },
       {
-        directory: '../libs/preview-chat/message-item-plugins/src',
+        directory: '../libs/preview-chat/message-plugins/src',
         files: '**/*.stories.@(js|jsx|ts|tsx)',
-        titlePrefix: 'preview-chat-message-item-plugins',
+        titlePrefix: 'preview-chat-message-plugins',
       },
       {
         directory: '../libs/preview-chat/chat-input-plugins/src',
@@ -66,7 +66,7 @@ function makeConfig() {
       //   titlePrefix: 'biz-ui',
       // },
       // {
-      //   directory: '../libs/biz/message-item-plugins/src',
+      //   directory: '../libs/biz/message-plugins/src',
       //   files: '**/*.stories.@(js|jsx|ts|tsx)',
       //   titlePrefix: 'biz-message-item-plugins',
       // },

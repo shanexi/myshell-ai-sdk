@@ -1,5 +1,5 @@
 import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
-import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-item-plugins';
+import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';

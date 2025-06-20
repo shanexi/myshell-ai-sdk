@@ -5,7 +5,7 @@ import { MessageItem } from '@myshell-run/common-ui';
 import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/agent-message-item-plugins';
+} from '@myshell-run/agent-message-plugins';
 
 const meta: Meta<typeof MessageItem> = {
   component: MessageItem,

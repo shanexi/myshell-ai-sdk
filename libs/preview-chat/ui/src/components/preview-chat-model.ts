@@ -9,7 +9,7 @@ import {
   MessageItemHandlers,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/preview-chat-message-item-plugins';
+} from '@myshell-run/preview-chat-message-plugins';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
@@ -80,7 +80,7 @@ export class PreviewChatModel
    * 这里先保留下，因为有可能有场景 explicitly call
    */
   submitLuiForm = async () => {
-    await this.luiFormModel.isFormikReadyPromise;
+    await this.luiFormModel.formikModel.isReadyPromise;
     // this.luiFormModel.formikProps?.submitForm();
   };
 }

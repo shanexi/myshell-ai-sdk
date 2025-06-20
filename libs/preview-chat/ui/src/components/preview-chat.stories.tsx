@@ -1,6 +1,6 @@
 import { commonUIModule } from '@myshell-run/common-ui';
 import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
-import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-item-plugins';
+import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-plugins';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';

@@ -1,5 +1,5 @@
 import { agentChatInputPluginsModule } from '@myshell-run/agent-chat-input-plugins';
-import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
+import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-plugins';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
 import { agentUIModule } from '../agent-ui.module';

@@ -7,7 +7,7 @@ import {
   ChatInputStructuredInputPlugin,
   ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
-import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-item-plugins';
+import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-plugins';
 import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';
@@ -17,7 +17,7 @@ import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { previewChatUIModule } from '@myshell-run/preview-chat-ui';
-import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-item-plugins';
+import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-plugins';
 import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
 
 const storyModule = new ContainerModule(

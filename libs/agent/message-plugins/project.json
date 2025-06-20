@@ -1,7 +1,7 @@
 {
-  "name": "agent-message-item-plugins",
+  "name": "agent-message-plugins",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/agent/message-item-plugins/src",
+  "sourceRoot": "libs/agent/message-plugins/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,17 +9,17 @@
       "executor": "@myshell-run/my-nx-plugins:local-publish",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/agent/message-item-plugins",
-        "tsConfig": "libs/agent/message-item-plugins/tsconfig.lib.json"
+        "outputPath": "dist/libs/agent/message-plugins",
+        "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json"
       }
     },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/agent/message-item-plugins",
-        "main": "libs/agent/message-item-plugins/src/index.ts",
-        "tsConfig": "libs/agent/message-item-plugins/tsconfig.lib.json",
+        "outputPath": "dist/libs/agent/message-plugins",
+        "main": "libs/agent/message-plugins/src/index.ts",
+        "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json",
         "assets": []
       }
     },
@@ -27,16 +27,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/agent/message-item-plugins/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/agent/message-plugins/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4510,
-        "configDir": "libs/agent/message-item-plugins/.storybook",
+        "configDir": "libs/agent/message-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -48,7 +46,7 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "./libs/agent/message-item-plugins",
+        "cwd": "./libs/agent/message-plugins",
         "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
       }
     },
@@ -56,8 +54,8 @@
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storybook/message-item-plugins",
-        "configDir": "libs/agent/message-item-plugins/.storybook",
+        "outputDir": "dist/storybook/message-plugins",
+        "configDir": "libs/agent/message-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -69,12 +67,12 @@
     "static-storybook": {
       "executor": "@nrwl/web:file-server",
       "options": {
-        "buildTarget": "agent-message-item-plugins:build-storybook",
-        "staticFilePath": "dist/storybook/message-item-plugins"
+        "buildTarget": "agent-message-plugins:build-storybook",
+        "staticFilePath": "dist/storybook/message-plugins"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "agent-message-item-plugins:build-storybook:ci"
+          "buildTarget": "agent-message-plugins:build-storybook:ci"
         }
       }
     }

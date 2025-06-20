@@ -7,7 +7,7 @@ import { StrictMessage } from '@myshell-run/common-def';
 import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/agent-message-item-plugins';
+} from '@myshell-run/agent-message-plugins';
 import { AgentChatModel } from './agent-chat.model';
 
 const meta: Meta<typeof ChatMessageList> = {

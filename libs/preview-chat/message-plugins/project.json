@@ -1,7 +1,7 @@
 {
-  "name": "preview-chat-message-item-plugins",
+  "name": "preview-chat-message-plugins",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/preview-chat/message-item-plugins/src",
+  "sourceRoot": "libs/preview-chat/message-plugins/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,17 +9,17 @@
       "executor": "@myshell-run/my-nx-plugins:local-publish",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/preview-chat/message-item-plugins",
-        "tsConfig": "libs/preview-chat/message-item-plugins/tsconfig.lib.json"
+        "outputPath": "dist/libs/preview-chat/message-plugins",
+        "tsConfig": "libs/preview-chat/message-plugins/tsconfig.lib.json"
       }
     },
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/preview-chat/message-item-plugins",
-        "main": "libs/preview-chat/message-item-plugins/src/index.ts",
-        "tsConfig": "libs/preview-chat/message-item-plugins/tsconfig.lib.json",
+        "outputPath": "dist/libs/preview-chat/message-plugins",
+        "main": "libs/preview-chat/message-plugins/src/index.ts",
+        "tsConfig": "libs/preview-chat/message-plugins/tsconfig.lib.json",
         "assets": []
       }
     },
@@ -28,7 +28,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/preview-chat/message-item-plugins/**/*.{ts,tsx,js,jsx}"
+          "libs/preview-chat/message-plugins/**/*.{ts,tsx,js,jsx}"
         ]
       }
     },
@@ -36,7 +36,7 @@
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4510,
-        "configDir": "libs/preview-chat/message-item-plugins/.storybook",
+        "configDir": "libs/preview-chat/message-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -48,7 +48,7 @@
     "test-storybook": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "./libs/preview-chat/message-item-plugins",
+        "cwd": "./libs/preview-chat/message-plugins",
         "command": "../../../node_modules/.bin/test-storybook --url http://localhost:4400"
       }
     },
@@ -56,8 +56,8 @@
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storybook/message-item-plugins",
-        "configDir": "libs/preview-chat/message-item-plugins/.storybook",
+        "outputDir": "dist/storybook/message-plugins",
+        "configDir": "libs/preview-chat/message-plugins/.storybook",
         "uiFramework": "@storybook/react"
       },
       "configurations": {
@@ -69,12 +69,12 @@
     "static-storybook": {
       "executor": "@nrwl/web:file-server",
       "options": {
-        "buildTarget": "preview-chat-message-item-plugins:build-storybook",
-        "staticFilePath": "dist/storybook/message-item-plugins"
+        "buildTarget": "preview-chat-message-plugins:build-storybook",
+        "staticFilePath": "dist/storybook/message-plugins"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "preview-chat-message-item-plugins:build-storybook:ci"
+          "buildTarget": "preview-chat-message-plugins:build-storybook:ci"
         }
       }
     }

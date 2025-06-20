@@ -13,7 +13,7 @@ import {
   UploadModel,
 } from './components/lui-form/upload/upload.model';
 import { z } from 'zod';
-import { MessageItemHandlers } from '@myshell-run/preview-chat-message-item-plugins';
+import { MessageItemHandlers } from '@myshell-run/preview-chat-message-plugins';
 import { LuiFormModel } from './components/lui-form/lui-form.model';
 import { Select, select_schema } from './components/lui-form/select/select';
 import { number_schema, string_schema } from '@myshell-run/common-def';

@@ -3,7 +3,7 @@ import {
   OWN_MESSAGE_TYPE,
   previewChatMsgItemPluginsModule,
   REPLY_MESSAGE_TYPE,
-} from '@myshell-run/preview-chat-message-item-plugins';
+} from '@myshell-run/preview-chat-message-plugins';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container, ContainerModule } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
