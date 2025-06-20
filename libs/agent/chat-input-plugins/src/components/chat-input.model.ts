@@ -97,7 +97,10 @@ export class ChatInputModel {
   }
 
   async sendChatInputDoc() {
-    if (isEmpty(this.chatCommon.edixModel.chatInputDoc)) {
+    if (
+      isEmpty(this.chatCommon.edixModel.chatInputDoc) ||
+      this.chatCommon.edixModel.isAtContextMenuShow
+    ) {
       return;
     }
 
