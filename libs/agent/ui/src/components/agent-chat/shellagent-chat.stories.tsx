@@ -19,7 +19,6 @@ import { UploadEndpoint } from '@myshell-run/common-def';
 import { previewChatUIModule } from '@myshell-run/preview-chat-ui';
 import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-item-plugins';
 import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 const storyModule = new ContainerModule(
   (
@@ -53,14 +52,6 @@ container.load(storyModule);
 const meta: Meta<typeof ShellAgentChat> = {
   component: ShellAgentChat,
   decorators: [
-    withThemeByDataAttribute<ReactRenderer>({
-      themes: {
-        light: 'light',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-      attributeName: 'data-theme',
-    }),
     (Story) => (
       <InversifyProvider container={container}>
         <Story />

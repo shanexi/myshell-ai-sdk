@@ -1,17 +1,3 @@
-export const msg1 = {
-  type: 'chat_message',
-  args: {
-    content_blocks: [
-      {
-        type: 'text',
-        content: {
-          text: '你好',
-        },
-      },
-    ],
-  },
-};
-
 export const msg2 = {
   id: 70,
   message_id: 1750313794763181,
@@ -29,24 +15,6 @@ export const msg2 = {
     ],
   },
 };
-
-// export const msg3 = {
-//   id: 73,
-//   message_id: 1750314168162596,
-//   timestamp: '2025-06-19T06:22:48.162576',
-//   source: 'user',
-//   type: 'chat_message',
-//   args: {
-//     content_blocks: [
-//       {
-//         type: 'text',
-//         content: {
-//           text: '生成代码',
-//         },
-//       },
-//     ],
-//   },
-// };
 
 export const msg4 = {
   id: 74,
@@ -76,24 +44,6 @@ export const msg4 = {
     ],
   },
 };
-
-// export const msg5 = {
-//   id: 75,
-//   message_id: 1750314198178051,
-//   timestamp: '2025-06-19T06:23:18.178031',
-//   source: 'user',
-//   type: 'chat_message',
-//   args: {
-//     content_blocks: [
-//       {
-//         type: 'text',
-//         content: {
-//           text: '确认需求',
-//         },
-//       },
-//     ],
-//   },
-// };
 
 export const msg6 = {
   id: 77,

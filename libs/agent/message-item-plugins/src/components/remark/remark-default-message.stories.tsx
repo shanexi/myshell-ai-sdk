@@ -1,26 +1,26 @@
-// import { Provider as InversifyProvider } from 'inversify-react';
-// import type { Meta, StoryObj } from '@storybook/react';
-// import { Container } from 'inversify';
-// import { agentMsgItemPluginsModule } from '../../agent-msg-item-plugins.module';
-// import { RemarkDefaultMessage } from './remark-default-message';
+import { Provider as InversifyProvider } from 'inversify-react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Container } from 'inversify';
+import { agentMsgItemPluginsModule } from '../../agent-msg-item-plugins.module';
+import { RemarkDefaultMessage } from './remark-default-message';
 
-// const container = new Container();
-// container.load(agentMsgItemPluginsModule);
+const container = new Container();
+container.load(agentMsgItemPluginsModule);
 
-// const meta: Meta<typeof RemarkDefaultMessage> = {
-//   component: RemarkDefaultMessage,
-//   decorators: [
-//     (Story) => (
-//       <InversifyProvider container={container}>
-//         <Story />
-//       </InversifyProvider>
-//     ),
-//   ],
-// };
+const meta: Meta<typeof RemarkDefaultMessage> = {
+  component: RemarkDefaultMessage,
+  decorators: [
+    (Story) => (
+      <InversifyProvider container={container}>
+        <Story />
+      </InversifyProvider>
+    ),
+  ],
+};
 
-// export default meta;
+export default meta;
 
-// export const Primary: StoryObj<typeof RemarkDefaultMessage> = {
-//   parameters: {},
-//   args: {},
-// };
+export const Primary: StoryObj<typeof RemarkDefaultMessage> = {
+  parameters: {},
+  args: {},
+};
