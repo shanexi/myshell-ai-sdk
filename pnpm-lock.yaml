@@ -121,6 +121,7 @@ specifiers:
   '@storybook/addon-essentials': ^8.6.12
   '@storybook/addon-interactions': ^8.6.12
   '@storybook/addon-storysource': ^8.6.11
+  '@storybook/addon-themes': ^8.1.5
   '@storybook/builder-webpack5': ^8.6.12
   '@storybook/core-server': ^8.6.12
   '@storybook/react': ^8.6.12
@@ -419,6 +420,7 @@ dependencies:
   '@storybook/addon-essentials': 8.6.12_vm2gsui3yxhn5h45f45hg4ozru
   '@storybook/addon-interactions': 8.6.12_storybook@8.6.12
   '@storybook/addon-storysource': 8.6.11_storybook@8.6.12
+  '@storybook/addon-themes': 8.6.14_storybook@8.6.12
   '@storybook/builder-webpack5': 8.6.12_qjg6fulux7x7l7wws5eyym7pmu
   '@storybook/core-server': 8.6.12_storybook@8.6.12
   '@storybook/react-webpack5': 8.6.12_2lgujajohrta2yhx4uuusuaphq
@@ -11296,6 +11298,15 @@ packages:
       estraverse: 5.3.0
       storybook: 8.6.12_prettier@3.5.2
       tiny-invariant: 1.3.3
+    dev: false
+
+  /@storybook/addon-themes/8.6.14_storybook@8.6.12:
+    resolution: {integrity: sha512-/HJCgskA3OFGectuoLEBQ3JX1nQhE7lnpSv5gH13CWyyaMEk/mP8JYF1uO25YQqwGuSgL2gaEox+aK7UmglAmQ==}
+    peerDependencies:
+      storybook: ^8.6.14
+    dependencies:
+      storybook: 8.6.12_prettier@3.5.2
+      ts-dedent: 2.2.0
     dev: false
 
   /@storybook/addon-toolbars/8.6.12_storybook@8.6.12:
