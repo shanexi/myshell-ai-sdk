@@ -45,6 +45,7 @@ export const msg4 = {
   },
 };
 
+// msg6 msg7 message_id 相同 无 cause，即 append 同一个消息
 export const msg6 = {
   id: 77,
   message_id: 1750314202186060,
@@ -81,12 +82,12 @@ export const msg7 = {
   },
 };
 
+// msg8 msg9 和 msg6 7 同一个 case
 export const msg8 = {
   id: 96,
   message_id: 1750384508693248,
   timestamp: '2025-06-20T01:55:12.693349',
   source: 'agent',
-  status: 'pending',
   type: 'chat_message',
   args: {
     content_blocks: [
@@ -105,7 +106,6 @@ export const msg9 = {
   message_id: 1750384508693248,
   timestamp: '2025-06-20T01:55:14.693463',
   source: 'agent',
-  status: 'completed',
   type: 'chat_message',
   args: {
     content_blocks: [
@@ -119,12 +119,12 @@ export const msg9 = {
   },
 };
 
+// msg10 11 同一个 message_id 有 cause 即 replace
 export const msg10 = {
   id: 98,
   message_id: 1750384516694053,
   timestamp: '2025-06-20T01:55:16.694030',
   source: 'agent',
-  status: 'pending',
   type: 'chat_message',
   args: {
     content_blocks: [
@@ -144,7 +144,6 @@ export const msg11 = {
   timestamp: '2025-06-20T01:55:18.694821',
   source: 'agent',
   cause: 1,
-  status: 'completed',
   type: 'chat_message',
   args: {
     content_blocks: [
@@ -158,12 +157,12 @@ export const msg11 = {
   },
 };
 
+// msg12 msg13 同 message_id 但是有 agent_log 类型
 export const msg12 = {
   id: 100,
   message_id: 1750384520695892,
   timestamp: '2025-06-20T01:55:20.695870',
   source: 'agent',
-  status: 'pending',
   type: 'chat_message',
   args: {
     content_blocks: [
@@ -182,7 +181,6 @@ export const msg13 = {
   message_id: 1750384520695892,
   timestamp: '2025-06-20T01:55:22.696145',
   source: 'agent',
-  status: 'pending',
   type: 'chat_message',
   args: {
     content_blocks: [

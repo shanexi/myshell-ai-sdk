@@ -44,3 +44,16 @@ export const Primary: StoryObj<typeof ChatMessageList> = {
     },
   },
 };
+
+export const Case1: StoryObj<typeof ChatMessageList> = {
+  args: {
+    chatCommonModel: container.get(AgentChatModel).chatCommon,
+    initialMessages: [],
+    style: {
+      height: 600,
+      display: 'flex',
+      flexDirection: 'column',
+      // fontSize: '70%',
+    },
+  },
+};

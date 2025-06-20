@@ -2,7 +2,14 @@ import {
   ChatInputHandlers,
   UploadItem,
 } from '@myshell-run/agent-chat-input-plugins';
-import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-plugins';
+import {
+  content_blocks_schema,
+  content_blocks_to_mdc,
+  msg6,
+  msg7,
+  OWN_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -58,6 +65,18 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     console.log('send', uploads, f2b_content_blocks(toJS(chatInputDoc)));
 
     yield;
+
+    // mock 一些回复
+    const mockResponses = [msg6, msg7];
+
+    for (const response of mockResponses) {
+      this.chatCommon.appendMsg({
+        key: createId(),
+        text: content_blocks_to_mdc(content_blocks_schema.parse(response)),
+        type: REPLY_MESSAGE_TYPE,
+      });
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
   }
 
   *removeImagePreview(id: string) {
