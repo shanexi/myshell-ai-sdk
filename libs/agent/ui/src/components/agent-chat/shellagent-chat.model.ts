@@ -59,7 +59,6 @@ export class ShellAgentChatModel implements ChatInputHandlers {
 
   async *sendText(text: string) {
     const msgId = createId();
-    const replyMsgId = createId();
 
     this.chatCommon.appendMsg({
       key: msgId,

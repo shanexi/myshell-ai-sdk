@@ -1,6 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
@@ -115,7 +114,6 @@ const ContextItem: React.FC<{
       contentEditable={false}
       className={cn(
         'relative top-[2.5px]',
-        'group',
         'inline-flex items-center gap-[6px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',
         'hover:bg-Cr-Bg-normal-tertiary-active-light-v2',
@@ -128,16 +126,7 @@ const ContextItem: React.FC<{
       <Icon
         strokeWidth={1.5}
         size={16}
-        className={cn('text-Cr-Fg-subtle-light-v2', 'block group-hover:hidden')}
-      />
-      <X
-        strokeWidth={1.5}
-        size={16}
-        className={cn(
-          'text-Cr-Fg-subtle-light-v2',
-          'cursor-pointer',
-          'hidden group-hover:block',
-        )}
+        className={cn('text-Cr-Fg-subtle-light-v2')}
       />
       <div className="text-sm-medium">{content}</div>
     </span>
