@@ -9,6 +9,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { f2b_content_blocks } from './shellagent-chat.utils';
+import { isEmpty } from 'radash';
 
 @injectable()
 export class ShellAgentChatModel implements ChatInputHandlers {
@@ -26,7 +27,8 @@ export class ShellAgentChatModel implements ChatInputHandlers {
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc, uploads: UploadItem[]) {
     const msgId = createId();
     // 先简单变成字符串
-    const text = chatInputDoc
+    // TODO 因为上传图片，所以这里得立即处理下
+    let text = chatInputDoc
       .map((l) =>
         l
           .map((w) => {
@@ -42,6 +44,10 @@ export class ShellAgentChatModel implements ChatInputHandlers {
       )
       .join('\n');
 
+    if (!isEmpty(uploads)) {
+      text = text + uploads.map((u) => u.name).join(' ');
+    }
+
     this.chatCommon.appendMsg({
       key: msgId,
       text,
@@ -49,8 +55,7 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     });
 
     // TODO: 对接后端
-    console.log(uploads);
-    console.log('send', f2b_content_blocks(toJS(chatInputDoc)));
+    console.log('send', uploads, f2b_content_blocks(toJS(chatInputDoc)));
 
     yield;
   }

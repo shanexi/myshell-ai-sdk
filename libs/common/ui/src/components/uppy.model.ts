@@ -213,4 +213,9 @@ export class UppyModel {
       this._uppy = undefined;
     };
   }
+
+  clear() {
+    this.uppyStateMap = new Map<string, UppyState>();
+    this.uppy.clear();
+  }
 }

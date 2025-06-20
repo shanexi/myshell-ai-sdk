@@ -120,6 +120,7 @@ export class ChatInputModel {
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
       await this.chatCommon.edixModel.clearEdix();
+      this.chatCommon.uppyModel.clear();
     }
   }
 
