@@ -64,7 +64,7 @@ export class EdixModel {
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([]);
 
-  @observable atRect: DOMRect | null = null;
+  @observable atContextMenuRect: DOMRect | null = null;
   @observable isAtContextMenuShow = false;
 
   public edixRefPromise: Promise<boolean>;
@@ -82,7 +82,7 @@ export class EdixModel {
 
   @action.bound
   setAtRect(rect: DOMRect | null) {
-    this.atRect = rect;
+    this.atContextMenuRect = rect;
   }
 
   @action.bound

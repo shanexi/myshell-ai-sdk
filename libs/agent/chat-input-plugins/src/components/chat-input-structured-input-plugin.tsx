@@ -88,7 +88,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 }
 `}</style>
       {model.chatCommon.edixModel.isAtContextMenuShow &&
-        model.chatCommon.edixModel.atRect && (
+        model.chatCommon.edixModel.atContextMenuRect && (
           <MentionDropdown
             users={users}
             onSelect={(user) => {
@@ -98,7 +98,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
               model.chatCommon.edixModel.setAtRect(null);
               model.chatCommon.edixModel.setAtContextMenuShow(false);
             }}
-            anchorRect={model.chatCommon.edixModel.atRect}
+            anchorRect={model.chatCommon.edixModel.atContextMenuRect}
           />
         )}
     </>
