@@ -12,7 +12,7 @@ import { isEmpty } from 'radash';
 export const ChatInputHandlers = Symbol('ChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
-export type PreviewItem = UppyState & {
+export type UploadItem = UppyState & {
   fileKind: FileKind;
   label?: string;
 };
@@ -24,6 +24,7 @@ export interface ChatInputHandlers {
   clear(): AsyncGenerator;
 
   /**
+   * @deprecated 推荐使用 sendChatInputDoc
    * @description chat input 字符串， eg.g chat-input-textarea-plugin 和 chat-input-advanced-input-plugin
    */
   sendText(text: string): AsyncGenerator;
@@ -31,7 +32,10 @@ export interface ChatInputHandlers {
   /**
    * @description chat input 结构化数据， eg.g chat-input-structured-input-plugin
    */
-  sendChatInputDoc(chatInputDoc: ChatInputDoc): AsyncGenerator;
+  sendChatInputDoc(
+    chatInputDoc: ChatInputDoc,
+    upload: UploadItem[],
+  ): AsyncGenerator;
 
   removeImagePreview(id: string): Generator;
 }
@@ -57,7 +61,7 @@ export class ChatInputModel {
   }
 
   @computed get previewItems() {
-    return this.chatCommon.uppyModel.uppyState.map<PreviewItem>(
+    return this.chatCommon.uppyModel.uppyState.map<UploadItem>(
       ([id, item]) => ({
         ...item,
         fileKind: item.type != null ? fromMime(item.type) : FileKind.Unknown,
@@ -74,13 +78,17 @@ export class ChatInputModel {
     return this.factory(AGENT_CHAT);
   }
 
-  get showSendButton() {
+  get canSend() {
     return (
       !isEmpty(this.chatCommon.edixModel.inputText) ||
-      !isEmpty(this.chatCommon.edixModel.chatInputDoc)
+      !isEmpty(this.chatCommon.edixModel.chatInputDoc.flat()) ||
+      !isEmpty(this.previewItems)
     );
   }
 
+  /**
+   * @deprecated 推荐使用 sendChatInputDoc
+   */
   async sendText() {
     if (isEmpty(this.chatCommon.edixModel.inputText)) {
       return;
@@ -98,14 +106,15 @@ export class ChatInputModel {
 
   async sendChatInputDoc() {
     if (
-      isEmpty(this.chatCommon.edixModel.chatInputDoc) ||
-      this.chatCommon.edixModel.isAtContextMenuShow
+      !this.canSend ||
+      /* 回车选中 */ this.chatCommon.edixModel.isAtContextMenuShow
     ) {
       return;
     }
 
     for await (const _ of this.handlers.sendChatInputDoc(
       this.chatCommon.edixModel.chatInputDoc,
+      this.previewItems,
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作

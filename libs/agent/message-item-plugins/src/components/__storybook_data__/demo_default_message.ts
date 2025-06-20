@@ -1,3 +1,8 @@
+/**
+ *
+ * @deprecated 当前文件已经废弃, 是在和 backend 讨论的过程 留下来做参考
+ *
+ */
 export const demo_default_message_1 = {
   id: 203,
   timestamp: '2025-06-07T15:30:00.400Z',

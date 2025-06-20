@@ -1,4 +1,7 @@
-import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import {
+  ChatInputHandlers,
+  UploadItem,
+} from '@myshell-run/agent-chat-input-plugins';
 import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-item-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
@@ -20,7 +23,7 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     return this.factory(AGENT_CHAT);
   }
 
-  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
+  async *sendChatInputDoc(chatInputDoc: ChatInputDoc, uploads: UploadItem[]) {
     const msgId = createId();
     // 先简单变成字符串
     const text = chatInputDoc
@@ -46,6 +49,7 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     });
 
     // TODO: 对接后端
+    console.log(uploads);
     console.log('send', f2b_content_blocks(toJS(chatInputDoc)));
 
     yield;

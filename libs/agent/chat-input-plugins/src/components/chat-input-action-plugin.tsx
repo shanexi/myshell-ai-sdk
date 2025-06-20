@@ -15,9 +15,9 @@ export const ChatInputActionPlugin = observer(() => {
           className="cursor-pointer text-CCr-icon-button-plain-fg_default-light-v2"
         />
       </HiddenInputFile>
-      {model.showSendButton ? (
+      {model.canSend ? (
         <div
-          onClick={() => model.sendText()}
+          onClick={() => model.sendChatInputDoc()}
           className={cn(
             'h-[28px] w-[28px]',
             'bg-CCr-button-primary-bg_default-light-v2',

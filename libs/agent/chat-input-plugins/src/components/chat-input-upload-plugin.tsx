@@ -4,7 +4,7 @@ import { FileKind } from 'human-filetypes';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { ChatInputModel, PreviewItem } from './chat-input.model';
+import { ChatInputModel, UploadItem } from './chat-input.model';
 import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
@@ -44,7 +44,7 @@ export const ChatInputUploadPlugin = observer(() => {
 });
 
 const FilePreview: React.FC<{
-  previewItem: PreviewItem;
+  previewItem: UploadItem;
   id: string;
 }> = ({ previewItem, id }) => {
   return (
@@ -96,7 +96,7 @@ const FilePreview: React.FC<{
 };
 
 const ImagePreview: React.FC<{
-  previewItem: PreviewItem;
+  previewItem: UploadItem;
   id: string;
 }> = ({ previewItem, id }) => {
   const model = useInjection(ChatInputModel);

@@ -58,6 +58,10 @@ const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
 
 @injectable()
 export class EdixModel {
+  /**
+   * @deprecated 推荐使用结构化 chatInputDoc
+   * TODO 相关拆分出一个新的 legacy class 通过插件化注入
+   */
   @observable inputText = '';
   /**
    * @description 给 structured chat input plugin 暂时不合并
