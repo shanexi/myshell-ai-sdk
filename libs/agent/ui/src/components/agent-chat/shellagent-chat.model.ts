@@ -1,5 +1,5 @@
 import {
-  ChatInputHandlers,
+  AgentChatInputHandlers,
   UploadItem,
 } from '@myshell-run/agent-chat-input-plugins';
 import {
@@ -21,7 +21,7 @@ import { f2b_content_blocks } from './shellagent-chat.utils';
 import { isEmpty } from 'radash';
 
 @injectable()
-export class ShellAgentChatModel implements ChatInputHandlers {
+export class ShellAgentChatModel implements AgentChatInputHandlers {
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,

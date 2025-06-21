@@ -2,8 +2,8 @@ import {
   agentChatInputPluginsModule,
   ChatInputActionPlugin,
   ChatInputContextPlugin,
-  ChatInputHandlers,
-  ChatInputPlugin,
+  AgentChatInputHandlers,
+  AgentChatInputPlugin,
   ChatInputStructuredInputPlugin,
   ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
@@ -29,8 +29,8 @@ const storyModule = new ContainerModule(
   ) => {
     bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
-    rebind(ChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
-    rebind<ChatInputPlugin[]>(ChatInputPlugin).toConstantValue([
+    rebind(AgentChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
+    rebind<AgentChatInputPlugin[]>(AgentChatInputPlugin).toConstantValue([
       // ChatInputContextPlugin,
       ChatInputUploadPlugin,
       ChatInputStructuredInputPlugin,

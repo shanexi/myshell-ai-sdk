@@ -1,7 +1,7 @@
-import { MessageItem } from '@myshell-run/common-def';
+import { MessagePlugin } from '@myshell-run/common-def';
 import { interfaces } from 'inversify';
 
-export const MessageTypeSet = Symbol('MessageTypeSet');
+export const MessageTypeSet = Symbol.for('MessageTypeSet');
 
 let messageTypeSet: Set<string>;
 
@@ -25,7 +25,7 @@ export function addMessagePluginFactory<T>(
     } else {
       messageTypeSet.add(type);
     }
-    bind<MessageItem>(MessageItem).toConstantValue({
+    bind<MessagePlugin>(MessagePlugin).toConstantValue({
       type,
       render: (data) => {
         const { key, type, text, ...rest } = data;

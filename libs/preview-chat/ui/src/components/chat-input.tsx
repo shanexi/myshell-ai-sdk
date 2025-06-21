@@ -1,5 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
-import { ChatInputPluginSlot } from '@myshell-run/preview-chat-input-plugins';
+import { PreviewChatInputPluginSlot } from '@myshell-run/preview-chat-input-plugins';
 
 export const ChatInput = () => {
   return (
@@ -11,7 +11,7 @@ export const ChatInput = () => {
           'p-spacing-xs-v2',
         )}
       >
-        <ChatInputPluginSlot />
+        <PreviewChatInputPluginSlot />
       </div>
     </div>
   );

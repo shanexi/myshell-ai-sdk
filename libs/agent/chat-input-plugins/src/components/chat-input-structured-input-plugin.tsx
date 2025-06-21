@@ -4,12 +4,12 @@ import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { IconMap } from './chat-input-context-plugin';
-import { ChatInputModel } from './chat-input.model';
+import { AgentChatInputModel } from './agent-chat-input.model';
 import { MentionDropdown, users } from './at-context-menu';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
-  const model = useInjection(ChatInputModel);
+  const model = useInjection(AgentChatInputModel);
 
   useEffect(() => {
     if (!ref.current) return;

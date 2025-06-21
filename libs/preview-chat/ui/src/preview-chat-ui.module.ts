@@ -1,6 +1,6 @@
 import { ContainerModule, interfaces } from 'inversify';
 import { PreviewChatModel } from './components/preview-chat-model';
-import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
+import { PreviewChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
 import { addFormItemPluginFactory } from '@myshell-run/common-ui';
 import { Upload } from './components/lui-form/upload/upload';
 import { Textarea } from './components/lui-form/textarea/textarea';
@@ -25,8 +25,8 @@ export const previewChatUIModule = new ContainerModule((bind) => {
 
 export function bindPreviewChatUI(bind: interfaces.Bind) {
   bind(PreviewChatModel).toSelf().inSingletonScope();
-  bind<ChatInputHandlers>(ChatInputHandlers).toDynamicValue((ctx) =>
-    ctx.container.get(PreviewChatModel),
+  bind<PreviewChatInputHandlers>(PreviewChatInputHandlers).toDynamicValue(
+    (ctx) => ctx.container.get(PreviewChatModel),
   );
   bind<MessageItemHandlers>(MessageItemHandlers).toDynamicValue((ctx) =>
     ctx.container.get(PreviewChatModel),

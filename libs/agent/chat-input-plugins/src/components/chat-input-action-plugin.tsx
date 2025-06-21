@@ -2,10 +2,10 @@ import { cn, HiddenInputFile } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { ChatInputModel } from './chat-input.model';
+import { AgentChatInputModel } from './agent-chat-input.model';
 
 export const ChatInputActionPlugin = observer(() => {
-  const model = useInjection(ChatInputModel);
+  const model = useInjection(AgentChatInputModel);
   return (
     <div className={cn('flex items-center justify-between')}>
       <HiddenInputFile uppyModel={model.chatCommon.uppyModel}>

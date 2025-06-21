@@ -3,11 +3,11 @@ import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { agentChatInputPluginsModule } from '../agent-chat-input-plugins.module';
 import { ChatInputTextareaPlugin } from './chat-input-textarea-plugin';
-import { ChatInputHandlers } from './chat-input.model';
+import { AgentChatInputHandlers } from './agent-chat-input.model';
 import { ChatInputDoc, commonUIModule } from '@myshell-run/common-ui';
 import { UploadEndpoint } from '@myshell-run/common-def';
 
-class SomeChatInputHandler implements ChatInputHandlers {
+class SomeChatInputHandler implements AgentChatInputHandlers {
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
     yield;
   }
@@ -25,7 +25,9 @@ class SomeChatInputHandler implements ChatInputHandlers {
 }
 
 const container = new Container();
-container.bind<ChatInputHandlers>(ChatInputHandlers).to(SomeChatInputHandler);
+container
+  .bind<AgentChatInputHandlers>(AgentChatInputHandlers)
+  .to(SomeChatInputHandler);
 
 container
   .bind(UploadEndpoint)

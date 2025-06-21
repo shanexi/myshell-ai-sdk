@@ -7,9 +7,9 @@ import { z } from 'zod';
 
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
-export const ChatInputHandlers = Symbol('ChatInputHandlers');
+export const PreviewChatInputHandlers = Symbol.for('PreviewChatInputHandlers');
 
-export interface ChatInputHandlers {
+export interface PreviewChatInputHandlers {
   clear(): AsyncGenerator;
 
   sendText(text: string): AsyncGenerator;
@@ -35,7 +35,8 @@ export const previewTypeSchema = z.discriminatedUnion('previewType', [
 @injectable()
 export class ChatInputModel {
   constructor(
-    @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
+    @inject(PreviewChatInputHandlers)
+    private handlers: PreviewChatInputHandlers,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {

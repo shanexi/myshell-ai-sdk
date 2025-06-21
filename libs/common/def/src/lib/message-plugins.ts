@@ -21,9 +21,9 @@ export interface StrictMessage {
   type: string;
 }
 
-export const MessageItem = Symbol('MessageItem');
+export const MessagePlugin = Symbol.for('MessagePlugin');
 
-export interface MessageItem {
+export interface MessagePlugin {
   type: string;
   render: (data: StrictMessage) => JSX.Element;
 }

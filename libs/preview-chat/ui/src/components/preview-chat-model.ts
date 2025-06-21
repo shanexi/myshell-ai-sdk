@@ -4,7 +4,7 @@ import {
   demo_jsonschema,
   demo_uischema,
 } from '@myshell-run/common-ui';
-import { ChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
+import { PreviewChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
 import {
   MessageItemHandlers,
   OWN_MESSAGE_TYPE,
@@ -17,7 +17,7 @@ import { LuiFormModel } from './lui-form/lui-form.model';
 
 @injectable()
 export class PreviewChatModel
-  implements ChatInputHandlers, MessageItemHandlers
+  implements PreviewChatInputHandlers, MessageItemHandlers
 {
   jsonschema = demo_jsonschema;
   uischema = demo_uischema;

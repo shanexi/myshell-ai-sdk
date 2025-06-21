@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { ChatInputAdvancedInputPlugin } from './chat-input-advanced-input-plugin';
-import { ChatInputHandlers } from './chat-input.model';
+import { PreviewChatInputHandlers } from './chat-input.model';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { UploadEndpoint } from '@myshell-run/common-def';
 import { userEvent, within } from '@storybook/test';
 import { expect } from '@storybook/test';
 import { previewChatInputPluginsModule } from '../preview-chat-input-plugins.module';
 
-class SomeChatInputHandler implements ChatInputHandlers {
+class SomeChatInputHandler implements PreviewChatInputHandlers {
   *removeImagePreview(id: string) {
     yield;
   }
@@ -24,7 +24,9 @@ class SomeChatInputHandler implements ChatInputHandlers {
 }
 
 const container = new Container();
-container.bind<ChatInputHandlers>(ChatInputHandlers).to(SomeChatInputHandler);
+container
+  .bind<PreviewChatInputHandlers>(PreviewChatInputHandlers)
+  .to(SomeChatInputHandler);
 
 container
   .bind(UploadEndpoint)

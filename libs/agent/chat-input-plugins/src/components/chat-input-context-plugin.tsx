@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
-import { ChatInputModel, ContextType } from './chat-input.model';
+import { AgentChatInputModel, ContextType } from './agent-chat-input.model';
 
 export const IconMap: Record<
   ContextType,
@@ -28,7 +28,7 @@ export const IconMap: Record<
 };
 
 export const ChatInputContextPlugin = observer(() => {
-  const model = useInjection(ChatInputModel);
+  const model = useInjection(AgentChatInputModel);
 
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
@@ -41,7 +41,7 @@ export const ChatInputContextPlugin = observer(() => {
 });
 
 const AddContext = observer(() => {
-  const model = useInjection(ChatInputModel);
+  const model = useInjection(AgentChatInputModel);
   return (
     <ContextWrapper>
       <AtSign

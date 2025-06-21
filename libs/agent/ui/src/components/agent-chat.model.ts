@@ -1,4 +1,4 @@
-import { ChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
@@ -7,7 +7,7 @@ import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
 
 @injectable()
-export class AgentChatModel implements ChatInputHandlers {
+export class AgentChatModel implements AgentChatInputHandlers {
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,

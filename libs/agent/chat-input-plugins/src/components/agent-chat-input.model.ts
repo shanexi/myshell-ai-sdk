@@ -9,7 +9,7 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 
-export const ChatInputHandlers = Symbol('ChatInputHandlers');
+export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
 
 export type UploadItem = UppyState & {
@@ -17,7 +17,7 @@ export type UploadItem = UppyState & {
   label?: string;
 };
 
-export interface ChatInputHandlers {
+export interface AgentChatInputHandlers {
   /**
    * @deprecated agent chat 不再支持 clear
    */
@@ -41,7 +41,7 @@ export interface ChatInputHandlers {
 }
 
 @injectable()
-export class ChatInputModel {
+export class AgentChatInputModel {
   @observable contextItems = observable.array<{
     type: ContextType;
     name: string;
@@ -53,7 +53,7 @@ export class ChatInputModel {
   ]);
 
   constructor(
-    @inject(ChatInputHandlers) private handlers: ChatInputHandlers,
+    @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {

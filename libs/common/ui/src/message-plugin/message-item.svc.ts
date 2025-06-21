@@ -1,8 +1,8 @@
 import { injectable, multiInject } from 'inversify';
-import { MessageItem } from '@myshell-run/common-def';
+import { MessagePlugin } from '@myshell-run/common-def';
 @injectable()
 export class MessageItemSvc {
-  constructor(@multiInject(MessageItem) private items: MessageItem[]) {}
+  constructor(@multiInject(MessagePlugin) private items: MessagePlugin[]) {}
 
   getItem(type: string) {
     const item = this.items.find((item) => item.type === type);

@@ -3,7 +3,7 @@ import { makeObservable } from 'mobx';
 import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
 
-export const MessageItemHandlers = Symbol('MessageItemHandlers');
+export const MessageItemHandlers = Symbol.for('MessageItemHandlers');
 
 export interface MessageItemHandlers {
   click(scheme: string): AsyncGenerator;
@@ -18,6 +18,7 @@ export class MessageItemModel {
   ) {
     makeObservable(this);
   }
+
   get chatCommon() {
     return this.factory(PREVIEW_CHAT);
   }
