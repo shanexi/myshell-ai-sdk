@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
-} from '../../agent-msg-item-plugins.module';
+} from '../../agent-message-plugins.module';
 import { ReplyMsg } from '../reply-msg';
 import checklistStory from './checklist-story.md';
 import pollingMsgStory from './polling-msg-story.md';

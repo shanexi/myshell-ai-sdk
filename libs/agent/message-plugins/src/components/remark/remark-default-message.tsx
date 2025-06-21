@@ -1,4 +1,4 @@
-import { OWN_MESSAGE_TYPE } from '../../agent-msg-item-plugins.module';
+import { OWN_MESSAGE_TYPE } from '../../agent-message-plugins.module';
 import { ReplyMsg } from '../reply-msg';
 import { msg6, msg7 } from '../__storybook_data__/backend_mock_message';
 import { useEffect, useState } from 'react';

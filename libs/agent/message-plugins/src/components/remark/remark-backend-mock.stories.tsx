@@ -1,7 +1,7 @@
 import { Provider as InversifyProvider } from 'inversify-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from 'inversify';
-import { agentMsgItemPluginsModule } from '../../agent-msg-item-plugins.module';
+import { agentMessagePluginsModule } from '../../agent-message-plugins.module';
 import { RemarkStory } from './remark-msg-story-components';
 import {
   msg2,
@@ -15,7 +15,7 @@ import {
   content_blocks_to_mdc,
 } from './content-blocks-to-mdc';
 const container = new Container();
-container.load(agentMsgItemPluginsModule);
+container.load(agentMessagePluginsModule);
 
 const meta: Meta<typeof RemarkStory> = {
   component: RemarkStory,

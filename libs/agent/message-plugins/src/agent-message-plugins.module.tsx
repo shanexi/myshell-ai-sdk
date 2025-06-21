@@ -19,7 +19,7 @@ import { XButtonModel } from './components/x-button.model';
 export const OWN_MESSAGE_TYPE = 'agent:own';
 export const REPLY_MESSAGE_TYPE = 'agent:reply';
 
-function registerMesssageItem(
+function registerMesssage(
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
   isBound: interfaces.IsBound,
@@ -52,18 +52,18 @@ function registerMdc(
   // register('x-bar-chart', BarChartDemo);
 }
 
-export const agentMsgItemPluginsModule = new ContainerModule(
+export const agentMessagePluginsModule = new ContainerModule(
   (bind, unbind, isBound, rebind) => {
-    bindAgentMsgItemPlugins(bind, unbind, isBound, rebind);
+    bindAgentMessagePlugins(bind, unbind, isBound, rebind);
   },
 );
 
-export function bindAgentMsgItemPlugins(
+export function bindAgentMessagePlugins(
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  registerMesssageItem(bind, unbind, isBound, rebind);
+  registerMesssage(bind, unbind, isBound, rebind);
   registerMdc(bind, unbind, isBound, rebind);
 }

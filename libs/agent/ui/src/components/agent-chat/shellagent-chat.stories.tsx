@@ -7,7 +7,7 @@ import {
   ChatInputStructuredInputPlugin,
   ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
-import { agentMsgItemPluginsModule } from '@myshell-run/agent-message-plugins';
+import { agentMessagePluginsModule } from '@myshell-run/agent-message-plugins';
 import { commonUIModule } from '@myshell-run/common-ui';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';
@@ -42,7 +42,7 @@ const storyModule = new ContainerModule(
 const container = new Container();
 container.load(agentUIModule);
 container.load(commonUIModule);
-container.load(agentMsgItemPluginsModule);
+container.load(agentMessagePluginsModule);
 container.load(agentChatInputPluginsModule);
 container.load(previewChatUIModule);
 container.load(previewChatMsgItemPluginsModule);
