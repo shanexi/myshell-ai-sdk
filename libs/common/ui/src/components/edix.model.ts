@@ -35,6 +35,7 @@ const InsertContext: EditableCommand<[text: string]> = (
 ) => {
   InsertFragment(doc, selection, [
     [
+      // @ts-expect-error 暂时不处理 InsertFragment 类型报错
       { type: 'context', data: { content: text } },
       { type: 1 /* NODE_TEXT */, text: ' ' },
     ],

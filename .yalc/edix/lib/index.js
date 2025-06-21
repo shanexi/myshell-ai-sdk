@@ -220,9 +220,6 @@ const Delete = (doc, selection, [anchor, focus] = selection) => {
         deleteEdit(doc, selection, ...edges(anchor, focus));
     }
 };
-/**
- * @internal
- */
 const InsertFragment = (doc, selection, lines) => {
     Delete(doc, selection);
     insertEdit(doc, selection, lines, 
