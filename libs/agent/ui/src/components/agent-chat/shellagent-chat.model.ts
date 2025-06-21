@@ -70,11 +70,22 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     const mockResponses = [msg6, msg7];
 
     for (const response of mockResponses) {
-      this.chatCommon.appendMsg({
-        key: createId(),
-        text: content_blocks_to_mdc(content_blocks_schema.parse(response)),
-        type: REPLY_MESSAGE_TYPE,
-      });
+      const res = content_blocks_schema.parse(response);
+      const message_id = String(res.message_id);
+      if (this.chatCommon.isMsgNoExists(message_id)) {
+        this.chatCommon.appendMsg({
+          key: message_id,
+          text: content_blocks_to_mdc(res),
+          type: REPLY_MESSAGE_TYPE,
+        });
+      } else {
+        this.chatCommon.virtuosoRef?.current?.data.map((message) => {
+          return message.key === message_id
+            ? { ...message, text: message.text + content_blocks_to_mdc(res) }
+            : message;
+        }, 'smooth');
+      }
+
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }

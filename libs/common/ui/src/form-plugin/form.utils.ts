@@ -2,7 +2,7 @@ import { json_schema } from '@myshell-run/common-def';
 import Ajv, { ErrorObject } from 'ajv';
 import { FormikErrors, setIn } from 'formik';
 import { z } from 'zod';
-import { isEmpty } from 'lodash-es';
+import { isEmpty } from 'radash';
 import AjvErrors from 'ajv-errors';
 
 export function ajvValidate(
