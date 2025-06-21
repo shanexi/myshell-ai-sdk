@@ -5,6 +5,8 @@ import {
 import {
   content_blocks_schema,
   content_blocks_to_mdc,
+  msg10,
+  msg11,
   msg6,
   msg7,
   OWN_MESSAGE_TYPE,
@@ -67,7 +69,8 @@ export class ShellAgentChatModel implements ChatInputHandlers {
     yield;
 
     // mock 一些回复
-    const mockResponses = [msg6, msg7];
+    // const mockResponses = [msg6, msg7];
+    const mockResponses = [msg10, msg11];
 
     for (const response of mockResponses) {
       const res = content_blocks_schema.parse(response);
@@ -80,9 +83,14 @@ export class ShellAgentChatModel implements ChatInputHandlers {
         });
       } else {
         this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-          return message.key === message_id
-            ? { ...message, text: message.text + content_blocks_to_mdc(res) }
-            : message;
+          const nextText = content_blocks_to_mdc(res);
+          let text: string;
+          if (res.cause) {
+            text = nextText;
+          } else {
+            text = message.text + nextText;
+          }
+          return message.key === message_id ? { ...message, text } : message;
         }, 'smooth');
       }
 
