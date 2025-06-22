@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { computePosition, flip, shift, offset } from '@floating-ui/dom';
+import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 
 interface User {
   id: string;
@@ -22,6 +22,7 @@ export const users: User[] = [
   { id: '4', name: 'Diana Prince', avatar: 'https://i.pravatar.cc/150?img=4' },
 ];
 
+// TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
 export const MentionDropdown: React.FC<MentionDropdownProps> = ({
   users,
   onSelect,
