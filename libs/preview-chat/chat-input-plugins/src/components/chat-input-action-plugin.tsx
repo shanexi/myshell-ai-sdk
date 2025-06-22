@@ -1,8 +1,9 @@
 import { cn, HiddenInputFile } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ArrowUp, BrushCleaning, CirclePlus, Mic } from 'lucide-react';
+import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { ChatInputModel } from './chat-input.model';
+import { ReactComponent as Brush } from './brush.svg';
 
 export const ChatInputActionPlugin = observer(() => {
   const model = useInjection(ChatInputModel);
@@ -14,13 +15,16 @@ export const ChatInputActionPlugin = observer(() => {
       )}
     >
       <div className="flex items-center">
-        <BrushCleaning
+        <Brush
+          className="h-[28px] w-[28px] cursor-pointer p-[3px]"
           onClick={() => model.clear()}
-          strokeWidth={1.5}
-          size={28}
-          className="cursor-pointer p-[3px]"
         />
-
+        <div
+          className={cn(
+            'mx-spacing-xs-v2 border border-Cr-Bg-neutral-on-surface-active-light-v2',
+            'h-[16px] w-[1px]',
+          )}
+        ></div>
         <HiddenInputFile uppyModel={model.chatCommon.uppyModel}>
           <CirclePlus
             strokeWidth={1.5}
