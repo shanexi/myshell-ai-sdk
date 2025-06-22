@@ -193,3 +193,28 @@ export const msg13 = {
     ],
   },
 };
+
+// 手动从 msg13 copy 验证能否 agent_log append
+/*
+大概思路 等有网了用 AI 实现
+相同 message_id 的
+content_blocks 按照相邻类型一致的进行 text append。
+不一定是 append（根据 type 处理）
+*/
+export const msg14 = {
+  id: 102,
+  message_id: 1750384520695892,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'agent_log',
+        content: {
+          text: '正在执行安全检查...',
+        },
+      },
+    ],
+  },
+};

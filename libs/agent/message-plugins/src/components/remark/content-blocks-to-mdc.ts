@@ -68,7 +68,8 @@ export const content_blocks_to_mdc = (
         case 'button':
           return `:x-${block.type}{display_text='${block.content.display_text}'}`;
         case 'agent_log':
-          return `:x-${block.type}{display_text='${block.content.text}'}`;
+          // return `:x-${block.type}{display_text='${block.content.text}'}`;
+          return `:code[${block.content.text}]`;
         default:
           return '';
       }

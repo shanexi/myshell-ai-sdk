@@ -5,10 +5,8 @@ import {
 import {
   content_blocks_schema,
   content_blocks_to_mdc,
-  msg10,
-  msg11,
-  msg6,
-  msg7,
+  msg13,
+  msg14,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
@@ -19,9 +17,12 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 import { isEmpty } from 'radash';
+import { z } from 'zod';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
+  rawMessages: Map<number, z.infer<typeof content_blocks_schema>> = new Map();
+
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
@@ -70,7 +71,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
-    const mockResponses = [msg10, msg11];
+    const mockResponses = [msg13, msg14];
 
     for (const response of mockResponses) {
       const res = content_blocks_schema.parse(response);
