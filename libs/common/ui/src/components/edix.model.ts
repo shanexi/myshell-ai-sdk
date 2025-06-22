@@ -57,6 +57,7 @@ const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
   ],
 ];
 
+// TODO: 将 chatInputDoc 和 plainSchema 暴露一些 SPI 交给上游（即 chat input plugin model 实现）
 @injectable()
 export class EdixModel {
   /**
