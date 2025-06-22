@@ -1,6 +1,8 @@
-import '../src/styles.css';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import '../../../tailwind-cfg/styles.css';
+// storybook 可以不用手动指定 source
+// import '../src/styles.css';
 import './preview.css';
-import React from 'react';
 import type { Preview, ReactRenderer } from '@storybook/react';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 

@@ -17,8 +17,8 @@ export const ChatInputActionPlugin = observer(() => {
         <BrushCleaning
           onClick={() => model.clear()}
           strokeWidth={1.5}
-          size={22}
-          className="cursor-pointer p-[7px]"
+          size={28}
+          className="cursor-pointer p-[3px]"
         />
 
         <HiddenInputFile uppyModel={model.chatCommon.uppyModel}>
@@ -43,7 +43,7 @@ export const ChatInputActionPlugin = observer(() => {
           <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-light-v2" />
         </div>
       ) : (
-        <Mic strokeWidth={1.5} size={22} className="cursor-pointer p-[7px]" />
+        <Mic strokeWidth={1.5} size={28} className="cursor-pointer p-[3px]" />
       )}
     </div>
   );
