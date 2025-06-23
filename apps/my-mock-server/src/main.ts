@@ -47,15 +47,21 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   }
   // await sleep(3000);
 
+  // 模仿 python 上传返回
   res.send({
     message: '文件上传成功',
-    file: {
-      filename: req.file.filename,
-      originalname: req.file.originalname,
-      size: req.file.size,
-      mimetype: req.file.mimetype,
-      url: `/uploads/${req.file.filename}`,
+    // file: {
+    //   filename: req.file.filename,
+    //   originalname: req.file.originalname,
+    //   size: req.file.size,
+    //   mimetype: req.file.mimetype,
+    //   url: `/uploads/${req.file.filename}`,
+    // },
+    data: {
+      file_path: `/uploads/${req.file.filename}`,
     },
+    success: true,
+    code: 200,
   });
 });
 

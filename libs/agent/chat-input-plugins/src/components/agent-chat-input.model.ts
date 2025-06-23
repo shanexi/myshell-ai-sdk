@@ -6,7 +6,7 @@ import {
 } from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
@@ -113,8 +113,13 @@ export class AgentChatInputModel {
     }
 
     for await (const _ of this.handlers.sendChatInputDoc(
-      this.chatCommon.edixModel.chatInputDoc,
-      this.previewItems,
+      // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
+      toJS(this.chatCommon.edixModel.chatInputDoc),
+      toJS(this.previewItems).map((item) => ({
+        ...item,
+        // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
+        response: toJS(item.response),
+      })),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作

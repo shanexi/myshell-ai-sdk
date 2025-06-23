@@ -10,14 +10,24 @@ import { computed, makeObservable, observable } from 'mobx';
 import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 
 // 后端上传接口返回结构
+// export interface UploadResBody extends Body {
+//   file: {
+//     filename: string;
+//     mimetype: string;
+//     originalname: string;
+//     size: number;
+//     url: string;
+//   };
+// }
+
+// 目前 python 返回的结构
 export interface UploadResBody extends Body {
-  file: {
-    filename: string;
-    mimetype: string;
-    originalname: string;
-    size: number;
-    url: string;
+  code: number;
+  data: {
+    file_path: string;
   };
+  message: string;
+  success: boolean;
 }
 
 export type UppyState = Partial<UppyFile<Meta, UploadResBody>> &
@@ -126,6 +136,11 @@ export class UppyModel {
       .use(ThumbnailGenerator)
       .use(XHR, {
         endpoint: this.uploadEndpoint,
+        // TODO: 外部注入
+        headers: {
+          'myshell-service-name': 'organics-api',
+          'x-call-from': 'myshell-ssr',
+        },
       });
     // TODO: UI Plugin extends PReact 会报错 先不用 plugin 方式，先裸写
     // uppy.use(FileInput, {
@@ -205,10 +220,16 @@ export class UppyModel {
         this.isDraggingError = false;
       },
     });
-    // this._uppy.on('complete', (result) => {
-    //   console.log('successful files:', result.successful);
-    //   console.log('failed files:', result.failed);
-    // });
+    this._uppy.on('complete', (result) => {
+      result.successful?.forEach((file) => {
+        const prev = this.uppyStateMap.get(file.id);
+        this.uppyStateMap.set(file.id, {
+          ...prev,
+          ...file,
+        });
+      });
+      // console.log('failed files:', result.failed);
+    });
     return () => {
       this._uppy = undefined;
     };

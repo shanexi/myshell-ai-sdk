@@ -27,11 +27,10 @@ export const Upload = observer<
     });
     model.uppyModel.uppy.on('complete', (result) => {
       // TODO: 错误处理
-      const file = result.successful?.[0].response?.body?.file;
       fieldProps.form.setFieldValue(fieldProps.field.name, [
         {
-          uploadURL: file?.url,
-          name: file?.originalname,
+          uploadURL: result.successful?.[0].response?.body?.data?.file_path,
+          name: result.successful?.[0].name,
         },
       ]);
     });
