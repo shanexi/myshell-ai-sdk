@@ -129,7 +129,8 @@ const Remove: React.FC<{
         'border border-CCr-button-solid-border-light-v2',
         'flex items-center justify-center',
         // 'visible',
-        'invisible group-hover:visible',
+        // TODO 在 shellagent group 没生效 先 visible
+        // 'invisible group-hover:visible',
         'cursor-pointer',
       )}
     >

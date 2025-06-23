@@ -8,6 +8,7 @@ import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
+import { z } from 'zod';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 export type ContextType = 'requirement' | 'preview' | 'canvas' | 'test';
@@ -39,6 +40,29 @@ export interface AgentChatInputHandlers {
 
   removeImagePreview(id: string): Generator;
 }
+
+export const chat_message_schema = z.object({
+  type: z.literal('chat_message'),
+  args: z.object({
+    context: z.array(
+      z.object({
+        type: z.literal('image'),
+        content: z.object({
+          name: z.string(),
+          url: z.string(),
+        }),
+      }),
+    ),
+    content_blocks: z.array(
+      z.object({
+        type: z.literal('text'),
+        content: z.object({
+          text: z.string(),
+        }),
+      }),
+    ),
+  }),
+});
 
 @injectable()
 export class AgentChatInputModel {
