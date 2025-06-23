@@ -10,7 +10,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/preview-chat/chat-input-plugins",
-        "tsConfig": "libs/preview-chat/chat-input-plugins/tsconfig.lib.json"
+        "tsConfig": "libs/preview-chat/chat-input-plugins/tsconfig.lib.json",
+        "assets": ["libs/preview-chat/chat-input-plugins/**/*.svg"]
       }
     },
     "build": {
@@ -20,7 +21,7 @@
         "outputPath": "dist/libs/preview-chat/chat-input-plugins",
         "main": "libs/preview-chat/chat-input-plugins/src/index.ts",
         "tsConfig": "libs/preview-chat/chat-input-plugins/tsconfig.lib.json",
-        "assets": []
+        "assets": ["libs/preview-chat/chat-input-plugins/**/*.svg"]
       }
     },
     "lint": {
