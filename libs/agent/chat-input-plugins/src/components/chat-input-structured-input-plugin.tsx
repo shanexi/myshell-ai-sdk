@@ -108,7 +108,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 const ContextItem: React.FC<{
   content: string;
 }> = ({ content }) => {
-  const Icon = IconMap['todo'];
+  const Icon = IconMap['test'];
   return (
     <span
       contentEditable={false}

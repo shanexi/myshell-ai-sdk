@@ -2,7 +2,6 @@ import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import {
   AtSign,
-  File,
   FileJson2,
   FileText,
   ListCheck,
@@ -20,11 +19,10 @@ export const IconMap: Record<
     Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
   >
 > = {
-  file: File,
-  text: FileText,
-  json: FileJson2,
-  todo: ListCheck,
-  message: MessagesSquare,
+  requirement: FileText,
+  preview: MessagesSquare,
+  canvas: FileJson2,
+  test: ListCheck,
 };
 
 export const ChatInputContextPlugin = observer(() => {

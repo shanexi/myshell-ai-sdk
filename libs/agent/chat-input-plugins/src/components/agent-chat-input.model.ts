@@ -10,7 +10,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
-export type ContextType = 'file' | 'text' | 'json' | 'todo' | 'message';
+export type ContextType = 'requirement' | 'preview' | 'canvas' | 'test';
 
 export type UploadItem = UppyState & {
   fileKind: FileKind;
@@ -46,10 +46,10 @@ export class AgentChatInputModel {
     type: ContextType;
     name: string;
   }>([
-    { type: 'file', name: 'requirement.feature1' },
-    { type: 'json', name: 'canvas.state1.inputs' },
-    { type: 'todo', name: 'test.test_suite1' },
-    { type: 'message', name: 'preview.message1' },
+    { type: 'requirement', name: 'requirement.feature1' },
+    { type: 'canvas', name: 'canvas.state1.inputs' },
+    { type: 'test', name: 'test.test_suite1' },
+    { type: 'preview', name: 'preview.message1' },
   ]);
 
   constructor(
