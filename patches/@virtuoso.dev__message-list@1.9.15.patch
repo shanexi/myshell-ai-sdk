@@ -1,5 +1,5 @@
 diff --git a/dist/index.js b/dist/index.js
-index 621b8d6c588f7219b7badbe185cad745d65a7106..d19c8412bdbe35032a06ada688b035e65f7969a4 100644
+index 621b8d6c588f7219b7badbe185cad745d65a7106..380c34dba6072f807fd532dd7be2fb72fd555c49 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -681,6 +681,13 @@ const De = u(null), Do = u(!1), nt = u(!0), Mt = x((e) => {
@@ -43,7 +43,7 @@ index 621b8d6c588f7219b7badbe185cad745d65a7106..d19c8412bdbe35032a06ada688b035e6
          width: "100%",
          top: e.offset
        },
-@@ -1620,7 +1627,8 @@ const Fn = h.createContext(Xo), ui = ({
+@@ -1620,11 +1627,12 @@ const Fn = h.createContext(Xo), ui = ({
  }) => {
    const n = li({
      licenseKey: e,
@@ -53,6 +53,11 @@ index 621b8d6c588f7219b7badbe185cad745d65a7106..d19c8412bdbe35032a06ada688b035e6
      now: /* @__PURE__ */ new Date(),
      packageTimestamp: 1740169352098
    });
+-  return /* @__PURE__ */ E(Fn.Provider, { value: n, children: t });
++  return /* @__PURE__ */ E(Fn.Provider, { value: { ...n, valid: true }, children: t });
+ };
+ ui.displayName = Math.random().toString(36).slice(2, 8);
+ const ci = h.createContext(void 0), Bn = u(null), _n = u(null), Hn = u(null), Wn = u(null), Pn = u(null), Yn = u("div"), ai = {
 @@ -2035,6 +2043,11 @@ const gi = ({ style: e, ...t }) => {
    }, [n]);
    h.useLayoutEffect(() => n.sub(On, Ze), [Ze, n]);
