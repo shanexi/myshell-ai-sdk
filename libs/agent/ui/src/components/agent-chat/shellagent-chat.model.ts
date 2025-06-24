@@ -5,11 +5,17 @@ import {
 import {
   content_blocks_schema,
   content_blocks_to_mdc,
-  msg13,
-  msg14,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
+import { msg10, msg11 } from '../../__storybook_data__/backend_mock_message';
+import {
+  msg1,
+  msg3,
+  msg4,
+  msg5,
+  msg6,
+} from '../../__storybook_data__/backend_message';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
@@ -17,11 +23,10 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 import { isEmpty } from 'radash';
-import { z } from 'zod';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
-  rawMessages: Map<number, z.infer<typeof content_blocks_schema>> = new Map();
+  agentLogMap: Map<number, string> = new Map();
 
   constructor(
     @inject(ChatCommonModelFactory)
@@ -71,11 +76,37 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
-    const mockResponses = [msg13, msg14];
+    const mockResponses = [
+      // agent_log
+      msg1,
+      msg3,
+      msg4,
+      // chat message
+      msg10,
+      msg11,
+      // agent_log
+      msg5,
+      msg6,
+    ];
 
     for (const response of mockResponses) {
       const res = content_blocks_schema.parse(response);
       const message_id = String(res.message_id);
+      // 针对性处理 agent_log
+      res.args.content_blocks.forEach((b) => {
+        // 特殊处理 agent_log 相同 message id 合并
+        if (b.type === 'agent_log') {
+          let a = this.agentLogMap.get(res.message_id);
+          if (a) {
+            a = a + '<br>' + b.content.text;
+          } else {
+            a = b.content.text;
+          }
+          this.agentLogMap.set(res.message_id, a);
+          b.content.text = a;
+        }
+      });
+
       if (this.chatCommon.isMsgNoExists(message_id)) {
         this.chatCommon.appendMsg({
           key: message_id,
@@ -89,7 +120,12 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
           if (res.cause) {
             text = nextText;
           } else {
-            text = message.text + nextText;
+            // TODO 先临时处理下 block directive
+            if (nextText.startsWith('::')) {
+              text = message.text + '\n' + nextText;
+            } else {
+              text = message.text + nextText;
+            }
           }
           return message.key === message_id ? { ...message, text } : message;
         }, 'smooth');

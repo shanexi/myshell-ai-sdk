@@ -58,18 +58,19 @@ export const content_blocks_schema = z.object({
  * todo 插件 先 if-else
  */
 export const content_blocks_to_mdc = (
-  content_blocks: z.infer<typeof content_blocks_schema>,
+  res: z.infer<typeof content_blocks_schema>,
 ) => {
-  return content_blocks.args.content_blocks
+  return res.args.content_blocks
     .map((block) => {
       switch (block.type) {
         case 'text':
           return block.content.text;
         case 'button':
+          // 行内
           return `:x-${block.type}{display_text='${block.content.display_text}'}`;
         case 'agent_log':
           // return `:x-${block.type}{display_text='${block.content.text}'}`;
-          return `:code[${block.content.text}]`;
+          return `::x-agent-log{#${res.message_id} text='${block.content.text}'}`;
         default:
           return '';
       }
