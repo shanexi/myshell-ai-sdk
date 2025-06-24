@@ -14,6 +14,8 @@ import { PollingMsgModel } from './components/polling-msg.model';
 import { AgentMessage } from './types';
 import { XButton } from './components/x-button';
 import { XButtonModel } from './components/x-button.model';
+import { SimpleLogViewer } from './components/simple-log-viewer';
+import { SimpleLogViewerModel } from './components/simple-log-viewer.model';
 // import { LineChartDemo } from './components/chart-demo';
 
 export const OWN_MESSAGE_TYPE = 'agent:own';
@@ -48,6 +50,7 @@ function registerMdc(
   register('x-checklist-code', ChecklistCode);
   register('x-polling', PollingMsg, PollingMsgModel);
   register('x-button', XButton, XButtonModel);
+  register('x-agent-log', SimpleLogViewer, SimpleLogViewerModel);
   // register('x-line-chart', LineChartDemo);
   // register('x-bar-chart', BarChartDemo);
 }

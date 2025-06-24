@@ -8,6 +8,7 @@ import case2 from './case2.md';
 import case20 from './case2-0.md';
 import case3 from './case3.md';
 import case4 from './case4.md';
+import case5 from './case5.md';
 
 const container = new Container();
 container.load(agentMessagePluginsModule);
@@ -57,5 +58,12 @@ export const Case4: StoryObj<typeof RemarkStory> = {
   parameters: {},
   args: {
     text: case4,
+  },
+};
+
+export const Case5: StoryObj<typeof RemarkStory> = {
+  parameters: {},
+  args: {
+    text: case5,
   },
 };
