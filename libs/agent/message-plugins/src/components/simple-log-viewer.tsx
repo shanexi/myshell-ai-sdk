@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import './simple-log-viewer.css';
 import { SimpleLogViewerModel } from './simple-log-viewer.model';
+import { isEmpty } from 'radash';
 // import '@patternfly/react-core/dist/styles/base.css';
 
 export const SimpleLogViewer =
@@ -32,7 +33,7 @@ export const SimpleLogViewer =
         isTextWrapped={false}
         // height={isLogViewerExpanded ? 300 : 90}
         height={120}
-        data={model.text.split('<br>')}
+        data={isEmpty(model.text) ? props.text : model.text.split('<br>')}
         toolbar={
           <Toolbar>
             <ToolbarContent>
