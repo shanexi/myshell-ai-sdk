@@ -7,7 +7,7 @@ export const ReplyMsg: React.FC<AgentMessage> = (props) => {
     <div
       className={cn(
         'prose',
-        'dark:prose-invert',
+        // 'dark:prose-invert',
         'px-spacing-xl-v2 py-spacing-lg-v2',
       )}
     >
