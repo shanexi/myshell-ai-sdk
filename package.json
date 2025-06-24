@@ -72,6 +72,8 @@
     "@opentelemetry/sdk-trace-web": "^1.25",
     "@opentelemetry/semantic-conventions": "^1.25",
     "@paralleldrive/cuid2": "^2.2.2",
+    "@patternfly/react-core": "^6.2.2",
+    "@patternfly/react-log-viewer": "^6.2.0",
     "@playwright/test": "^1.47.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@prisma/adapter-d1": "^6.5.0",
