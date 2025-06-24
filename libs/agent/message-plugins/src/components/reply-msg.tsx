@@ -6,12 +6,20 @@ export const ReplyMsg: React.FC<AgentMessage> = (props) => {
   return (
     <div
       className={cn(
-        'prose px-spacing-xl-v2 py-spacing-lg-v2 dark:prose-invert',
-        // AI 添加的 hover
-        'transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50',
+        'prose',
+        'dark:prose-invert',
+        'px-spacing-xl-v2 py-spacing-lg-v2',
       )}
     >
-      <RemarkMsg text={text} />
+      <div
+        className={cn(
+          'p-spacing-lg-v2',
+          'rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2',
+          'transition-colors duration-200 hover:bg-Cr-Bg-normal-secondary-default-light-v2',
+        )}
+      >
+        <RemarkMsg text={text} />
+      </div>
     </div>
   );
 };
