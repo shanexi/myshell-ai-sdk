@@ -175,8 +175,16 @@ export class EdixModel {
     await this.edixRefPromise;
     this.edixHandle?.command(InsertText, ''); // 插入一个空字符（尝试了几种这种方案 work） 确保 dropdown 小时候，focus 在 contenteditable 否则下面的 move focus backward 无效
     setTimeout(() => {
+      // 选中 criteria
+      if (this.atSearchCriteria) {
+        for (let i = 0; i < this.atSearchCriteria?.length; i++) {
+          document.getSelection()?.modify('extend', 'backward', 'character');
+        }
+      }
+      // 选中 @
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
+      // 输入的同时，替换选中（删除）
       this.edixHandle?.command(InsertContext, text + ' ');
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
