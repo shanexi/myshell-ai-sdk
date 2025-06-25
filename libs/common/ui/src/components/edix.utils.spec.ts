@@ -97,3 +97,41 @@ it('case 1', () => {
   ];
   expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`"req"`);
 });
+
+it('@@ return null', () => {
+  const doc: ChatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '@@1',
+      },
+    ],
+  ];
+  const sel: [anchor: Position, focus: Position] = [
+    [0, 2],
+    [0, 0],
+  ];
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`null`);
+});
+
+it('space return null', () => {
+  const doc: ChatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '@123 ',
+      },
+    ],
+    [
+      {
+        type: 'text',
+        text: '@123 ',
+      },
+    ],
+  ];
+  const sel: [anchor: Position, focus: Position] = [
+    [1, 5],
+    [1, 5],
+  ];
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`null`);
+});

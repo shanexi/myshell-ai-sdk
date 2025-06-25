@@ -22,7 +22,13 @@ export function getAtSearchCriteria(
       }
     })
     .join('');
+  // 空格 return null
+  if (text[anchor[1] - 1] === ' ') return null;
   const start = text.lastIndexOf('@', anchor[1] - 1);
+  // 如果 @@ 相邻，则返回 null
+  if (text[start - 1] === '@') {
+    return null;
+  }
   const end = text.indexOf(' ', anchor[1]);
   const criteria = text.slice(start + 1, end === -1 ? undefined : end);
   return criteria;

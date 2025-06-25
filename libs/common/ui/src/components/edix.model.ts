@@ -109,13 +109,14 @@ export class EdixModel {
     chatInputDoc: ChatInputDoc,
     selection?: [anchor: Position, focus: Position],
   ) {
-    if (selection) {
-      const anchor = selection[0];
-      console.log('aaa', anchor, chatInputDoc[anchor[0]]);
-    }
     this.chatInputDoc = chatInputDoc;
     this.atSearchCriteria = getAtSearchCriteria(chatInputDoc, selection);
-    console.log('aaa', this.atSearchCriteria);
+    if (this.atSearchCriteria == null) {
+      setTimeout(() => {
+        this.setAtRect(null);
+        this.setAtContextMenuShow(false);
+      }, 1);
+    }
   }
 
   setEdixRef(ref: RefObject<HTMLDivElement>) {
