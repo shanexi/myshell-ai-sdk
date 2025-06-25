@@ -7,6 +7,12 @@ import dts from 'rollup-plugin-dts';
 const svgr = require('@svgr/rollup');
 import { z } from 'zod';
 import { buildRollupConfigInputSchema } from '../zod-schema';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const postcss = require('rollup-plugin-postcss');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const postcssImport = require('postcss-import');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const postcssPrefixWrap = require('postcss-prefixwrap');
 
 export function buildRollupConfig(
   input: z.infer<typeof buildRollupConfigInputSchema>,
@@ -55,6 +61,13 @@ export function buildRollupConfig(
       plugins: [
         alias({
           entries: input.bundleAlias,
+        }),
+        postcss({
+          extract: 'legacy.css',
+          plugins: [
+            postcssImport(),
+            input.prefixSelector && postcssPrefixWrap(input.prefixSelector),
+          ].filter((i) => i != null),
         }),
         nodeResolve(),
         svgr({

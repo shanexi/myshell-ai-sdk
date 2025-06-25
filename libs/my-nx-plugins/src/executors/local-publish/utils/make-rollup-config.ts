@@ -22,6 +22,7 @@ export const makeRollupConfig = (
     ),
     bundleSuppressWarnCodes: options.bundleSuppressWarnCodes,
     externals: options.externals,
+    prefixSelector: options.prefixSelector,
   };
 
   return opts;

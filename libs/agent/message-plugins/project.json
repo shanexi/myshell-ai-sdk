@@ -10,7 +10,11 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/agent/message-plugins",
-        "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json"
+        "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json",
+        "prefixSelector": ".pf-v6-c-log-viewer",
+        "assets": [
+          "libs/agent/message-plugins/src/components/simple-log-viewer.css"
+        ]
       }
     },
     "build": {
@@ -20,7 +24,9 @@
         "outputPath": "dist/libs/agent/message-plugins",
         "main": "libs/agent/message-plugins/src/index.ts",
         "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json",
-        "assets": []
+        "assets": [
+          "libs/agent/message-plugins/src/components/simple-log-viewer.css"
+        ]
       }
     },
     "lint": {

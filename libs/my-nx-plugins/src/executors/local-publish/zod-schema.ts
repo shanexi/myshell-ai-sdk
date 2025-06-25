@@ -12,6 +12,7 @@ export const rollupTransparentSchema = z.object({
     .array(z.string())
     .default([])
     .describe('e.g. ["UNUSED_EXTERNAL_IMPORT"]'),
+  prefixSelector: z.string().optional(),
 });
 
 export const buildRollupConfigInputSchema = rollupTransparentSchema.extend({
