@@ -70,10 +70,15 @@ export const content_blocks_to_mdc = (
           return `:x-${block.type}{display_text='${block.content.display_text}'}`;
         case 'agent_log':
           // return `:x-${block.type}{display_text='${block.content.text}'}`;
-          return `::x-agent-log{#${res.message_id} text='${block.content.text}'}`;
+          return `::x-agent-log{#${res.message_id} text="${escapeForDirective(block.content.text)}"}`;
         default:
           return '';
       }
     })
     .join(' ');
+};
+
+// 非常可以，即使替换成了 &quot; @patternfly/react-log-viewer 也能重新解析成 "
+const escapeForDirective = (value: string): string => {
+  return `${value.replace(/"/g, '&quot;')}`;
 };

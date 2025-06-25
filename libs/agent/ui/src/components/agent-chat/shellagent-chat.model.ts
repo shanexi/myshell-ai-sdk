@@ -11,10 +11,10 @@ import {
 import { msg10, msg11 } from '../../__storybook_data__/backend_mock_message';
 import {
   msg1,
-  msg3,
-  msg4,
-  msg5,
-  msg6,
+  msg2,
+  // msg4,
+  // msg5,
+  // msg6,
 } from '../../__storybook_data__/backend_message';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
@@ -78,15 +78,16 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // const mockResponses = [msg6, msg7];
     const mockResponses = [
       // agent_log
-      msg1,
-      msg3,
-      msg4,
-      // chat message
-      msg10,
-      msg11,
-      // agent_log
-      msg5,
-      msg6,
+      // msg1,
+      msg2,
+      // msg3,
+      // msg4,
+      // // chat message
+      // msg10,
+      // msg11,
+      // // agent_log
+      // msg5,
+      // msg6,
     ];
 
     for (const response of mockResponses) {
