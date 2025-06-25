@@ -19,12 +19,17 @@ export const ChatInputStructuredInputPlugin = observer(() => {
       if (e.key === '@') {
         // 延迟获取位置，确保 @ 字符已经插入
         setTimeout(() => {
-          const selection = window.getSelection();
-          if (selection && selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
-            const rect = range.getBoundingClientRect();
-            model.chatCommon.edixModel.setAtRect(rect);
-            model.chatCommon.edixModel.setAtContextMenuShow(true);
+          if (model.chatCommon.edixModel.atSearchCriteria == null) {
+            model.chatCommon.edixModel.setAtRect(null);
+            model.chatCommon.edixModel.setAtContextMenuShow(false);
+          } else {
+            const selection = window.getSelection();
+            if (selection && selection.rangeCount > 0) {
+              const range = selection.getRangeAt(0);
+              const rect = range.getBoundingClientRect();
+              model.chatCommon.edixModel.setAtRect(rect);
+              model.chatCommon.edixModel.setAtContextMenuShow(true);
+            }
           }
         }, 0);
       }

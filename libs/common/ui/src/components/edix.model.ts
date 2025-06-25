@@ -112,10 +112,8 @@ export class EdixModel {
     this.chatInputDoc = chatInputDoc;
     this.atSearchCriteria = getAtSearchCriteria(chatInputDoc, selection);
     if (this.atSearchCriteria == null) {
-      setTimeout(() => {
-        this.setAtRect(null);
-        this.setAtContextMenuShow(false);
-      }, 1);
+      this.setAtRect(null);
+      this.setAtContextMenuShow(false);
     }
   }
 
