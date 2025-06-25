@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "edix": {
-      "signature": "5009787b13f549af907805a213959da3",
+      "signature": "3c767f106d1849737f20929362bd9e10",
       "file": true,
       "replaced": "^0.0.21"
     }

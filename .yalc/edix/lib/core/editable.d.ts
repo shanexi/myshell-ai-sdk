@@ -1,3 +1,4 @@
+import { Position } from "./doc/types";
 import { EditableCommand } from "./doc/commands";
 import { EditableSchema } from "./schema";
 /**
@@ -15,7 +16,7 @@ export interface EditableOptions<T> {
     /**
      * TODO
      */
-    onChange: (value: T) => void;
+    onChange: (value: T, selection?: [anchor: Position, focus: Position]) => void;
 }
 /**
  * Methods of editor instance.

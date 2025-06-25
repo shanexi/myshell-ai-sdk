@@ -182,6 +182,7 @@
     "hastscript": "^9.0.1",
     "hono": "^4.7.4",
     "honox": "^0.1.38",
+    "html-entities": "^2.6.0",
     "html-tags": "^3.3.1",
     "html-url-attributes": "^3.0.0",
     "html-webpack-plugin": "^5.5.0",

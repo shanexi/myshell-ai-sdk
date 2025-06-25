@@ -9,6 +9,7 @@ import {
   plainSchema,
   schema,
   voidNode,
+  Position,
 } from 'edix';
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
@@ -102,7 +103,14 @@ export class EdixModel {
   }
 
   @action.bound
-  setChatInputDoc(chatInputDoc: ChatInputDoc) {
+  setChatInputDoc(
+    chatInputDoc: ChatInputDoc,
+    selection?: [anchor: Position, focus: Position],
+  ) {
+    if (selection) {
+      const anchor = selection[0];
+      console.log('aaa', anchor, chatInputDoc[anchor[0]]);
+    }
     this.chatInputDoc = chatInputDoc;
   }
 

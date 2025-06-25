@@ -1127,7 +1127,7 @@ const editable = (element, { schema: { single: isSingleline, js: docToJS, void: 
                     doc.some((l, i) => l !== prevDoc[i])) {
                     history.set([prevDoc, prevSelection]);
                     history.push([doc, selection]);
-                    onChange(docToJS(doc));
+                    onChange(docToJS(doc), selection);
                 }
             }
             restoreSelectionOnTimeout(selection);

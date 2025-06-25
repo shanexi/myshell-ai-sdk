@@ -36,6 +36,8 @@ export const ContextMenu = observer(() => {
         });
       }
     });
+    // 虽然我很不喜欢 useEffect + deps 但是先这样
+    // 这块是 AI 生成的
   }, [model.chatCommon.edixModel.contextMenuRect]);
 
   useEffect(() => {

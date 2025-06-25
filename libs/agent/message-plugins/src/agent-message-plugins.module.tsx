@@ -8,14 +8,16 @@ import {
 } from './components/checklist-msg';
 import { ChecklistItemModel } from './components/checklist-msg.model';
 import { OwnMessage } from './components/own-msg';
-import { ReplyMsg } from './components/reply-msg';
 import { PollingMsg } from './components/polling-msg';
 import { PollingMsgModel } from './components/polling-msg.model';
-import { AgentMessage } from './types';
-import { XButton } from './components/x-button';
-import { XButtonModel } from './components/x-button.model';
+import { ReplyMsg } from './components/reply-msg';
 import { SimpleLogViewer } from './components/simple-log-viewer';
 import { SimpleLogViewerModel } from './components/simple-log-viewer.model';
+import { Think } from './components/think';
+import { ThinkModel } from './components/think.model';
+import { XButton } from './components/x-button';
+import { XButtonModel } from './components/x-button.model';
+import { AgentMessage } from './types';
 // import { LineChartDemo } from './components/chart-demo';
 
 export const OWN_MESSAGE_TYPE = 'agent:own';
@@ -51,6 +53,7 @@ function registerMdc(
   register('x-polling', PollingMsg, PollingMsgModel);
   register('x-button', XButton, XButtonModel);
   register('x-agent-log', SimpleLogViewer, SimpleLogViewerModel);
+  register('x-think', Think, ThinkModel);
   // register('x-line-chart', LineChartDemo);
   // register('x-bar-chart', BarChartDemo);
 }
