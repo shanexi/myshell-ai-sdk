@@ -6,7 +6,6 @@ import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
-import { toJS } from 'mobx';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
