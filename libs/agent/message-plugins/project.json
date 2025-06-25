@@ -13,7 +13,8 @@
         "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json",
         "prefixSelector": ".pf-v6-c-log-viewer",
         "assets": [
-          "libs/agent/message-plugins/src/components/simple-log-viewer.css"
+          "libs/agent/message-plugins/src/components/simple-log-viewer.css",
+          "libs/agent/message-plugins/assets/**/*"
         ]
       }
     },
@@ -25,7 +26,8 @@
         "main": "libs/agent/message-plugins/src/index.ts",
         "tsConfig": "libs/agent/message-plugins/tsconfig.lib.json",
         "assets": [
-          "libs/agent/message-plugins/src/components/simple-log-viewer.css"
+          "libs/agent/message-plugins/src/components/simple-log-viewer.css",
+          "libs/agent/message-plugins/assets/**/*"
         ]
       }
     },

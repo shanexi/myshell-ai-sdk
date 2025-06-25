@@ -2,6 +2,11 @@
   "name": "@myshell-run/agent-message-plugins",
   "version": "0.0.1",
   "type": "module",
+  "exports": {
+    "./legacy.css": {
+      "default": "./legacy.css"
+    }
+  },
   "peerDependencies": {
     "edix": "*"
   }
