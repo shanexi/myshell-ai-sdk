@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
-import { AtContextMenu, items } from './at-context-menu';
+import { ContextMenu, items } from './context-menu';
 import { IconMap } from './chat-input-context-plugin';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
@@ -88,7 +88,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 `}</style>
       {model.chatCommon.edixModel.isAtContextMenuShow &&
         model.chatCommon.edixModel.atContextMenuRect && (
-          <AtContextMenu
+          <ContextMenu
             items={items}
             onSelect={(user) => {
               model.chatCommon.edixModel.insertContext(user.name);

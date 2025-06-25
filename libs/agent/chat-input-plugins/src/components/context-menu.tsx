@@ -11,7 +11,7 @@ type ContextItem = {
   type: ContextType;
 };
 
-type AtContextMenuProps = {
+type ContextMenuProps = {
   items: ContextItem[];
   onSelect: (user: ContextItem) => void;
   onClose: () => void;
@@ -31,7 +31,7 @@ export const items: Array<{
 ];
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
-export const AtContextMenu: React.FC<AtContextMenuProps> = ({
+export const ContextMenu: React.FC<ContextMenuProps> = ({
   items,
   onSelect,
   onClose,

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider as InversifyProvider } from 'inversify-react';
-import { AtContextMenu, items } from './at-context-menu';
+import { ContextMenu, items } from './context-menu';
 import { container } from './stories.utils';
 
-const meta: Meta<typeof AtContextMenu> = {
-  component: AtContextMenu,
+const meta: Meta<typeof ContextMenu> = {
+  component: ContextMenu,
   decorators: [
     (Story) => (
       <InversifyProvider container={container}>
@@ -15,7 +15,7 @@ const meta: Meta<typeof AtContextMenu> = {
 };
 export default meta;
 
-export const Primary: StoryObj<typeof AtContextMenu> = {
+export const Primary: StoryObj<typeof ContextMenu> = {
   args: {
     items: items,
   },
