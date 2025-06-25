@@ -3,9 +3,9 @@ import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
-import { IconMap } from './chat-input-context-plugin';
 import { AgentChatInputModel } from './agent-chat-input.model';
-import { MentionDropdown, users } from './at-context-menu';
+import { AtContextMenu, items } from './at-context-menu';
+import { IconMap } from './chat-input-context-plugin';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -88,8 +88,8 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 `}</style>
       {model.chatCommon.edixModel.isAtContextMenuShow &&
         model.chatCommon.edixModel.atContextMenuRect && (
-          <MentionDropdown
-            users={users}
+          <AtContextMenu
+            items={items}
             onSelect={(user) => {
               model.chatCommon.edixModel.insertContext(user.name);
             }}
