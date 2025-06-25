@@ -9,6 +9,9 @@
 然后 search criteria 就是 @到最后一个空格
 
 */
+import { Position } from 'edix';
+import { ChatInputDoc } from './edix.model';
+import { getAtSearchCriteria } from './edix.utils';
 it('test anchor', () => {
   const a = [
     {
@@ -40,7 +43,7 @@ it('test anchor', () => {
 });
 
 it('test anchor case2', () => {
-  const a = [
+  const a: ChatInputDoc[number] = [
     {
       type: 'text',
       text: '123 ',
@@ -53,10 +56,10 @@ it('test anchor case2', () => {
     },
     {
       type: 'text',
-      text: '  1@23',
+      text: '  1@23 ab',
     },
   ];
-  const anchor = [0, 9];
+  const anchor: Position = [0, 9];
 
   const b = a.map((i) => {
     if (i.type === 'text') {
@@ -65,6 +68,32 @@ it('test anchor case2', () => {
       return '©'; // context 占位，在 anchor
     }
   });
-  expect(b.join('')).toMatchInlineSnapshot(`"123 ©  1@23"`);
-  expect(b.join('')[anchor[1] - 1]).toMatchInlineSnapshot(`"@"`);
+  const text = b.join('');
+  expect(text).toMatchInlineSnapshot(`"123 ©  1@23 ab"`);
+  expect(text[anchor[1] - 1]).toMatchInlineSnapshot(`"@"`);
+  expect(getAtSearchCriteria([a], [anchor, [0, 0]])).toMatchInlineSnapshot(
+    `"23"`,
+  );
+});
+
+it('case 1', () => {
+  const doc: ChatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '@re',
+      },
+    ],
+    [
+      {
+        type: 'text',
+        text: '@req',
+      },
+    ],
+  ];
+  const sel: [anchor: Position, focus: Position] = [
+    [1, 4],
+    [1, 4],
+  ];
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`"req"`);
 });

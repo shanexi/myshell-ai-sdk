@@ -14,6 +14,7 @@ import {
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
+import { getAtSearchCriteria } from './edix.utils';
 
 export const chatInputDocSchema = schema({
   multiline: true,
@@ -70,6 +71,7 @@ export class EdixModel {
    * @description 给 structured chat input plugin 暂时不合并
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([]);
+  @observable atSearchCriteria: string | null = null;
 
   @observable contextMenuRect: DOMRect | null = null;
   @observable isContextMenuShow = false;
@@ -112,6 +114,8 @@ export class EdixModel {
       console.log('aaa', anchor, chatInputDoc[anchor[0]]);
     }
     this.chatInputDoc = chatInputDoc;
+    this.atSearchCriteria = getAtSearchCriteria(chatInputDoc, selection);
+    console.log('aaa', this.atSearchCriteria);
   }
 
   setEdixRef(ref: RefObject<HTMLDivElement>) {
