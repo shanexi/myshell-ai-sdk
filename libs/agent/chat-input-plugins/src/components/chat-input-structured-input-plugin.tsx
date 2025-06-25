@@ -4,8 +4,8 @@ import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
-import { ContextMenu, items } from './context-menu';
 import { IconMap } from './chat-input-context-plugin';
+import { ContextMenu } from './context-menu';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -86,20 +86,8 @@ export const ChatInputStructuredInputPlugin = observer(() => {
   color: gray;
 }
 `}</style>
-      {model.chatCommon.edixModel.isAtContextMenuShow &&
-        model.chatCommon.edixModel.atContextMenuRect && (
-          <ContextMenu
-            items={items}
-            onSelect={(user) => {
-              model.chatCommon.edixModel.insertContext(user.name);
-            }}
-            onClose={() => {
-              model.chatCommon.edixModel.setAtRect(null);
-              model.chatCommon.edixModel.setAtContextMenuShow(false);
-            }}
-            anchorRect={model.chatCommon.edixModel.atContextMenuRect}
-          />
-        )}
+      {model.chatCommon.edixModel.isContextMenuShow &&
+        model.chatCommon.edixModel.contextMenuRect && <ContextMenu />}
     </>
   );
 });

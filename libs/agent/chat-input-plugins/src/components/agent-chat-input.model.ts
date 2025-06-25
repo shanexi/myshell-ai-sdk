@@ -64,16 +64,34 @@ export const chat_message_schema = z.object({
   }),
 });
 
+export type ContextItem = {
+  type: ContextType;
+  name: string;
+  id: string;
+};
+
 @injectable()
 export class AgentChatInputModel {
-  @observable contextItems = observable.array<{
-    type: ContextType;
-    name: string;
-  }>([
-    { type: 'requirement', name: 'requirement.feature1' },
-    { type: 'canvas', name: 'canvas.state1.inputs' },
-    { type: 'test', name: 'test.test_suite1' },
-    { type: 'preview', name: 'preview.message1' },
+  @observable selectedContextItems = observable.array<ContextItem>([
+    {
+      id: 'requirement.feature1',
+      type: 'requirement',
+      name: 'requirement.feature1',
+    },
+    { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
+    {
+      id: 'canvas.state1.inputs',
+      type: 'canvas',
+      name: 'canvas.state1.inputs',
+    },
+    { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
+  ]);
+
+  @observable contextMenus = observable.array<ContextItem>([
+    { id: 'requirement', name: 'Requirement', type: 'requirement' },
+    { id: 'preview', name: 'Preview', type: 'preview' },
+    { id: 'canvas', name: 'Canvas', type: 'canvas' },
+    { id: 'test', name: 'Test', type: 'test' },
   ]);
 
   constructor(
@@ -95,7 +113,7 @@ export class AgentChatInputModel {
   }
 
   @computed get isContextItemsEmpty() {
-    return this.contextItems.length === 0;
+    return this.selectedContextItems.length === 0;
   }
 
   get chatCommon() {
@@ -131,7 +149,7 @@ export class AgentChatInputModel {
   async sendChatInputDoc() {
     if (
       !this.canSend ||
-      /* 回车选中 */ this.chatCommon.edixModel.isAtContextMenuShow
+      /* 回车选中 */ this.chatCommon.edixModel.isContextMenuShow
     ) {
       return;
     }
@@ -167,5 +185,17 @@ export class AgentChatInputModel {
     for (const _ of this.handlers.removeImagePreview(id)) {
       // 其他操作
     }
+  }
+
+  onSelectContext(selectedIndex: number) {
+    // TODO: insertContext 之前 text 为了简单，要改成 object
+    this.chatCommon.edixModel.insertContext(
+      this.contextMenus[selectedIndex].name,
+    );
+  }
+
+  onClose() {
+    this.chatCommon.edixModel.setAtRect(null);
+    this.chatCommon.edixModel.setAtContextMenuShow(false);
   }
 }

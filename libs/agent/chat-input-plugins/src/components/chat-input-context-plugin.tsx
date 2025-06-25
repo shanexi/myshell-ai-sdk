@@ -31,7 +31,7 @@ export const ChatInputContextPlugin = observer(() => {
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
       <AddContext />
-      {model.contextItems.map((item) => (
+      {model.selectedContextItems.map((item) => (
         <ContextItem key={item.name} title={item.name} icon={item.type} />
       ))}
     </div>

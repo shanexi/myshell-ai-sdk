@@ -31,7 +31,7 @@ const storyModule = new ContainerModule(
     bind(ShellAgentChatModel).toSelf().inSingletonScope();
     rebind(AgentChatInputHandlers).to(ShellAgentChatModel).inSingletonScope();
     rebind<AgentChatInputPlugin[]>(AgentChatInputPlugin).toConstantValue([
-      // ChatInputContextPlugin,
+      ChatInputContextPlugin,
       ChatInputUploadPlugin,
       ChatInputStructuredInputPlugin,
       ChatInputActionPlugin,

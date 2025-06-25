@@ -1,51 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { cn } from '@myshell-run/common-ui';
-import { ContextType } from './agent-chat-input.model';
-import { IconMap } from './chat-input-context-plugin';
+import { useInjection } from 'inversify-react';
 import { ChevronRight } from 'lucide-react';
-
-type ContextItem = {
-  id: string;
-  name: string;
-  type: ContextType;
-};
-
-type ContextMenuProps = {
-  items: ContextItem[];
-  onSelect: (user: ContextItem) => void;
-  onClose: () => void;
-  anchorRect: DOMRect;
-};
-
-// mock 数据
-export const items: Array<{
-  id: string;
-  name: string;
-  type: ContextType;
-}> = [
-  { id: '1', name: 'Requirement', type: 'requirement' },
-  { id: '2', name: 'Preview', type: 'preview' },
-  { id: '3', name: 'Canvas', type: 'canvas' },
-  { id: '4', name: 'Test', type: 'test' },
-];
+import { observer } from 'mobx-react-lite';
+import { useEffect, useRef, useState } from 'react';
+import { AgentChatInputModel } from './agent-chat-input.model';
+import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
-export const ContextMenu: React.FC<ContextMenuProps> = ({
-  items,
-  onSelect,
-  onClose,
-  anchorRect,
-}) => {
+export const ContextMenu = observer(() => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const model = useInjection(AgentChatInputModel);
 
   useEffect(() => {
     if (!dropdownRef.current) return;
 
     // 创建虚拟定位元素
     const virtualElement = {
-      getBoundingClientRect: () => anchorRect,
+      getBoundingClientRect: () =>
+        // 已经有判断 `model.chatCommon.edixModel.contextMenuRect && <ContextMenu />`
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        model.chatCommon.edixModel.contextMenuRect!,
     };
 
     // 计算位置
@@ -60,14 +36,16 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
         });
       }
     });
-  }, [anchorRect]);
+  }, [model.chatCommon.edixModel.contextMenuRect]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
-          setSelectedIndex((prev) => Math.min(prev + 1, items.length - 1));
+          setSelectedIndex((prev) =>
+            Math.min(prev + 1, model.contextMenus.length - 1),
+          );
           break;
         case 'ArrowUp':
           e.preventDefault();
@@ -75,18 +53,18 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
           break;
         case 'Enter':
           e.preventDefault();
-          onSelect(items[selectedIndex]);
+          model.onSelectContext(selectedIndex);
           break;
         case 'Escape':
           e.preventDefault();
-          onClose();
+          model.onClose();
           break;
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [items, selectedIndex, onSelect, onClose]);
+  }, []);
 
   return (
     <div
@@ -105,7 +83,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
           '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-light-v2, rgba(0, 0, 0, 0.12))',
       }}
     >
-      {items.map((item, index) => {
+      {model.contextMenus.map((item, index) => {
         const Icon = IconMap[item.type];
         return (
           <div
@@ -121,7 +99,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
             onMouseEnter={() => setSelectedIndex(index)}
           >
             <div
-              onClick={() => onSelect(item)}
+              onClick={() => model.onSelectContext(index)}
               className={cn('flex items-center gap-spacing-sm-v2')}
             >
               <Icon size={20} strokeWidth={1.5} />
@@ -137,4 +115,4 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
       })}
     </div>
   );
-};
+});
