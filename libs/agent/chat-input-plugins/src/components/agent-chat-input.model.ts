@@ -70,6 +70,11 @@ export type ContextItem = {
   id: string;
 };
 
+export type FilteredContextItem = ContextItem & {
+  highlightedName: Array<{ char: string; isMatch: boolean }>;
+  score: number;
+};
+
 @injectable()
 export class AgentChatInputModel {
   @observable selectedContextItems = observable.array<ContextItem>([
@@ -93,6 +98,76 @@ export class AgentChatInputModel {
     { id: 'canvas', name: 'Canvas', type: 'canvas' },
     { id: 'test', name: 'Test', type: 'test' },
   ]);
+
+  @computed get filteredContextMenus(): FilteredContextItem[] {
+    const searchCriteria = this.chatCommon.edixModel.atSearchCriteria;
+
+    if (!searchCriteria || searchCriteria.trim() === '') {
+      return this.contextMenus.map((item) => ({
+        ...item,
+        highlightedName: item.name
+          .split('')
+          .map((char) => ({ char, isMatch: false })),
+        score: 0,
+      }));
+    }
+
+    const results = this.contextMenus
+      .map((item) => {
+        const match = this.fuzzyMatch(item.name, searchCriteria);
+        return {
+          ...item,
+          highlightedName: match.highlighted,
+          score: match.score,
+        };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return results;
+  }
+
+  private fuzzyMatch(
+    text: string,
+    search: string,
+  ): { highlighted: Array<{ char: string; isMatch: boolean }>; score: number } {
+    const searchLower = search.toLowerCase();
+    const textLower = text.toLowerCase();
+
+    let searchIndex = 0;
+    let score = 0;
+    const highlighted: Array<{ char: string; isMatch: boolean }> = [];
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const charLower = textLower[i];
+
+      if (
+        searchIndex < searchLower.length &&
+        charLower === searchLower[searchIndex]
+      ) {
+        highlighted.push({ char, isMatch: true });
+        searchIndex++;
+        // Give higher score for consecutive matches
+        score += searchIndex === 1 ? 10 : 5;
+        // Bonus for matches at word boundaries
+        if (i === 0 || text[i - 1] === ' ' || text[i - 1] === '.') {
+          score += 5;
+        }
+      } else {
+        highlighted.push({ char, isMatch: false });
+      }
+    }
+
+    // Only return matches if all search characters were found
+    if (searchIndex === searchLower.length) {
+      // Bonus for shorter strings (better matches)
+      score += Math.max(0, 50 - text.length);
+      return { highlighted, score };
+    }
+
+    return { highlighted: [], score: 0 };
+  }
 
   constructor(
     @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,

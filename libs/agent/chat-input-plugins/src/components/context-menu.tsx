@@ -46,7 +46,7 @@ export const ContextMenu = observer(() => {
         case 'ArrowDown':
           e.preventDefault();
           setSelectedIndex((prev) =>
-            Math.min(prev + 1, model.contextMenus.length - 1),
+            Math.min(prev + 1, model.filteredContextMenus.length - 1),
           );
           break;
         case 'ArrowUp':
@@ -85,7 +85,7 @@ export const ContextMenu = observer(() => {
           '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-light-v2, rgba(0, 0, 0, 0.12))',
       }}
     >
-      {model.contextMenus.map((item, index) => {
+      {model.filteredContextMenus.map((item, index) => {
         const Icon = IconMap[item.type];
         return (
           <div
@@ -105,7 +105,18 @@ export const ContextMenu = observer(() => {
               className={cn('flex items-center gap-spacing-sm-v2')}
             >
               <Icon size={20} strokeWidth={1.5} />
-              <span>{item.name}</span>
+              <span>
+                {item.highlightedName.map((segment, segmentIndex) => (
+                  <span
+                    key={segmentIndex}
+                    className={
+                      segment.isMatch ? 'bg-yellow-200 font-medium' : ''
+                    }
+                  >
+                    {segment.char}
+                  </span>
+                ))}
+              </span>
             </div>
             <ChevronRight
               size={16}
