@@ -3,14 +3,13 @@ import { cn } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import { ChevronRight } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
 export const ContextMenu = observer(() => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const model = useInjection(AgentChatInputModel);
 
   useEffect(() => {
@@ -45,17 +44,20 @@ export const ContextMenu = observer(() => {
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
-          setSelectedIndex((prev) =>
-            Math.min(prev + 1, model.filteredContextMenus.length - 1),
+          model.setSelectedMenuIndex(
+            Math.min(
+              model.selectedMenuIndex + 1,
+              model.filteredContextMenus.length - 1,
+            ),
           );
           break;
         case 'ArrowUp':
           e.preventDefault();
-          setSelectedIndex((prev) => Math.max(prev - 1, 0));
+          model.setSelectedMenuIndex(Math.max(model.selectedMenuIndex - 1, 0));
           break;
         case 'Enter':
           e.preventDefault();
-          model.onSelectContext(selectedIndex);
+          model.onSelectContext(model.selectedMenuIndex);
           break;
         case 'Escape':
           e.preventDefault();
@@ -96,9 +98,11 @@ export const ContextMenu = observer(() => {
               'cursor-pointer',
               'px-spacing-sm-v2 py-spacing-xs-v2',
               'w-[180px]',
-              index === selectedIndex ? 'bg-[#F5F4F2]' : 'transparent',
+              index === model.selectedMenuIndex
+                ? 'bg-[#F5F4F2]'
+                : 'transparent',
             )}
-            onMouseEnter={() => setSelectedIndex(index)}
+            onMouseEnter={() => model.setSelectedMenuIndex(index)}
           >
             <div
               onClick={() => model.onSelectContext(index)}

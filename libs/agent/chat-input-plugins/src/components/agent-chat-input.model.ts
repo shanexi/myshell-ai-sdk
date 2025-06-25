@@ -6,7 +6,7 @@ import {
 } from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
-import { computed, makeObservable, observable, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
 
@@ -98,6 +98,8 @@ export class AgentChatInputModel {
     { id: 'canvas', name: 'Canvas', type: 'canvas' },
     { id: 'test', name: 'Test', type: 'test' },
   ]);
+
+  @observable selectedMenuIndex = 0;
 
   @computed get filteredContextMenus(): FilteredContextItem[] {
     const searchCriteria = this.chatCommon.edixModel.atSearchCriteria;
@@ -265,12 +267,17 @@ export class AgentChatInputModel {
   onSelectContext(selectedIndex: number) {
     // TODO: insertContext 之前 text 为了简单，要改成 object
     this.chatCommon.edixModel.insertContext(
-      this.contextMenus[selectedIndex].name,
+      this.filteredContextMenus[selectedIndex].name,
     );
   }
 
   onClose() {
     this.chatCommon.edixModel.setAtRect(null);
     this.chatCommon.edixModel.setAtContextMenuShow(false);
+  }
+
+  @action.bound
+  setSelectedMenuIndex(index: number) {
+    this.selectedMenuIndex = index;
   }
 }
