@@ -31,6 +31,11 @@ export const context_schema = z.object({
     z.literal(context_type_schema.Enum.canvas),
     z.literal(context_type_schema.Enum.test),
   ]),
+  content: z
+    .object({
+      name: z.string(),
+    })
+    .passthrough(),
 });
 
 export const chatInputDocSchema = schema({

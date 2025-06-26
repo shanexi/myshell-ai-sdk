@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Provider as InversifyProvider } from 'inversify-react';
-import { ContextMenu, items } from './context-menu';
+import { ContextMenu } from './context-menu';
 import { container } from './stories.utils';
 
 const meta: Meta<typeof ContextMenu> = {
@@ -16,7 +16,5 @@ const meta: Meta<typeof ContextMenu> = {
 export default meta;
 
 export const Primary: StoryObj<typeof ContextMenu> = {
-  args: {
-    items: items,
-  },
+  args: {},
 };

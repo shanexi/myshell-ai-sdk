@@ -2,6 +2,8 @@ import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import {
   ChatCommonModel,
   ChatInputDoc,
+  context_schema,
+  context_type_schema,
   UppyState,
 } from '@myshell-run/common-ui';
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
@@ -12,7 +14,10 @@ import { z } from 'zod';
 import { fuzzyMatch } from './agent-chat-input.utils';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
-export type ContextType = 'requirement' | 'preview' | 'canvas' | 'test';
+
+// 使用 edix 里的统一类型
+export type ContextType = z.infer<typeof context_type_schema>;
+export type ContextItem = z.infer<typeof context_schema>;
 
 export type UploadItem = UppyState & {
   fileKind: FileKind;
@@ -64,11 +69,6 @@ export const chat_message_schema = z.object({
     ),
   }),
 });
-
-export type ContextItem = {
-  type: ContextType;
-  name: string;
-};
 
 export type FilteredContextItem = ContextItem & {
   highlightedName: Array<{ char: string; isMatch: boolean }>;
@@ -125,10 +125,10 @@ export class AgentChatInputModel {
    * @description context dropdown 展示
    */
   @observable contextMenus = observable.array<ContextItem>([
-    { name: 'Requirement', type: 'requirement' },
-    { name: 'Preview', type: 'preview' },
-    { name: 'Canvas', type: 'canvas' },
-    { name: 'Test', type: 'test' },
+    { content: { name: 'Requirement' }, type: 'requirement' },
+    { content: { name: 'Preview' }, type: 'preview' },
+    { content: { name: 'Canvas' }, type: 'canvas' },
+    { content: { name: 'Test' }, type: 'test' },
   ]);
 
   // todo: 优化 当 selectedMenuIndex <filteredContextMenus.length，则默认选择 0
@@ -140,7 +140,7 @@ export class AgentChatInputModel {
     if (!searchCriteria || searchCriteria.criteria.trim() === '') {
       return this.contextMenus.map((item) => ({
         ...item,
-        highlightedName: item.name
+        highlightedName: item.content.name
           .split('')
           .map((char) => ({ char, isMatch: false })),
         score: 0,
@@ -149,7 +149,7 @@ export class AgentChatInputModel {
 
     const results = this.contextMenus
       .map((item) => {
-        const match = fuzzyMatch(item.name, searchCriteria.criteria);
+        const match = fuzzyMatch(item.content.name, searchCriteria.criteria);
         return {
           ...item,
           highlightedName: match.highlighted,
@@ -258,7 +258,7 @@ export class AgentChatInputModel {
   onSelectContext(selectedIndex: number) {
     // TODO: insertContext 之前 text 为了简单，要改成 object
     this.chatCommon.edixModel.insertContext(
-      this.filteredContextMenus[selectedIndex].name,
+      this.filteredContextMenus[selectedIndex].content.name,
     );
   }
 
