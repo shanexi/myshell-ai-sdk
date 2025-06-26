@@ -12,9 +12,9 @@ import {
   Position,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, toJS } from 'mobx';
 import { RefObject } from 'react';
-import { getAtSearchCriteria } from './edix.utils';
+import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
 
 export const chatInputDocSchema = schema({
   multiline: true,
@@ -63,7 +63,7 @@ const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
 @injectable()
 export class EdixModel {
   /**
-   * @deprecated 推荐使用结构化 chatInputDoc
+   * @deprecated 推荐使用结构化 @see chatInputDoc
    * TODO 相关拆分出一个新的 legacy class 通过插件化注入
    */
   @observable inputText = '';
@@ -71,8 +71,7 @@ export class EdixModel {
    * @description 给 structured chat input plugin 暂时不合并
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([]);
-  @observable atSearchCriteria: string | null = null;
-
+  @observable atSearchCriteria: AtSearchCriteria = null;
   @observable contextMenuRect: DOMRect | null = null;
   @observable isContextMenuShow = false;
 
@@ -99,6 +98,10 @@ export class EdixModel {
     this.isContextMenuShow = isShow;
   }
 
+  /**
+   *
+   * @deprecated @see setChatInputDoc
+   */
   @action.bound
   setInputText(text: string) {
     this.inputText = text;
@@ -173,9 +176,21 @@ export class EdixModel {
     await this.edixRefPromise;
     this.edixHandle?.command(InsertText, ''); // 插入一个空字符（尝试了几种这种方案 work） 确保 dropdown 小时候，focus 在 contenteditable 否则下面的 move focus backward 无效
     setTimeout(() => {
-      // 选中 criteria
+      // 需要根据当前的 anchor
       if (this.atSearchCriteria) {
-        for (let i = 0; i < this.atSearchCriteria?.length; i++) {
+        if (this.atSearchCriteria.char === '@') {
+          // 先往后移动
+          for (let i = 0; i < this.atSearchCriteria?.criteria.length; i++) {
+            document.getSelection()?.modify('move', 'forward', 'character');
+          }
+        } else {
+          const { criteria, char } = this.atSearchCriteria;
+          const remain = criteria.slice(criteria.indexOf(char) + 1);
+          for (let i = 0; i < remain.length; i++) {
+            document.getSelection()?.modify('move', 'forward', 'character');
+          }
+        }
+        for (let i = 0; i < this.atSearchCriteria?.criteria.length; i++) {
           document.getSelection()?.modify('extend', 'backward', 'character');
         }
       }

@@ -105,7 +105,7 @@ export class AgentChatInputModel {
   @computed get filteredContextMenus(): FilteredContextItem[] {
     const searchCriteria = this.chatCommon.edixModel.atSearchCriteria;
 
-    if (!searchCriteria || searchCriteria.trim() === '') {
+    if (!searchCriteria || searchCriteria.criteria.trim() === '') {
       return this.contextMenus.map((item) => ({
         ...item,
         highlightedName: item.name
@@ -117,7 +117,7 @@ export class AgentChatInputModel {
 
     const results = this.contextMenus
       .map((item) => {
-        const match = this.fuzzyMatch(item.name, searchCriteria);
+        const match = this.fuzzyMatch(item.name, searchCriteria.criteria);
         return {
           ...item,
           highlightedName: match.highlighted,

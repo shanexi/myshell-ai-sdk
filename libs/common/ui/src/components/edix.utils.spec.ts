@@ -71,9 +71,12 @@ it('test anchor case2', () => {
   const text = b.join('');
   expect(text).toMatchInlineSnapshot(`"123 ©  1@23 ab"`);
   expect(text[anchor[1] - 1]).toMatchInlineSnapshot(`"@"`);
-  expect(getAtSearchCriteria([a], [anchor, [0, 0]])).toMatchInlineSnapshot(
-    `"23"`,
-  );
+  expect(getAtSearchCriteria([a], [anchor, [0, 0]])).toMatchInlineSnapshot(`
+    {
+      "char": "@",
+      "criteria": "23",
+    }
+  `);
 });
 
 it('case 1', () => {
@@ -95,7 +98,12 @@ it('case 1', () => {
     [1, 4],
     [1, 4],
   ];
-  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`"req"`);
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`
+    {
+      "char": "q",
+      "criteria": "req",
+    }
+  `);
 });
 
 it('@@ return null', () => {
@@ -134,4 +142,46 @@ it('space return null', () => {
     [1, 5],
   ];
   expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`null`);
+});
+
+it('@ in middle', () => {
+  const doc: ChatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '@ @re',
+      },
+    ],
+  ];
+  const sel: [anchor: Position, focus: Position] = [
+    [0, 3],
+    [0, 3],
+  ];
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`
+    {
+      "char": "@",
+      "criteria": "re",
+    }
+  `);
+});
+
+it('@ in middle and input a char', () => {
+  const doc: ChatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '123.    @re',
+      },
+    ],
+  ];
+  const sel: [anchor: Position, focus: Position] = [
+    [0, 10],
+    [0, 10],
+  ];
+  expect(getAtSearchCriteria(doc, sel)).toMatchInlineSnapshot(`
+    {
+      "char": "r",
+      "criteria": "re",
+    }
+  `);
 });
