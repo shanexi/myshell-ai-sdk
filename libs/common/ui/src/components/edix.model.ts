@@ -40,7 +40,7 @@ export const chatInputDocSchema = schema({
     context: voidNode({
       is: (e) => e.contentEditable === 'false',
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      data: (e) => ({ content: e.textContent! }),
+      data: (e) => ({ content: e.textContent!, type: e.dataset.type! }),
       plain: (d) => d.content,
     }),
   },
@@ -48,15 +48,16 @@ export const chatInputDocSchema = schema({
 
 export type ChatInputDoc = InferDoc<typeof chatInputDocSchema>;
 
-const InsertContext: EditableCommand<[text: string]> = (
+const InsertContext: EditableCommand<[text: string, type: string]> = (
   doc,
   selection,
   text,
+  type,
 ) => {
   InsertFragment(doc, selection, [
     [
       // @ts-expect-error 暂时不处理 InsertFragment 类型报错
-      { type: 'context', data: { content: text } },
+      { type: 'context', data: { content: text, type } },
       { type: 1 /* NODE_TEXT */, text: ' ' },
     ],
   ]);
@@ -216,7 +217,7 @@ export class EdixModel {
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
       // 输入的同时，替换选中（删除）
-      this.edixHandle?.command(InsertContext, context.name + ' ');
+      this.edixHandle?.command(InsertContext, context.name + ' ', context.type);
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
 

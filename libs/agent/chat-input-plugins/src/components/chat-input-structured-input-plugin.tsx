@@ -1,11 +1,13 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
+import { Braces, LucideProps } from 'lucide-react';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,6 +47,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
   }, []);
 
   const value = model.chatCommon.edixModel.chatInputDoc;
+  console.log(toJS(value));
 
   return (
     <>
@@ -73,7 +76,11 @@ export const ChatInputStructuredInputPlugin = observer(() => {
               {line.length ? (
                 line.map((t, j) =>
                   t.type === 'context' ? (
-                    <ContextItem key={j} content={t.data.content} />
+                    <ContextItem
+                      key={j}
+                      content={t.data.content}
+                      type={t.data.type}
+                    />
                   ) : (
                     <span key={j}>{t.text}</span>
                   ),
@@ -100,8 +107,18 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 // todo: 做个 variant
 const ContextItem: React.FC<{
   content: string;
-}> = ({ content }) => {
-  const Icon = IconMap['test'];
+  type?: string;
+}> = ({ content, type }) => {
+  const typeRes = context_type_schema.safeParse(type);
+  let Icon: React.ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+  >;
+  // 兜底
+  if (typeRes.success === false) {
+    Icon = Braces;
+  } else {
+    Icon = IconMap[context_type_schema.parse(type)];
+  }
   return (
     <span
       contentEditable={false}
@@ -115,6 +132,7 @@ const ContextItem: React.FC<{
         'px-spacing-md-v2',
         'w-fit min-w-C-button-sm-height-v2',
       )}
+      data-type={type}
     >
       <Icon
         strokeWidth={1.5}
