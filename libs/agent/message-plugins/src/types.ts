@@ -23,7 +23,7 @@ export const reply_message_schema = z
   })
   .passthrough();
 
-export const LOADING_MESSAGE_TYPE = 'chat_loading_message';
+export const LOADING_MESSAGE_TYPE = 'chat_status_message';
 export const loading_message_schema = z.object({
   type: z.literal(LOADING_MESSAGE_TYPE),
   key: z.string(),

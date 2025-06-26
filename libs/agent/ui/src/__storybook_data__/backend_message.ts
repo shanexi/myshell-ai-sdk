@@ -184,7 +184,7 @@ export const loading_msg_1 = {
   message_id: 1750938574846908,
   timestamp: '2025-06-24T12:18:25.883996',
   source: 'agent',
-  type: 'chat_loading_message',
+  type: 'chat_status_message',
   args: {
     text: '正在思考中...',
   },
@@ -195,7 +195,7 @@ export const loading_msg_2 = {
   message_id: 1750767505381877,
   timestamp: '2025-06-24T12:18:25.883996',
   source: 'agent',
-  type: 'chat_loading_message',
+  type: 'chat_status_message',
   args: {
     text: '思考结束',
   },
@@ -262,7 +262,7 @@ export const progress_msg_3 = {
 };
 
 const msg_01 = {
-  type: 'chat_loading_message',
+  type: 'chat_status_message',
   message_id: 1,
 };
 
