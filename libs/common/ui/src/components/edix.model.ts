@@ -7,12 +7,12 @@ import {
   InsertFragment,
   InsertText,
   plainSchema,
+  Position,
   schema,
   voidNode,
-  Position,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable, toJS } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
 

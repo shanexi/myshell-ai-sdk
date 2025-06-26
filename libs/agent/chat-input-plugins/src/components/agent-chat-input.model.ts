@@ -9,6 +9,7 @@ import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
+import { fuzzyMatch } from './agent-chat-input.utils';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 export type ContextType = 'requirement' | 'preview' | 'canvas' | 'test';
@@ -117,7 +118,7 @@ export class AgentChatInputModel {
 
     const results = this.contextMenus
       .map((item) => {
-        const match = this.fuzzyMatch(item.name, searchCriteria.criteria);
+        const match = fuzzyMatch(item.name, searchCriteria.criteria);
         return {
           ...item,
           highlightedName: match.highlighted,
@@ -238,47 +239,5 @@ export class AgentChatInputModel {
   @action.bound
   setSelectedMenuIndex(index: number) {
     this.selectedMenuIndex = index;
-  }
-
-  private fuzzyMatch(
-    text: string,
-    search: string,
-  ): { highlighted: Array<{ char: string; isMatch: boolean }>; score: number } {
-    const searchLower = search.toLowerCase();
-    const textLower = text.toLowerCase();
-
-    let searchIndex = 0;
-    let score = 0;
-    const highlighted: Array<{ char: string; isMatch: boolean }> = [];
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const charLower = textLower[i];
-
-      if (
-        searchIndex < searchLower.length &&
-        charLower === searchLower[searchIndex]
-      ) {
-        highlighted.push({ char, isMatch: true });
-        searchIndex++;
-        // Give higher score for consecutive matches
-        score += searchIndex === 1 ? 10 : 5;
-        // Bonus for matches at word boundaries
-        if (i === 0 || text[i - 1] === ' ' || text[i - 1] === '.') {
-          score += 5;
-        }
-      } else {
-        highlighted.push({ char, isMatch: false });
-      }
-    }
-
-    // Only return matches if all search characters were found
-    if (searchIndex === searchLower.length) {
-      // Bonus for shorter strings (better matches)
-      score += Math.max(0, 50 - text.length);
-      return { highlighted, score };
-    }
-
-    return { highlighted: [], score: 0 };
   }
 }
