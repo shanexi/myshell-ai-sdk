@@ -18,10 +18,14 @@ import { ThinkModel } from './components/think/think.model';
 import { XButton } from './components/button/x-button';
 import { XButtonModel } from './components/button/x-button.model';
 import { AgentMessage } from './types';
+import { ErrorMessage } from './components/error/error-msg';
 // import { LineChartDemo } from './components/chart-demo';
 
 export const OWN_MESSAGE_TYPE = 'agent:own';
 export const REPLY_MESSAGE_TYPE = 'agent:reply';
+export const ERROR_MESSAGE_TYPE = 'agent:error';
+export const LOADING_MESSAGE_TYPE = 'agent:loading';
+export const PROGRESS_MESSAGE_TYPE = 'agent:progress';
 
 function registerMesssage(
   bind: interfaces.Bind,
@@ -37,6 +41,7 @@ function registerMesssage(
   );
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
+  addMessagePlugin(ERROR_MESSAGE_TYPE, ErrorMessage);
 }
 
 function registerMdc(
