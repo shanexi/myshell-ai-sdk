@@ -1,7 +1,8 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import {
   AtSign,
+  Braces,
   FileJson2,
   FileText,
   ListCheck,
@@ -32,7 +33,7 @@ export const ChatInputContextPlugin = observer(() => {
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
       <AddContext />
       {model.selectedContextItems.map((item) => (
-        <ContextItem key={item.name} title={item.name} icon={item.type} />
+        <ContextItem key={item.name} title={item.name} type={item.type} />
       ))}
     </div>
   );
@@ -76,9 +77,19 @@ const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
 const ContextItem: React.FC<{
   title: string;
-  icon: ContextType;
-}> = ({ title, icon }) => {
-  const Icon = IconMap[icon];
+  type?: string;
+}> = ({ title, type }) => {
+  const typeRes = context_type_schema.safeParse(type);
+  let Icon: React.ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+  >;
+  // 兜底
+  if (typeRes.success === false) {
+    Icon = Braces;
+  } else {
+    Icon = IconMap[context_type_schema.parse(type)];
+  }
+
   const model = useInjection(AgentChatInputModel);
 
   return (

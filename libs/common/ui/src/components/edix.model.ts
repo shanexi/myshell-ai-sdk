@@ -25,12 +25,7 @@ export const context_type_schema = z.enum([
 ]);
 
 export const context_schema = z.object({
-  type: z.union([
-    z.literal(context_type_schema.Enum.preview),
-    z.literal(context_type_schema.Enum.requirement),
-    z.literal(context_type_schema.Enum.canvas),
-    z.literal(context_type_schema.Enum.test),
-  ]),
+  type: context_type_schema,
   name: z.string(),
 });
 
@@ -73,6 +68,7 @@ const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
       type: 'context',
       data: {
         content: 'canvas.state1.inputs.variable1',
+        type: 'canvas',
       },
     },
   ],
