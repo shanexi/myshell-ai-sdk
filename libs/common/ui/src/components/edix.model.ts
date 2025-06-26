@@ -221,7 +221,11 @@ export class EdixModel {
       const key = `${context.type}:${context.name}`;
       this.contextExtraArgsMap.set(key, context);
       // 输入的同时，替换选中（删除）
-      this.edixHandle?.command(InsertContext, context.name + ' ', context.type);
+      this.edixHandle?.command(
+        InsertContext,
+        context.name + ' ',
+        context.type || '<undef>',
+      );
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
 

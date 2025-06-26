@@ -87,7 +87,7 @@ const ContextItem: React.FC<{
   if (typeRes.success === false) {
     Icon = Braces;
   } else {
-    Icon = IconMap[context_type_schema.parse(type)];
+    Icon = IconMap[typeRes.data];
   }
 
   const model = useInjection(AgentChatInputModel);

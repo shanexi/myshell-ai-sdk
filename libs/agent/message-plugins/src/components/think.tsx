@@ -10,7 +10,6 @@ export const Think = observer<{ id: string; text: string }>(({ id, text }) => {
     console.log('only run once');
     model.setText(text as string);
   }, []);
-  console.log(model.text);
   return (
     <div
       style={{
@@ -27,7 +26,7 @@ export const Think = observer<{ id: string; text: string }>(({ id, text }) => {
         )}
         onClick={() => model.toggle()}
       >
-        Thinking...
+        Think...
         {model.isOpen ? (
           <ChevronUp
             strokeWidth={1.5}

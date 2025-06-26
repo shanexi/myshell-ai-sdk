@@ -1,7 +1,7 @@
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
-import { cn } from '@myshell-run/common-ui';
+import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ChevronRight } from 'lucide-react';
+import { Braces, ChevronRight, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
@@ -88,7 +88,16 @@ export const ContextMenu = observer(() => {
       }}
     >
       {model.filteredContextMenus.map((item, index) => {
-        const Icon = IconMap[item.type];
+        let Icon: React.ForwardRefExoticComponent<
+          Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+        >;
+        // 兜底
+        const typeRes = context_type_schema.safeParse(item.type);
+        if (typeRes.success === false) {
+          Icon = Braces;
+        } else {
+          Icon = IconMap[typeRes.data];
+        }
         return (
           <div
             key={item.name}
