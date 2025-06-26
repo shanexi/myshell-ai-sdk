@@ -26,7 +26,7 @@ export const Think = observer<{ id: string; text: string }>(({ id, text }) => {
         )}
         onClick={() => model.toggle()}
       >
-        Think...
+        Generating...
         {model.isOpen ? (
           <ChevronUp
             strokeWidth={1.5}

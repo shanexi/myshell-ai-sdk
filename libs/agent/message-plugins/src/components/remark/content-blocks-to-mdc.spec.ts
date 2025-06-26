@@ -1,3 +1,4 @@
+import exp from 'constants';
 import {
   msg2,
   msg4,
@@ -11,6 +12,7 @@ import {
   content_blocks_schema,
   content_blocks_to_mdc,
 } from './content-blocks-to-mdc';
+import { Cone } from 'lucide-react';
 
 describe('content block to mdc', () => {
   it('msg2', () => {
@@ -55,6 +57,32 @@ describe('content block to mdc', () => {
     const a = content_blocks_schema.parse(msg11);
     expect(content_blocks_to_mdc(a)).toMatchInlineSnapshot(
       `"已经为您找到相关代码，接下来我会开始生成应用."`,
+    );
+  });
+
+  it('case 1', () => {
+    const a = {
+      id: 15,
+      message_id: 1750938574846908,
+      timestamp: '2025-06-26T11:50:55.608699',
+      source: 'agent',
+      type: 'chat_message',
+      cause: 14,
+      status: 'completed',
+      args: {
+        content_blocks: [
+          {
+            type: 'think',
+            content: {
+              text: '✅ 工具 **get_widgets_list** 执行成功: 工具执行成功',
+            },
+          },
+        ],
+      },
+    };
+    const aa = content_blocks_schema.parse(a);
+    expect(content_blocks_to_mdc(aa)).toMatchInlineSnapshot(
+      `"::x-think{#1750938574846908 text="✅ 工具 **get_widgets_list** 执行成功: 工具执行成功"}"`,
     );
   });
 });

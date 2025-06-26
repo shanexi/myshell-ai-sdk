@@ -43,7 +43,7 @@ export const content_blocks_schema = z.object({
   source: z.union([z.literal('agent'), z.literal('user')]),
   type: chat_message_type,
   cause: z
-    .literal(1)
+    .number()
     .optional()
     .describe(
       'cause 是一个语义不明确的字段，来自于 openhands，目前的含义是如果有，则替 message_id 内容 ',
