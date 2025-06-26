@@ -1,5 +1,6 @@
 import {
   AgentChatInputHandlers,
+  ContextItem,
   UploadItem,
 } from '@myshell-run/agent-chat-input-plugins';
 import {
@@ -156,5 +157,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     });
 
     yield;
+  }
+
+  addToContext(context: ContextItem) {
+    this.chatCommon.edixModel.insertContext(context);
   }
 }
