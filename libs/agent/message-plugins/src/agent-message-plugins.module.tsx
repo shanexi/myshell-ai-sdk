@@ -5,18 +5,18 @@ import {
   CheckList as Checklist,
   ChecklistCode,
   CheckListItem as ChecklistItem,
-} from './components/checklist-msg';
-import { ChecklistItemModel } from './components/checklist-msg.model';
-import { OwnMessage } from './components/own-msg';
-import { PollingMsg } from './components/polling-msg';
-import { PollingMsgModel } from './components/polling-msg.model';
-import { ReplyMsg } from './components/reply-msg';
-import { SimpleLogViewer } from './components/simple-log-viewer';
-import { SimpleLogViewerModel } from './components/simple-log-viewer.model';
-import { Think } from './components/think';
-import { ThinkModel } from './components/think.model';
-import { XButton } from './components/x-button';
-import { XButtonModel } from './components/x-button.model';
+} from './components/checklist/checklist-msg';
+import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
+import { OwnMessage } from './components/own/own-msg';
+import { PollingMsg } from './components/polling/polling-msg';
+import { PollingMsgModel } from './components/polling/polling-msg.model';
+import { ReplyMsg } from './components/reply/reply-msg';
+import { SimpleLogViewer } from './components/simple-log-viewer/simple-log-viewer';
+import { SimpleLogViewerModel } from './components/simple-log-viewer/simple-log-viewer.model';
+import { Think } from './components/think/think';
+import { ThinkModel } from './components/think/think.model';
+import { XButton } from './components/button/x-button';
+import { XButtonModel } from './components/button/x-button.model';
 import { AgentMessage } from './types';
 // import { LineChartDemo } from './components/chart-demo';
 

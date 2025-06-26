@@ -1,5 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
-import { AgentMessage } from '../types';
+import { AgentMessage } from '../../types';
 import { CircleAlert } from 'lucide-react';
 
 export const ErrorMessage: React.FC<AgentMessage> = ({ text }) => {

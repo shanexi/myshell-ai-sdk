@@ -1,5 +1,5 @@
-export * from './components/reply-msg';
-export * from './components/own-msg';
+export * from './components/reply/reply-msg';
+export * from './components/own/own-msg';
 export * from './agent-message-plugins.module';
 
 // export 给 agent-ui 来写一些 storybook

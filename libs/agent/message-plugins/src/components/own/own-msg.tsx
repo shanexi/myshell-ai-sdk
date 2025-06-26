@@ -1,5 +1,5 @@
 import { cn } from '@myshell-run/common-ui';
-import { AgentMessage } from '../types';
+import { AgentMessage } from '../../types';
 
 export const OwnMessage: React.FC<AgentMessage> = ({ text }) => {
   return (

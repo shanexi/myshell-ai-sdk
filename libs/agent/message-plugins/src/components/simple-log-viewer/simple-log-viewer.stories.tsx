@@ -7,10 +7,10 @@ import {
   msg4,
   msg5,
   msg6,
-} from './__storybook_data__/backend_message';
+} from '../__storybook_data__/backend_message';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { Container } from 'inversify';
-import { agentMessagePluginsModule } from '../agent-message-plugins.module';
+import { agentMessagePluginsModule } from '../../agent-message-plugins.module';
 
 const container = new Container();
 container.load(agentMessagePluginsModule);

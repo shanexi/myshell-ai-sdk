@@ -1,5 +1,5 @@
 import { cn, RemarkMsg } from '@myshell-run/common-ui';
-import { AgentMessage } from '../types';
+import { AgentMessage } from '../../types';
 
 export const ReplyMsg: React.FC<AgentMessage> = (props) => {
   const { text } = props;

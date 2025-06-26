@@ -2,7 +2,7 @@ import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '../../agent-message-plugins.module';
-import { ReplyMsg } from '../reply-msg';
+import { ReplyMsg } from '../reply/reply-msg';
 import { useEffect, useState } from 'react';
 
 import {

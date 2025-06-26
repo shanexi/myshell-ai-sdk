@@ -2,7 +2,7 @@ import { Message } from '@myshell-run/common-def';
 import { cn } from '@myshell-run/common-ui';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { XButton } from './x-button';
+import { XButton } from '../button/x-button';
 
 /**
  * @deprecated 非 MDC 写法，同时 LUI button 在消息底部
