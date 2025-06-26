@@ -47,7 +47,6 @@ export const ChatInputStructuredInputPlugin = observer(() => {
   }, []);
 
   const value = model.chatCommon.edixModel.chatInputDoc;
-  console.log(toJS(value));
 
   return (
     <>

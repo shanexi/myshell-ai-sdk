@@ -1,4 +1,4 @@
-import { OWN_MESSAGE_TYPE } from '../../agent-message-plugins.module';
+import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from '../../types';
 import { ReplyMsg } from '../reply/reply-msg';
 import { msg6, msg7 } from '../__storybook_data__/backend_mock_message';
 import { useEffect, useState } from 'react';
@@ -32,6 +32,6 @@ export const RemarkDefaultMessage = () => {
   console.log(text);
   // TODO type 不需要了
   return (
-    <ReplyMsg key="abc" user="other" type={OWN_MESSAGE_TYPE} text={text} />
+    <ReplyMsg key="abc" user="other" type={REPLY_MESSAGE_TYPE} text={text} />
   );
 };

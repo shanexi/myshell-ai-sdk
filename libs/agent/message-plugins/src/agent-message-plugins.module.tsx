@@ -1,31 +1,33 @@
 import { addMessagePluginFactory, setupMdc } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 // import { BarChartDemo, LineChartDemo } from './components/chart-demo';
+import { XButton } from './components/button/x-button';
+import { XButtonModel } from './components/button/x-button.model';
 import {
   CheckList as Checklist,
   ChecklistCode,
   CheckListItem as ChecklistItem,
 } from './components/checklist/checklist-msg';
 import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
+import { ErrorMessage } from './components/error/error-msg';
 import { OwnMessage } from './components/own/own-msg';
 import { PollingMsg } from './components/polling/polling-msg';
 import { PollingMsgModel } from './components/polling/polling-msg.model';
+import { Progress } from './components/progress/progress';
 import { ReplyMsg } from './components/reply/reply-msg';
 import { SimpleLogViewer } from './components/simple-log-viewer/simple-log-viewer';
 import { SimpleLogViewerModel } from './components/simple-log-viewer/simple-log-viewer.model';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
-import { XButton } from './components/button/x-button';
-import { XButtonModel } from './components/button/x-button.model';
-import { AgentMessage } from './types';
-import { ErrorMessage } from './components/error/error-msg';
+import {
+  ERROR_MESSAGE_TYPE,
+  LOADING_MESSAGE_TYPE,
+  OWN_MESSAGE_TYPE,
+  PROGRESS_MESSAGE_TYPE,
+  REPLY_MESSAGE_TYPE,
+} from './types';
+import { Loading } from './components/loading/loading';
 // import { LineChartDemo } from './components/chart-demo';
-
-export const OWN_MESSAGE_TYPE = 'agent:own';
-export const REPLY_MESSAGE_TYPE = 'agent:reply';
-export const ERROR_MESSAGE_TYPE = 'agent:error';
-export const LOADING_MESSAGE_TYPE = 'agent:loading';
-export const PROGRESS_MESSAGE_TYPE = 'agent:progress';
 
 function registerMesssage(
   bind: interfaces.Bind,
@@ -33,7 +35,7 @@ function registerMesssage(
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  const addMessagePlugin = addMessagePluginFactory<AgentMessage>(
+  const addMessagePlugin = addMessagePluginFactory(
     bind,
     unbind,
     isBound,
@@ -42,6 +44,8 @@ function registerMesssage(
   addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
   addMessagePlugin(ERROR_MESSAGE_TYPE, ErrorMessage);
+  addMessagePlugin(PROGRESS_MESSAGE_TYPE, Progress);
+  addMessagePlugin(LOADING_MESSAGE_TYPE, Loading);
 }
 
 function registerMdc(

@@ -8,7 +8,9 @@ export default meta;
 
 export const Primary: StoryObj<typeof Progress> = {
   args: {
-    text: 'Starting to create',
-    progress: 50,
+    args: {
+      text: 'Starting to create',
+      progress: 50,
+    },
   },
 };

@@ -16,6 +16,12 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
+  loading_msg_1,
+  loading_msg_2,
+  loading_replace_msg,
+  progress_msg_1,
+  progress_msg_2,
+  progress_msg_3,
   think_msg_1,
   think_msg_2,
   think_msg_3,
@@ -83,49 +89,80 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
-    const mockResponses = [think_msg_1, think_msg_2, think_msg_3];
+    const mockResponses = [
+      loading_msg_1,
+      loading_replace_msg,
+      think_msg_1,
+      think_msg_2,
+      think_msg_3,
+      progress_msg_1,
+      progress_msg_2,
+      progress_msg_3,
+    ];
 
     for (const response of mockResponses) {
-      const res = content_blocks_schema.parse(response);
-      const message_id = String(res.message_id);
-      // 针对性处理 agent_log
-      res.args.content_blocks.forEach((b) => {
-        // 特殊处理 非 text, 相同 message id 合并
-        if (b.type === 'agent_log' || b.type === 'think') {
-          let a = this.noTextLogMap.get(res.message_id);
-          if (a) {
-            a = a + '&#13;&#10;' + b.content.text.replace(/\r\n|\r|\n/g, '\\n');
-          } else {
-            a = b.content.text.replace(/\r\n|\r|\n/g, '\\n');
-          }
-          this.noTextLogMap.set(res.message_id, a);
-          b.content.text = a;
-        }
-      });
-
-      if (this.chatCommon.isMsgNoExists(message_id)) {
-        const text = content_blocks_to_mdc(res);
-        this.chatCommon.appendMsg({
-          key: message_id,
-          text,
-          type: REPLY_MESSAGE_TYPE,
-        });
-      } else {
-        this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-          const nextText = content_blocks_to_mdc(res);
-          let text: string;
-          if (res.cause) {
-            text = nextText;
-          } else {
-            // TODO 先临时处理下 block directive
-            if (nextText.startsWith('::')) {
-              text = message.text + '\n' + nextText;
+      if (response.type === 'chat_message') {
+        const res = content_blocks_schema.parse(response);
+        const message_id = String(res.message_id);
+        // 针对性处理 agent_log
+        res.args.content_blocks.forEach((b) => {
+          // 特殊处理 非 text, 相同 message id 合并
+          if (b.type === 'agent_log' || b.type === 'think') {
+            let a = this.noTextLogMap.get(res.message_id);
+            if (a) {
+              a =
+                a + '&#13;&#10;' + b.content.text.replace(/\r\n|\r|\n/g, '\\n');
             } else {
-              text = message.text + nextText;
+              a = b.content.text.replace(/\r\n|\r|\n/g, '\\n');
             }
+            this.noTextLogMap.set(res.message_id, a);
+            b.content.text = a;
           }
-          return message.key === message_id ? { ...message, text } : message;
-        }, 'smooth');
+        });
+        if (this.chatCommon.isMsgNoExists(message_id)) {
+          const text = content_blocks_to_mdc(res);
+          this.chatCommon.appendMsg({
+            key: message_id,
+            text,
+            type: REPLY_MESSAGE_TYPE,
+          });
+        } else {
+          // TODO: 需要修改 KEY
+          this.chatCommon.virtuosoRef?.current?.data.map((message) => {
+            const nextText = content_blocks_to_mdc(res);
+            let text: string;
+            if (res.cause) {
+              text = nextText;
+            } else {
+              // TODO 先临时处理下 block directive
+              if (nextText.startsWith('::')) {
+                text = message.text + '\n' + nextText;
+              } else {
+                text = message.text + nextText;
+              }
+            }
+            return message.key === message_id
+              ? { ...message, text, type: REPLY_MESSAGE_TYPE }
+              : message;
+          }, 'smooth');
+        }
+      } else {
+        // 处理第一层 type
+        const message_id = String(response.message_id);
+        if (this.chatCommon.isMsgNoExists(message_id)) {
+          this.chatCommon.appendMsg({
+            key: message_id,
+            text: '',
+            type: response.type,
+            args: response.args,
+          });
+        } else {
+          this.chatCommon.virtuosoRef?.current?.data.map((message) => {
+            return message.key === message_id
+              ? { ...message, args: response.args, type: response.type }
+              : message;
+          }, 'smooth');
+        }
       }
 
       await new Promise((resolve) => setTimeout(resolve, 1000));

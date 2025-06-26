@@ -8,6 +8,8 @@ export default meta;
 
 export const Primary: StoryObj<typeof Loading> = {
   args: {
-    text: 'ShellAgent is generating',
+    args: {
+      text: 'ShellAgent is generating',
+    },
   },
 };

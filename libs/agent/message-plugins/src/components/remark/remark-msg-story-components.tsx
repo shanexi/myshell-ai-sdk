@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  OWN_MESSAGE_TYPE,
-  REPLY_MESSAGE_TYPE,
-} from '../../agent-message-plugins.module';
+import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from '../../types';
 import { ReplyMsg } from '../reply/reply-msg';
 import checklistStory from './checklist-story.md';
 import pollingMsgStory from './polling-msg-story.md';
@@ -35,7 +32,7 @@ export const ChecklistStory = () => {
   }, []);
   console.log(text);
   return (
-    <ReplyMsg key="abc" user="other" type={OWN_MESSAGE_TYPE} text={text} />
+    <ReplyMsg key="abc" user="other" type={REPLY_MESSAGE_TYPE} text={text} />
   );
 };
 

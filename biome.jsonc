@@ -14,6 +14,7 @@
       "libs/**/styles.css",
       "libs/agent/ui/output.css",
       "libs/agent/ui/output-prefixed.css",
+      "libs/agent/message-plugins/src/components/simple-log-viewer/simple-log-viewer.css",
       "./storybook-static",
       ".yalc"
     ]

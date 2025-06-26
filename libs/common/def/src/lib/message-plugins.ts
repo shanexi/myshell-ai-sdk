@@ -1,4 +1,5 @@
 import { JSX } from 'react/jsx-runtime';
+import { z } from 'zod';
 
 export type MessageListContext = {
   //
@@ -15,11 +16,14 @@ export interface Message {
   avatar?: string;
 }
 
-export interface StrictMessage {
-  key: string;
-  text: string;
-  type: string;
-}
+export const strict_message_schema = z.object({
+  key: z.string(),
+  text: z.string(),
+  type: z.string(),
+  args: z.any().optional(),
+});
+
+export type StrictMessage = z.infer<typeof strict_message_schema>;
 
 export const MessagePlugin = Symbol.for('MessagePlugin');
 

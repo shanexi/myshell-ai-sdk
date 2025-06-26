@@ -1,9 +1,11 @@
 import { cn } from '@myshell-run/common-ui';
+import { z } from 'zod';
+import { progress_message_schema } from '../../types';
 
-export const Progress: React.FC<{ text: string; progress: number }> = ({
-  text,
-  progress,
+export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
+  args,
 }) => {
+  const { progress, text } = args;
   return (
     <div
       className={cn(

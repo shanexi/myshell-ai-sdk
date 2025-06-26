@@ -22,7 +22,7 @@ export function bindPreviewChatMsgItemPlugins(
 ) {
   bind(MessageItemModel).toSelf().inSingletonScope();
   // register message by type
-  const addMessagePlugin = addMessagePluginFactory<PreviewMessage>(
+  const addMessagePlugin = addMessagePluginFactory(
     bind,
     unbind,
     isBound,

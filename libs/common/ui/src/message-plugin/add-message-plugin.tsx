@@ -5,7 +5,7 @@ export const MessageTypeSet = Symbol.for('MessageTypeSet');
 
 let messageTypeSet: Set<string>;
 
-export function addMessagePluginFactory<T>(
+export function addMessagePluginFactory(
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
   isBound: interfaces.IsBound,
@@ -16,7 +16,7 @@ export function addMessagePluginFactory<T>(
     bind(MessageTypeSet).toConstantValue(messageTypeSet);
   }
 
-  return function addMessagePlugin(
+  return function addMessagePlugin<T>(
     type: string,
     Component: React.ComponentType<T>,
   ) {

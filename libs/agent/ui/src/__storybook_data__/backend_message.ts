@@ -177,3 +177,170 @@ export const think_msg_3 = {
     ],
   },
 };
+
+export const loading_msg_1 = {
+  id: 69,
+  // message_id: 1750767505381877,
+  message_id: 1750938574846908,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_loading_message',
+  args: {
+    text: '正在思考中...',
+  },
+};
+
+export const loading_msg_2 = {
+  id: 70,
+  message_id: 1750767505381877,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_loading_message',
+  args: {
+    text: '思考结束',
+  },
+};
+
+export const loading_replace_msg = {
+  id: 70,
+  message_id: 1750767505381877,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '你好，有什么可以帮你的吗？我可以帮你实现任意功能，请使用 *生成+功能名称* 命令来生成代码',
+        },
+      },
+    ],
+  },
+};
+
+export const progress_msg_1 = {
+  id: 952,
+  message_id: 1750939829860014,
+  timestamp: '2025-06-26T20:10:32.125189',
+  source: 'agent',
+  type: 'chat_progress_message',
+  cause: 951,
+  status: 'pending',
+  args: {
+    text: 'ShellAgent is generating...',
+    progress: 22,
+  },
+};
+
+export const progress_msg_2 = {
+  id: 953,
+  message_id: 1750939829860014,
+  timestamp: '2025-06-26T20:10:32.127585',
+  source: 'agent',
+  type: 'chat_progress_message',
+  cause: 952,
+  status: 'pending',
+  args: {
+    text: 'ShellAgent is generating...',
+    progress: 80,
+  },
+};
+
+export const progress_msg_3 = {
+  id: 954,
+  message_id: 1750939829860014,
+  timestamp: '2025-06-26T20:10:32.129372',
+  source: 'agent',
+  type: 'chat_progress_message',
+  cause: 953,
+  status: 'pending',
+  args: {
+    text: 'ShellAgent is generating...',
+    progress: 90,
+  },
+};
+
+const msg_01 = {
+  type: 'chat_loading_message',
+  message_id: 1,
+};
+
+const msg_02 = {
+  type: 'chat_message',
+  message_id: 1,
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+      },
+    ],
+  },
+};
+
+const msg_03 = {
+  type: 'chat_message',
+  message_id: 1,
+  // append
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+      },
+    ],
+  },
+};
+
+// progress 必须得不一样
+const msg_04 = {
+  type: 'chat_progress_message',
+  message_id: 2,
+  // append
+  args: {
+    progress: 10,
+  },
+};
+
+// progress
+const msg_05 = {
+  type: 'chat_progress_message',
+  message_id: 2,
+  // append
+  args: {
+    progress: 100,
+  },
+};
+
+// think
+// 方案1
+const msg_06 = {
+  type: 'chat_message',
+  message_id: 1,
+  // append
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+      },
+    ],
+  },
+};
+
+/**
+ 1. progress_message complete chat message list 移除
+ 2. 保证 message_id
+ */
+
+// 方案2
+const msg_06_2 = {
+  type: 'chat_message',
+  message_id: 3,
+  // append
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+      },
+    ],
+  },
+};

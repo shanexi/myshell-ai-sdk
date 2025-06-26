@@ -1,18 +1,8 @@
-import {
-  OWN_MESSAGE_TYPE,
-  REPLY_MESSAGE_TYPE,
-} from '../../agent-message-plugins.module';
-import { ReplyMsg } from '../reply/reply-msg';
 import { useEffect, useState } from 'react';
+import { REPLY_MESSAGE_TYPE } from '../../types';
+import { ReplyMsg } from '../reply/reply-msg';
 
-import {
-  msg1,
-  msg2,
-  msg3,
-  msg4,
-  msg5,
-  msg6,
-} from '../__storybook_data__/backend_message';
+import { msg1, msg3 } from '../__storybook_data__/backend_message';
 
 export const RemarkSimpleLogViewer = () => {
   const lines = [
