@@ -121,3 +121,60 @@ export const msg6 = {
     ],
   },
 };
+
+export const think_msg_1 = {
+  id: 3,
+  message_id: 1750938574846908,
+  timestamp: '2025-06-26T11:49:42.599125',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 正在调用工具: **requirements_create**\n参数: {\n  "title": "中英文翻译机器人",\n  "items": [\n    "创建需求列表和用户旅程",\n    "获取现有翻译相关组件",\n    "设计翻译流程状态机",\n    "生成完整的翻译应用程序"\n  ]\n}',
+        },
+      },
+    ],
+  },
+};
+
+export const think_msg_2 = {
+  id: 4,
+  message_id: 1750938574846908,
+  timestamp: '2025-06-26T11:49:48.779975',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 正在调用工具: **requirements_create**\n参数: {\n  "title": "中英文翻译机器人",\n  "items": [\n    "创建需求列表和用户旅程",\n    "获取现有翻译相关组件",\n    "设计翻译流程状态机",\n    "生成完整的翻译应用程序"\n  ]\n}',
+        },
+      },
+    ],
+  },
+};
+
+export const think_msg_3 = {
+  id: 5,
+  message_id: 1750938574846908,
+  timestamp: '2025-06-26T11:49:55.200830',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 正在调用工具: **requirements_create**\n参数: {\n  "title": "中英文翻译机器人",\n  "items": [\n    "创建需求列表和用户旅程",\n    "获取现有翻译相关组件",\n    "设计翻译流程状态机",\n    "生成完整的翻译应用程序"\n  ]\n}',
+        },
+      },
+    ],
+  },
+};

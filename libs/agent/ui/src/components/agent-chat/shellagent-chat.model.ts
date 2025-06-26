@@ -15,7 +15,11 @@ import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
-import { msg1, msg2 } from '../../__storybook_data__/backend_message';
+import {
+  think_msg_1,
+  think_msg_2,
+  think_msg_3,
+} from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 
 @injectable()
@@ -79,19 +83,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
-    const mockResponses = [
-      // agent_log
-      msg1,
-      msg2,
-      // msg3,
-      // msg4,
-      // // chat message
-      // msg10,
-      // msg11,
-      // // agent_log
-      // msg5,
-      // msg6,
-    ];
+    const mockResponses = [think_msg_1, think_msg_2, think_msg_3];
 
     for (const response of mockResponses) {
       const res = content_blocks_schema.parse(response);
@@ -102,9 +94,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
         if (b.type === 'agent_log' || b.type === 'think') {
           let a = this.noTextLogMap.get(res.message_id);
           if (a) {
-            a = a + '&#13;&#10;' + b.content.text;
+            a = a + '&#13;&#10;' + b.content.text.replace(/\r\n|\r|\n/g, '\\n');
           } else {
-            a = b.content.text;
+            a = b.content.text.replace(/\r\n|\r|\n/g, '\\n');
           }
           this.noTextLogMap.set(res.message_id, a);
           b.content.text = a;
