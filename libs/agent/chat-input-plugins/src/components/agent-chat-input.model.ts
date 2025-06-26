@@ -116,7 +116,7 @@ export class AgentChatInputModel {
       .flat()
       .filter((d) => d.type === 'context')
       .map((d) => ({
-        type: 'preview' as ContextType,
+        type: d.data.type,
         name: d.data.content,
       }));
   }
@@ -134,6 +134,7 @@ export class AgentChatInputModel {
   // todo: 优化 当 selectedMenuIndex <filteredContextMenus.length，则默认选择 0
   @observable selectedMenuIndex = 0;
 
+  // todo: 优化，过滤之后，位置不对
   @computed get filteredContextMenus(): FilteredContextItem[] {
     const searchCriteria = this.chatCommon.edixModel.atSearchCriteria;
 
