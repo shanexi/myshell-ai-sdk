@@ -1,5 +1,6 @@
 /* Import PatternFly base styles - will be scoped by PostCSS */
-@import '../../../../../../node_modules/@patternfly/react-core/dist/styles/base.css';
+/* 注意这个是 dist relative path */
+@import '../../../../../../../node_modules/@patternfly/react-core/dist/styles/base.css';
 
 /* Component-specific styles */
 .pf-v6-c-log-viewer {
