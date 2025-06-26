@@ -9,7 +9,7 @@ import {
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { isEmpty } from 'radash';
+import { isEmpty, unique } from 'radash';
 import { z } from 'zod';
 import { fuzzyMatch } from './agent-chat-input.utils';
 
@@ -42,6 +42,7 @@ export interface AgentChatInputHandlers {
   sendChatInputDoc(
     chatInputDoc: ChatInputDoc,
     upload: UploadItem[],
+    context: ContextItem[],
   ): AsyncGenerator;
 
   removeImagePreview(id: string): Generator;
@@ -112,13 +113,16 @@ export class AgentChatInputModel {
   // ]);
 
   @computed get selectedContextItems() {
-    return this.chatCommon.edixModel.chatInputDoc
-      .flat()
-      .filter((d) => d.type === 'context')
-      .map((d) => ({
-        type: d.data.type,
-        name: d.data.content,
-      }));
+    return unique(
+      this.chatCommon.edixModel.chatInputDoc
+        .flat()
+        .filter((d) => d.type === 'context')
+        .map((d) => ({
+          type: d.data.type,
+          name: d.data.content,
+        })),
+      (d) => `${d.type}:${d.name}`,
+    );
   }
 
   /**
@@ -231,6 +235,12 @@ export class AgentChatInputModel {
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
+      Array.from(this.chatCommon.edixModel.contextExtraArgsMap.values()).filter(
+        (item, index, array) =>
+          array.findIndex(
+            (x) => x.type === item.type && x.name === item.name,
+          ) === index,
+      ),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
@@ -271,5 +281,9 @@ export class AgentChatInputModel {
   @action.bound
   setSelectedMenuIndex(index: number) {
     this.selectedMenuIndex = index;
+  }
+
+  addToContext(context: ContextItem) {
+    this.chatCommon.edixModel.insertContext(context);
   }
 }

@@ -1,5 +1,6 @@
 import {
   AgentChatInputHandlers,
+  AgentChatInputModel,
   ContextItem,
   UploadItem,
 } from '@myshell-run/agent-chat-input-plugins';
@@ -9,21 +10,15 @@ import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
-import { msg10, msg11 } from '../../__storybook_data__/backend_mock_message';
-import {
-  msg1,
-  msg2,
-  // msg4,
-  // msg5,
-  // msg6,
-} from '../../__storybook_data__/backend_message';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
-import { f2b_content_blocks } from './shellagent-chat.utils';
 import { isEmpty } from 'radash';
+import { msg2 } from '../../__storybook_data__/backend_message';
+import { f2b_content_blocks } from './shellagent-chat.utils';
+import { Context } from '@patternfly/react-core/dist/esm/helpers/Popper/thirdparty/popper-core';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -40,7 +35,11 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     return this.factory(AGENT_CHAT);
   }
 
-  async *sendChatInputDoc(chatInputDoc: ChatInputDoc, uploads: UploadItem[]) {
+  async *sendChatInputDoc(
+    chatInputDoc: ChatInputDoc,
+    uploads: UploadItem[],
+    context: ContextItem[],
+  ) {
     const msgId = createId();
     // 先简单变成字符串
     // TODO 因为上传图片，所以这里得立即处理下
@@ -71,7 +70,12 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     });
 
     // TODO: 对接后端
-    console.log('send', uploads, f2b_content_blocks(toJS(chatInputDoc)));
+    console.log(
+      'send',
+      uploads,
+      context,
+      f2b_content_blocks(toJS(chatInputDoc)),
+    );
 
     yield;
 

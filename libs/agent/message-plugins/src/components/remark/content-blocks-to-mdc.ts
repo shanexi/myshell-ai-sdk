@@ -28,6 +28,13 @@ const agent_log_schema = z.object({
   }),
 });
 
+const think_schema = z.object({
+  type: z.literal('think'),
+  content: z.object({
+    text: z.string(),
+  }),
+});
+
 export const content_blocks_schema = z.object({
   id: z.number(),
   message_id: z.number(),
@@ -47,6 +54,7 @@ export const content_blocks_schema = z.object({
         text_schema,
         button_schema,
         agent_log_schema,
+        think_schema,
       ]),
     ),
   }),

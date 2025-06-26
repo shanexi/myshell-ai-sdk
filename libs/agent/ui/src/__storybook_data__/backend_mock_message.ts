@@ -169,7 +169,7 @@ export const msg12 = {
       {
         type: 'text',
         content: {
-          text: '正在生成应用，请稍等...',
+          text: '正在执行...',
         },
       },
     ],
@@ -185,9 +185,9 @@ export const msg13 = {
   args: {
     content_blocks: [
       {
-        type: 'agent_log',
+        type: 'text',
         content: {
-          text: '正在查看文件结构...',
+          text: '正在执行 预计 1min',
         },
       },
     ],
@@ -216,5 +216,67 @@ export const msg14 = {
         },
       },
     ],
+  },
+};
+
+export const msg_a = {
+  id: 102,
+  message_id: 1750384520695892,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_loading_message',
+  args: {
+    status: 'pending',
+    text: 'AI is generating...',
+    eta: 1000 * 60,
+  },
+};
+
+export const msg_ab = {
+  id: 103,
+  message_id: 1750384520695892,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_loading_message',
+  cause: 1,
+  args: {
+    status: 'pending',
+    text: 'AI is generating...',
+    eta: 1000 * 10,
+  },
+};
+
+export const msg_abc = {
+  id: 104,
+  message_id: 1750384520695892,
+  cause: 1,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [{}],
+  },
+};
+
+export const msg_p1 = {
+  id: 102,
+  message_id: 1750384520695892,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_progress_message',
+  args: {
+    progress: 10,
+  },
+};
+
+export const msg_p2 = {
+  id: 103,
+  message_id: 1750384520695892,
+  timestamp: '2025-06-20T01:55:22.696145',
+  source: 'agent',
+  type: 'chat_progress_message',
+  cause: 1, // replace append
+  args: {
+    progress: 70,
   },
 };

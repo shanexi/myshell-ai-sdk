@@ -24,10 +24,12 @@ export const context_type_schema = z.enum([
   'test',
 ]);
 
-export const context_schema = z.object({
-  type: context_type_schema,
-  name: z.string(),
-});
+export const context_schema = z
+  .object({
+    type: context_type_schema,
+    name: z.string(),
+  })
+  .passthrough();
 
 export const chatInputDocSchema = schema({
   multiline: true,
@@ -95,6 +97,9 @@ export class EdixModel {
   public edixHandle: EditableHandle | null = null;
   private edixRef?: RefObject<HTMLDivElement>;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
+  // 存储 context 额外参数
+  public contextExtraArgsMap: Map<string, z.infer<typeof context_schema>> =
+    new Map();
 
   constructor() {
     makeObservable(this);
@@ -212,6 +217,9 @@ export class EdixModel {
       // 选中 @
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
+      // 存储额外参数
+      const key = `${context.type}:${context.name}`;
+      this.contextExtraArgsMap.set(key, context);
       // 输入的同时，替换选中（删除）
       this.edixHandle?.command(InsertContext, context.name + ' ', context.type);
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
@@ -249,8 +257,10 @@ export class EdixModel {
          */
         this.edixHandle.resetHistory();
         setTimeout(() => {
-          this.inputText = '';
-          this.chatInputDoc = [];
+          // this.inputText = '';
+          // FIXME: clear 还是不能完全清除，估计还是得 edix 暴露 imperative 的接口
+          // 输入 text 可以正确 clear 了，但是输入 context 不行
+          // this.chatInputDoc = [];
         });
       }
     }

@@ -20,6 +20,9 @@ export const ShellAgentChat = () => {
             model.addToContext({
               type: 'canvas',
               name: 'This is canvas',
+              args: {
+                a: 'b',
+              },
             });
           }}
         >
