@@ -78,21 +78,54 @@ export type FilteredContextItem = ContextItem & {
 
 @injectable()
 export class AgentChatInputModel {
-  @observable selectedContextItems = observable.array<ContextItem>([
-    {
-      id: 'requirement.feature1',
-      type: 'requirement',
-      name: 'requirement.feature1',
-    },
-    { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
-    {
-      id: 'canvas.state1.inputs',
-      type: 'canvas',
-      name: 'canvas.state1.inputs',
-    },
-    { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
-  ]);
+  /**
+   * @description 和 @see contextMenus 不一样，这里是在 输入框上方 context 区域选中的列表
+   * 这个逻辑
+   * 1. 包含 非input 输入的 e.g. dnd(还没有实现) Add to Chat
+   * 2. input 输入的
+   *
+   * 同时 input 输入如果删除，是联动的
+   * input 可以重复输入，全部删除，联动的 context 才删除
+   * 而且 context 是属于 undo redo 管理的
+   *
+   * 我觉得可以先简化一下
+   * 1. hisotry 先不做
+   * 2. 联动先不做（删除 context 不删除 chatInput
+   *
+   * 因为现在 @ button 填写还没有做（只有 @ 输入 填写），也就是两者一定会同时存在
+   *
+   * 那 context items 就从 chatInputDoc 提取
+   *
+   */
+  // @observable selectedContextItems = observable.array<ContextItem>([
+  // {
+  //   id: 'requirement.feature1',
+  //   type: 'requirement',
+  //   name: 'requirement.feature1',
+  // },
+  // { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
+  // {
+  //   id: 'canvas.state1.inputs',
+  //   type: 'canvas',
+  //   name: 'canvas.state1.inputs',
+  // },
+  // { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
+  // ]);
 
+  @computed get selectedContextItems() {
+    return this.chatCommon.edixModel.chatInputDoc
+      .flat()
+      .filter((d) => d.type === 'context')
+      .map((d) => ({
+        type: 'preview',
+        name: d.data.content,
+        id: d.data.content,
+      }));
+  }
+
+  /**
+   * @description context dropdown 展示
+   */
   @observable contextMenus = observable.array<ContextItem>([
     { id: 'requirement', name: 'Requirement', type: 'requirement' },
     { id: 'preview', name: 'Preview', type: 'preview' },

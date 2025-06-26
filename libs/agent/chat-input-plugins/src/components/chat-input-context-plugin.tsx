@@ -79,6 +79,8 @@ const ContextItem: React.FC<{
   icon: ContextType;
 }> = ({ title, icon }) => {
   const Icon = IconMap[icon];
+  const model = useInjection(AgentChatInputModel);
+
   return (
     <ContextWrapper>
       <Icon
