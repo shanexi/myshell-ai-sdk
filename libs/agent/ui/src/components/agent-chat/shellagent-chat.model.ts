@@ -15,12 +15,12 @@ import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
-import { msg2 } from '../../__storybook_data__/backend_message';
+import { msg1, msg2 } from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
-  agentLogMap: Map<number, string> = new Map();
+  noTextLogMap: Map<number, string> = new Map();
 
   constructor(
     @inject(ChatCommonModelFactory)
@@ -81,7 +81,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // const mockResponses = [msg6, msg7];
     const mockResponses = [
       // agent_log
-      // msg1,
+      msg1,
       msg2,
       // msg3,
       // msg4,
@@ -98,23 +98,24 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       const message_id = String(res.message_id);
       // 针对性处理 agent_log
       res.args.content_blocks.forEach((b) => {
-        // 特殊处理 agent_log 相同 message id 合并
-        if (b.type === 'agent_log') {
-          let a = this.agentLogMap.get(res.message_id);
+        // 特殊处理 非 text, 相同 message id 合并
+        if (b.type === 'agent_log' || b.type === 'think') {
+          let a = this.noTextLogMap.get(res.message_id);
           if (a) {
-            a = a + '<br>' + b.content.text;
+            a = a + '&#13;&#10;' + b.content.text;
           } else {
             a = b.content.text;
           }
-          this.agentLogMap.set(res.message_id, a);
+          this.noTextLogMap.set(res.message_id, a);
           b.content.text = a;
         }
       });
 
       if (this.chatCommon.isMsgNoExists(message_id)) {
+        const text = content_blocks_to_mdc(res);
         this.chatCommon.appendMsg({
           key: message_id,
-          text: content_blocks_to_mdc(res),
+          text,
           type: REPLY_MESSAGE_TYPE,
         });
       } else {

@@ -79,6 +79,8 @@ export const content_blocks_to_mdc = (
         case 'agent_log':
           // return `:x-${block.type}{display_text='${block.content.text}'}`;
           return `::x-agent-log{#${res.message_id} text="${escapeForDirective(block.content.text)}"}`;
+        case 'think':
+          return `::x-think{#${res.message_id} text="${escapeForDirective(block.content.text)}"}`;
         default:
           return '';
       }
