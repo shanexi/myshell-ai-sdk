@@ -125,10 +125,10 @@ export class AgentChatInputModel {
    * @description context dropdown 展示
    */
   @observable contextMenus = observable.array<ContextItem>([
-    { content: { name: 'Requirement' }, type: 'requirement' },
-    { content: { name: 'Preview' }, type: 'preview' },
-    { content: { name: 'Canvas' }, type: 'canvas' },
-    { content: { name: 'Test' }, type: 'test' },
+    { name: 'Requirement', type: 'requirement' },
+    { name: 'Preview', type: 'preview' },
+    { name: 'Canvas', type: 'canvas' },
+    { name: 'Test', type: 'test' },
   ]);
 
   // todo: 优化 当 selectedMenuIndex <filteredContextMenus.length，则默认选择 0
@@ -140,7 +140,7 @@ export class AgentChatInputModel {
     if (!searchCriteria || searchCriteria.criteria.trim() === '') {
       return this.contextMenus.map((item) => ({
         ...item,
-        highlightedName: item.content.name
+        highlightedName: item.name
           .split('')
           .map((char) => ({ char, isMatch: false })),
         score: 0,
@@ -149,7 +149,7 @@ export class AgentChatInputModel {
 
     const results = this.contextMenus
       .map((item) => {
-        const match = fuzzyMatch(item.content.name, searchCriteria.criteria);
+        const match = fuzzyMatch(item.name, searchCriteria.criteria);
         return {
           ...item,
           highlightedName: match.highlighted,
@@ -258,7 +258,7 @@ export class AgentChatInputModel {
   onSelectContext(selectedIndex: number) {
     // TODO: insertContext 之前 text 为了简单，要改成 object
     this.chatCommon.edixModel.insertContext(
-      this.filteredContextMenus[selectedIndex].content.name,
+      this.filteredContextMenus[selectedIndex],
     );
   }
 

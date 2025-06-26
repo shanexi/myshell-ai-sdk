@@ -31,11 +31,7 @@ export const context_schema = z.object({
     z.literal(context_type_schema.Enum.canvas),
     z.literal(context_type_schema.Enum.test),
   ]),
-  content: z
-    .object({
-      name: z.string(),
-    })
-    .passthrough(),
+  name: z.string(),
 });
 
 export const chatInputDocSchema = schema({
@@ -190,7 +186,7 @@ export class EdixModel {
 
   // todo 处理 enter
   // 现在 enter 是发送
-  async insertContext(text: string) {
+  async insertContext(context: z.infer<typeof context_schema>) {
     // 隐藏 dropdown
     this.setAtRect(null);
     this.setAtContextMenuShow(false);
@@ -220,7 +216,7 @@ export class EdixModel {
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
       // 输入的同时，替换选中（删除）
-      this.edixHandle?.command(InsertContext, text + ' ');
+      this.edixHandle?.command(InsertContext, context.name + ' ');
     }, 1 /* 必须 1ms 估计是 edix 到 batch */);
   }
 
