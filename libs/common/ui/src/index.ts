@@ -6,6 +6,7 @@ export * from './setup-mdc';
 export * from './components/chat-common.model';
 export * from './components/uppy.model';
 export * from './components/edix.model';
+export * from './components/edix.utils';
 export * from './components/uppy.utils';
 export * from './common-ui.module';
 export * from './message-plugin/message-item.svc';

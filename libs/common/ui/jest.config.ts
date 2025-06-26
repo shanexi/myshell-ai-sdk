@@ -2,6 +2,7 @@
 export default {
   displayName: 'common-ui',
   preset: '../../../jest.preset.js',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.[tj]sx?$': [
       '@swc/jest',

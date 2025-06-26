@@ -26,7 +26,7 @@ export const context_type_schema = z.enum([
 
 export const context_schema = z
   .object({
-    type: context_type_schema,
+    type: context_type_schema.optional(),
     name: z.string(),
   })
   .passthrough();

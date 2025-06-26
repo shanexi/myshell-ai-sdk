@@ -1,6 +1,5 @@
 import {
   AgentChatInputHandlers,
-  AgentChatInputModel,
   ContextItem,
   UploadItem,
 } from '@myshell-run/agent-chat-input-plugins';
@@ -18,7 +17,6 @@ import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { msg2 } from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
-import { Context } from '@patternfly/react-core/dist/esm/helpers/Popper/thirdparty/popper-core';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {

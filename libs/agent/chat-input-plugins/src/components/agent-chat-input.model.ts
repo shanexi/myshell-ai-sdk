@@ -202,7 +202,7 @@ export class AgentChatInputModel {
   }
 
   /**
-   * @deprecated 推荐使用 sendChatInputDoc
+   * @deprecated 推荐使用 @see sendChatInputDoc
    */
   async sendText() {
     if (isEmpty(this.chatCommon.edixModel.inputText)) {

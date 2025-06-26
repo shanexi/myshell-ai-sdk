@@ -11,7 +11,9 @@
 */
 import { Position } from 'edix';
 import { ChatInputDoc } from './edix.model';
-import { getAtSearchCriteria } from './edix.utils';
+import { generateRequestId, getAtSearchCriteria } from './edix.utils';
+import { init } from '@paralleldrive/cuid2';
+
 it('test anchor', () => {
   const a = [
     {
@@ -184,4 +186,9 @@ it('@ in middle and input a char', () => {
       "criteria": "re",
     }
   `);
+});
+
+it('request id', () => {
+  const id = generateRequestId();
+  expect(id.length).toEqual(32);
 });
