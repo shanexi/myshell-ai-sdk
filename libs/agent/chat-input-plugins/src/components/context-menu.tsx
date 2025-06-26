@@ -91,7 +91,7 @@ export const ContextMenu = observer(() => {
         const Icon = IconMap[item.type];
         return (
           <div
-            key={item.id}
+            key={item.name}
             className={cn(
               'flex items-center justify-between gap-spacing-sm-v2',
               'rounded-sm-v2',

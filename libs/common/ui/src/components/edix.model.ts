@@ -15,6 +15,23 @@ import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
+import { z } from 'zod';
+
+export const context_type_schema = z.enum([
+  'preview',
+  'requirement',
+  'canvas',
+  'test',
+]);
+
+export const context_schema = z.object({
+  type: z.union([
+    z.literal(context_type_schema.Enum.preview),
+    z.literal(context_type_schema.Enum.requirement),
+    z.literal(context_type_schema.Enum.canvas),
+    z.literal(context_type_schema.Enum.test),
+  ]),
+});
 
 export const chatInputDocSchema = schema({
   multiline: true,

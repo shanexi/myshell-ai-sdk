@@ -68,7 +68,6 @@ export const chat_message_schema = z.object({
 export type ContextItem = {
   type: ContextType;
   name: string;
-  id: string;
 };
 
 export type FilteredContextItem = ContextItem & {
@@ -117,9 +116,8 @@ export class AgentChatInputModel {
       .flat()
       .filter((d) => d.type === 'context')
       .map((d) => ({
-        type: 'preview',
+        type: 'preview' as ContextType,
         name: d.data.content,
-        id: d.data.content,
       }));
   }
 
@@ -127,10 +125,10 @@ export class AgentChatInputModel {
    * @description context dropdown 展示
    */
   @observable contextMenus = observable.array<ContextItem>([
-    { id: 'requirement', name: 'Requirement', type: 'requirement' },
-    { id: 'preview', name: 'Preview', type: 'preview' },
-    { id: 'canvas', name: 'Canvas', type: 'canvas' },
-    { id: 'test', name: 'Test', type: 'test' },
+    { name: 'Requirement', type: 'requirement' },
+    { name: 'Preview', type: 'preview' },
+    { name: 'Canvas', type: 'canvas' },
+    { name: 'Test', type: 'test' },
   ]);
 
   // todo: 优化 当 selectedMenuIndex <filteredContextMenus.length，则默认选择 0
