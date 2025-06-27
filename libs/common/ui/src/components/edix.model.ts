@@ -186,8 +186,9 @@ export class EdixModel {
     });
   }
 
-  // todo 处理 enter
-  // 现在 enter 是发送
+  /**
+   * @description 输入 @ 插入的 context 注意还有一个 agent chat input 的 addToContext
+   */
   async insertContext(context: z.infer<typeof context_schema>) {
     // 隐藏 dropdown
     this.setAtRect(null);

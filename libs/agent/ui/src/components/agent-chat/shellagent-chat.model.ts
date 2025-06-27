@@ -195,6 +195,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   addToContext(context: ContextItem) {
-    this.chatCommon.edixModel.insertContext(context);
+    this.chatCommon.addToContext(context);
   }
 }

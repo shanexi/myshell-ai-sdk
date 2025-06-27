@@ -9,7 +9,7 @@ import {
 import { FileKind, fromMime, mimeData } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
-import { isEmpty, unique } from 'radash';
+import { isEmpty } from 'radash';
 import { z } from 'zod';
 import { fuzzyMatch } from './agent-chat-input.utils';
 
@@ -80,6 +80,8 @@ export type FilteredContextItem = ContextItem & {
 export class AgentChatInputModel {
   /**
    * @description 和 @see contextMenus 不一样，这里是在 输入框上方 context 区域选中的列表
+   * TODO 由于 insertContext 暂时没做，先不考虑联动
+   *
    * 这个逻辑
    * 1. 包含 非input 输入的 e.g. dnd(还没有实现) Add to Chat
    * 2. input 输入的
@@ -97,33 +99,21 @@ export class AgentChatInputModel {
    * 那 context items 就从 chatInputDoc 提取
    *
    */
-  // @observable selectedContextItems = observable.array<ContextItem>([
-  // {
-  //   id: 'requirement.feature1',
-  //   type: 'requirement',
-  //   name: 'requirement.feature1',
-  // },
-  // { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
-  // {
-  //   id: 'canvas.state1.inputs',
-  //   type: 'canvas',
-  //   name: 'canvas.state1.inputs',
-  // },
-  // { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
-  // ]);
 
-  @computed get selectedContextItems() {
-    return unique(
-      this.chatCommon.edixModel.chatInputDoc
-        .flat()
-        .filter((d) => d.type === 'context')
-        .map((d) => ({
-          type: d.data.type,
-          name: d.data.content,
-        })),
-      (d) => `${d.type}:${d.name}`,
-    );
-  }
+  // @observable addedContextItems = observable.array<ContextItem>([
+  //   {
+  //     id: 'requirement.feature1',
+  //     type: 'requirement',
+  //     name: 'requirement.feature1',
+  //   },
+  //   { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
+  //   {
+  //     id: 'canvas.state1.inputs',
+  //     type: 'canvas',
+  //     name: 'canvas.state1.inputs',
+  //   },
+  //   { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
+  // ]);
 
   /**
    * @description context dropdown 展示
@@ -135,8 +125,29 @@ export class AgentChatInputModel {
     { name: 'Test', type: 'test' },
   ]);
 
+  // TODO: inserted context 暂时没做
+  // @computed get selectedContextItems() {
+  //   return unique(
+  //     this.chatCommon.edixModel.chatInputDoc
+  //       .flat()
+  //       .filter((d) => d.type === 'context')
+  //       .map((d) => ({
+  //         type: d.data.type,
+  //         name: d.data.content,
+  //       })),
+  //     (d) => `${d.type}:${d.name}`,
+  //   );
+  // }
   // todo: 优化 当 selectedMenuIndex <filteredContextMenus.length，则默认选择 0
   @observable selectedMenuIndex = 0;
+
+  constructor(
+    @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,
+    @inject(ChatCommonModelFactory)
+    public factory: (id: symbol) => ChatCommonModel,
+  ) {
+    makeObservable(this);
+  }
 
   // todo: 优化，过滤之后，位置不对
   @computed get filteredContextMenus(): FilteredContextItem[] {
@@ -167,14 +178,6 @@ export class AgentChatInputModel {
     return results;
   }
 
-  constructor(
-    @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,
-    @inject(ChatCommonModelFactory)
-    public factory: (id: symbol) => ChatCommonModel,
-  ) {
-    makeObservable(this);
-  }
-
   @computed get previewItems() {
     return this.chatCommon.uppyModel.uppyState.map<UploadItem>(
       ([id, item]) => ({
@@ -186,7 +189,7 @@ export class AgentChatInputModel {
   }
 
   @computed get isContextItemsEmpty() {
-    return this.selectedContextItems.length === 0;
+    return this.chatCommon.addedContextItems.length === 0;
   }
 
   get chatCommon() {
@@ -281,9 +284,5 @@ export class AgentChatInputModel {
   @action.bound
   setSelectedMenuIndex(index: number) {
     this.selectedMenuIndex = index;
-  }
-
-  addToContext(context: ContextItem) {
-    this.chatCommon.edixModel.insertContext(context);
   }
 }
