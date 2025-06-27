@@ -238,7 +238,7 @@ export class AgentChatInputModel {
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
-      this.chatCommon.addedContextItems,
+      this.chatCommon.addedContextItems.map((item) => toJS(item)),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
