@@ -10,7 +10,8 @@ export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
   return (
     <div
       className={cn(
-        'flex flex-col gap-[8px]',
+        'flex flex-col',
+        // 'gap-[8px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',
         'border border-Cr-border-default-light-v2',
         'mx-spacing-xl-v2',
@@ -20,7 +21,7 @@ export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
     >
       {text}
       <progress
-        className="progress h-[6px] w-full progress-neutral"
+        className="progress mt-spacing-md-v2 h-[6px] w-full progress-neutral"
         value={progress}
         max="100"
       ></progress>

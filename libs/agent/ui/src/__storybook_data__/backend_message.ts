@@ -257,7 +257,7 @@ export const progress_msg_3 = {
   status: 'pending',
   args: {
     text: 'ShellAgent is generating...',
-    progress: 100,
+    progress: 90,
   },
 };
 

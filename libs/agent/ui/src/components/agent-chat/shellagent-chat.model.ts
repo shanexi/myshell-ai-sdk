@@ -101,9 +101,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       // think_msg_1,
       // think_msg_2,
       // think_msg_3,
-      // progress_msg_1,
-      // progress_msg_2,
-      // progress_msg_3,
+      progress_msg_1,
+      progress_msg_2,
+      progress_msg_3,
     ];
 
     for (const response of mockResponses) {
