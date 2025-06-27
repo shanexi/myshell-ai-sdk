@@ -1,4 +1,5 @@
 import { mapToSendRequest } from './agent-chat-input.utils';
+
 it('data to send backend', () => {
   const chatInputDoc = [
     [
@@ -52,9 +53,10 @@ it('data to send backend', () => {
     },
   ];
 
-  expect(
-    mapToSendRequest(chatInputDoc, uploads, contexts),
-  ).toMatchInlineSnapshot(`
+  const res = mapToSendRequest(chatInputDoc, uploads, contexts);
+  // @ts-expect-error 暂不处理
+  const { request_id, ...rest } = res;
+  expect(rest).toMatchInlineSnapshot(`
     {
       "args": {
         "content_blocks": [

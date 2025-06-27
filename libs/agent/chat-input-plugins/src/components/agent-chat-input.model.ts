@@ -49,6 +49,7 @@ export interface AgentChatInputHandlers {
 }
 
 export const chat_message_schema = z.object({
+  request_id: z.string().optional(),
   type: z.literal('chat_message'),
   args: z.object({
     // context: z.array(

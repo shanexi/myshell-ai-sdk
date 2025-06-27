@@ -6,6 +6,16 @@ import {
 } from './agent-chat-input.model';
 import { z } from 'zod';
 import { isEmpty } from 'radash';
+import { init } from '@paralleldrive/cuid2';
+
+const createId = init({
+  length: 32,
+  fingerprint: 'myshell-is-aaaaawesome',
+});
+
+export function generateRequestId() {
+  return createId();
+}
 
 export function mapToSendRequest(
   chatInputDoc: ChatInputDoc,
@@ -54,6 +64,7 @@ export function mapToSendRequest(
 
   const result: z.infer<typeof chat_message_schema> = {
     type: 'chat_message',
+    request_id: generateRequestId(),
     args: {
       content_blocks,
       context,

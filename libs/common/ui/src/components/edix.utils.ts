@@ -43,12 +43,3 @@ export function getAtSearchCriteria(
     criteria,
   };
 }
-
-const createId = init({
-  length: 32,
-  fingerprint: 'myshell-is-aaaaawesome',
-});
-
-export function generateRequestId() {
-  return createId();
-}

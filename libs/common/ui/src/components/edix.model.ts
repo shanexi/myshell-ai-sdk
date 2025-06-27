@@ -22,7 +22,7 @@ export const context_type_schema = z.enum([
   'requirement',
   'canvas',
   'test',
-  'image', // 图片在后端也算 context
+  // 'image', // 图片在后端也算 context
 ]);
 
 export const context_schema = z.object({

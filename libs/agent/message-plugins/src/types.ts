@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ERROR_MESSAGE_TYPE = 'agent:error';
+export const ERROR_MESSAGE_TYPE = 'error_message';
 export const error_message_schema = z.object({
   type: z.literal(ERROR_MESSAGE_TYPE),
   key: z.string(),

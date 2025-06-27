@@ -363,3 +363,13 @@ export const hi_msg = {
     ],
   },
 };
+
+export const loading_msg_case_1 = {
+  id: 1,
+  message_id: 1750992899671229,
+  timestamp: '2025-06-27T02:54:59.671220',
+  source: 'server',
+  type: 'chat_status_message',
+  status: 'completed',
+  args: { text: 'ShellAgent is generating...', status: 'loading' },
+};
