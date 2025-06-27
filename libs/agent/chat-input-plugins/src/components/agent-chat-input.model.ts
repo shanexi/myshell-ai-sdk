@@ -238,17 +238,13 @@ export class AgentChatInputModel {
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
-      Array.from(this.chatCommon.edixModel.contextExtraArgsMap.values()).filter(
-        (item, index, array) =>
-          array.findIndex(
-            (x) => x.type === item.type && x.name === item.name,
-          ) === index,
-      ),
+      this.chatCommon.addedContextItems,
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
       await this.chatCommon.edixModel.clearEdix();
+      this.chatCommon.addedContextMap.clear();
       this.chatCommon.uppyModel.clear();
     }
   }
