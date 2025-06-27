@@ -139,6 +139,35 @@ export const ContextMenu = observer(() => {
           </div>
         );
       })}
+
+      {/* Coming Soon 遮罩 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: 'blur(2px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '8px',
+          zIndex: 10,
+        }}
+      >
+        <div
+          style={{
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '500',
+            color: '#666',
+          }}
+        >
+          Coming Soon
+        </div>
+      </div>
     </div>
   );
 });
