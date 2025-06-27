@@ -17,13 +17,7 @@ export const ReplyMsg: React.FC<z.infer<typeof reply_message_schema>> = (
 export const ReplyWrapper: React.FC<
   PropsWithChildren<{ className?: string }>
 > = ({ children, className }) => (
-  <div
-    className={cn(
-      'px-spacing-xl-v2',
-      // 'py-spacing-lg-v2',
-      className,
-    )}
-  >
+  <div className={cn('px-spacing-xl-v2', 'py-spacing-lg-v2', className)}>
     <div
       className={cn(
         // 'p-spacing-lg-v2',
