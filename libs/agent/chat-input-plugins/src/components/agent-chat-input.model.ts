@@ -51,15 +51,16 @@ export interface AgentChatInputHandlers {
 export const chat_message_schema = z.object({
   type: z.literal('chat_message'),
   args: z.object({
-    context: z.array(
-      z.object({
-        type: z.literal('image'),
-        content: z.object({
-          name: z.string(),
-          url: z.string(),
-        }),
-      }),
-    ),
+    // context: z.array(
+    //   z.object({
+    //     type: z.literal('image'),
+    //     content: z.object({
+    //       name: z.string(),
+    //       url: z.string(),
+    //     }),
+    //   }),
+    // ),
+    context: z.array(context_schema),
     content_blocks: z.array(
       z.object({
         type: z.literal('text'),
@@ -119,10 +120,10 @@ export class AgentChatInputModel {
    * @description context dropdown 展示
    */
   @observable contextMenus = observable.array<ContextItem>([
-    { name: 'Requirement', type: 'requirement' },
-    { name: 'Preview', type: 'preview' },
-    { name: 'Canvas', type: 'canvas' },
-    { name: 'Test', type: 'test' },
+    { content: { name: 'Requirement' }, type: 'requirement' },
+    { content: { name: 'Preview' }, type: 'preview' },
+    { content: { name: 'Canvas' }, type: 'canvas' },
+    { content: { name: 'Test' }, type: 'test' },
   ]);
 
   // TODO: inserted context 暂时没做
@@ -156,7 +157,7 @@ export class AgentChatInputModel {
     if (!searchCriteria || searchCriteria.criteria.trim() === '') {
       return this.contextMenus.map((item) => ({
         ...item,
-        highlightedName: item.name
+        highlightedName: item.content.name
           .split('')
           .map((char) => ({ char, isMatch: false })),
         score: 0,
@@ -165,7 +166,7 @@ export class AgentChatInputModel {
 
     const results = this.contextMenus
       .map((item) => {
-        const match = fuzzyMatch(item.name, searchCriteria.criteria);
+        const match = fuzzyMatch(item.content.name, searchCriteria.criteria);
         return {
           ...item,
           highlightedName: match.highlighted,

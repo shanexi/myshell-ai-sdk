@@ -42,5 +42,47 @@ it('data to send backend', () => {
     },
   };
 
-  expect(mapToSendRequest(chatInputDoc, uploads)).toEqual(exp);
+  const contexts = [
+    {
+      type: 'canvas',
+      content: {
+        name: 'This is canvas',
+        a: 'b',
+      },
+    },
+  ];
+
+  expect(
+    mapToSendRequest(chatInputDoc, uploads, contexts),
+  ).toMatchInlineSnapshot(`
+    {
+      "args": {
+        "content_blocks": [
+          {
+            "content": {
+              "text": "分析这张图片",
+            },
+            "type": "text",
+          },
+        ],
+        "context": [
+          {
+            "content": {
+              "name": "ComfyUI_00074_.png",
+              "url": "/uploads/file-1750641112789-121254784.png",
+            },
+            "type": "image",
+          },
+          {
+            "content": {
+              "a": "b",
+              "name": "This is canvas",
+            },
+            "type": "canvas",
+          },
+        ],
+      },
+      "type": "chat_message",
+    }
+  `);
 });

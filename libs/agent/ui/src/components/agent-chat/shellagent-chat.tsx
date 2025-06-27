@@ -19,8 +19,8 @@ export const ShellAgentChat = () => {
           onClick={() => {
             model.addToContext({
               type: 'canvas',
-              name: 'This is canvas',
-              args: {
+              content: {
+                name: 'This is canvas',
                 a: 'b',
               },
             });

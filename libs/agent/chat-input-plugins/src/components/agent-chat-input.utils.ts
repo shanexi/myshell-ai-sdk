@@ -1,11 +1,16 @@
 import { ChatInputDoc } from '@myshell-run/common-ui';
-import { chat_message_schema, UploadItem } from './agent-chat-input.model';
+import {
+  chat_message_schema,
+  ContextItem,
+  UploadItem,
+} from './agent-chat-input.model';
 import { z } from 'zod';
 import { isEmpty } from 'radash';
 
 export function mapToSendRequest(
   chatInputDoc: ChatInputDoc,
   uploads: UploadItem[],
+  contextItems: ContextItem[],
 ): z.infer<typeof chat_message_schema> | undefined {
   if (isEmpty(chatInputDoc.flat()) && isEmpty(uploads)) {
     return undefined;
@@ -28,7 +33,7 @@ export function mapToSendRequest(
     typeof chat_message_schema
   >['args']['content_blocks'];
 
-  const context = uploads
+  let context = uploads
     .map((upload) => {
       if (
         upload.fileKind === 'image' &&
@@ -45,6 +50,7 @@ export function mapToSendRequest(
       return undefined;
     })
     .filter(Boolean) as z.infer<typeof chat_message_schema>['args']['context'];
+  context = context.concat(contextItems);
 
   const result: z.infer<typeof chat_message_schema> = {
     type: 'chat_message',
@@ -57,6 +63,7 @@ export function mapToSendRequest(
   return result;
 }
 
+// AI 生成
 export function fuzzyMatch(
   text: string,
   search: string,

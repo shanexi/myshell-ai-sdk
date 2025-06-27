@@ -65,12 +65,12 @@ export class ChatCommonModel {
   }
 
   addToContext(context: z.infer<typeof context_schema>) {
-    const key = `${context.type}:${context.name}`;
+    const key = `${context.type}:${context.content.name}`;
     this.addedContextMap.set(key, context);
   }
 
   removeAddedContext(context: z.infer<typeof context_schema>) {
-    const key = `${context.type}:${context.name}`;
+    const key = `${context.type}:${context.content.name}`;
     this.addedContextMap.delete(key);
   }
 }
