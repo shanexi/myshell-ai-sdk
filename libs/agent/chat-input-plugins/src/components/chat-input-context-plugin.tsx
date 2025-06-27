@@ -114,7 +114,9 @@ const ContextItem: React.FC<{
           model.chatCommon.removeAddedContext(
             context_schema.parse({
               type,
-              name: name,
+              content: {
+                name: name,
+              },
             }),
           );
         }}

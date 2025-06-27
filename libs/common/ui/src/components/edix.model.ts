@@ -98,9 +98,6 @@ export class EdixModel {
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
   public edixHandle: EditableHandle | null = null;
-  // 存储 context 额外参数
-  public contextExtraArgsMap: Map<string, z.infer<typeof context_schema>> =
-    new Map();
   private edixRef?: RefObject<HTMLDivElement>;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
 
@@ -221,9 +218,6 @@ export class EdixModel {
       // 选中 @
       document.getSelection()?.modify('extend', 'backward', 'character');
       this.edixHandle?.syncSelection(); // 必须加上，否则下方语句无效
-      // 存储额外参数
-      const key = `${context.type}:${context.content.name}`;
-      this.contextExtraArgsMap.set(key, context);
       // 输入的同时，替换选中（删除）
       this.edixHandle?.command(
         InsertContext,
