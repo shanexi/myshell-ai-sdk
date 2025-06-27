@@ -42,16 +42,18 @@ export const ChatInputContextPlugin = observer(() => {
 const AddContext = observer(() => {
   const model = useInjection(AgentChatInputModel);
   return (
-    <ContextWrapper>
-      <AtSign
-        strokeWidth={1.5}
-        size={16}
-        className="text-Cr-Fg-subtle-light-v2"
-      />
-      {model.isContextItemsEmpty && (
-        <div className="text-sm-medium">Add context</div>
-      )}
-    </ContextWrapper>
+    <div className="tooltip" data-tip="Coming soon">
+      <ContextWrapper>
+        <AtSign
+          strokeWidth={1.5}
+          size={16}
+          className="text-Cr-Fg-subtle-light-v2"
+        />
+        {model.isContextItemsEmpty && (
+          <div className="text-sm-medium">Add context</div>
+        )}
+      </ContextWrapper>
+    </div>
   );
 });
 

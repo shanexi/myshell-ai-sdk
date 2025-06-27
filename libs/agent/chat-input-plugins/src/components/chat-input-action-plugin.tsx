@@ -1,6 +1,6 @@
 import { cn, HiddenInputFile } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { ArrowUp, CirclePlus } from 'lucide-react';
+import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { AgentChatInputModel } from './agent-chat-input.model';
 
@@ -28,13 +28,15 @@ export const ChatInputActionPlugin = observer(() => {
         >
           <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-light-v2" />
         </div>
-      ) : // TODO whisper 还没实现
-      // <Mic
-      //   strokeWidth={1.5}
-      //   size={28}
-      //   className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-light-v2"
-      // />
-      null}
+      ) : (
+        <div className="tooltip" data-tip="Coming soon">
+          <Mic
+            strokeWidth={1.5}
+            size={28}
+            className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-light-v2"
+          />
+        </div>
+      )}
     </div>
   );
 });

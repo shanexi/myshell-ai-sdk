@@ -17,7 +17,6 @@ import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
   loading_msg_1,
-  loading_msg_2,
   loading_replace_msg,
   progress_msg_1,
   progress_msg_2,
@@ -30,6 +29,9 @@ import { f2b_content_blocks } from './shellagent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
+  // 特殊处理 ~~agent_log~~ 非 text 但是需要 chunk append，这里面有和后端约定的一些限制
+  // TODO 这块要梳理下，看能否去掉特殊逻辑
+  // 目前的解法，只要 message_id 一致，违反其他限制，交互能够保持稳定
   noTextLogMap: Map<number, string> = new Map();
 
   constructor(
@@ -101,6 +103,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     ];
 
     for (const response of mockResponses) {
+      // TODO 优化这段多层 if-else
       if (response.type === 'chat_message') {
         const res = content_blocks_schema.parse(response);
         const message_id = String(res.message_id);
