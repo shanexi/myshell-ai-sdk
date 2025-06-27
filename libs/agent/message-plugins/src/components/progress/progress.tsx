@@ -6,12 +6,14 @@ export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
   args,
 }) => {
   const { progress, text } = args;
+  if (progress === 100) return <span></span>;
   return (
     <div
       className={cn(
         'flex flex-col gap-[8px]',
         'bg-Cr-Bg-normal-secondary-alt-light-v2',
         'border border-Cr-border-default-light-v2',
+        'mx-spacing-xl-v2',
         'p-spacing-lg-v2',
         'rounded-md-v2',
       )}
