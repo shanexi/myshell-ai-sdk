@@ -57,7 +57,8 @@ export const ContextMenu = observer(() => {
           break;
         case 'Enter':
           e.preventDefault();
-          model.onSelectContext(model.selectedMenuIndex);
+          // Comming soon
+          // model.onSelectContext(model.selectedMenuIndex);
           break;
         case 'Escape':
           e.preventDefault();
