@@ -40,7 +40,7 @@ export const content_blocks_schema = z.object({
   message_id: z.number(),
   // timestamp: z.string().datetime(),
   timestamp: z.string(),
-  source: z.union([z.literal('agent'), z.literal('user')]),
+  source: z.union([z.literal('agent'), z.literal('user'), z.literal('server')]),
   type: chat_message_type,
   cause: z
     .number()

@@ -344,3 +344,22 @@ const msg_06_2 = {
     ],
   },
 };
+
+export const hi_msg = {
+  id: -1,
+  message_id: 1,
+  source: 'server',
+  type: 'chat_message',
+  status: 'completed',
+  timestamp: '2025-06-26T20:10:32.125189',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: "\nHello! 👋 \n\nI'm your Lead Product Architect at ShellAgent, and I'm here to help you transform your ideas into powerful AI applications. \n\nI specialize in:\n- **App Planning & Design** - Breaking down your requirements into actionable plans\n- **AI Application Development** - Creating complete ShellAgent apps with custom workflows\n- **Widget Creation** - Building custom components for specific functionalities\n- **User Experience Design** - Crafting intuitive user journeys and state flows\n\n**What would you like to build today?** \n\nSome examples of what we can create together:\n- AI assistants for specific tasks or domains\n- Data processing and analysis tools\n- Content generation applications\n- API integration workflows\n- Interactive chatbots with custom logic\n\nJust tell me about your idea - whether it's a simple concept or a detailed vision - and I'll guide you through the entire development process step by step!\n\nWhat's on your mind? 🚀\n            ",
+        },
+      },
+    ],
+  },
+};

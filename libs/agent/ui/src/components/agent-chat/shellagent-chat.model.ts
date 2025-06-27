@@ -16,6 +16,7 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
+  hi_msg,
   loading_msg_1,
   loading_replace_msg,
   progress_msg_1,
@@ -92,6 +93,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
     const mockResponses = [
+      hi_msg,
       loading_msg_1,
       loading_replace_msg,
       think_msg_1,
