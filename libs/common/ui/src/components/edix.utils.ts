@@ -1,6 +1,5 @@
 import { Position } from 'edix';
 import { ChatInputDoc } from './edix.model';
-import { init } from '@paralleldrive/cuid2';
 
 export type AtSearchCriteria = {
   char: string;

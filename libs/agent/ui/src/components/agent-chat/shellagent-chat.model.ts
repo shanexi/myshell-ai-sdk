@@ -96,18 +96,18 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
     const mockResponses = [
-      // hi_msg,
+      hi_msg,
       // loading_msg_1,
       // loading_msg_case_1,
       // loading_replace_msg,
       // think_msg_1,
       // think_msg_2,
       // think_msg_3,
-      // progress_msg_1,
-      // progress_msg_2,
-      // progress_msg_3,
-      think_msg_case_1a,
-      think_msg_case_1,
+      progress_msg_1,
+      progress_msg_2,
+      progress_msg_3,
+      // think_msg_case_1a,
+      // think_msg_case_1,
     ];
 
     for (const response of mockResponses) {

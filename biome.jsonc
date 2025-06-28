@@ -15,16 +15,17 @@
       "libs/agent/ui/output.css",
       "libs/agent/ui/output-prefixed.css",
       "libs/agent/message-plugins/src/components/simple-log-viewer/simple-log-viewer.css",
+      "libs/agent/message-plugins/assets/base.css",
       "./storybook-static",
-      ".yalc"
-    ]
+      ".yalc",
+    ],
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single"
+      "quoteStyle": "single",
     },
     "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    }
-  }
+      "unsafeParameterDecoratorsEnabled": true,
+    },
+  },
 }
