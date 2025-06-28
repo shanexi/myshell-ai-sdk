@@ -8,7 +8,9 @@ import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
-export const ContextMenu = observer(() => {
+export const ContextMenu = observer<{
+  commingSoon?: boolean;
+}>(({ commingSoon }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const model = useInjection(AgentChatInputModel);
 
@@ -57,8 +59,8 @@ export const ContextMenu = observer(() => {
           break;
         case 'Enter':
           e.preventDefault();
-          // Comming soon
-          // model.onSelectContext(model.selectedMenuIndex);
+          if (commingSoon) return;
+          model.onSelectContext(model.selectedMenuIndex);
           break;
         case 'Escape':
           e.preventDefault();
@@ -142,33 +144,35 @@ export const ContextMenu = observer(() => {
       })}
 
       {/* Coming Soon 遮罩 */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(255, 255, 255, 0.4)',
-          backdropFilter: 'blur(2px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '8px',
-          zIndex: 10,
-        }}
-      >
+      {commingSoon && (
         <div
           style={{
-            padding: '8px 16px',
-            fontSize: '14px',
-            fontWeight: '500',
-            color: '#666',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            backdropFilter: 'blur(2px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '8px',
+            zIndex: 10,
           }}
         >
-          Coming Soon
+          <div
+            style={{
+              padding: '8px 16px',
+              fontSize: '14px',
+              fontWeight: '500',
+              color: '#666',
+            }}
+          >
+            Coming Soon
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 });
