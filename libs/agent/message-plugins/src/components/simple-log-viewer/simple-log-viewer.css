@@ -1,5 +1,5 @@
 /* Import PatternFly base styles - will be scoped by PostCSS */
-@import '../../../assets//base.css';
+@import '../../@patternfly/react-core/styles/base.css';
 
 /* Component-specific styles */
 .pf-v6-c-log-viewer {
