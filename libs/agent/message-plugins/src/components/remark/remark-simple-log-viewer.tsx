@@ -6,15 +6,15 @@ import { msg1, msg3 } from '../__storybook_data__/backend_message';
 
 export const RemarkSimpleLogViewer = () => {
   const lines = [
-    `::x-agent-log{#abc text='${msg1.args.content_blocks[0].content.text}'}`,
-    // `::x-agent-log{#abc text="${msg2.args.content_blocks[0].content.text}"}`,
-    `::x-agent-log{#abc text='${[
+    `::x-agent_log{#abc text='${msg1.args.content_blocks[0].content.text}'}`,
+    // `::x-agent_log{#abc text="${msg2.args.content_blocks[0].content.text}"}`,
+    `::x-agent_log{#abc text='${[
       msg1.args.content_blocks[0].content.text,
       msg3.args.content_blocks[0].content.text,
     ].join('<br>')}'}`,
-    // `::x-agent-log{#abc text="${msg4.args.content_blocks[0].content.text}"}`,
-    // `::x-agent-log{#abc text="${msg5.args.content_blocks[0].content.text}"}`,
-    // `::x-agent-log{#abc text="${msg6.args.content_blocks[0].content.text}"}`,
+    // `::x-agent_log{#abc text="${msg4.args.content_blocks[0].content.text}"}`,
+    // `::x-agent_log{#abc text="${msg5.args.content_blocks[0].content.text}"}`,
+    // `::x-agent_log{#abc text="${msg6.args.content_blocks[0].content.text}"}`,
     // msg2.args.content_blocks[0].content.text,
     // msg3.args.content_blocks[0].content.text,
     // msg4.args.content_blocks[0].content.text,

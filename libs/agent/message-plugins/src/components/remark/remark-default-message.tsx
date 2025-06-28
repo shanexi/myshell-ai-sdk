@@ -1,16 +1,16 @@
-import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from '../../types';
-import { ReplyMsg } from '../reply/reply-msg';
-import { msg6, msg7 } from '../__storybook_data__/backend_mock_message';
+import { useInjection } from 'inversify-react';
 import { useEffect, useState } from 'react';
-import {
-  content_blocks_schema,
-  content_blocks_to_mdc,
-} from './content-blocks-to-mdc';
+import { REPLY_MESSAGE_TYPE } from '../../types';
+import { msg6, msg7 } from '../__storybook_data__/backend_mock_message';
+import { ReplyMsg } from '../reply/reply-msg';
+import { ContentBlocksToMdcTransformManager } from './content-block-to-mdc-transform-manager';
+import { content_blocks_schema } from './content-blocks-to-mdc';
 
 export const RemarkDefaultMessage = () => {
+  const transformManager = useInjection(ContentBlocksToMdcTransformManager);
   const lines = [
-    content_blocks_to_mdc(content_blocks_schema.parse(msg6)),
-    content_blocks_to_mdc(content_blocks_schema.parse(msg7)),
+    transformManager.transform(content_blocks_schema.parse(msg6)),
+    transformManager.transform(content_blocks_schema.parse(msg7)),
   ];
   const [text, setText] = useState(lines[0]);
   useEffect(() => {

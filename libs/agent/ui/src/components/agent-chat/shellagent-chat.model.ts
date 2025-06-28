@@ -5,7 +5,7 @@ import {
 } from '@myshell-run/agent-chat-input-plugins';
 import {
   content_blocks_schema,
-  content_blocks_to_mdc,
+  ContentBlocksToMdcTransformManager,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
@@ -15,32 +15,16 @@ import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
-import {
-  hi_msg,
-  loading_msg_1,
-  loading_msg_case_1,
-  loading_replace_msg,
-  progress_msg_1,
-  progress_msg_2,
-  progress_msg_3,
-  think_msg_1,
-  think_msg_2,
-  think_msg_3,
-  think_msg_case_1,
-  think_msg_case_1a,
-} from '../../__storybook_data__/backend_message';
+import { think_msg_1 } from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
-  // 特殊处理 ~~agent_log~~ 非 text 但是需要 chunk append，这里面有和后端约定的一些限制
-  // TODO 这块要梳理下，看能否去掉特殊逻辑
-  // 目前的解法，只要 message_id 一致，违反其他限制，交互能够保持稳定
-  noTextLogMap: Map<number, string> = new Map();
-
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
+    @inject(ContentBlocksToMdcTransformManager)
+    private transformManager: ContentBlocksToMdcTransformManager,
   ) {
     makeObservable(this);
   }
@@ -96,16 +80,16 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // mock 一些回复
     // const mockResponses = [msg6, msg7];
     const mockResponses = [
-      hi_msg,
+      // hi_msg,
       // loading_msg_1,
       // loading_msg_case_1,
       // loading_replace_msg,
-      // think_msg_1,
+      think_msg_1,
       // think_msg_2,
       // think_msg_3,
-      progress_msg_1,
-      progress_msg_2,
-      progress_msg_3,
+      // progress_msg_1,
+      // progress_msg_2,
+      // progress_msg_3,
       // think_msg_case_1a,
       // think_msg_case_1,
     ];
@@ -115,23 +99,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       if (response.type === 'chat_message') {
         const res = content_blocks_schema.parse(response);
         const message_id = String(res.message_id);
-        // 针对性处理 agent_log
-        res.args.content_blocks.forEach((b) => {
-          // 特殊处理 非 text, 相同 message id 合并
-          if (b.type === 'agent_log' || b.type === 'think') {
-            let a = this.noTextLogMap.get(res.message_id);
-            if (a) {
-              a =
-                a + '&#13;&#10;' + b.content.text.replace(/\r\n|\r|\n/g, '\\n');
-            } else {
-              a = b.content.text.replace(/\r\n|\r|\n/g, '\\n');
-            }
-            this.noTextLogMap.set(res.message_id, a);
-            b.content.text = a;
-          }
-        });
         if (this.chatCommon.isMsgNoExists(message_id)) {
-          const text = content_blocks_to_mdc(res);
+          const text = this.transformManager.transform(res);
           this.chatCommon.appendMsg({
             key: message_id,
             text,
@@ -140,7 +109,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
         } else {
           // TODO: 需要修改 KEY
           this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-            const nextText = content_blocks_to_mdc(res);
+            const nextText = this.transformManager.transform(res);
             let text: string;
             if (res.cause) {
               text = nextText;
