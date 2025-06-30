@@ -12,10 +12,11 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
 import { z } from 'zod';
+import { isEmpty } from 'radash';
 
 export const context_type_schema = z.enum([
   'preview',
@@ -100,6 +101,14 @@ export class EdixModel {
   public edixHandle: EditableHandle | null = null;
   private edixRef?: RefObject<HTMLDivElement>;
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
+
+  get isChatInputDocEmpty() {
+    if (isEmpty(this.chatInputDoc.flat())) return true;
+    if (this.chatInputDoc.flat().length !== 1) return false;
+    const item = this.chatInputDoc.flat()[0];
+    if (item.type === 'text' && item.text === '') return true;
+    return false;
+  }
 
   constructor() {
     makeObservable(this);

@@ -201,7 +201,7 @@ export class AgentChatInputModel {
   get canSend() {
     return (
       !isEmpty(this.chatCommon.edixModel.inputText) ||
-      !isEmpty(this.chatCommon.edixModel.chatInputDoc.flat()) ||
+      !this.chatCommon.edixModel.isChatInputDocEmpty ||
       !isEmpty(this.previewItems)
     );
   }
