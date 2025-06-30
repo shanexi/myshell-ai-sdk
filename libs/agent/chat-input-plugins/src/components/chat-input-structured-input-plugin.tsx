@@ -8,6 +8,7 @@ import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
 import { Braces, LucideProps } from 'lucide-react';
+import React from 'react';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -70,25 +71,30 @@ export const ChatInputStructuredInputPlugin = observer(() => {
         aria-placeholder="Write a message"
       >
         {!isEmpty(value) &&
-          value.map((line, i) => (
-            <div key={i}>
-              {line.length ? (
-                line.map((t, j) =>
-                  t.type === 'context' ? (
-                    <ContextItem
-                      key={j}
-                      content={t.data.content}
-                      type={t.data.type}
-                    />
-                  ) : (
-                    <span key={j}>{t.text}</span>
-                  ),
-                )
-              ) : (
-                <br />
-              )}
-            </div>
-          ))}
+          value.map((line, i) => {
+            return (
+              <React.Fragment key={i}>
+                {line.length ? (
+                  line.map((t, j) => {
+                    if (t.type === 'context') {
+                      return (
+                        <ContextItem
+                          key={j}
+                          content={t.data.content}
+                          type={t.data.type}
+                        />
+                      );
+                    } else {
+                      if (isEmpty(t.text)) return null;
+                      return <span key={j}>{t.text}</span>;
+                    }
+                  })
+                ) : (
+                  <br />
+                )}
+              </React.Fragment>
+            );
+          })}
       </div>
       <style>{`
 [contenteditable]:empty:before {
