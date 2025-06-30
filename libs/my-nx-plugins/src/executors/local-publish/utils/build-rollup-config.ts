@@ -56,6 +56,7 @@ export function buildRollupConfig(
         alias({
           entries: input.bundleAlias,
         }),
+        // https://github.com/myshell-ai/myshell-chat/issues/24
         // postcss({
         //   extract: 'legacy.css',
         //   plugins: [

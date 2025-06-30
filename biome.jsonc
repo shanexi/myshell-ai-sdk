@@ -16,15 +16,15 @@
       "libs/agent/ui/output-prefixed.css",
       "libs/agent/message-plugins/src/@patternfly/react-core/styles/**/*",
       "./storybook-static",
-      ".yalc",
-    ],
+      ".yalc"
+    ]
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
+      "quoteStyle": "single"
     },
     "parser": {
-      "unsafeParameterDecoratorsEnabled": true,
-    },
-  },
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  }
 }
