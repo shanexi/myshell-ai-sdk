@@ -16,6 +16,8 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
+  hi_msg,
+  loading_replace_msg,
   think_msg_1,
   think_msg_2,
 } from '../../__storybook_data__/backend_message';
@@ -89,6 +91,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       // loading_replace_msg,
       think_msg_1,
       think_msg_2,
+      hi_msg,
+      // loading_replace_msg,
       // think_msg_3,
       // progress_msg_1,
       // progress_msg_2,

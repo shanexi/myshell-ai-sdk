@@ -12,7 +12,8 @@ export function escapeForAttribute(str: string) {
   return str
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
-    .replace(/\n/g, '&#10;');
+    .replace(/\n/g, '&#10;'); // 换行
+  // .replace(/\n/g, '\\n');  // 显示为 \n
 }
 
 export const think_schema = z.object({
