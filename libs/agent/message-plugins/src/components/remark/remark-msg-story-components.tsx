@@ -80,7 +80,6 @@ export const ThinkStory = () => {
 
     return () => clearInterval(timer);
   }, []);
-  console.log(text);
   return (
     <ReplyMsg key="abc" user="other" type={REPLY_MESSAGE_TYPE} text={text} />
   );

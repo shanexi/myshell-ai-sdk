@@ -152,7 +152,7 @@ export const think_msg_2 = {
       {
         type: 'think',
         content: {
-          text: '🔧 正在调用工具: **requirements_create**\n参数: {\n  "title": "中英文翻译机器人",\n  "items": [\n    "创建需求列表和用户旅程",\n    "获取现有翻译相关组件",\n    "设计翻译流程状态机",\n    "生成完整的翻译应用程序"\n  ]\n}',
+          text: '✅正在调用工具: **requirements_create**\n参数: {\n  "title": "中英文翻译机器人",\n  "items": [\n    "创建需求列表和用户旅程",\n    "获取现有翻译相关组件",\n    "设计翻译流程状态机",\n    "生成完整的翻译应用程序"\n  ]\n}',
         },
       },
     ],

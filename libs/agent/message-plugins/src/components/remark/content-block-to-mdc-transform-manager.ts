@@ -7,7 +7,6 @@ import { setupMdc } from '@myshell-run/common-ui';
 export const ContentBlocksToMdcTransformMap = Symbol.for(
   'ContentBlocksToMdcTransformMap',
 );
-
 export type ContentBlocksToMdcTransformMap = Map<
   string,
   (
@@ -29,8 +28,9 @@ export class ContentBlocksToMdcTransformManager {
     return chunk.args.content_blocks
       .map((block) => {
         const transform = this.transformMap.get('x-' + block.type);
-        if (transform) return transform(block, chunk);
-        else {
+        if (transform) {
+          return transform(block, chunk);
+        } else {
           return block.content.text;
         }
       })
