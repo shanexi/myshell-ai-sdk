@@ -48,12 +48,18 @@ export class ThinkModel implements Remarkable {
   setText(chunkId: string, text: string) {
     // @virtuoso.dev/message-list 在进入 viewport 会 re render
     // 所以操作必须 idempotent
+    console.log('chunkId', chunkId);
     if (this.appendedChunkIDs.has(chunkId)) {
       return;
     }
     this.appendedChunkIDs.add(chunkId);
     // TODO #23
-    this.text = this.text + '\n' + text;
+    if (this.text === '') {
+      // 处理一个换行
+      this.text = text;
+    } else {
+      this.text = this.text + '\n' + text;
+    }
   }
 
   @action.bound

@@ -409,3 +409,58 @@ export const think_msg_case_1 = {
     ],
   },
 };
+
+export const think_msg_case_2a = {
+  id: 146,
+  message_id: 1751003002720919,
+  timestamp: '2025-06-27T05:52:31.603487',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: { text: '\ud83d\udd27 Calling tool: **generate_app**' },
+      },
+    ],
+  },
+};
+
+export const think_msg_case_2b = {
+  id: 208,
+  message_id: 1751003002720919,
+  timestamp: '2025-06-27T05:56:46.886914',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'completed',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '✅ Tool **generate_app** executed successfully',
+        },
+      },
+    ],
+  },
+};
+
+export const think_msg_case_2c = {
+  id: 210,
+  message_id: 1751003002720919 + 1,
+  timestamp: '2025-06-27T05:56:57.522100',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'completed',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '[AUTOMATA_RETRY] Max attempts reached - App: 中文翻译英语机器人 - Status: BLOCKED\n\n虽然在测试中遇到了一些技术问题，但应用的核心功能已经成功生成！您的中文翻译英语机器人已经创建完成。\n\n## ✅ 应用创建成功\n\n我为您成功创建了一个完整的中文翻译英语机器人，具备以下特点：\n\n### 🌟 核心功能\n- **智能翻译**：使用Claude 3.5 Sonnet进行高质量的中文到英文翻译\n- **持续对话**：支持多轮翻译，用户可以不断输入新的中文内容\n- **友好界面**：提供清晰的欢迎界面和操作引导\n- **灵活长度**：处理各种长度的中文文本，从词语到段落\n\n### 🔄 用户体验流程\n1. **欢迎界面**：友好的介绍和使用说明\n2. **文本输入**：用户输入需要翻译的中文内容\n3. **智能翻译**：Claude自动进行高质量翻译\n4. **结果展示**：显示英文翻译结果\n5. **继续选择**：用户可以选择继续翻译或结束会话\n\n### 💪 技术特色\n- 基于ShellAgent框架的状态机设计\n- 使用业界领先的Claude 3.5 Sonnet语言模型\n- 支持实时交互和循环对话\n- 完全自动化的翻译处理流程\n\n您的应用已经部署完成，画布将自动接收更新。您现在可以开始使用这个智能翻译机器人了！如需任何调整或新功能，随时告诉我。',
+        },
+      },
+    ],
+  },
+};
