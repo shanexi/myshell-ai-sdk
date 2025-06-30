@@ -1,7 +1,0 @@
-/* Import PatternFly base styles - will be scoped by PostCSS */
-@import '../../@patternfly/react-core/styles/base.css';
-
-/* Component-specific styles */
-.pf-v6-c-log-viewer {
-  /* Any additional component styles */
-}

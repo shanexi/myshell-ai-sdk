@@ -52,6 +52,7 @@ export class ThinkModel implements Remarkable {
       return;
     }
     this.appendedChunkIDs.add(chunkId);
+    // TODO #23
     this.text = this.text + '\n' + text;
   }
 

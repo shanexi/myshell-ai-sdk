@@ -14,11 +14,6 @@ import {
   setUpMdcTransform,
 } from './components/remark/content-block-to-mdc-transform-manager';
 import { ReplyMsg } from './components/reply/reply-msg';
-import { SimpleLogViewer } from './components/simple-log-viewer/simple-log-viewer';
-import {
-  SimpleLogViewerModel,
-  transformAgentLog,
-} from './components/simple-log-viewer/simple-log-viewer.model';
 import { Think } from './components/think/think';
 import { ThinkModel, transformThink } from './components/think/think.model';
 import {
@@ -74,12 +69,6 @@ function registerMdc(
   registerMdc('x-checklist-code', ChecklistCode);
   registerMdc('x-polling', PollingMsg, PollingMsgModel);
   registerMdcTransform('x-button', XButton, transformButton, XButtonModel);
-  registerMdcTransform(
-    'x-agent_log',
-    SimpleLogViewer,
-    transformAgentLog,
-    SimpleLogViewerModel,
-  );
   registerMdcTransform('x-think', Think, transformThink, ThinkModel);
 }
 
