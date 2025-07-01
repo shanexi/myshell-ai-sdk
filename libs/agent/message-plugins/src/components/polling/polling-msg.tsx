@@ -7,7 +7,7 @@ export const PollingMsg = observer(
   (props: { id?: string; timeLeft?: string }) => {
     const model = useRemarkable(PollingMsgModel, props.id);
     useEffect(() => {
-      console.log('only run once');
+      // console.log('only run once');
       const timeLeftNum = Number(props.timeLeft);
       model.setTimeLeft(timeLeftNum);
       model.startPolling();

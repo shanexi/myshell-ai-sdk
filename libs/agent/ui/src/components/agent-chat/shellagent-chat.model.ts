@@ -154,7 +154,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     for (const response of mockResponses) {
       // TODO 优化这段多层 if-else
-      console.log('response', response);
+      // console.log('response', response);
       if (response.type === 'chat_message') {
         const res = content_blocks_schema.parse(response);
         const message_id = String(res.message_id);

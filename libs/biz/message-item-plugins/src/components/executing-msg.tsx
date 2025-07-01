@@ -42,7 +42,7 @@ export const XLoading = (props: { children?: string } = {}) => {
 export const Timer = observer((props: { id?: string; timeLeft?: string }) => {
   const model = useRemarkable(ExecutingMsgModel, props.id);
   useEffect(() => {
-    console.log('only run once');
+    // console.log('only run once');
     const timeLeftNum = Number(props.timeLeft);
     model.setTimeLeft(timeLeftNum);
     const timer = setInterval(() => {

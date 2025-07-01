@@ -11,7 +11,7 @@ export const XButton = observer<PropsWithChildren<Properties>>(
       model = useRemarkable(XButtonModel, props.id);
     }
     useEffect(() => {
-      console.log('only run once');
+      // console.log('only run once');
       if (model) {
         model.onUpdate(props);
       }

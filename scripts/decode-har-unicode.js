@@ -35,8 +35,14 @@ function processObject(obj) {
 }
 
 function main() {
-  const harFilePath = path.join(__dirname, '../libs/agent/ui/src/components/agent-chat/HAR.json');
-  const outputPath = path.join(__dirname, '../libs/agent/ui/src/components/agent-chat/HAR-decoded.json');
+  const harFilePath = path.join(
+    __dirname,
+    '../libs/agent/ui/src/components/agent-chat/HAR.json',
+  );
+  const outputPath = path.join(
+    __dirname,
+    '../libs/agent/ui/src/components/agent-chat/HAR-decoded.json',
+  );
 
   try {
     console.log('Reading HAR file...');
@@ -49,7 +55,11 @@ function main() {
     const processedData = processObject(harData);
 
     console.log('Writing decoded file...');
-    fs.writeFileSync(outputPath, JSON.stringify(processedData, null, 2), 'utf8');
+    fs.writeFileSync(
+      outputPath,
+      JSON.stringify(processedData, null, 2),
+      'utf8',
+    );
 
     console.log(`Successfully decoded HAR file!`);
     console.log(`Original: ${harFilePath}`);
@@ -59,7 +69,6 @@ function main() {
     const originalSize = fs.statSync(harFilePath).size;
     const decodedSize = fs.statSync(outputPath).size;
     console.log(`File size: ${originalSize} bytes -> ${decodedSize} bytes`);
-
   } catch (error) {
     console.error('Error processing HAR file:', error.message);
     process.exit(1);
