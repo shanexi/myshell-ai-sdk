@@ -14,7 +14,7 @@ import { OwnMessage } from './components/own/own-msg';
 import { PollingMsg } from './components/polling/polling-msg';
 import { PollingMsgModel } from './components/polling/polling-msg.model';
 import { Progress } from './components/progress/progress';
-import { setUpMdcTransform } from './components/remark/content-blockable-manager';
+import { setUpMdcCotentBlock } from './components/remark/content-blockable-manager';
 import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
@@ -51,7 +51,7 @@ function registerMdc(
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  const { registerMdc, registerMdcTransform } = setUpMdcTransform(
+  const { registerMdc, registerMdcContentBlock } = setUpMdcCotentBlock(
     bind,
     unbind,
     isBound,
@@ -62,8 +62,8 @@ function registerMdc(
   registerMdc('x-checklist-item', CheckListItem, ChecklistItemModel);
   registerMdc('x-checklist-code', ChecklistCode);
   registerMdc('x-polling', PollingMsg, PollingMsgModel);
-  registerMdcTransform('x-button', XButton, XButtonModel);
-  registerMdcTransform('x-think', Think, ThinkModel);
+  registerMdcContentBlock('x-button', XButton, XButtonModel);
+  registerMdcContentBlock('x-think', Think, ThinkModel);
 }
 
 export const agentMessagePluginsModule = new ContainerModule(

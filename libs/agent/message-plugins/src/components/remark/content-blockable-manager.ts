@@ -48,7 +48,7 @@ export class ContentBlockableManager {
 /**
  * @description 针对 setupMdc 进行一层 wrapper，增加 transform
  */
-export const setUpMdcTransform = (
+export const setUpMdcCotentBlock = (
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
   isBound: interfaces.IsBound,
@@ -92,7 +92,7 @@ export const setUpMdcTransform = (
 
   const registerMdc = setupMdc(bind, unbind, isBound, rebind);
 
-  function registerMdcTransform<T>(
+  function registerMdcContentBlock<T>(
     directiveName: string,
     component: React.ComponentType<T>,
     model: interfaces.Newable<Remarkable & ContentBlockable>,
@@ -104,7 +104,7 @@ export const setUpMdcTransform = (
 
   return {
     registerMdc,
-    registerMdcTransform,
+    registerMdcContentBlock,
   };
 };
 
@@ -133,6 +133,7 @@ export abstract class ContentBlockableImpl implements ContentBlockable {
 
     return this.doTransform(block, chunk);
   }
+
   /**
    * child class 组装 mdc 的逻辑
    */
@@ -140,6 +141,7 @@ export abstract class ContentBlockableImpl implements ContentBlockable {
     block: z.infer<typeof content_block_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
   ): string;
+
   /**
    * 获取 content_block 需要的 text 字段，
    * 这个 text 会根据 cause 有 append/replace 两种 behavior

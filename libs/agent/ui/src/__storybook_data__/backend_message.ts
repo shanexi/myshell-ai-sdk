@@ -201,6 +201,13 @@ export const loading_msg_2 = {
   },
 };
 
+// click button -> send message -> 1750767505381877
+const retry_message = {
+  args: {
+    message_id: 1750767505381877,
+  },
+};
+
 export const loading_replace_msg = {
   id: 70,
   message_id: 1750767505381877,
@@ -490,7 +497,7 @@ export const case2_msg2 = {
   timestamp: '2025-06-30T14:08:06.092111',
   source: 'agent',
   type: 'chat_message',
-  cause: 131,
+  // cause: 131,
   status: 'completed',
   args: {
     content_blocks: [
