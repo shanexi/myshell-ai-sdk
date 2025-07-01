@@ -24,17 +24,19 @@ export const think_schema = z.object({
   }),
 });
 
-export const transformThink = (
-  block: z.infer<typeof think_schema>,
-  chunk: z.infer<typeof content_blocks_schema>,
-) => {
-  return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${escapeForAttribute(block.content.text)}"}`;
-};
-
 @injectable()
 export class ThinkModel implements Remarkable, ContentBlockable {
   @observable isOpen = true;
   @observable text?: string;
+  /**
+   * text 属性的值
+   */
+  private textAttrVal?: string;
+  /**
+   * 先这么处理 保证 idempotent
+   * @private
+   */
+  private chunkIdSet: Set<number> = new Set();
 
   constructor() {
     makeObservable(this);
@@ -48,7 +50,16 @@ export class ThinkModel implements Remarkable, ContentBlockable {
     block: z.infer<typeof think_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
   ): string {
-    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${escapeForAttribute(block.content.text)}"}`;
+    if (this.chunkIdSet.has(chunk.id)) {
+      return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.textAttrVal}"}`;
+    }
+    this.chunkIdSet.add(chunk.id);
+
+    const text = escapeForAttribute(block.content.text);
+    this.textAttrVal = [this.textAttrVal, text]
+      .filter((i) => i != null)
+      .join('&#10;');
+    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.textAttrVal}"}`;
   }
 
   @action.bound

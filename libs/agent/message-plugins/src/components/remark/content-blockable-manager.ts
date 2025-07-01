@@ -4,6 +4,7 @@ import { injectable, interfaces } from 'inversify';
 import { Remarkable } from '@myshell-run/common-def';
 import { setupMdc } from '@myshell-run/common-ui';
 import { ContentBlockable, ContentBlockableFactory } from './content-blockable';
+import { TextModel } from '../text.model';
 
 /**
  * 用来存储 interfaces.Newable<ContentBlockable>，注意非 instance
@@ -57,6 +58,9 @@ export const setUpMdcTransform = (
   if (!isBound(ContentBlockableMap)) {
     blockableMap = new Map();
     bind(ContentBlockableMap).toConstantValue(blockableMap);
+    // 为了统一处理，额外 bind 一个 `x-text` 可以 refactor （fallback default 逻辑）
+    blockableMap.set('x-text', TextModel);
+    bind(TextModel).toSelf().inTransientScope();
   }
 
   if (!isBound(ContentBlockableFactory)) {
