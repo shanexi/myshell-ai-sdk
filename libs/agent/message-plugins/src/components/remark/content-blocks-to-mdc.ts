@@ -24,3 +24,8 @@ export const content_blocks_schema = z.object({
     ),
   }),
 });
+
+export const content_block_schema = z.object({
+  type: z.string(),
+  content: z.object({}).passthrough(),
+});

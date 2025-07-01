@@ -3,6 +3,7 @@ import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { makeObservable, observable } from 'mobx';
 import { z } from 'zod';
+import { ContentBlockable } from '../remark/content-blockable';
 
 export const button_schema = z.object({
   type: z.literal('button'),
@@ -15,14 +16,17 @@ export const button_schema = z.object({
     }),
   }),
 });
-export const transformButton = (block: z.infer<typeof button_schema>) =>
-  `:x-${block.type}{display_text='${block.content.display_text}'}`;
+
 @injectable()
-export class XButtonModel implements Remarkable {
+export class XButtonModel implements Remarkable, ContentBlockable {
   @observable display_text = '';
 
   onUpdate(props: Properties) {
     this.display_text = props.display_text as string;
+  }
+
+  transform(block: z.infer<typeof button_schema>) {
+    return `:x-${block.type}{display_text='${block.content.display_text}'}`;
   }
 
   constructor() {

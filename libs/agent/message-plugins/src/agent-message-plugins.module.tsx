@@ -1,21 +1,23 @@
 import { addMessagePluginFactory } from '@myshell-run/common-ui';
 import { ContainerModule, interfaces } from 'inversify';
 import { XButton } from './components/button/x-button';
+import { XButtonModel } from './components/button/x-button.model';
 import {
-  transformButton,
-  XButtonModel,
-} from './components/button/x-button.model';
+  CheckList,
+  ChecklistCode,
+  CheckListItem,
+} from './components/checklist/checklist-msg';
+import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
 import { ErrorMessage } from './components/error/error-msg';
 import { Loading } from './components/loading/loading';
 import { OwnMessage } from './components/own/own-msg';
+import { PollingMsg } from './components/polling/polling-msg';
+import { PollingMsgModel } from './components/polling/polling-msg.model';
 import { Progress } from './components/progress/progress';
-import {
-  ContentBlocksToMdcTransformManager,
-  setUpMdcTransform,
-} from './components/remark/content-block-to-mdc-transform-manager';
+import { setUpMdcTransform } from './components/remark/content-blockable-manager';
 import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
-import { ThinkModel, transformThink } from './components/think/think.model';
+import { ThinkModel } from './components/think/think.model';
 import {
   ERROR_MESSAGE_TYPE,
   LOADING_MESSAGE_TYPE,
@@ -23,14 +25,6 @@ import {
   PROGRESS_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from './types';
-import { PollingMsg } from './components/polling/polling-msg';
-import { PollingMsgModel } from './components/polling/polling-msg.model';
-import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
-import {
-  CheckList,
-  CheckListItem,
-  ChecklistCode,
-} from './components/checklist/checklist-msg';
 
 function registerMesssage(
   bind: interfaces.Bind,
@@ -68,8 +62,8 @@ function registerMdc(
   registerMdc('x-checklist-item', CheckListItem, ChecklistItemModel);
   registerMdc('x-checklist-code', ChecklistCode);
   registerMdc('x-polling', PollingMsg, PollingMsgModel);
-  registerMdcTransform('x-button', XButton, transformButton, XButtonModel);
-  registerMdcTransform('x-think', Think, transformThink, ThinkModel);
+  registerMdcTransform('x-button', XButton, XButtonModel);
+  registerMdcTransform('x-think', Think, ThinkModel);
 }
 
 export const agentMessagePluginsModule = new ContainerModule(
@@ -84,7 +78,6 @@ export function bindAgentMessagePlugins(
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  bind(ContentBlocksToMdcTransformManager).toSelf().inSingletonScope();
   registerMesssage(bind, unbind, isBound, rebind);
   registerMdc(bind, unbind, isBound, rebind);
 }

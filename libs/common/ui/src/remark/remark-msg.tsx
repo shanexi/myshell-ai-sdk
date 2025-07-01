@@ -44,9 +44,9 @@ export const RemarkMsg: React.FC<{ text: string }> = ({ text }) => {
       if (typeof id === 'string') {
         // 需要放到 next tick 否则 Cannot update a component (`Unknown`) while rendering a different component (`RemarkMsg`)
         setTimeout(function () {
-          const model = registerMap.get(tagName)?.[1];
-          if (model) {
-            factory(model, id).onUpdate(props);
+          const modelIdentifier = registerMap.get(tagName)?.[1];
+          if (modelIdentifier) {
+            factory(modelIdentifier, id).onUpdate(props);
           }
         }, 0);
       }

@@ -5,7 +5,7 @@ import {
 } from '@myshell-run/agent-chat-input-plugins';
 import {
   content_blocks_schema,
-  ContentBlocksToMdcTransformManager,
+  ContentBlockableFactory,
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
@@ -16,13 +16,8 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
-  hi_msg,
-  loading_replace_msg,
-  think_msg_1,
-  think_msg_2,
   think_msg_case_2a,
   think_msg_case_2b,
-  think_msg_case_2c,
 } from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
 
@@ -31,8 +26,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
-    @inject(ContentBlocksToMdcTransformManager)
-    private transformManager: ContentBlocksToMdcTransformManager,
+    @inject(ContentBlockableFactory)
+    private blockableFactory: ContentBlockableFactory,
   ) {
     makeObservable(this);
   }
@@ -104,7 +99,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       // think_msg_case_1,
       think_msg_case_2a,
       think_msg_case_2b,
-      think_msg_case_2c,
+      // think_msg_case_2c,
     ];
 
     for (const response of mockResponses) {
@@ -113,7 +108,14 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
         const res = content_blocks_schema.parse(response);
         const message_id = String(res.message_id);
         if (this.chatCommon.isMsgNoExists(message_id)) {
-          const text = this.transformManager.transform(res);
+          const text = res.args.content_blocks
+            .map((b) => {
+              return this.blockableFactory(b.type, message_id).transform(
+                b,
+                res,
+              );
+            })
+            .join(' ');
           this.chatCommon.appendMsg({
             key: message_id,
             text,
@@ -122,7 +124,14 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
         } else {
           // TODO: 需要修改 KEY
           this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-            const nextText = this.transformManager.transform(res);
+            const nextText = res.args.content_blocks
+              .map((b) => {
+                return this.blockableFactory(b.type, message_id).transform(
+                  b,
+                  res,
+                );
+              })
+              .join(' ');
             let text: string;
             if (res.cause) {
               text = nextText;

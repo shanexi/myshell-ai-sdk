@@ -4,6 +4,7 @@ import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 import { content_blocks_schema } from '../remark/content-blocks-to-mdc';
+import { ContentBlockable } from '../remark/content-blockable';
 
 /**
  * 换成 http entity，在 html 不需要 decode（因为是 escape 而非 encode？）
@@ -31,10 +32,9 @@ export const transformThink = (
 };
 
 @injectable()
-export class ThinkModel implements Remarkable {
+export class ThinkModel implements Remarkable, ContentBlockable {
   @observable isOpen = true;
-  @observable text = '';
-  private appendedChunkIDs: Set<string> = new Set();
+  @observable text?: string;
 
   constructor() {
     makeObservable(this);
@@ -44,22 +44,16 @@ export class ThinkModel implements Remarkable {
     this.setText(props.chunk_id as string, props.text as string);
   }
 
+  transform(
+    block: z.infer<typeof think_schema>,
+    chunk: z.infer<typeof content_blocks_schema>,
+  ): string {
+    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${escapeForAttribute(block.content.text)}"}`;
+  }
+
   @action.bound
   setText(chunkId: string, text: string) {
-    // @virtuoso.dev/message-list 在进入 viewport 会 re render
-    // 所以操作必须 idempotent
-    console.log('chunkId', chunkId);
-    if (this.appendedChunkIDs.has(chunkId)) {
-      return;
-    }
-    this.appendedChunkIDs.add(chunkId);
-    // TODO #23
-    if (this.text === '') {
-      // 处理一个换行
-      this.text = text;
-    } else {
-      this.text = this.text + '\n' + text;
-    }
+    this.text = text;
   }
 
   @action.bound
