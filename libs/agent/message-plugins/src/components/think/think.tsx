@@ -10,7 +10,9 @@ export const Think = observer<{ id: string; chunk_id: string; text: string }>(
     useEffect(() => {
       console.log('only run once');
       model.setText(chunk_id as string, text as string);
-    }, []);
+      // FIXME: 除了用 deps 还有其他方法吗？
+      // 这里用 chunk_id 是为了支持 cause（整体消息替换）而不是更新
+    }, [chunk_id]);
     return (
       <div
         style={{

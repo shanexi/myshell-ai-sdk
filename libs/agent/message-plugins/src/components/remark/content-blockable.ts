@@ -5,7 +5,6 @@ import {
 } from './content-blocks-to-mdc';
 
 export const ContentBlockable = Symbol.for('ContentBlockable');
-
 export interface ContentBlockable {
   transform(
     block: z.infer<typeof content_block_schema>,

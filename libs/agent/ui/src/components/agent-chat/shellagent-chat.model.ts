@@ -16,6 +16,13 @@ import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import {
+  case2_msg1,
+  case2_msg2,
+  case2_msg3,
+  case2_msg4,
+  case2_msg5,
+  case2_msg6,
+  case2_msg7,
   hi_msg,
   think_msg_1,
   think_msg_2,
@@ -71,13 +78,13 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       type: OWN_MESSAGE_TYPE,
     });
 
-    // TODO: 对接后端
-    console.log(
-      'send',
-      uploads,
-      context,
-      f2b_content_blocks(toJS(chatInputDoc)),
-    );
+    // // TODO: 对接后端
+    // console.log(
+    //   'send',
+    //   uploads,
+    //   context,
+    //   f2b_content_blocks(toJS(chatInputDoc)),
+    // );
 
     yield;
 
@@ -88,9 +95,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       // loading_msg_1,
       // loading_msg_case_1,
       // loading_replace_msg,
-      think_msg_1,
-      think_msg_2,
-      hi_msg,
+      // think_msg_1,
+      // think_msg_2,
+      // hi_msg,
       // loading_replace_msg,
       // think_msg_3,
       // progress_msg_1,
@@ -101,6 +108,13 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       // think_msg_case_2a,
       // think_msg_case_2b,
       // think_msg_case_2c,
+      case2_msg1,
+      case2_msg2,
+      case2_msg3,
+      // case2_msg4,
+      // case2_msg5,
+      // case2_msg6,
+      // case2_msg7,
     ];
 
     for (const response of mockResponses) {
@@ -125,6 +139,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
         } else {
           // TODO: 需要修改 KEY
           this.chatCommon.virtuosoRef?.current?.data.map((message) => {
+            if (message.key !== String(res.message_id)) {
+              return message;
+            }
             const nextText = res.args.content_blocks
               .map((b) => {
                 return this.blockableFactory(b.type, message_id).transform(
@@ -135,7 +152,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
               .join(' ');
             let text: string;
             if (res.cause) {
-              text = nextText;
+              text = nextText; // 整体替换
             } else {
               // TODO 先临时处理下 block directive
               if (nextText.startsWith('::')) {
@@ -144,9 +161,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
                 text = message.text + nextText;
               }
             }
-            return message.key === message_id
-              ? { ...message, text, type: REPLY_MESSAGE_TYPE }
-              : message;
+            return { ...message, text, type: REPLY_MESSAGE_TYPE };
           }, 'smooth');
         }
       } else {

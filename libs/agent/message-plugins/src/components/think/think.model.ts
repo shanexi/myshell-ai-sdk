@@ -3,8 +3,8 @@ import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
+import { ContentBlockableImpl } from '../remark/content-blockable-manager';
 import { content_blocks_schema } from '../remark/content-blocks-to-mdc';
-import { ContentBlockable } from '../remark/content-blockable';
 
 /**
  * 换成 http entity，在 html 不需要 decode（因为是 escape 而非 encode？）
@@ -25,20 +25,12 @@ export const think_schema = z.object({
 });
 
 @injectable()
-export class ThinkModel implements Remarkable, ContentBlockable {
+export class ThinkModel extends ContentBlockableImpl implements Remarkable {
   @observable isOpen = true;
   @observable text?: string;
-  /**
-   * text 属性的值
-   */
-  private textAttrVal?: string;
-  /**
-   * 先这么处理 保证 idempotent
-   * @private
-   */
-  private chunkIdSet: Set<number> = new Set();
 
   constructor() {
+    super();
     makeObservable(this);
   }
 
@@ -46,20 +38,15 @@ export class ThinkModel implements Remarkable, ContentBlockable {
     this.setText(props.chunk_id as string, props.text as string);
   }
 
-  transform(
+  textField(block: z.infer<typeof think_schema>) {
+    return escapeForAttribute(block.content.text);
+  }
+
+  doTransform(
     block: z.infer<typeof think_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
-  ): string {
-    if (this.chunkIdSet.has(chunk.id)) {
-      return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.textAttrVal}"}`;
-    }
-    this.chunkIdSet.add(chunk.id);
-
-    const text = escapeForAttribute(block.content.text);
-    this.textAttrVal = [this.textAttrVal, text]
-      .filter((i) => i != null)
-      .join('&#10;');
-    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.textAttrVal}"}`;
+  ) {
+    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.getText(block, chunk)}"}`;
   }
 
   @action.bound

@@ -104,7 +104,9 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 }
 `}</style>
       {model.chatCommon.edixModel.isContextMenuShow &&
-        model.chatCommon.edixModel.contextMenuRect && <ContextMenu />}
+        model.chatCommon.edixModel.contextMenuRect && (
+          <ContextMenu commingSoon={true} />
+        )}
     </>
   );
 });

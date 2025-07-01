@@ -464,3 +464,149 @@ export const think_msg_case_2c = {
     ],
   },
 };
+
+export const case2_msg1 = {
+  id: 131,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:04.403623',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 Calling tool: **requirements_mark_item**',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg2 = {
+  id: 132,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:06.092111',
+  source: 'agent',
+  type: 'chat_message',
+  cause: 131,
+  status: 'completed',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '✅ Tool **requirements_mark_item** executed successfully',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg3 = {
+  id: 134,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:21.367314',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 Calling tool: **get_widgets_list**',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg4 = {
+  id: 135,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:23.348293',
+  source: 'agent',
+  type: 'chat_message',
+  cause: 134,
+  status: 'completed',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '✅ Tool **get_widgets_list** executed successfully',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg5 = {
+  id: 136,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:27.970242',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 Calling tool: **get_widget_schema_batch**',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg6 = {
+  id: 137,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:29.534690',
+  source: 'agent',
+  type: 'chat_message',
+  cause: 136,
+  status: 'completed',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '✅ Tool **get_widget_schema_batch** executed successfully',
+        },
+      },
+    ],
+  },
+};
+
+export const case2_msg7 = {
+  id: 138,
+  message_id: 1751292230851601,
+  timestamp: '2025-06-30T14:08:35.119002',
+  source: 'agent',
+  type: 'chat_message',
+  status: 'pending',
+  args: {
+    content_blocks: [
+      {
+        type: 'think',
+        content: {
+          text: '🔧 Calling tool: **requirements_mark_item**',
+        },
+      },
+    ],
+  },
+};
+
+export const case3_msg8 = {
+  headers: {},
+  id: -1,
+  type: 'agent_state_changed',
+  status: 'completed',
+  args: {
+    agent_state: 'error',
+  },
+};
