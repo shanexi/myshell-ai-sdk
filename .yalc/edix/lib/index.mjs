@@ -218,6 +218,13 @@ const Delete = (doc, selection, [anchor, focus] = selection) => {
         deleteEdit(doc, selection, ...edges(anchor, focus));
     }
 };
+const Clear = (doc, selection) => {
+    const anchor = [0, 0];
+    const focus = [doc.length - 1, getLineSize(doc[doc.length - 1])];
+    if (comparePosition(anchor, focus) !== 0) {
+        deleteEdit(doc, selection, ...edges(anchor, focus));
+    }
+};
 const InsertFragment = (doc, selection, lines) => {
     Delete(doc, selection);
     insertEdit(doc, selection, lines, 
@@ -1419,5 +1426,5 @@ const schema = ({ multiline, void: voids = {}, }) => {
     };
 };
 
-export { Delete, InsertFragment, InsertText, editable, plainSchema, schema, voidNode };
+export { Clear, Delete, InsertFragment, InsertText, editable, plainSchema, schema, voidNode };
 //# sourceMappingURL=index.mjs.map
