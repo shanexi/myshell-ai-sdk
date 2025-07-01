@@ -54,3 +54,6 @@ tsconfig.tsbuildinfo
 
 storybook-static/
 build-storybook.log
+
+HAR.json
+HAR-*.json

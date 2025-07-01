@@ -15,6 +15,8 @@ import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
+import * as fs from 'fs';
+import * as path from 'path';
 import {
   case2_msg1,
   case2_msg2,
@@ -28,6 +30,59 @@ import {
   think_msg_2,
 } from '../../__storybook_data__/backend_message';
 import { f2b_content_blocks } from './shellagent-chat.utils';
+
+// Parse HAR data to extract WebSocket messages
+function extractChatMessagesFromHAR(): any[] {
+  try {
+    // const harPath = path.join(__dirname, 'HAR.json');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const harContent = require('./HAR.json');
+
+    const chatMessages: any[] = [];
+
+    // Process all entries
+    harContent.log.entries.forEach((entry: any) => {
+      if (entry._webSocketMessages) {
+        entry._webSocketMessages.forEach((wsMessage: any) => {
+          // Only process 'receive' messages
+          // if (wsMessage.type === 'receive') {
+          // Parse Socket.IO message format: "42[\"event\", {...}]"
+          const match = wsMessage.data.match(/^\d+\["event",(.+)\]$/);
+          if (match) {
+            try {
+              const parsedMessage = JSON.parse(match[1]);
+              if (
+                parsedMessage &&
+                parsedMessage.type &&
+                parsedMessage.type.startsWith('chat_')
+              ) {
+                // if (parsedMessage.id > 20 && parsedMessage.id < 30) {
+                chatMessages.push(parsedMessage);
+                // }
+              }
+            } catch (e) {
+              // Ignore parse errors
+            }
+          }
+          // }
+        });
+      }
+    });
+
+    // // Sort messages by timestamp or message_id
+    // chatMessages.sort((a, b) => {
+    //   if (a.timestamp && b.timestamp) {
+    //     return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+    //   }
+    //   return (a.message_id || 0) - (b.message_id || 0);
+    // });
+
+    return chatMessages;
+  } catch (error) {
+    console.warn('Failed to extract HAR messages:', error);
+    return [];
+  }
+}
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -88,37 +143,18 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     yield;
 
-    // mock 一些回复
-    // const mockResponses = [msg6, msg7];
-    const mockResponses = [
-      // hi_msg,
-      // loading_msg_1,
-      // loading_msg_case_1,
-      // loading_replace_msg,
-      // think_msg_1,
-      // think_msg_2,
-      // hi_msg,
-      // loading_replace_msg,
-      // think_msg_3,
-      // progress_msg_1,
-      // progress_msg_2,
-      // progress_msg_3,
-      // think_msg_case_1a,
-      // think_msg_case_1,
-      // think_msg_case_2a,
-      // think_msg_case_2b,
-      // think_msg_case_2c,
-      case2_msg1,
-      case2_msg2,
-      case2_msg3,
-      // case2_msg4,
-      // case2_msg5,
-      // case2_msg6,
-      // case2_msg7,
-    ];
+    // Extract messages from HAR file
+    const harMessages = extractChatMessagesFromHAR();
+
+    // Use HAR messages if available, otherwise fallback to mock data
+    const mockResponses =
+      harMessages.length > 0
+        ? harMessages
+        : [case2_msg1, case2_msg2, case2_msg3];
 
     for (const response of mockResponses) {
       // TODO 优化这段多层 if-else
+      console.log('response', response);
       if (response.type === 'chat_message') {
         const res = content_blocks_schema.parse(response);
         const message_id = String(res.message_id);
