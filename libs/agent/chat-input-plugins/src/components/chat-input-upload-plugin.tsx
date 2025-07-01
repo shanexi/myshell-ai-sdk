@@ -28,7 +28,14 @@ export const ChatInputUploadPlugin = observer(() => {
             />
           );
         }
-        if (item.fileKind === FileKind.Document) {
+        if (
+          [
+            FileKind.Document,
+            FileKind.Text,
+            FileKind.Presentation,
+            FileKind.Spreadsheet,
+          ].indexOf(item.fileKind) > -1
+        ) {
           return (
             <FilePreview
               key={item.name}
@@ -47,6 +54,7 @@ const FilePreview: React.FC<{
   previewItem: UploadItem;
   id: string;
 }> = ({ previewItem, id }) => {
+  const model = useInjection(AgentChatInputModel);
   return (
     <div
       className={cn(
@@ -86,9 +94,7 @@ const FilePreview: React.FC<{
         </div>
       </div>
       <Remove
-        onRemove={() => {
-          //
-        }}
+        onRemove={() => model.removeImagePreview(id)}
         uploadComplete={Boolean(previewItem.uploadComplete)}
       />
     </div>
