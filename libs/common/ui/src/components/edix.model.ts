@@ -1,5 +1,4 @@
 import {
-  Delete,
   Clear,
   editable,
   EditableCommand,
@@ -13,11 +12,11 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { RefObject } from 'react';
-import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
-import { z } from 'zod';
+import { action, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
+import { RefObject } from 'react';
+import { z } from 'zod';
+import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
 
 export const context_type_schema = z.enum([
   'preview',
