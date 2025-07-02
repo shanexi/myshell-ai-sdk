@@ -8,7 +8,9 @@ export default meta;
 
 export const Primary: StoryObj<typeof ErrorMessage> = {
   args: {
-    key: '1',
-    text: 'Hello, how are you?',
+    message_id: '1',
+    args: {
+      content: 'Hello, how are you?',
+    },
   },
 };

@@ -8,7 +8,7 @@ export const content_blocks_schema = z.object({
   // timestamp: z.string().datetime(),
   timestamp: z.string(),
   source: z.union([z.literal('agent'), z.literal('user'), z.literal('server')]),
-  type: chat_message_type,
+  type: z.literal(chat_message_type.Enum.chat_message),
   cause: z
     .number()
     .optional()

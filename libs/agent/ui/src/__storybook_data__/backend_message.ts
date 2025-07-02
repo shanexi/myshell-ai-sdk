@@ -1,3 +1,6 @@
+import { chat_history_message_schema } from '@myshell-run/agent-message-plugins';
+import { z } from 'zod';
+
 export const msg1 = {
   id: 59,
   message_id: 1750824249263064,
@@ -617,3 +620,70 @@ export const case3_msg8 = {
     agent_state: 'error',
   },
 };
+
+export const history_msgs = {
+  headers: {},
+  id: -1,
+  type: 'chat_history_message',
+  status: 'completed',
+  args: {
+    latest_event_id: -1,
+    data: [
+      {
+        headers: {},
+        id: 1,
+        message_id: 1,
+        timestamp: '2025-07-02T15:57:28.718782',
+        source: 'server',
+        type: 'chat_message',
+        status: 'completed',
+        args: {
+          content_blocks: [
+            {
+              type: 'text',
+              content: {
+                text: "\nHello! 👋 \n\nI'm your Lead Product Architect at ShellAgent, and I'm here to help you transform your ideas into powerful AI applications. \n\nI specialize in:\n- **App Planning & Design** - Breaking down your requirements into actionable plans\n- **AI Application Development** - Creating complete ShellAgent apps with custom workflows\n- **Widget Creation** - Building custom components for specific functionalities\n- **User Experience Design** - Crafting intuitive user journeys and state flows\n\n**What would you like to build today?** \n\nSome examples of what we can create together:\n- AI assistants for specific tasks or domains\n- Data processing and analysis tools\n- Content generation applications\n- API integration workflows\n- Interactive chatbots with custom logic\n\nJust tell me about your idea - whether it's a simple concept or a detailed vision - and I'll guide you through the entire development process step by step!\n\nWhat's on your mind? 🚀\n            ",
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 0,
+        message_id: 1750648950886585,
+        timestamp: '2025-06-23T11:22:30.886466',
+        source: 'user',
+        type: 'chat_message',
+        status: 'completed',
+        args: {
+          content_blocks: [
+            {
+              type: 'text',
+              content: {
+                text: '你好',
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 2,
+        message_id: 1750648964025638,
+        timestamp: '2025-06-23T11:22:44.025587',
+        source: 'agent',
+        type: 'chat_message',
+        status: 'completed',
+        args: {
+          content_blocks: [
+            {
+              type: 'text',
+              content: {
+                text: '你好！我是Alex Chen，ShellAgent的首席产品架构师。很高兴认识你！👋\n\n我专门帮助用户将创意想法转化为功能强大的AI应用程序。无论你想构建什么类型的应用，我都会从需求分析开始，逐步引导你完成整个开发过程。\n\n## 我能帮你做什么？\n\n- 📱 **AI应用开发** - 聊天机器人、数据分析工具、自动化助手等\n- 🔄 **工作流程自动化** - 将复杂的业务流程转化为智能应用\n- 🧩 **定制功能组件** - 创建专门的功能模块\n- 📊 **数据处理应用** - 文件处理、API集成、报表生成等\n\n## 开发流程\n\n我会带你经历三个阶段：\n1. **需求分析与规划** - 明确你的需求，设计用户流程\n2. **功能组件实现** - 创建所需的功能模块\n3. **应用生成** - 将所有组件整合成完整应用\n\n你有什么想法想要实现吗？或者有什么具体的问题需要解决？告诉我你的想法，我会帮你制定详细的实施计划！',
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+} as unknown as z.infer<typeof chat_history_message_schema>;
