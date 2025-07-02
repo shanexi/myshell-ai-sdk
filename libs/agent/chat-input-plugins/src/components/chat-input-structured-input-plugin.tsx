@@ -69,7 +69,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
         }}
         aria-placeholder="Write a message"
       >
-        {!isEmpty(value) &&
+        {!model.chatCommon.edixModel.isChatInputDocEmpty &&
           value.map((line, i) => (
             <div key={i}>
               {line.length ? (
