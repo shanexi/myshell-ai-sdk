@@ -8,7 +8,7 @@ export const ReplyMsg: React.FC<z.infer<typeof reply_message_schema>> = (
 ) => {
   const { text } = props;
   return (
-    <ReplyWrapper className="prose">
+    <ReplyWrapper className="prose dark:prose-invert">
       <RemarkMsg text={text} />
     </ReplyWrapper>
   );

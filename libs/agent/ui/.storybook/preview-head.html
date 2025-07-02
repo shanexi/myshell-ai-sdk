@@ -9,8 +9,11 @@
       const updateDarkMode = (matches) => {
         if (matches) {
           html.classList.add('dark');
+          // 不清楚原因，300 基本上不会有问题 200 刷新可能有问题
+          setTimeout(() => html.setAttribute('data-theme', 'dark'), 300)
         } else {
           html.classList.remove('dark');
+          setTimeout(() => html.setAttribute('data-theme', 'light'), 300)
         }
       };
 
