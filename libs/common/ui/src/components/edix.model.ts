@@ -254,28 +254,6 @@ export class EdixModel {
     if (this.edixRef?.current && this.edixHandle) {
       this.edixRef?.current.focus();
       this.edixHandle.command(Clear);
-      // document.getSelection()?.selectAllChildren(this.edixRef.current);
-      // this.edixHandle.syncSelection();
-      // if (this.edixHandle) {
-      //   this.edixHandle.command(Delete);
-      //   /*
-      //    临时方案
-      //    主要是因为在 next.js 无法清空（不清楚原因），增加了 resetHistory + this.inputText = ''(observable 直接操作)
-
-      //    如果不做 resetHistory，inputText = '' 由于 data flow 乱了（应该是 imperative edix + onChange）
-      //    imperative edix 其实就是 selectAllChildren + syncSelection + Delete
-      //    在 storybook 可行，但是在 next.js 失效，所以强加了 inputText = ''（补充了 chatInputDoc = [] 清空）
-
-      //    增加 resetHistory 由于 history 很干净，currentSelection 也很干净，重复一次 '' 空字符串不会搞乱 history
-      //    */
-      //   this.edixHandle.resetHistory();
-      //   setTimeout(() => {
-      //     // this.inputText = '';
-      //     // FIXME: clear 还是不能完全清除，估计还是得 edix 暴露 imperative 的接口
-      //     // 输入 text 可以正确 clear 了，但是输入 context 不行
-      //     // this.chatInputDoc = [];
-      //   });
-      // }
     }
   }
 }
