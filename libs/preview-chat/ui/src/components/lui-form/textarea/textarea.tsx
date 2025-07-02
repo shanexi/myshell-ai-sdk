@@ -13,7 +13,7 @@ export const Textarea: React.FC<
       className={cn(
         'flex flex-col gap-spacing-md-v2',
         'w-full',
-        'bg-CCr-input-bg_default-light-v2',
+        'bg-CCr-input-bg_default-v2',
         'rounded-C-input-radius-v2',
         'p-spacing-lg-v2',
       )}
@@ -29,7 +29,7 @@ export const Textarea: React.FC<
       ></textarea>
       <div
         className={cn(
-          'text-Cr-text-subtlest-light-v2',
+          'text-Cr-text-subtlest-v2',
           'description-lg-regular',
           'text-right',
         )}

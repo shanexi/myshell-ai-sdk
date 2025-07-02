@@ -50,8 +50,8 @@ export const Upload = observer<
         'rounded-C-button-lg-radius-v2',
         'p-spacing-lg-v2',
         model.uppyModel.isDraggingError
-          ? 'border border-Cr-border-critical-light-v2'
-          : 'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-light-v2',
+          ? 'border border-Cr-border-critical-v2'
+          : 'border-2 border-dashed border-Cr-Bg-neutral-on-surface-alt-v2',
       )}
       onClick={() => {
         if (model.uppyModel.uppyState.length > 0) {
@@ -80,10 +80,10 @@ export const Upload = observer<
               )}
             </div>
             <div className="flex flex-col gap-spacing-xxs-v2">
-              <div className="text-sm-medium text-Cr-text-default-light-v2">
+              <div className="text-sm-medium text-Cr-text-default-v2">
                 {model.file?.uploadComplete ? model.file?.name : 'Uploading...'}
               </div>
-              <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
+              <div className="text-sm-regular text-Cr-text-subtlest-v2">
                 {model.file?.uploadComplete
                   ? `(${formatFileSize(model.file?.size)})`
                   : formatEta(model.file.eta)}
@@ -99,8 +99,8 @@ export const Upload = observer<
             size={28}
             strokeWidth={1.5}
             className={cn(
-              'text-CCr-icon-button-plain-gray-fg_default-light-v2',
-              'hover:bg-Cr-alpha-black-5-light-v2 hover:text-Cr-text-critical-default-light-v2',
+              'text-CCr-icon-button-plain-gray-fg_default-v2',
+              'hover:bg-Cr-alpha-black-5-v2 hover:text-Cr-text-critical-default-v2',
               'cursor-pointer rounded-md-v2 p-1 transition-colors duration-200',
             )}
           />
@@ -113,13 +113,11 @@ export const Upload = observer<
           )}
         >
           {model.uppyModel.isDraggingError ? (
-            <div className="text-Cr-text-critical-default-light-v2">
+            <div className="text-Cr-text-critical-default-v2">
               {model.uppyModel.draggingErrorDisplay}
             </div>
           ) : (
-            <div className="text-Cr-text-default-light-v2">
-              Move you files here
-            </div>
+            <div className="text-Cr-text-default-v2">Move you files here</div>
           )}
         </div>
       ) : (
@@ -163,18 +161,18 @@ const EmptyUpload = observer<
   const { description = 'Drop a file or click to upload' } = props;
   return (
     <div className="flex items-center gap-spacing-md-v2">
-      <div className="rounded-md-v2 bg-Cr-alpha-black-5-light-v2 p-[8px]">
+      <div className="rounded-md-v2 bg-Cr-alpha-black-5-v2 p-[8px]">
         <UploadIcon
-          className="text-Cr-Fg-subtle-light-v2"
+          className="text-Cr-Fg-subtle-v2"
           size={24}
           strokeWidth={1.5}
         />
       </div>
       <div className="flex flex-col gap-spacing-xxs-v2">
-        <div className="text-sm-medium text-Cr-text-default-light-v2">
+        <div className="text-sm-medium text-Cr-text-default-v2">
           {description}
         </div>
-        <div className="text-sm-regular text-Cr-text-subtlest-light-v2">
+        <div className="text-sm-regular text-Cr-text-subtlest-v2">
           {model.uppyModel.allowedFileTypesDisplay}{' '}
           {model.uppyModel.maxFileSizeDisplay &&
             `up to ${model.uppyModel.maxFileSizeDisplay}`}

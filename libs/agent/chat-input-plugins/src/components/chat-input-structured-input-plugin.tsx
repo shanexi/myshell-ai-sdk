@@ -58,7 +58,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
           'max-h-[6lh] overflow-y-auto',
           model.chatCommon.edixModel.edixReadonly &&
-            'cursor-not-allowed text-Cr-text-subtlest-light-v2',
+            'cursor-not-allowed text-Cr-text-subtlest-v2',
         )}
         onKeyDown={(e) => {
           if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
@@ -126,9 +126,9 @@ const ContextItem: React.FC<{
       className={cn(
         'relative top-[2.5px]',
         'inline-flex items-center gap-[6px]',
-        'bg-Cr-Bg-normal-secondary-alt-light-v2',
-        'hover:bg-Cr-Bg-normal-tertiary-active-light-v2',
-        'border border-Cr-border-default-light-v2',
+        'bg-Cr-Bg-normal-secondary-alt-v2',
+        'hover:bg-Cr-Bg-normal-tertiary-active-v2',
+        'border border-Cr-border-default-v2',
         'rounded-md-v2',
         'px-spacing-md-v2',
         'w-fit min-w-C-button-sm-height-v2',
@@ -138,7 +138,7 @@ const ContextItem: React.FC<{
       <Icon
         strokeWidth={1.5}
         size={16}
-        className={cn('text-Cr-Fg-subtle-light-v2')}
+        className={cn('text-Cr-Fg-subtle-v2')}
       />
       <div className="text-sm-medium">{content}</div>
     </span>

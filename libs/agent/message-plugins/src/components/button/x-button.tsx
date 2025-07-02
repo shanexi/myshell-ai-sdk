@@ -21,8 +21,8 @@ export const XButton = observer<PropsWithChildren<Properties>>(
         className={cn(
           'text-sm-medium',
           'h-[36px]',
-          'border border-CCr-button-tertiary-border-light-v2',
-          'bg-CCr-button-tertiary-bg_default-light-v2',
+          'border border-CCr-button-tertiary-border-v2',
+          'bg-CCr-button-tertiary-bg_default-v2',
           'rounded-C-button-md-radius-v2',
           'px-C-button-md-padding-v2',
           'py-1',

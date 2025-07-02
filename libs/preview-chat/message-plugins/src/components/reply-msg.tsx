@@ -17,7 +17,7 @@ export const ReplyMsg: React.FC<PreviewMessage> = ({
         alt={`${user} avatar`}
       />
       <div className="w-[80%]">
-        <div className="text-text-default-light-v2 rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2 bg-CCr-button-tertiary-bg_default-light-v2 p-spacing-lg-v2">
+        <div className="text-text-default-v2 rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2 bg-CCr-button-tertiary-bg_default-v2 p-spacing-lg-v2">
           <RemarkMsg text={text} />
         </div>
         <div className="mt-[8px] flex gap-spacing-xs-v2">
@@ -41,8 +41,8 @@ export const LuiButton = (props: { children: React.ReactNode }) => {
         'h-C-button-lg-height-v2 min-w-C-button-md-min-width-v2',
         'rounded-C-button-md-radius-v2',
         'p-C-button-plain-spacing-v2',
-        'bg-CCr-button-tertiary-bg_default-light-v2',
-        'border border-CCr-button-tertiary-border-light-v2',
+        'bg-CCr-button-tertiary-bg_default-v2',
+        'border border-CCr-button-tertiary-border-v2',
       )}
     >
       {children}

@@ -79,7 +79,7 @@ export const ContextMenu = observer<{
       className={cn(
         'absolute',
         'bg-[#FFFEFD]',
-        'border border-Cr-border-opaque-light-v2',
+        'border border-Cr-border-opaque-v2',
         'rounded-C-dropdown-radius-v2',
         'z-1000',
         'overflow-y-auto',
@@ -87,7 +87,7 @@ export const ContextMenu = observer<{
       )}
       style={{
         boxShadow:
-          '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-light-v2, rgba(0, 0, 0, 0.12))',
+          '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-v2, rgba(0, 0, 0, 0.12))',
       }}
     >
       {model.filteredContextMenus.map((item, index) => {
@@ -137,7 +137,7 @@ export const ContextMenu = observer<{
             <ChevronRight
               size={16}
               strokeWidth={1.5}
-              className="h-full text-Cr-Fg-subtlest-light-v2"
+              className="h-full text-Cr-Fg-subtlest-v2"
             />
           </div>
         );

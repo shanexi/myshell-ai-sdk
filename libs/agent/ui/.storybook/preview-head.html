@@ -1,0 +1,37 @@
+<!-- https://github.com/storybookjs/storybook/discussions/26959#discussioncomment-12678109 -->
+<script>
+  // watchDarkModeInPreview.js
+  function watchDarkModeInPreview() {
+    const init = () => {
+      const html = document.documentElement;
+      if (!html) return;
+
+      const updateDarkMode = (matches) => {
+        if (matches) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+      };
+
+      // 检测系统暗黑模式偏好
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      // 初始设置
+      updateDarkMode(darkModeQuery.matches);
+
+      // 监听系统主题变化
+      darkModeQuery.addEventListener('change', (e) => {
+        updateDarkMode(e.matches);
+      });
+    };
+
+    if (document.readyState !== 'loading') {
+      init();
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
+    }
+  }
+
+  watchDarkModeInPreview();
+</script>

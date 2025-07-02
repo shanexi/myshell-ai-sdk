@@ -33,13 +33,13 @@ export const Think = observer<{ id: string; chunk_id: string; text: string }>(
           {model.isOpen ? (
             <ChevronUp
               strokeWidth={1.5}
-              className="text-Cr-Fg-subtle-light-v2"
+              className="text-Cr-Fg-subtle-v2"
               size={20}
             />
           ) : (
             <ChevronDown
               strokeWidth={1.5}
-              className="text-Cr-Fg-subtle-light-v2"
+              className="text-Cr-Fg-subtle-v2"
               size={20}
             />
           )}

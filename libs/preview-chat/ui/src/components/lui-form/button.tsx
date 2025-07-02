@@ -12,12 +12,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: cn(
-          'bg-CCr-button-tertiary-bg_default-light-v2',
-          'text-CCr-button-brand-fg_default-light-v2',
+          'bg-CCr-button-tertiary-bg_default-v2',
+          'text-CCr-button-brand-fg_default-v2',
         ),
         primary: cn(
-          'bg-CCr-button-primary-bg_default-light-v2',
-          'text-CCr-button-primary-fg_default-light-v2',
+          'bg-CCr-button-primary-bg_default-v2',
+          'text-CCr-button-primary-fg_default-v2',
         ),
       },
     },

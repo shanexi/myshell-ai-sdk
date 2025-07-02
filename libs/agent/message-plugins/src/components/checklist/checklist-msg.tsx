@@ -22,21 +22,21 @@ export const CheckList: React.FC<PropsWithChildren<{ title: string }>> = ({
         <Circle
           size={20}
           strokeWidth={1.5}
-          className="text-Cr-Fg-disabled-light-v2"
+          className="text-Cr-Fg-disabled-v2"
         />
         {title}
         {isOpen ? (
           <ChevronUp
             onClick={() => setIsOpen(!isOpen)}
             strokeWidth={1.5}
-            className="text-Cr-Fg-subtle-light-v2"
+            className="text-Cr-Fg-subtle-v2"
             size={20}
           />
         ) : (
           <ChevronDown
             onClick={() => setIsOpen(!isOpen)}
             strokeWidth={1.5}
-            className="text-Cr-Fg-subtle-light-v2"
+            className="text-Cr-Fg-subtle-v2"
             size={20}
           />
         )}
@@ -67,7 +67,7 @@ export const CheckListItem = observer<
     <div
       className={cn(
         'flex items-center gap-spacing-md-v2',
-        'border-l-1 border-Cr-border-default-light-v2',
+        'border-l-1 border-Cr-border-default-v2',
         'ml-[10px] pl-[10px]',
         model.hidden && 'hidden',
       )}
@@ -80,7 +80,7 @@ export const CheckListItem = observer<
         <Circle
           size={20}
           strokeWidth={1.5}
-          className="text-Cr-Fg-disabled-light-v2"
+          className="text-Cr-Fg-disabled-v2"
         />
       )}
       <RemarkMsg text={model.text} />
@@ -95,7 +95,7 @@ export const ChecklistCode: React.FC<
 > = ({ scheme, children }) => {
   return (
     <code
-      className="rounded-default-v2 border border-Cr-border-default-light-v2 bg-Cr-Bg-normal-secondary-default-light-v2 px-[6px] pt-[1px] pb-[3px]"
+      className="rounded-default-v2 border border-Cr-border-default-v2 bg-Cr-Bg-normal-secondary-default-v2 px-[6px] pt-[1px] pb-[3px]"
       onClick={() => {
         // 打开一个新的面板（Canvas）
         console.log('clicked', scheme);

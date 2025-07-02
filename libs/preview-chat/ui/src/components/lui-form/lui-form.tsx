@@ -110,20 +110,17 @@ export const LuiFormItemWrapper = (props: {
   }
   return (
     <div className="">
-      <label
-        htmlFor={name}
-        className="text-sm-medium text-Cr-text-default-light-v2"
-      >
+      <label htmlFor={name} className="text-sm-medium text-Cr-text-default-v2">
         {label}
       </label>
       {description && (
-        <div className="text-sm-regular mt-[4px] text-Cr-text-subtler-light-v2">
+        <div className="text-sm-regular mt-[4px] text-Cr-text-subtler-v2">
           {description}
         </div>
       )}
       <div className="mt-spacing-sm-v2">{children}</div>
       {err && (
-        <div className="mt-spacing-sm-v2 text-Cr-text-critical-default-light-v2">
+        <div className="mt-spacing-sm-v2 text-Cr-text-critical-default-v2">
           {err}
         </div>
       )}
@@ -141,9 +138,9 @@ export const FormHeader = (props: {
       className={cn(
         'px-spacing-3xl-v2 py-spacing-md-v2',
         'display-xs',
-        'text-Cr-text-default-light-v2',
+        'text-Cr-text-default-v2',
         'bg-white',
-        'border-b border-b-Cr-border-default-light-v2',
+        'border-b border-b-Cr-border-default-v2',
         'text-center',
         className,
       )}
@@ -158,7 +155,7 @@ export const LuiFormFooter = (props: { className?: string }) => {
   return (
     <div
       className={cn(
-        'border-t border-t-Cr-border-default-light-v2',
+        'border-t border-t-Cr-border-default-v2',
         'bg-white',
         'flex',
         'px-spacing-xl-v2 pt-spacing-lg-v2 pb-spacing-sm-v2',

@@ -21,7 +21,7 @@ export const ChatInputActionPlugin = observer(() => {
         />
         <div
           className={cn(
-            'mx-spacing-xs-v2 border border-Cr-Bg-neutral-on-surface-active-light-v2',
+            'mx-spacing-xs-v2 border border-Cr-Bg-neutral-on-surface-active-v2',
             'h-[16px] w-[1px]',
           )}
         ></div>
@@ -29,7 +29,7 @@ export const ChatInputActionPlugin = observer(() => {
           <CirclePlus
             strokeWidth={1.5}
             size={22}
-            className="cursor-pointer text-CCr-icon-button-plain-fg_default-light-v2"
+            className="cursor-pointer text-CCr-icon-button-plain-fg_default-v2"
           />
         </HiddenInputFile>
       </div>
@@ -38,13 +38,13 @@ export const ChatInputActionPlugin = observer(() => {
           onClick={() => model.sendText()}
           className={cn(
             'h-[28px] w-[28px]',
-            'bg-CCr-button-primary-bg_default-light-v2',
+            'bg-CCr-button-primary-bg_default-v2',
             'rounded-C-button-md-radius-v2',
             'flex items-center justify-center',
             'cursor-pointer',
           )}
         >
-          <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-light-v2" />
+          <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
         </div>
       ) : (
         <Mic strokeWidth={1.5} size={28} className="cursor-pointer p-[3px]" />

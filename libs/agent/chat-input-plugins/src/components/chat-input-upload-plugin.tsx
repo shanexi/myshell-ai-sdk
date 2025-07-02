@@ -59,8 +59,8 @@ const FilePreview: React.FC<{
     <div
       className={cn(
         'h-[56px] w-[156px]',
-        'border border-Cr-border-default-light-v2',
-        'bg-Cr-Bg-normal-primary-default-light-v2',
+        'border border-Cr-border-default-v2',
+        'bg-Cr-Bg-normal-primary-default-v2',
         'rounded-lg-v2',
         'relative',
         'group',
@@ -76,7 +76,7 @@ const FilePreview: React.FC<{
       >
         <div
           className={cn(
-            'rounded-C-button-sm-radius-v2 bg-Cr-utility-lake-blue-50-light-v2',
+            'rounded-C-button-sm-radius-v2 bg-Cr-utility-lake-blue-50-v2',
             'h-[32px] w-[32px]',
             'flex items-center justify-center',
             'mr-spacing-lg-v2',
@@ -85,10 +85,10 @@ const FilePreview: React.FC<{
           <File color="#fff" />
         </div>
         <div className="overflow-hidden">
-          <div className="description-lg-medium text-Cr-text-default-light-v2">
+          <div className="description-lg-medium text-Cr-text-default-v2">
             {previewItem.name}
           </div>
-          <div className="description-lg-regular truncate text-Cr-text-subtler-light-v2">
+          <div className="description-lg-regular truncate text-Cr-text-subtler-v2">
             {previewItem.label}
           </div>
         </div>
@@ -131,8 +131,8 @@ const Remove: React.FC<{
       className={cn(
         'absolute top-[-6px] right-[-6px]',
         'h-[20px] w-[20px] rounded-full-v2',
-        'bg-CCr-button-solid-bg_default-light-v2',
-        'border border-CCr-button-solid-border-light-v2',
+        'bg-CCr-button-solid-bg_default-v2',
+        'border border-CCr-button-solid-border-v2',
         'flex items-center justify-center',
         // 'visible',
         // TODO 在 shellagent group 没生效 先 visible
@@ -143,7 +143,7 @@ const Remove: React.FC<{
       {uploadComplete ? (
         <X size={12} />
       ) : (
-        <span className="loading loading-xs loading-spinner text-Cr-Fg-subtle-light-v2"></span>
+        <span className="loading loading-xs loading-spinner text-Cr-Fg-subtle-v2"></span>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ export const ReplyMsgLegacy: React.FC<Message> = ({ text, user }) => {
   return (
     <div className="flex px-spacing-xl-v2 py-spacing-lg-v2">
       <div className="w-[80%]">
-        <div className={cn('text-lg-regular', 'text-Cr-text-default-light-v2')}>
+        <div className={cn('text-lg-regular', 'text-Cr-text-default-v2')}>
           <article className="prose dark:prose-invert">
             <Markdown
               children={text}

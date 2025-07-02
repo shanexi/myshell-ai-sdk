@@ -22,7 +22,7 @@ export const ReplyWrapper: React.FC<
       className={cn(
         // 'p-spacing-lg-v2',
         'rounded-tl-sm-v2 rounded-tr-C-bubble-radius-v2 rounded-br-C-bubble-radius-v2 rounded-bl-C-bubble-radius-v2',
-        // 'transition-colors duration-200 hover:bg-Cr-Bg-normal-secondary-default-light-v2',
+        // 'transition-colors duration-200 hover:bg-Cr-Bg-normal-secondary-default-v2',
       )}
     >
       {children}

@@ -19,13 +19,13 @@ export const PollingMsg = observer(
       <span
         className={cn(
           'px-spacing-xl-v2 py-spacing-lg-v2',
-          'text-sm-medium text-Cr-text-default-light-v2',
+          'text-sm-medium text-Cr-text-default-v2',
         )}
       >
         {model.timeLeft > 0 ? (
           <>
             Will get response in{' '}
-            <span className="text-Cr-text-brand-default-light-v2">
+            <span className="text-Cr-text-brand-default-v2">
               {model.displayTime}
             </span>
             .

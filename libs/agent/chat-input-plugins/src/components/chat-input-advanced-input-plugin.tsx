@@ -26,7 +26,7 @@ export const ChatInputAdvancedInputPlugin = observer(() => {
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
           'max-h-[6lh] overflow-y-auto',
           model.chatCommon.edixModel.edixReadonly &&
-            'cursor-not-allowed text-Cr-text-subtlest-light-v2',
+            'cursor-not-allowed text-Cr-text-subtlest-v2',
         )}
         onKeyDown={(e) => {
           if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {

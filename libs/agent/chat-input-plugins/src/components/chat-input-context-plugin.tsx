@@ -52,11 +52,7 @@ const AddContext = observer(() => {
   return (
     <div className="tooltip" data-tip="Coming soon">
       <ContextWrapper>
-        <AtSign
-          strokeWidth={1.5}
-          size={16}
-          className="text-Cr-Fg-subtle-light-v2"
-        />
+        <AtSign strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-v2" />
         {model.isContextItemsEmpty && (
           <div className="text-sm-medium">Add context</div>
         )}
@@ -72,9 +68,9 @@ const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
         'inline-block',
         'group',
         'flex items-center gap-[6px]',
-        'bg-Cr-Bg-normal-secondary-alt-light-v2',
-        'hover:bg-Cr-Bg-normal-tertiary-active-light-v2',
-        'border border-Cr-border-default-light-v2',
+        'bg-Cr-Bg-normal-secondary-alt-v2',
+        'hover:bg-Cr-Bg-normal-tertiary-active-v2',
+        'border border-Cr-border-default-v2',
         'rounded-md-v2',
         'p-spacing-md-v2',
         'h-C-button-sm-height-v2 w-fit min-w-C-button-sm-height-v2',
@@ -107,7 +103,7 @@ const ContextItem: React.FC<{
       <Icon
         strokeWidth={1.5}
         size={16}
-        className={cn('text-Cr-Fg-subtle-light-v2', 'block group-hover:hidden')}
+        className={cn('text-Cr-Fg-subtle-v2', 'block group-hover:hidden')}
       />
       <X
         onClick={() => {
@@ -123,7 +119,7 @@ const ContextItem: React.FC<{
         strokeWidth={1.5}
         size={16}
         className={cn(
-          'text-Cr-Fg-subtle-light-v2',
+          'text-Cr-Fg-subtle-v2',
           'cursor-pointer',
           'hidden group-hover:block',
         )}

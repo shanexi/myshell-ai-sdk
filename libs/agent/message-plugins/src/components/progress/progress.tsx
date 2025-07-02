@@ -14,8 +14,8 @@ export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
         className={cn(
           'flex flex-col',
           // 'gap-[8px]',
-          'bg-Cr-Bg-normal-secondary-alt-light-v2',
-          'border border-Cr-border-default-light-v2',
+          'bg-Cr-Bg-normal-secondary-alt-v2',
+          'border border-Cr-border-default-v2',
           'p-spacing-lg-v2',
           'rounded-md-v2',
         )}

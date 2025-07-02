@@ -72,7 +72,7 @@ const Mask = () => {
       )}
     >
       <Dragging />
-      <div className="display-md-emphasized mt-[12px] text-center text-Cr-text-default-light-v2">
+      <div className="display-md-emphasized mt-[12px] text-center text-Cr-text-default-v2">
         Add any content
       </div>
       <div className="text-sm-regular mt-[4px] text-center">
