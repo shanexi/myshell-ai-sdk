@@ -4,7 +4,7 @@ import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
 import { ContentBlockableImpl } from '../remark/content-blockable-manager';
-import { content_blocks_schema } from '../remark/content-blocks-to-mdc';
+import { content_blocks_schema } from '../remark/content-blockable';
 
 /**
  * 换成 http entity，在 html 不需要 decode（因为是 escape 而非 encode？）

@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { content_blocks_schema } from './components/remark/content-blocks-to-mdc';
 import { error_message_schema } from './components/error/error-msg';
 import { loading_message_schema } from './components/loading/loading';
 import { progress_message_schema } from './components/progress/progress';
+import { content_blocks_schema } from './components/remark/content-blockable';
 
 export const OWN_MESSAGE_TYPE = 'agent:own';
 export const own_message_schema = z.object({

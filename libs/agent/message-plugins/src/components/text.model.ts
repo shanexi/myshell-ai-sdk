@@ -1,7 +1,9 @@
 import { injectable } from 'inversify';
 import { z } from 'zod';
-import { ContentBlockable } from './remark/content-blockable';
-import { content_blocks_schema } from './remark/content-blocks-to-mdc';
+import {
+  content_blocks_schema,
+  ContentBlockable,
+} from './remark/content-blockable';
 
 export const text_schema = z.object({
   type: z.literal('text'),

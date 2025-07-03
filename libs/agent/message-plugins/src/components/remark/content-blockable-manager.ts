@@ -1,12 +1,13 @@
 import { z } from 'zod';
-import {
-  content_block_schema,
-  content_blocks_schema,
-} from './content-blocks-to-mdc';
 import { injectable, interfaces } from 'inversify';
 import { Remarkable } from '@myshell-run/common-def';
 import { setupMdc } from '@myshell-run/common-ui';
-import { ContentBlockable, ContentBlockableFactory } from './content-blockable';
+import {
+  content_block_schema,
+  content_blocks_schema,
+  ContentBlockable,
+  ContentBlockableFactory,
+} from './content-blockable';
 import { TextModel } from '../text.model';
 
 /**

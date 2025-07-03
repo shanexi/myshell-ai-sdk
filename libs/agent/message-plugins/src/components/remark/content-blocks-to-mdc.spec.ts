@@ -5,7 +5,7 @@ import {
   msg4,
   msg6,
 } from '../__storybook_data__/backend_mock_message';
-import { content_blocks_schema } from './content-blocks-to-mdc';
+import { content_blocks_schema } from './content-blockable';
 
 describe('content block to mdc', () => {
   it('msg2', () => {
