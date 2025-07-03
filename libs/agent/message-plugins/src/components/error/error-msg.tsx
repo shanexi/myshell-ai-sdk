@@ -2,7 +2,17 @@ import { cn } from '@myshell-run/common-ui';
 import { CircleAlert } from 'lucide-react';
 import { useState } from 'react';
 import { z } from 'zod';
-import { error_message_schema } from '../../types';
+
+export const ERROR_MESSAGE_TYPE = 'error_message';
+
+export const error_message_schema = z.object({
+  type: z.literal(ERROR_MESSAGE_TYPE),
+  message_id: z.string(),
+  headers: z.object({}).passthrough(),
+  args: z.object({
+    content: z.string(),
+  }),
+});
 
 export const ErrorMessage: React.FC<z.infer<typeof error_message_schema>> = (
   props,

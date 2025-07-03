@@ -1,5 +1,8 @@
 import { z } from 'zod';
 import { content_blocks_schema } from './components/remark/content-blocks-to-mdc';
+import { error_message_schema } from './components/error/error-msg';
+import { loading_message_schema } from './components/loading/loading';
+import { progress_message_schema } from './components/progress/progress';
 
 export const OWN_MESSAGE_TYPE = 'agent:own';
 export const own_message_schema = z.object({
@@ -17,37 +20,9 @@ export const reply_message_schema = z
   })
   .passthrough();
 
-// ---
-
-export const ERROR_MESSAGE_TYPE = 'error_message';
-export const error_message_schema = z.object({
-  type: z.literal(ERROR_MESSAGE_TYPE),
-  message_id: z.string(),
-  headers: z.object({}).passthrough(),
-  args: z.object({
-    content: z.string(),
-  }),
-});
-
-export const LOADING_MESSAGE_TYPE = 'chat_status_message';
-export const loading_message_schema = z.object({
-  type: z.literal(LOADING_MESSAGE_TYPE),
-  message_id: z.string(),
-  args: z.object({
-    text: z.string(),
-  }),
-});
-
-export const PROGRESS_MESSAGE_TYPE = 'chat_progress_message';
-export const progress_message_schema = z.object({
-  type: z.literal(PROGRESS_MESSAGE_TYPE),
-  message_id: z.string(),
-  args: z.object({
-    progress: z.number(),
-    text: z.string(),
-  }),
-});
-
+/**
+ * 不包含 chat_history_message_schema
+ */
 export const agent_message_schema_1 = z.discriminatedUnion('type', [
   content_blocks_schema,
   error_message_schema,
@@ -70,5 +45,3 @@ export const agent_message_schema = z.discriminatedUnion('type', [
   progress_message_schema,
   chat_history_message_schema,
 ]);
-
-export type AgentMessage = z.infer<typeof agent_message_schema>;

@@ -8,23 +8,20 @@ import {
   CheckListItem,
 } from './components/checklist/checklist-msg';
 import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
-import { ErrorMessage } from './components/error/error-msg';
-import { Loading } from './components/loading/loading';
+import { ERROR_MESSAGE_TYPE, ErrorMessage } from './components/error/error-msg';
+import { Loading, LOADING_MESSAGE_TYPE } from './components/loading/loading';
 import { OwnMessage } from './components/own/own-msg';
 import { PollingMsg } from './components/polling/polling-msg';
 import { PollingMsgModel } from './components/polling/polling-msg.model';
-import { Progress } from './components/progress/progress';
+import {
+  Progress,
+  PROGRESS_MESSAGE_TYPE,
+} from './components/progress/progress';
 import { setUpMdcCotentBlock } from './components/remark/content-blockable-manager';
 import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
-import {
-  ERROR_MESSAGE_TYPE,
-  LOADING_MESSAGE_TYPE,
-  OWN_MESSAGE_TYPE,
-  PROGRESS_MESSAGE_TYPE,
-  REPLY_MESSAGE_TYPE,
-} from './types';
+import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from './types';
 
 function registerMesssage(
   bind: interfaces.Bind,

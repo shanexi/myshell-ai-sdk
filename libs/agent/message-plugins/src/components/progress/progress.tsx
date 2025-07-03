@@ -1,7 +1,17 @@
 import { cn } from '@myshell-run/common-ui';
 import { z } from 'zod';
-import { progress_message_schema } from '../../types';
 import { ReplyWrapper } from '../reply/reply-msg';
+
+export const PROGRESS_MESSAGE_TYPE = 'chat_progress_message';
+
+export const progress_message_schema = z.object({
+  type: z.literal(PROGRESS_MESSAGE_TYPE),
+  message_id: z.string(),
+  args: z.object({
+    progress: z.number(),
+    text: z.string(),
+  }),
+});
 
 export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
   args,

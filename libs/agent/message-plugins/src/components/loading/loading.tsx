@@ -1,7 +1,14 @@
 import { z } from 'zod';
-import { loading_message_schema } from '../../types';
 import { ReplyWrapper } from '../reply/reply-msg';
 
+export const LOADING_MESSAGE_TYPE = 'chat_status_message';
+export const loading_message_schema = z.object({
+  type: z.literal(LOADING_MESSAGE_TYPE),
+  message_id: z.string(),
+  args: z.object({
+    text: z.string(),
+  }),
+});
 export const Loading: React.FC<z.infer<typeof loading_message_schema>> = (
   props,
 ) => {
