@@ -16,7 +16,8 @@
           "libs/agent/ui/output.css",
           "libs/agent/ui/output-prefixed.css",
           "libs/agent/ui/**/*.svg"
-        ]
+        ],
+        "banner": "import React from 'react';"
       }
     },
     "build": {

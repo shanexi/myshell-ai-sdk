@@ -43,6 +43,7 @@ export function buildRollupConfig(
           file: input.bundleFile,
           format: 'es',
           interop: 'auto',
+          banner: input.banner,
         },
       ],
       external: [
