@@ -32,7 +32,7 @@ export const ChatMessageList: React.FC<{
           context={{}}
           style={{ flex: 1, scrollbarWidth: 'none' }}
           computeItemKey={({ data }) => data.key}
-          initialLocation={{ index: 'LAST', align: 'end' }}
+          initialLocation={{ index: 'LAST', align: 'start' }}
           // TODO ssr 只支持 top, 因为 bottom 需要计算 marginTop
           // shortSizeAlign="bottom"
           initialData={initialMessages}
