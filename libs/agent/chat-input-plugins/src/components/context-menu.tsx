@@ -39,7 +39,10 @@ export const ContextMenu = observer<{
     });
     // 虽然我很不喜欢 useEffect + deps 但是先这样
     // 这块是 AI 生成的
-  }, [model.chatCommon.edixModel.contextMenuRect]);
+  }, [
+    model.chatCommon.edixModel.contextMenuRect,
+    model.filteredContextMenus.length, // fix 搜索的时候 menu 位置
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

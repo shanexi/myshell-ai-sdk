@@ -1,5 +1,8 @@
 import { ChatInputDoc } from '@myshell-run/common-ui';
 
+/**
+ * 将 edix content_blocks 转换成后端接受的格式
+ */
 export function f2b_content_blocks(f: ChatInputDoc) {
   return f.map((row) =>
     row.map((block) => {
@@ -40,6 +43,7 @@ export function processBlockDirectiveNewLine(textList: string[]) {
 }
 
 /**
+ * @deprecated 由于 cause 现阶段交给 plugin 各自处理 不再需要
  * @see https://github.com/myshell-ai/myshell-chat/issues/38
  */
 export function mergeContentBlocksText(

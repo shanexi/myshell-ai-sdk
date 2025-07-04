@@ -93,7 +93,7 @@ export class EdixModel {
    */
   @observable chatInputDoc: ChatInputDoc = observable.array([]);
   @observable atSearchCriteria: AtSearchCriteria = null;
-  @observable contextMenuRect: DOMRect | null = null;
+  contextMenuRect: DOMRect | null = null;
   @observable isContextMenuShow = false;
 
   public edixRefPromise: Promise<boolean>;
