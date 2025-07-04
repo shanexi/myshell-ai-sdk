@@ -10,7 +10,6 @@ import {
 import { ChecklistItemModel } from './components/checklist/checklist-msg.model';
 import { ERROR_MESSAGE_TYPE, ErrorMessage } from './components/error/error-msg';
 import { Loading, LOADING_MESSAGE_TYPE } from './components/loading/loading';
-import { OwnMessage } from './components/own/own-msg';
 import { PollingMsg } from './components/polling/polling-msg';
 import { PollingMsgModel } from './components/polling/polling-msg.model';
 import {
@@ -22,6 +21,7 @@ import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
 import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from './types';
+import { OwnMessage } from './components/own/own-msg';
 
 function registerMesssage(
   bind: interfaces.Bind,
