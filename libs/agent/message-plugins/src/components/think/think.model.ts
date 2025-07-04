@@ -3,8 +3,10 @@ import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
 import { z } from 'zod';
-import { ContentBlockableImpl } from '../remark/content-blockable-manager';
-import { content_blocks_schema } from '../remark/content-blockable';
+import {
+  content_blocks_schema,
+  ContentBlockable,
+} from '../remark/content-blockable';
 
 /**
  * 换成 http entity，在 html 不需要 decode（因为是 escape 而非 encode？）
@@ -24,34 +26,48 @@ export const think_schema = z.object({
   }),
 });
 
+/**
+ * todo: 统一处理这种 ContentBlockable
+ */
 @injectable()
-export class ThinkModel extends ContentBlockableImpl implements Remarkable {
+export class ThinkModel implements Remarkable, ContentBlockable {
   @observable isOpen = true;
-  @observable text?: string;
+  /**
+   * 存储上一次的值
+   */
+  private text?: string;
+  /**
+   * 确保 idempotent
+   * todo: 是否有更好的方法
+   */
+  private chunkIdSet: Set<number> = new Set();
 
   constructor() {
-    super();
     makeObservable(this);
   }
 
   onUpdate(props: Properties) {
-    this.setText(props.chunk_id as string, props.text as string);
+    // text 更新交给了 @virtuoso.dev/message-list
+    // see https://github.com/myshell-ai/myshell-chat/issues/36
   }
 
-  textField(block: z.infer<typeof think_schema>) {
-    return escapeForAttribute(block.content.text);
-  }
-
-  doTransform(
+  transform(
     block: z.infer<typeof think_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
   ) {
-    return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.getText(block, chunk)}"}`;
-  }
+    if (this.chunkIdSet.has(chunk.id)) {
+      return `::x-${block.type}{#${chunk.message_id} text="${this.text}"}`;
+    }
+    this.chunkIdSet.add(chunk.id);
 
-  @action.bound
-  setText(chunkId: string, text: string) {
-    this.text = text;
+    const text =
+      escapeForAttribute(block.content.text) + /* 手动增加换行*/ '&#10;';
+    if (chunk.cause) {
+      this.text = text;
+    } else {
+      this.text = [this.text, text].filter((i) => i != null).join('');
+    }
+    return `::x-think{#${chunk.message_id} text="${this.text}"}`;
   }
 
   @action.bound

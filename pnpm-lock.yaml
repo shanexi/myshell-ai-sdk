@@ -76,6 +76,7 @@ specifiers:
   '@mdx-js/rollup': ^3.0.0
   '@microlabs/otel-cf-workers': 1.0.0-rc.49
   '@microsoft/fetch-event-source': ^2.0.1
+  '@ngneat/falso': ^8.0.1
   '@nrwl/cypress': 15.9.7
   '@nrwl/devkit': 15.9.7
   '@nrwl/eslint-plugin-nx': 15.9.7
@@ -382,6 +383,7 @@ dependencies:
   '@mdx-js/rollup': 3.1.0_acorn@8.14.1+rollup@4.40.2
   '@microlabs/otel-cf-workers': 1.0.0-rc.49_@opentelemetry+api@1.9.0
   '@microsoft/fetch-event-source': 2.0.1
+  '@ngneat/falso': 8.0.1
   '@nrwl/cypress': 15.9.7_ykkrez7cy5aucsjcbxu54zyhou
   '@nrwl/devkit': 15.9.7_6ee44cgqbn5okyq6iuxtn7xr6i_nx@15.9.7
   '@nrwl/eslint-plugin-nx': 15.9.7_muild6oohzqrimcxzpzwjexxcy
@@ -6609,6 +6611,13 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@ngneat/falso/8.0.1:
+    resolution: {integrity: sha512-C6NHC+4LaxIwJ4ARO/03ckBjt7eZB45Enj2EN5FtDYezZ6tDfvH1rIQ3P4hwWZlQpcMTRPKwBEXi3NCTyUV/zw==}
+    dependencies:
+      seedrandom: 3.0.5
+      uuid: 8.3.2
+    dev: false
 
   /@noble/hashes/1.7.1:
     resolution: {integrity: sha512-B8XBPsn4vT/KJAGqDzbwztd+6Yte3P4V7iafm24bxgDe/mlRuK6xmWPuCNrKt2vDafZ8MfJLlchDG/vYafQEjQ==}
@@ -28439,6 +28448,10 @@ packages:
 
   /secure-json-parse/2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
+    dev: false
+
+  /seedrandom/3.0.5:
+    resolution: {integrity: sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg==}
     dev: false
 
   /select-hose/2.0.0:

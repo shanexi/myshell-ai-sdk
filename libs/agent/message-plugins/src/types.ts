@@ -21,6 +21,15 @@ export const reply_message_schema = z
   .passthrough();
 
 /**
+ * 非 chat_message 和 chat_history_message_schema
+ */
+export const agent_message_schema_2 = z.discriminatedUnion('type', [
+  error_message_schema,
+  loading_message_schema,
+  progress_message_schema,
+]);
+
+/**
  * 不包含 chat_history_message_schema
  */
 export const agent_message_schema_1 = z.discriminatedUnion('type', [

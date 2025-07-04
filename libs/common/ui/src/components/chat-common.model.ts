@@ -39,13 +39,16 @@ export class ChatCommonModel {
     this.virtuosoRef = ref;
   };
 
+  /**
+   * @deprecated 当前阶段建议直接使用 virtuosoRef
+   */
   appendMsg(message: StrictMessage) {
     this.virtuosoRef?.current?.data.append(
       [message],
       ({ scrollInProgress, atBottom }) => {
         return {
           index: 'LAST',
-          align: 'end',
+          align: 'start',
           behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
         };
       },

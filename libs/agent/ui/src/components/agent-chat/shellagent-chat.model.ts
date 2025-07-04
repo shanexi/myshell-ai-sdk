@@ -6,102 +6,24 @@ import {
 import {
   agent_message_schema,
   content_blocks_schema,
-  ContentBlockableFactory,
   OWN_MESSAGE_TYPE,
-  REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
-import { makeObservable, toJS } from 'mobx';
+import { makeObservable } from 'mobx';
 import { isEmpty } from 'radash';
-import * as fs from 'fs';
-import * as path from 'path';
-import {
-  case2_msg1,
-  case2_msg2,
-  case2_msg3,
-  case2_msg4,
-  case2_msg5,
-  case2_msg6,
-  case2_msg7,
-  hi_msg,
-  think_msg_1,
-  think_msg_2,
-  history_msgs,
-} from '../../__storybook_data__/backend_message';
-import { f2b_content_blocks } from './shellagent-chat.utils';
 import { z } from 'zod';
-
-// Parse HAR data to extract WebSocket messages
-function extractChatMessagesFromHAR(): any[] {
-  try {
-    // const harPath = path.join(__dirname, 'HAR.json');
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const harContent = require('./HAR.json');
-
-    const chatMessages: any[] = [];
-
-    // Process all entries
-    harContent.log.entries.forEach((entry: any) => {
-      if (entry._webSocketMessages) {
-        entry._webSocketMessages.forEach((wsMessage: any) => {
-          // Only process 'receive' messages
-          // if (wsMessage.type === 'receive') {
-          // Parse Socket.IO message format: "42[\"event\", {...}]"
-          const match = wsMessage.data.match(/^\d+\["event",(.+)\]$/);
-          if (match) {
-            try {
-              const parsedMessage = JSON.parse(match[1]);
-              if (
-                parsedMessage &&
-                parsedMessage.type &&
-                parsedMessage.type.startsWith('chat_')
-              ) {
-                if (
-                  parsedMessage.headers.trace_context['x-b3-spanid'] ===
-                  'f128752fff6cec1f'
-                ) {
-                  console.log(parsedMessage);
-                  chatMessages.push(parsedMessage);
-                }
-                // console.log(parsedMessage)
-                // if (parsedMessage.id > 42 && parsedMessage.id < 50) {
-                // chatMessages.push(parsedMessage);
-                // }
-              }
-            } catch (e) {
-              // Ignore parse errors
-            }
-          }
-          // }
-        });
-      }
-    });
-
-    // // Sort messages by timestamp or message_id
-    // chatMessages.sort((a, b) => {
-    //   if (a.timestamp && b.timestamp) {
-    //     return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
-    //   }
-    //   return (a.message_id || 0) - (b.message_id || 0);
-    // });
-
-    return chatMessages;
-  } catch (error) {
-    console.warn('Failed to extract HAR messages:', error);
-    return [];
-  }
-}
+import { AgentChatHelper } from '../agent-chat.helper';
+import { extractChatMessagesFromHAR } from './har-utilts';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
-    @inject(ContentBlockableFactory)
-    private blockableFactory: ContentBlockableFactory,
+    @inject(AgentChatHelper) private helper: AgentChatHelper,
   ) {
     makeObservable(this);
   }
@@ -154,152 +76,32 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     yield;
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // Extract messages from HAR file
     const harMessages = extractChatMessagesFromHAR();
 
     // Use HAR messages if available, otherwise fallback to mock data
-    const mockResponses: Array<z.infer<typeof agent_message_schema>> = [
-      history_msgs,
-    ];
-    // harMessages.length > 0
-    //   ? harMessages
-    //   : [case2_msg1, case2_msg2, case2_msg3];
+    const mockResponses: Array<z.infer<typeof agent_message_schema>> =
+      harMessages;
+    // [chunk_msg1, chunk_msg2, chunk_msg3] as any[];
 
     for (const response of mockResponses) {
       if (response.type === 'chat_history_message') {
         response.args.data.forEach((data) => {
           if (data.type === 'chat_message') {
-            const d = content_blocks_schema.parse(data);
-            const message_id = String(d.message_id);
-            if (this.chatCommon.isMsgNoExists(message_id)) {
-              const text = d.args.content_blocks
-                .map((b) => {
-                  return this.blockableFactory(b.type, message_id).transform(
-                    b,
-                    d,
-                  );
-                })
-                .join(' ');
-              this.chatCommon.appendMsg({
-                key: message_id,
-                text,
-                type:
-                  d.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-              });
-            } else {
-              // TODO: 需要修改 KEY
-              this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-                if (message.key !== String(d.message_id)) {
-                  return message;
-                }
-                const text = d.args.content_blocks
-                  .map((b) => {
-                    return this.blockableFactory(b.type, message_id).transform(
-                      b,
-                      d,
-                    );
-                  })
-                  .join(' ');
-                return {
-                  ...message,
-                  text,
-                  type:
-                    d.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-                };
-              }, 'smooth');
-            }
+            this.helper.handleHistoryContentBlock(data);
           } else {
-            // 处理第一层 type
-            const message_id = String(data.message_id);
-            if (this.chatCommon.isMsgNoExists(message_id)) {
-              this.chatCommon.appendMsg({
-                key: message_id,
-                text: '',
-                type: data.type,
-                args: data.args,
-              });
-            } else {
-              this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-                return message.key === message_id
-                  ? { ...message, args: data.args, type: data.type }
-                  : message;
-              }, 'smooth');
-            }
+            this.helper.handleTypedMessage(data);
           }
         });
-      }
-      // TODO 优化这段多层 if-else
-      // console.log('response', response);
-      else if (response.type === 'chat_message') {
+      } else if (response.type === 'chat_message') {
         const res = content_blocks_schema.parse(response);
-        const message_id = String(res.message_id);
-        if (this.chatCommon.isMsgNoExists(message_id)) {
-          const text = res.args.content_blocks
-            .map((b) => {
-              return this.blockableFactory(b.type, message_id).transform(
-                b,
-                res,
-              );
-            })
-            .join(' ');
-          this.chatCommon.appendMsg({
-            key: message_id,
-            text,
-            type: res.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-          });
-        } else {
-          // TODO: 需要修改 KEY
-          this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-            if (message.key !== String(res.message_id)) {
-              return message;
-            }
-            const nextText = res.args.content_blocks
-              .map((b) => {
-                return this.blockableFactory(b.type, message_id).transform(
-                  b,
-                  res,
-                );
-              })
-              .join(' ');
-            let text: string;
-            if (res.cause) {
-              text = nextText; // 整体替换
-            } else {
-              // TODO 先临时处理下 block directive
-              if (nextText.startsWith('::')) {
-                text = message.text + '\n' + nextText;
-              } else {
-                text = message.text + nextText;
-              }
-            }
-            return {
-              ...message,
-              text,
-              type:
-                res.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-            };
-          }, 'smooth');
-        }
+        this.helper.handleContentBlock(res);
       } else {
-        // 处理第一层 type
-        const message_id = String(response.message_id);
-        if (this.chatCommon.isMsgNoExists(message_id)) {
-          this.chatCommon.appendMsg({
-            key: message_id,
-            text: '',
-            type: response.type,
-            args: response.args,
-          });
-        } else {
-          this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-            return message.key === message_id
-              ? { ...message, args: response.args, type: response.type }
-              : message;
-          }, 'smooth');
-        }
+        this.helper.handleTypedMessage(response);
       }
-
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 

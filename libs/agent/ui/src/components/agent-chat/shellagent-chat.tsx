@@ -13,8 +13,8 @@ export const ShellAgentChat = () => {
         <Chat />
       </div>
       <div className={cn('flex-1')}>
-        {/* <PreviewChat /> */}
-        <button
+        <PreviewChat />
+        {/* <button
           className="btn"
           onClick={() => {
             model.addToContext({
@@ -27,7 +27,7 @@ export const ShellAgentChat = () => {
           }}
         >
           Add to Chat
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -687,3 +687,57 @@ export const history_msgs = {
     ],
   },
 } as unknown as z.infer<typeof chat_history_message_schema>;
+
+export const chunk_msg1 = {
+  id: 70,
+  message_id: 1750767505381877,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '你好，有什么可以帮你的吗？',
+        },
+      },
+    ],
+  },
+};
+
+export const chunk_msg2 = {
+  id: 70,
+  message_id: 1750767505381877,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '我可以帮你实现任意功能，',
+        },
+      },
+    ],
+  },
+};
+
+export const chunk_msg3 = {
+  id: 70,
+  message_id: 1750767505381877,
+  timestamp: '2025-06-24T12:18:25.883996',
+  source: 'agent',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '请使用 *生成+功能名称* 命令来生成代码',
+        },
+      },
+    ],
+  },
+};

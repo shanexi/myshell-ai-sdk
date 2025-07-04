@@ -47,6 +47,7 @@
     "@mdx-js/rollup": "^3.0.0",
     "@microlabs/otel-cf-workers": "1.0.0-rc.49",
     "@microsoft/fetch-event-source": "^2.0.1",
+    "@ngneat/falso": "^8.0.1",
     "@nrwl/cypress": "15.9.7",
     "@nrwl/devkit": "15.9.7",
     "@nrwl/eslint-plugin-nx": "15.9.7",

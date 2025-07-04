@@ -1,12 +1,14 @@
 import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import { ContainerModule, interfaces } from 'inversify';
 import { AgentChatModel } from './components/agent-chat.model';
+import { AgentChatHelper } from './components/agent-chat.helper';
 
 export const agentUIModule = new ContainerModule((bind) => {
   bindAgentUI(bind);
 });
 
 export function bindAgentUI(bind: interfaces.Bind) {
+  bind(AgentChatHelper).toSelf().inSingletonScope();
   bind(AgentChatModel).toSelf().inSingletonScope();
   bind(AgentChatInputHandlers).toDynamicValue((ctx) =>
     ctx.container.get(AgentChatModel),

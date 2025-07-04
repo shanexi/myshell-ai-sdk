@@ -3,7 +3,6 @@ import { injectable, interfaces } from 'inversify';
 import { Remarkable } from '@myshell-run/common-def';
 import { setupMdc } from '@myshell-run/common-ui';
 import {
-  content_block_schema,
   content_blocks_schema,
   ContentBlockable,
   ContentBlockableFactory,
@@ -49,7 +48,7 @@ export class ContentBlockableManager {
 /**
  * @description 针对 setupMdc 进行一层 wrapper，增加 transform
  */
-export const setUpMdcCotentBlock = (
+export const setUpMdcContentBlock = (
   bind: interfaces.Bind,
   unbind: interfaces.Unbind,
   isBound: interfaces.IsBound,
@@ -108,62 +107,3 @@ export const setUpMdcCotentBlock = (
     registerMdcContentBlock,
   };
 };
-
-@injectable()
-export abstract class ContentBlockableImpl implements ContentBlockable {
-  // FIXME 其实 textAtrVal/chunkIdSet 按道理不应该参与到 transform 之外的 method 里
-  // implements 两个 interface 会内聚，但是有点耦合了，特别是 update 这块逻辑非常 fragile
-  // 使用一个 abstract 方法就是为了解耦 textAttrVal/chunkIdSet 两个字段
-  /**
-   * 存储上一次的值
-   */
-  private textAttrVal?: string;
-  /**
-   * 确保 idempotent
-   */
-  private chunkIdSet: Set<number> = new Set();
-
-  transform(
-    block: z.infer<typeof content_block_schema>,
-    chunk: z.infer<typeof content_blocks_schema>,
-  ) {
-    if (this.chunkIdSet.has(chunk.id)) {
-      return `::x-think{#${chunk.message_id} chunk_id="${chunk.id}" text="${this.textAttrVal}"}`;
-    }
-    this.chunkIdSet.add(chunk.id);
-
-    return this.doTransform(block, chunk);
-  }
-
-  /**
-   * child class 组装 mdc 的逻辑
-   */
-  abstract doTransform(
-    block: z.infer<typeof content_block_schema>,
-    chunk: z.infer<typeof content_blocks_schema>,
-  ): string;
-
-  /**
-   * 获取 content_block 需要的 text 字段，
-   * 这个 text 会根据 cause 有 append/replace 两种 behavior
-   */
-  abstract textField(block: z.infer<typeof content_block_schema>): string;
-
-  /**
-   * 封装根据 cause append/replace 的逻辑，child class 只需要 invoke getText 即可
-   */
-  protected getText(
-    block: z.infer<typeof content_block_schema>,
-    chunk: z.infer<typeof content_blocks_schema>,
-  ) {
-    const text = this.textField(block);
-    if (chunk.cause) {
-      this.textAttrVal = text;
-    } else {
-      this.textAttrVal = [this.textAttrVal, text]
-        .filter((i) => i != null)
-        .join('&#10;');
-    }
-    return this.textAttrVal;
-  }
-}

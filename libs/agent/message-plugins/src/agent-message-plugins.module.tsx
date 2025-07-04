@@ -17,7 +17,7 @@ import {
   Progress,
   PROGRESS_MESSAGE_TYPE,
 } from './components/progress/progress';
-import { setUpMdcCotentBlock } from './components/remark/content-blockable-manager';
+import { setUpMdcContentBlock } from './components/remark/content-blockable-manager';
 import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
@@ -48,7 +48,7 @@ function registerMdc(
   isBound: interfaces.IsBound,
   rebind: interfaces.Rebind,
 ) {
-  const { registerMdc, registerMdcContentBlock } = setUpMdcCotentBlock(
+  const { registerMdc, registerMdcContentBlock } = setUpMdcContentBlock(
     bind,
     unbind,
     isBound,

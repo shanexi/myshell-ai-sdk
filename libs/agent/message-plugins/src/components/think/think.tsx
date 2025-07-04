@@ -1,18 +1,11 @@
 import { cn, useRemarkable } from '@myshell-run/common-ui';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
 import { ThinkModel } from './think.model';
 
 export const Think = observer<{ id: string; chunk_id: string; text: string }>(
-  ({ id, chunk_id, text }) => {
+  ({ id, text }) => {
     const model = useRemarkable(ThinkModel, id);
-    useEffect(() => {
-      // console.log('only run once');
-      model.setText(chunk_id as string, text as string);
-      // FIXME: 除了用 deps 还有其他方法吗？
-      // 这里用 chunk_id 是为了支持 cause（整体消息替换）而不是更新
-    }, [chunk_id]);
     return (
       <div
         style={{
@@ -54,7 +47,7 @@ export const Think = observer<{ id: string; chunk_id: string; text: string }>(
               wordBreak: 'break-all',
             }}
           >
-            {model.text}
+            {text}
           </div>
         )}
       </div>
