@@ -87,6 +87,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // [chunk_msg1, chunk_msg2, chunk_msg3] as any[];
 
     for (const response of mockResponses) {
+      console.log('response', (response as any).time, response);
       if (response.type === 'chat_history_message') {
         response.args.data.forEach((data) => {
           if (data.type === 'chat_message') {
@@ -102,7 +103,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       } else {
         this.helper.handleTypedMessage(response);
       }
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 300));
     }
   }
 

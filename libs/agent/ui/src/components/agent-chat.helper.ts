@@ -38,13 +38,27 @@ export class AgentChatHelper {
     const message_id = String(chunk.message_id);
     if (this.chatCommon.isMsgNoExists(message_id)) {
       const text = this.contentBlockToText(chunk);
-      this.chatCommon.virtuosoRef?.current?.data.append([
-        {
-          key: message_id,
-          text,
-          type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
+      this.chatCommon.virtuosoRef?.current?.data.append(
+        [
+          {
+            key: message_id,
+            text,
+            type:
+              chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
+          },
+        ],
+        ({ scrollInProgress, atBottom }) => {
+          // 如果正在滚动或者不在底部，则不要滚动
+          // TODO: 提示新消息
+          if (scrollInProgress || !atBottom) return false;
+
+          return {
+            index: 'LAST',
+            align: 'start-no-overflow', // 和 start 的区别是，如果没有超过 viewport，则不动，超过了，才滚动到顶部
+            behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+          };
         },
-      ]);
+      );
     } else {
       this.chatCommon.virtuosoRef?.current?.data.map((message) => {
         if (message.key !== message_id) {
@@ -67,13 +81,25 @@ export class AgentChatHelper {
     const message_id = String(msg.message_id);
     const { type, args } = msg;
     if (this.chatCommon.isMsgNoExists(message_id)) {
-      this.chatCommon.virtuosoRef?.current?.data.append([
-        {
-          key: message_id,
-          text: '',
-          type,
+      this.chatCommon.virtuosoRef?.current?.data.append(
+        [
+          {
+            key: message_id,
+            text: '',
+            type,
+            args,
+          },
+        ],
+        ({ scrollInProgress, atBottom }) => {
+          if (scrollInProgress || !atBottom) return false;
+
+          return {
+            index: 'LAST',
+            align: 'start-no-overflow',
+            behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+          };
         },
-      ]);
+      );
     } else {
       this.chatCommon.virtuosoRef?.current?.data.map((message) => {
         return message.key === message_id

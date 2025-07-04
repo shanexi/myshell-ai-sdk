@@ -21,12 +21,12 @@ export function extractChatMessagesFromHAR(): any[] {
               if (
                 parsedMessage &&
                 parsedMessage.type &&
-                parsedMessage.type.startsWith('chat_')
+                parsedMessage.type.startsWith('chat_') &&
+                parsedMessage.type !== 'chat_progress_message'
               ) {
                 // if (
-                //   wsMessage.time >= 1751347667.2225049 &&
-                //   // wsMessage.time >= 1751358424.5088673 &&
-                //   wsMessage.time <= 1751358426.1575692
+                //   // wsMessage.time >= 1751347667.2225049 &&
+                //   wsMessage.time <= 1751347667.2225049
                 // ) {
                 chatMessages.push({
                   ...parsedMessage,
