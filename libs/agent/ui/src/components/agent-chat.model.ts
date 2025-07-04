@@ -14,20 +14,17 @@ export class AgentChatModel implements AgentChatInputHandlers {
   ) {
     makeObservable(this);
   }
-  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
-    yield;
-  }
 
   get chatCommon() {
     return this.factory(AGENT_CHAT);
   }
 
-  async *clear(): AsyncGenerator {
-    yield;
-  }
-
   get virtuosoRef() {
     return this.chatCommon.virtuosoRef;
+  }
+
+  async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
+    yield;
   }
 
   *removeImagePreview(id: string) {

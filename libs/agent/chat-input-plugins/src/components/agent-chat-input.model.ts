@@ -26,11 +26,6 @@ export type UploadItem = UppyState & {
 
 export interface AgentChatInputHandlers {
   /**
-   * @deprecated agent chat 不再支持 clear
-   */
-  clear(): AsyncGenerator;
-
-  /**
    * @deprecated 推荐使用 sendChatInputDoc
    * @description chat input 字符串， eg.g chat-input-textarea-plugin 和 chat-input-advanced-input-plugin
    */
@@ -248,15 +243,6 @@ export class AgentChatInputModel {
       await this.chatCommon.edixModel.clearEdix();
       this.chatCommon.addedContextMap.clear();
       this.chatCommon.uppyModel.clear();
-    }
-  }
-
-  /**
-   * @deprecated agent chat 不再支持 clear
-   */
-  async clear() {
-    for await (const _ of this.handlers.clear()) {
-      //
     }
   }
 

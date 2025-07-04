@@ -15,10 +15,6 @@ class SomeChatInputHandler implements AgentChatInputHandlers {
     console.log('sendText', text);
     yield;
   }
-  async *clear() {
-    console.log('clear');
-    yield;
-  }
 }
 
 export const container = new Container();

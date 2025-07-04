@@ -17,12 +17,7 @@ import { isEmpty } from 'radash';
 import { z } from 'zod';
 import { AgentChatHelper } from '../agent-chat.helper';
 import { extractChatMessagesFromHAR } from './har-utilts';
-import {
-  chunk_msg1,
-  chunk_msg2,
-  chunk_msg3,
-  hi_msg,
-} from '../../__storybook_data__/backend_message';
+import { hi_msg } from '../../__storybook_data__/backend_message';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -115,11 +110,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
   *removeImagePreview(id: string) {
     this.chatCommon.uppyModel.removeFile(id);
-    yield;
-  }
-
-  async *clear(): AsyncGenerator {
-    console.log('clear');
     yield;
   }
 
