@@ -1,45 +1,16 @@
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
 import remarkDirective from 'remark-directive';
-import { visit } from 'unist-util-visit';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
 
-type DirectiveNode = {
-  name: string;
-  attributes?: Record<string, string | null | undefined> | null;
-  children?: unknown[];
-};
+export function parseDirective(markdown: string) {
+  const tree = unified()
+    .use(remarkParse)
+    .use(remarkDirective)
+    .use(remarkGfm)
+    .parse(markdown);
 
-export function parseDirective(markdown: string): DirectiveNode[] {
-  const tree = unified().use(remarkParse).use(remarkDirective).parse(markdown);
-
-  const results: DirectiveNode[] = [];
-
-  visit(tree, (node) => {
-    if (
-      node.type === 'textDirective' ||
-      node.type === 'leafDirective' ||
-      node.type === 'containerDirective'
-    ) {
-      results.push({
-        name: node.name,
-        attributes: node.attributes,
-        // children: node.children, // 不支持 children
-      });
-    }
-  });
-
-  return results;
-}
-
-export function stringifyDirective(directive: DirectiveNode): string {
-  const attrs = directive.attributes
-    ? Object.entries(directive.attributes)
-        .filter(([_, v]) => v != null)
-        .map(([k, v]) => (k === 'id' ? `#${v}` : `${k}="${v}"`))
-        .join(' ')
-    : '';
-
-  return `::${directive.name}${attrs ? `{${attrs}}` : ''}`;
+  return tree;
 }
 
 /**

@@ -39,8 +39,6 @@ export interface ContentBlockable {
     chunk: z.infer<typeof content_blocks_schema>,
     message?: StrictMessage,
   ): string;
-
-  getLastText(message: StrictMessage): string;
 }
 
 export const ContentBlockableFactory = Symbol.for('ContentBlockableFactory');

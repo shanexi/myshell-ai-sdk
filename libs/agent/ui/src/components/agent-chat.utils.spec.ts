@@ -1,6 +1,7 @@
 import { ChatInputDoc } from '@myshell-run/common-ui';
 import {
   f2b_content_blocks,
+  mergeContentBlocksText,
   processBlockDirectiveNewLine,
 } from './agent-chat.utils';
 
@@ -69,6 +70,93 @@ describe('process directive newline', () => {
       "hello
       ::x-think
       "
+    `);
+  });
+});
+
+describe('merge same type', () => {
+  it('case 1', () => {
+    const a = [
+      {
+        type: 'think',
+        text: '🔧 Calling tool: **get_widget_schema_batch**',
+      },
+      {
+        type: 'think',
+        text: '&#10;✅ Tool **get_widget_schema_batch** executed successfully',
+      },
+    ];
+
+    const b = mergeContentBlocksText(a);
+    expect(b).toMatchInlineSnapshot(`
+      [
+        {
+          "text": "🔧 Calling tool: **get_widget_schema_batch**&#10;✅ Tool **get_widget_schema_batch** executed successfully",
+          "type": "think",
+        },
+      ]
+    `);
+  });
+
+  it('case 1', () => {
+    const a = [
+      {
+        type: 'think',
+        text: '🔧 Calling tool: **get_widget_schema_batch**',
+      },
+      {
+        type: 'button',
+        text: '&#10;✅ Tool **get_widget_schema_batch** executed successfully',
+      },
+    ];
+
+    const b = mergeContentBlocksText(a);
+    expect(b).toMatchInlineSnapshot(`
+      [
+        {
+          "text": "🔧 Calling tool: **get_widget_schema_batch**",
+          "type": "think",
+        },
+        {
+          "text": "&#10;✅ Tool **get_widget_schema_batch** executed successfully",
+          "type": "button",
+        },
+      ]
+    `);
+  });
+
+  it('case 2', () => {
+    const a = [
+      {
+        type: 'think',
+        text: '🔧 Calling tool: **get_widget_schema_batch**',
+      },
+      {
+        type: 'text',
+        text: 'hello',
+      },
+      {
+        type: 'think',
+        text: '🔧 Calling tool: **get_widget_schema_batch**',
+      },
+    ];
+
+    const b = mergeContentBlocksText(a);
+    expect(b).toMatchInlineSnapshot(`
+      [
+        {
+          "text": "🔧 Calling tool: **get_widget_schema_batch**",
+          "type": "think",
+        },
+        {
+          "text": "hello",
+          "type": "text",
+        },
+        {
+          "text": "🔧 Calling tool: **get_widget_schema_batch**",
+          "type": "think",
+        },
+      ]
     `);
   });
 });

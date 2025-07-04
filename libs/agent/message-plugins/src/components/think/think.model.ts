@@ -1,4 +1,5 @@
 import { Remarkable, StrictMessage } from '@myshell-run/common-def';
+import { escapeForAttribute, parseDirective } from '@myshell-run/common-ui';
 import { Properties } from 'hastscript';
 import { injectable } from 'inversify';
 import { action, makeObservable, observable } from 'mobx';
@@ -7,7 +8,8 @@ import {
   content_blocks_schema,
   ContentBlockable,
 } from '../remark/content-blockable';
-import { escapeForAttribute, parseDirective } from '@myshell-run/common-ui';
+import { LeafDirective } from 'mdast-util-directive';
+import { REPLY_MESSAGE_TYPE } from '../../types';
 
 export const think_schema = z.object({
   type: z.literal('think'),
@@ -22,6 +24,7 @@ export const think_schema = z.object({
 @injectable()
 export class ThinkModel implements Remarkable, ContentBlockable {
   @observable isOpen = true;
+
   constructor() {
     makeObservable(this);
   }
@@ -31,31 +34,36 @@ export class ThinkModel implements Remarkable, ContentBlockable {
     // see https://github.com/myshell-ai/myshell-chat/issues/36
   }
 
-  getLastText(message: StrictMessage): string {
-    const directives = parseDirective(message.text);
-    const text = directives[0]?.attributes?.text;
-    if (!text) {
-      throw new Error(`invalid directive ${message.text}`);
-    }
-    return text;
-  }
-
   transform(
     block: z.infer<typeof think_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
-    message: StrictMessage,
+    message?: StrictMessage,
   ) {
     const text = escapeForAttribute(block.content.text);
-    if (chunk.cause || !message?.text) {
+    if (
+      chunk.cause ||
+      !message ||
+      message.type !==
+        /* 替换场景，有可能是前置消息不是 content block */ REPLY_MESSAGE_TYPE
+    ) {
       return `::x-think{#${chunk.message_id} text="${text}"}`;
+    } else {
+      const directive = parseDirective(message.text);
+      const lastText = (directive.children[0] as LeafDirective).attributes
+        ?.text;
+      if (lastText == null) {
+        console.warn(
+          'parse diretive failed, fallback to replace',
+          message.text,
+        );
+        return `::x-think{#${chunk.message_id} text="${text}"}`;
+      } else {
+        const nextText = [escapeForAttribute(lastText), text]
+          .filter((i) => i != null)
+          .join('&#10;');
+        return `::x-think{#${chunk.message_id} text="${nextText}"}`;
+      }
     }
-
-    const directives = parseDirective(message.text);
-    const lastText = directives[0]?.attributes?.text;
-    if (!lastText) {
-      throw new Error(`invalid directive ${message.text}`);
-    }
-    return `::x-think{#${chunk.message_id} text="${escapeForAttribute(lastText) + '&#10;' + text}"}`;
   }
 
   @action.bound

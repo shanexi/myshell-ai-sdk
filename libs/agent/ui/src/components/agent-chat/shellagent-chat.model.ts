@@ -102,7 +102,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       } else {
         this.helper.handleTypedMessage(response);
       }
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 

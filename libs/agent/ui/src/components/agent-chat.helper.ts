@@ -5,14 +5,14 @@ import {
   OWN_MESSAGE_TYPE,
   REPLY_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
-import { z } from 'zod';
-import { inject, injectable } from 'inversify';
 import {
   AGENT_CHAT,
   ChatCommonModelFactory,
   StrictMessage,
 } from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
+import { inject, injectable } from 'inversify';
+import { z } from 'zod';
 import { processBlockDirectiveNewLine } from './agent-chat.utils';
 
 @injectable()

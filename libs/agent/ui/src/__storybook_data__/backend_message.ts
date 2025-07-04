@@ -712,6 +712,7 @@ export const chunk_msg2 = {
   timestamp: '2025-06-24T12:18:25.883996',
   source: 'agent',
   type: 'chat_message',
+  cause: 1,
   args: {
     content_blocks: [
       {

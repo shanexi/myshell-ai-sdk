@@ -15,16 +15,13 @@ export const text_schema = z.object({
 
 @injectable()
 export class TextModel implements ContentBlockable {
-  getLastText(message: StrictMessage): string {
-    return message.text;
-  }
-
   transform(
     block: z.infer<typeof text_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
-    message: StrictMessage,
+    message?: StrictMessage,
   ): string {
     if (!message) return block.content.text;
+
     if (chunk.cause) {
       return block.content.text;
     } else {

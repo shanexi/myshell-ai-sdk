@@ -38,3 +38,26 @@ export function processBlockDirectiveNewLine(textList: string[]) {
   }, '');
   return text;
 }
+
+/**
+ * @see https://github.com/myshell-ai/myshell-chat/issues/38
+ */
+export function mergeContentBlocksText(
+  blocks: Array<{ type: string; text: string }>,
+) {
+  if (blocks.length === 0) return [];
+
+  return blocks.slice(1).reduce(
+    (acc, cur) => {
+      const last = acc[acc.length - 1];
+      // If adjacent blocks have the same type, merge them
+      if (last && last.type === cur.type) {
+        last.text = last.text + cur.text;
+      } else {
+        acc.push(cur);
+      }
+      return acc;
+    },
+    [blocks[0]],
+  );
+}
