@@ -56,10 +56,15 @@ export const ChatInputStructuredInputPlugin = observer(() => {
           'x-chat-input-advanced-input-plugin',
           'text-lg-regular',
           'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
-          'max-h-[6lh] overflow-y-auto',
+          'overflow-y-auto',
+          // 'max-h-[6lh]', // 改成了 style.height
           model.chatCommon.edixModel.edixReadonly &&
             'cursor-not-allowed text-Cr-text-subtlest-v2',
         )}
+        style={{
+          // 为了解决输入框导致的 message list 动画抖动问题
+          height: `${value.length === 0 ? 1 : value.length}lh`,
+        }}
         onKeyDown={(e) => {
           if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
