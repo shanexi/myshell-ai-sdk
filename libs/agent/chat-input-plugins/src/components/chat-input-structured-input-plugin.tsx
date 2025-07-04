@@ -1,8 +1,6 @@
 import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
@@ -104,7 +102,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
 `}</style>
       {model.chatCommon.edixModel.isContextMenuShow &&
         model.chatCommon.edixModel.contextMenuRect && (
-          <ContextMenu commingSoon={false} />
+          <ContextMenu comingSoon={false} />
         )}
     </>
   );

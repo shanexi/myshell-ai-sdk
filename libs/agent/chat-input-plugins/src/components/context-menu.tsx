@@ -9,8 +9,8 @@ import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
 export const ContextMenu = observer<{
-  commingSoon?: boolean;
-}>(({ commingSoon }) => {
+  comingSoon?: boolean;
+}>(({ comingSoon }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const model = useInjection(AgentChatInputModel);
 
@@ -59,7 +59,7 @@ export const ContextMenu = observer<{
           break;
         case 'Enter':
           e.preventDefault();
-          if (commingSoon) return;
+          if (comingSoon) return;
           model.onSelectContext(model.selectedMenuIndex);
           break;
         case 'Escape':
@@ -142,37 +142,40 @@ export const ContextMenu = observer<{
           </div>
         );
       })}
-
-      {/* Coming Soon 遮罩 */}
-      {commingSoon && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.4)',
-            backdropFilter: 'blur(2px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '8px',
-            zIndex: 10,
-          }}
-        >
-          <div
-            style={{
-              padding: '8px 16px',
-              fontSize: '14px',
-              fontWeight: '500',
-              color: '#666',
-            }}
-          >
-            Coming Soon
-          </div>
-        </div>
-      )}
+      {comingSoon && <ComingSoon />}
     </div>
   );
 });
+
+// Coming Soon 遮罩
+export const ComingSoon = () => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        backdropFilter: 'blur(2px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '8px',
+        zIndex: 10,
+      }}
+    >
+      <div
+        style={{
+          padding: '8px 16px',
+          fontSize: '14px',
+          fontWeight: '500',
+          color: '#666',
+        }}
+      >
+        Coming Soon
+      </div>
+    </div>
+  );
+};
