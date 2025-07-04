@@ -7,6 +7,8 @@ import {
 import { z } from 'zod';
 import { isEmpty } from 'radash';
 import { init } from '@paralleldrive/cuid2';
+import { FileKind, mimeData } from 'human-filetypes';
+import { MimeData } from 'human-filetypes/data';
 
 const createId = init({
   length: 32,
@@ -115,4 +117,42 @@ export function fuzzyMatch(
   }
 
   return { highlighted: [], score: 0 };
+}
+
+export const mimeData2: {
+  [mime: string]: MimeData;
+} = {
+  ...mimeData,
+  'text/markdown': {
+    extensions: ['.md'],
+    kind: FileKind.Text,
+    label: 'Markdown',
+  },
+};
+
+export function fromMime2(input: string): FileKind {
+  if (!input) return FileKind.Unknown;
+
+  const mime = `${input}`.toLowerCase().trim();
+
+  // human readable mime types image/ video/ audio/ font/
+  const [type] = mime.split('/');
+  switch (type) {
+    case 'image':
+      return FileKind.Image;
+    case 'video':
+      return FileKind.Video;
+    case 'audio':
+      return FileKind.Audio;
+    case 'font':
+      return FileKind.Font;
+  }
+
+  // non-human readable types: application/ text/
+  const match = mimeData2[mime];
+  if (match) {
+    return match.kind;
+  }
+
+  return FileKind.Unknown;
 }

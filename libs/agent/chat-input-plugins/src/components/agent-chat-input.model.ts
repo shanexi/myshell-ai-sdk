@@ -6,53 +6,14 @@ import {
   context_type_schema,
   UppyState,
 } from '@myshell-run/common-ui';
-import { FileKind, mimeData } from 'human-filetypes';
+import { FileKind } from 'human-filetypes';
 import { inject, injectable } from 'inversify';
 import { action, computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
-import { fuzzyMatch } from './agent-chat-input.utils';
-import { MimeData } from 'human-filetypes/data';
+import { fromMime2, fuzzyMatch, mimeData2 } from './agent-chat-input.utils';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
-
-const mimeData2: {
-  [mime: string]: MimeData;
-} = {
-  ...mimeData,
-  'text/markdown': {
-    extensions: ['.md'],
-    kind: FileKind.Text,
-    label: 'Markdown',
-  },
-};
-
-function fromMime2(input: string): FileKind {
-  if (!input) return FileKind.Unknown;
-
-  const mime = `${input}`.toLowerCase().trim();
-
-  // human readable mime types image/ video/ audio/ font/
-  const [type] = mime.split('/');
-  switch (type) {
-    case 'image':
-      return FileKind.Image;
-    case 'video':
-      return FileKind.Video;
-    case 'audio':
-      return FileKind.Audio;
-    case 'font':
-      return FileKind.Font;
-  }
-
-  // non-human readable types: application/ text/
-  const match = mimeData2[mime];
-  if (match) {
-    return match.kind;
-  }
-
-  return FileKind.Unknown;
-}
 
 // 使用 edix 里的统一类型
 export type ContextType = z.infer<typeof context_type_schema>;
