@@ -52,6 +52,7 @@ export class ThinkModel implements Remarkable, ContentBlockable {
       const lastText = (directive.children[0] as LeafDirective).attributes
         ?.text;
       if (lastText == null) {
+        // todo: 埋点
         console.warn(
           'parse diretive failed, fallback to replace',
           message.text,

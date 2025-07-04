@@ -114,12 +114,12 @@ export const ContextMenu = observer<{
                 ? 'bg-[#F5F4F2]'
                 : 'transparent',
             )}
+            onClick={() => {
+              model.onSelectContext(index);
+            }}
             onMouseEnter={() => model.setSelectedMenuIndex(index)}
           >
-            <div
-              onClick={() => model.onSelectContext(index)}
-              className={cn('flex items-center gap-spacing-sm-v2')}
-            >
+            <div className={cn('flex items-center gap-spacing-sm-v2')}>
               <Icon size={20} strokeWidth={1.5} />
               <span>
                 {item.highlightedName.map((segment, segmentIndex) => (
