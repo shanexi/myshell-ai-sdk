@@ -16,6 +16,9 @@ export const progress_message_schema = z.object({
 export const Progress: React.FC<z.infer<typeof progress_message_schema>> = ({
   args,
 }) => {
+  // 在 sotrybook hmr 会出现 args undef
+  if (!args) return <span></span>;
+
   const { progress, text } = args;
   if (progress === 100) return <span></span>;
   return (

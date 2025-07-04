@@ -20,3 +20,21 @@ export function f2b_content_blocks(f: ChatInputDoc) {
     }),
   );
 }
+
+export function processBlockDirectiveNewLine(textList: string[]) {
+  const text = textList.reduce((acc, cur) => {
+    if (cur.startsWith('::')) {
+      if (!acc.endsWith('\n')) {
+        acc = acc + '\n';
+      }
+      if (!cur.endsWith('\n')) {
+        cur = cur + '\n';
+      }
+      acc = acc + cur;
+    } else {
+      acc = acc + cur;
+    }
+    return acc;
+  }, '');
+  return text;
+}

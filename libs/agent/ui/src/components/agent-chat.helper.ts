@@ -7,8 +7,13 @@ import {
 } from '@myshell-run/agent-message-plugins';
 import { z } from 'zod';
 import { inject, injectable } from 'inversify';
-import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
+import {
+  AGENT_CHAT,
+  ChatCommonModelFactory,
+  StrictMessage,
+} from '@myshell-run/common-def';
 import { ChatCommonModel } from '@myshell-run/common-ui';
+import { processBlockDirectiveNewLine } from './agent-chat.utils';
 
 @injectable()
 export class AgentChatHelper {
@@ -23,19 +28,6 @@ export class AgentChatHelper {
 
   get chatCommon() {
     return this.factory(AGENT_CHAT);
-  }
-
-  /**
-   * 处理 chat_message 的 content_blocks -> text
-   */
-  private contentBlockToText(chunk: z.infer<typeof content_blocks_schema>) {
-    const message_id = String(chunk.message_id);
-    const text = chunk.args.content_blocks
-      .map((b) => {
-        return this.blockableFactory(b.type, message_id).transform(b, chunk);
-      })
-      .join('');
-    return text;
   }
 
   /**
@@ -58,52 +50,10 @@ export class AgentChatHelper {
         if (message.key !== message_id) {
           return message;
         }
-        const nextText = this.contentBlockToText(chunk);
-        let text: string;
-        if (chunk.cause) {
-          text = nextText; // 整体替换
-        } else {
-          // TODO 先临时处理下 block directive
-          if (nextText.startsWith('::')) {
-            text = nextText;
-          } else {
-            text = message.text + nextText;
-          }
-        }
+        const nextText = this.contentBlockToText(chunk, message);
         return {
           ...message,
-          text,
-          type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-        };
-      }, 'smooth');
-    }
-  }
-
-  /**
-   * 处理 chat_history_message（不涉及 chunk append）
-   * @see handleContentBlock
-   */
-  handleHistoryContentBlock(chunk: z.infer<typeof content_blocks_schema>) {
-    const message_id = String(chunk.message_id);
-    if (this.chatCommon.isMsgNoExists(message_id)) {
-      const text = this.contentBlockToText(chunk);
-      this.chatCommon.virtuosoRef?.current?.data.append([
-        {
-          key: message_id,
-          text,
-          type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-        },
-      ]);
-    } else {
-      // TODO: 需要修改 KEY
-      this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-        if (message.key !== String(chunk.message_id)) {
-          return message;
-        }
-        const text = this.contentBlockToText(chunk);
-        return {
-          ...message,
-          text,
+          text: nextText,
           type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
         };
       }, 'smooth');
@@ -131,5 +81,24 @@ export class AgentChatHelper {
           : message;
       }, 'smooth');
     }
+  }
+
+  /**
+   * 处理 chat_message 的 content_blocks -> text
+   */
+  private contentBlockToText(
+    chunk: z.infer<typeof content_blocks_schema>,
+    message?: StrictMessage,
+  ) {
+    const message_id = String(chunk.message_id);
+    const textList = chunk.args.content_blocks.map((b) => {
+      return this.blockableFactory(b.type, message_id).transform(
+        b,
+        chunk,
+        message,
+      );
+    });
+    const text = processBlockDirectiveNewLine(textList);
+    return text;
   }
 }

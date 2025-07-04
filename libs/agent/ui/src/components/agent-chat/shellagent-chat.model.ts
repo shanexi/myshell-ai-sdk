@@ -90,7 +90,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       if (response.type === 'chat_history_message') {
         response.args.data.forEach((data) => {
           if (data.type === 'chat_message') {
-            this.helper.handleHistoryContentBlock(data);
+            data.cause = 1; // 特殊处理 历史消息全部替换
+            this.helper.handleContentBlock(data);
           } else {
             this.helper.handleTypedMessage(data);
           }
@@ -101,7 +102,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       } else {
         this.helper.handleTypedMessage(response);
       }
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
   }
 

@@ -1,6 +1,7 @@
 export * from './utils';
 export * from './inversify-context';
 export * from './remark/remark-msg';
+export * from './remark/remark.utils';
 export * from './remark/remark-manager';
 export * from './setup-mdc';
 export * from './components/chat-common.model';

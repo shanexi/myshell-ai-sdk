@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { StrictMessage } from '@myshell-run/common-def';
 
 export const ContentBlockable = Symbol.for('ContentBlockable');
 
@@ -36,7 +37,10 @@ export interface ContentBlockable {
   transform(
     block: z.infer<typeof content_block_schema>,
     chunk: z.infer<typeof content_blocks_schema>,
+    message?: StrictMessage,
   ): string;
+
+  getLastText(message: StrictMessage): string;
 }
 
 export const ContentBlockableFactory = Symbol.for('ContentBlockableFactory');
