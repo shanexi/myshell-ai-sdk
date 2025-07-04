@@ -52,6 +52,7 @@ it('test anchor case2', () => {
     },
     {
       type: 'context',
+      // @ts-expect-error 暂不处理
       data: {
         content: 'Requirement ',
       },

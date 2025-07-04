@@ -143,7 +143,7 @@ export class EdixModel {
   ) {
     this.chatInputDoc = chatInputDoc;
     this.atSearchCriteria = getAtSearchCriteria(chatInputDoc, selection);
-    if (this.atSearchCriteria == null) {
+    if (this.atSearchCriteria?.char == null) {
       this.setAtRect(null);
       this.setAtContextMenuShow(false);
     }

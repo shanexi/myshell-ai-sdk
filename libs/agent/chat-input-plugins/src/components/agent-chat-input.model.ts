@@ -190,7 +190,6 @@ export class AgentChatInputModel {
     makeObservable(this);
   }
 
-  // todo: 优化，过滤之后，位置不对
   @computed get filteredContextMenus(): FilteredContextItem[] {
     const searchCriteria = this.chatCommon.edixModel.atSearchCriteria;
 

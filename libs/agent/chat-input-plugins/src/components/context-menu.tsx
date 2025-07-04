@@ -50,20 +50,29 @@ export const ContextMenu = observer<{
         case 'ArrowDown':
           e.preventDefault();
           model.setSelectedMenuIndex(
-            Math.min(
-              model.selectedMenuIndex + 1,
-              model.filteredContextMenus.length - 1,
-            ),
+            model.selectedMenuIndex === model.filteredContextMenus.length - 1
+              ? 0 // If at bottom, wrap to top
+              : model.selectedMenuIndex + 1,
           );
           break;
         case 'ArrowUp':
           e.preventDefault();
-          model.setSelectedMenuIndex(Math.max(model.selectedMenuIndex - 1, 0));
+          model.setSelectedMenuIndex(
+            model.selectedMenuIndex === 0
+              ? model.filteredContextMenus.length - 1 // If at top, wrap to bottom
+              : model.selectedMenuIndex - 1,
+          );
           break;
         case 'Enter':
           e.preventDefault();
           if (comingSoon) return;
-          model.onSelectContext(model.selectedMenuIndex);
+          model.onSelectContext(
+            // 特殊处理
+            Math.min(
+              model.filteredContextMenus.length - 1,
+              model.selectedMenuIndex,
+            ),
+          );
           break;
         case 'Escape':
           e.preventDefault();
@@ -75,6 +84,8 @@ export const ContextMenu = observer<{
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  if (model.filteredContextMenus.length === 0) return;
 
   return (
     <div
@@ -113,14 +124,21 @@ export const ContextMenu = observer<{
               'cursor-pointer',
               'px-spacing-sm-v2 py-spacing-xs-v2',
               'w-[180px]',
-              index === model.selectedMenuIndex
+              index ===
+                // 特殊处理
+                Math.min(
+                  model.selectedMenuIndex,
+                  model.filteredContextMenus.length - 1,
+                )
                 ? 'bg-[#F5F4F2]'
                 : 'transparent',
             )}
             onClick={() => {
               model.onSelectContext(index);
             }}
-            onMouseEnter={() => model.setSelectedMenuIndex(index)}
+            onMouseEnter={() => {
+              model.setSelectedMenuIndex(index);
+            }}
           >
             <div className={cn('flex items-center gap-spacing-sm-v2')}>
               <Icon size={20} strokeWidth={1.5} />
