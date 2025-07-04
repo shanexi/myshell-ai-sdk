@@ -17,6 +17,12 @@ import { isEmpty } from 'radash';
 import { z } from 'zod';
 import { AgentChatHelper } from '../agent-chat.helper';
 import { extractChatMessagesFromHAR } from './har-utilts';
+import {
+  chunk_msg1,
+  chunk_msg2,
+  chunk_msg3,
+  hi_msg,
+} from '../../__storybook_data__/backend_message';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -83,8 +89,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     // Use HAR messages if available, otherwise fallback to mock data
     const mockResponses: Array<z.infer<typeof agent_message_schema>> =
-      harMessages;
-    // [chunk_msg1, chunk_msg2, chunk_msg3] as any[];
+      // harMessages;
+      [hi_msg] as any[];
 
     for (const response of mockResponses) {
       console.log('response', (response as any).time, response);

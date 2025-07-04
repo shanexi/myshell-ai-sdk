@@ -1,11 +1,11 @@
 import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
+import { Braces, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
 import { AgentChatInputModel } from './agent-chat-input.model';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
-import { Braces, LucideProps } from 'lucide-react';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,16 +53,14 @@ export const ChatInputStructuredInputPlugin = observer(() => {
         className={cn(
           'x-chat-input-advanced-input-plugin',
           'text-lg-regular',
-          'my-spacing-xs-v2 w-full resize-none !px-spacing-sm-v2 outline-none',
+          'my-spacing-xs-v2',
+          'w-full resize-none !px-spacing-sm-v2 outline-none',
           'overflow-y-auto',
-          // 'max-h-[6lh]', // 改成了 style.height
+          'max-h-[6lh]',
+          'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
           model.chatCommon.edixModel.edixReadonly &&
             'cursor-not-allowed text-Cr-text-subtlest-v2',
         )}
-        style={{
-          // 为了解决输入框导致的 message list 动画抖动问题
-          height: `${value.length === 0 ? 1 : value.length}lh`,
-        }}
         onKeyDown={(e) => {
           if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
