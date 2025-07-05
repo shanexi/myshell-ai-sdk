@@ -35,7 +35,7 @@ function registerMesssage(
     isBound,
     rebind,
   );
-  addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
+  // addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
   addMessagePlugin(ERROR_MESSAGE_TYPE, ErrorMessage);
   addMessagePlugin(PROGRESS_MESSAGE_TYPE, Progress);

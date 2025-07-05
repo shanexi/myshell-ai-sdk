@@ -41,7 +41,7 @@ export const Checkpoint = () => {
           size={16}
           className="text-CCr-button-tertiary-fg_default-v2"
         />
-        <span className="text-sm-medium text-CCr-button-solid-fg_default-v2">
+        <span className="text-sm-medium cursor-pointer text-CCr-button-solid-fg_default-v2">
           Restore
         </span>
       </div>

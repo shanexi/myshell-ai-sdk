@@ -30,11 +30,11 @@ export function bindAgentUI(
   );
   // bind(UploadEndpoint).toConstantValue('http://localhost:3333/api/upload');
 
-  // const addMessagePlugin = addMessagePluginFactory(
-  //   bind,
-  //   unbind,
-  //   isBound,
-  //   rebind,
-  // );
-  // addMessagePlugin(OWN_MESSAGE_TYPE, ChatInput);
+  const addMessagePlugin = addMessagePluginFactory(
+    bind,
+    unbind,
+    isBound,
+    rebind,
+  );
+  addMessagePlugin(OWN_MESSAGE_TYPE, ChatInput);
 }
