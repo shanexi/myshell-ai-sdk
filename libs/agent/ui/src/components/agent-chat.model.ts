@@ -20,7 +20,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
   }
 
   get virtuosoRef() {
-    return this.chatCommon.virtuosoModel.virtuosoRef;
+    return this.chatCommon.virtuoso.virtuosoRef;
   }
 
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
@@ -28,7 +28,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
   }
 
   *removeImagePreview(id: string) {
-    this.chatCommon.uppyModel.removeFile(id);
+    this.chatCommon.uppy.removeFile(id);
     yield;
   }
 
@@ -36,7 +36,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
     const msgId = createId();
     const replyMsgId = createId();
 
-    this.chatCommon.virtuosoModel.appendMsg({
+    this.chatCommon.virtuoso.appendMsg({
       key: msgId,
       text: inputText,
       type: OWN_MESSAGE_TYPE,

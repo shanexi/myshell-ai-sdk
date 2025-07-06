@@ -58,12 +58,12 @@ export class PreviewChatModel
   async *sendText(text: string) {
     const msgId = createId();
     const replyId = createId();
-    this.chatCommon.virtuosoModel.appendMsg({
+    this.chatCommon.virtuoso.appendMsg({
       key: msgId,
       text: text,
       type: OWN_MESSAGE_TYPE,
     });
-    this.chatCommon.virtuosoModel.appendMsg({
+    this.chatCommon.virtuoso.appendMsg({
       key: replyId,
       text: text,
       type: REPLY_MESSAGE_TYPE,

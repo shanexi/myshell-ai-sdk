@@ -48,21 +48,21 @@ export class ChatInputModel {
   }
 
   get showSendButton() {
-    return !isEmpty(this.chatCommon.edixModel.inputText);
+    return !isEmpty(this.chatCommon.edix.inputText);
   }
 
   async sendText() {
-    if (isEmpty(this.chatCommon.edixModel.inputText)) {
+    if (isEmpty(this.chatCommon.edix.inputText)) {
       return;
     }
 
     for await (const _ of this.handlers.sendText(
-      this.chatCommon.edixModel.inputText,
+      this.chatCommon.edix.inputText,
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.edixModel.clearEdix();
+      await this.chatCommon.edix.clearEdix();
     }
   }
 

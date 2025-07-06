@@ -62,7 +62,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       text = text + uploads.map((u) => u.name).join(' ');
     }
 
-    this.chatCommon.virtuosoModel.appendMsg({
+    this.chatCommon.virtuoso.appendMsg({
       key: msgId,
       text,
       type: OWN_MESSAGE_TYPE,
@@ -110,14 +110,14 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   *removeImagePreview(id: string) {
-    this.chatCommon.uppyModel.removeFile(id);
+    this.chatCommon.uppy.removeFile(id);
     yield;
   }
 
   async *sendText(text: string) {
     const msgId = createId();
 
-    this.chatCommon.virtuosoModel.appendMsg({
+    this.chatCommon.virtuoso.appendMsg({
       key: msgId,
       text: text,
       type: OWN_MESSAGE_TYPE,
@@ -127,6 +127,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   addToContext(context: ContextItem) {
-    this.chatCommon.edixModel.addToContext(context);
+    this.chatCommon.edix.addToContext(context);
   }
 }

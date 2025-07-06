@@ -81,9 +81,9 @@ export class AgentChatInputModel {
 
   get canSend() {
     return (
-      !isEmpty(this.chatCommon.edixModel.inputText) ||
-      !this.chatCommon.edixModel.isChatInputDocEmpty ||
-      !isEmpty(this.chatCommon.uppyModel.previewItems)
+      !isEmpty(this.chatCommon.edix.inputText) ||
+      !this.chatCommon.edix.isChatInputDocEmpty ||
+      !isEmpty(this.chatCommon.uppy.previewItems)
     );
   }
 
@@ -91,44 +91,44 @@ export class AgentChatInputModel {
    * @deprecated 推荐使用 @see sendChatInputDoc
    */
   async sendText() {
-    if (isEmpty(this.chatCommon.edixModel.inputText)) {
+    if (isEmpty(this.chatCommon.edix.inputText)) {
       return;
     }
 
     for await (const _ of this.handlers.sendText(
-      this.chatCommon.edixModel.inputText,
+      this.chatCommon.edix.inputText,
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.edixModel.clearEdix();
+      await this.chatCommon.edix.clearEdix();
     }
   }
 
   async sendChatInputDoc() {
     if (
       !this.canSend ||
-      /* 回车选中 */ this.chatCommon.edixModel.isContextMenuShow
+      /* 回车选中 */ this.chatCommon.edix.isContextMenuShow
     ) {
       return;
     }
 
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
-      toJS(this.chatCommon.edixModel.chatInputDoc),
-      toJS(this.chatCommon.uppyModel.previewItems).map((item) => ({
+      toJS(this.chatCommon.edix.chatInputDoc),
+      toJS(this.chatCommon.uppy.previewItems).map((item) => ({
         ...item,
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
-      this.chatCommon.edixModel.addedContextItems.map((item) => toJS(item)),
+      this.chatCommon.edix.addedContextItems.map((item) => toJS(item)),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.edixModel.clearEdix();
-      this.chatCommon.edixModel.addedContextMap.clear();
-      this.chatCommon.uppyModel.clear();
+      await this.chatCommon.edix.clearEdix();
+      this.chatCommon.edix.addedContextMap.clear();
+      this.chatCommon.uppy.clear();
     }
   }
 

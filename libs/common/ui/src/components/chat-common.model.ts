@@ -7,9 +7,9 @@ import { VirtuosoModel } from './virtuoso.model';
 @injectable()
 export class ChatCommonModel {
   constructor(
-    @inject(UppyModel) public uppyModel: UppyModel,
-    @inject(EdixModel) public edixModel: EdixModel,
-    @inject(VirtuosoModel) public virtuosoModel: VirtuosoModel,
+    @inject(UppyModel) public uppy: UppyModel,
+    @inject(EdixModel) public edix: EdixModel,
+    @inject(VirtuosoModel) public virtuoso: VirtuosoModel,
   ) {
     makeObservable(this);
   }
