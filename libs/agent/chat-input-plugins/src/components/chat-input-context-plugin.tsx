@@ -4,7 +4,6 @@ import {
   context_type_schema,
   ContextType,
 } from '@myshell-run/common-ui';
-import { useInjection } from 'inversify-react';
 import {
   AtSign,
   Braces,
@@ -17,7 +16,10 @@ import {
 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
-import { AgentChatInputModel } from './agent-chat-input.model';
+import {
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+  useAgentChatInputModel,
+} from '../chat-input-model-factory';
 
 export const IconMap: Record<
   ContextType,
@@ -32,7 +34,7 @@ export const IconMap: Record<
 };
 
 export const ChatInputContextPlugin = observer(() => {
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
 
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
@@ -49,7 +51,7 @@ export const ChatInputContextPlugin = observer(() => {
 });
 
 const AddContext = observer(() => {
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
   return (
     <div className="tooltip" data-tip="Coming soon">
       <ContextWrapper>
@@ -97,7 +99,7 @@ const ContextItem: React.FC<{
     Icon = IconMap[typeRes.data];
   }
 
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
 
   return (
     <ContextWrapper>

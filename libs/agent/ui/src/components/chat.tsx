@@ -5,13 +5,16 @@ import { useInjection } from 'inversify-react';
 import { AgentChatModel } from './agent-chat.model';
 import { observer } from 'mobx-react-lite';
 import { ReactComponent as Dragging } from './dragging.svg';
+import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '@myshell-run/agent-chat-input-plugins';
 
 export const Chat = observer(() => {
   const model = useInjection(AgentChatModel);
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!dropTargetRef.current) return;
-    return model.chatInput.uppy.setup(dropTargetRef.current);
+    return model
+      .chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT)
+      .uppy.setup(dropTargetRef.current);
   }, []);
   return (
     <div ref={dropTargetRef} className="relative flex h-full flex-col">
@@ -21,7 +24,8 @@ export const Chat = observer(() => {
         initialMessages={[]}
       />
       <ChatInput />
-      {model.chatInput.uppy.isDragging && <Mask />}
+      {model.chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT).uppy
+        .isDragging && <Mask />}
     </div>
   );
 });

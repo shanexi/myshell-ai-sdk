@@ -1,14 +1,16 @@
+import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 import { cn, UploadItem } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { FileKind } from 'human-filetypes';
-import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { AgentChatInputModel } from './agent-chat-input.model';
-import { DEFAULT_AVATAR } from '@myshell-run/common-def';
+import {
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+  useAgentChatInputModel,
+} from '../chat-input-model-factory';
 
 export const ChatInputUploadPlugin = observer(() => {
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
   if (model.uppy.previewItems.length === 0) return <span />;
 
   return (
@@ -54,7 +56,7 @@ const FilePreview: React.FC<{
   previewItem: UploadItem;
   id: string;
 }> = ({ previewItem, id }) => {
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
   return (
     <div
       className={cn(
@@ -105,7 +107,7 @@ const ImagePreview: React.FC<{
   previewItem: UploadItem;
   id: string;
 }> = ({ previewItem, id }) => {
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
   return (
     <div className="group relative flex-none">
       <img

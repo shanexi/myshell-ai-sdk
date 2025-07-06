@@ -1,6 +1,5 @@
 import {
   ChatInputDoc,
-  context_schema,
   ContextItem,
   EdixModel,
   UploadItem,
@@ -9,7 +8,6 @@ import {
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
-import { z } from 'zod';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -55,6 +53,7 @@ export class AgentChatInputModel {
 
   /**
    * @deprecated 推荐使用 @see sendChatInputDoc
+   * TODO 暂时没想好怎么 plugin 化
    */
   async sendText() {
     if (isEmpty(this.edix.inputText)) {

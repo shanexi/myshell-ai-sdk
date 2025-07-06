@@ -1,4 +1,5 @@
 export * from './agent-chat-input-plugins.module';
+export * from './chat-input-model-factory';
 export * from './components/agent-chat-input.model';
 export * from './components/chat-input-action-plugin';
 export * from './components/chat-input-upload-plugin';

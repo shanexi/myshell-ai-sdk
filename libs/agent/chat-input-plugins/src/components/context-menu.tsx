@@ -1,10 +1,12 @@
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { cn, context_type_schema } from '@myshell-run/common-ui';
-import { useInjection } from 'inversify-react';
 import { Braces, ChevronRight, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import { AgentChatInputModel } from './agent-chat-input.model';
+import {
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+  useAgentChatInputModel,
+} from '../chat-input-model-factory';
 import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
@@ -12,7 +14,7 @@ export const ContextMenu = observer<{
   comingSoon?: boolean;
 }>(({ comingSoon }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
 
   useEffect(() => {
     if (!dropdownRef.current) return;

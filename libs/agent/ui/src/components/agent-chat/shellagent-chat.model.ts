@@ -1,6 +1,7 @@
 import {
   AgentChatInputHandlers,
   AgentChatInputModel,
+  AgentChatInputModelFactory,
 } from '@myshell-run/agent-chat-input-plugins';
 import {
   agent_message_schema,
@@ -29,8 +30,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
     @inject(AgentChatHelper) private helper: AgentChatHelper,
-    @inject('Factory<AgentChatInputModel>')
-    private chatInputFactory: () => AgentChatInputModel,
   ) {
     makeObservable(this);
   }

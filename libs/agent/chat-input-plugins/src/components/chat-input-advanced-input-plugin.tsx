@@ -1,13 +1,15 @@
 import { cn } from '@myshell-run/common-ui';
-import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { isEmpty } from 'radash';
 import { useEffect, useRef } from 'react';
-import { AgentChatInputModel } from './agent-chat-input.model';
+import {
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+  useAgentChatInputModel,
+} from '../chat-input-model-factory';
 
 export const ChatInputAdvancedInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
 
   useEffect(() => {
     if (!ref.current) return;

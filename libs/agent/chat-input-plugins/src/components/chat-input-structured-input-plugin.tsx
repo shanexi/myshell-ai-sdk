@@ -1,15 +1,17 @@
 import { cn, context_type_schema } from '@myshell-run/common-ui';
-import { useInjection } from 'inversify-react';
 import { Braces, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import { AgentChatInputModel } from './agent-chat-input.model';
+import {
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+  useAgentChatInputModel,
+} from '../chat-input-model-factory';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
 
 export const ChatInputStructuredInputPlugin = observer(() => {
   const ref = useRef<HTMLDivElement>(null);
-  const model = useInjection(AgentChatInputModel);
+  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
 
   useEffect(() => {
     if (!ref.current) return;
