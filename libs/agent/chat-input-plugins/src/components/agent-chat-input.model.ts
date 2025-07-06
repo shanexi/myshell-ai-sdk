@@ -10,6 +10,8 @@ import {
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
+import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
+import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -78,10 +80,23 @@ export class AgentChatInputModel {
 
   /**
    * @description chat input message 编辑态
+   * 会根据 messageId 将其他 chat input message enableMessage
    */
-  enableInput() {
+  enableInput(messageId: string = NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
     this.isMessage = false;
     this.edix.setEdixReadonly(false);
+
+    for (const [key, model] of agentChatInputModelMap.entries()) {
+      if (key === NO_MESSAGE_ID_AGENT_CHAT_INPUT) continue;
+      if (key !== messageId) {
+        model.enableMessage();
+      }
+    }
+  }
+
+  enableMessage() {
+    this.isMessage = true;
+    this.edix.setEdixReadonly(true);
   }
 
   get canSend() {

@@ -14,7 +14,8 @@ export const agentChatInputPluginsModule = new ContainerModule(
 );
 
 // 放全局和放在一个 singleton 的 manager 一样的，简单起见 放全局
-const agentChatInputModelMap = new Map<string, AgentChatInputModel>();
+// TODO: 这里 map 会外部使用，改成 manager 然后被 inject
+export const agentChatInputModelMap = new Map<string, AgentChatInputModel>();
 
 export function bindAgentChatInputPlugins(bind: interfaces.Bind) {
   bind(AgentChatInputModelFactory).toFactory<

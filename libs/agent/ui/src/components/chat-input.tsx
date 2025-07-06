@@ -1,5 +1,4 @@
 import {
-  AgentChatInputPluginProps,
   AgentChatInputPluginSlot,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
@@ -27,7 +26,7 @@ export const ChatInput: React.FC<{
     <div
       className={cn('px-spacing-xl-v2 py-spacing-md-v2')}
       onClick={() => {
-        chatInput.enableInput();
+        chatInput.enableInput(props.messageId);
       }}
     >
       <div
