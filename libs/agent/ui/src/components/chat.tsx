@@ -22,6 +22,7 @@ export const Chat = observer(() => {
         chatCommonModel={model.chatCommon}
         className="flex flex-grow flex-col overflow-auto px-[8px]"
         initialMessages={[]}
+        onClick={model.enableChatInputMessage}
       />
       <ChatInput />
       {model.chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT).uppy

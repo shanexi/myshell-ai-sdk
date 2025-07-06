@@ -1,6 +1,8 @@
 import {
   AgentChatInputHandlers,
   AgentChatInputModelFactory,
+  agentChatInputModelMap,
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
 } from '@myshell-run/agent-chat-input-plugins';
 import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
@@ -40,4 +42,9 @@ export class AgentChatModel implements AgentChatInputHandlers {
 
     yield;
   }
+
+  enableChatInputMessage = () => {
+    // 底部 chat input enableInput 将所有 message chat input enableMessage
+    this.chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT).enableInput();
+  };
 }

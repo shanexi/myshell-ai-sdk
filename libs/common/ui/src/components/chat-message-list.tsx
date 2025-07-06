@@ -15,7 +15,15 @@ export const ChatMessageList: React.FC<{
   style?: CSSProperties;
   licenseKey?: string;
   initialMessages?: StrictMessage[];
-}> = ({ className, style, licenseKey, initialMessages, chatCommonModel }) => {
+  onClick?: () => void;
+}> = ({
+  className,
+  style,
+  licenseKey,
+  initialMessages,
+  chatCommonModel,
+  onClick,
+}) => {
   const virtuoso =
     useRef<VirtuosoMessageListMethods<StrictMessage, MessageListContext>>(null);
   useEffect(() => {
@@ -24,7 +32,15 @@ export const ChatMessageList: React.FC<{
 
   return (
     // 必须 flex flex-col 才能让 `virtuoso.current.scrollToItem({ index: 0, align: "end" })` 正常工作，原因未细究，参考 https://virtuoso.dev/virtuoso-message-list/examples/ai-chatbot/
-    <div className={cn('flex flex-col', className)} style={style}>
+    <div
+      className={cn('flex flex-col', className)}
+      style={style}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof onClick === 'function') onClick();
+      }}
+    >
       <VirtuosoMessageListLicense licenseKey={licenseKey || ''}>
         <VirtuosoMessageList<StrictMessage, MessageListContext>
           id="x-agent-message-list"

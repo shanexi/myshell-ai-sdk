@@ -25,7 +25,9 @@ export const ChatInput: React.FC<{
   return (
     <div
       className={cn('px-spacing-xl-v2 py-spacing-md-v2')}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
         chatInput.enableInput(props.messageId);
       }}
     >
