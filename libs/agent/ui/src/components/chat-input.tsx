@@ -25,16 +25,17 @@ export const ChatInput: React.FC<{
 
   return (
     <div
-      className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}
+      className={cn('px-spacing-xl-v2 py-spacing-md-v2')}
       onClick={() => {
         chatInput.enableInput();
       }}
     >
       <div
         className={cn(
-          'rounded-lg-v2 border border-CCr-input-border-v2',
+          'rounded-lg-v2',
+          // 'border border-CCr-input-border-v2',
           'bg-CCr-input-bg_default-v2',
-          'p-spacing-xs-v2',
+          'py-spacing-sm-v2',
         )}
       >
         <AgentChatInputPluginSlot messageId={props.messageId} />

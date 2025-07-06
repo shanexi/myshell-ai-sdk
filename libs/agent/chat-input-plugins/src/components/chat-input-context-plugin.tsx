@@ -40,7 +40,10 @@ export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
 
     return (
       <div
-        className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}
+        className={cn(
+          'flex flex-wrap gap-spacing-md-v2',
+          'px-spacing-md-v2 py-spacing-xs-v2',
+        )}
       >
         {model.showAtContext && <AddContext messageId={messageId} />}
         {model.edix.addedContextItems.map((item) => (

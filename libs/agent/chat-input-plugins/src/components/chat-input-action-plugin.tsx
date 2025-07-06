@@ -7,10 +7,33 @@ import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
     const model = useAgentChatInputModel(messageId);
-    if (model.isMessage) return <span></span>;
+    if (model.isMessage)
+      return (
+        <div
+          className={cn(
+            'flex items-center justify-between',
+            'border-t border-t-Cr-border-default-v2',
+            'text-sm-regular',
+            'px-spacing-md-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
+          )}
+        >
+          {/* <span>Generating</span> */}
+          <span></span>
+          <span
+            className={cn(
+              'text-Cr-text-subtler-v2 hover:text-Cr-text-default-v2',
+              'cursor-pointer',
+            )}
+          >
+            Restore checkpoint
+          </span>
+        </div>
+      );
 
     return (
-      <div className={cn('flex items-center justify-between')}>
+      <div
+        className={cn('flex items-center justify-between', 'px-spacing-sm-v2')}
+      >
         <HiddenInputFile uppyModel={model.uppy}>
           <CirclePlus
             strokeWidth={1.5}

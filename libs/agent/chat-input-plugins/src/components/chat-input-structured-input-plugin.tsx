@@ -55,7 +55,7 @@ export const ChatInputStructuredInputPlugin =
             'x-chat-input-advanced-input-plugin',
             'text-lg-regular',
             'my-spacing-xs-v2',
-            'w-full resize-none !px-spacing-sm-v2 outline-none',
+            'w-full resize-none !px-spacing-md-v2 outline-none',
             'overflow-y-auto',
             'max-h-[6lh]',
             'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
