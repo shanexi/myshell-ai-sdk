@@ -5,6 +5,7 @@ export type AtSearchCriteria = {
   char: string;
   criteria: string;
 } | null;
+
 /**
  * 计算出当前用户 @ 后面的 criteira
  */
@@ -41,4 +42,47 @@ export function getAtSearchCriteria(
     char,
     criteria,
   };
+}
+
+// AI 生成
+export function fuzzyMatch(
+  text: string,
+  search: string,
+): { highlighted: Array<{ char: string; isMatch: boolean }>; score: number } {
+  const searchLower = search.toLowerCase();
+  const textLower = text.toLowerCase();
+
+  let searchIndex = 0;
+  let score = 0;
+  const highlighted: Array<{ char: string; isMatch: boolean }> = [];
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const charLower = textLower[i];
+
+    if (
+      searchIndex < searchLower.length &&
+      charLower === searchLower[searchIndex]
+    ) {
+      highlighted.push({ char, isMatch: true });
+      searchIndex++;
+      // Give higher score for consecutive matches
+      score += searchIndex === 1 ? 10 : 5;
+      // Bonus for matches at word boundaries
+      if (i === 0 || text[i - 1] === ' ' || text[i - 1] === '.') {
+        score += 5;
+      }
+    } else {
+      highlighted.push({ char, isMatch: false });
+    }
+  }
+
+  // Only return matches if all search characters were found
+  if (searchIndex === searchLower.length) {
+    // Bonus for shorter strings (better matches)
+    score += Math.max(0, 50 - text.length);
+    return { highlighted, score };
+  }
+
+  return { highlighted: [], score: 0 };
 }

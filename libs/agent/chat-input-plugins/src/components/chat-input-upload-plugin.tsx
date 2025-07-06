@@ -1,15 +1,15 @@
-import { cn } from '@myshell-run/common-ui';
+import { cn, UploadItem } from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { FileKind } from 'human-filetypes';
 import { useInjection } from 'inversify-react';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import { AgentChatInputModel, UploadItem } from './agent-chat-input.model';
+import { AgentChatInputModel } from './agent-chat-input.model';
 import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(AgentChatInputModel);
-  if (model.previewItems.length === 0) return <span />;
+  if (model.chatCommon.uppyModel.previewItems.length === 0) return <span />;
 
   return (
     <div
@@ -18,7 +18,7 @@ export const ChatInputUploadPlugin = observer(() => {
         'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
       )}
     >
-      {model.previewItems.map((item) => {
+      {model.chatCommon.uppyModel.previewItems.map((item) => {
         if (item.fileKind === FileKind.Image) {
           return (
             <ImagePreview

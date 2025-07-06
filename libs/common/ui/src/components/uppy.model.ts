@@ -7,7 +7,13 @@ import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
-import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
+import {
+  formatFileSize,
+  fromMime2,
+  getAllowedFileTypesDisplay,
+  mimeData2,
+} from './uppy.utils';
+import { FileKind } from 'human-filetypes';
 
 // 后端上传接口返回结构
 // export interface UploadResBody extends Body {
@@ -19,6 +25,11 @@ import { formatFileSize, getAllowedFileTypesDisplay } from './uppy.utils';
 //     url: string;
 //   };
 // }
+
+export type UploadItem = UppyState & {
+  fileKind: FileKind;
+  label?: string;
+};
 
 // 目前 python 返回的结构
 export interface UploadResBody extends Body {
@@ -56,6 +67,15 @@ export class UppyModel {
 
   constructor(@inject(UploadEndpoint) private uploadEndpoint: string) {
     makeObservable(this);
+  }
+
+  @computed get previewItems() {
+    const items = this.uppyState.map<UploadItem>(([id, item]) => ({
+      ...item,
+      fileKind: item.type != null ? fromMime2(item.type) : FileKind.Unknown,
+      label: item.type && mimeData2[item.type]?.label,
+    }));
+    return items;
   }
 
   private _uppy?: Uppy<Meta, UploadResBody>;

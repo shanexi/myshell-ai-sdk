@@ -41,7 +41,7 @@ export const ContextMenu = observer<{
     // 这块是 AI 生成的
   }, [
     model.chatCommon.edixModel.contextMenuRect,
-    model.filteredContextMenus.length, // fix 搜索的时候 menu 位置
+    model.chatCommon.edixModel.filteredContextMenus.length, // fix 搜索的时候 menu 位置
   ]);
 
   useEffect(() => {
@@ -49,34 +49,35 @@ export const ContextMenu = observer<{
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
-          model.setSelectedMenuIndex(
-            model.selectedMenuIndex === model.filteredContextMenus.length - 1
+          model.chatCommon.edixModel.setSelectedMenuIndex(
+            model.chatCommon.edixModel.selectedMenuIndex ===
+              model.chatCommon.edixModel.filteredContextMenus.length - 1
               ? 0 // If at bottom, wrap to top
-              : model.selectedMenuIndex + 1,
+              : model.chatCommon.edixModel.selectedMenuIndex + 1,
           );
           break;
         case 'ArrowUp':
           e.preventDefault();
-          model.setSelectedMenuIndex(
-            model.selectedMenuIndex === 0
-              ? model.filteredContextMenus.length - 1 // If at top, wrap to bottom
-              : model.selectedMenuIndex - 1,
+          model.chatCommon.edixModel.setSelectedMenuIndex(
+            model.chatCommon.edixModel.selectedMenuIndex === 0
+              ? model.chatCommon.edixModel.filteredContextMenus.length - 1 // If at top, wrap to bottom
+              : model.chatCommon.edixModel.selectedMenuIndex - 1,
           );
           break;
         case 'Enter':
           e.preventDefault();
           if (comingSoon) return;
-          model.onSelectContext(
+          model.chatCommon.edixModel.onSelectContext(
             // 特殊处理
             Math.min(
-              model.filteredContextMenus.length - 1,
-              model.selectedMenuIndex,
+              model.chatCommon.edixModel.filteredContextMenus.length - 1,
+              model.chatCommon.edixModel.selectedMenuIndex,
             ),
           );
           break;
         case 'Escape':
           e.preventDefault();
-          model.onClose();
+          model.chatCommon.edixModel.onClose();
           break;
       }
     };
@@ -85,7 +86,7 @@ export const ContextMenu = observer<{
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  if (model.filteredContextMenus.length === 0) return;
+  if (model.chatCommon.edixModel.filteredContextMenus.length === 0) return;
 
   return (
     <div
@@ -104,7 +105,7 @@ export const ContextMenu = observer<{
           '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-v2, rgba(0, 0, 0, 0.12))',
       }}
     >
-      {model.filteredContextMenus.map((item, index) => {
+      {model.chatCommon.edixModel.filteredContextMenus.map((item, index) => {
         let Icon: React.ForwardRefExoticComponent<
           Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
         >;
@@ -127,17 +128,17 @@ export const ContextMenu = observer<{
               index ===
                 // 特殊处理
                 Math.min(
-                  model.selectedMenuIndex,
-                  model.filteredContextMenus.length - 1,
+                  model.chatCommon.edixModel.selectedMenuIndex,
+                  model.chatCommon.edixModel.filteredContextMenus.length - 1,
                 )
                 ? 'bg-[#F5F4F2]'
                 : 'transparent',
             )}
             onClick={() => {
-              model.onSelectContext(index);
+              model.chatCommon.edixModel.onSelectContext(index);
             }}
             onMouseEnter={() => {
-              model.setSelectedMenuIndex(index);
+              model.chatCommon.edixModel.setSelectedMenuIndex(index);
             }}
           >
             <div className={cn('flex items-center gap-spacing-sm-v2')}>

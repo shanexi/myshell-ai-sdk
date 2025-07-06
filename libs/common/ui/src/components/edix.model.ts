@@ -12,11 +12,15 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'radash';
 import { RefObject } from 'react';
 import { z } from 'zod';
-import { AtSearchCriteria, getAtSearchCriteria } from './edix.utils';
+import {
+  AtSearchCriteria,
+  fuzzyMatch,
+  getAtSearchCriteria,
+} from './edix.utils';
 
 export const context_type_schema = z.enum([
   'preview',
@@ -80,6 +84,15 @@ const DEFAULT_CHAT_INPUT_DOC: ChatInputDoc = [
   ],
 ];
 
+// 使用 edix 里的统一类型
+export type ContextType = z.infer<typeof context_type_schema>;
+export type ContextItem = z.infer<typeof context_schema>;
+
+export type FilteredContextItem = ContextItem & {
+  highlightedName: Array<{ char: string; isMatch: boolean }>;
+  score: number;
+};
+
 // TODO: 将 chatInputDoc 和 plainSchema 暴露一些 SPI 交给上游（即 chat input plugin model 实现）
 @injectable()
 export class EdixModel {
@@ -102,8 +115,99 @@ export class EdixModel {
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
   public edixHandle: EditableHandle | null = null;
+  @observable selectedMenuIndex = 0;
+  @observable contextMenus = observable.array<ContextItem>([
+    { content: { name: 'Requirement' }, type: 'requirement' },
+    { content: { name: 'Preview' }, type: 'preview' },
+    { content: { name: 'Canvas' }, type: 'canvas' },
+    { content: { name: 'Test' }, type: 'test' },
+  ]);
   private edixRef?: RefObject<HTMLDivElement>;
+  /**
+   * @description 和 @see contextMenus 不一样，这里是在 输入框上方 context 区域选中的列表
+   * TODO 由于 insertContext 暂时没做，先不考虑联动
+   *
+   * 这个逻辑
+   * 1. 包含 非input 输入的 e.g. dnd(还没有实现) Add to Chat
+   * 2. input 输入的
+   *
+   * 同时 input 输入如果删除，是联动的
+   * input 可以重复输入，全部删除，联动的 context 才删除
+   * 而且 context 是属于 undo redo 管理的
+   *
+   * 我觉得可以先简化一下
+   * 1. hisotry 先不做
+   * 2. 联动先不做（删除 context 不删除 chatInput
+   *
+   * 因为现在 @ button 填写还没有做（只有 @ 输入 填写），也就是两者一定会同时存在
+   *
+   * 那 context items 就从 chatInputDoc 提取
+   *
+   */
+
+  // @observable addedContextItems = observable.array<ContextItem>([
+  //   {
+  //     id: 'requirement.feature1',
+  //     type: 'requirement',
+  //     name: 'requirement.feature1',
+  //   },
+  //   { id: 'preview.message1', type: 'preview', name: 'preview.message1' },
+  //   {
+  //     id: 'canvas.state1.inputs',
+  //     type: 'canvas',
+  //     name: 'canvas.state1.inputs',
+  //   },
+  //   { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
+  // ]);
+  // TODO: inserted context 暂时没做
+  // @computed get selectedContextItems() {
+  //   return unique(
+  //     this.chatCommon.edixModel.chatInputDoc
+  //       .flat()
+  //       .filter((d) => d.type === 'context')
+  //       .map((d) => ({
+  //         type: d.data.type,
+  //         name: d.data.content,
+  //       })),
+  //     (d) => `${d.type}:${d.name}`,
+  //   );
+  // }
   private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
+
+  constructor() {
+    makeObservable(this);
+    this.edixRefPromise = new Promise<boolean>((resolve) => {
+      this.edixRefResolve = resolve;
+    });
+  }
+
+  @computed get filteredContextMenus(): FilteredContextItem[] {
+    const searchCriteria = this.atSearchCriteria;
+
+    if (!searchCriteria || searchCriteria.criteria.trim() === '') {
+      return this.contextMenus.map((item) => ({
+        ...item,
+        highlightedName: item.content.name
+          .split('')
+          .map((char) => ({ char, isMatch: false })),
+        score: 0,
+      }));
+    }
+
+    const results = this.contextMenus
+      .map((item) => {
+        const match = fuzzyMatch(item.content.name, searchCriteria.criteria);
+        return {
+          ...item,
+          highlightedName: match.highlighted,
+          score: match.score,
+        };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return results;
+  }
 
   get isChatInputDocEmpty() {
     if (isEmpty(this.chatInputDoc.flat())) return true;
@@ -111,13 +215,6 @@ export class EdixModel {
     const item = this.chatInputDoc.flat()[0];
     if (item.type === 'text' && item.text === '') return true;
     return false;
-  }
-
-  constructor() {
-    makeObservable(this);
-    this.edixRefPromise = new Promise<boolean>((resolve) => {
-      this.edixRefResolve = resolve;
-    });
   }
 
   @action.bound
@@ -267,5 +364,19 @@ export class EdixModel {
   removeAddedContext(context: z.infer<typeof context_schema>) {
     const key = `${context.type}:${context.content.name}`;
     this.addedContextMap.delete(key);
+  }
+
+  @action.bound
+  setSelectedMenuIndex(index: number) {
+    this.selectedMenuIndex = index;
+  }
+
+  onClose() {
+    this.setAtRect(null);
+    this.setAtContextMenuShow(false);
+  }
+
+  onSelectContext(selectedIndex: number) {
+    this.insertContext(this.filteredContextMenus[selectedIndex]);
   }
 }

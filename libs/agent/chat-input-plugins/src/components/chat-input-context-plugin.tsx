@@ -2,6 +2,7 @@ import {
   cn,
   context_schema,
   context_type_schema,
+  ContextType,
 } from '@myshell-run/common-ui';
 import { useInjection } from 'inversify-react';
 import {
@@ -16,7 +17,7 @@ import {
 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
-import { AgentChatInputModel, ContextType } from './agent-chat-input.model';
+import { AgentChatInputModel } from './agent-chat-input.model';
 
 export const IconMap: Record<
   ContextType,

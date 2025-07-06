@@ -1,5 +1,6 @@
-// 这些都是 AI 生成的，由对应的 spec 来保证质量
-// 因为是 AI 生成，所以代码看起来很复杂
+import { MimeData } from 'human-filetypes/data';
+import { FileKind, mimeData } from 'human-filetypes';
+
 export function getAllowedFileTypesDisplay(
   allowedTypes: string[] | undefined | null,
 ): string {
@@ -170,4 +171,42 @@ export function formatEta(eta?: number): string {
   const hours = Math.floor(eta / 3600);
   const minutes = Math.floor((eta % 3600) / 60);
   return `${hours}h ${minutes}min`;
+}
+
+export const mimeData2: {
+  [mime: string]: MimeData;
+} = {
+  ...mimeData,
+  'text/markdown': {
+    extensions: ['.md'],
+    kind: FileKind.Text,
+    label: 'Markdown',
+  },
+};
+
+export function fromMime2(input: string): FileKind {
+  if (!input) return FileKind.Unknown;
+
+  const mime = `${input}`.toLowerCase().trim();
+
+  // human readable mime types image/ video/ audio/ font/
+  const [type] = mime.split('/');
+  switch (type) {
+    case 'image':
+      return FileKind.Image;
+    case 'video':
+      return FileKind.Video;
+    case 'audio':
+      return FileKind.Audio;
+    case 'font':
+      return FileKind.Font;
+  }
+
+  // non-human readable types: application/ text/
+  const match = mimeData2[mime];
+  if (match) {
+    return match.kind;
+  }
+
+  return FileKind.Unknown;
 }
