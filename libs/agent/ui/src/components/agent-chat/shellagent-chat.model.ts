@@ -100,7 +100,10 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
           }
         });
       } else if (response.type === 'chat_message') {
-        const res = content_blocks_schema.parse(response);
+        const res = content_blocks_schema.parse({
+          ...response,
+          message_id: new Date().valueOf(),
+        });
         this.helper.handleContentBlock(res);
       } else {
         this.helper.handleTypedMessage(response);

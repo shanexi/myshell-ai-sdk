@@ -82,7 +82,7 @@ export class UppyModel {
 
   get uppy() {
     if (!this._uppy) {
-      throw new Error('uppy is not initialized, check if setupUppy is called');
+      throw new Error('uppy is not initialized, check if setup is called');
     }
     return this._uppy;
   }

@@ -85,6 +85,8 @@ export class AgentChatInputModel {
   enableInput(messageId: string = NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
     this.isMessage = false;
     this.edix.setEdixReadonly(false);
+    this.chatCommon.setEnabledChatInputMessageId(messageId);
+
     if (messageId !== NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
       const messageIndex =
         this.chatCommon.virtuoso.virtuosoRef?.current?.data.findIndex(
@@ -98,6 +100,9 @@ export class AgentChatInputModel {
             if (index > messageIndex) {
               return { ...item, toDelete: true };
             } else {
+              if (item.toDelete) {
+                delete item.toDelete;
+              }
               return item;
             }
           },
@@ -152,7 +157,6 @@ export class AgentChatInputModel {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
-
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
       toJS(this.edix.chatInputDoc),
@@ -163,9 +167,24 @@ export class AgentChatInputModel {
       })),
       this.edix.addedContextItems.map((item) => toJS(item)),
     )) {
+      // 则需要进行删除 包括自身消息也要删除
+      // 因为会重新 append（message id 需要更改）
+      this.chatCommon.virtuoso.virtuosoRef?.current?.data.findAndDelete(
+        (item) => {
+          return (
+            item.toDelete === true ||
+            item.key === this.chatCommon.enabledChatInputMessageId
+          );
+        },
+      );
+      this.chatCommon.setEnabledChatInputMessageId(
+        NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+      );
+
       await this.edix.clearEdix();
       this.edix.addedContextMap.clear();
-      this.uppy.clear();
+      // FIXME 上传图片的选择哪一个？
+      // this.uppy.clear();
     }
   }
 
