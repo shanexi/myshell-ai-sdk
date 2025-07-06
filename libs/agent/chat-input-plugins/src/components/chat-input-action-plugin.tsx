@@ -32,15 +32,15 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
             <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
           </div>
         ) : (
-          <div className="tooltip" data-tip="Coming soon">
-            <Mic
-              strokeWidth={1.5}
-              size={28}
-              className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
-            />
-          </div>
+          <Mic
+            strokeWidth={1.5}
+            size={28}
+            className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
+          />
         )}
       </div>
     );
   },
 );
+
+ChatInputActionPlugin.displayName = 'ChatInputActionPlugin';

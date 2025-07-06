@@ -1,5 +1,6 @@
 import { useInjection } from 'inversify-react';
 import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
+import { FunctionComponent } from 'react';
 
 /**
  * @description ChatInput 可能有 message 形式
@@ -12,9 +13,7 @@ export type AgentChatInputPluginProps = {
 };
 
 export const AgentChatInputPlugin = Symbol.for('ChatInputPlugin');
-export type AgentChatInputPlugin = (
-  props: AgentChatInputPluginProps,
-) => JSX.Element;
+export type AgentChatInputPlugin = FunctionComponent<AgentChatInputPluginProps>;
 
 export const AgentChatInputPluginSlot: React.FC<AgentChatInputPluginProps> = ({
   messageId,
@@ -23,7 +22,7 @@ export const AgentChatInputPluginSlot: React.FC<AgentChatInputPluginProps> = ({
   return plugins.map((Plugin, index) => {
     return (
       <Plugin
-        key={`${messageId || NO_MESSAGE_ID_AGENT_CHAT_INPUT}-${Plugin.name}`}
+        key={`${messageId || NO_MESSAGE_ID_AGENT_CHAT_INPUT}-${Plugin.displayName}`}
         messageId={messageId}
       />
     );

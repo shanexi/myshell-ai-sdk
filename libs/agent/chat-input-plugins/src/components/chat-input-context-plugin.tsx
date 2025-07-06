@@ -35,11 +35,14 @@ export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
     const model = useAgentChatInputModel(messageId);
 
+    if (!model.showAtContext && model.edix.addedContextItems.length === 0)
+      return null;
+
     return (
       <div
         className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}
       >
-        <AddContext messageId={messageId} />
+        {model.showAtContext && <AddContext messageId={messageId} />}
         {model.edix.addedContextItems.map((item) => (
           <ContextItem
             key={item.content.name}
@@ -53,17 +56,17 @@ export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
   },
 );
 
+ChatInputContextPlugin.displayName = 'ChatInputContextPlugin';
+
 const AddContext = observer<AgentChatInputPluginProps>(({ messageId }) => {
   const model = useAgentChatInputModel(messageId);
   return (
-    <div className="tooltip" data-tip="Coming soon">
-      <ContextWrapper>
-        <AtSign strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-v2" />
-        {model.isContextItemsEmpty && (
-          <div className="text-sm-medium">Add context</div>
-        )}
-      </ContextWrapper>
-    </div>
+    <ContextWrapper>
+      <AtSign strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-v2" />
+      {model.isContextItemsEmpty && (
+        <div className="text-sm-medium">Add context</div>
+      )}
+    </ContextWrapper>
   );
 });
 

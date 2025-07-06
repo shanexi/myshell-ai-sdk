@@ -62,3 +62,5 @@ export const ChatInputAdvancedInputPlugin = observer<AgentChatInputPluginProps>(
     );
   },
 );
+
+ChatInputAdvancedInputPlugin.displayName = 'ChatInputAdvancedInputPlugin';

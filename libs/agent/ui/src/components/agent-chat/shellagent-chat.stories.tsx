@@ -1,24 +1,24 @@
 import {
+  AgentChatInputHandlers,
+  AgentChatInputPlugin,
   agentChatInputPluginsModule,
   ChatInputActionPlugin,
   ChatInputContextPlugin,
-  AgentChatInputHandlers,
-  AgentChatInputPlugin,
   ChatInputStructuredInputPlugin,
   ChatInputUploadPlugin,
 } from '@myshell-run/agent-chat-input-plugins';
 import { agentMessagePluginsModule } from '@myshell-run/agent-message-plugins';
+import { UploadEndpoint } from '@myshell-run/common-def';
 import { commonUIModule } from '@myshell-run/common-ui';
-import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
+import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
+import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-plugins';
+import { previewChatUIModule } from '@myshell-run/preview-chat-ui';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Container, ContainerModule, interfaces } from 'inversify';
 import { Provider as InversifyProvider } from 'inversify-react';
 import { agentUIModule } from '../../agent-ui.module';
 import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
-import { UploadEndpoint } from '@myshell-run/common-def';
-import { previewChatUIModule } from '@myshell-run/preview-chat-ui';
-import { previewChatMsgItemPluginsModule } from '@myshell-run/preview-chat-message-plugins';
-import { previewChatInputPluginsModule } from '@myshell-run/preview-chat-input-plugins';
 
 const storyModule = new ContainerModule(
   (

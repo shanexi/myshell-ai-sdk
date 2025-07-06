@@ -19,7 +19,7 @@ export const ChatInput: React.FC<{
   const chatInput = useAgentChatInputModel(props.messageId);
   useEffect(() => {
     if (props.messageId && props.args) {
-      chatInput.setAsMessage(props.args);
+      chatInput.setupMessage(props.args);
     }
   }, [props.messageId]);
 
@@ -27,7 +27,7 @@ export const ChatInput: React.FC<{
     <div
       className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}
       onClick={() => {
-        chatInput.enableInputAsMessage();
+        chatInput.enableInput();
       }}
     >
       <div

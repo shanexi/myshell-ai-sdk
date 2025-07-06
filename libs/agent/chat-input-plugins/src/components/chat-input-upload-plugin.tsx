@@ -154,3 +154,5 @@ const Remove: React.FC<{
     </div>
   );
 };
+
+ChatInputUploadPlugin.displayName = 'ChatInputUploadPlugin';

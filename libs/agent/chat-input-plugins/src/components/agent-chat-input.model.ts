@@ -47,23 +47,39 @@ export class AgentChatInputModel {
     return this.chatCommonFactory(AGENT_CHAT);
   }
 
-  @observable isMessage = false;
+  /**
+   * @description 表示 chat input 状态 true: message 编辑态 false: message 只读态
+   * undefined 非 message 形态
+   * 先用 boolean? 表示3种状态
+   */
+  @observable isMessage?: boolean;
 
   @computed get isContextItemsEmpty() {
     return this.edix.addedContextItems.length === 0;
   }
 
+  get isForbidden() {
+    return this.edix.edixReadonly && this.isMessage == null;
+  }
+
+  get showAtContext() {
+    return this.isMessage == null || this.isMessage === false;
+  }
+
   /**
-   * @description chat input message 形态
+   * @description chat input message 形态收到消息后的初始设置
    */
-  setAsMessage(chatInputDoc: ChatInputDoc) {
+  setupMessage(chatInputDoc: ChatInputDoc) {
     this.isMessage = true;
     // TODO 还有 context
     this.edix.setChatInputDoc(chatInputDoc);
     this.edix.setEdixReadonly(true);
   }
 
-  enableInputAsMessage() {
+  /**
+   * @description chat input message 编辑态
+   */
+  enableInput() {
     this.isMessage = false;
     this.edix.setEdixReadonly(false);
   }

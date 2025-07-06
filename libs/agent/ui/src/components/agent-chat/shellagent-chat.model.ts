@@ -90,7 +90,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       [hi_msg] as any[];
 
     for (const response of mockResponses) {
-      console.log('response', (response as any).time, response);
       if (response.type === 'chat_history_message') {
         response.args.data.forEach((data) => {
           if (data.type === 'chat_message') {

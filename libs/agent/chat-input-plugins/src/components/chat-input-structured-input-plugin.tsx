@@ -59,8 +59,8 @@ export const ChatInputStructuredInputPlugin =
             'overflow-y-auto',
             'max-h-[6lh]',
             'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
-            model.edix.edixReadonly &&
-              'cursor-not-allowed text-Cr-text-subtlest-v2',
+            model.isForbidden && 'cursor-not-allowed text-Cr-text-subtlest-v2',
+            model.isMessage && 'cursor-pointer',
           )}
           onKeyDown={(e) => {
             if (
@@ -149,3 +149,5 @@ const ContextItem: React.FC<{
     </span>
   );
 };
+
+ChatInputStructuredInputPlugin.displayName = 'ChatInputStructuredInputPlugin';
