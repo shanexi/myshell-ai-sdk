@@ -1,4 +1,6 @@
+import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import {
+  ChatCommonModel,
   ChatInputDoc,
   ContextItem,
   EdixModel,
@@ -6,7 +8,7 @@ import {
   UppyModel,
 } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
-import { computed, makeObservable, toJS } from 'mobx';
+import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
@@ -35,12 +37,35 @@ export class AgentChatInputModel {
     private handlers: AgentChatInputHandlers,
     @inject(EdixModel) public edix: EdixModel,
     @inject(UppyModel) public uppy: UppyModel,
+    @inject(ChatCommonModelFactory)
+    public chatCommonFactory: (id: symbol) => ChatCommonModel,
   ) {
     makeObservable(this);
   }
 
+  get chatCommon() {
+    return this.chatCommonFactory(AGENT_CHAT);
+  }
+
+  @observable isMessage = false;
+
   @computed get isContextItemsEmpty() {
     return this.edix.addedContextItems.length === 0;
+  }
+
+  /**
+   * @description chat input message 形态
+   */
+  setAsMessage(chatInputDoc: ChatInputDoc) {
+    this.isMessage = true;
+    // TODO 还有 context
+    this.edix.setChatInputDoc(chatInputDoc);
+    this.edix.setEdixReadonly(true);
+  }
+
+  enableInputAsMessage() {
+    this.isMessage = false;
+    this.edix.setEdixReadonly(false);
   }
 
   get canSend() {

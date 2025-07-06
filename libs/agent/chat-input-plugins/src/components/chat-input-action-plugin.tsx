@@ -7,6 +7,8 @@ import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   (props) => {
     const model = useAgentChatInputModel(props.messageId);
+    if (model.isMessage) return <span></span>;
+
     return (
       <div className={cn('flex items-center justify-between')}>
         <HiddenInputFile uppyModel={model.uppy}>
