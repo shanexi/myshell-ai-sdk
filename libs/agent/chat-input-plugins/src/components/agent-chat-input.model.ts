@@ -28,8 +28,6 @@ export interface AgentChatInputHandlers {
     upload: UploadItem[],
     context: ContextItem[],
   ): AsyncGenerator;
-
-  removeImagePreview(id: string): Generator;
 }
 
 export const chat_message_schema = z.object({
@@ -121,9 +119,6 @@ export class AgentChatInputModel {
   }
 
   removeImagePreview(id: string) {
-    // todo: 已经有了 chatCommon 似乎不需要 delegate 给外部 handlers
-    for (const _ of this.handlers.removeImagePreview(id)) {
-      // 其他操作
-    }
+    this.uppy.removeFile(id);
   }
 }

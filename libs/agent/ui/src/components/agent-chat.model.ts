@@ -32,11 +32,6 @@ export class AgentChatModel implements AgentChatInputHandlers {
     yield;
   }
 
-  *removeImagePreview(id: string) {
-    this.chatInput.uppy.removeFile(id);
-    yield;
-  }
-
   async *sendText(inputText: string) {
     const msgId = createId();
     const replyMsgId = createId();
