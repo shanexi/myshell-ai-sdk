@@ -8,7 +8,7 @@ export const ChatInputActionPlugin = observer(() => {
   const model = useInjection(AgentChatInputModel);
   return (
     <div className={cn('flex items-center justify-between')}>
-      <HiddenInputFile uppyModel={model.chatCommon.uppy}>
+      <HiddenInputFile uppyModel={model.uppy}>
         <CirclePlus
           strokeWidth={1.5}
           size={22}

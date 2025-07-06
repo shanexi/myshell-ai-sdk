@@ -20,9 +20,9 @@ export const ContextMenu = observer<{
     // 创建虚拟定位元素
     const virtualElement = {
       getBoundingClientRect: () =>
-        // 已经有判断 `model.chatCommon.edixModel.contextMenuRect && <ContextMenu />`
+        // 已经有判断 `model.edixModel.contextMenuRect && <ContextMenu />`
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        model.chatCommon.edix.contextMenuRect!,
+        model.edix.contextMenuRect!,
     };
 
     // 计算位置
@@ -40,8 +40,8 @@ export const ContextMenu = observer<{
     // 虽然我很不喜欢 useEffect + deps 但是先这样
     // 这块是 AI 生成的
   }, [
-    model.chatCommon.edix.contextMenuRect,
-    model.chatCommon.edix.filteredContextMenus.length, // fix 搜索的时候 menu 位置
+    model.edix.contextMenuRect,
+    model.edix.filteredContextMenus.length, // fix 搜索的时候 menu 位置
   ]);
 
   useEffect(() => {
@@ -49,35 +49,35 @@ export const ContextMenu = observer<{
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
-          model.chatCommon.edix.setSelectedMenuIndex(
-            model.chatCommon.edix.selectedMenuIndex ===
-              model.chatCommon.edix.filteredContextMenus.length - 1
+          model.edix.setSelectedMenuIndex(
+            model.edix.selectedMenuIndex ===
+              model.edix.filteredContextMenus.length - 1
               ? 0 // If at bottom, wrap to top
-              : model.chatCommon.edix.selectedMenuIndex + 1,
+              : model.edix.selectedMenuIndex + 1,
           );
           break;
         case 'ArrowUp':
           e.preventDefault();
-          model.chatCommon.edix.setSelectedMenuIndex(
-            model.chatCommon.edix.selectedMenuIndex === 0
-              ? model.chatCommon.edix.filteredContextMenus.length - 1 // If at top, wrap to bottom
-              : model.chatCommon.edix.selectedMenuIndex - 1,
+          model.edix.setSelectedMenuIndex(
+            model.edix.selectedMenuIndex === 0
+              ? model.edix.filteredContextMenus.length - 1 // If at top, wrap to bottom
+              : model.edix.selectedMenuIndex - 1,
           );
           break;
         case 'Enter':
           e.preventDefault();
           if (comingSoon) return;
-          model.chatCommon.edix.onSelectContext(
+          model.edix.onSelectContext(
             // 特殊处理
             Math.min(
-              model.chatCommon.edix.filteredContextMenus.length - 1,
-              model.chatCommon.edix.selectedMenuIndex,
+              model.edix.filteredContextMenus.length - 1,
+              model.edix.selectedMenuIndex,
             ),
           );
           break;
         case 'Escape':
           e.preventDefault();
-          model.chatCommon.edix.onClose();
+          model.edix.onClose();
           break;
       }
     };
@@ -86,7 +86,7 @@ export const ContextMenu = observer<{
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  if (model.chatCommon.edix.filteredContextMenus.length === 0) return;
+  if (model.edix.filteredContextMenus.length === 0) return;
 
   return (
     <div
@@ -105,7 +105,7 @@ export const ContextMenu = observer<{
           '2px 6px 18px 0px var(--color-CCr-shadows-modal-default-bolder-v2, rgba(0, 0, 0, 0.12))',
       }}
     >
-      {model.chatCommon.edix.filteredContextMenus.map((item, index) => {
+      {model.edix.filteredContextMenus.map((item, index) => {
         let Icon: React.ForwardRefExoticComponent<
           Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
         >;
@@ -128,17 +128,17 @@ export const ContextMenu = observer<{
               index ===
                 // 特殊处理
                 Math.min(
-                  model.chatCommon.edix.selectedMenuIndex,
-                  model.chatCommon.edix.filteredContextMenus.length - 1,
+                  model.edix.selectedMenuIndex,
+                  model.edix.filteredContextMenus.length - 1,
                 )
                 ? 'bg-[#F5F4F2]'
                 : 'transparent',
             )}
             onClick={() => {
-              model.chatCommon.edix.onSelectContext(index);
+              model.edix.onSelectContext(index);
             }}
             onMouseEnter={() => {
-              model.chatCommon.edix.setSelectedMenuIndex(index);
+              model.edix.setSelectedMenuIndex(index);
             }}
           >
             <div className={cn('flex items-center gap-spacing-sm-v2')}>

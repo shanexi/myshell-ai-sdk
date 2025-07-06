@@ -1,4 +1,7 @@
-import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import {
+  AgentChatInputHandlers,
+  AgentChatInputModel,
+} from '@myshell-run/agent-chat-input-plugins';
 import {
   agent_message_schema,
   content_blocks_schema,
@@ -26,12 +29,18 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
     @inject(AgentChatHelper) private helper: AgentChatHelper,
+    @inject('Factory<AgentChatInputModel>')
+    private chatInputFactory: () => AgentChatInputModel,
   ) {
     makeObservable(this);
   }
 
   get chatCommon() {
     return this.factory(AGENT_CHAT);
+  }
+
+  get chatInput() {
+    return this.chatInputFactory();
   }
 
   async *sendChatInputDoc(
@@ -110,7 +119,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   *removeImagePreview(id: string) {
-    this.chatCommon.uppy.removeFile(id);
+    this.chatInput.uppy.removeFile(id);
     yield;
   }
 
@@ -127,6 +136,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   addToContext(context: ContextItem) {
-    this.chatCommon.edix.addToContext(context);
+    this.chatInput.edix.addToContext(context);
   }
 }

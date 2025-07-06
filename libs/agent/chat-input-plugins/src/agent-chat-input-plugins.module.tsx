@@ -14,6 +14,7 @@ export const agentChatInputPluginsModule = new ContainerModule(
 
 export function bindAgentChatInputPlugins(bind: interfaces.Bind) {
   bind(AgentChatInputModel).toSelf().inSingletonScope();
+  bind('Factory<AgentChatInputModel>').toAutoFactory(AgentChatInputModel);
   bind<AgentChatInputPlugin[]>(AgentChatInputPlugin).toConstantValue([
     ChatInputContextPlugin,
     ChatInputUploadPlugin,

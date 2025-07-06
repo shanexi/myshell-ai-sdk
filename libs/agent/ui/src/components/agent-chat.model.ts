@@ -1,4 +1,7 @@
-import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import {
+  AgentChatInputHandlers,
+  AgentChatInputModel,
+} from '@myshell-run/agent-chat-input-plugins';
 import { OWN_MESSAGE_TYPE } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
@@ -11,6 +14,8 @@ export class AgentChatModel implements AgentChatInputHandlers {
   constructor(
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
+    @inject(AgentChatInputModel)
+    public chatInput: AgentChatInputModel,
   ) {
     makeObservable(this);
   }
@@ -28,7 +33,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
   }
 
   *removeImagePreview(id: string) {
-    this.chatCommon.uppy.removeFile(id);
+    this.chatInput.uppy.removeFile(id);
     yield;
   }
 

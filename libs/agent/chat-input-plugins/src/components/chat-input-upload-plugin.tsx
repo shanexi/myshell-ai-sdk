@@ -9,7 +9,7 @@ import { DEFAULT_AVATAR } from '@myshell-run/common-def';
 
 export const ChatInputUploadPlugin = observer(() => {
   const model = useInjection(AgentChatInputModel);
-  if (model.chatCommon.uppy.previewItems.length === 0) return <span />;
+  if (model.uppy.previewItems.length === 0) return <span />;
 
   return (
     <div
@@ -18,7 +18,7 @@ export const ChatInputUploadPlugin = observer(() => {
         'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
       )}
     >
-      {model.chatCommon.uppy.previewItems.map((item) => {
+      {model.uppy.previewItems.map((item) => {
         if (item.fileKind === FileKind.Image) {
           return (
             <ImagePreview

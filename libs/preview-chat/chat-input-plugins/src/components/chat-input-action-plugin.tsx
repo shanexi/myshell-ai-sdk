@@ -31,7 +31,7 @@ export const ChatInputActionPlugin = observer(() => {
             'scale-x-75', // 粗细视觉微调
           )}
         ></div>
-        <HiddenInputFile uppyModel={model.chatCommon.uppy}>
+        <HiddenInputFile uppyModel={model.uppy}>
           <CirclePlus
             strokeWidth={1.5}
             size={22}

@@ -37,7 +37,7 @@ export const ChatInputContextPlugin = observer(() => {
   return (
     <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
       <AddContext />
-      {model.chatCommon.edix.addedContextItems.map((item) => (
+      {model.edix.addedContextItems.map((item) => (
         <ContextItem
           key={item.content.name}
           name={item.content.name}
@@ -108,7 +108,7 @@ const ContextItem: React.FC<{
       />
       <X
         onClick={() => {
-          model.chatCommon.edix.removeAddedContext(
+          model.edix.removeAddedContext(
             context_schema.parse({
               type,
               content: {

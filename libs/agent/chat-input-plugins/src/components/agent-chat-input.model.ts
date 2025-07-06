@@ -1,6 +1,4 @@
-import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import {
-  ChatCommonModel,
   ChatInputDoc,
   context_schema,
   ContextItem,
@@ -62,11 +60,10 @@ export const chat_message_schema = z.object({
 @injectable()
 export class AgentChatInputModel {
   constructor(
-    @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,
-    @inject(EdixModel) private edix: EdixModel,
-    @inject(UppyModel) private uppy: UppyModel,
-    @inject(ChatCommonModelFactory)
-    public factory: (id: symbol) => ChatCommonModel,
+    @inject(AgentChatInputHandlers)
+    private handlers: AgentChatInputHandlers,
+    @inject(EdixModel) public edix: EdixModel,
+    @inject(UppyModel) public uppy: UppyModel,
   ) {
     makeObservable(this);
   }
@@ -75,15 +72,11 @@ export class AgentChatInputModel {
     return this.edix.addedContextItems.length === 0;
   }
 
-  get chatCommon() {
-    return this.factory(AGENT_CHAT);
-  }
-
   get canSend() {
     return (
-      !isEmpty(this.chatCommon.edix.inputText) ||
-      !this.chatCommon.edix.isChatInputDocEmpty ||
-      !isEmpty(this.chatCommon.uppy.previewItems)
+      !isEmpty(this.edix.inputText) ||
+      !this.edix.isChatInputDocEmpty ||
+      !isEmpty(this.uppy.previewItems)
     );
   }
 
@@ -91,44 +84,39 @@ export class AgentChatInputModel {
    * @deprecated 推荐使用 @see sendChatInputDoc
    */
   async sendText() {
-    if (isEmpty(this.chatCommon.edix.inputText)) {
+    if (isEmpty(this.edix.inputText)) {
       return;
     }
 
-    for await (const _ of this.handlers.sendText(
-      this.chatCommon.edix.inputText,
-    )) {
+    for await (const _ of this.handlers.sendText(this.edix.inputText)) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
-      // this.chatCommon.setInputText('');
-      await this.chatCommon.edix.clearEdix();
+      // this.setInputText('');
+      await this.edix.clearEdix();
     }
   }
 
   async sendChatInputDoc() {
-    if (
-      !this.canSend ||
-      /* 回车选中 */ this.chatCommon.edix.isContextMenuShow
-    ) {
+    if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
 
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
-      toJS(this.chatCommon.edix.chatInputDoc),
-      toJS(this.chatCommon.uppy.previewItems).map((item) => ({
+      toJS(this.edix.chatInputDoc),
+      toJS(this.uppy.previewItems).map((item) => ({
         ...item,
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
-      this.chatCommon.edix.addedContextItems.map((item) => toJS(item)),
+      this.edix.addedContextItems.map((item) => toJS(item)),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
-      // this.chatCommon.setInputText('');
-      await this.chatCommon.edix.clearEdix();
-      this.chatCommon.edix.addedContextMap.clear();
-      this.chatCommon.uppy.clear();
+      // this.setInputText('');
+      await this.edix.clearEdix();
+      this.edix.addedContextMap.clear();
+      this.uppy.clear();
     }
   }
 

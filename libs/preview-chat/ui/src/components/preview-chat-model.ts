@@ -4,7 +4,10 @@ import {
   demo_jsonschema,
   demo_uischema,
 } from '@myshell-run/common-ui';
-import { PreviewChatInputHandlers } from '@myshell-run/preview-chat-input-plugins';
+import {
+  ChatInputModel,
+  PreviewChatInputHandlers,
+} from '@myshell-run/preview-chat-input-plugins';
 import {
   MessageItemHandlers,
   OWN_MESSAGE_TYPE,
@@ -33,8 +36,14 @@ export class PreviewChatModel
     @inject(LuiFormModel) public luiFormModel: LuiFormModel,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
+    @inject('Factory<ChatInputModel>')
+    private chatInputFactory: () => ChatInputModel,
   ) {
     makeObservable(this);
+  }
+
+  get chatInput() {
+    return this.chatInputFactory();
   }
 
   get chatCommon() {

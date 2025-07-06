@@ -18,16 +18,16 @@ export const ChatInputStructuredInputPlugin = observer(() => {
       if (e.key === '@') {
         // 延迟获取位置，确保 @ 字符已经插入
         setTimeout(() => {
-          if (model.chatCommon.edix.atSearchCriteria == null) {
-            model.chatCommon.edix.setAtRect(null);
-            model.chatCommon.edix.setAtContextMenuShow(false);
+          if (model.edix.atSearchCriteria == null) {
+            model.edix.setAtRect(null);
+            model.edix.setAtContextMenuShow(false);
           } else {
             const selection = window.getSelection();
             if (selection && selection.rangeCount > 0) {
               const range = selection.getRangeAt(0);
               const rect = range.getBoundingClientRect();
-              model.chatCommon.edix.setAtRect(rect);
-              model.chatCommon.edix.setAtContextMenuShow(true);
+              model.edix.setAtRect(rect);
+              model.edix.setAtContextMenuShow(true);
             }
           }
         }, 0);
@@ -37,14 +37,14 @@ export const ChatInputStructuredInputPlugin = observer(() => {
     const element = ref.current;
     element.addEventListener('keydown', handleKeyDown);
 
-    const dispose = model.chatCommon.edix.setEdixRefStructured(ref);
+    const dispose = model.edix.setEdixRefStructured(ref);
     return () => {
       element.removeEventListener('keydown', handleKeyDown);
       dispose?.();
     };
   }, []);
 
-  const value = model.chatCommon.edix.chatInputDoc;
+  const value = model.edix.chatInputDoc;
 
   return (
     <>
@@ -58,7 +58,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
           'overflow-y-auto',
           'max-h-[6lh]',
           'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
-          model.chatCommon.edix.edixReadonly &&
+          model.edix.edixReadonly &&
             'cursor-not-allowed text-Cr-text-subtlest-v2',
         )}
         onKeyDown={(e) => {
@@ -70,7 +70,7 @@ export const ChatInputStructuredInputPlugin = observer(() => {
         }}
         aria-placeholder="Write a message"
       >
-        {!model.chatCommon.edix.isChatInputDocEmpty &&
+        {!model.edix.isChatInputDocEmpty &&
           value.map((line, i) => (
             <div key={i}>
               {line.length ? (
@@ -98,10 +98,9 @@ export const ChatInputStructuredInputPlugin = observer(() => {
   color: gray;
 }
 `}</style>
-      {model.chatCommon.edix.isContextMenuShow &&
-        model.chatCommon.edix.contextMenuRect && (
-          <ContextMenu comingSoon={false} />
-        )}
+      {model.edix.isContextMenuShow && model.edix.contextMenuRect && (
+        <ContextMenu comingSoon={false} />
+      )}
     </>
   );
 });

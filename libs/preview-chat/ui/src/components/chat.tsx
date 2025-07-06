@@ -41,7 +41,7 @@ export const Chat = observer(() => {
   const dropTargetRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (dropTargetRef.current) {
-      model.chatCommon.uppy.setup(dropTargetRef.current);
+      model.chatInput.uppy.setup(dropTargetRef.current);
     }
   }, []);
   return (
@@ -53,7 +53,7 @@ export const Chat = observer(() => {
           initialMessages={[]}
         />
         <ChatInput />
-        {model.chatCommon.uppy.isDragging && <Mask />}
+        {model.chatInput.uppy.isDragging && <Mask />}
       </div>
       <LuiFormDrawer />
     </div>

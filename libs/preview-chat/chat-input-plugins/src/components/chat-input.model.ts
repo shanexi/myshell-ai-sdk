@@ -1,5 +1,5 @@
 import { ChatCommonModelFactory, PREVIEW_CHAT } from '@myshell-run/common-def';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import { ChatCommonModel, EdixModel, UppyModel } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
 import { isEmpty } from 'radash';
@@ -39,6 +39,8 @@ export class ChatInputModel {
     private handlers: PreviewChatInputHandlers,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
+    @inject(EdixModel) public edix: EdixModel,
+    @inject(UppyModel) public uppy: UppyModel,
   ) {
     makeObservable(this);
   }
@@ -48,21 +50,19 @@ export class ChatInputModel {
   }
 
   get showSendButton() {
-    return !isEmpty(this.chatCommon.edix.inputText);
+    return !isEmpty(this.edix.inputText);
   }
 
   async sendText() {
-    if (isEmpty(this.chatCommon.edix.inputText)) {
+    if (isEmpty(this.edix.inputText)) {
       return;
     }
 
-    for await (const _ of this.handlers.sendText(
-      this.chatCommon.edix.inputText,
-    )) {
+    for await (const _ of this.handlers.sendText(this.edix.inputText)) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
-      await this.chatCommon.edix.clearEdix();
+      await this.edix.clearEdix();
     }
   }
 
