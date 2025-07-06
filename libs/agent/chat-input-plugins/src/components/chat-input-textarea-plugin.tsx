@@ -5,8 +5,8 @@ import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
 export const ChatInputTextareaPlugin = observer<AgentChatInputPluginProps>(
-  (props) => {
-    const model = useAgentChatInputModel(props.messageId);
+  ({ messageId }) => {
+    const model = useAgentChatInputModel(messageId);
     return (
       <TextareaAutosize
         className={cn(

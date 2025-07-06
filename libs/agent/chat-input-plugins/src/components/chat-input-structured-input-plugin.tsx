@@ -8,9 +8,9 @@ import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
 
 export const ChatInputStructuredInputPlugin =
-  observer<AgentChatInputPluginProps>((props) => {
+  observer<AgentChatInputPluginProps>(({ messageId }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const model = useAgentChatInputModel(props.messageId);
+    const model = useAgentChatInputModel(messageId);
 
     useEffect(() => {
       if (!ref.current) return;
@@ -104,7 +104,7 @@ export const ChatInputStructuredInputPlugin =
 }
 `}</style>
         {model.edix.isContextMenuShow && model.edix.contextMenuRect && (
-          <ContextMenu comingSoon={false} messageId={props.messageId} />
+          <ContextMenu comingSoon={false} messageId={messageId} />
         )}
       </>
     );

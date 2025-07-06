@@ -3,10 +3,19 @@ import {
   AgentChatInputPluginSlot,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
-import { cn } from '@myshell-run/common-ui';
+import { ChatInputDoc, cn } from '@myshell-run/common-ui';
 import { useEffect } from 'react';
 
-export const ChatInput: React.FC<AgentChatInputPluginProps> = (props) => {
+export const ChatInput: React.FC<{
+  /**
+   * @description chat Input 支持在 message 展示，可以有一个 messageId
+   */
+  messageId?: string;
+  /**
+   * @description 借用了 strict_message_schema 的 args 存放 doc
+   */
+  args?: ChatInputDoc;
+}> = (props) => {
   const chatInput = useAgentChatInputModel(props.messageId);
   useEffect(() => {
     if (props.messageId && props.args) {
@@ -28,7 +37,7 @@ export const ChatInput: React.FC<AgentChatInputPluginProps> = (props) => {
           'p-spacing-xs-v2',
         )}
       >
-        <AgentChatInputPluginSlot {...props} />
+        <AgentChatInputPluginSlot messageId={props.messageId} />
       </div>
     </div>
   );

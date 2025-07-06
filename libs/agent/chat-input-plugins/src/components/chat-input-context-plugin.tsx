@@ -16,10 +16,7 @@ import {
 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
-import {
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-  useAgentChatInputModel,
-} from '../chat-input-model-factory';
+import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
 export const IconMap: Record<
@@ -35,20 +32,20 @@ export const IconMap: Record<
 };
 
 export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
-  (props) => {
-    const model = useAgentChatInputModel(props.messageId);
+  ({ messageId }) => {
+    const model = useAgentChatInputModel(messageId);
 
     return (
       <div
         className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}
       >
-        <AddContext {...props} />
+        <AddContext messageId={messageId} />
         {model.edix.addedContextItems.map((item) => (
           <ContextItem
             key={item.content.name}
             name={item.content.name}
             type={item.type}
-            messageId={props.messageId}
+            messageId={messageId}
           />
         ))}
       </div>
@@ -56,8 +53,8 @@ export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
   },
 );
 
-const AddContext = observer<AgentChatInputPluginProps>((props) => {
-  const model = useAgentChatInputModel(props.messageId);
+const AddContext = observer<AgentChatInputPluginProps>(({ messageId }) => {
+  const model = useAgentChatInputModel(messageId);
   return (
     <div className="tooltip" data-tip="Coming soon">
       <ContextWrapper>

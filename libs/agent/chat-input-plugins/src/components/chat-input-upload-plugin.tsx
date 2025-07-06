@@ -8,8 +8,8 @@ import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
 export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
-  (props) => {
-    const model = useAgentChatInputModel(props.messageId);
+  ({ messageId }) => {
+    const model = useAgentChatInputModel(messageId);
     if (model.uppy.previewItems.length === 0) return <span />;
 
     return (
@@ -26,7 +26,7 @@ export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
                 key={item.name}
                 id={item.id || createId()}
                 previewItem={item}
-                messageId={props.messageId}
+                messageId={messageId}
               />
             );
           }
@@ -43,7 +43,7 @@ export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
                 key={item.name}
                 id={item.id || createId()}
                 previewItem={item}
-                messageId={props.messageId}
+                messageId={messageId}
               />
             );
           }

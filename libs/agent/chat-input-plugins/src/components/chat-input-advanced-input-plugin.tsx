@@ -6,9 +6,9 @@ import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
 export const ChatInputAdvancedInputPlugin = observer<AgentChatInputPluginProps>(
-  (props) => {
+  ({ messageId }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const model = useAgentChatInputModel(props.messageId);
+    const model = useAgentChatInputModel(messageId);
 
     useEffect(() => {
       if (!ref.current) return;
