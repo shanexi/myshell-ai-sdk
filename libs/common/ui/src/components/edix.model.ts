@@ -95,6 +95,9 @@ export class EdixModel {
   @observable atSearchCriteria: AtSearchCriteria = null;
   contextMenuRect: DOMRect | null = null;
   @observable isContextMenuShow = false;
+  // TODO: 本来应该放在 chat input model 但是产生了 cycle deps 先放这里
+  @observable addedContextMap: Map<string, z.infer<typeof context_schema>> =
+    new Map();
 
   public edixRefPromise: Promise<boolean>;
   @observable edixReadonly = false;
@@ -254,5 +257,15 @@ export class EdixModel {
       this.edixRef?.current.focus();
       this.edixHandle.command(Clear);
     }
+  }
+
+  addToContext(context: z.infer<typeof context_schema>) {
+    const key = `${context.type}:${context.content.name}`;
+    this.addedContextMap.set(key, context);
+  }
+
+  removeAddedContext(context: z.infer<typeof context_schema>) {
+    const key = `${context.type}:${context.content.name}`;
+    this.addedContextMap.delete(key);
   }
 }
