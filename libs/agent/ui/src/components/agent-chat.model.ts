@@ -24,10 +24,6 @@ export class AgentChatModel implements AgentChatInputHandlers {
     return this.factory(AGENT_CHAT);
   }
 
-  get virtuosoRef() {
-    return this.chatCommon.virtuoso.virtuosoRef;
-  }
-
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
     yield;
   }

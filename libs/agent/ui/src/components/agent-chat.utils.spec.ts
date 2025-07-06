@@ -1,16 +1,17 @@
 import { ChatInputDoc } from '@myshell-run/common-ui';
 import {
   f2b_content_blocks,
+  mapToSendRequest,
   mergeContentBlocksText,
   processBlockDirectiveNewLine,
 } from './agent-chat.utils';
+import { FileKind } from 'human-filetypes';
 
 it('patch to backend', () => {
-  const f: ChatInputDoc = [
+  const f = [
     [
       {
         type: 'context',
-        // @ts-expect-error 暂时不处理
         data: {
           content: 'Bob Smith ',
         },
@@ -20,7 +21,7 @@ it('patch to backend', () => {
         text: ' 123',
       },
     ],
-  ];
+  ] as ChatInputDoc;
   const b = [
     [
       {
@@ -159,4 +160,93 @@ describe('merge same type', () => {
       ]
     `);
   });
+});
+
+it('data to send backend', () => {
+  const chatInputDoc = [
+    [
+      {
+        type: 'text',
+        text: '分析这张图片',
+      },
+    ],
+  ] as ChatInputDoc;
+  const uploads = [
+    {
+      name: 'ComfyUI_00074_.png',
+      response: {
+        status: 200,
+        body: {
+          message: '文件上传成功',
+          data: {
+            file_path: '/uploads/file-1750641112789-121254784.png',
+          },
+          success: true,
+          code: 200,
+        },
+      },
+      fileKind: FileKind.Image,
+    },
+  ];
+
+  const exp = {
+    type: 'chat_message',
+    args: {
+      context: [
+        {
+          type: 'image',
+          content: {
+            name: 'ComfyUI_00074_.png',
+            url: '/uploads/file-1750641112789-121254784.png',
+          },
+        },
+      ],
+      content_blocks: [{ type: 'text', content: { text: '分析这张图片' } }],
+    },
+  };
+
+  const contexts = [
+    {
+      type: 'canvas',
+      content: {
+        name: 'This is canvas',
+        a: 'b',
+      },
+    },
+  ];
+
+  const res = mapToSendRequest(chatInputDoc, uploads, contexts);
+  if (!res) throw new Error('Cannot hit');
+  const { request_id, ...rest } = res;
+  expect(rest).toMatchInlineSnapshot(`
+    {
+      "args": {
+        "content_blocks": [
+          {
+            "content": {
+              "text": "分析这张图片",
+            },
+            "type": "text",
+          },
+        ],
+        "context": [
+          {
+            "content": {
+              "name": "ComfyUI_00074_.png",
+              "url": "/uploads/file-1750641112789-121254784.png",
+            },
+            "type": "image",
+          },
+          {
+            "content": {
+              "a": "b",
+              "name": "This is canvas",
+            },
+            "type": "canvas",
+          },
+        ],
+      },
+      "type": "chat_message",
+    }
+  `);
 });

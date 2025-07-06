@@ -128,3 +128,38 @@ describe('generator can yield control, and get it back', () => {
     //
   });
 });
+
+// https://www.oreilly.com/library/view/you-dont-know/9781491905197/ch04.html
+it('two-way message', () => {
+  function* foo(x: number): Generator<string, number, number> {
+    const y = x * (yield 'Hello'); // <-- yield a value!
+    return y;
+  }
+  const it = foo(6);
+  let res = it.next(); // next 拿到 yield 后面的值
+  console.log(res.value);
+  res = it.next(7); // 第二次 7 变成 [yield "Hello"]
+  console.log(res.value);
+});
+
+// https://www.oreilly.com/library/view/you-dont-know/9781491905197/ch04.html
+// 双向通信有点高级，估计要多写一些 goroutine 才能有感觉
+it('Delegating Messages', () => {
+  function* foo(): Generator<string, string, unknown> {
+    console.log('inside `*foo()`:', yield 'B');
+    console.log('inside `*foo()`:', yield 'C');
+    return 'D';
+  }
+
+  function* bar(): Generator<string, string, unknown> {
+    console.log('inside `*bar()`:', yield 'A');
+    // `yield`-delegation!
+    console.log('inside `*bar()`:', yield* foo());
+    console.log('inside `*bar()`:', yield 'E');
+    return 'F';
+  }
+  const it = bar();
+  console.log(it.next().value);
+  console.log(it.next(1).value);
+  console.log(it.next(2).value);
+});

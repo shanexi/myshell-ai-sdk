@@ -39,10 +39,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     return this.factory(AGENT_CHAT);
   }
 
-  get chatInput() {
-    return this.chatInputFactory();
-  }
-
   async *sendChatInputDoc(
     chatInputDoc: ChatInputDoc,
     uploads: UploadItem[],
@@ -118,11 +114,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     }
   }
 
-  *removeImagePreview(id: string) {
-    this.chatInput.uppy.removeFile(id);
-    yield;
-  }
-
   async *sendText(text: string) {
     const msgId = createId();
 
@@ -133,9 +124,5 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     });
 
     yield;
-  }
-
-  addToContext(context: ContextItem) {
-    this.chatInput.edix.addToContext(context);
   }
 }

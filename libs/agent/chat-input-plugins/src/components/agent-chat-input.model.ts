@@ -30,31 +30,6 @@ export interface AgentChatInputHandlers {
   ): AsyncGenerator;
 }
 
-export const chat_message_schema = z.object({
-  request_id: z.string().optional(),
-  type: z.literal('chat_message'),
-  args: z.object({
-    // context: z.array(
-    //   z.object({
-    //     type: z.literal('image'),
-    //     content: z.object({
-    //       name: z.string(),
-    //       url: z.string(),
-    //     }),
-    //   }),
-    // ),
-    context: z.array(context_schema),
-    content_blocks: z.array(
-      z.object({
-        type: z.literal('text'),
-        content: z.object({
-          text: z.string(),
-        }),
-      }),
-    ),
-  }),
-});
-
 @injectable()
 export class AgentChatInputModel {
   constructor(
@@ -87,9 +62,6 @@ export class AgentChatInputModel {
     }
 
     for await (const _ of this.handlers.sendText(this.edix.inputText)) {
-      // TODO 不能，全部交给 edix#onChange 管理了
-      // 应该封装下，不让外部操作
-      // this.setInputText('');
       await this.edix.clearEdix();
     }
   }
@@ -109,9 +81,6 @@ export class AgentChatInputModel {
       })),
       this.edix.addedContextItems.map((item) => toJS(item)),
     )) {
-      // TODO 不能，全部交给 edix#onChange 管理了
-      // 应该封装下，不让外部操作
-      // this.setInputText('');
       await this.edix.clearEdix();
       this.edix.addedContextMap.clear();
       this.uppy.clear();
