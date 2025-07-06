@@ -4,7 +4,9 @@ import {
   ChatInputDoc,
   context_schema,
   ContextItem,
+  EdixModel,
   UploadItem,
+  UppyModel,
 } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, toJS } from 'mobx';
@@ -61,6 +63,8 @@ export const chat_message_schema = z.object({
 export class AgentChatInputModel {
   constructor(
     @inject(AgentChatInputHandlers) private handlers: AgentChatInputHandlers,
+    @inject(EdixModel) private edix: EdixModel,
+    @inject(UppyModel) private uppy: UppyModel,
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
   ) {
@@ -68,7 +72,7 @@ export class AgentChatInputModel {
   }
 
   @computed get isContextItemsEmpty() {
-    return this.chatCommon.addedContextItems.length === 0;
+    return this.edix.addedContextItems.length === 0;
   }
 
   get chatCommon() {
@@ -117,13 +121,13 @@ export class AgentChatInputModel {
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
         response: toJS(item.response),
       })),
-      this.chatCommon.addedContextItems.map((item) => toJS(item)),
+      this.chatCommon.edixModel.addedContextItems.map((item) => toJS(item)),
     )) {
       // TODO 不能，全部交给 edix#onChange 管理了
       // 应该封装下，不让外部操作
       // this.chatCommon.setInputText('');
       await this.chatCommon.edixModel.clearEdix();
-      this.chatCommon.addedContextMap.clear();
+      this.chatCommon.edixModel.addedContextMap.clear();
       this.chatCommon.uppyModel.clear();
     }
   }

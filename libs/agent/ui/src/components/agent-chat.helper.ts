@@ -36,9 +36,9 @@ export class AgentChatHelper {
    */
   handleContentBlock(chunk: z.infer<typeof content_blocks_schema>) {
     const message_id = String(chunk.message_id);
-    if (this.chatCommon.isMsgNoExists(message_id)) {
+    if (this.chatCommon.virtuosoModel.isMsgNoExists(message_id)) {
       const text = this.contentBlockToText(chunk);
-      this.chatCommon.virtuosoRef?.current?.data.append(
+      this.chatCommon.virtuosoModel.virtuosoRef?.current?.data.append(
         [
           {
             key: message_id,
@@ -60,17 +60,21 @@ export class AgentChatHelper {
         },
       );
     } else {
-      this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-        if (message.key !== message_id) {
-          return message;
-        }
-        const nextText = this.contentBlockToText(chunk, message);
-        return {
-          ...message,
-          text: nextText,
-          type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-        };
-      }, 'smooth');
+      this.chatCommon.virtuosoModel.virtuosoRef?.current?.data.map(
+        (message) => {
+          if (message.key !== message_id) {
+            return message;
+          }
+          const nextText = this.contentBlockToText(chunk, message);
+          return {
+            ...message,
+            text: nextText,
+            type:
+              chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
+          };
+        },
+        'smooth',
+      );
     }
   }
 
@@ -80,8 +84,8 @@ export class AgentChatHelper {
   handleTypedMessage(msg: z.infer<typeof agent_message_schema_2>) {
     const message_id = String(msg.message_id);
     const { type, args } = msg;
-    if (this.chatCommon.isMsgNoExists(message_id)) {
-      this.chatCommon.virtuosoRef?.current?.data.append(
+    if (this.chatCommon.virtuosoModel.isMsgNoExists(message_id)) {
+      this.chatCommon.virtuosoModel.virtuosoRef?.current?.data.append(
         [
           {
             key: message_id,
@@ -101,11 +105,14 @@ export class AgentChatHelper {
         },
       );
     } else {
-      this.chatCommon.virtuosoRef?.current?.data.map((message) => {
-        return message.key === message_id
-          ? { ...message, args, type }
-          : message;
-      }, 'smooth');
+      this.chatCommon.virtuosoModel.virtuosoRef?.current?.data.map(
+        (message) => {
+          return message.key === message_id
+            ? { ...message, args, type }
+            : message;
+        },
+        'smooth',
+      );
     }
   }
 

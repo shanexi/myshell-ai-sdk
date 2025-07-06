@@ -20,7 +20,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
   }
 
   get virtuosoRef() {
-    return this.chatCommon.virtuosoRef;
+    return this.chatCommon.virtuosoModel.virtuosoRef;
   }
 
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
@@ -36,7 +36,7 @@ export class AgentChatModel implements AgentChatInputHandlers {
     const msgId = createId();
     const replyMsgId = createId();
 
-    this.chatCommon.appendMsg({
+    this.chatCommon.virtuosoModel.appendMsg({
       key: msgId,
       text: inputText,
       type: OWN_MESSAGE_TYPE,

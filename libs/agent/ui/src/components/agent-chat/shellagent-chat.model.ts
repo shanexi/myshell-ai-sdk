@@ -1,15 +1,16 @@
-import {
-  AgentChatInputHandlers,
-  ContextItem,
-  UploadItem,
-} from '@myshell-run/agent-chat-input-plugins';
+import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import {
   agent_message_schema,
   content_blocks_schema,
   OWN_MESSAGE_TYPE,
 } from '@myshell-run/agent-message-plugins';
 import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
-import { ChatCommonModel, ChatInputDoc } from '@myshell-run/common-ui';
+import {
+  ChatCommonModel,
+  ChatInputDoc,
+  ContextItem,
+  UploadItem,
+} from '@myshell-run/common-ui';
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
@@ -61,7 +62,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       text = text + uploads.map((u) => u.name).join(' ');
     }
 
-    this.chatCommon.appendMsg({
+    this.chatCommon.virtuosoModel.appendMsg({
       key: msgId,
       text,
       type: OWN_MESSAGE_TYPE,
@@ -116,7 +117,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   async *sendText(text: string) {
     const msgId = createId();
 
-    this.chatCommon.appendMsg({
+    this.chatCommon.virtuosoModel.appendMsg({
       key: msgId,
       text: text,
       type: OWN_MESSAGE_TYPE,
@@ -126,6 +127,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   }
 
   addToContext(context: ContextItem) {
-    this.chatCommon.addToContext(context);
+    this.chatCommon.edixModel.addToContext(context);
   }
 }

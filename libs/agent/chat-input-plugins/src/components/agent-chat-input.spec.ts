@@ -54,7 +54,6 @@ it('data to send backend', () => {
   ];
 
   const res = mapToSendRequest(chatInputDoc, uploads, contexts);
-  // @ts-expect-error 暂不处理
   const { request_id, ...rest } = res;
   expect(rest).toMatchInlineSnapshot(`
     {

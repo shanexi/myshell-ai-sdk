@@ -123,6 +123,29 @@ export class EdixModel {
     { content: { name: 'Test' }, type: 'test' },
   ]);
   private edixRef?: RefObject<HTMLDivElement>;
+  // }
+  private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
+
+  // TODO: inserted context 暂时没做
+  // @computed get selectedContextItems() {
+  //   return unique(
+  //     this.chatCommon.edixModel.chatInputDoc
+  //       .flat()
+  //       .filter((d) => d.type === 'context')
+  //       .map((d) => ({
+  //         type: d.data.type,
+  //         name: d.data.content,
+  //       })),
+  //     (d) => `${d.type}:${d.name}`,
+  //   );
+
+  constructor() {
+    makeObservable(this);
+    this.edixRefPromise = new Promise<boolean>((resolve) => {
+      this.edixRefResolve = resolve;
+    });
+  }
+
   /**
    * @description 和 @see contextMenus 不一样，这里是在 输入框上方 context 区域选中的列表
    * TODO 由于 insertContext 暂时没做，先不考虑联动
@@ -159,26 +182,8 @@ export class EdixModel {
   //   },
   //   { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
   // ]);
-  // TODO: inserted context 暂时没做
-  // @computed get selectedContextItems() {
-  //   return unique(
-  //     this.chatCommon.edixModel.chatInputDoc
-  //       .flat()
-  //       .filter((d) => d.type === 'context')
-  //       .map((d) => ({
-  //         type: d.data.type,
-  //         name: d.data.content,
-  //       })),
-  //     (d) => `${d.type}:${d.name}`,
-  //   );
-  // }
-  private edixRefResolve?: (value: boolean | PromiseLike<boolean>) => void;
-
-  constructor() {
-    makeObservable(this);
-    this.edixRefPromise = new Promise<boolean>((resolve) => {
-      this.edixRefResolve = resolve;
-    });
+  @computed get addedContextItems() {
+    return Array.from(this.addedContextMap.values());
   }
 
   @computed get filteredContextMenus(): FilteredContextItem[] {

@@ -19,7 +19,7 @@ export const ChatMessageList: React.FC<{
   const virtuoso =
     useRef<VirtuosoMessageListMethods<StrictMessage, MessageListContext>>(null);
   useEffect(() => {
-    chatCommonModel.setVirtuosoRef(virtuoso);
+    chatCommonModel.virtuosoModel.setVirtuosoRef(virtuoso);
   }, []);
 
   return (
