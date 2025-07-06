@@ -20,6 +20,7 @@ import {
   NO_MESSAGE_ID_AGENT_CHAT_INPUT,
   useAgentChatInputModel,
 } from '../chat-input-model-factory';
+import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
 export const IconMap: Record<
   ContextType,
@@ -33,25 +34,30 @@ export const IconMap: Record<
   test: ListCheck,
 };
 
-export const ChatInputContextPlugin = observer(() => {
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+export const ChatInputContextPlugin = observer<AgentChatInputPluginProps>(
+  (props) => {
+    const model = useAgentChatInputModel(props.messageId);
 
-  return (
-    <div className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}>
-      <AddContext />
-      {model.edix.addedContextItems.map((item) => (
-        <ContextItem
-          key={item.content.name}
-          name={item.content.name}
-          type={item.type}
-        />
-      ))}
-    </div>
-  );
-});
+    return (
+      <div
+        className={cn('flex flex-wrap gap-spacing-md-v2', 'p-spacing-xs-v2')}
+      >
+        <AddContext {...props} />
+        {model.edix.addedContextItems.map((item) => (
+          <ContextItem
+            key={item.content.name}
+            name={item.content.name}
+            type={item.type}
+            messageId={props.messageId}
+          />
+        ))}
+      </div>
+    );
+  },
+);
 
-const AddContext = observer(() => {
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+const AddContext = observer<AgentChatInputPluginProps>((props) => {
+  const model = useAgentChatInputModel(props.messageId);
   return (
     <div className="tooltip" data-tip="Coming soon">
       <ContextWrapper>
@@ -87,7 +93,8 @@ const ContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
 const ContextItem: React.FC<{
   name: string;
   type?: string;
-}> = ({ name, type }) => {
+  messageId?: string;
+}> = ({ name, type, messageId }) => {
   const typeRes = context_type_schema.safeParse(type);
   let Icon: React.ForwardRefExoticComponent<
     Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
@@ -99,7 +106,7 @@ const ContextItem: React.FC<{
     Icon = IconMap[typeRes.data];
   }
 
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+  const model = useAgentChatInputModel(messageId);
 
   return (
     <ContextWrapper>

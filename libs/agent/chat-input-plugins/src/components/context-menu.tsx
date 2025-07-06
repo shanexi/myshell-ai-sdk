@@ -3,18 +3,18 @@ import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { Braces, ChevronRight, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import {
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-  useAgentChatInputModel,
-} from '../chat-input-model-factory';
+import { useAgentChatInputModel } from '../chat-input-model-factory';
+import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 import { IconMap } from './chat-input-context-plugin';
 
 // TODO menu dropdown 用一个 stories 实现 样式 + 切换 menu（二级）+ search（本质上也是切换 menu）
-export const ContextMenu = observer<{
-  comingSoon?: boolean;
-}>(({ comingSoon }) => {
+export const ContextMenu = observer<
+  {
+    comingSoon?: boolean;
+  } & AgentChatInputPluginProps
+>(({ comingSoon, messageId }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+  const model = useAgentChatInputModel(messageId);
 
   useEffect(() => {
     if (!dropdownRef.current) return;

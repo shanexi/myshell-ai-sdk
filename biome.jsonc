@@ -16,7 +16,9 @@
       "libs/agent/ui/output-prefixed.css",
       "libs/agent/message-plugins/src/@patternfly/react-core/styles/**/*",
       "./storybook-static",
-      ".yalc"
+      ".yalc",
+      "HAR.json",
+      "HAR-*.json"
     ]
   },
   "javascript": {

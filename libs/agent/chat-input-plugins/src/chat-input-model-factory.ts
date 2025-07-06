@@ -12,7 +12,7 @@ export type AgentChatInputModelFactory = (id: string) => AgentChatInputModel;
  */
 export const NO_MESSAGE_ID_AGENT_CHAT_INPUT = 'NO_MESSAGE_ID_AGENT_CHAT_INPUT';
 
-export function useAgentChatInputModel(id: string) {
+export function useAgentChatInputModel(id?: string) {
   // const context = useContext(InversifyContext);
   // if (!context) {
   //   throw new Error('Provider is not found');
@@ -20,6 +20,6 @@ export function useAgentChatInputModel(id: string) {
   const factory = useInjection<AgentChatInputModelFactory>(
     AgentChatInputModelFactory,
   );
-  const model = factory(id);
+  const model = factory(id || NO_MESSAGE_ID_AGENT_CHAT_INPUT);
   return model;
 }

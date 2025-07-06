@@ -2,110 +2,113 @@ import { cn, context_type_schema } from '@myshell-run/common-ui';
 import { Braces, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
-import {
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-  useAgentChatInputModel,
-} from '../chat-input-model-factory';
+import { useAgentChatInputModel } from '../chat-input-model-factory';
+import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 import { IconMap } from './chat-input-context-plugin';
 import { ContextMenu } from './context-menu';
 
-export const ChatInputStructuredInputPlugin = observer(() => {
-  const ref = useRef<HTMLDivElement>(null);
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+export const ChatInputStructuredInputPlugin =
+  observer<AgentChatInputPluginProps>((props) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const model = useAgentChatInputModel(props.messageId);
 
-  useEffect(() => {
-    if (!ref.current) return;
+    useEffect(() => {
+      if (!ref.current) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === '@') {
-        // 延迟获取位置，确保 @ 字符已经插入
-        setTimeout(() => {
-          if (model.edix.atSearchCriteria == null) {
-            model.edix.setAtRect(null);
-            model.edix.setAtContextMenuShow(false);
-          } else {
-            const selection = window.getSelection();
-            if (selection && selection.rangeCount > 0) {
-              const range = selection.getRangeAt(0);
-              const rect = range.getBoundingClientRect();
-              model.edix.setAtRect(rect);
-              model.edix.setAtContextMenuShow(true);
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === '@') {
+          // 延迟获取位置，确保 @ 字符已经插入
+          setTimeout(() => {
+            if (model.edix.atSearchCriteria == null) {
+              model.edix.setAtRect(null);
+              model.edix.setAtContextMenuShow(false);
+            } else {
+              const selection = window.getSelection();
+              if (selection && selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
+                model.edix.setAtRect(rect);
+                model.edix.setAtContextMenuShow(true);
+              }
             }
-          }
-        }, 0);
-      }
-    };
+          }, 0);
+        }
+      };
 
-    const element = ref.current;
-    element.addEventListener('keydown', handleKeyDown);
+      const element = ref.current;
+      element.addEventListener('keydown', handleKeyDown);
 
-    const dispose = model.edix.setEdixRefStructured(ref);
-    return () => {
-      element.removeEventListener('keydown', handleKeyDown);
-      dispose?.();
-    };
-  }, []);
+      const dispose = model.edix.setEdixRefStructured(ref);
+      return () => {
+        element.removeEventListener('keydown', handleKeyDown);
+        dispose?.();
+      };
+    }, []);
 
-  const value = model.edix.chatInputDoc;
+    const value = model.edix.chatInputDoc;
 
-  return (
-    <>
-      <div
-        ref={ref}
-        className={cn(
-          'x-chat-input-advanced-input-plugin',
-          'text-lg-regular',
-          'my-spacing-xs-v2',
-          'w-full resize-none !px-spacing-sm-v2 outline-none',
-          'overflow-y-auto',
-          'max-h-[6lh]',
-          'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
-          model.edix.edixReadonly &&
-            'cursor-not-allowed text-Cr-text-subtlest-v2',
-        )}
-        onKeyDown={(e) => {
-          if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            if (!ref.current) return;
-            model.sendChatInputDoc();
-          }
-        }}
-        aria-placeholder="Write a message"
-      >
-        {!model.edix.isChatInputDocEmpty &&
-          value.map((line, i) => (
-            <div key={i}>
-              {line.length ? (
-                line.map((t, j) =>
-                  t.type === 'context' ? (
-                    <ContextItem
-                      key={j}
-                      content={t.data.content}
-                      type={t.data.type}
-                    />
-                  ) : (
-                    <span key={j}>{t.text}</span>
-                  ),
-                )
-              ) : (
-                <br />
-              )}
-            </div>
-          ))}
-      </div>
-      <style>{`
+    return (
+      <>
+        <div
+          ref={ref}
+          className={cn(
+            'x-chat-input-advanced-input-plugin',
+            'text-lg-regular',
+            'my-spacing-xs-v2',
+            'w-full resize-none !px-spacing-sm-v2 outline-none',
+            'overflow-y-auto',
+            'max-h-[6lh]',
+            'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
+            model.edix.edixReadonly &&
+              'cursor-not-allowed text-Cr-text-subtlest-v2',
+          )}
+          onKeyDown={(e) => {
+            if (
+              !e.nativeEvent.isComposing &&
+              e.key === 'Enter' &&
+              !e.shiftKey
+            ) {
+              e.preventDefault();
+              if (!ref.current) return;
+              model.sendChatInputDoc();
+            }
+          }}
+          aria-placeholder="Write a message"
+        >
+          {!model.edix.isChatInputDocEmpty &&
+            value.map((line, i) => (
+              <div key={i}>
+                {line.length ? (
+                  line.map((t, j) =>
+                    t.type === 'context' ? (
+                      <ContextItem
+                        key={j}
+                        content={t.data.content}
+                        type={t.data.type}
+                      />
+                    ) : (
+                      <span key={j}>{t.text}</span>
+                    ),
+                  )
+                ) : (
+                  <br />
+                )}
+              </div>
+            ))}
+        </div>
+        <style>{`
 [contenteditable]:empty:before {
   content: attr(aria-placeholder) / "";
   pointer-events: none;
   color: gray;
 }
 `}</style>
-      {model.edix.isContextMenuShow && model.edix.contextMenuRect && (
-        <ContextMenu comingSoon={false} />
-      )}
-    </>
-  );
-});
+        {model.edix.isContextMenuShow && model.edix.contextMenuRect && (
+          <ContextMenu comingSoon={false} messageId={props.messageId} />
+        )}
+      </>
+    );
+  });
 
 // todo: 做个 variant
 const ContextItem: React.FC<{

@@ -4,59 +4,62 @@ import { createId } from '@paralleldrive/cuid2';
 import { FileKind } from 'human-filetypes';
 import { File, X } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import {
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-  useAgentChatInputModel,
-} from '../chat-input-model-factory';
+import { useAgentChatInputModel } from '../chat-input-model-factory';
+import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 
-export const ChatInputUploadPlugin = observer(() => {
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
-  if (model.uppy.previewItems.length === 0) return <span />;
+export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
+  (props) => {
+    const model = useAgentChatInputModel(props.messageId);
+    if (model.uppy.previewItems.length === 0) return <span />;
 
-  return (
-    <div
-      className={cn(
-        'flex flex-nowrap gap-spacing-md-v2 overflow-x-auto',
-        'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
-      )}
-    >
-      {model.uppy.previewItems.map((item) => {
-        if (item.fileKind === FileKind.Image) {
-          return (
-            <ImagePreview
-              key={item.name}
-              id={item.id || createId()}
-              previewItem={item}
-            />
-          );
-        }
-        if (
-          [
-            FileKind.Document,
-            FileKind.Text,
-            FileKind.Presentation,
-            FileKind.Spreadsheet,
-          ].indexOf(item.fileKind) > -1
-        ) {
-          return (
-            <FilePreview
-              key={item.name}
-              id={item.id || createId()}
-              previewItem={item}
-            />
-          );
-        }
-        return null;
-      })}
-    </div>
-  );
-});
+    return (
+      <div
+        className={cn(
+          'flex flex-nowrap gap-spacing-md-v2 overflow-x-auto',
+          'px-spacing-xs-v2 pt-spacing-md-v2 pb-spacing-xs-v2',
+        )}
+      >
+        {model.uppy.previewItems.map((item) => {
+          if (item.fileKind === FileKind.Image) {
+            return (
+              <ImagePreview
+                key={item.name}
+                id={item.id || createId()}
+                previewItem={item}
+                messageId={props.messageId}
+              />
+            );
+          }
+          if (
+            [
+              FileKind.Document,
+              FileKind.Text,
+              FileKind.Presentation,
+              FileKind.Spreadsheet,
+            ].indexOf(item.fileKind) > -1
+          ) {
+            return (
+              <FilePreview
+                key={item.name}
+                id={item.id || createId()}
+                previewItem={item}
+                messageId={props.messageId}
+              />
+            );
+          }
+          return null;
+        })}
+      </div>
+    );
+  },
+);
 
 const FilePreview: React.FC<{
   previewItem: UploadItem;
   id: string;
-}> = ({ previewItem, id }) => {
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+  messageId?: string;
+}> = ({ previewItem, id, messageId }) => {
+  const model = useAgentChatInputModel(messageId);
   return (
     <div
       className={cn(
@@ -106,8 +109,9 @@ const FilePreview: React.FC<{
 const ImagePreview: React.FC<{
   previewItem: UploadItem;
   id: string;
-}> = ({ previewItem, id }) => {
-  const model = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+  messageId?: string;
+}> = ({ previewItem, id, messageId }) => {
+  const model = useAgentChatInputModel(messageId);
   return (
     <div className="group relative flex-none">
       <img
