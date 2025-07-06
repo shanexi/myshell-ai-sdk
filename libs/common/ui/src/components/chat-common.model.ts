@@ -1,21 +1,15 @@
 import { MessageListContext, StrictMessage } from '@myshell-run/common-def';
 import { VirtuosoMessageListMethods } from '@virtuoso.dev/message-list';
-import { schema } from 'edix';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable } from 'mobx';
 import { RefObject } from 'react';
 import { context_schema, EdixModel } from './edix.model';
 import { UppyModel } from './uppy.model';
 import { z } from 'zod';
-
-export const basicSchema = schema({ multiline: true });
+import { VirtuosoModel } from './virtuoso.model';
 
 @injectable()
 export class ChatCommonModel {
-  virtuosoRef?: RefObject<
-    VirtuosoMessageListMethods<StrictMessage, MessageListContext>
-  >;
-
   // TODO: 本来应该放在 chat input model 但是产生了 cycle deps 先放这里
   @observable addedContextMap: Map<string, z.infer<typeof context_schema>> =
     new Map();
@@ -23,8 +17,13 @@ export class ChatCommonModel {
   constructor(
     @inject(UppyModel) public uppyModel: UppyModel,
     @inject(EdixModel) public edixModel: EdixModel,
+    @inject(VirtuosoModel) public virtuosoModel: VirtuosoModel,
   ) {
     makeObservable(this);
+  }
+
+  get virtuosoRef() {
+    return this.virtuosoModel.virtuosoRef;
   }
 
   @computed get addedContextItems() {
@@ -36,35 +35,18 @@ export class ChatCommonModel {
       VirtuosoMessageListMethods<StrictMessage, MessageListContext>
     >,
   ) => {
-    this.virtuosoRef = ref;
+    this.virtuosoModel.setVirtuosoRef(ref);
   };
 
   /**
    * @deprecated 当前阶段建议直接使用 virtuosoRef
    */
   appendMsg(message: StrictMessage) {
-    this.virtuosoRef?.current?.data.append(
-      [message],
-      ({ scrollInProgress, atBottom }) => {
-        return {
-          index: 'LAST',
-          align: 'start',
-          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
-        };
-      },
-    );
-  }
-
-  updateMsg(newMsg: StrictMessage) {
-    this.virtuosoRef?.current?.data.map((message: StrictMessage) => {
-      return message.key === newMsg.key ? newMsg : message;
-    }, 'smooth');
+    this.virtuosoModel.appendMsg(message);
   }
 
   isMsgNoExists(key: string) {
-    return (
-      this.virtuosoRef?.current?.data.find((m) => m.key === key) === undefined
-    );
+    return this.virtuosoModel.isMsgNoExists(key);
   }
 
   addToContext(context: z.infer<typeof context_schema>) {

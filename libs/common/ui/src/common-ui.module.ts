@@ -9,12 +9,13 @@ import { UppyModel } from './components/uppy.model';
 import { FormItemSvc } from './form-plugin/form-item.svc';
 import { EdixModel } from './components/edix.model';
 import { FormikModel } from './form-plugin/formik.model';
+import { VirtuosoModel } from './components/virtuoso.model';
 
 export const commonUIModule = new ContainerModule((bind) => {
   bindCommonUI(bind);
 });
 
-// 放全局和放在一个 sinleton 的 manager 一样的，简单起见 放全局
+// 放全局和放在一个 singleton 的 manager 一样的，简单起见 放全局
 const chatCommonMap = new Map<symbol, ChatCommonModel>();
 
 export function bindCommonUI(bind: interfaces.Bind) {
@@ -43,6 +44,7 @@ export function bindCommonUI(bind: interfaces.Bind) {
   );
 
   bind(UppyModel).toSelf().inTransientScope();
+  bind(VirtuosoModel).toSelf().inTransientScope();
   bind(EdixModel).toSelf().inTransientScope();
   bind(MessageItemSvc).toSelf().inSingletonScope();
   bind(FormItemSvc).toSelf().inSingletonScope();
