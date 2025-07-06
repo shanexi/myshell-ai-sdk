@@ -85,6 +85,33 @@ export class AgentChatInputModel {
   enableInput(messageId: string = NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
     this.isMessage = false;
     this.edix.setEdixReadonly(false);
+    if (messageId !== NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
+      const messageIndex =
+        this.chatCommon.virtuoso.virtuosoRef?.current?.data.findIndex(
+          (item) => {
+            return item.key === messageId;
+          },
+        );
+      if (messageIndex != null) {
+        this.chatCommon.virtuoso.virtuosoRef?.current?.data.map(
+          (item, index) => {
+            if (index > messageIndex) {
+              return { ...item, toDelete: true };
+            } else {
+              return item;
+            }
+          },
+          'auto',
+        );
+      }
+    } else {
+      this.chatCommon.virtuoso.virtuosoRef?.current?.data.map((item, index) => {
+        if (item.toDelete) {
+          delete item.toDelete;
+        }
+        return item;
+      }, 'auto');
+    }
 
     for (const [key, model] of agentChatInputModelMap.entries()) {
       if (key === NO_MESSAGE_ID_AGENT_CHAT_INPUT) continue;

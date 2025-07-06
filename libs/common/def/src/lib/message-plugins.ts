@@ -21,6 +21,7 @@ export const strict_message_schema = z.object({
   text: z.string(),
   type: z.string(),
   args: z.any().optional(),
+  toDelete: z.boolean().optional(),
 });
 
 export type StrictMessage = z.infer<typeof strict_message_schema>;
