@@ -29,8 +29,16 @@ export function addMessagePluginFactory(
       type,
       render: (data) => {
         const { key, type, text, ...rest } = data;
-        // @ts-expect-error 暂时先不处理
-        return <Component key={key} type={type} text={text} {...rest} />;
+        return (
+          // @ts-expect-error 暂时先不处理
+          <Component
+            key={data.key}
+            type={type}
+            text={text}
+            messageId={key}
+            {...rest}
+          />
+        );
       },
     });
   };

@@ -20,8 +20,7 @@ import { setUpMdcContentBlock } from './components/remark/content-blockable-mana
 import { ReplyMsg } from './components/reply/reply-msg';
 import { Think } from './components/think/think';
 import { ThinkModel } from './components/think/think.model';
-import { OWN_MESSAGE_TYPE, REPLY_MESSAGE_TYPE } from './types';
-import { OwnMessage } from './components/own/own-msg';
+import { REPLY_MESSAGE_TYPE } from './types';
 
 function registerMesssage(
   bind: interfaces.Bind,
@@ -35,6 +34,7 @@ function registerMesssage(
     isBound,
     rebind,
   );
+  // agent-ui module 重新注册了
   // addMessagePlugin(OWN_MESSAGE_TYPE, OwnMessage);
   addMessagePlugin(REPLY_MESSAGE_TYPE, ReplyMsg);
   addMessagePlugin(ERROR_MESSAGE_TYPE, ErrorMessage);

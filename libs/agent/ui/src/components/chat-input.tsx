@@ -1,7 +1,10 @@
+import {
+  AgentChatInputPluginProps,
+  AgentChatInputPluginSlot,
+} from '@myshell-run/agent-chat-input-plugins';
 import { cn } from '@myshell-run/common-ui';
-import { AgentChatInputPluginSlot } from '@myshell-run/agent-chat-input-plugins';
 
-export const ChatInput = () => {
+export const ChatInput: React.FC<AgentChatInputPluginProps> = (props) => {
   return (
     <div className={cn('px-spacing-xl-v2 py-spacing-sm-v2')}>
       <div
@@ -11,7 +14,7 @@ export const ChatInput = () => {
           'p-spacing-xs-v2',
         )}
       >
-        <AgentChatInputPluginSlot />
+        <AgentChatInputPluginSlot {...props} />
       </div>
     </div>
   );

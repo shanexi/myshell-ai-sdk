@@ -1,8 +1,4 @@
-import {
-  AgentChatInputHandlers,
-  AgentChatInputModel,
-  AgentChatInputModelFactory,
-} from '@myshell-run/agent-chat-input-plugins';
+import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
 import {
   agent_message_schema,
   content_blocks_schema,
@@ -18,11 +14,11 @@ import {
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
-import { isEmpty } from 'radash';
 import { z } from 'zod';
+import { hi_msg } from '../../__storybook_data__/backend_message';
 import { AgentChatHelper } from '../agent-chat.helper';
 import { extractChatMessagesFromHAR } from './har-utilts';
-import { hi_msg } from '../../__storybook_data__/backend_message';
+import { isEmpty } from 'radash';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -68,8 +64,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     this.chatCommon.virtuoso.appendMsg({
       key: msgId,
-      text,
+      text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
       type: OWN_MESSAGE_TYPE,
+      args: chatInputDoc, // 传入 doc 给到 chatInput message
     });
 
     // // TODO: 对接后端
