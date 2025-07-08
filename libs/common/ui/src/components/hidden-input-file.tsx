@@ -22,7 +22,11 @@ export const HiddenInputFile = observer<
   return (
     <div
       className="flex h-[28px] w-[28px] flex-none items-center justify-center"
-      onClick={() => inputRef.current?.click()}
+      onClick={(e) => {
+        // e.preventDefault();
+        e.stopPropagation();
+        inputRef.current?.click();
+      }}
     >
       <input
         ref={inputRef}
