@@ -45,6 +45,7 @@ export class AgentChatHelper {
             text,
             type:
               chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
+            args: chunk.args,
           },
         ],
         ({ scrollInProgress, atBottom }) => {
@@ -69,6 +70,7 @@ export class AgentChatHelper {
           ...message,
           text: nextText,
           type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
+          args: chunk.args,
         };
       }, 'smooth');
     }

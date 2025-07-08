@@ -1,11 +1,12 @@
 import {
   ChatInputDoc,
+  ContentBlock,
   context_schema,
   ContextItem,
   UploadItem,
 } from '@myshell-run/common-ui';
 import { init } from '@paralleldrive/cuid2';
-import { isEmpty } from 'radash';
+import { dash, isEmpty } from 'radash';
 import { z } from 'zod';
 
 export const chat_message_schema = z.object({
@@ -35,6 +36,7 @@ export function generateRequestId() {
 
 /**
  * 将 edix content_blocks 转换成后端接受的格式
+ * @deprecated 没有使用的地方了
  */
 export function f2b_content_blocks(f: ChatInputDoc) {
   return f.map((row) =>
@@ -99,6 +101,76 @@ export function mergeContentBlocksText(
   );
 }
 
+export function chatInputDocToConentBlock(
+  chatInputDoc: ChatInputDoc,
+): Array<ContentBlock> {
+  return chatInputDoc.reduce(
+    (acc, cur, idx) => {
+      const blocks = cur.map((block) => {
+        if (block.type === 'text') {
+          return {
+            type: 'text',
+            content: {
+              text: block.text,
+            },
+          };
+        } else {
+          return {
+            type: block.type,
+            content: block.data,
+          };
+        }
+      });
+      acc = acc.concat(blocks);
+
+      if (idx !== chatInputDoc.length - 1) {
+        acc.push({
+          type: 'text',
+          content: {
+            text: '\n',
+          },
+        });
+      }
+      return acc;
+    },
+    [] as Array<ContentBlock>,
+  );
+}
+
+export function contentBlockToChatInputDoc(
+  blocks: Array<ContentBlock>,
+): ChatInputDoc {
+  return blocks.reduce(
+    (acc, cur) => {
+      if (cur.type === 'text' && cur.content.text === '\n') {
+        acc.push([]);
+        return acc;
+      }
+
+      const lastLine = acc[acc.length - 1];
+      if (cur.type === 'text') {
+        lastLine.push({
+          type: 'text',
+          text: cur.content.text as string,
+        });
+      } else {
+        lastLine.push({
+          type: cur.type as 'context',
+          data: cur.content as {
+            readonly content: string;
+            readonly type: string;
+          },
+        });
+      }
+      return acc;
+    },
+    [[]] as ChatInputDoc,
+  );
+}
+
+/**
+ * sent message 映射
+ */
 export function mapToSendRequest(
   chatInputDoc: ChatInputDoc,
   uploads: UploadItem[],
@@ -108,22 +180,7 @@ export function mapToSendRequest(
     return undefined;
   }
 
-  const content_blocks = chatInputDoc
-    .flat()
-    .map((block) => {
-      if (block.type === 'text') {
-        return {
-          type: 'text',
-          content: {
-            text: block.text,
-          },
-        };
-      }
-      return undefined;
-    })
-    .filter(Boolean) as z.infer<
-    typeof chat_message_schema
-  >['args']['content_blocks'];
+  const content_blocks = chatInputDocToConentBlock(chatInputDoc);
 
   let context = uploads
     .map((upload) => {

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { StrictMessage } from '@myshell-run/common-def';
+import { content_block_schema, context_schema } from '@myshell-run/common-ui';
 
 export const ContentBlockable = Symbol.for('ContentBlockable');
 
@@ -19,18 +20,9 @@ export const content_blocks_schema = z.object({
       'cause 是一个语义不明确的字段，来自于 openhands，目前的含义是如果有，则替 message_id 内容 ',
     ),
   args: z.object({
-    content_blocks: z.array(
-      z.object({
-        type: z.string(),
-        content: z.object({}).passthrough(),
-      }),
-    ),
+    content_blocks: z.array(content_block_schema),
+    context: z.array(context_schema).optional(),
   }),
-});
-
-export const content_block_schema = z.object({
-  type: z.string(),
-  content: z.object({}).passthrough(),
 });
 
 export interface ContentBlockable {

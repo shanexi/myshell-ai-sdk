@@ -2,6 +2,7 @@ import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import {
   ChatCommonModel,
   ChatInputDoc,
+  context_schema,
   ContextItem,
   EdixModel,
   UploadItem,
@@ -12,6 +13,7 @@ import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
 import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
+import { z } from 'zod';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -71,7 +73,10 @@ export class AgentChatInputModel {
   /**
    * @description chat input message 形态收到消息后的初始设置
    */
-  setupMessage(chatInputDoc: ChatInputDoc) {
+  setupMessage(
+    chatInputDoc: ChatInputDoc,
+    context: z.infer<typeof context_schema>,
+  ) {
     this.isMessage = true;
     // TODO 还有 context
     this.edix.setChatInputDoc(chatInputDoc);
@@ -157,9 +162,10 @@ export class AgentChatInputModel {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
+    const chatInputDoc = toJS(this.edix.chatInputDoc);
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
-      toJS(this.edix.chatInputDoc),
+      chatInputDoc,
       toJS(this.uppy.previewItems).map((item) => ({
         ...item,
         // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS

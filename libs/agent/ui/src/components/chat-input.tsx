@@ -2,9 +2,17 @@ import {
   AgentChatInputPluginSlot,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
-import { ChatInputDoc, cn } from '@myshell-run/common-ui';
+import {
+  ChatInputDoc,
+  cn,
+  content_block_schema,
+  context_schema,
+} from '@myshell-run/common-ui';
 import { useEffect } from 'react';
+import { z } from 'zod';
+import { contentBlockToChatInputDoc } from './agent-chat.utils';
 
+const content_blocks_schema = z.array(content_block_schema);
 export const ChatInput: React.FC<{
   /**
    * @description chat Input 支持在 message 展示，可以有一个 messageId
@@ -13,12 +21,18 @@ export const ChatInput: React.FC<{
   /**
    * @description 借用了 strict_message_schema 的 args 存放 doc
    */
-  args?: ChatInputDoc;
+  args?: {
+    context: z.infer<typeof context_schema>;
+    content_blocks: z.infer<typeof content_blocks_schema>;
+  };
 }> = (props) => {
   const chatInput = useAgentChatInputModel(props.messageId);
   useEffect(() => {
     if (props.messageId && props.args) {
-      chatInput.setupMessage(props.args);
+      chatInput.setupMessage(
+        contentBlockToChatInputDoc(props.args.content_blocks),
+        props.args.context,
+      );
     }
   }, [props.messageId]);
 

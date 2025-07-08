@@ -1,9 +1,11 @@
 import { ChatInputDoc } from '@myshell-run/common-ui';
 import {
+  chatInputDocToConentBlock,
   f2b_content_blocks,
   mapToSendRequest,
   mergeContentBlocksText,
   processBlockDirectiveNewLine,
+  contentBlockToChatInputDoc,
 } from './agent-chat.utils';
 import { FileKind } from 'human-filetypes';
 
@@ -162,91 +164,300 @@ describe('merge same type', () => {
   });
 });
 
-it('data to send backend', () => {
-  const chatInputDoc = [
-    [
-      {
-        type: 'text',
-        text: '分析这张图片',
-      },
-    ],
-  ] as ChatInputDoc;
-  const uploads = [
-    {
-      name: 'ComfyUI_00074_.png',
-      response: {
-        status: 200,
-        body: {
-          message: '文件上传成功',
-          data: {
-            file_path: '/uploads/file-1750641112789-121254784.png',
-          },
-          success: true,
-          code: 200,
-        },
-      },
-      fileKind: FileKind.Image,
-    },
-  ];
-
-  const exp = {
-    type: 'chat_message',
-    args: {
-      context: [
+describe('mapToSendRequest', () => {
+  it('data to send backend', () => {
+    const chatInputDoc = [
+      [
         {
-          type: 'image',
-          content: {
-            name: 'ComfyUI_00074_.png',
-            url: '/uploads/file-1750641112789-121254784.png',
-          },
+          type: 'text',
+          text: '分析这张图片',
         },
       ],
-      content_blocks: [{ type: 'text', content: { text: '分析这张图片' } }],
-    },
-  };
-
-  const contexts = [
-    {
-      type: 'canvas',
-      content: {
-        name: 'This is canvas',
-        a: 'b',
+    ] as ChatInputDoc;
+    const uploads = [
+      {
+        name: 'ComfyUI_00074_.png',
+        response: {
+          status: 200,
+          body: {
+            message: '文件上传成功',
+            data: {
+              file_path: '/uploads/file-1750641112789-121254784.png',
+            },
+            success: true,
+            code: 200,
+          },
+        },
+        fileKind: FileKind.Image,
       },
-    },
-  ];
-
-  const res = mapToSendRequest(chatInputDoc, uploads, contexts);
-  if (!res) throw new Error('Cannot hit');
-  const { request_id, ...rest } = res;
-  expect(rest).toMatchInlineSnapshot(`
-    {
-      "args": {
-        "content_blocks": [
-          {
-            "content": {
-              "text": "分析这张图片",
-            },
-            "type": "text",
-          },
-        ],
-        "context": [
-          {
-            "content": {
-              "name": "ComfyUI_00074_.png",
-              "url": "/uploads/file-1750641112789-121254784.png",
-            },
-            "type": "image",
-          },
-          {
-            "content": {
-              "a": "b",
-              "name": "This is canvas",
-            },
-            "type": "canvas",
-          },
-        ],
+    ];
+    const contexts = [
+      {
+        type: 'canvas' as const,
+        content: {
+          name: 'This is canvas',
+          a: 'b',
+        },
       },
-      "type": "chat_message",
-    }
-  `);
+    ];
+
+    const res = mapToSendRequest(chatInputDoc, uploads, contexts);
+    if (!res) throw new Error('Cannot hit');
+    const { request_id, ...rest } = res;
+    expect(rest).toMatchInlineSnapshot(`
+          {
+            "args": {
+              "content_blocks": [
+                {
+                  "content": {
+                    "text": "分析这张图片",
+                  },
+                  "type": "text",
+                },
+              ],
+              "context": [
+                {
+                  "content": {
+                    "name": "ComfyUI_00074_.png",
+                    "url": "/uploads/file-1750641112789-121254784.png",
+                  },
+                  "type": "image",
+                },
+                {
+                  "content": {
+                    "a": "b",
+                    "name": "This is canvas",
+                  },
+                  "type": "canvas",
+                },
+              ],
+            },
+            "type": "chat_message",
+          }
+      `);
+  });
+});
+
+describe('chatInputDocFrontToBackend', () => {
+  it('single line', () => {
+    const arr = [
+      [
+        {
+          type: 'text',
+          text: '123 ',
+        },
+        {
+          type: 'context',
+          data: {
+            content: 'Preview ',
+            type: 'preview',
+          },
+        },
+        {
+          type: 'text',
+          text: ' ',
+        },
+      ],
+    ] satisfies ChatInputDoc;
+    const act = chatInputDocToConentBlock(arr);
+    expect(act).toMatchInlineSnapshot(`
+          [
+            {
+              "content": {
+                "text": "123 ",
+              },
+              "type": "text",
+            },
+            {
+              "content": {
+                "content": "Preview ",
+                "type": "preview",
+              },
+              "type": "context",
+            },
+            {
+              "content": {
+                "text": " ",
+              },
+              "type": "text",
+            },
+          ]
+      `);
+  });
+
+  it('two line', () => {
+    const arr = [
+      [
+        {
+          type: 'text',
+          text: '123 ',
+        },
+        {
+          type: 'context',
+          data: {
+            content: 'Requirement ',
+            type: 'requirement',
+          },
+        },
+        {
+          type: 'text',
+          text: ' ',
+        },
+      ],
+      [
+        {
+          type: 'text',
+          text: 'abc',
+        },
+      ],
+    ] satisfies ChatInputDoc;
+
+    const act = chatInputDocToConentBlock(arr);
+    expect(act).toMatchInlineSnapshot(`
+      [
+        {
+          "content": {
+            "text": "123 ",
+          },
+          "type": "text",
+        },
+        {
+          "content": {
+            "content": "Requirement ",
+            "type": "requirement",
+          },
+          "type": "context",
+        },
+        {
+          "content": {
+            "text": " ",
+          },
+          "type": "text",
+        },
+        {
+          "content": {
+            "text": "
+      ",
+          },
+          "type": "text",
+        },
+        {
+          "content": {
+            "text": "abc",
+          },
+          "type": "text",
+        },
+      ]
+    `);
+  });
+});
+
+describe('chatInputDocBackendToFrontend', () => {
+  it('single line', () => {
+    const blocks = [
+      {
+        content: {
+          text: '123 ',
+        },
+        type: 'text',
+      },
+      {
+        content: {
+          content: 'Preview ',
+          type: 'preview',
+        },
+        type: 'context',
+      },
+      {
+        content: {
+          text: ' ',
+        },
+        type: 'text',
+      },
+    ];
+
+    const result = contentBlockToChatInputDoc(blocks);
+    expect(result).toEqual([
+      [
+        {
+          type: 'text',
+          text: '123 ',
+        },
+        {
+          type: 'context',
+          data: {
+            content: 'Preview ',
+            type: 'preview',
+          },
+        },
+        {
+          type: 'text',
+          text: ' ',
+        },
+      ],
+    ]);
+  });
+
+  it('two lines', () => {
+    const blocks = [
+      {
+        content: {
+          text: '123 ',
+        },
+        type: 'text',
+      },
+      {
+        content: {
+          content: 'Requirement ',
+          type: 'requirement',
+        },
+        type: 'context',
+      },
+      {
+        content: {
+          text: ' ',
+        },
+        type: 'text',
+      },
+      {
+        content: {
+          text: '\n',
+        },
+        type: 'text',
+      },
+      {
+        content: {
+          text: 'abc',
+        },
+        type: 'text',
+      },
+    ];
+
+    const result = contentBlockToChatInputDoc(blocks);
+    expect(result).toEqual([
+      [
+        {
+          type: 'text',
+          text: '123 ',
+        },
+        {
+          type: 'context',
+          data: {
+            content: 'Requirement ',
+            type: 'requirement',
+          },
+        },
+        {
+          type: 'text',
+          text: ' ',
+        },
+      ],
+      [
+        {
+          type: 'text',
+          text: 'abc',
+        },
+      ],
+    ]);
+  });
 });

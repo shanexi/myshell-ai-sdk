@@ -30,6 +30,13 @@ export const context_type_schema = z.enum([
   // 'image', // 图片在后端也算 context
 ]);
 
+export const content_block_schema = z.object({
+  type: z.string(),
+  content: z.object({}).passthrough(),
+});
+
+export type ContentBlock = z.infer<typeof content_block_schema>;
+
 export const context_schema = z.object({
   type: context_type_schema.optional(),
   content: z

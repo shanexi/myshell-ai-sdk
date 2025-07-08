@@ -84,6 +84,7 @@
     --terracotta-90-v2: #ffdad4;
     --terracotta-95-v2: #ffede9;
     --terracotta-98-v2: #fff8f6;
+    --terracotta-100-v2: #ffffff;
     --ember-10-v2: #341100;
     --ember-20-v2: #552000;
     --ember-30-v2: #793100;
@@ -200,6 +201,9 @@
     --plum-purple-70-v2: #fa88d2;
     --plum-purple-80-v2: #ffb1e4;
     --plum-purple-90-v2: #ffd9f2;
+    --color-CCr-button-error-primary-bg_active-v2: var(--terracotta-30-v2);
+    --color-CCr-button-error-primary-bg_default-v2: var(--terracotta-50-v2);
+    --color-CCr-button-error-primary-fg_default-v2: var(--terracotta-100-v2);
     --color-CCr-button-primary-bg_default-v2: var(--neutral-5-v2);
     --color-CCr-button-solid-bg_default-v2: var(--neutral-100-v2);
     --color-CCr-button-solid-border-v2: var(--opacity-on-surface-40-v2);
@@ -2150,80 +2154,6 @@
   .my-spacing-xs-v2 {
     margin-block: var(--spacing-spacing-xs-v2);
   }
-  .label {
-    display: inline-flex;
-    align-items: center;
-    gap: calc(0.25rem * 1.5);
-    white-space: nowrap;
-    color: currentColor;
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, currentColor 60%, transparent);
-    }
-    &:has(input) {
-      cursor: pointer;
-    }
-    &:is(.input > *, .select > *) {
-      display: flex;
-      height: calc(100% - 0.5rem);
-      align-items: center;
-      padding-inline: calc(0.25rem * 3);
-      white-space: nowrap;
-      font-size: inherit;
-      &:first-child {
-        margin-inline-start: calc(0.25rem * -3);
-        margin-inline-end: calc(0.25rem * 3);
-        border-inline-end: var(--border) solid currentColor;
-        @supports (color: color-mix(in lab, red, red)) {
-          border-inline-end: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-        }
-      }
-      &:last-child {
-        margin-inline-start: calc(0.25rem * 3);
-        margin-inline-end: calc(0.25rem * -3);
-        border-inline-start: var(--border) solid currentColor;
-        @supports (color: color-mix(in lab, red, red)) {
-          border-inline-start: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-        }
-      }
-    }
-  }
-  .label {
-    display: inline-flex;
-    align-items: center;
-    gap: calc(0.25rem * 1.5);
-    white-space: nowrap;
-    color: currentColor;
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, currentColor 60%, transparent);
-    }
-    &:has(input) {
-      cursor: pointer;
-    }
-    &:is(.input > *, .select > *) {
-      display: flex;
-      height: calc(100% - 0.5rem);
-      align-items: center;
-      padding-inline: calc(0.25rem * 3);
-      white-space: nowrap;
-      font-size: inherit;
-      &:first-child {
-        margin-inline-start: calc(0.25rem * -3);
-        margin-inline-end: calc(0.25rem * 3);
-        border-inline-end: var(--border) solid currentColor;
-        @supports (color: color-mix(in lab, red, red)) {
-          border-inline-end: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-        }
-      }
-      &:last-child {
-        margin-inline-start: calc(0.25rem * 3);
-        margin-inline-end: calc(0.25rem * -3);
-        border-inline-start: var(--border) solid currentColor;
-        @supports (color: color-mix(in lab, red, red)) {
-          border-inline-start: var(--border) solid color-mix(in oklab, currentColor 10%, #0000);
-        }
-      }
-    }
-  }
   .prose {
     color: var(--tw-prose-body);
     max-width: 65ch;
@@ -2770,6 +2700,9 @@
   .max-h-\[6lh\] {
     max-height: 6lh;
   }
+  .min-h-\[1lh\] {
+    min-height: 1lh;
+  }
   .loading-xs {
     width: calc(var(--size-selector, 0.25rem) * 4);
   }
@@ -2958,6 +2891,10 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
   .border-r {
     border-right-style: var(--tw-border-style);
     border-right-width: 1px;
@@ -2989,6 +2926,12 @@
   }
   .border-gray-300 {
     border-color: var(--color-gray-300);
+  }
+  .border-t-Cr-border-default-v2 {
+    border-top-color: var(--color-Cr-border-default-v2);
+  }
+  .bg-CCr-button-error-primary-bg_default-v2 {
+    background-color: var(--color-CCr-button-error-primary-bg_default-v2);
   }
   .bg-CCr-button-primary-bg_default-v2 {
     background-color: var(--color-CCr-button-primary-bg_default-v2);
@@ -3059,8 +3002,8 @@
   .p-spacing-sm-v2 {
     padding: var(--spacing-spacing-sm-v2);
   }
-  .p-spacing-xs-v2 {
-    padding: var(--spacing-spacing-xs-v2);
+  .\!px-spacing-md-v2 {
+    padding-inline: var(--spacing-spacing-md-v2) !important;
   }
   .\!px-spacing-sm-v2 {
     padding-inline: var(--spacing-spacing-sm-v2) !important;
@@ -3097,6 +3040,9 @@
   }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
+  }
+  .py-\[2px\] {
+    padding-block: 2px;
   }
   .py-\[4px\] {
     padding-block: 4px;
@@ -3150,6 +3096,9 @@
   }
   .progress-neutral {
     color: var(--color-neutral);
+  }
+  .text-CCr-button-error-primary-fg_default-v2 {
+    color: var(--color-CCr-button-error-primary-fg_default-v2);
   }
   .text-CCr-button-solid-fg_default-v2 {
     color: var(--color-CCr-button-solid-fg_default-v2);
@@ -3339,6 +3288,16 @@
       }
     }
   }
+  .hover\:bg-CCr-button-error-primary-bg_active-v2 {
+    &:where([data-rac])[data-hovered] {
+      background-color: var(--color-CCr-button-error-primary-bg_active-v2);
+    }
+    @media (hover: hover) {
+      &:where(:not([data-rac])):hover {
+        background-color: var(--color-CCr-button-error-primary-bg_active-v2);
+      }
+    }
+  }
   .hover\:bg-Cr-Bg-normal-secondary-default-v2 {
     &:where([data-rac])[data-hovered] {
       background-color: var(--color-Cr-Bg-normal-secondary-default-v2);
@@ -3356,6 +3315,16 @@
     @media (hover: hover) {
       &:where(:not([data-rac])):hover {
         background-color: var(--color-Cr-Bg-normal-tertiary-active-v2);
+      }
+    }
+  }
+  .hover\:text-Cr-text-default-v2 {
+    &:where([data-rac])[data-hovered] {
+      color: var(--color-Cr-text-default-v2);
+    }
+    @media (hover: hover) {
+      &:where(:not([data-rac])):hover {
+        color: var(--color-Cr-text-default-v2);
       }
     }
   }

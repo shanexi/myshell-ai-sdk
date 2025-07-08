@@ -19,6 +19,7 @@ import { hi_msg } from '../../__storybook_data__/backend_message';
 import { AgentChatHelper } from '../agent-chat.helper';
 import { extractChatMessagesFromHAR } from './har-utilts';
 import { isEmpty } from 'radash';
+import { chatInputDocToConentBlock } from '../agent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -66,7 +67,10 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       key: msgId,
       text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
       type: OWN_MESSAGE_TYPE,
-      args: chatInputDoc, // 传入 doc 给到 chatInput message
+      args: {
+        content_blocks: chatInputDocToConentBlock(chatInputDoc),
+        context: [], // TODO: context 处理
+      }, // 传入 doc 给到 chatInput message
     });
 
     // // TODO: 对接后端
@@ -91,9 +95,17 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
 
     for (const response of mockResponses) {
       if (response.type === 'chat_history_message') {
+        const length =
+          this.chatCommon.virtuoso.virtuosoRef?.current?.data.get().length;
+        if (length) {
+          this.chatCommon.virtuoso.virtuosoRef?.current?.data.deleteRange(
+            0,
+            length - 1,
+          );
+        }
         response.args.data.forEach((data) => {
           if (data.type === 'chat_message') {
-            data.cause = 1; // 特殊处理 历史消息全部替换
+            // data.cause = 1; // 特殊处理 历史消息全部替换
             this.helper.handleContentBlock(data);
           } else {
             this.helper.handleTypedMessage(data);
