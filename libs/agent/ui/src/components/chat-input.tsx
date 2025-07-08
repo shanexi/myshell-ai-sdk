@@ -24,6 +24,8 @@ export const ChatInput: React.FC<{
     if (props.messageId && props.args) {
       chatInput.setupMessage(props.args.chatInputDoc, props.args.context);
     }
+    console.debug('setup', props.messageId);
+    chatInput.uppy.setup();
   }, [props.messageId]);
 
   return (

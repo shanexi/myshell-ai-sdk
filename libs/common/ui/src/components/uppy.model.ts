@@ -116,7 +116,13 @@ export class UppyModel {
     this.uppyStateMap.delete(id);
   }
 
-  setup(dropTarget: HTMLDivElement, restrictions?: Partial<Restrictions>) {
+  /**
+   * @description 暂时禁用 dnd
+   */
+  setup(
+    // dropTarget: HTMLDivElement,
+    restrictions?: Partial<Restrictions>,
+  ) {
     this.allowedFileTypes = restrictions?.allowedFileTypes;
     this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
     this.maxFileSize = restrictions?.maxFileSize;
@@ -207,39 +213,40 @@ export class UppyModel {
         });
       });
     });
-    this._uppy.use(DropTarget, {
-      target: dropTarget,
-      onDragOver: (event) => {
-        /*
-        image/png
-        video/webm
-        也就是 Mime
-        */
-        const a = this.uppy.validateSingleFile({
-          // 不一定有效 观察一段时间
-          type: event.dataTransfer?.items[0].type || '',
-          name: '',
-          extension: '',
-          size: 0,
-        });
-        if (a != null) {
-          this.isDraggingError = true;
-          this.draggingErrorDisplay = a;
-        } else {
-          this.isDraggingError = false;
-          this.draggingErrorDisplay = null;
-        }
-        this.isDragging = true;
-      },
-      onDragLeave: (event) => {
-        this.isDragging = false;
-        this.isDraggingError = false;
-      },
-      onDrop: (event) => {
-        this.isDragging = false;
-        this.isDraggingError = false;
-      },
-    });
+    // TODO 暂时先注释 dnd
+    // this._uppy.use(DropTarget, {
+    //   target: dropTarget,
+    //   onDragOver: (event) => {
+    //     /*
+    //     image/png
+    //     video/webm
+    //     也就是 Mime
+    //     */
+    //     const a = this.uppy.validateSingleFile({
+    //       // 不一定有效 观察一段时间
+    //       type: event.dataTransfer?.items[0].type || '',
+    //       name: '',
+    //       extension: '',
+    //       size: 0,
+    //     });
+    //     if (a != null) {
+    //       this.isDraggingError = true;
+    //       this.draggingErrorDisplay = a;
+    //     } else {
+    //       this.isDraggingError = false;
+    //       this.draggingErrorDisplay = null;
+    //     }
+    //     this.isDragging = true;
+    //   },
+    //   onDragLeave: (event) => {
+    //     this.isDragging = false;
+    //     this.isDraggingError = false;
+    //   },
+    //   onDrop: (event) => {
+    //     this.isDragging = false;
+    //     this.isDraggingError = false;
+    //   },
+    // });
     this._uppy.on('complete', (result) => {
       result.successful?.forEach((file) => {
         const prev = this.uppyStateMap.get(file.id);

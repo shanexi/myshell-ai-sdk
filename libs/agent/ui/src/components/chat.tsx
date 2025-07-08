@@ -9,15 +9,18 @@ import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '@myshell-run/agent-chat-input-pl
 
 export const Chat = observer(() => {
   const model = useInjection(AgentChatModel);
-  const dropTargetRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!dropTargetRef.current) return;
-    return model
-      .chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT)
-      .uppy.setup(dropTargetRef.current);
-  }, []);
+  // const dropTargetRef = useRef<HTMLDivElement>(null);
+  // useEffect(() => {
+  //   // if (!dropTargetRef.current) return;
+  //   return model
+  //     .chatInputFactory(NO_MESSAGE_ID_AGENT_CHAT_INPUT)
+  //     .uppy.setup(dropTargetRef.current);
+  // }, []);
   return (
-    <div ref={dropTargetRef} className="relative flex h-full flex-col">
+    <div
+      // ref={dropTargetRef}
+      className="relative flex h-full flex-col"
+    >
       <ChatMessageList
         chatCommonModel={model.chatCommon}
         className="flex flex-grow flex-col overflow-auto px-[8px]"
