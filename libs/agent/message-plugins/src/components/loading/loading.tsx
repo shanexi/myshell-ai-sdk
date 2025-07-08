@@ -4,7 +4,7 @@ import { ReplyWrapper } from '../reply/reply-msg';
 export const LOADING_MESSAGE_TYPE = 'chat_status_message';
 export const loading_message_schema = z.object({
   type: z.literal(LOADING_MESSAGE_TYPE),
-  message_id: z.string(),
+  message_id: z.number(),
   args: z.object({
     text: z.string(),
   }),

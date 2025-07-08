@@ -18,6 +18,7 @@ export interface Message {
 
 export const strict_message_schema = z.object({
   key: z.string(),
+  message_id: z.number().optional().describe('后端返回的 message_id'),
   text: z.string(),
   type: z.string(),
   args: z.any().optional(),

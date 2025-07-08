@@ -90,7 +90,7 @@ export class AgentChatInputModel {
   enableInput(messageId: string = NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
     this.isMessage = false;
     this.edix.setEdixReadonly(false);
-    this.chatCommon.setEnabledChatInputMessageId(messageId);
+    this.chatCommon.setEnabledChatInputMessageKey(messageId);
 
     if (messageId !== NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
       const messageIndex =
@@ -179,11 +179,11 @@ export class AgentChatInputModel {
         (item) => {
           return (
             item.toDelete === true ||
-            item.key === this.chatCommon.enabledChatInputMessageId
+            item.key === this.chatCommon.enabledChatInputMessageKey
           );
         },
       );
-      this.chatCommon.setEnabledChatInputMessageId(
+      this.chatCommon.setEnabledChatInputMessageKey(
         NO_MESSAGE_ID_AGENT_CHAT_INPUT,
       );
 

@@ -7,7 +7,7 @@ export const ERROR_MESSAGE_TYPE = 'error_message';
 
 export const error_message_schema = z.object({
   type: z.literal(ERROR_MESSAGE_TYPE),
-  message_id: z.string(),
+  message_id: z.number(),
   headers: z.object({}).passthrough(),
   args: z.object({
     content: z.string(),

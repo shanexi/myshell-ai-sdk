@@ -14,12 +14,15 @@ import {
 import { createId } from '@paralleldrive/cuid2';
 import { inject, injectable } from 'inversify';
 import { makeObservable } from 'mobx';
+import { isEmpty } from 'radash';
 import { z } from 'zod';
-import { hi_msg } from '../../__storybook_data__/backend_message';
+import {
+  ack_msg_2,
+  hi_msg,
+  loading_msg_1,
+} from '../../__storybook_data__/backend_message';
 import { AgentChatHelper } from '../agent-chat.helper';
 import { extractChatMessagesFromHAR } from './har-utilts';
-import { isEmpty } from 'radash';
-import { chatInputDocToConentBlock } from '../agent-chat.utils';
 
 @injectable()
 export class ShellAgentChatModel implements AgentChatInputHandlers {
@@ -40,7 +43,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     uploads: UploadItem[],
     context: ContextItem[],
   ) {
-    const msgId = createId();
+    const messageId = this.chatCommon.getEnabledChatInputMessageId();
+    const key = createId();
     // 先简单变成字符串
     // TODO 因为上传图片，所以这里得立即处理下
     let text = chatInputDoc
@@ -63,15 +67,28 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
       text = text + uploads.map((u) => u.name).join(' ');
     }
 
-    this.chatCommon.virtuoso.appendMsg({
-      key: msgId,
-      text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
-      type: OWN_MESSAGE_TYPE,
-      args: {
-        content_blocks: chatInputDocToConentBlock(chatInputDoc),
-        context: [], // TODO: context 处理
-      }, // 传入 doc 给到 chatInput message
-    });
+    this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
+      [
+        {
+          key: key,
+          text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
+          type: OWN_MESSAGE_TYPE,
+          args: {
+            chatInputDoc,
+            context: [], // TODO: context 处理
+          }, // 传入 doc 给到 chatInput message
+        },
+      ],
+      ({ scrollInProgress, atBottom }) => {
+        return {
+          index: 'LAST',
+          align: 'start-no-overflow',
+          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+        };
+      },
+    );
+
+    console.log('is restore message', messageId);
 
     // // TODO: 对接后端
     // console.log(
@@ -91,7 +108,7 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     // Use HAR messages if available, otherwise fallback to mock data
     const mockResponses: Array<z.infer<typeof agent_message_schema>> =
       // harMessages;
-      [hi_msg] as any[];
+      [hi_msg, ack_msg_2] as any[];
 
     for (const response of mockResponses) {
       if (response.type === 'chat_history_message') {
@@ -117,10 +134,23 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
           message_id: new Date().valueOf(),
         });
         this.helper.handleContentBlock(res);
+      } else if (response.type === 'chat_message_ack') {
+        this.chatCommon.virtuoso.virtuosoRef?.current?.data.map((message) => {
+          // 这个逻辑真的有点脆弱
+          if (message.message_id == null) {
+            message.message_id = response.message_id;
+            return message;
+          } else {
+            return message;
+          }
+        });
       } else {
-        this.helper.handleTypedMessage(response);
+        this.helper.handleTypedMessage({
+          ...response,
+          message_id: new Date().valueOf(),
+        });
       }
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 

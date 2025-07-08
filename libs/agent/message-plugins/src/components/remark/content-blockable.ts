@@ -37,5 +37,5 @@ export const ContentBlockableFactory = Symbol.for('ContentBlockableFactory');
 
 export type ContentBlockableFactory = (
   identifier: string,
-  id: string,
+  key: string,
 ) => ContentBlockable;

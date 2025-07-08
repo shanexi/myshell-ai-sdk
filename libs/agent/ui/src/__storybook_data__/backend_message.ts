@@ -777,3 +777,31 @@ const ack = {
 };
 
 // idle
+
+export const ack_msg_2 = {
+  headers: {
+    trace_context: {
+      'x-b3-traceid': 'ed32a3c50382e84e4fc60c428d7b661e',
+      'x-b3-spanid': '8b720ddfdb96d567',
+      'x-b3-sampled': '1',
+    },
+  },
+  id: 151,
+  message_id: 1751971991146025,
+  timestamp: '2025-07-08T10:53:11.146015',
+  source: 'user',
+  type: 'chat_message_ack',
+  cause: -1,
+  status: 'completed',
+  args: {
+    context: [],
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '123',
+        },
+      },
+    ],
+  },
+};

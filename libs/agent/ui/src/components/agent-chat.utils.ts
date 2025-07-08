@@ -1,12 +1,14 @@
+import { text_schema } from '@myshell-run/agent-message-plugins';
 import {
   ChatInputDoc,
+  content_block_schema,
   ContentBlock,
   context_schema,
   ContextItem,
   UploadItem,
 } from '@myshell-run/common-ui';
 import { init } from '@paralleldrive/cuid2';
-import { dash, isEmpty } from 'radash';
+import { isEmpty } from 'radash';
 import { z } from 'zod';
 
 export const chat_message_schema = z.object({
@@ -14,14 +16,7 @@ export const chat_message_schema = z.object({
   type: z.literal('chat_message'),
   args: z.object({
     context: z.array(context_schema),
-    content_blocks: z.array(
-      z.object({
-        type: z.literal('text'),
-        content: z.object({
-          text: z.string(),
-        }),
-      }),
-    ),
+    content_blocks: z.array(content_block_schema),
   }),
 });
 

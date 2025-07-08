@@ -6,7 +6,7 @@ export const PROGRESS_MESSAGE_TYPE = 'chat_progress_message';
 
 export const progress_message_schema = z.object({
   type: z.literal(PROGRESS_MESSAGE_TYPE),
-  message_id: z.string(),
+  message_id: z.number(),
   args: z.object({
     progress: z.number(),
     text: z.string(),

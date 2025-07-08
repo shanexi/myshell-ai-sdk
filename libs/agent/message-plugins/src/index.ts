@@ -9,3 +9,4 @@ export * from './types';
 export * from './components/error/error-msg';
 export * from './components/loading/loading';
 export * from './components/progress/progress';
+export * from './components/text.model';

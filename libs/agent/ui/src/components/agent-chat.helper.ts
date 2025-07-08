@@ -13,7 +13,10 @@ import {
 import { ChatCommonModel } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { z } from 'zod';
-import { processBlockDirectiveNewLine } from './agent-chat.utils';
+import {
+  contentBlockToChatInputDoc,
+  processBlockDirectiveNewLine,
+} from './agent-chat.utils';
 
 @injectable()
 export class AgentChatHelper {
@@ -32,20 +35,27 @@ export class AgentChatHelper {
 
   /**
    * 处理 chat_message
-   * 和 @see handleHistoryContentBlock
    */
   handleContentBlock(chunk: z.infer<typeof content_blocks_schema>) {
-    const message_id = String(chunk.message_id);
-    if (this.chatCommon.virtuoso.isMsgNoExists(message_id)) {
+    const key = String(chunk.message_id);
+    const args =
+      chunk.source === 'user'
+        ? {
+            context: chunk.args.context,
+            chatInputDoc: contentBlockToChatInputDoc(chunk.args.content_blocks),
+          }
+        : chunk.args;
+    if (this.chatCommon.virtuoso.isMsgNoExists(key)) {
       const text = this.contentBlockToText(chunk);
       this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
         [
           {
-            key: message_id,
+            key,
+            message_id: chunk.message_id,
             text,
             type:
               chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-            args: chunk.args,
+            args,
           },
         ],
         ({ scrollInProgress, atBottom }) => {
@@ -62,15 +72,16 @@ export class AgentChatHelper {
       );
     } else {
       this.chatCommon.virtuoso.virtuosoRef?.current?.data.map((message) => {
-        if (message.key !== message_id) {
+        if (message.key !== key) {
           return message;
         }
         const nextText = this.contentBlockToText(chunk, message);
         return {
           ...message,
+          message_id: chunk.message_id,
           text: nextText,
           type: chunk.source === 'user' ? OWN_MESSAGE_TYPE : REPLY_MESSAGE_TYPE,
-          args: chunk.args,
+          args: args,
         };
       }, 'smooth');
     }
@@ -80,13 +91,14 @@ export class AgentChatHelper {
    * 处理第一层 type，即 message plugin
    */
   handleTypedMessage(msg: z.infer<typeof agent_message_schema_2>) {
-    const message_id = String(msg.message_id);
+    const key = String(msg.message_id);
     const { type, args } = msg;
-    if (this.chatCommon.virtuoso.isMsgNoExists(message_id)) {
+    if (this.chatCommon.virtuoso.isMsgNoExists(key)) {
       this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
         [
           {
-            key: message_id,
+            key: key,
+            message_id: msg.message_id,
             text: '',
             type,
             args,
@@ -104,8 +116,13 @@ export class AgentChatHelper {
       );
     } else {
       this.chatCommon.virtuoso.virtuosoRef?.current?.data.map((message) => {
-        return message.key === message_id
-          ? { ...message, args, type }
+        return message.key === key
+          ? {
+              ...message,
+              message_id: msg.message_id,
+              args,
+              type,
+            }
           : message;
       }, 'smooth');
     }
@@ -118,13 +135,9 @@ export class AgentChatHelper {
     chunk: z.infer<typeof content_blocks_schema>,
     message?: StrictMessage,
   ) {
-    const message_id = String(chunk.message_id);
+    const key = String(chunk.message_id);
     const textList = chunk.args.content_blocks.map((b) => {
-      return this.blockableFactory(b.type, message_id).transform(
-        b,
-        chunk,
-        message,
-      );
+      return this.blockableFactory(b.type, key).transform(b, chunk, message);
     });
     const text = processBlockDirectiveNewLine(textList);
     return text;

@@ -47,10 +47,19 @@ export const chat_history_message_schema = z.object({
   }),
 });
 
+export const CHAT_MESSAGE_ACK = 'chat_message_ack';
+export const chat_message_ack = z.object({
+  type: z.literal(CHAT_MESSAGE_ACK),
+  cause: z.literal(-1),
+  message_id: z.number(),
+  args: z.object({}).passthrough(),
+});
+
 export const agent_message_schema = z.discriminatedUnion('type', [
   content_blocks_schema,
   error_message_schema,
   loading_message_schema,
   progress_message_schema,
   chat_history_message_schema,
+  chat_message_ack,
 ]);
