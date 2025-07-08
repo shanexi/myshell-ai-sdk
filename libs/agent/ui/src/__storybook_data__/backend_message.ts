@@ -742,3 +742,38 @@ export const chunk_msg3 = {
     ],
   },
 };
+
+const ack_send = {
+  message_id: -1,
+  timestamp: '2025-06-23T11:22:30.886466',
+  type: 'chat_message',
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '你好',
+        },
+      },
+    ],
+  },
+};
+
+// 判断没有 简单 push
+const ack = {
+  message_id: 1750767505381877,
+  type: 'chat_message_ack',
+  cause: -1,
+  args: {
+    content_blocks: [
+      {
+        type: 'text',
+        content: {
+          text: '你好',
+        },
+      },
+    ],
+  },
+};
+
+// idle
