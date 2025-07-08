@@ -54,11 +54,11 @@ export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
   },
 );
 
-const FilePreview: React.FC<{
+const FilePreview = observer<{
   previewItem: UploadItem;
   id: string;
   messageId?: string;
-}> = ({ previewItem, id, messageId }) => {
+}>(({ previewItem, id, messageId }) => {
   const model = useAgentChatInputModel(messageId);
   return (
     <div
@@ -98,19 +98,21 @@ const FilePreview: React.FC<{
           </div>
         </div>
       </div>
-      <Remove
-        onRemove={() => model.removeImagePreview(id)}
-        uploadComplete={Boolean(previewItem.uploadComplete)}
-      />
+      {!model.isMessage && (
+        <Remove
+          onRemove={() => model.removeImagePreview(id)}
+          uploadComplete={Boolean(previewItem.uploadComplete)}
+        />
+      )}
     </div>
   );
-};
+});
 
-const ImagePreview: React.FC<{
+const ImagePreview = observer<{
   previewItem: UploadItem;
   id: string;
   messageId?: string;
-}> = ({ previewItem, id, messageId }) => {
+}>(({ previewItem, id, messageId }) => {
   const model = useAgentChatInputModel(messageId);
   return (
     <div className="group relative flex-none">
@@ -119,13 +121,15 @@ const ImagePreview: React.FC<{
         alt=""
         src={previewItem.preview || previewItem.uploadURL || DEFAULT_AVATAR}
       />
-      <Remove
-        onRemove={() => model.removeImagePreview(id)}
-        uploadComplete={Boolean(previewItem.uploadComplete)}
-      />
+      {!model.isMessage && (
+        <Remove
+          onRemove={() => model.removeImagePreview(id)}
+          uploadComplete={Boolean(previewItem.uploadComplete)}
+        />
+      )}
     </div>
   );
-};
+});
 
 const Remove: React.FC<{
   onRemove: () => void;
