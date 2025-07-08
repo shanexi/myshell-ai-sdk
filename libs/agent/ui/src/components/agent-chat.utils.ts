@@ -6,8 +6,10 @@ import {
   context_schema,
   ContextItem,
   UploadItem,
+  UppyState,
 } from '@myshell-run/common-ui';
 import { init } from '@paralleldrive/cuid2';
+import { FileKind } from 'human-filetypes';
 import { isEmpty } from 'radash';
 import { z } from 'zod';
 
@@ -163,6 +165,42 @@ export function contentBlockToChatInputDoc(
   );
 }
 
+export function uploadsToContexts(uploads: UploadItem[]): ContextItem[] {
+  return uploads
+    .map((upload) => {
+      if (
+        upload.fileKind === 'image' &&
+        upload.response?.body?.data?.file_path
+      ) {
+        return {
+          type: 'image',
+          content: {
+            name: upload.name as string,
+            url: upload.response.body.data.file_path,
+          },
+        };
+      }
+      return undefined;
+    })
+    .filter((item) => item != null);
+}
+
+export function contextsToUploads(contexts: ContextItem[]): UppyState[] {
+  return contexts
+    .map((context) => {
+      if (context.type === 'image') {
+        return {
+          name: context.content.name,
+          uploadURL: context.content.url as string,
+          type: 'image',
+          uploadComplete: true,
+        };
+      }
+      return undefined;
+    })
+    .filter((item) => item != null);
+}
+
 /**
  * sent message 映射
  */
@@ -177,23 +215,7 @@ export function mapToSendRequest(
 
   const content_blocks = chatInputDocToConentBlock(chatInputDoc);
 
-  let context = uploads
-    .map((upload) => {
-      if (
-        upload.fileKind === 'image' &&
-        upload.response?.body?.data?.file_path
-      ) {
-        return {
-          type: 'image',
-          content: {
-            name: upload.name,
-            url: upload.response.body.data.file_path,
-          },
-        };
-      }
-      return undefined;
-    })
-    .filter(Boolean) as z.infer<typeof chat_message_schema>['args']['context'];
+  let context = uploadsToContexts(uploads);
   context = context.concat(contextItems);
 
   const result: z.infer<typeof chat_message_schema> = {

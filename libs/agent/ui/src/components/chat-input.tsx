@@ -2,9 +2,15 @@ import {
   AgentChatInputPluginSlot,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
-import { ChatInputDoc, cn, context_schema } from '@myshell-run/common-ui';
+import {
+  ChatInputDoc,
+  cn,
+  context_schema,
+  ContextItem,
+} from '@myshell-run/common-ui';
 import { useEffect } from 'react';
 import { z } from 'zod';
+import { contextsToUploads } from './agent-chat.utils';
 
 export const ChatInput: React.FC<{
   /**
@@ -15,14 +21,19 @@ export const ChatInput: React.FC<{
    * @description 借用了 strict_message_schema 的 args 存放 doc
    */
   args?: {
-    context: z.infer<typeof context_schema>;
+    context: ContextItem[];
     chatInputDoc: ChatInputDoc;
   };
 }> = (props) => {
   const chatInput = useAgentChatInputModel(props.messageId);
   useEffect(() => {
     if (props.messageId && props.args) {
-      chatInput.setupMessage(props.args.chatInputDoc, props.args.context);
+      const uploadsItems = contextsToUploads(props.args.context);
+      chatInput.setupMessage(
+        props.args.chatInputDoc,
+        uploadsItems,
+        props.args.context,
+      );
     }
     console.debug('setup', props.messageId);
     chatInput.uppy.setup();

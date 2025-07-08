@@ -22,13 +22,14 @@ import {
   getAtSearchCriteria,
 } from './edix.utils';
 
-export const context_type_schema = z.enum([
-  'preview',
-  'requirement',
-  'canvas',
-  'test',
-  // 'image', // 图片在后端也算 context
-]);
+export const context_type_schema = z.string();
+//  z.enum([
+//   'preview',
+//   'requirement',
+//   'canvas',
+//   'test',
+//   // 'image', // 图片在后端也算 context
+// ]);
 
 export const content_block_schema = z.object({
   type: z.string(),

@@ -21,10 +21,12 @@ export const ChatInputUploadPlugin = observer<AgentChatInputPluginProps>(
       >
         {model.uppy.previewItems.map((item) => {
           if (item.fileKind === FileKind.Image) {
+            if (item.id == null) throw new Error('id is null');
             return (
               <ImagePreview
                 key={item.name}
-                id={item.id || createId()}
+                id={item.id}
+                // id={item.id || createId()}
                 previewItem={item}
                 messageId={messageId}
               />

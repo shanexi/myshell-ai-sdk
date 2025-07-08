@@ -73,7 +73,7 @@ export const ChatInputStructuredInputPlugin =
               model.sendChatInputDoc();
             }
           }}
-          aria-placeholder="Write a message"
+          aria-placeholder={model.isMessage ? undefined : 'Write a message'}
         >
           {!model.edix.isChatInputDocEmpty &&
             value.map((line, i) => (

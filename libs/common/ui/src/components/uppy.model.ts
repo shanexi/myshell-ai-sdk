@@ -14,6 +14,7 @@ import {
   mimeData2,
 } from './uppy.utils';
 import { FileKind } from 'human-filetypes';
+import { createId } from '@paralleldrive/cuid2';
 
 // 后端上传接口返回结构
 // export interface UploadResBody extends Body {
@@ -70,11 +71,14 @@ export class UppyModel {
   }
 
   @computed get previewItems() {
-    const items = this.uppyState.map<UploadItem>(([id, item]) => ({
-      ...item,
-      fileKind: item.type != null ? fromMime2(item.type) : FileKind.Unknown,
-      label: item.type && mimeData2[item.type]?.label,
-    }));
+    const items = this.uppyState.map<UploadItem>(([id, item]) => {
+      return {
+        ...item,
+        id,
+        fileKind: item.type != null ? fromMime2(item.type) : FileKind.Unknown,
+        label: item.type && mimeData2[item.type]?.label,
+      };
+    });
     return items;
   }
 
@@ -119,10 +123,7 @@ export class UppyModel {
   /**
    * @description 暂时禁用 dnd
    */
-  setup(
-    // dropTarget: HTMLDivElement,
-    restrictions?: Partial<Restrictions>,
-  ) {
+  setup(dropTarget?: HTMLDivElement, restrictions?: Partial<Restrictions>) {
     this.allowedFileTypes = restrictions?.allowedFileTypes;
     this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
     this.maxFileSize = restrictions?.maxFileSize;
@@ -260,6 +261,13 @@ export class UppyModel {
     return () => {
       this._uppy = undefined;
     };
+  }
+
+  setInitialUppyState(uploads: UppyState[]) {
+    uploads.forEach((upload) => {
+      const id = createId();
+      this.uppyStateMap.set(id, upload);
+    });
   }
 
   clear() {

@@ -6,6 +6,7 @@ import {
   mergeContentBlocksText,
   processBlockDirectiveNewLine,
   contentBlockToChatInputDoc,
+  uploadsToContexts,
 } from './agent-chat.utils';
 import { FileKind } from 'human-filetypes';
 
@@ -460,4 +461,36 @@ describe('chatInputDocBackendToFrontend', () => {
       ],
     ]);
   });
+});
+
+it('uploadsToContexts', () => {
+  const uploads = [
+    {
+      name: 'ComfyUI_00074_.png',
+      response: {
+        status: 200,
+        body: {
+          message: '文件上传成功',
+          data: {
+            file_path: '/uploads/file-1750641112789-121254784.png',
+          },
+          success: true,
+          code: 200,
+        },
+      },
+      fileKind: FileKind.Image,
+    },
+  ];
+  const contexts = uploadsToContexts(uploads);
+  expect(contexts).toMatchInlineSnapshot(`
+    [
+      {
+        "content": {
+          "name": "ComfyUI_00074_.png",
+          "url": "/uploads/file-1750641112789-121254784.png",
+        },
+        "type": "image",
+      },
+    ]
+  `);
 });

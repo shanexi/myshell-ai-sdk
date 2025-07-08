@@ -7,6 +7,7 @@ import {
   EdixModel,
   UploadItem,
   UppyModel,
+  UppyState,
 } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable, toJS } from 'mobx';
@@ -75,11 +76,13 @@ export class AgentChatInputModel {
    */
   setupMessage(
     chatInputDoc: ChatInputDoc,
-    context: z.infer<typeof context_schema>,
+    uploadItems: UppyState[],
+    context: ContextItem[],
   ) {
     this.isMessage = true;
     // TODO 还有 context
     this.edix.setChatInputDoc(chatInputDoc);
+    this.uppy.setInitialUppyState(uploadItems);
     this.edix.setEdixReadonly(true);
   }
 
@@ -194,8 +197,7 @@ export class AgentChatInputModel {
 
       await this.edix.clearEdix();
       this.edix.addedContextMap.clear();
-      // FIXME 上传图片的选择哪一个？
-      // this.uppy.clear();
+      this.uppy.clear();
     }
   }
 

@@ -21,6 +21,7 @@ import { z } from 'zod';
 import {
   contentBlockToChatInputDoc,
   processBlockDirectiveNewLine,
+  uploadsToContexts,
 } from './agent-chat.utils';
 import { isEmpty } from 'radash';
 import { createId } from '@paralleldrive/cuid2';
@@ -178,6 +179,7 @@ export class AgentChatHelper {
       text = text + uploads.map((u) => u.name).join(' ');
     }
 
+    const contextUploads = uploadsToContexts(uploads);
     this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
       [
         {
@@ -186,7 +188,7 @@ export class AgentChatHelper {
           type: OWN_MESSAGE_TYPE,
           args: {
             chatInputDoc,
-            context: [], // TODO: context 处理
+            context: contextUploads, // TODO: context 处理
           }, // 传入 doc 给到 chatInput message
         },
       ],
