@@ -265,8 +265,7 @@ export class UppyModel {
 
   setInitialUppyState(uploads: UppyState[]) {
     uploads.forEach((upload) => {
-      const id = createId();
-      this.uppyStateMap.set(id, upload);
+      this.uppyStateMap.set(upload.name!, upload);
     });
   }
 
