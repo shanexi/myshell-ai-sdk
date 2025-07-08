@@ -10,13 +10,20 @@ import {
   ChatCommonModelFactory,
   StrictMessage,
 } from '@myshell-run/common-def';
-import { ChatCommonModel } from '@myshell-run/common-ui';
+import {
+  ChatCommonModel,
+  ChatInputDoc,
+  ContextItem,
+  UploadItem,
+} from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
 import { z } from 'zod';
 import {
   contentBlockToChatInputDoc,
   processBlockDirectiveNewLine,
 } from './agent-chat.utils';
+import { isEmpty } from 'radash';
+import { createId } from '@paralleldrive/cuid2';
 
 @injectable()
 export class AgentChatHelper {
@@ -141,5 +148,55 @@ export class AgentChatHelper {
     });
     const text = processBlockDirectiveNewLine(textList);
     return text;
+  }
+
+  sendChatInputDoc(
+    chatInputDoc: ChatInputDoc,
+    uploads: UploadItem[],
+    context: ContextItem[],
+  ) {
+    const key = createId();
+    // 先简单变成字符串
+    // TODO 因为上传图片，所以这里得立即处理下
+    let text = chatInputDoc
+      .map((l) =>
+        l
+          .map((w) => {
+            if (w.type === 'text') {
+              return w.text;
+            }
+            if (w.type === 'context') {
+              return `\`${w.data.content}\``;
+            }
+            return ' ';
+          })
+          .join(''),
+      )
+      .join('\n');
+
+    if (!isEmpty(uploads)) {
+      text = text + uploads.map((u) => u.name).join(' ');
+    }
+
+    this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
+      [
+        {
+          key: key,
+          text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
+          type: OWN_MESSAGE_TYPE,
+          args: {
+            chatInputDoc,
+            context: [], // TODO: context 处理
+          }, // 传入 doc 给到 chatInput message
+        },
+      ],
+      ({ scrollInProgress, atBottom }) => {
+        return {
+          index: 'LAST',
+          align: 'start-no-overflow',
+          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+        };
+      },
+    );
   }
 }

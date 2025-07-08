@@ -162,6 +162,7 @@ export class AgentChatInputModel {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
+
     const chatInputDoc = toJS(this.edix.chatInputDoc);
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
@@ -173,16 +174,20 @@ export class AgentChatInputModel {
       })),
       this.edix.addedContextItems.map((item) => toJS(item)),
     )) {
-      // 则需要进行删除 包括自身消息也要删除
-      // 因为会重新 append（message id 需要更改）
-      this.chatCommon.virtuoso.virtuosoRef?.current?.data.findAndDelete(
-        (item) => {
-          return (
-            item.toDelete === true ||
-            item.key === this.chatCommon.enabledChatInputMessageKey
-          );
-        },
-      );
+      const messageId = this.chatCommon.getEnabledChatInputMessageId();
+      if (/* 代表 restore message */ messageId) {
+        // 则需要进行删除 包括自身消息也要删除
+        // 因为会重新 append（message id 需要更改）
+        this.chatCommon.virtuoso.virtuosoRef?.current?.data.findAndDelete(
+          (item) => {
+            return (
+              item.toDelete === true ||
+              item.key === this.chatCommon.enabledChatInputMessageKey
+            );
+          },
+        );
+      }
+
       this.chatCommon.setEnabledChatInputMessageKey(
         NO_MESSAGE_ID_AGENT_CHAT_INPUT,
       );

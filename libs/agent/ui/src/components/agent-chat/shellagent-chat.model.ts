@@ -43,53 +43,9 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     uploads: UploadItem[],
     context: ContextItem[],
   ) {
-    const messageId = this.chatCommon.getEnabledChatInputMessageId();
-    const key = createId();
-    // 先简单变成字符串
-    // TODO 因为上传图片，所以这里得立即处理下
-    let text = chatInputDoc
-      .map((l) =>
-        l
-          .map((w) => {
-            if (w.type === 'text') {
-              return w.text;
-            }
-            if (w.type === 'context') {
-              return `\`${w.data.content}\``;
-            }
-            return ' ';
-          })
-          .join(''),
-      )
-      .join('\n');
+    yield;
 
-    if (!isEmpty(uploads)) {
-      text = text + uploads.map((u) => u.name).join(' ');
-    }
-
-    this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
-      [
-        {
-          key: key,
-          text: text, // TODO: 这个 text 没有使用了，因为 args: chatInputDoc
-          type: OWN_MESSAGE_TYPE,
-          args: {
-            chatInputDoc,
-            context: [], // TODO: context 处理
-          }, // 传入 doc 给到 chatInput message
-        },
-      ],
-      ({ scrollInProgress, atBottom }) => {
-        return {
-          index: 'LAST',
-          align: 'start-no-overflow',
-          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
-        };
-      },
-    );
-
-    console.log('is restore message', messageId);
-
+    this.helper.sendChatInputDoc(chatInputDoc, uploads, context);
     // // TODO: 对接后端
     // console.log(
     //   'send',
@@ -97,8 +53,6 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     //   context,
     //   f2b_content_blocks(toJS(chatInputDoc)),
     // );
-
-    yield;
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
