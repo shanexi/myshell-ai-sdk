@@ -4,3 +4,4 @@ export * from './components/chat-input';
 export * from './components/agent-chat.model';
 export * from './components/agent-chat.utils';
 export * from './components/agent-chat.helper';
+export * from './components/chat-landing/chat-landing';

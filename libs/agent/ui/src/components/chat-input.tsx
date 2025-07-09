@@ -2,14 +2,8 @@ import {
   AgentChatInputPluginSlot,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
-import {
-  ChatInputDoc,
-  cn,
-  context_schema,
-  ContextItem,
-} from '@myshell-run/common-ui';
+import { ChatInputDoc, cn, ContextItem } from '@myshell-run/common-ui';
 import { useEffect } from 'react';
-import { z } from 'zod';
 import { contextsToUploads } from './agent-chat.utils';
 
 export const ChatInput: React.FC<{

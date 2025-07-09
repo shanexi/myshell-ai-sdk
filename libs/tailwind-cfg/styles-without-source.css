@@ -14,6 +14,12 @@
 
 /* font 没有被转换成功 手动添加 */
 @layer components {
+  .display-lg {
+    line-height: 36px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
   .display-xs {
     line-height: 26px;
     font-size: 18px;
