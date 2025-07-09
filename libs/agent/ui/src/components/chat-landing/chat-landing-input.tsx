@@ -1,6 +1,6 @@
 import {
   AGENT_CHAT_INPUT_LANDING,
-  ChatInputActionPlugin,
+  ChatInputActionVariantPlugin,
   ChatInputStructuredInputPlugin,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
@@ -27,7 +27,7 @@ export const ChatLandingInput = () => {
         )}
       >
         <ChatInputStructuredInputPlugin messageId={AGENT_CHAT_INPUT_LANDING} />
-        <ChatInputActionPlugin messageId={AGENT_CHAT_INPUT_LANDING} />
+        <ChatInputActionVariantPlugin />
       </div>
     </div>
   );

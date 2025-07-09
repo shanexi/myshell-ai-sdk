@@ -1,8 +1,9 @@
-import { cn, HiddenInputFile } from '@myshell-run/common-ui';
+import { cn, HiddenInputFile, UppyModel } from '@myshell-run/common-ui';
 import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
+import { PropsWithChildren } from 'react';
 
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
@@ -31,52 +32,78 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
       );
 
     return (
-      <div
-        className={cn('flex items-center justify-between', 'px-spacing-sm-v2')}
-      >
-        <HiddenInputFile uppyModel={model.uppy}>
-          <CirclePlus
-            strokeWidth={1.5}
-            size={22}
-            className="cursor-pointer text-CCr-icon-button-plain-fg_default-v2"
-          />
-        </HiddenInputFile>
+      <Wrapper>
+        <UploadPlus uppy={model.uppy} />
         {model.loading ? (
           <div className="loader"></div>
         ) : model.canSend ? (
-          <div
-            onClick={() => model.sendChatInputDoc()}
-            className={cn(
-              'h-[28px] w-[28px]',
-              'bg-CCr-button-primary-bg_default-v2',
-              'rounded-C-button-md-radius-v2',
-              'flex items-center justify-center',
-              'cursor-pointer',
-            )}
-          >
-            <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
-          </div>
+          <SendButton onClick={() => model.sendChatInputDoc()} />
         ) : (
           // <Mic
           //   strokeWidth={1.5}
           //   size={28}
           //   className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
           // />
-          <div
-            className={cn(
-              'h-[28px] w-[28px]',
-              'bg-CCr-button-brand-bg_disabled-v2',
-              'rounded-C-button-md-radius-v2',
-              'flex items-center justify-center',
-              'cursor-not-allowed',
-            )}
-          >
-            <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
-          </div>
+          <NotAllowedSendButton />
         )}
-      </div>
+      </Wrapper>
     );
   },
 );
 
 ChatInputActionPlugin.displayName = 'ChatInputActionPlugin';
+
+export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <div
+      className={cn('flex items-center justify-between', 'px-spacing-sm-v2')}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const UploadPlus: React.FC<{ uppy: UppyModel }> = ({ uppy }) => {
+  return (
+    <HiddenInputFile uppyModel={uppy}>
+      <CirclePlus
+        strokeWidth={1.5}
+        size={22}
+        className="cursor-pointer text-CCr-icon-button-plain-fg_default-v2"
+      />
+    </HiddenInputFile>
+  );
+};
+
+export const SendButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className={cn(
+        'h-[28px] w-[28px]',
+        'bg-CCr-button-primary-bg_default-v2',
+        'rounded-C-button-md-radius-v2',
+        'flex items-center justify-center',
+        'cursor-pointer',
+      )}
+    >
+      <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
+    </div>
+  );
+};
+
+export const NotAllowedSendButton = () => {
+  return (
+    <div
+      className={cn(
+        'h-[28px] w-[28px]',
+        'bg-CCr-button-brand-bg_disabled-v2',
+        'rounded-C-button-md-radius-v2',
+        'flex items-center justify-center',
+        'cursor-not-allowed',
+      )}
+    >
+      <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />
+    </div>
+  );
+};

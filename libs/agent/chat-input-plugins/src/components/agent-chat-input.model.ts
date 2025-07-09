@@ -170,7 +170,7 @@ export class AgentChatInputModel {
     }
   }
 
-  async sendChatInputDoc() {
+  async sendChatInputDocVariant() {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
@@ -183,23 +183,32 @@ export class AgentChatInputModel {
     }));
     const contexts = this.edix.addedContextItems.map((item) => toJS(item));
 
-    if (
-      this.chatCommon.enabledChatInputMessageKey === AGENT_CHAT_INPUT_LANDING
-    ) {
-      this.loading = true;
-      // variant
-      for await (const _ of this.handlers.sendChatInputDocVariant(
-        chatInputDoc,
-        uploads,
-        contexts,
-      )) {
-        this.loading = false;
-        await this.edix.clearEdix();
-        this.edix.addedContextMap.clear();
-        this.uppy.clear();
-      }
+    this.loading = true;
+    // variant
+    for await (const _ of this.handlers.sendChatInputDocVariant(
+      chatInputDoc,
+      uploads,
+      contexts,
+    )) {
+      this.loading = false;
+      await this.edix.clearEdix();
+      this.edix.addedContextMap.clear();
+      this.uppy.clear();
+    }
+  }
+
+  async sendChatInputDoc() {
+    if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
+    // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper 方便调试
+    const chatInputDoc = toJS(this.edix.chatInputDoc);
+    const uploads = toJS(this.uppy.previewItems).map((item) => ({
+      ...item,
+      // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
+      response: toJS(item.response),
+    }));
+    const contexts = this.edix.addedContextItems.map((item) => toJS(item));
 
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
