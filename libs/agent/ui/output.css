@@ -2131,9 +2131,6 @@
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
-  .left-1\/2 {
-    left: calc(1/2 * 100%);
-  }
   .z-1000 {
     z-index: 1000;
   }
@@ -2731,9 +2728,6 @@
   .w-\[80\%\] {
     width: 80%;
   }
-  .w-\[90\%\] {
-    width: 90%;
-  }
   .w-\[156px\] {
     width: 156px;
   }
@@ -2761,6 +2755,9 @@
   .flex-1 {
     flex: 1;
   }
+  .flex-\[0_0_640px\] {
+    flex: 0 0 640px;
+  }
   .flex-none {
     flex: none;
   }
@@ -2770,10 +2767,6 @@
   .translate-1 {
     --tw-translate-x: calc(var(--spacing) * 1);
     --tw-translate-y: calc(var(--spacing) * 1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .-translate-x-1\/2 {
-    --tw-translate-x: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-1\/4 {
@@ -3350,26 +3343,6 @@
       &:where(:not([data-rac])):hover {
         color: var(--color-Cr-text-default-v2);
       }
-    }
-  }
-  .sm\:w-\[440px\] {
-    @media (width >= 40rem) {
-      width: 440px;
-    }
-  }
-  .md\:w-\[560px\] {
-    @media (width >= 48rem) {
-      width: 560px;
-    }
-  }
-  .lg\:w-\[640px\] {
-    @media (width >= 64rem) {
-      width: 640px;
-    }
-  }
-  .xl\:w-\[720px\] {
-    @media (width >= 80rem) {
-      width: 720px;
     }
   }
   .dark\:prose-invert {

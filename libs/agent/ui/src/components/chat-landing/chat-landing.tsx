@@ -6,7 +6,7 @@ export const ChatLanding = () => {
     <div className="flex min-h-screen items-center justify-center bg-white">
       <div
         className={cn(
-          'flex w-[640px] flex-shrink-0 flex-grow-0 flex-col gap-[24px]',
+          'flex flex-col gap-[24px] flex-[0_0_640px]',
           '-translate-y-1/4', // 手动微调
         )}
       >
