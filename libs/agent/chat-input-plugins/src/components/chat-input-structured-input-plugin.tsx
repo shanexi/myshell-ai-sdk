@@ -30,7 +30,7 @@ export const ChatInputStructuredInputPlugin =
     );
   });
 
-const ChatInputStructuredInputWrapper = observer<{
+export const ChatInputStructuredInputWrapper = observer<{
   edix: EdixModel;
   className?: string;
   onEnter: () => void;
@@ -125,7 +125,7 @@ color: gray;
 });
 
 // todo: 做个 variant
-const ContextItem: React.FC<{
+export const ContextItem: React.FC<{
   content: string;
   type?: string;
 }> = ({ content, type }) => {

@@ -3,7 +3,7 @@ import {
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
 import { ChatInputDoc, cn, ContextItem } from '@myshell-run/common-ui';
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { contextsToUploads } from './agent-chat.utils';
 
 export const ChatInput: React.FC<{
@@ -34,16 +34,25 @@ export const ChatInput: React.FC<{
   }, [props.messageId]);
 
   return (
-    <div
-      className={cn('px-spacing-xl-v2 py-spacing-md-v2')}
+    <ChatInputWrapper
       onClick={(e) => {
         if (props.messageId == null) return;
-
         e.preventDefault();
         e.stopPropagation();
         chatInput.enableInput(props.messageId);
       }}
     >
+      <AgentChatInputPluginSlot messageId={props.messageId} />
+    </ChatInputWrapper>
+  );
+};
+
+export const ChatInputWrapper: React.FC<React.ComponentProps<'div'>> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <div className={cn('px-spacing-xl-v2 py-spacing-md-v2')} {...props}>
       <div
         className={cn(
           'rounded-lg-v2',
@@ -52,7 +61,7 @@ export const ChatInput: React.FC<{
           'py-spacing-sm-v2',
         )}
       >
-        <AgentChatInputPluginSlot messageId={props.messageId} />
+        {children}
       </div>
     </div>
   );

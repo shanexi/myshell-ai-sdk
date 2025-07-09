@@ -12,10 +12,7 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
-import {
-  AGENT_CHAT_INPUT_LANDING,
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-} from '../chat-input-model-factory';
+import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -170,6 +167,10 @@ export class AgentChatInputModel {
     }
   }
 
+  /**
+   * TODO 如何优化
+   * 一个变体（chat landing page）发送消息的变体
+   */
   async sendChatInputDocVariant() {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;

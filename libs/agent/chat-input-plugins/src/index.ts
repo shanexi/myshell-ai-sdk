@@ -8,4 +8,5 @@ export * from './components/chat-input-context-plugin';
 export * from './components/chat-input-textarea-plugin';
 export * from './components/chat-input-advanced-input-plugin';
 export * from './components/chat-input-structured-input-plugin';
+export * from './components/chat-input-structured-input-variant-plugin';
 export * from './components/agent-chat-input-plugin-slot';
