@@ -9,7 +9,7 @@ import {
   UppyState,
 } from '@myshell-run/common-ui';
 import { inject, injectable } from 'inversify';
-import { computed, makeObservable, observable, toJS } from 'mobx';
+import { computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
 import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
@@ -58,23 +58,18 @@ export class AgentChatInputModel {
     return this.chatCommonFactory(AGENT_CHAT);
   }
 
-  /**
-   * @description 表示 chat input 状态 true: message 编辑态 false: message 只读态
-   * undefined 非 message 形态
-   * 先用 boolean? 表示3种状态
-   */
-  @observable isMessage?: boolean;
+  @observable variant: 'message' | 'message-edit' | 'chat-input' = 'chat-input';
 
   @computed get isContextItemsEmpty() {
     return this.edix.addedContextItems.length === 0;
   }
 
   get isForbidden() {
-    return this.edix.edixReadonly && this.isMessage == null;
+    return this.edix.edixReadonly && this.variant == 'chat-input';
   }
 
   get showAtContext() {
-    return this.isMessage == null || this.isMessage === false;
+    return this.variant === 'chat-input' || this.variant === 'message-edit';
   }
 
   /**
@@ -85,7 +80,9 @@ export class AgentChatInputModel {
     uploadItems: UppyState[],
     context: ContextItem[],
   ) {
-    this.isMessage = true;
+    runInAction(() => {
+      this.variant = 'message';
+    });
     // TODO 还有 context
     this.edix.setChatInputDoc(chatInputDoc);
     this.uppy.setInitialUppyState(uploadItems);
@@ -97,7 +94,13 @@ export class AgentChatInputModel {
    * 会根据 messageId 将其他 chat input message enableMessage
    */
   enableInput(messageId: string = NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
-    this.isMessage = false;
+    runInAction(() => {
+      if (messageId === NO_MESSAGE_ID_AGENT_CHAT_INPUT) {
+        this.variant = 'chat-input';
+      } else {
+        this.variant = 'message-edit';
+      }
+    });
     this.edix.setEdixReadonly(false);
     this.chatCommon.setEnabledChatInputMessageKey(messageId);
 
@@ -141,7 +144,9 @@ export class AgentChatInputModel {
   }
 
   enableMessage() {
-    this.isMessage = true;
+    runInAction(() => {
+      this.variant = 'message';
+    });
     this.edix.setEdixReadonly(true);
   }
 

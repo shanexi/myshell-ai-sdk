@@ -8,7 +8,7 @@ import { PropsWithChildren } from 'react';
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
     const model = useAgentChatInputModel(messageId);
-    if (model.isMessage)
+    if (model.variant === 'message')
       return (
         <div
           className={cn(

@@ -6,7 +6,7 @@ import ThumbnailGenerator from '@uppy/thumbnail-generator';
 import getTimeStamp from '@uppy/utils/lib/getTimeStamp';
 import XHR from '@uppy/xhr-upload';
 import { inject, injectable } from 'inversify';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, makeObservable, observable, runInAction } from 'mobx';
 import {
   formatFileSize,
   fromMime2,
@@ -124,9 +124,11 @@ export class UppyModel {
    * @description 暂时禁用 dnd
    */
   setup(dropTarget?: HTMLDivElement, restrictions?: Partial<Restrictions>) {
-    this.allowedFileTypes = restrictions?.allowedFileTypes;
-    this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
-    this.maxFileSize = restrictions?.maxFileSize;
+    runInAction(() => {
+      this.allowedFileTypes = restrictions?.allowedFileTypes;
+      this.maxNumberOfFiles = restrictions?.maxNumberOfFiles;
+      this.maxFileSize = restrictions?.maxFileSize;
+    });
 
     this._uppy = new Uppy<Meta, UploadResBody>({
       autoProceed: true,
@@ -270,7 +272,9 @@ export class UppyModel {
   }
 
   clear() {
-    this.uppyStateMap = new Map<string, UppyState>();
+    runInAction(() => {
+      this.uppyStateMap = new Map<string, UppyState>();
+    });
     this.uppy.clear();
   }
 }

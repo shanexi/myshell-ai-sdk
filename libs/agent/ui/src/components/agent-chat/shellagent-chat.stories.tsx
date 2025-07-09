@@ -19,6 +19,14 @@ import { Provider as InversifyProvider } from 'inversify-react';
 import { agentUIModule } from '../../agent-ui.module';
 import { ShellAgentChat } from './shellagent-chat';
 import { ShellAgentChatModel } from './shellagent-chat.model';
+import { configure } from 'mobx';
+
+configure({
+  enforceActions: 'always',
+  computedRequiresReaction: true,
+  reactionRequiresObservable: true,
+  observableRequiresReaction: true,
+});
 
 const storyModule = new ContainerModule(
   (

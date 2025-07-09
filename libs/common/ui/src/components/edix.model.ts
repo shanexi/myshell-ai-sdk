@@ -12,7 +12,13 @@ import {
   voidNode,
 } from 'edix';
 import { injectable } from 'inversify';
-import { action, computed, makeObservable, observable } from 'mobx';
+import {
+  action,
+  computed,
+  makeObservable,
+  observable,
+  runInAction,
+} from 'mobx';
 import { isEmpty } from 'radash';
 import { RefObject } from 'react';
 import { z } from 'zod';
@@ -350,7 +356,9 @@ export class EdixModel {
   }
 
   async setEdixReadonly(readonly: boolean) {
-    this.edixReadonly = readonly;
+    runInAction(() => {
+      this.edixReadonly = readonly;
+    });
     await this.edixRefPromise;
     this.edixHandle?.readonly(readonly);
   }

@@ -100,7 +100,7 @@ const FilePreview = observer<{
           </div>
         </div>
       </div>
-      {!model.isMessage && (
+      {model.variant !== 'message' && (
         <Remove
           onRemove={() => model.removeImagePreview(id)}
           uploadComplete={Boolean(previewItem.uploadComplete)}
@@ -123,7 +123,7 @@ const ImagePreview = observer<{
         alt=""
         src={previewItem.preview || previewItem.uploadURL || DEFAULT_AVATAR}
       />
-      {!model.isMessage && (
+      {model.variant !== 'message' && (
         <Remove
           onRemove={() => model.removeImagePreview(id)}
           uploadComplete={Boolean(previewItem.uploadComplete)}

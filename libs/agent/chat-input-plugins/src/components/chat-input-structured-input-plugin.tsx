@@ -19,9 +19,11 @@ export const ChatInputStructuredInputPlugin =
           }}
           className={cn(
             model.isForbidden && 'cursor-not-allowed text-Cr-text-subtlest-v2',
-            model.isMessage && 'cursor-pointer',
+            model.variant === 'message' && 'cursor-pointer',
           )}
-          placeholder={model.isMessage ? undefined : 'Write a message'}
+          placeholder={
+            model.variant === 'message' ? undefined : 'Write a message'
+          }
         />
         {model.edix.isContextMenuShow && model.edix.contextMenuRect && (
           <ContextMenu comingSoon={false} messageId={messageId} />
