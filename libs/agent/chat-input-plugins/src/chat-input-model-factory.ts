@@ -12,6 +12,11 @@ export type AgentChatInputModelFactory = (id: string) => AgentChatInputModel;
  */
 export const NO_MESSAGE_ID_AGENT_CHAT_INPUT = 'NO_MESSAGE_ID_AGENT_CHAT_INPUT';
 
+/**
+ * @description 代表 landing chat input
+ */
+export const AGENT_CHAT_INPUT_LANDING = 'AGENT_CHAT_INPUT_LANDING';
+
 export function useAgentChatInputModel(id?: string) {
   // const context = useContext(InversifyContext);
   // if (!context) {

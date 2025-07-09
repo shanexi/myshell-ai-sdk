@@ -1,9 +1,9 @@
 import { agentChatInputPluginsModule } from '@myshell-run/agent-chat-input-plugins';
 import { agentMessagePluginsModule } from '@myshell-run/agent-message-plugins';
+import { UploadEndpoint } from '@myshell-run/common-def';
 import { commonUIModule } from '@myshell-run/common-ui';
 import { Container } from 'inversify';
 import { agentUIModule } from '../agent-ui.module';
-import { UploadEndpoint } from '@myshell-run/common-def';
 
 export const container = new Container();
 container

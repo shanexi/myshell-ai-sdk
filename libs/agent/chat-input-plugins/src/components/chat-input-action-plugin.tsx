@@ -41,7 +41,9 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
             className="cursor-pointer text-CCr-icon-button-plain-fg_default-v2"
           />
         </HiddenInputFile>
-        {model.canSend ? (
+        {model.loading ? (
+          <div className="loader"></div>
+        ) : model.canSend ? (
           <div
             onClick={() => model.sendChatInputDoc()}
             className={cn(
@@ -61,13 +63,12 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
           //   className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
           // />
           <div
-            onClick={() => model.sendChatInputDoc()}
             className={cn(
               'h-[28px] w-[28px]',
               'bg-CCr-button-brand-bg_disabled-v2',
               'rounded-C-button-md-radius-v2',
               'flex items-center justify-center',
-              'cursor-pointer',
+              'cursor-not-allowed',
             )}
           >
             <ArrowUp strokeWidth={1.5} className="text-Cr-Fg-bolder-v2" />

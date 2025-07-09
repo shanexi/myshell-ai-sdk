@@ -8,7 +8,7 @@ class SomeChatInputHandler implements AgentChatInputHandlers {
   async *sendChatInputDoc(chatInputDoc: ChatInputDoc) {
     yield;
   }
-  *removeImagePreview(id: string) {
+  async *sendChatInputDocVariant(chatInputDoc: ChatInputDoc) {
     yield;
   }
   async *sendText(text: string) {

@@ -30,6 +30,10 @@ export class AgentChatModel implements AgentChatInputHandlers {
     yield;
   }
 
+  async *sendChatInputDocVariant(chatInputDoc: ChatInputDoc) {
+    yield;
+  }
+
   async *sendText(inputText: string) {
     const msgId = createId();
     const replyMsgId = createId();

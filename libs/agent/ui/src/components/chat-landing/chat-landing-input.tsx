@@ -1,7 +1,7 @@
 import {
+  AGENT_CHAT_INPUT_LANDING,
   ChatInputActionPlugin,
   ChatInputStructuredInputPlugin,
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
   useAgentChatInputModel,
 } from '@myshell-run/agent-chat-input-plugins';
 import { cn } from '@myshell-run/common-ui';
@@ -11,7 +11,7 @@ import { useEffect } from 'react';
  * 不保留 context
  */
 export const ChatLandingInput = () => {
-  const chatInput = useAgentChatInputModel(NO_MESSAGE_ID_AGENT_CHAT_INPUT);
+  const chatInput = useAgentChatInputModel(AGENT_CHAT_INPUT_LANDING);
   useEffect(() => {
     chatInput.uppy.setup();
   }, []);
@@ -26,8 +26,8 @@ export const ChatLandingInput = () => {
           'py-spacing-sm-v2',
         )}
       >
-        <ChatInputStructuredInputPlugin />
-        <ChatInputActionPlugin />
+        <ChatInputStructuredInputPlugin messageId={AGENT_CHAT_INPUT_LANDING} />
+        <ChatInputActionPlugin messageId={AGENT_CHAT_INPUT_LANDING} />
       </div>
     </div>
   );

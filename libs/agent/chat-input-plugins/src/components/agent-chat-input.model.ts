@@ -2,7 +2,6 @@ import { AGENT_CHAT, ChatCommonModelFactory } from '@myshell-run/common-def';
 import {
   ChatCommonModel,
   ChatInputDoc,
-  context_schema,
   ContextItem,
   EdixModel,
   UploadItem,
@@ -13,8 +12,10 @@ import { inject, injectable } from 'inversify';
 import { computed, makeObservable, observable, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
-import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
-import { z } from 'zod';
+import {
+  AGENT_CHAT_INPUT_LANDING,
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+} from '../chat-input-model-factory';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -33,10 +34,18 @@ export interface AgentChatInputHandlers {
     upload: UploadItem[],
     context: ContextItem[],
   ): AsyncGenerator;
+
+  sendChatInputDocVariant(
+    chatInputDoc: ChatInputDoc,
+    upload: UploadItem[],
+    context: ContextItem[],
+  ): AsyncGenerator;
 }
 
 @injectable()
 export class AgentChatInputModel {
+  @observable loading = false;
+
   constructor(
     @inject(AgentChatInputHandlers)
     private handlers: AgentChatInputHandlers,
@@ -165,17 +174,38 @@ export class AgentChatInputModel {
     if (!this.canSend || /* 回车选中 */ this.edix.isContextMenuShow) {
       return;
     }
-
+    // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper 方便调试
     const chatInputDoc = toJS(this.edix.chatInputDoc);
+    const uploads = toJS(this.uppy.previewItems).map((item) => ({
+      ...item,
+      // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
+      response: toJS(item.response),
+    }));
+    const contexts = this.edix.addedContextItems.map((item) => toJS(item));
+
+    if (
+      this.chatCommon.enabledChatInputMessageKey === AGENT_CHAT_INPUT_LANDING
+    ) {
+      this.loading = true;
+      // variant
+      for await (const _ of this.handlers.sendChatInputDocVariant(
+        chatInputDoc,
+        uploads,
+        contexts,
+      )) {
+        this.loading = false;
+        await this.edix.clearEdix();
+        this.edix.addedContextMap.clear();
+        this.uppy.clear();
+      }
+      return;
+    }
+
     for await (const _ of this.handlers.sendChatInputDoc(
       // 先手动 toJS 让 handlers 的接口不要出现 observable wrapper
       chatInputDoc,
-      toJS(this.uppy.previewItems).map((item) => ({
-        ...item,
-        // toJS 不支持嵌套，也不清楚这里怎么就 observable 了，先手动 toJS
-        response: toJS(item.response),
-      })),
-      this.edix.addedContextItems.map((item) => toJS(item)),
+      uploads,
+      contexts,
     )) {
       const messageId = this.chatCommon.getEnabledChatInputMessageId();
       if (/* 代表 restore message */ messageId) {

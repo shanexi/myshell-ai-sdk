@@ -28,6 +28,17 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
   ) {
     makeObservable(this);
   }
+  async *sendChatInputDocVariant(
+    chatInputDoc: ChatInputDoc,
+    upload: UploadItem[],
+    context: ContextItem[],
+  ) {
+    console.log('sendChatInputDocVariant');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // todo
+    // 等待请求之后回来，进行 router 跳转
+    yield;
+  }
 
   get chatCommon() {
     return this.factory(AGENT_CHAT);
