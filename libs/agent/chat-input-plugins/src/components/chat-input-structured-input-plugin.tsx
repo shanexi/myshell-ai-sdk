@@ -77,6 +77,7 @@ export const ChatInputStructuredInputWrapper = observer<{
         ref={ref}
         className={cn(
           'x-chat-input-advanced-input-plugin',
+          'text-Cr-text-default-v2',
           'text-lg-regular',
           'my-spacing-xs-v2',
           'w-full resize-none !px-spacing-md-v2 outline-none',

@@ -7,10 +7,10 @@
 
 /* 先注释 根据 prefers-color-scheme 控制 */
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  /* themes: light --default, dark --prefersdark; */
 }
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
 
 /* font 没有被转换成功 手动添加 */
 @layer components {

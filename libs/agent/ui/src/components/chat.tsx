@@ -19,7 +19,10 @@ export const Chat = observer(() => {
   return (
     <div
       // ref={dropTargetRef}
-      className="relative flex h-full flex-col"
+      className={cn(
+        'relative flex h-full flex-col',
+        'bg-Cr-Bg-normal-primary-default-v2',
+      )}
     >
       <ChatMessageList
         chatCommonModel={model.chatCommon}

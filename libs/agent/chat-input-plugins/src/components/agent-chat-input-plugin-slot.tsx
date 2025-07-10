@@ -1,10 +1,6 @@
 import { useInjection } from 'inversify-react';
-import {
-  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
-  useAgentChatInputModel,
-} from '../chat-input-model-factory';
 import { FunctionComponent } from 'react';
-import { observer } from 'mobx-react-lite';
+import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
 
 /**
  * @description ChatInput 可能有 message 形式

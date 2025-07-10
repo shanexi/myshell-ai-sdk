@@ -3,10 +3,10 @@ import { ChatLandingInput } from './chat-landing-input';
 
 export const ChatLanding = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white">
+    <div className="flex min-h-screen items-center justify-center bg-Cr-Bg-normal-primary-default-v2">
       <div
         className={cn(
-          'flex flex-col gap-[24px] flex-[0_0_640px]',
+          'flex flex-[0_0_640px] flex-col gap-[24px]',
           '-translate-y-1/4', // 手动微调
         )}
       >
