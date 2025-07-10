@@ -19,25 +19,19 @@ export type AgentChatInputPluginProps = {
 export const AgentChatInputPlugin = Symbol.for('ChatInputPlugin');
 export type AgentChatInputPlugin = FunctionComponent<AgentChatInputPluginProps>;
 
-// export const AgentChatInputPluginSlot: React.FC<AgentChatInputPluginProps> = ({
-export const AgentChatInputPluginSlot = observer<AgentChatInputPluginProps>(
-  ({ messageId }) => {
-    const model = useAgentChatInputModel(messageId);
-    const plugins = useInjection<AgentChatInputPlugin[]>(AgentChatInputPlugin);
+export const AgentChatInputPluginSlot: React.FC<
+  AgentChatInputPluginProps
+> = // export const AgentChatInputPluginSlot = observer<AgentChatInputPluginProps>(
+({ messageId }) => {
+  // const model = useAgentChatInputModel(messageId);
+  const plugins = useInjection<AgentChatInputPlugin[]>(AgentChatInputPlugin);
+  return plugins.map((Plugin, index) => {
     return (
-      <>
-        <span style={{ display: 'none' }}>
-          {messageId} {model.variant}
-        </span>
-        {plugins.map((Plugin, index) => {
-          return (
-            <Plugin
-              key={`${messageId || NO_MESSAGE_ID_AGENT_CHAT_INPUT}-${Plugin.displayName}`}
-              messageId={messageId}
-            />
-          );
-        })}
-      </>
+      <Plugin
+        key={`${messageId || NO_MESSAGE_ID_AGENT_CHAT_INPUT}-${Plugin.displayName}`}
+        messageId={messageId}
+      />
     );
-  },
-);
+  });
+};
+// );
