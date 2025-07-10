@@ -28,12 +28,16 @@ function addV2Suffix(content) {
 
 // Function to merge desktop-dark and mobile-dark when they have the same value
 function mergeDarkVariants(content) {
-  // Use regex to find all desktop-dark and mobile-dark pairs, handling var() values
-  const darkPairsRegex = /--([^-\s]+(?:-[^-\s]+)*)-desktop-dark(-v2)?:\s*(var\([^)]+\)|[^;]+);[\s\n]*--\1-mobile-dark\2:\s*\3;/g;
+  // Use regex to find all desktop-dark and mobile-dark pairs
+  const darkPairsRegex = /--([^-\s]+(?:-[^-\s]+)*)-desktop-dark(-v2)?:\s*(var\([^)]+\)|[^;]+);[\s\n]*--\1-mobile-dark\2:\s*(var\([^)]+\)|[^;]+);/g;
 
-  return content.replace(darkPairsRegex, (match, base, v2Suffix, value) => {
-    // Replace both desktop-dark and mobile-dark with just dark
-    return `--${base}-dark${v2Suffix || ''}: ${value};`;
+  return content.replace(darkPairsRegex, (match, base, v2Suffix, desktopValue, mobileValue) => {
+    // If values are the same, merge to a single dark variant
+    if (desktopValue.trim() === mobileValue.trim()) {
+      return `--${base}-dark${v2Suffix || ''}: ${desktopValue};`;
+    }
+    // If values are different, keep both and add a new dark variant with desktop value
+    return `${match}\n  --${base}-dark${v2Suffix || ''}: ${desktopValue};`;
   });
 }
 

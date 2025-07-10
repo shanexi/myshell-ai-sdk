@@ -186,6 +186,7 @@
   --color-Cr-Bg-normal-primary-default-light-v2: var(--neutral-99-v2);
   --color-Cr-Bg-normal-primary-default-desktop-dark-v2: var(--neutral-variant-10-v2);
   --color-Cr-Bg-normal-primary-default-mobile-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-Bg-normal-primary-default-dark-v2: var(--neutral-variant-10-v2);
   --color-Cr-border-default-light-v2: var(--neutral-95-v2);
   --color-Cr-border-default-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-critical-bolder-light-v2: var(--terracotta-30-v2);
@@ -215,6 +216,7 @@
   --color-Cr-Bg-normal-primary-hover-light-v2: var(--neutral-98-v2);
   --color-Cr-Bg-normal-primary-hover-desktop-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-Bg-normal-primary-hover-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-primary-hover-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-text-subtle-light-v2: var(--neutral-30-v2);
   --color-Cr-text-subtle-dark-v2: var(--neutral-variant-90-v2);
   --color-Cr-text-critical-default-light-v2: var(--terracotta-50-v2);
@@ -238,6 +240,7 @@
   --color-Cr-Bg-normal-primary-active-light-v2: var(--neutral-90-v2);
   --color-Cr-Bg-normal-primary-active-desktop-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-primary-active-mobile-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-Bg-normal-primary-active-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-critical-default-light-v2: var(--terracotta-90-v2);
   --color-Cr-Bg-critical-default-dark-v2: var(--terracotta-variant-20-v2);
   --color-Cr-border-warning-light-v2: var(--khaki-50-v2);
@@ -937,12 +940,15 @@
   --color-Cr-Bg-normal-secondary-default-light-v2: var(--neutral-98-v2);
   --color-Cr-Bg-normal-secondary-default-desktop-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-Bg-normal-secondary-default-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-secondary-default-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-Bg-normal-secondary-hover-light-v2: var(--neutral-95-v2);
   --color-Cr-Bg-normal-secondary-hover-desktop-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-secondary-hover-mobile-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-Bg-normal-secondary-hover-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-secondary-active-light-v2: var(--neutral-90-v2);
   --color-Cr-Bg-normal-secondary-active-desktop-dark-v2: var(--neutral-variant-40-v2);
   --color-Cr-Bg-normal-secondary-active-mobile-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-Bg-normal-secondary-active-dark-v2: var(--neutral-variant-40-v2);
   --color-CCr-chat-tips-button_alert-light-v2: var(--khaki-90-v2);
   --color-CCr-chat-tips-button_alert-dark-v2: var(--khaki-40-v2);
   --color-Cr-utility-plum-purple-5-light-v2: var(--plum-purple-98-v2);
@@ -1010,6 +1016,7 @@
   --color-Cr-Bg-normal-secondary-alt-light-v2: var(--neutral-100-v2);
   --color-Cr-Bg-normal-secondary-alt-desktop-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-Bg-normal-secondary-alt-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-secondary-alt-dark-v2: var(--neutral-variant-20-v2);
   --color-CCr-icon-button-plain-fg_default-light-v2: var(--neutral-5-v2);
   --color-CCr-icon-button-plain-fg_default-dark-v2: var(--neutral-variant-100-v2);
   --color-CCr-icon-button-plain-gray-fg_default-light-v2: var(--neutral-40-v2);
