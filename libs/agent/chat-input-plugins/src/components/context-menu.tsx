@@ -95,7 +95,7 @@ export const ContextMenu = observer<
       ref={dropdownRef}
       className={cn(
         'absolute',
-        'bg-[#FFFEFD]',
+        'bg-Cr-Bg-utilities-modal-v2',
         'border border-Cr-border-opaque-v2',
         'rounded-C-dropdown-radius-v2',
         'z-1000',
@@ -133,7 +133,7 @@ export const ContextMenu = observer<
                   model.edix.selectedMenuIndex,
                   model.edix.filteredContextMenus.length - 1,
                 )
-                ? 'bg-[#F5F4F2]'
+                ? 'bg-CCr-dropdown-hover-v2'
                 : 'transparent',
             )}
             onClick={() => {
@@ -143,7 +143,12 @@ export const ContextMenu = observer<
               model.edix.setSelectedMenuIndex(index);
             }}
           >
-            <div className={cn('flex items-center gap-spacing-sm-v2')}>
+            <div
+              className={cn(
+                'flex items-center gap-spacing-sm-v2',
+                'text-Cr-Fg-default-v2',
+              )}
+            >
               <Icon size={20} strokeWidth={1.5} />
               <span>
                 {item.highlightedName.map((segment, segmentIndex) => (

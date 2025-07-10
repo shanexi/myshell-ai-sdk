@@ -19,11 +19,9 @@ export type AgentChatInputPluginProps = {
 export const AgentChatInputPlugin = Symbol.for('ChatInputPlugin');
 export type AgentChatInputPlugin = FunctionComponent<AgentChatInputPluginProps>;
 
-export const AgentChatInputPluginSlot: React.FC<
-  AgentChatInputPluginProps
-> = // export const AgentChatInputPluginSlot = observer<AgentChatInputPluginProps>(
-({ messageId }) => {
-  // const model = useAgentChatInputModel(messageId);
+export const AgentChatInputPluginSlot: React.FC<AgentChatInputPluginProps> = ({
+  messageId,
+}) => {
   const plugins = useInjection<AgentChatInputPlugin[]>(AgentChatInputPlugin);
   return plugins.map((Plugin, index) => {
     return (
@@ -34,4 +32,3 @@ export const AgentChatInputPluginSlot: React.FC<
     );
   });
 };
-// );

@@ -107,7 +107,9 @@
   --spacing-widths-paragraph-max-width-v2: var(--primitives-180-720px-v2);
   --spacing-containers-container-padding-mobile-v2: var(--primitives-4-16px-v2);
   --spacing-containers-container-padding-desktop-v2: var(--primitives-6-24px-v2);
-  --spacing-containers-container-max-width-desktop-v2: var(--primitives-320-1-280px-v2);
+  --spacing-containers-container-max-width-desktop-v2: var(
+    --primitives-320-1-280px-v2
+  );
   --spacing-C-button-lg-height-v2: var(--primitives-11-44px-v2);
   --spacing-C-button-lg-min-width-v2: var(--primitives-11-44px-v2);
   --primitives-11-44px-v2: 44px;
@@ -138,7 +140,9 @@
   --radius-C-button-xs-radius-v2: var(--radius-default-v2);
   --spacing-C-button-xs-spacing-v2: var(--primitives-1-5-6px-v2);
   --spacing-C-button-xs-min-width-v2: var(--primitives-5-20px-v2);
-  --spacing-containers-container-padding-mobile-chat-v2: var(--primitives-1-5-6px-v2);
+  --spacing-containers-container-padding-mobile-chat-v2: var(
+    --primitives-1-5-6px-v2
+  );
   --radius-C-button-plain-radius-v2: var(--radius-md-v2);
   --spacing-C-button-plain-spacing-v2: var(--radius-default-v2);
   --radius-C-input-radius-v2: var(--radius-md-v2);
@@ -184,8 +188,12 @@
   --color-Cr-Bg-neutral-primary-default-light-v2: var(--neutral-98-v2);
   --color-Cr-Bg-neutral-primary-default-dark-v2: var(--neutral-variant-5-v2);
   --color-Cr-Bg-normal-primary-default-light-v2: var(--neutral-99-v2);
-  --color-Cr-Bg-normal-primary-default-desktop-dark-v2: var(--neutral-variant-10-v2);
-  --color-Cr-Bg-normal-primary-default-mobile-dark-v2: var(--neutral-variant-5-v2);
+  --color-Cr-Bg-normal-primary-default-desktop-dark-v2: var(
+    --neutral-variant-10-v2
+  );
+  --color-Cr-Bg-normal-primary-default-mobile-dark-v2: var(
+    --neutral-variant-5-v2
+  );
   --color-Cr-Bg-normal-primary-default-dark-v2: var(--neutral-variant-10-v2);
   --color-Cr-border-default-light-v2: var(--neutral-95-v2);
   --color-Cr-border-default-dark-v2: var(--neutral-variant-30-v2);
@@ -214,8 +222,12 @@
   --color-Cr-Bg-info-default-light-v2: var(--lake-blue-90-v2);
   --color-Cr-Bg-info-default-dark-v2: var(--lake-blue-20-v2);
   --color-Cr-Bg-normal-primary-hover-light-v2: var(--neutral-98-v2);
-  --color-Cr-Bg-normal-primary-hover-desktop-dark-v2: var(--neutral-variant-20-v2);
-  --color-Cr-Bg-normal-primary-hover-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-primary-hover-desktop-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-Cr-Bg-normal-primary-hover-mobile-dark-v2: var(
+    --neutral-variant-10-v2
+  );
   --color-Cr-Bg-normal-primary-hover-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-text-subtle-light-v2: var(--neutral-30-v2);
   --color-Cr-text-subtle-dark-v2: var(--neutral-variant-90-v2);
@@ -238,8 +250,12 @@
   --color-Cr-Fg-success-default-light-v2: var(--teal-50-v2);
   --color-Cr-Fg-success-default-dark-v2: var(--teal-60-v2);
   --color-Cr-Bg-normal-primary-active-light-v2: var(--neutral-90-v2);
-  --color-Cr-Bg-normal-primary-active-desktop-dark-v2: var(--neutral-variant-30-v2);
-  --color-Cr-Bg-normal-primary-active-mobile-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-Bg-normal-primary-active-desktop-dark-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-Cr-Bg-normal-primary-active-mobile-dark-v2: var(
+    --neutral-variant-20-v2
+  );
   --color-Cr-Bg-normal-primary-active-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-critical-default-light-v2: var(--terracotta-90-v2);
   --color-Cr-Bg-critical-default-dark-v2: var(--terracotta-variant-20-v2);
@@ -452,7 +468,9 @@
   --color-CCr-button-brand-bg_disabled-light-v2: var(--neutral-95-v2);
   --color-CCr-button-brand-bg_disabled-dark-v2: var(--neutral-variant-30-v2);
   --color-CCr-button-secondary-border_default-light-v2: var(--neutral-5-v2);
-  --color-CCr-button-secondary-border_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-button-secondary-border_default-dark-v2: var(
+    --neutral-variant-100-v2
+  );
   --color-CCr-button-primary-bg_default-light-v2: var(--neutral-5-v2);
   --color-CCr-button-primary-bg_default-dark-v2: var(--neutral-variant-100-v2);
   --color-CCr-button-primary-bg_hover-light-v2: var(--neutral-20-v2);
@@ -467,8 +485,12 @@
   --color-CCr-button-primary-bg_disabled-dark-v2: var(--neutral-variant-30-v2);
   --color-CCr-button-secondary-bg_default-light-v2: var(--basic-none-v2);
   --color-CCr-button-secondary-bg_default-dark-v2: var(--basic-none-v2);
-  --color-CCr-button-secondary-border_disabled-light-v2: var(--neutral-on-surface-20-v2);
-  --color-CCr-button-secondary-border_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-button-secondary-border_disabled-light-v2: var(
+    --neutral-on-surface-20-v2
+  );
+  --color-CCr-button-secondary-border_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-CCr-button-secondary-fg_default-light-v2: var(--neutral-5-v2);
   --color-CCr-button-secondary-fg_default-dark-v2: var(--neutral-variant-100-v2);
   --color-CCr-button-secondary-fg_alt-light-v2: var(--neutral-70-v2);
@@ -477,7 +499,9 @@
   --color-CCr-button-secondary-bg_hover-dark-v2: var(--neutral-variant-30-v2);
   --color-CCr-button-secondary-bg_active-light-v2: var(--neutral-95-v2);
   --color-CCr-button-secondary-bg_active-dark-v2: var(--neutral-variant-40-v2);
-  --color-CCr-button-tertiary-bg_default-light-v2: var(--neutral-on-surface-10-v2);
+  --color-CCr-button-tertiary-bg_default-light-v2: var(
+    --neutral-on-surface-10-v2
+  );
   --color-CCr-button-tertiary-bg_default-dark-v2: var(--neutral-variant-30-v2);
   --color-CCr-button-tertiary-fg_default-light-v2: var(--neutral-5-v2);
   --color-CCr-button-tertiary-fg_default-dark-v2: var(--neutral-variant-100-v2);
@@ -485,7 +509,9 @@
   --color-CCr-button-tertiary-fg_alt-dark-v2: var(--opacity-white-30-v2);
   --color-CCr-button-tertiary-bg_hover-light-v2: var(--neutral-on-surface-20-v2);
   --color-CCr-button-tertiary-bg_hover-dark-v2: var(--neutral-variant-40-v2);
-  --color-CCr-button-tertiary-bg_active-light-v2: var(--neutral-on-surface-30-v2);
+  --color-CCr-button-tertiary-bg_active-light-v2: var(
+    --neutral-on-surface-30-v2
+  );
   --color-CCr-button-tertiary-bg_active-dark-v2: var(--neutral-variant-50-v2);
   --color-CCr-button-plain-fg_default-light-v2: var(--neutral-5-v2);
   --color-CCr-button-plain-fg_default-dark-v2: var(--neutral-variant-100-v2);
@@ -515,16 +541,36 @@
   --color-CCr-link-button-primary-bg_default-dark-v2: var(--basic-none-v2);
   --color-CCr-link-button-primary-fg_active-light-v2: var(--pure-mauve-30-v2);
   --color-CCr-link-button-primary-fg_active-dark-v2: var(--pure-mauve-80-v2);
-  --color-CCr-link-button-primary-fg_disabled-light-v2: var(--neutral-variant-80-v2);
-  --color-CCr-link-button-primary-fg_disabled-dark-v2: var(--neutral-variant-40-v2);
-  --color-CCr-link-button-secondary-fg_default-light-v2: var(--neutral-variant-30-v2);
-  --color-CCr-link-button-secondary-fg_default-dark-v2: var(--neutral-variant-100-v2);
-  --color-CCr-link-button-secondary-fg_hover-light-v2: var(--neutral-variant-50-v2);
-  --color-CCr-link-button-secondary-fg_hover-dark-v2: var(--neutral-variant-80-v2);
-  --color-CCr-link-button-secondary-fg_active-light-v2: var(--neutral-variant-70-v2);
-  --color-CCr-link-button-secondary-fg_active-dark-v2: var(--neutral-variant-60-v2);
-  --color-CCr-link-button-secondary-fg_disabled-light-v2: var(--neutral-variant-80-v2);
-  --color-CCr-link-button-secondary-fg_disabled-dark-v2: var(--neutral-variant-40-v2);
+  --color-CCr-link-button-primary-fg_disabled-light-v2: var(
+    --neutral-variant-80-v2
+  );
+  --color-CCr-link-button-primary-fg_disabled-dark-v2: var(
+    --neutral-variant-40-v2
+  );
+  --color-CCr-link-button-secondary-fg_default-light-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-CCr-link-button-secondary-fg_default-dark-v2: var(
+    --neutral-variant-100-v2
+  );
+  --color-CCr-link-button-secondary-fg_hover-light-v2: var(
+    --neutral-variant-50-v2
+  );
+  --color-CCr-link-button-secondary-fg_hover-dark-v2: var(
+    --neutral-variant-80-v2
+  );
+  --color-CCr-link-button-secondary-fg_active-light-v2: var(
+    --neutral-variant-70-v2
+  );
+  --color-CCr-link-button-secondary-fg_active-dark-v2: var(
+    --neutral-variant-60-v2
+  );
+  --color-CCr-link-button-secondary-fg_disabled-light-v2: var(
+    --neutral-variant-80-v2
+  );
+  --color-CCr-link-button-secondary-fg_disabled-dark-v2: var(
+    --neutral-variant-40-v2
+  );
   --color-CCr-link-button-secondary-bg_default-light-v2: var(--basic-none-v2);
   --color-CCr-link-button-secondary-bg_default-dark-v2: var(--basic-none-v2);
   --color-CCr-button-error-primary-fg_default-light-v2: var(--terracotta-100-v2);
@@ -538,21 +584,37 @@
   --color-CCr-button-error-primary-bg_active-light-v2: var(--terracotta-30-v2);
   --color-CCr-button-error-primary-bg_active-dark-v2: var(--terracotta-20-v2);
   --color-CCr-button-error-primary-bg_disabled-light-v2: var(--neutral-95-v2);
-  --color-CCr-button-error-primary-bg_disabled-dark-v2: var(--neutral-variant-30-v2);
-  --color-CCr-button-error-secondary-fg_default-light-v2: var(--terracotta-50-v2);
+  --color-CCr-button-error-primary-bg_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-CCr-button-error-secondary-fg_default-light-v2: var(
+    --terracotta-50-v2
+  );
   --color-CCr-button-error-secondary-fg_default-dark-v2: var(--terracotta-95-v2);
   --color-CCr-button-error-secondary-fg_alt-light-v2: var(--neutral-70-v2);
-  --color-CCr-button-error-secondary-fg_alt-dark-v2: var(--neutral-variant-40-v2);
-  --color-CCr-button-error-secondary-bg_default-light-v2: var(--terracotta-98-v2);
+  --color-CCr-button-error-secondary-fg_alt-dark-v2: var(
+    --neutral-variant-40-v2
+  );
+  --color-CCr-button-error-secondary-bg_default-light-v2: var(
+    --terracotta-98-v2
+  );
   --color-CCr-button-error-secondary-bg_default-dark-v2: var(--terracotta-5-v2);
   --color-CCr-button-error-secondary-bg_hover-light-v2: var(--terracotta-90-v2);
   --color-CCr-button-error-secondary-bg_hover-dark-v2: var(--terracotta-20-v2);
   --color-CCr-button-error-secondary-bg_active-light-v2: var(--terracotta-80-v2);
   --color-CCr-button-error-secondary-bg_active-dark-v2: var(--terracotta-30-v2);
-  --color-CCr-button-error-secondary-border_default-light-v2: var(--terracotta-50-v2);
-  --color-CCr-button-error-secondary-border_default-dark-v2: var(--terracotta-40-v2);
-  --color-CCr-button-error-secondary-border_disabled-light-v2: var(--neutral-on-surface-20-v2);
-  --color-CCr-button-error-secondary-border_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-button-error-secondary-border_default-light-v2: var(
+    --terracotta-50-v2
+  );
+  --color-CCr-button-error-secondary-border_default-dark-v2: var(
+    --terracotta-40-v2
+  );
+  --color-CCr-button-error-secondary-border_disabled-light-v2: var(
+    --neutral-on-surface-20-v2
+  );
+  --color-CCr-button-error-secondary-border_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-CCr-button-error-primary-bg_loading-light-v2: var(--terracotta-90-v2);
   --color-CCr-button-error-primary-bg_loading-dark-v2: var(--terracotta-40-v2);
   --color-CCr-icon-button-brand-fg_default-light-v2: var(--pure-mauve-5-v2);
@@ -566,7 +628,9 @@
   --color-CCr-icon-button-brand-bg_active-light-v2: var(--pure-mauve-70-v2);
   --color-CCr-icon-button-brand-bg_active-dark-v2: var(--pure-mauve-20-v2);
   --color-CCr-icon-button-brand-bg_disabled-light-v2: var(--neutral-95-v2);
-  --color-CCr-icon-button-brand-bg_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-icon-button-brand-bg_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-CCr-tooltip-fg_default-light-v2: var(--neutral-variant-100-v2);
   --color-CCr-tooltip-fg_default-dark-v2: var(--neutral-variant-100-v2);
   --color-CCr-tooltip-bg_default-light-v2: var(--neutral-variant-10-v2);
@@ -575,7 +639,9 @@
   --color-CCr-tooltip-fg_subtle-dark-v2: var(--neutral-variant-80-v2);
   --color-CCr-tooltip-border-light-v2: var(--basic-none-v2);
   --color-CCr-tooltip-border-dark-v2: var(--neutral-variant-20-v2);
-  --color-Cr-Bg-neutral-on-surface-default-light-v2: var(--neutral-on-surface-10-v2);
+  --color-Cr-Bg-neutral-on-surface-default-light-v2: var(
+    --neutral-on-surface-10-v2
+  );
   --color-Cr-Bg-neutral-on-surface-default-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-tertiary-default-light-v2: var(--neutral-100-v2);
   --color-Cr-Bg-normal-tertiary-default-dark-v2: var(--neutral-variant-30-v2);
@@ -583,7 +649,9 @@
   --color-Cr-Bg-normal-tertiary-hover-dark-v2: var(--neutral-variant-40-v2);
   --color-Cr-Bg-normal-tertiary-active-light-v2: var(--neutral-95-v2);
   --color-Cr-Bg-normal-tertiary-active-dark-v2: var(--neutral-variant-50-v2);
-  --color-CCr-button-error-secondary-bg_disabled-light-v2: var(--terracotta-100-v2);
+  --color-CCr-button-error-secondary-bg_disabled-light-v2: var(
+    --terracotta-100-v2
+  );
   --color-CCr-button-error-secondary-bg_disabled-dark-v2: var(--basic-none-v2);
   --color-Cr-utility-gray-5-light-v2: var(--neutral-variant-98-v2);
   --color-Cr-utility-gray-5-dark-v2: var(--neutral-variant-10-v2);
@@ -911,11 +979,15 @@
   --color-CCr-chat-tips-bg_error-dark-v2: var(--terracotta-10-v2);
   --color-CCr-chat-tips-border_error-light-v2: var(--terracotta-80-v2);
   --color-CCr-chat-tips-border_error-dark-v2: var(--terracotta-30-v2);
-  --color-Cr-Bg-neutral-on-surface-hover-light-v2: var(--neutral-on-surface-20-v2);
+  --color-Cr-Bg-neutral-on-surface-hover-light-v2: var(
+    --neutral-on-surface-20-v2
+  );
   --color-Cr-Bg-neutral-on-surface-hover-dark-v2: var(--neutral-variant-40-v2);
   --color-Cr-Bg-neutral-on-surface-alt-light-v2: var(--neutral-on-surface-40-v2);
   --color-Cr-Bg-neutral-on-surface-alt-dark-v2: var(--neutral-variant-50-v2);
-  --color-Cr-Bg-neutral-on-surface-active-light-v2: var(--neutral-on-surface-30-v2);
+  --color-Cr-Bg-neutral-on-surface-active-light-v2: var(
+    --neutral-on-surface-30-v2
+  );
   --color-Cr-Bg-neutral-on-surface-active-dark-v2: var(--neutral-variant-50-v2);
   --color-CCr-input-bg_default-light-v2: var(--neutral-98-v2);
   --color-CCr-input-bg_default-dark-v2: var(--neutral-variant-25-v2);
@@ -923,8 +995,12 @@
   --color-CCr-input-bg_active-dark-v2: var(--neutral-variant-10-v2);
   --color-CCr-input-border-light-v2: var(--neutral-80-v2);
   --color-CCr-input-border-dark-v2: var(--neutral-variant-50-v2);
-  --color-Cr-Bg-neutral-on-surface-disabled-light-v2: var(--neutral-on-surface-10-v2);
-  --color-Cr-Bg-neutral-on-surface-disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-Bg-neutral-on-surface-disabled-light-v2: var(
+    --neutral-on-surface-10-v2
+  );
+  --color-Cr-Bg-neutral-on-surface-disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-Cr-Bg-neutral-secondary-default-light-v2: var(--neutral-99-v2);
   --color-Cr-Bg-neutral-secondary-default-dark-v2: var(--neutral-variant-10-v2);
   --color-Cr-Bg-neutral-secondary-hover-light-v2: var(--neutral-98-v2);
@@ -938,16 +1014,28 @@
   --color-Cr-Bg-neutral-tertiary-active-light-v2: var(--neutral-90-v2);
   --color-Cr-Bg-neutral-tertiary-active-dark-v2: var(--neutral-variant-50-v2);
   --color-Cr-Bg-normal-secondary-default-light-v2: var(--neutral-98-v2);
-  --color-Cr-Bg-normal-secondary-default-desktop-dark-v2: var(--neutral-variant-20-v2);
-  --color-Cr-Bg-normal-secondary-default-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-secondary-default-desktop-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-Cr-Bg-normal-secondary-default-mobile-dark-v2: var(
+    --neutral-variant-10-v2
+  );
   --color-Cr-Bg-normal-secondary-default-dark-v2: var(--neutral-variant-20-v2);
   --color-Cr-Bg-normal-secondary-hover-light-v2: var(--neutral-95-v2);
-  --color-Cr-Bg-normal-secondary-hover-desktop-dark-v2: var(--neutral-variant-30-v2);
-  --color-Cr-Bg-normal-secondary-hover-mobile-dark-v2: var(--neutral-variant-20-v2);
+  --color-Cr-Bg-normal-secondary-hover-desktop-dark-v2: var(
+    --neutral-variant-30-v2
+  );
+  --color-Cr-Bg-normal-secondary-hover-mobile-dark-v2: var(
+    --neutral-variant-20-v2
+  );
   --color-Cr-Bg-normal-secondary-hover-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-secondary-active-light-v2: var(--neutral-90-v2);
-  --color-Cr-Bg-normal-secondary-active-desktop-dark-v2: var(--neutral-variant-40-v2);
-  --color-Cr-Bg-normal-secondary-active-mobile-dark-v2: var(--neutral-variant-30-v2);
+  --color-Cr-Bg-normal-secondary-active-desktop-dark-v2: var(
+    --neutral-variant-40-v2
+  );
+  --color-Cr-Bg-normal-secondary-active-mobile-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-Cr-Bg-normal-secondary-active-dark-v2: var(--neutral-variant-40-v2);
   --color-CCr-chat-tips-button_alert-light-v2: var(--khaki-90-v2);
   --color-CCr-chat-tips-button_alert-dark-v2: var(--khaki-40-v2);
@@ -992,7 +1080,9 @@
   --color-CCr-chips-primary-border-light-v2: var(--neutral-on-surface-20-v2);
   --color-CCr-chips-primary-border-dark-v2: var(--neutral-variant-30-v2);
   --color-CCr-chips-primary-bg_select_disabled-light-v2: var(--neutral-90-v2);
-  --color-CCr-chips-primary-bg_select_disabled-dark-v2: var(--neutral-variant-30-v2);
+  --color-CCr-chips-primary-bg_select_disabled-dark-v2: var(
+    --neutral-variant-30-v2
+  );
   --color-CCr-chips-primary-bg_select-light-v2: var(--neutral-5-v2);
   --color-CCr-chips-primary-bg_select-dark-v2: var(--neutral-variant-100-v2);
   --color-CCr-button-primary-bg_default-2-light-v2: var(--neutral-5-v2);
@@ -1014,13 +1104,21 @@
   --color-CCr-tag-bg_default-light-v2: var(--neutral-on-surface-10-v2);
   --color-CCr-tag-bg_default-dark-v2: var(--neutral-variant-30-v2);
   --color-Cr-Bg-normal-secondary-alt-light-v2: var(--neutral-100-v2);
-  --color-Cr-Bg-normal-secondary-alt-desktop-dark-v2: var(--neutral-variant-20-v2);
-  --color-Cr-Bg-normal-secondary-alt-mobile-dark-v2: var(--neutral-variant-10-v2);
+  --color-Cr-Bg-normal-secondary-alt-desktop-dark-v2: var(
+    --neutral-variant-20-v2
+  );
+  --color-Cr-Bg-normal-secondary-alt-mobile-dark-v2: var(
+    --neutral-variant-10-v2
+  );
   --color-Cr-Bg-normal-secondary-alt-dark-v2: var(--neutral-variant-20-v2);
   --color-CCr-icon-button-plain-fg_default-light-v2: var(--neutral-5-v2);
-  --color-CCr-icon-button-plain-fg_default-dark-v2: var(--neutral-variant-100-v2);
+  --color-CCr-icon-button-plain-fg_default-dark-v2: var(
+    --neutral-variant-100-v2
+  );
   --color-CCr-icon-button-plain-gray-fg_default-light-v2: var(--neutral-40-v2);
-  --color-CCr-icon-button-plain-gray-fg_default-dark-v2: var(--neutral-variant-80-v2);
+  --color-CCr-icon-button-plain-gray-fg_default-dark-v2: var(
+    --neutral-variant-80-v2
+  );
   --color-Cr-Bg-utilities-modal-light-v2: var(--neutral-100-v2);
   --color-Cr-Bg-utilities-modal-dark-v2: var(--neutral-variant-10-v2);
   --color-CCr-tabbar-fg_select_disabled-light-v2: var(--neutral-90-v2);
@@ -1028,7 +1126,9 @@
   --color-CCr-energy-low-battery-fg_default-light-v2: var(--terracotta-30-v2);
   --color-CCr-energy-low-battery-fg_default-dark-v2: var(--terracotta-90-v2);
   --color-CCr-energy-low-battery-bg_default-light-v2: var(--terracotta-99-v2);
-  --color-CCr-energy-low-battery-bg_default-dark-v2: var(--terracotta-variant-10-v2);
+  --color-CCr-energy-low-battery-bg_default-dark-v2: var(
+    --terracotta-variant-10-v2
+  );
   --color-CCr-energy-low-battery-bg_alt-light-v2: var(--terracotta-95-v2);
   --color-CCr-energy-low-battery-bg_alt-dark-v2: var(--terracotta-variant-20-v2);
   --color-CCr-energy-low-battery-bg_on-light-v2: var(--terracotta-70-v2);

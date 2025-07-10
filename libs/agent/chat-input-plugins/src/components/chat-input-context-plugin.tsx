@@ -67,7 +67,9 @@ const AddContext = observer<AgentChatInputPluginProps>(({ messageId }) => {
     <ContextWrapper>
       <AtSign strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-v2" />
       {model.isContextItemsEmpty && (
-        <div className="text-sm-medium">Add context</div>
+        <div className="text-sm-medium text-CCr-button-tertiary-fg_default-v2">
+          Add context
+        </div>
       )}
     </ContextWrapper>
   );
@@ -137,7 +139,9 @@ const ContextItem: React.FC<{
           'hidden group-hover:block',
         )}
       />
-      <div className="text-sm-medium">{name}</div>
+      <div className="text-sm-medium text-CCr-button-tertiary-fg_default-v2">
+        {name}
+      </div>
     </ContextWrapper>
   );
 };

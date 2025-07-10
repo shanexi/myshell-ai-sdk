@@ -3,13 +3,15 @@ const path = require('path');
 
 // Function to apply shorthand replacements
 function applyShorthands(content) {
-  return content
-    // Order matters! Do component-colors before components and colors
-    .replace(/--component-colors-/g, '--CCr-')
-    .replace(/--components-/g, '--C-')
-    .replace(/--colors-/g, '--Cr-')
-    .replace(/foreground/g, 'Fg')
-    .replace(/background/g, 'Bg');
+  return (
+    content
+      // Order matters! Do component-colors before components and colors
+      .replace(/--component-colors-/g, '--CCr-')
+      .replace(/--components-/g, '--C-')
+      .replace(/--colors-/g, '--Cr-')
+      .replace(/foreground/g, 'Fg')
+      .replace(/background/g, 'Bg')
+  );
 }
 
 // Function to add -v2 suffix to CSS variables
@@ -29,16 +31,20 @@ function addV2Suffix(content) {
 // Function to merge desktop-dark and mobile-dark when they have the same value
 function mergeDarkVariants(content) {
   // Use regex to find all desktop-dark and mobile-dark pairs
-  const darkPairsRegex = /--([^-\s]+(?:-[^-\s]+)*)-desktop-dark(-v2)?:\s*(var\([^)]+\)|[^;]+);[\s\n]*--\1-mobile-dark\2:\s*(var\([^)]+\)|[^;]+);/g;
+  const darkPairsRegex =
+    /--([^-\s]+(?:-[^-\s]+)*)-desktop-dark(-v2)?:\s*(var\([^)]+\)|[^;]+);[\s\n]*--\1-mobile-dark\2:\s*(var\([^)]+\)|[^;]+);/g;
 
-  return content.replace(darkPairsRegex, (match, base, v2Suffix, desktopValue, mobileValue) => {
-    // If values are the same, merge to a single dark variant
-    if (desktopValue.trim() === mobileValue.trim()) {
-      return `--${base}-dark${v2Suffix || ''}: ${desktopValue};`;
-    }
-    // If values are different, keep both and add a new dark variant with desktop value
-    return `${match}\n  --${base}-dark${v2Suffix || ''}: ${desktopValue};`;
-  });
+  return content.replace(
+    darkPairsRegex,
+    (match, base, v2Suffix, desktopValue, mobileValue) => {
+      // If values are the same, merge to a single dark variant
+      if (desktopValue.trim() === mobileValue.trim()) {
+        return `--${base}-dark${v2Suffix || ''}: ${desktopValue};`;
+      }
+      // If values are different, keep both and add a new dark variant with desktop value
+      return `${match}\n  --${base}-dark${v2Suffix || ''}: ${desktopValue};`;
+    },
+  );
 }
 
 // 读取 styles.css 文件
@@ -138,7 +144,9 @@ if (designTokenMatch) {
     '3. Added --spacing- prefix to width, padding, height, and spacing variables in BASE section',
   );
   console.log('4. Added --color prefix to design tokens');
-  console.log('5. Merged desktop-dark and mobile-dark variants with same values');
+  console.log(
+    '5. Merged desktop-dark and mobile-dark variants with same values',
+  );
   console.log('6. Added -v2 suffix to all CSS variables');
 } else {
   console.error('Could not find required sections in the file');
