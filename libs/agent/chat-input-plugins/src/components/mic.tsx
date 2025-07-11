@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'motion/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Mic as MicIcon } from 'lucide-react';
 import { cn } from '@myshell-run/common-ui';
 
@@ -39,4 +39,21 @@ export function Mic({ volume }: { volume: number }) {
       </div>
     </div>
   );
+}
+
+export function MicWave() {
+  const [volume, setVolume] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const time = Date.now() / 1000;
+      // 将频率从 2 调整到 4，使波动更快
+      const newVolume = (Math.sin(time * 4) + 1) / 2;
+      setVolume(newVolume);
+    }, 30); // 将更新间隔从 50ms 减少到 30ms，使动画更流畅
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <Mic volume={volume} />;
 }

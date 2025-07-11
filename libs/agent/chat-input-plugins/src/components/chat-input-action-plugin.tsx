@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 import { PropsWithChildren } from 'react';
-import { Mic } from './mic';
+import { MicWave } from './mic';
 
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
@@ -48,7 +48,7 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
               )}
               onClick={() => model.setListening(false)}
             >
-              <Mic volume={0} />
+              <MicWave />
             </div>
           ) : (
             <MicIcon
