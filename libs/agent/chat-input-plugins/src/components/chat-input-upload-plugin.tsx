@@ -143,8 +143,8 @@ const Remove: React.FC<{
       className={cn(
         'absolute top-[-6px] right-[-6px]',
         'h-[20px] w-[20px] rounded-full-v2',
-        'bg-CCr-button-solid-bg_default-v2',
-        'border border-CCr-button-solid-border-v2',
+        'bg-CCr-button-ghost-bg_default-v2',
+        'border border-CCr-button-ghost-border-v2',
         'flex items-center justify-center',
         // 'visible',
         // TODO 在 shellagent group 没生效 先 visible

@@ -1,4 +1,9 @@
-import { cn, context_type_schema, EdixModel } from '@myshell-run/common-ui';
+import {
+  cn,
+  context_type_schema,
+  EdixModel,
+  UppyModel,
+} from '@myshell-run/common-ui';
 import { Braces, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
@@ -14,6 +19,7 @@ export const ChatInputStructuredInputPlugin =
       <>
         <ChatInputStructuredInputWrapper
           edix={model.edix}
+          uppy={model.uppy}
           onEnter={() => {
             model.sendChatInputDoc();
           }}
@@ -34,10 +40,14 @@ export const ChatInputStructuredInputPlugin =
 
 export const ChatInputStructuredInputWrapper = observer<{
   edix: EdixModel;
+  uppy: UppyModel;
   className?: string;
+  /**
+   * @description 有一些需要定制 作为 props 传入
+   */
   onEnter: () => void;
   placeholder?: string;
-}>(({ className, edix, onEnter, placeholder }) => {
+}>(({ className, edix, uppy, onEnter, placeholder }) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
@@ -92,6 +102,22 @@ export const ChatInputStructuredInputWrapper = observer<{
             e.preventDefault();
             if (!ref?.current) return;
             onEnter();
+          }
+        }}
+        onPaste={(e) => {
+          const files = e.clipboardData.files;
+          if (files.length > 0) {
+            e.preventDefault();
+            for (let i = 0; i <= files.length; i++) {
+              const file = files.item(i);
+              if (file) {
+                uppy.uppy.addFile({
+                  name: file.name,
+                  type: file.type,
+                  data: file,
+                });
+              }
+            }
           }
         }}
         aria-placeholder={placeholder}
