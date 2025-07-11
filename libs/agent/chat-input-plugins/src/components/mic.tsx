@@ -8,14 +8,14 @@ export function Mic({ volume }: { volume: number }) {
 
   useEffect(() => {
     controls.start({
-      scale: 1 + volume * 0.3,
-      opacity: 0.6 - volume * 0.2, // 调整透明度范围，让背景色更明显
+      scale: 1 + volume * 0.2,
+      opacity: 0.8 - volume * 0.2, // 调整透明度范围，让背景色更明显
       transition: { type: 'spring', stiffness: 300, damping: 20 },
     });
   }, [volume]);
 
   return (
-    <div className="relative flex h-12 w-12 items-center justify-center">
+    <div className="relative flex h-10 w-10 items-center justify-center">
       <motion.div
         animate={controls}
         className={cn(

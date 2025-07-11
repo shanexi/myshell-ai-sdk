@@ -41,7 +41,13 @@ export interface AgentChatInputHandlers {
 
 @injectable()
 export class AgentChatInputModel {
+  /**
+   * @description chat landing variant 使用的
+   * todo 还是 chat input plugins 怎么设计的问题 现在临时放在一起
+   */
   @observable loading = false;
+
+  @observable listening = false;
 
   constructor(
     @inject(AgentChatInputHandlers)
@@ -248,5 +254,9 @@ export class AgentChatInputModel {
 
   removeImagePreview(id: string) {
     this.uppy.removeFile(id);
+  }
+
+  setListening(listening: boolean) {
+    this.listening = listening;
   }
 }

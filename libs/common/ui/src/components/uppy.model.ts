@@ -14,7 +14,6 @@ import {
   mimeData2,
 } from './uppy.utils';
 import { FileKind } from 'human-filetypes';
-import { createId } from '@paralleldrive/cuid2';
 
 // 后端上传接口返回结构
 // export interface UploadResBody extends Body {

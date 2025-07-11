@@ -1,9 +1,10 @@
 import { cn, HiddenInputFile, UppyModel } from '@myshell-run/common-ui';
-import { ArrowUp, CirclePlus, Mic } from 'lucide-react';
+import { ArrowUp, CirclePlus, Mic as MicIcon } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
 import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 import { PropsWithChildren } from 'react';
+import { Mic } from './mic';
 
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
@@ -34,18 +35,31 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
     return (
       <Wrapper>
         <UploadPlus uppy={model.uppy} />
-        {model.loading ? (
-          <div className="loader"></div>
-        ) : model.canSend ? (
-          <SendButton onClick={() => model.sendChatInputDoc()} />
-        ) : (
-          // <Mic
-          //   strokeWidth={1.5}
-          //   size={28}
-          //   className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
-          // />
-          <NotAllowedSendButton />
-        )}
+        {
+          model.loading ? (
+            <div className="loader"></div>
+          ) : model.canSend ? (
+            <SendButton onClick={() => model.sendChatInputDoc()} />
+          ) : model.listening ? (
+            <div
+              className={cn(
+                'absolute cursor-pointer',
+                'right-[2px]', // 微调
+              )}
+              onClick={() => model.setListening(false)}
+            >
+              <Mic volume={0} />
+            </div>
+          ) : (
+            <MicIcon
+              onClick={() => model.setListening(true)}
+              strokeWidth={1.5}
+              size={28}
+              className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
+            />
+          )
+          // <NotAllowedSendButton />
+        }
       </Wrapper>
     );
   },
@@ -56,7 +70,12 @@ ChatInputActionPlugin.displayName = 'ChatInputActionPlugin';
 export const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
-      className={cn('flex items-center justify-between', 'px-spacing-sm-v2')}
+      className={cn(
+        'flex items-center justify-between',
+        'px-spacing-md-v2',
+        'pb-spacing-xs-v2',
+        'relative',
+      )}
     >
       {children}
     </div>
