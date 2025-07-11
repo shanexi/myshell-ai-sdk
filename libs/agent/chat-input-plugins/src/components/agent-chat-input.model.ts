@@ -90,8 +90,16 @@ export class AgentChatInputModel {
     runInAction(() => {
       this.variant = 'message';
     });
-    // TODO 还有 context
     this.edix.setChatInputDoc(chatInputDoc);
+
+    context.forEach((ctx) => {
+      if (ctx.type !== 'image') {
+        // todo 过滤文件
+        const key = `${ctx.type}:${ctx.content.name}`;
+        this.edix.addedContextMap.set(key, ctx);
+      }
+    });
+
     this.uppy.setInitialUppyState(uploadItems);
     this.edix.setEdixReadonly(true);
   }

@@ -180,6 +180,7 @@ export class AgentChatHelper {
     }
 
     const contextUploads = uploadsToContexts(uploads);
+    const contexts = contextUploads.concat(context);
     this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
       [
         {
@@ -188,7 +189,7 @@ export class AgentChatHelper {
           type: OWN_MESSAGE_TYPE,
           args: {
             chatInputDoc,
-            context: contextUploads, // TODO: context 处理
+            context: contexts,
           }, // 传入 doc 给到 chatInput message
         },
       ],

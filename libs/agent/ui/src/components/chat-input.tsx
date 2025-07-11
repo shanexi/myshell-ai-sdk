@@ -29,7 +29,6 @@ export const ChatInput: React.FC<{
         props.args.context,
       );
     }
-    console.debug('setup', props.messageId);
     chatInput.uppy.setup();
   }, [props.messageId]);
 

@@ -119,27 +119,32 @@ const ContextItem: React.FC<{
       <Icon
         strokeWidth={1.5}
         size={16}
-        className={cn('text-Cr-Fg-subtle-v2', 'block group-hover:hidden')}
-      />
-      <X
-        onClick={() => {
-          model.edix.removeAddedContext(
-            context_schema.parse({
-              type,
-              content: {
-                name: name,
-              },
-            }),
-          );
-        }}
-        strokeWidth={1.5}
-        size={16}
         className={cn(
           'text-Cr-Fg-subtle-v2',
-          'cursor-pointer',
-          'hidden group-hover:block',
+          model.variant !== 'message' && 'block group-hover:hidden',
         )}
       />
+      {model.variant !== 'message' && (
+        <X
+          onClick={() => {
+            model.edix.removeAddedContext(
+              context_schema.parse({
+                type,
+                content: {
+                  name: name,
+                },
+              }),
+            );
+          }}
+          strokeWidth={1.5}
+          size={16}
+          className={cn(
+            'text-Cr-Fg-subtle-v2',
+            'cursor-pointer',
+            'hidden group-hover:block',
+          )}
+        />
+      )}
       <div className="text-sm-medium text-CCr-button-tertiary-fg_default-v2">
         {name}
       </div>
