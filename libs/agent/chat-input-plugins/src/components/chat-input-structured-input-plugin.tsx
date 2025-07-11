@@ -6,6 +6,12 @@ import {
 } from '@myshell-run/common-ui';
 import { Braces, LucideProps } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionStyle,
+} from 'motion/react';
 import { useEffect, useRef } from 'react';
 import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
@@ -38,6 +44,25 @@ export const ChatInputStructuredInputPlugin =
     );
   });
 
+const ScrollFade = ({
+  direction = 'bottom',
+  style,
+}: {
+  direction?: 'top' | 'bottom';
+  style?: MotionStyle;
+}) => (
+  <motion.div
+    className={cn(
+      'pointer-events-none absolute right-0 left-0 h-[30px]',
+      direction === 'bottom'
+        ? 'bottom-0 bg-gradient-to-t'
+        : 'top-0 bg-gradient-to-b',
+      'from-[var(--color-Cr-Bg-neutral-primary-default-v2)] to-[var(--color-Cr-Bg-neutral-primary-default-v2)]/0',
+    )}
+    style={style}
+  />
+);
+
 export const ChatInputStructuredInputWrapper = observer<{
   edix: EdixModel;
   uppy: UppyModel;
@@ -49,6 +74,13 @@ export const ChatInputStructuredInputWrapper = observer<{
   placeholder?: string;
 }>(({ className, edix, uppy, onEnter, placeholder }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    container: ref,
+  });
+
+  const topFadeOpacity = useTransform(scrollYProgress, [0, 0.01], [0, 1]);
+  const bottomFadeOpacity = useTransform(scrollYProgress, [0.99, 1], [1, 0]);
+
   useEffect(() => {
     if (!ref.current) return;
 
@@ -82,68 +114,84 @@ export const ChatInputStructuredInputWrapper = observer<{
       dispose?.();
     };
   }, []);
+
   return (
     <>
-      <div
-        ref={ref}
-        className={cn(
-          'x-chat-input-advanced-input-plugin',
-          'text-Cr-text-default-v2',
-          'text-lg-regular',
-          'my-spacing-xs-v2',
-          'w-full resize-none !px-spacing-md-v2 outline-none',
-          'overflow-y-auto',
-          'max-h-[6lh]',
-          'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
-          className,
-        )}
-        onKeyDown={(e) => {
-          if (!e.nativeEvent.isComposing && e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            if (!ref?.current) return;
-            onEnter();
-          }
-        }}
-        onPaste={(e) => {
-          const files = e.clipboardData.files;
-          if (files.length > 0) {
-            e.preventDefault();
-            for (let i = 0; i <= files.length; i++) {
-              const file = files.item(i);
-              if (file) {
-                uppy.uppy.addFile({
-                  name: file.name,
-                  type: file.type,
-                  data: file,
-                });
+      <div className="relative">
+        <div
+          ref={ref}
+          className={cn(
+            'x-chat-input-advanced-input-plugin',
+            'text-Cr-text-default-v2',
+            'text-lg-regular',
+            'my-spacing-xs-v2',
+            'w-full resize-none !px-spacing-md-v2 outline-none',
+            'overflow-y-auto',
+            'max-h-[6lh]',
+            'min-h-[1lh]', // 为了解决输入框导致的 message list 动画抖动问题
+            className,
+          )}
+          onKeyDown={(e) => {
+            if (
+              !e.nativeEvent.isComposing &&
+              e.key === 'Enter' &&
+              !e.shiftKey
+            ) {
+              e.preventDefault();
+              if (!ref?.current) return;
+              onEnter();
+            }
+          }}
+          onPaste={(e) => {
+            const files = e.clipboardData.files;
+            if (files.length > 0) {
+              e.preventDefault();
+              for (let i = 0; i <= files.length; i++) {
+                const file = files.item(i);
+                if (file) {
+                  uppy.uppy.addFile({
+                    name: file.name,
+                    type: file.type,
+                    data: file,
+                  });
+                }
               }
             }
-          }
-        }}
-        aria-placeholder={placeholder}
-      >
-        {!edix.isChatInputDocEmpty &&
-          edix.chatInputDoc.map((line, i) => (
-            <div key={i}>
-              {line.length ? (
-                line.map((t, j) =>
-                  t.type === 'context' ? (
-                    <ContextItem
-                      key={j}
-                      content={t.data.content}
-                      type={t.data.type}
-                    />
-                  ) : (
-                    <span key={j} className="break-words whitespace-pre-wrap">
-                      {t.text}
-                    </span>
-                  ),
-                )
-              ) : (
-                <br />
-              )}
-            </div>
-          ))}
+          }}
+          aria-placeholder={placeholder}
+        >
+          {!edix.isChatInputDocEmpty &&
+            edix.chatInputDoc.map((line, i) => (
+              <div key={i}>
+                {line.length ? (
+                  line.map((t, j) =>
+                    t.type === 'context' ? (
+                      <ContextItem
+                        key={j}
+                        content={t.data.content}
+                        type={t.data.type}
+                      />
+                    ) : (
+                      <span key={j} className="break-words whitespace-pre-wrap">
+                        {t.text}
+                      </span>
+                    ),
+                  )
+                ) : (
+                  <br />
+                )}
+              </div>
+            ))}
+        </div>
+        {edix.edixReadonly && (
+          <>
+            <ScrollFade direction="top" style={{ opacity: topFadeOpacity }} />
+            <ScrollFade
+              direction="bottom"
+              style={{ opacity: bottomFadeOpacity }}
+            />
+          </>
+        )}
       </div>
       <style>{`
 [contenteditable]:empty:before {
