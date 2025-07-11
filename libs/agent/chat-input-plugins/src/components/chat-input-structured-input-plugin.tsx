@@ -107,7 +107,9 @@ export const ChatInputStructuredInputWrapper = observer<{
                       type={t.data.type}
                     />
                   ) : (
-                    <span key={j}>{t.text}</span>
+                    <span key={j} className="break-words whitespace-pre-wrap">
+                      {t.text}
+                    </span>
                   ),
                 )
               ) : (

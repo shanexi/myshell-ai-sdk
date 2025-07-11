@@ -1,4 +1,8 @@
-import { AgentChatInputHandlers } from '@myshell-run/agent-chat-input-plugins';
+import {
+  AgentChatInputHandlers,
+  AgentChatInputModelFactory,
+  NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+} from '@myshell-run/agent-chat-input-plugins';
 import {
   agent_message_schema,
   content_blocks_schema,
@@ -25,6 +29,8 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     @inject(ChatCommonModelFactory)
     public factory: (id: symbol) => ChatCommonModel,
     @inject(AgentChatHelper) private helper: AgentChatHelper,
+    @inject(AgentChatInputModelFactory)
+    public chatInputFactory: AgentChatInputModelFactory,
   ) {
     makeObservable(this);
   }
@@ -124,5 +130,37 @@ export class ShellAgentChatModel implements AgentChatInputHandlers {
     });
 
     yield;
+  }
+
+  addToContext(context: ContextItem) {
+    this.chatInputFactory(
+      this.chatCommon.enabledChatInputMessageKey ||
+        NO_MESSAGE_ID_AGENT_CHAT_INPUT,
+    ).edix.addToContext(context);
+  }
+
+  async sendTextVariant(text: string) {
+    const key = createId();
+    const chatInputDoc = [[{ type: 'text', text }]];
+    this.chatCommon.virtuoso.virtuosoRef?.current?.data.append(
+      [
+        {
+          key: key,
+          text: text,
+          type: OWN_MESSAGE_TYPE,
+          args: {
+            chatInputDoc,
+            context: [],
+          },
+        },
+      ],
+      ({ scrollInProgress, atBottom }) => {
+        return {
+          index: 'LAST',
+          align: 'start-no-overflow',
+          behavior: atBottom || scrollInProgress ? 'smooth' : 'auto',
+        };
+      },
+    );
   }
 }
