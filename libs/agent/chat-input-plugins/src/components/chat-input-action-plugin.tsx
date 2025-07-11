@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useAgentChatInputModel } from '../chat-input-model-factory';
 import { AgentChatInputPluginProps } from './agent-chat-input-plugin-slot';
 import { PropsWithChildren } from 'react';
-import { MicWave } from './mic';
+import { micPatchH, MicWave } from './mic';
 
 export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
   ({ messageId }) => {
@@ -44,7 +44,7 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
             <div
               className={cn(
                 'absolute cursor-pointer',
-                'right-[2px]', // 微调
+                `right-[${micPatchH}px]`, // 根据 Mic 宽度微调
               )}
               onClick={() => model.setListening(false)}
             >
