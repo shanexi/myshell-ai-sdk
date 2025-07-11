@@ -277,6 +277,7 @@ export const user_msg1 = {
 
 export const user_msg1_reply = {
   id: -1,
+  message_id: 12334,
   status: 'completed',
   type: 'error_message',
   args: {
