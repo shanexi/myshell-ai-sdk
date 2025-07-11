@@ -14,7 +14,7 @@ export const ShellAgentChat = () => {
     <div
       className={cn('flex h-full w-full', 'bg-Cr-Bg-normal-primary-default-v2')}
     >
-      <div className={cn('flex-1 border-r border-gray-200')}>
+      <div className={cn('flex-1 border-r border-Cr-border-default-v2')}>
         <Chat />
       </div>
       <div className={cn('flex-1')}>
