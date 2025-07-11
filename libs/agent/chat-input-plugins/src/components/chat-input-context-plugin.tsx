@@ -66,11 +66,12 @@ const AddContext = observer<AgentChatInputPluginProps>(({ messageId }) => {
   return (
     <ContextWrapper>
       <AtSign strokeWidth={1.5} size={16} className="text-Cr-Fg-subtle-v2" />
-      {model.isContextItemsEmpty && (
+      {/* todo 搜索 context 产品还未开发 先注释  */}
+      {/*{model.isContextItemsEmpty && (
         <div className="text-sm-medium text-CCr-button-tertiary-fg_default-v2">
           Add context
         </div>
-      )}
+      )}*/}
     </ContextWrapper>
   );
 });

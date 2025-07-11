@@ -63,11 +63,12 @@ export const ChatInputStructuredInputWrapper = observer<{
     };
 
     const element = ref.current;
-    element.addEventListener('keydown', handleKeyDown);
+    // TODO @ 搜索 context 产品还未开发 先注释
+    // element.addEventListener('keydown', handleKeyDown);
 
     const dispose = edix.setEdixRefStructured(ref);
     return () => {
-      element.removeEventListener('keydown', handleKeyDown);
+      // element.removeEventListener('keydown', handleKeyDown);
       dispose?.();
     };
   }, []);
