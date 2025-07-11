@@ -35,31 +35,29 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
     return (
       <Wrapper>
         <UploadPlus uppy={model.uppy} />
-        {
-          model.loading ? (
-            <div className="loader"></div>
-          ) : model.canSend ? (
-            <SendButton onClick={() => model.sendChatInputDoc()} />
-          ) : model.listening ? (
-            <div
-              className={cn(
-                'absolute cursor-pointer',
-                `right-[${micPatchH}px]`, // 根据 Mic 宽度微调
-              )}
-              onClick={() => model.setListening(false)}
-            >
-              <MicWave />
-            </div>
-          ) : (
-            <MicIcon
-              onClick={() => model.setListening(true)}
-              strokeWidth={1.5}
-              size={28}
-              className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
-            />
-          )
+        {model.listening ? (
+          <div
+            className={cn(
+              'absolute cursor-pointer',
+              `right-[${micPatchH}px]`, // 根据 Mic 宽度微调
+            )}
+            onClick={() => model.setListening(false)}
+          >
+            <MicWave />
+          </div>
+        ) : model.loading ? (
+          <div className="loader"></div>
+        ) : model.canSend ? (
+          <SendButton onClick={() => model.sendChatInputDoc()} />
+        ) : (
           // <NotAllowedSendButton />
-        }
+          <MicIcon
+            onClick={() => model.setListening(true)}
+            strokeWidth={1.5}
+            size={28}
+            className="cursor-pointer p-[3px] text-CCr-icon-button-plain-fg_default-v2"
+          />
+        )}
       </Wrapper>
     );
   },

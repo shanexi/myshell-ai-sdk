@@ -13,6 +13,7 @@ import { computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import { isEmpty } from 'radash';
 import { agentChatInputModelMap } from '../agent-chat-input-plugins.module';
 import { NO_MESSAGE_ID_AGENT_CHAT_INPUT } from '../chat-input-model-factory';
+import { InsertText } from 'edix';
 
 export const AgentChatInputHandlers = Symbol.for('AgentChatInputHandlers');
 
@@ -256,7 +257,37 @@ export class AgentChatInputModel {
     this.uppy.removeFile(id);
   }
 
+  private wordList = [
+    'hello',
+    'world',
+    'coding',
+    'fun',
+    'awesome',
+    'great',
+    'nice',
+    'cool',
+  ];
+  private intervalId?: NodeJS.Timeout;
+
   setListening(listening: boolean) {
     this.listening = listening;
+
+    if (listening) {
+      this.intervalId = setInterval(() => {
+        const words = [];
+        const count = Math.floor(Math.random() * 5) + 1; // 1-5 words
+        for (let i = 0; i < count; i++) {
+          const randomIndex = Math.floor(Math.random() * this.wordList.length);
+          words.push(this.wordList[randomIndex]);
+        }
+        const text = ' ' + words.join(' '); // Add leading space
+        this.edix.edixHandle?.command(InsertText, text);
+      }, 800);
+    } else {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = undefined;
+      }
+    }
   }
 }
