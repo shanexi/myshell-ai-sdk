@@ -39,7 +39,8 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
           <div
             className={cn(
               'absolute cursor-pointer',
-              `right-[${micPatchH}px]`, // 根据 Mic 宽度微调
+              // `right-[${micPatchH}px]`, // 根据 Mic 宽度微调
+              `right-[4px]`, // 根据 Mic 宽度微调 这里还不能用 string template literal 否则样式有问题
             )}
             onClick={() => model.setListening(false)}
           >

@@ -13,6 +13,7 @@ export const ChatInputStructuredInputVariantPlugin = observer(() => {
     <>
       <ChatInputStructuredInputWrapper
         edix={model.edix}
+        uppy={model.uppy}
         onEnter={() => {
           model.sendChatInputDocVariant();
         }}

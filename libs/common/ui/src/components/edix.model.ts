@@ -122,7 +122,6 @@ export class EdixModel {
   @observable atSearchCriteria: AtSearchCriteria = null;
   contextMenuRect: DOMRect | null = null;
   @observable isContextMenuShow = false;
-  // TODO: 本来应该放在 chat input model 但是产生了 cycle deps 先放这里
   @observable addedContextMap: Map<string, z.infer<typeof context_schema>> =
     new Map();
 
@@ -130,6 +129,9 @@ export class EdixModel {
   @observable edixReadonly = false;
   public edixHandle: EditableHandle | null = null;
   @observable selectedMenuIndex = 0;
+  /**
+   * @deprecated 先别用 产品暂未开发
+   */
   @observable contextMenus = observable.array<ContextItem>([
     { content: { name: 'Requirement' }, type: 'requirement' },
     { content: { name: 'Preview' }, type: 'preview' },
@@ -196,10 +198,14 @@ export class EdixModel {
   //   },
   //   { id: 'test.test_suite1', type: 'test', name: 'test.test_suite1' },
   // ]);
+
   @computed get addedContextItems() {
     return Array.from(this.addedContextMap.values());
   }
 
+  /**
+   * @deprecated 先别用 产品暂未开发
+   */
   @computed get filteredContextMenus(): FilteredContextItem[] {
     const searchCriteria = this.atSearchCriteria;
 

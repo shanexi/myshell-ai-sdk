@@ -159,6 +159,7 @@ export class AgentChatInputModel {
 
   get canSend() {
     return (
+      this.edix.addedContextItems.length > 0 ||
       !isEmpty(this.edix.inputText) ||
       !this.edix.isChatInputDocEmpty ||
       !isEmpty(this.uppy.previewItems)
