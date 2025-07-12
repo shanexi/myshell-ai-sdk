@@ -34,7 +34,11 @@ export const ChatInputStructuredInputPlugin =
             model.variant === 'message' && 'cursor-pointer',
           )}
           placeholder={
-            model.variant === 'message' ? undefined : 'Write a message'
+            model.variant === 'message'
+              ? undefined
+              : model.listening
+                ? 'Listening to'
+                : 'Write a message'
           }
         />
         {model.edix.isContextMenuShow && model.edix.contextMenuRect && (

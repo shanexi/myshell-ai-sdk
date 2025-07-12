@@ -46,8 +46,6 @@ export const ChatInputActionPlugin = observer<AgentChatInputPluginProps>(
           >
             <MicWave />
           </div>
-        ) : model.loading ? (
-          <div className="loader"></div>
         ) : model.canSend ? (
           <SendButton onClick={() => model.sendChatInputDoc()} />
         ) : (

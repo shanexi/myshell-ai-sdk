@@ -267,31 +267,33 @@ export class AgentChatInputModel {
   }
 
   private wordList = [
-    'hello',
-    'world',
-    'coding',
-    'fun',
-    'awesome',
-    'great',
-    'nice',
-    'cool',
+    '[Mock]',
+    'This',
+    'feature',
+    'is',
+    'under',
+    'development.',
+    'Coming',
+    'soon!',
   ];
+  private currentWordIndex = 0;
   private intervalId?: NodeJS.Timeout;
 
   setListening(listening: boolean) {
     this.listening = listening;
 
     if (listening) {
+      this.currentWordIndex = 0;
       this.intervalId = setInterval(() => {
-        const words = [];
-        const count = Math.floor(Math.random() * 5) + 1; // 1-5 words
-        for (let i = 0; i < count; i++) {
-          const randomIndex = Math.floor(Math.random() * this.wordList.length);
-          words.push(this.wordList[randomIndex]);
+        if (this.currentWordIndex < this.wordList.length) {
+          const text = ' ' + this.wordList[this.currentWordIndex];
+          this.edix.edixHandle?.command(InsertText, text);
+          this.currentWordIndex++;
+        } else {
+          this.currentWordIndex = 0;
+          this.edix.edixHandle?.command(InsertText, '\n');
         }
-        const text = ' ' + words.join(' '); // Add leading space
-        this.edix.edixHandle?.command(InsertText, text);
-      }, 800);
+      }, 500);
     } else {
       if (this.intervalId) {
         clearInterval(this.intervalId);
